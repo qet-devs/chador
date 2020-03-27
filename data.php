@@ -5976,45 +5976,189 @@ switch($id){
 								echo '<script>swal("Error", "Comment not  Posted!", "error");</script>';
 							}
 							break;
+							case 400:
+								$partyname = $_GET['partyname'];
+								$partyaddress = $_GET['partyaddress'];
+								$advocatename = $_GET['advocatename'];
+								$advocataddress = $_GET['advocatename'];
+								$ownername = $_GET['ownername'];
+								$owneraddress = $_GET['owneraddress'];
+								$debtorname = $_GET['debtorname'];
+								$debtoraddress = $_GET['debtoraddress'];
+								$propertylocation = $_GET['propertylocation'];
+								$propertyperson = $_GET['propertyperson'];
+								$propertydescription = $_GET['propertydescription'];
+								$adinstructions = $_GET['adinstructions'];
+								$expenditure = $_GET['expenditure'];
+								$datepicker = $_GET['datepicker'];
+								$recoveryamount = $_GET['recoveryamount'];
+								$dailyrates = $_GET['dailyrates'];
+								$estlegalcost = $_GET['estlegalcost'];
+								$estauctioneersfees = $_GET['estauctioneersfees'];
+								$reserveprice = $_GET['reserveprice'];
+								$reason =$_GET['reason'];
 
+								//check if letter exists
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							
+							$resultx =mysql_query("select * from letters where ownername='".$ownername."' and debtorname='".$debtorname."'");
+							if(mysql_num_rows($resultx)>0){
+									echo '<script>swal("Error", "Letter with similar information already exists. !Consult the System Admin", "error");</script>';
 								
+							}
 
+							$resultc = mysql_query("INSERT INTO `letters`( `partyname`, `partyaddress`, `advocatename`, `advocateaddress`, `ownername`, `owneraddress`, `debtorname`, `debtoraddress`, `propaddress`, `propperson`, `propdescription`, `adinstructions`, `expenditure`, `date`, `amount`, `dailyrates`, `estlegalcost`, `estauctioneersfees`, `reserveprice`, `reason`, `status`, `username`)
+							 VALUES ('".$partyname."','".$partyaddress."','".$advocatename."','".$advocataddress."','".$ownername."','".$owneraddress."','".$debtorname."','".$debtoraddress."','".$propertylocation."','".$propertyperson."','".$propertydescription."','".$adinstructions."','".$expenditure."','".$datepicker."','".$amount."','".$dailyrates."','".$estlegalcost."','".$estauctioneersfees."','".$reserveprice."','".$reason."','1','".$username."')");
 							
+								//register log
+							$resulta = mysql_query("insert into log values('0','".$username." creates new letter id=".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
 							
+							if($resultc){
+							echo '<script>swal("Success!", "Instruction letter information saved successfully", "success");</script>';
+							
+							echo"<script>setTimeout(function() {newletter();},500);</script>";	
+							}
+							else{
+								echo '<script>swal("Error", "failed to save letter info!", "error");</script>';
+							}
+							break;
+							case 500:
+								$landlord = $_GET['landlord'];
+								$tenant = $_GET['tenant'];
+								$to = $_GET['to'];
+								$date = $_GET['date'];
+								$amount = $_GET['amount'];
+								$months = $_GET['months'];
 
-
+								$resultx =mysql_query("select * from distress where landlord='".$landlord."' and tenant='".$tenant."'");
+								if(mysql_num_rows($resultx)>0){
+										echo '<script>swal("Error", "Distress with similar information already exists. !Consult the System Admin", "error");</script>';
+									
+								}
+	
+								$resultc = mysql_query("INSERT INTO `distress`( `landlord`, `tenant`, `to`, `at`, `amount`, `months`, `status`, `username`) 
+								VALUES ('".$landlord."','".$tenant."','".$to."','".$date."','".$amount."','".$months."','1','".$username."')");
+									
 								
+								if($resultc){
+								echo '<script>swal("Success!", "Instruction letter information saved successfully", "success");</script>';
+								
+								$resulta = mysql_query("insert into log values('0','".$username." creates new distress id=".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+								echo"<script>setTimeout(function() {newletter();},500);</script>";	
+								}
+								else{
+									echo '<script>swal("Error", "failed to save letter info!", "error");</script>';
+								}
+							break;
 
+							case 600:
+								$suitno = $_GET['suitno'];
+								$holder = $_GET['holder'];
+								$court = $_GET['court'];
+								$party1 = $_GET['party1'];
+								$party2 = $_GET['party2'];
+								$against = $_GET['against'];
+								$appeal = $_GET['appeal'];
+								$decreedate = $_GET['decreedate'];
+								$mode = $_GET['mode'];
+								$adjournment = $_GET['adjournment'];
+								$payment = $_GET['payment'];
+								$date = $_GET['date'];
+								$result = $_GET['result'];
+								$principal = $_GET['principal'];
+								$interest = $_GET['interest'];
+								$costawarded = $_GET['costawarded'];
+								$courtfee = $_GET['courtfee'];
+								$subincurred = $_GET['subincurred'];
 
-
-
+								$resultx =mysql_query("select * from decree where party1='".$party1."' and party2='".$party2."'");
+								if(mysql_num_rows($resultx)>0){
+										echo '<script>swal("Error", "Decree with similar information already exists. !Consult the System Admin", "error");</script>';
+									
+								}
 	
+								$resultc = mysql_query("INSERT INTO `decrees`( `suitno`, `court`, `party1`, `party2`, `decree_date`, `appeal`, `payment`, `adjournment`, `date`, `results`, `principal`, `interest`, `cost_awarded`, `court_fee`, `subs_incurred`, `against`, `mode`, `holder`, `username`, `status`) 
+								VALUES ('".$suitno."','".$court."','".$party1."','".$party2."','".$decreedate."','".$appeal."','".$payment."','".$adjournment."','".$date."','".$result."','".$principal."','".$interest."','".$costawarded."','".$courtfee."','".$subincurred."','".$against."','".$mode."','".$holder."','".$username."','1')");
+									
+								
+								if($resultc){
+								echo '<script>swal("Success!", "Decree information saved successfully", "success");</script>';
+								
+								$resulta = mysql_query("insert into log values('0','".$username." creates new decree','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+								echo"<script>setTimeout(function() {newdecree();},500);</script>";	
+								}
+								else{
+									echo '<script>swal("Error", "failed to save decree info!", "error");</script>';
+								}
+							break;
+							case 700:
+								$party = $_GET['party'];
+								$debtor = $_GET['debtor'];
+								$amount = $_GET['amount'];
+								$charges = $_GET['charges'];
+								$noticedate = $_GET['noticedate'];
+								$noticedays = $_GET['noticedays'];
+								$datereserved = $_GET['datereserved'];
+
+								$resultx =mysql_query("select * from court_notices where instructing_party='".$party."' and debtor_name='".$debtor."'");
+								if(mysql_num_rows($resultx)>0){
+										echo '<script>swal("Error", "Notice with similar information already exists. !Consult the System Admin", "error");</script>';
+									
+								}
 	
+								$resultc = mysql_query("INSERT INTO `court_notices`(`instructing_party`, `debtor_name`, `amount`, `charges`, `notice_date`, `days`, `date_served`, `username`, `status`) 
+								VALUES ('".$party."','".$debtor."','".$amount."','".$charges."','".$noticedate."','".$noticedays."','".$datereserved."','".$username."','1')");
+									
+								
+								if($resultc){
+								echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
+								
+								$resulta = mysql_query("insert into log values('0','".$username." creates new Notice','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+								echo"<script>setTimeout(function() {newnotice();},500);</script>";	
+								}
+								else{
+									echo '<script>swal("Error", "failed to save Notice info!", "error");</script>';
+								}
+							break;
+
+							case 800:
+								$auctname = $_GET['auctioneername'];
+								$auctphone = $_GET['auctphone'];
+								$auctaddress = $_GET['auctaddress'];
+								$trader = $_GET['trader'];
+								$creditorname = $_GET['creditorname'];
+								$creditoraddress = $_GET['creditoraddress'];
+								$debtorname = $_GET['debtorname'];
+								$debtoraddress = $_GET['debtoraddress'];
+								$amount = $_GET['amount'];
+								$auctcharges = $_GET['auctcharges'];
+								$advfee = $_GET['advfee'];
+								$court = $_GET['court'];
+								$courtdate = $_GET['courtdate'];
+								$caseno = $_GET['caseno'];
+								$decreedate = $_GET['decreedate'];
+								$returndate = $_GET['returndate'];
+								$warrantdate = $_GET['warrantdate'];
+								$noticedays = $_GET['noticedays'];
+
+								$resultx =mysql_query("select * from proclamations where creditorname='".$creditorname."' and debtorname='".$debtorname."'");
+								if(mysql_num_rows($resultx)>0){
+										echo '<script>swal("Error", "Proclamation with similar information already exists. !Consult the System Admin", "error");</script>';
+									
+								}
 	
-
-
-
+								$resultc = mysql_query("INSERT INTO `proclamations`(`auctioneername`, `auctaddress`, `auctphone`, `trader`, `creditorname`, `creditoraddress`, `debtorname`, `debtoraddress`, `amount`, `auctcharges`, `advfee`, `court`, `date`, `caseno`, `decreedate`, `warrantdate`, `returndate`, `noticedays`, `status`, `username`) 
+								VALUES ('".$auctname."','".$auctaddress."','".$auctphone."','".$trader."','".$creditorname."','".$creditoraddress."','".$debtorname."','".$debtoraddress."','".$amount."','".$auctcharges."','".$advfee."','".$court."','".$date."','".$caseno."','".$decreedate."','".$warrantdate."','".$returndate."','".$noticedays."','1','".$username."')");
+									
+								
+								if($resultc){
+								echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
+								
+								$resulta = mysql_query("insert into log values('0','".$username." creates new Proclamation','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+								echo"<script>setTimeout(function() {newproclamation();},500);</script>";	
+								}
+								else{
+									echo '<script>swal("Error", "failed to save Proclamation info!", "error");</script>';
+								}
+							break;
 
 		}

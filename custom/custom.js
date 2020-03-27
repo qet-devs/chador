@@ -9151,6 +9151,71 @@ function newletter(){
 	});
 }
 
+function savenewletter(){
+	var party_name = $('#partyname').val();
+	var party_address = $('#partyaddress').val();
+	var advocate_name = $('#advocatename').val();
+	var advocate_address = $('#advocateaddress').val();
+	var owner_name = $('#ownername').val();
+	var owner_address = $('#owneraddress').val();
+	var debtor_name = $('#debtorname').val();
+	var debtor_address = $('#debtoraddress').val();
+	var property_location = $('#propertylocation').val();
+	var property_person = $('#propertyperson').val();
+	var property_description = $('#propertydescription').val();
+	var ad_instructions = $('#adinstructions').val();
+	var expenditure = $('#expenditure').val();
+	var datepicker = $('#datepicker').val();
+	var recovery_amount = $('#recoveryamount').val();
+	var daily_rates = $('#dailyrates').val();
+	var est_legal_cost = $('#estlegalcost').val();
+	var est_auctioneers_fees = $('#estauctioneersfees').val();
+	var reserve_price = $('#reserveprice').val();
+	var reason = $('#reason').val();
+
+	if(party_name==''||advocate_name==''||owner_name==''||debtor_name==''||property_description==''||property_location==''||recovery_amount==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+		}else{
+			var data = {
+				id:400,
+				partyname:party_name,
+				partyaddress:party_address,
+				advocatename:advocate_name,
+				advocateaddress:advocate_address,
+				ownername:owner_name,
+				owneraddress:owner_address,
+				debtorname:debtor_name,
+				debtoraddress:debtor_address,
+				propertylocation:property_location,
+				propertyperson:property_person,
+				propertydescription:property_description,
+				adinstructions:ad_instructions,
+				expenditure:expenditure,
+				datepicker:datepicker,
+				recoveryamount:recovery_amount,
+				dailyrates:daily_rates,
+				estlegalcost:est_legal_cost,
+				estauctioneersfees:est_auctioneers_fees,
+				reserveprice:reserve_price,
+				reason:reason
+			};
+
+			//console.log(data);
+			$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+			$.ajax({
+			url:'data.php',
+			data:data,
+			success:function(data){
+			$('#message').html(data);
+			}
+			});	
+
+		}
+		
+
+}
+
 function newdistress(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -9160,6 +9225,40 @@ function newdistress(){
 	$('#mainp').html(data);
 	}
 	});
+}
+
+function savenewdistress(){
+	var landlord = $('#landlord').val();
+	var tenant = $('#tenant').val();
+	var to = $('#to').val();
+	var datepicker = $('#datepicker').val();
+	var amount = $('#amount').val();
+	var months = $('#months').val();
+
+	if(landlord==''||tenant==''||to==''||datepicker==''||amount==''||months==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:501,
+			landlord:landlord,
+			tenant:tenant,
+			date:datepicker,
+			amount:amount,
+			months:months
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});	
+	}
+
 }
 
 function newdecree(){
@@ -9173,6 +9272,64 @@ function newdecree(){
 	});
 }
 
+function savenewdecree(){
+	var suitno = $('#suitno').val();
+	var holder = $('#holder').val();
+	var court = $('#court').val();
+	var party1 = $('#party1').val();
+	var party2 = $('#party2').val();
+	var against = $('#against').val();
+	var appeal = $('#appeal').val();
+	var decreedate = $('#datepicker').val();
+	var mode  = $('#mode').val();
+	var adjournment = $('#adj').val();
+	var payment = $('#payment').val();
+	var date = $('#datepicker1').val();
+	var result = $('#result').val();
+	var principal = $('#principal_amount').val();
+	var interest = $('#interest').val();
+	var costawarded = $('#cost_awarded').val();
+	var courtfee = $('#court_fee').val();
+	var subincurred = $('#sub_incurred').val();
+	
+	if(suitno==''||holder==''||party1==''||party2==''||court==''||decreedate==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:600,
+			suitno:suitno,
+			holder:holder,
+			court:court,
+			party1:party1,
+			party2:party2,
+			against:against,
+			appeal:appeal,
+			decreedate:decreedate,
+			mode:mode,
+			adjournment:adjournment,
+			payment:payment,
+			date:date,
+			result:result,
+			principal:principal,
+			interest:interest,
+			costawarded:costawarded,
+			courtfee:courtfee,
+			subincurred:subincurred,
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
+
 function newnotice(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -9183,3 +9340,111 @@ function newnotice(){
 	}
 	});
 }
+
+function savenewnotice(){
+	var instructingparty = $('#instructing_party').val();
+	var debtorsname = $('#debtorsname').val();
+	var amountowed = $('#amount_owed').val();
+	var recoverycharges = $('#recovery_charges').val();
+	var noticedate = $('#notice_date').val();
+	var noticedays = $('#noticedays').val();
+	var datereserved = $('#date_served').val();
+
+	if(instructingparty==''||debtorsname==''||amountowed==''||recoverycharges==''||noticedate==''||noticedays==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:700,
+			party:instructingparty,
+			debtor:debtorsname,
+			amount:amountowed,
+			charges:recoverycharges,
+			noticedate:noticedate,
+			noticedays:noticedays,
+			datereserved:datereserved
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
+
+function newproclamation(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:800},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function savenewproclamation(){
+	var auctioneername = $('#auct_name').val();
+	var auctphone = $('#auct_phone').val();
+	var auctaddress = $('#auct_address').val();
+	var trader = $('#auct_trader').val();
+	var creditorname = $('#creditor_name').val();
+	var creditoraddress = $('#creditor_address').val();
+	var debtorname = $('#debtor_name').val();
+	var debtoraddress = $('#debtor_address').val();
+	var amount = $('#amount').val();
+	var auctcharges = $('#auct_charges').val();
+	var advfee = $('#adv_fee').val();
+	var court = $('#court').val();
+	var courtdate = $('#court_date').val();
+	var caseno = $('#case_no').val();
+	var decreedate = $('#decree_date').val();
+	var returndate = $('#return_date').val();
+	var warrantdate = $('#warrant_date').val();
+	var noticedays = $('#notice_days').val();
+
+	if(auctioneername==''||auctphone==''||trader==''||auctaddress==''||creditorname==''||creditoraddress==''||debtorname==''||debtoraddress==''
+	||court==''||courtdate==''|| caseno==''||decreedate==''||returndate==''||amount==''||auctcharges==''||advfee==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:800,
+			auctioneername:auctioneername,
+			auctaddress:auctaddress,
+			auctphone:auctphone,
+			trader:trader,
+			creditorname:creditorname,
+			creditoraddress:creditoraddress,
+			debtorname:debtorname,
+			debtoraddress:debtoraddress,
+			amount:amount,
+			auctcharges:auctcharges,
+			advfee:advfee,
+			court:court,
+			courtdate:courtdate,
+			caseno:caseno,
+			decreedate:decreedate,
+			returndate:returndate,
+			warrantdate:warrantdate,
+			noticedays:noticedays
+		};
+
+		console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
+
+$('.date').datepicker({dateFormat: 'dd/mm/yy'});

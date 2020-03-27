@@ -29706,7 +29706,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <label style="float:left" class="col-sm-4">Date:<span
                                               style="color:#f00">*</span></label>
                                       <div class="col-sm-8 controls">
-                                          <input type="date" id="date" placeholder="dd/mm/yyyy">
+                                          <input type="text" id="datepicker" class="date" placeholder="dd/mm/yyyy">
                                       </div>
                                   </div>
                                   
@@ -29824,7 +29824,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <div class="col-sm-4"></div>
                                       <div class="col-sm-7">
                                           <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                                  onclick="savenewauction()"><i class="icon-ok"></i> Save
+                                                  onclick="savenewletter()"><i class="icon-ok"></i> Save
                                           </button>
                                           <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
                                           <div id="message" style="width:40px;height:40px;float:right"></div>
@@ -29882,7 +29882,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   </div>
                                   <div class="form-group">
                                       <label for="">At</label>
-                                      <input type="text" id="datepicker" class="form-control">
+                                      <input type="text" id="datepicker" class="form-control date">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Amount</label>
@@ -30016,7 +30016,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   </div>
                                   <div class="form-group">
                                       <label for="">Date</label>
-                                      <input type="text" class="form-control" id="datepicker1">
+                                      <input type="text" class="form-control date" id="datepicker1">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Results</label>
@@ -30172,7 +30172,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
       
                                   <div class="form-group">
                                       <label>Notice Date<span style="color:#f00">*</span></label>
-                                      <input type="date" id="notice_date" value="" class="form-control">
+                                      <input type="text" id="notice_date" value="" class="form-control date">
                                   </div>
       
       
@@ -30183,7 +30183,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
       
                                   <div class="form-group">
                                       <label >Date Served <span style="color:#f00">*</span></label>
-                                      <input type="date" id="date_served" value="" class="form-control">
+                                      <input type="text" id="date_served" value="" class="form-control date">
                                   </div>
       
                               </div>
@@ -30400,7 +30400,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
       
                                   <div class="form-group">
                                       <label>Number of Notice Days<span style="color:#f00">*</span></label>
-                                      <input type="text" id="notice_days" value="" class="form-control date">
+                                      <input type="text" id="notice_days" value="" class="form-control">
                                   </div>
                               </div>
                               <!-- Panel body -->
