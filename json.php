@@ -383,9 +383,143 @@ $where = "";
 
     break;
 
+    case 400:
+        // DB table to use
+        $table = 'letters';
+         
+        // Table's primary key
+        $primaryKey = 'id';
+        $where = "status=1";
+         
+        // Array of database columns which should be read and sent back to DataTables.
+        // The `db` parameter represents the column name in the database, while the `dt`
+        // parameter represents the DataTables column identifier. In this case simple
+        // indexes
+            $columns = array(
+                array( 'db' => 'id', 'dt' => 0 ),
+                array( 'db' => 'partyname', 'dt' => 1 ),
+                array( 'db' => 'advocatename', 'dt' => 2 ),
+                array( 'db' => 'debtorname', 'dt' => 3 ),
+                array( 'db' => 'amount',  'dt' => 4 ),
+                array( 'db' => 'dailyrates',   'dt' => 5 ),
+                array( 'db' => 'date',    'dt' => 6 )
+            );
+    
+        break;
+    
+        case 401:
+            // DB table to use
+            $table = 'letters';
+             
+            // Table's primary key
+            $primaryKey = 'id';
+            $where = "status!=1";
+             
+            // Array of database columns which should be read and sent back to DataTables.
+            // The `db` parameter represents the column name in the database, while the `dt`
+            // parameter represents the DataTables column identifier. In this case simple
+            // indexes
+                $columns = array(
+                    array( 'db' => 'id', 'dt' => 0 ),
+                    array( 'db' => 'partyname', 'dt' => 1 ),
+                    array( 'db' => 'advocatename', 'dt' => 2 ),
+                    array( 'db' => 'debtorname', 'dt' => 3 ),
+                    array( 'db' => 'amount',  'dt' => 4 ),
+                    array( 'db' => 'dailyrates',   'dt' => 5 ),
+                    array( 'db' => 'date',    'dt' => 6 )
+                );
+        
+            break;
 
+        case 500:
+            // DB table to use
+            $table = 'distress';
+             
+            // Table's primary key
+            $primaryKey = 'id';
+            $where = "status=1";
+             
+            // Array of database columns which should be read and sent back to DataTables.
+            // The `db` parameter represents the column name in the database, while the `dt`
+            // parameter represents the DataTables column identifier. In this case simple
+            // indexes
+                $columns = array(
+                    array( 'db' => 'id', 'dt' => 0 ),
+                    array( 'db' => 'landlord', 'dt' => 1 ),
+                    array( 'db' => 'tenant', 'dt' => 2 ),
+                    array( 'db' => 'amount',  'dt' => 3 ),
+                    array( 'db' => 'at',    'dt' => 4 )
+                );
+        
+            break;
 
-
+            case 600:
+                // DB table to use
+                $table = 'decrees';
+                 
+                // Table's primary key
+                $primaryKey = 'id';
+                $where = "status=1";
+                 
+                // Array of database columns which should be read and sent back to DataTables.
+                // The `db` parameter represents the column name in the database, while the `dt`
+                // parameter represents the DataTables column identifier. In this case simple
+                // indexes
+                    $columns = array(
+                        array( 'db' => 'id', 'dt' => 0 ),
+                        array( 'db' => 'suitno', 'dt' => 1 ),
+                        array( 'db' => 'party1', 'dt' => 2 ),
+                        array( 'db' => 'party2',  'dt' => 3 ),
+                        array( 'db' => 'decree_date',    'dt' => 4 )
+                    );
+            
+                break;
+        
+                case 700:
+                    // DB table to use
+                    $table = 'court_notices';
+                     
+                    // Table's primary key
+                    $primaryKey = 'id';
+                    $where = "status=1";
+                     
+                    // Array of database columns which should be read and sent back to DataTables.
+                    // The `db` parameter represents the column name in the database, while the `dt`
+                    // parameter represents the DataTables column identifier. In this case simple
+                    // indexes
+                        $columns = array(
+                            array( 'db' => 'id', 'dt' => 0 ),
+                            array( 'db' => 'instructing_party', 'dt' => 1 ),
+                            array( 'db' => 'debtor_name', 'dt' => 2 ),
+                            array( 'db' => 'amount',  'dt' => 3 ),
+                            array( 'db' => 'notice_date',    'dt' => 4 )
+                        );
+                
+                    break;
+            
+                    case 800:
+                        // DB table to use
+                        $table = 'proclamations';
+                         
+                        // Table's primary key
+                        $primaryKey = 'id';
+                        $where = "status=1";
+                         
+                        // Array of database columns which should be read and sent back to DataTables.
+                        // The `db` parameter represents the column name in the database, while the `dt`
+                        // parameter represents the DataTables column identifier. In this case simple
+                        // indexes
+                            $columns = array(
+                                array( 'db' => 'id', 'dt' => 0 ),
+                                array( 'db' => 'creditorname', 'dt' => 1 ),
+                                array( 'db' => 'debtorname', 'dt' => 2 ),
+                                array( 'db' => 'amount',  'dt' => 3 ),
+                                array( 'db' => 'decreedate',    'dt' => 4 )
+                            );
+                    
+                        break;
+                
+    
 
 
 }

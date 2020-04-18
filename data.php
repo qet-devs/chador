@@ -5991,7 +5991,7 @@ switch($id){
 								$adinstructions = $_GET['adinstructions'];
 								$expenditure = $_GET['expenditure'];
 								$datepicker = $_GET['datepicker'];
-								$recoveryamount = $_GET['recoveryamount'];
+								$amount = $_GET['recoveryamount'];
 								$dailyrates = $_GET['dailyrates'];
 								$estlegalcost = $_GET['estlegalcost'];
 								$estauctioneersfees = $_GET['estauctioneersfees'];
@@ -6021,6 +6021,86 @@ switch($id){
 								echo '<script>swal("Error", "failed to save letter info!", "error");</script>';
 							}
 							break;
+
+							case 401:
+								$id = $_GET['param'];
+								$partyname = $_GET['partyname'];
+								$partyaddress = $_GET['partyaddress'];
+								$advocatename = $_GET['advocatename'];
+								$advocataddress = $_GET['advocatename'];
+								$ownername = $_GET['ownername'];
+								$owneraddress = $_GET['owneraddress'];
+								$debtorname = $_GET['debtorname'];
+								$debtoraddress = $_GET['debtoraddress'];
+								$propertylocation = $_GET['propertylocation'];
+								$propertyperson = $_GET['propertyperson'];
+								$propertydescription = $_GET['propertydescription'];
+								$adinstructions = $_GET['adinstructions'];
+								$expenditure = $_GET['expenditure'];
+								$datepicker = $_GET['datepicker'];
+								$amount = $_GET['recoveryamount'];
+								$dailyrates = $_GET['dailyrates'];
+								$estlegalcost = $_GET['estlegalcost'];
+								$estauctioneersfees = $_GET['estauctioneersfees'];
+								$reserveprice = $_GET['reserveprice'];
+								$reason =$_GET['reason'];
+
+							$resultg = mysql_query("UPDATE `letters` SET `partyname`='".$partyname."',`partyaddress`='".$partyaddress."',`advocatename`='".$advocatename."',`advocateaddress`='".$advocataddress."',`ownername`='".$ownername."',`owneraddress`='".$owneraddress."',`debtorname`='".$debtorname."',`debtoraddress`='".$debtoraddress."',`propaddress`='".$propertylocation."',`propperson`='".$propertyperson."',`propdescription`='".$propertydescription."',`adinstructions`='".$adinstructions."',`expenditure`='".$expenditure."',`date`='".$datepicker."',`amount`='".$amount."',`dailyrates`='".$dailyrates."',`estlegalcost`='".$estlegalcost."',`estauctioneersfees`='".$estauctioneersfees."',`reserveprice`='".$reserveprice."',`reason`='".$reason."' WHERE `id`='".$id."'")    or die (mysql_error());
+							
+							//register log
+							$resulta = mysql_query("insert into log values('0','".$username." updates  letter info where letter id:".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+							
+							if($resultg){
+							echo '<script>swal("Success!", "letter Info updated!", "success");</script>';
+							updateletters();
+							//echo"<script>window.open('report.php?id=89&rcptno=".$tid."');</script>";
+							
+							echo"<script>setTimeout(function() {editletter();},500);</script>";	
+							}
+							else{
+								echo '<script>swal("Error", "Member Info not Saved!", "error");</script>';
+							}
+							break;
+
+							case 402:
+								$param=$tid=$_GET['param'];
+								$result= mysql_query("update letters set status=0 where id='".$param."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." archives letter.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>setTimeout(function() {checkoutletter();},500);</script>	';
+							
+							break;
+
+							case 403:
+								$id = $_GET['tid'];
+								$description = $_GET['description'];
+								$condition = $_GET['condition'];
+								$est_value = $_GET['est_value'];
+								
+//echo json_encode($_GET);
+							$resultg = mysql_query("INSERT INTO `letter_property_description`(`letter_id`, `description`, `condition`, `est_value`, `username`, `status`) VALUES ('".$id."','".$description."','".$condition."','".$est_value."','".$username."','1')");
+							
+							//register log
+							$resulta = mysql_query("insert into log values('0','".$username." creates  letter property description where letter id:".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+							
+							if($resultg){
+							echo '<script>swal("Success!", "Property description saved successfully", "success");</script>';
+							echo"<script>setTimeout(function() {getletterproperty(".$id.");},500);</script>";
+								
+							}
+							else{
+								echo '<script>swal("Error", "property description not Saved!", "error");</script>';
+							}
+							break;
+
+							case 404:
+								$propid=$_GET['propid'];
+								$letid=$_GET['letid'];
+								
+								$result= mysql_query("update letter_property_description set status=0 where id='".$propid."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." archives letter.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>setTimeout(function() {getletterproperty('.$letid.');},500);</script>	';
+							break;
+
 							case 500:
 								$landlord = $_GET['landlord'];
 								$tenant = $_GET['tenant'];
@@ -6040,13 +6120,13 @@ switch($id){
 									
 								
 								if($resultc){
-								echo '<script>swal("Success!", "Instruction letter information saved successfully", "success");</script>';
+								echo '<script>swal("Success!", "Instruction distress information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new distress id=".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
-								echo"<script>setTimeout(function() {newletter();},500);</script>";	
+								echo"<script>setTimeout(function() {newdistress();},500);</script>";	
 								}
 								else{
-									echo '<script>swal("Error", "failed to save letter info!", "error");</script>';
+									echo '<script>swal("Error", "failed to save distress info!", "error");</script>';
 								}
 							break;
 

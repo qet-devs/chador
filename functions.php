@@ -596,6 +596,23 @@ $_SESSION['tenants']=$tenants;
 
 }
 
+function updateletters(){
+    
+$letters='';
+$resulta =mysql_query("select * from letters where status=1");
+$num_resultsa = mysql_num_rows($resulta); 
+for ($i=0; $i <$num_resultsa; $i++) {
+$row=mysql_fetch_array($resulta);
+$item=stripslashes($row['id']).'-'.stripslashes($row['partyname']).'-'.stripslashes($row['debtorname']);
+$letters.='"'.$item.'",';
+}
+$len=strlen($letters);
+$a=$len-1;
+$letters=substr($letters,0,$a);
+$_SESSION['letters']=$letters;
+}
+
+
 function getprofileimage($tid){
 
 $img='img/user.png';
