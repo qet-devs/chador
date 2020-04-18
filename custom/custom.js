@@ -503,6 +503,28 @@ case 4:
 					break;
 
 
+
+					case 403:
+						archiveletter(b);
+						break;
+
+						case 404:
+							activateletter(b);
+							break;
+
+							case 405:
+								$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+								$.ajax({
+								url:'bridge.php',
+								data:{id:409,param:b},
+								success:function(data){
+								$('#mainp').html(data);
+								  }
+								  });
+					  
+								break;
+
+
 }
 
 },500); 
@@ -9359,6 +9381,30 @@ function archiveletter(param){
 
 }
 
+function activateletter(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Letter will be activated!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, Activate letter!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:405,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
 function archivedletters(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -9406,6 +9452,17 @@ function addletterpropdesc(){
     	$('#est_value').val("");
     
     }
+}
+
+function letterfile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:408},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
 }
 
 function getletterproperty(param){

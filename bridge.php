@@ -29869,18 +29869,11 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                     if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(400)">Edit Letter</label><br/>';}
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(5)">Letter Info</label><br/>';}
+                                                                      onclick="majoropen(405)">Letter Info</label><br/>';}
                                     if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(401)">Invoice Member</label><br/>';}
-                                    if($arr[145]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left;float:left"
-                                                                      onclick="majoropen(7)">Receipt Member</label><br/>';}
+                                                                      onclick="majoropen(401)">Property Description</label><br/>';}
                                     if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(8)">Archive Letter</label><br/>';}
-            
-                                    if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(12)">Assign Card</label><br/>';}
-            
-            
+                                                                      onclick="majoropen(403)">Archive Letter</label><br/>';}
                                     echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
                                 </div>
             
@@ -30340,20 +30333,10 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                     $arr[$code]=$var;
                                     }
             
-                                    if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(400)">Edit Letter</label><br/>';}
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(5)">Letter Info</label><br/>';}
-                                    if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(6)">Invoice Member</label><br/>';}
-                                    if($arr[145]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left;float:left"
-                                                                      onclick="majoropen(7)">Receipt Member</label><br/>';}
+                                                                      onclick="majoropen(405)">Letter Info</label><br/>';}
                                     if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(8)">Archive Letter</label><br/>';}
-            
-                                    if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(12)">Assign Card</label><br/>';}
-            
+                                                                      onclick="majoropen(404)">Activate Letter</label><br/>';}
             
                                     echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
                                 </div>
@@ -30575,6 +30558,286 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               </tr>';
           }
           echo '</tbody></table>';
+        break;
+
+        case 408:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+              echo '<div class="vd_container" id="container">
+                  <div class="vd_content clearfix" style="">
+               
+                          <div style="width:100%;padding:20px">
+                          <div class="panel-heading vd_bg-grey">
+                              <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Letter File</h3>
+                            </div>
+                          <select id="intcombo"><option value="" selected>Select One...</option> ';
+                             $result =mysql_query("select * from letters where status=1");
+                              $num_results = mysql_num_rows($result);
+                                for ($i=0; $i <$num_results; $i++) {
+                                    $row=mysql_fetch_array($result);
+                                    $code=stripslashes($row['id']);
+                                    echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['partyname']).'-'.stripslashes($row['debtorname']).'</option>';
+                                  }
+                             echo'</select>
+                               <div class="cleaner_h10"></div>
+                               <div class="col-sm-7">
+                                <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                              </div>
+                              </div>
+                  <!-- .vd_content --> 
+                </div>
+                <!-- .vd_container -->';
+                echo "<script>
+                      $('#intcombo').select2();
+                      $('#intcombo').on('select2:select', function (e) {
+                    var param = $('#intcombo').val();
+                    var str = $('#item5').val();
+                    var parts=param.split('-',3);
+                    param=parts[0];
+                    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                    $.ajax({
+                    url:'bridge.php',
+                    data:{id:409,param:param},
+                    success:function(data){
+                    $('#mainp').html(data);
+                      }
+                      });
+          
+          
+                    });
+                     </script>";
+          
+        break;
+
+        case 409:
+          $tid= $param=$_GET['param'];
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+            $result = mysql_query("insert into log values('','".$username." accesses letter File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+            $resultx =mysql_query("select * from letters where id='".$param."' limit 0,1");
+            $rowx=mysql_fetch_array($resultx);
+            $lof=stripslashes($rowx['lof']);
+            $stat=stripslashes($rowx['status']);
+            $tid=stripslashes($rowx['id']);
+            
+          
+          
+            if($stat==1){$status='Active';$col='#1fae66';}else if($stat==0){$status='Archived';$col='#f85d2c';}else{$status='Contract Expired';$col='#f89c2c';}
+
+            echo '
+            <div class="vd_container" id="container">
+    <div class="vd_content clearfix" style="">
+
+        <div class="vd_content-section clearfix">
+            <div class="row" id="form-basic">
+                <div class="col-md-12">
+                    <div class="panel widget">
+                        <div class="panel-heading vd_bg-grey">
+                            <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                Letter File-'.stripslashes($rowx['partyname']).' VS '.stripslashes($rowx['debtorname']).' </h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1" data-toggle="tab">letter Information</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Property Description</a></li>
+                                <li><a href="#tab3" data-toggle="tab">Documents</a></li>
+                                <li><a href="#tab4" data-toggle="tab">Charges</a></li>
+                                <li><a href="#tab5" data-toggle="tab">Upload Documents</a></li>
+                            </ul>
+                            <br/>
+                            <div class="tab-content mgbt-xs-20">
+                                <div class="tab-pane active" id="tab1">
+                                <div class="panel-body">
+                                <h4><label>Instructing Party </label></h4>
+                                <div class="form-group">
+                                    <label>Name<span style="color:#f00">*</span></label>
+                                    <input type="text" id="partyname" value="'.$rowx['partyname'].'" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address<span style="color:#f00">*</span></label>
+                                    <input type="text" id="partyaddress" class="form-control" value="'.$rowx['partyaddress'].'">
+                                </div>
+    
+                                <h4><label>Instructing Advocate</label></h4>
+                                <div class="form-group">
+                                    <label>Name<span style="color:#f00">*</span></label>
+                                    <input type="text" id="advocatename" class="form-control" value="'.$rowx['advocatename'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address<span style="color:#f00">*</span></label>
+                                    <input type="text" id="advocateaddress" class="form-control" value="'.$rowx['advocateaddress'].'">
+                                </div>
+    
+                                <h4><label>Property Owner</label></h4>
+                                <div class="form-group">
+                                    <label>Name<span style="color:#f00">*</span></label>
+                                    <input type="text" id="ownername" class="form-control" value="'.$rowx['ownername'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address<span style="color:#f00">*</span></label>
+                                    <input type="text" id="owneraddress" class="form-control" value="'.$rowx['owneraddress'].'">
+                                </div>
+    
+                                <h4><label>Principal Debtor</label></h4>
+                                <div class="form-group">
+                                    <label>Name<span style="color:#f00">*</span></label>
+                                    <input type="text" id="debtorname" class="form-control" value="'.$rowx['debtorname'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address<span style="color:#f00">*</span></label>
+                                    <input type="text" id="debtoraddress" class="form-control" value="'.$rowx['debtoraddress'].'">
+                                </div>
+                            </div>
+                            <!-- Panel body -->
+                                </div>
+                                <div class="tab-pane " id="tab2">
+                                <div class="panel-body">
+                                <div class="form-group">
+                                    <label>Physical address <span style="color:#f00">*</span></label>
+                                    <input type="text" id="propertylocation" class="form-control" value="'.$rowx['propaddress'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Person to point out<span style="color:#f00">*</span></label>
+                                    <input type="text" id="propertyperson" class="form-control" value="'.$rowx['propperson'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Legal description<span style="color:#f00">*</span></label>
+                                    <textarea type="text" id="propertydescription" class="form-control">'.$rowx['propdescription'].'</textarea>
+                                </div>
+
+                                <h4>Property Description table</h4>
+
+                                <table class="table table-striped table-hover no-head-border">
+                                <thead class="vd_bg-black vd_white">
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Description</th>
+                                    <th>Condition</th>
+                                    <th>Estimated Value</th>
+                                  </tr>
+                                </thead>
+                                <tbody>';
+
+                              getletpropdes($tid);
+                              
+                              echo '
+                                </tbody>
+                                </table>
+    
+                            </div>
+                                </div>
+
+
+
+
+                                <div class="tab-pane " id="tab3">
+                                <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
+                                ';
+                                getdocs($tid);
+                                echo '
+                                </div>
+                                </div>
+
+
+                                <div class="tab-pane " id="tab4">
+                                <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                    Statutory provisions to be seized or repossessed
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label>Amount<span style="color:#f00">*</span></label>
+                                    <input type="text" id="recoveryamount" class="form-control" value="'.$rowx['amount'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Daily rates<span style="color:#f00">*</span></label>
+                                    <input type="text" id="dailyrates" class="form-control" value="'.$rowx['dailyrates'].'">
+                                </div>
+                            </div>
+
+ <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                          Advertising instruction/expenditure authorized:
+                                      </h3>
+                                  </div>
+                                  <div class="panel-body">
+                                      <div class="form-group">
+                                          <label>Advertising instructions:<span style="color:#f00">*</span></label>
+                                          <textarea type="text" id="adinstructions" class="form-control">'.$rowx['adinstructions'].'</textarea>
+                                      </div>
+                                      <div class="form-group">
+                                          <label>Expenditure authorized:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="expenditure" value="'.$rowx['expenditure'].'" class="form-control" >
+                                      </div>
+                                      <div class="form-group">
+                                          <label>Date:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="datepicker" class="date form-control" placeholder="dd/mm/yyyy" value="'.$rowx['date'].'">
+                                      </div>
+          
+                                  </div>
+                                 
+                                </div>
+
+
+
+                                <div class="tab-pane " id="tab5">
+                                <div class="col-md-6">
+                                <form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
+                                <div class="cleaner"></div> 
+                                <div class="form-group">
+                                <label style="float:left" class="col-sm-3">Name:<span style="color:#f00">*</span></label>
+                                <div class="col-sm-9 controls">
+                                  <input type="text" id="fname"  name="fname"  required>
+                                </div>
+                                </div>
+                                 <div class="cleaner_h5"></div>
+                                <div class="form-group">
+                                <label style="float:left" class="col-sm-3">Type:<span style="color:#f00">*</span></label>
+                                <div class="col-sm-9 controls">
+                                  <select style="padding:5px" name="type" id="doctype">
+                                    <option value="" selected>Select One...</option>
+                                     <option value="Certificate of Incorporation">Certificate of Incorporation</option>
+                                      <option value="Checkout Documents">Checkout Documents</option>
+                                   <option value="ID_Card_Copies">ID_Card_Copies</option>
+                                    <option value="Lease Document">Lease Document</option>
+                                    <option value="Memorandum/Articles_of_Association">Memorandum/Articles_of_Association</option>
+                                   <option value="Pin/Vat_Certificate">Pin/Vat_Certificate</option>
+                                    <option value="Unit Handover Photos">Unit Handover Photos</option>
+                                    <option value="Pin_Copies">Pin_Copies</option>
+                                    <option value="Other Documents">Other Documents</option>
+                                    </select>
+                                </div>
+                                </div>
+        
+                                <div class="cleaner_h5"></div>
+                                <dd class="custuploadblock_js">
+                                <input style="opacity:0; float:left;" name="image" id="photoupload"  
+                                class="transfileform_js" type="file">
+                                </dd>
+                                <iframe name="leiframe" id="leiframe" class="leiframe">
+                                </iframe>
+                                <input type="hidden"  name="soi" value="'.$soi.'"/>
+                                <input type="hidden"  name="sap" value="'.$sap.'"/>
+                                <input type="hidden"  name="tid" value="'.$tid.'"/>
+                                <input type="hidden" id="id" name="id"  value="1"/>
+                                <div class="cleaner_h5"></div>
+                                <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%" type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload</button>
+                                </form>
+        
+                                </div>
+                               </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            ';
+
         break;
         
         case 500:

@@ -6101,6 +6101,14 @@ switch($id){
 								echo'<script>setTimeout(function() {getletterproperty('.$letid.');},500);</script>	';
 							break;
 
+							case 405:
+								$param=$tid=$_GET['param'];
+								$result= mysql_query("update letters set status=1 where id='".$param."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." activates letter.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>archivedletters();</script>	';
+							
+							break;
+
 							case 500:
 								$landlord = $_GET['landlord'];
 								$tenant = $_GET['tenant'];
