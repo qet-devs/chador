@@ -503,6 +503,116 @@ case 4:
 					break;
 
 
+
+					case 403:
+						archiveletter(b);
+						break;
+
+						case 404:
+							activateletter(b);
+							break;
+
+							case 405:
+								$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+								$.ajax({
+								url:'bridge.php',
+								data:{id:409,param:b},
+								success:function(data){
+								$('#mainp').html(data);
+								  }
+								  });
+					  
+								break;
+
+								case 500:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:503,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+								case 501:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:505,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+								case 600:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:603,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+								case 601:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:605,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+								case 700:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:703,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+								case 701:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:705,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+								case 800:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:803,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+								case 801:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:805,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+
 }
 
 },500); 
@@ -9359,6 +9469,30 @@ function archiveletter(param){
 
 }
 
+function activateletter(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Letter will be activated!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, Activate letter!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:405,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
 function archivedletters(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -9406,6 +9540,17 @@ function addletterpropdesc(){
     	$('#est_value').val("");
     
     }
+}
+
+function letterfile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:408},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
 }
 
 function getletterproperty(param){
@@ -9477,11 +9622,69 @@ function savenewdistress(){
 
 }
 
+function savedistress(param){
+	var landlord = $('#landlord').val();
+	var tenant = $('#tenant').val();
+	var to = $('#to').val();
+	var datepicker = $('#datepicker').val();
+	var amount = $('#amount').val();
+	var months = $('#months').val();
+
+	if(landlord==''||tenant==''||to==''||datepicker==''||amount==''||months==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:501,
+			param:param,
+			landlord:landlord,
+			tenant:tenant,
+			to:to,
+			date:datepicker,
+			amount:amount,
+			months:months
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});	
+	}
+
+}
+
 function finddistress(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
 	data:{id:501},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function editdistress(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:502},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function distressfile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:504},
 	success:function(data){
 	$('#mainp').html(data);
 	}
@@ -9557,11 +9760,92 @@ function savenewdecree(){
 	}
 }
 
+function savedecree(param){
+	var suitno = $('#suitno').val();
+	var holder = $('#holder').val();
+	var court = $('#court').val();
+	var party1 = $('#party1').val();
+	var party2 = $('#party2').val();
+	var against = $('#against').val();
+	var appeal = $('#appeal').val();
+	var decreedate = $('#datepicker').val();
+	var mode  = $('#mode').val();
+	var adjournment = $('#adj').val();
+	var payment = $('#payment').val();
+	var date = $('#datepicker1').val();
+	var result = $('#result').val();
+	var principal = $('#principal_amount').val();
+	var interest = $('#interest').val();
+	var costawarded = $('#cost_awarded').val();
+	var courtfee = $('#court_fee').val();
+	var subincurred = $('#sub_incurred').val();
+	
+	if(suitno==''||holder==''||party1==''||party2==''||court==''||decreedate==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:601,
+			param:param,
+			suitno:suitno,
+			holder:holder,
+			court:court,
+			party1:party1,
+			party2:party2,
+			against:against,
+			appeal:appeal,
+			decreedate:decreedate,
+			mode:mode,
+			adjournment:adjournment,
+			payment:payment,
+			date:date,
+			result:result,
+			principal:principal,
+			interest:interest,
+			costawarded:costawarded,
+			courtfee:courtfee,
+			subincurred:subincurred,
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
+
 function finddecree(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
 	data:{id:601},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function editdecree(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:602},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function decreefile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:604},
 	success:function(data){
 	$('#mainp').html(data);
 	}
@@ -9615,11 +9899,70 @@ function savenewnotice(){
 	}
 }
 
+function savenotice(param){
+	var instructingparty = $('#instructing_party').val();
+	var debtorsname = $('#debtorsname').val();
+	var amountowed = $('#amount_owed').val();
+	var recoverycharges = $('#recovery_charges').val();
+	var noticedate = $('#notice_date').val();
+	var noticedays = $('#noticedays').val();
+	var datereserved = $('#date_served').val();
+
+	if(instructingparty==''||debtorsname==''||amountowed==''||recoverycharges==''||noticedate==''||noticedays==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:701,
+			param:param,
+			party:instructingparty,
+			debtor:debtorsname,
+			amount:amountowed,
+			charges:recoverycharges,
+			noticedate:noticedate,
+			noticedays:noticedays,
+			datereserved:datereserved
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
+
 function findnotice(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
 	data:{id:701},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function editnotice(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:702},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function noticefile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:704},
 	success:function(data){
 	$('#mainp').html(data);
 	}
@@ -9701,6 +10044,28 @@ function findproclamation(){
 	$.ajax({
 	url:'bridge.php',
 	data:{id:801},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function editproclamation(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:802},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function proclamationfile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:804},
 	success:function(data){
 	$('#mainp').html(data);
 	}
