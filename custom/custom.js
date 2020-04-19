@@ -535,11 +535,33 @@ case 4:
 									  });
 								break;
 
+								case 501:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:505,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
 								case 600:
 									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
 									$.ajax({
 									url:'bridge.php',
 									data:{id:603,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+								case 601:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:605,param:b},
 									success:function(data){
 									$('#mainp').html(data);
 									  }
@@ -557,11 +579,33 @@ case 4:
 									  });
 								break;
 
+								case 701:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:705,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
 								case 800:
 									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
 									$.ajax({
 									url:'bridge.php',
 									data:{id:803,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+								case 801:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:805,param:b},
 									success:function(data){
 									$('#mainp').html(data);
 									  }
@@ -9636,6 +9680,17 @@ function editdistress(){
 	});
 }
 
+function distressfile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:504},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
 function newdecree(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -9786,6 +9841,17 @@ function editdecree(){
 	});
 }
 
+function decreefile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:604},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
 function newnotice(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -9892,6 +9958,17 @@ function editnotice(){
 	});
 }
 
+function noticefile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:704},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
 function newproclamation(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -9978,6 +10055,17 @@ function editproclamation(){
 	$.ajax({
 	url:'bridge.php',
 	data:{id:802},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function proclamationfile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:804},
 	success:function(data){
 	$('#mainp').html(data);
 	}
