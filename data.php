@@ -6138,6 +6138,29 @@ switch($id){
 								}
 							break;
 
+							case 501:
+								$id = $_GET['param'];
+								$landlord = $_GET['landlord'];
+								$tenant = $_GET['tenant'];
+								$to = $_GET['to'];
+								$date = $_GET['date'];
+								$amount = $_GET['amount'];
+								$months = $_GET['months'];
+
+								$resultc = mysql_query("UPDATE `distress` SET `landlord`='".$landlord."',`tenant`='".$tenant."',`to`='".$to."',`at`='".$date."',`amount`='".$amount."',`months`='".$months."',`username`='".$username."' WHERE `id`='".$id."'");
+									
+								
+								if($resultc){
+								echo '<script>swal("Success!", "Instruction distress information updated successfully", "success");</script>';
+								
+								$resulta = mysql_query("insert into log values('0','".$username." updates distress id=".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+								echo"<script>setTimeout(function() {newdistress();},500);</script>";	
+								}
+								else{
+									echo '<script>swal("Error", "failed to update distress info!", "error");</script>';
+								}
+							break;
+
 							case 600:
 								$suitno = $_GET['suitno'];
 								$holder = $_GET['holder'];

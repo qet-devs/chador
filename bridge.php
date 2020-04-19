@@ -31003,20 +31003,13 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                     }
             
                                     if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(4)">Edit Member</label><br/>';}
+                                                                      onclick="majoropen(500)">Edit Distress</label><br/>';}
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(5)">Member Info</label><br/>';}
+                                                                      onclick="majoropen(5)">Distress Info</label><br/>';}
                                     if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(6)">Invoice Member</label><br/>';}
-                                    if($arr[145]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left;float:left"
-                                                                      onclick="majoropen(7)">Receipt Member</label><br/>';}
+                                                                      onclick="majoropen(6)">Arrears</label><br/>';}
                                     if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(8)">Archive Member</label><br/>';}
-            
-                                    if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(12)">Assign Card</label><br/>';}
-            
-            
+                                                                      onclick="majoropen(8)">Archive Distress</label><br/>';}
                                     echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
                                 </div>
             
@@ -31071,6 +31064,152 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 cursor: pointer
             } </style>';
                
+        break;
+
+        case 502:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit Distress Info</h3>
+                  </div>
+                <select id="intcombo">
+                <option value="" selected>Select One...</option>';
+                   $result =mysql_query("select * from distress where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['landlord']).'-'.stripslashes($row['tenant']).'</option>';
+                        }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+            $('#intcombo').select2();
+            $('#intcombo').on('select2:select', function (e) {
+             var param = $('#intcombo').val();
+            var str = $('#item5').val();
+            var parts=param.split('-',3);
+            param=parts[0];
+            $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+            $.ajax({
+            url:'bridge.php',
+            data:{id:503,param:param},
+            success:function(data){
+            $('#mainp').html(data);
+            }
+            });
+
+
+          });
+           </script>";
+
+        break;
+
+        case 503:
+          $tid=$param=$_GET['param'];$_SESSION['housediv']=array();
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+              $result = mysql_query("insert into log values('','".$username." accesses letters File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+              $resultx =mysql_query("select * from distress where id='".$param."' limit 0,1");
+              $rowx=mysql_fetch_array($resultx);
+
+              echo '<div class="vd_container" id="container">
+              <div class="vd_content clearfix" style="">
+          
+                  <div class="vd_content-section clearfix">
+                      <div class="row" id="form-basic">
+          
+                          <div class="col-md-6">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Edit  Distress info</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label for="">Landlord</label>
+                                          <input type="text" id="landlord" class="form-control" value="'.$rowx['landlord'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Tenant</label>
+                                          <input type="text" id="tenant" class="form-control" value="'.$rowx['tenant'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">To </label>
+                                          <input type="text" class="form-control" id="to" value="'.$rowx['to'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">At</label>
+                                          <input type="text" id="datepicker" class="form-control date" value="'.$rowx['at'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Amount</label>
+                                          <input type="text" id="amount" class="form-control" value="'.$rowx['amount'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Months</label>
+                                          <input type="text" class="form-control" id="months" value="'.$rowx['months'].'">
+                                      </div>
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                          <div class="col-md-6">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                          Distress Actions</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group form-actions">
+                                          <div class="col-sm-4"></div>
+                                          <div class="col-sm-7">
+                                              <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                      onclick="savedistress('.$param.')"><i class="icon-ok"></i> Update
+                                              </button>
+                                              <button class="btn btn-danger" type="button" onclick="hidecont()">Cancel</button>
+                                              <div id="message" style="width:40px;height:40px;float:right"></div>
+                                          </div>
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                      </div>
+                      <!-- row -->
+                  </div>
+                  <!-- .vd_content-section -->
+          
+              </div>
+              <!-- .vd_content -->
+          </div>
+          <!-- .vd_container -->
+          ';
+        break;
+
         break;
 
         case 600:
@@ -31411,6 +31550,59 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                
         break;
 
+        case 602:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit decree Info</h3>
+                  </div>
+                <select id="intcombo">
+                <option value="" selected>Select One...</option>';
+                   $result =mysql_query("select * from decrees where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['party1']).' vs '.stripslashes($row['party2']).'</option>';
+                        }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+            $('#intcombo').select2();
+            $('#intcombo').on('select2:select', function (e) {
+             var param = $('#intcombo').val();
+            var str = $('#item5').val();
+            var parts=param.split('-',3);
+            param=parts[0];
+            $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+            $.ajax({
+            url:'bridge.php',
+            data:{id:402,param:param},
+            success:function(data){
+            $('#mainp').html(data);
+            }
+            });
+
+
+          });
+           </script>";
+
+        break;
+
+        break;
+
 
         case 700:
           $result = mysql_query("insert into log values('','".$username." accesses new Notice panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
@@ -31656,6 +31848,57 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 cursor: pointer
             } </style>';
                
+        break;
+
+        case 702:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit Notice Info</h3>
+                  </div>
+                <select id="intcombo">
+                <option value="" selected>Select One...</option>';
+                   $result =mysql_query("select * from court_notices where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['instructing_party']).' to '.stripslashes($row['debtor_name']).'</option>';
+                        }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+            $('#intcombo').select2();
+            $('#intcombo').on('select2:select', function (e) {
+             var param = $('#intcombo').val();
+            var str = $('#item5').val();
+            var parts=param.split('-',3);
+            param=parts[0];
+            $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+            $.ajax({
+            url:'bridge.php',
+            data:{id:402,param:param},
+            success:function(data){
+            $('#mainp').html(data);
+            }
+            });
+
+
+          });
+           </script>";
+
         break;
 
         case 800:
@@ -32016,6 +32259,57 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 cursor: pointer
             } </style>';
           
+        break;
+
+        case 802:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit Proclamation Info</h3>
+                  </div>
+                <select id="intcombo">
+                <option value="" selected>Select One...</option>';
+                   $result =mysql_query("select * from proclamations where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['creditorname']).'  '.stripslashes($row['debtorname']).'</option>';
+                        }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+            $('#intcombo').select2();
+            $('#intcombo').on('select2:select', function (e) {
+             var param = $('#intcombo').val();
+            var str = $('#item5').val();
+            var parts=param.split('-',3);
+            param=parts[0];
+            $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+            $.ajax({
+            url:'bridge.php',
+            data:{id:402,param:param},
+            success:function(data){
+            $('#mainp').html(data);
+            }
+            });
+
+
+          });
+           </script>";
+
         break;
 }
 ?>
