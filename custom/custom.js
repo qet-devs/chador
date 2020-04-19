@@ -535,6 +535,17 @@ case 4:
 									  });
 								break;
 
+								case 600:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:603,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
 
 }
 
@@ -9640,6 +9651,65 @@ function savenewdecree(){
 	}else{
 		var data = {
 			id:600,
+			suitno:suitno,
+			holder:holder,
+			court:court,
+			party1:party1,
+			party2:party2,
+			against:against,
+			appeal:appeal,
+			decreedate:decreedate,
+			mode:mode,
+			adjournment:adjournment,
+			payment:payment,
+			date:date,
+			result:result,
+			principal:principal,
+			interest:interest,
+			costawarded:costawarded,
+			courtfee:courtfee,
+			subincurred:subincurred,
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
+
+function savedecree(param){
+	var suitno = $('#suitno').val();
+	var holder = $('#holder').val();
+	var court = $('#court').val();
+	var party1 = $('#party1').val();
+	var party2 = $('#party2').val();
+	var against = $('#against').val();
+	var appeal = $('#appeal').val();
+	var decreedate = $('#datepicker').val();
+	var mode  = $('#mode').val();
+	var adjournment = $('#adj').val();
+	var payment = $('#payment').val();
+	var date = $('#datepicker1').val();
+	var result = $('#result').val();
+	var principal = $('#principal_amount').val();
+	var interest = $('#interest').val();
+	var costawarded = $('#cost_awarded').val();
+	var courtfee = $('#court_fee').val();
+	var subincurred = $('#sub_incurred').val();
+	
+	if(suitno==''||holder==''||party1==''||party2==''||court==''||decreedate==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:601,
+			param:param,
 			suitno:suitno,
 			holder:holder,
 			court:court,

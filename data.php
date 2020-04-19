@@ -6201,6 +6201,42 @@ switch($id){
 									echo '<script>swal("Error", "failed to save decree info!", "error");</script>';
 								}
 							break;
+
+							case 601:
+								$id = $_GET['param'];
+								$suitno = $_GET['suitno'];
+								$holder = $_GET['holder'];
+								$court = $_GET['court'];
+								$party1 = $_GET['party1'];
+								$party2 = $_GET['party2'];
+								$against = $_GET['against'];
+								$appeal = $_GET['appeal'];
+								$decreedate = $_GET['decreedate'];
+								$mode = $_GET['mode'];
+								$adjournment = $_GET['adjournment'];
+								$payment = $_GET['payment'];
+								$date = $_GET['date'];
+								$result = $_GET['result'];
+								$principal = $_GET['principal'];
+								$interest = $_GET['interest'];
+								$costawarded = $_GET['costawarded'];
+								$courtfee = $_GET['courtfee'];
+								$subincurred = $_GET['subincurred'];
+	
+								$resultc = mysql_query("UPDATE `decrees` SET `suitno`='".$suitno."',`court`='".$court."',`party1`='".$party1."',`party2`='".$party2."',`decree_date`='".$decreedate."',`appeal`='".$appeal."',`payment`='".$payment."',`adjournment`='".$adjournment."',`date`='".$date."',`results`='".$result."',`principal`='".$principal."',`interest`='".$interest."',`cost_awarded`='".$costawarded."',`court_fee`='".$courtfee."',`subs_incurred`='".$subincurred."',`against`='".$against."',`mode`='".$mode."',`holder`='".$holder."',`username`='".$username."' WHERE `id`='".$id."'");
+									
+								
+								if($resultc){
+								echo '<script>swal("Success!", "Decree information updated successfully", "success");</script>';
+								
+								$resulta = mysql_query("insert into log values('0','".$username." updates decree info ','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+								echo"<script>setTimeout(function() {newdecree();},500);</script>";	
+								}
+								else{
+									echo '<script>swal("Error", "failed to update decree info!", "error");</script>';
+								}
+							break;
+
 							case 700:
 								$party = $_GET['party'];
 								$debtor = $_GET['debtor'];
