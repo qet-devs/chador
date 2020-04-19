@@ -6267,6 +6267,31 @@ switch($id){
 								}
 							break;
 
+							case 701:
+								$id = $_GET['param'];
+								$party = $_GET['party'];
+								$debtor = $_GET['debtor'];
+								$amount = $_GET['amount'];
+								$charges = $_GET['charges'];
+								$noticedate = $_GET['noticedate'];
+								$noticedays = $_GET['noticedays'];
+								$datereserved = $_GET['datereserved'];
+
+								
+								$resultc = mysql_query("UPDATE `court_notices` SET `instructing_party`='".$party."',`debtor_name`='".$debtor."',`amount`='".$amount."',`charges`='".$charges."',`notice_date`='".$noticedate."',`days`='".$noticedays."',`date_served`='".$datereserved."',`username`='".$username."' WHERE `id`='".$id."'");
+									
+								
+								if($resultc){
+								echo '<script>swal("Success!", "Notice information updated successfully", "success");</script>';
+								
+								$resulta = mysql_query("insert into log values('0','".$username." updates Notice info','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+								echo"<script>setTimeout(function() {newnotice();},500);</script>";	
+								}
+								else{
+									echo '<script>swal("Error", "failed to update Notice info!", "error");</script>';
+								}
+							break;
+
 							case 800:
 								$auctname = $_GET['auctioneername'];
 								$auctphone = $_GET['auctphone'];

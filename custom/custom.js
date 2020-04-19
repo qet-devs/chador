@@ -546,6 +546,28 @@ case 4:
 									  });
 								break;
 
+								case 700:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:703,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
+								case 800:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:803,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
 
 }
 
@@ -9790,6 +9812,43 @@ function savenewnotice(){
 	}else{
 		var data = {
 			id:700,
+			party:instructingparty,
+			debtor:debtorsname,
+			amount:amountowed,
+			charges:recoverycharges,
+			noticedate:noticedate,
+			noticedays:noticedays,
+			datereserved:datereserved
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
+
+function savenotice(param){
+	var instructingparty = $('#instructing_party').val();
+	var debtorsname = $('#debtorsname').val();
+	var amountowed = $('#amount_owed').val();
+	var recoverycharges = $('#recovery_charges').val();
+	var noticedate = $('#notice_date').val();
+	var noticedays = $('#noticedays').val();
+	var datereserved = $('#date_served').val();
+
+	if(instructingparty==''||debtorsname==''||amountowed==''||recoverycharges==''||noticedate==''||noticedays==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:701,
+			param:param,
 			party:instructingparty,
 			debtor:debtorsname,
 			amount:amountowed,
