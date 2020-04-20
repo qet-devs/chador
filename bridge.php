@@ -31403,6 +31403,182 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
         break;
 
+        case 506:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Archive Distress</h3>
+                  </div>
+                <select id="intcombo">
+                <option value="" selected>Select One...</option>';
+                $result =mysql_query("select * from distress where status=1");
+                $num_results = mysql_num_rows($result);
+                  for ($i=0; $i <$num_results; $i++) {
+                      $row=mysql_fetch_array($result);
+                      $code=stripslashes($row['id']);
+                      echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['landlord']).'-'.stripslashes($row['tenant']).'</option>';
+                    }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+      $('#intcombo').select2();
+      $('#intcombo').on('select2:select', function (e) {
+    var param = $('#intcombo').val();
+    var str = $('#item5').val();
+    var parts=param.split('-',3);
+    param=parts[0];
+   archivedistress(param);
+      });
+           </script>";
+
+        break;
+
+        case 507:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+                $result = mysql_query("insert into log values('','".$username." accesses find distress Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+
+                echo '<div class="vd_container" id="container">
+                <div class="vd_content clearfix">
+                    <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger" data-toggle="modal"
+                            data-target="#myModal"><a></a></button>
+            
+                    <div class="vd_content-section clearfix">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel widget">
+                                    <div class="panel-heading vd_bg-grey">
+                                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Archived Distress-Search
+                                            Panel</h3>
+                                    </div>
+                                    <!-- panel heading -->
+                                    <div class="panel-body table-responsive">
+                                        <table class="table table-striped" id="data-tables">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Landlord</th>
+                                                <th>Tenant</th>
+                                                <th>Amount</th>
+                                                <th>Date</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!-- panel body -->
+                                </div>
+                                <!-- Panel Widget -->
+                            </div>
+                            <!-- col-md-12 -->
+                        </div>
+                        <!-- row -->
+            
+                    </div>
+                    <!-- .vd_content-section -->
+            
+                </div>
+                <!-- .vd_content -->
+            </div>
+            <!-- .vd_container -->
+            
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header vd_bg-green vd_white">
+                            <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                    class="fa fa-times"></i></button>
+                            <h4 class="modal-title" id="myModalLabel">Function List</h4>
+                        </div>
+                        <!-- /.modal-header -->
+                        <div class="modal-body">
+                            <form class="form-horizontal" action="#" role="form">
+            
+                                <div class="form-group">';
+                                    $arr=array();
+                                    $resulta =mysql_query("select * from accesstbl");
+                                    $num_resultsa = mysql_num_rows($resulta);
+                                    for ($v=0; $v <$num_resultsa; $v++) {
+                                    $rowa=mysql_fetch_array($resulta);
+                                    $var=stripslashes($rowa[$usertype]);
+                                    $code=stripslashes($rowa['AccessCode']);
+                                    $arr[$code]=$var;
+                                    }
+            
+                                    if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                      onclick="majoropen(501)">Distress Info</label><br/>';}
+                                    if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                      onclick="majoropen(504)">Activate Distress</label><br/>';}
+                                    echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
+                                </div>
+            
+            
+                            </form>
+                        </div>
+                        <!-- /.modal-body -->
+                    </div>
+                    <!-- /.modal-contet -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            
+            
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    "use strict";
+            
+                    var eventFired = function (type) {
+                        console.log(type)
+            
+                        setTimeout(function () {
+                            $("#data-tables tbody tr").off("click").on("click", function (event) {
+                                $("#tenparam").val($(this).find("td").eq(0).html());
+                                openoptmodal($(this).find("td").eq(0).html())
+                            });
+                        }, 500);
+                    }
+            
+            
+                    $("#data-tables")
+                        .on("order.dt", function () {
+                            eventFired("Order");
+                        })
+                        .on("search.dt", function () {
+                            eventFired("Search");
+                        })
+                        .on("draw.dt", function () {
+                            eventFired("Page");
+                        })
+                        .DataTable({
+                            "processing": true,
+                            "serverSide": true,
+                            "ajax": "json.php?id=501"
+                        });
+            
+            
+                });
+            </script>
+            <style>td {
+                cursor: pointer
+            } </style>';
+         
+        break;
+
         case 600:
           $result = mysql_query("insert into log values('','".$username." accesses new decree panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
@@ -31612,7 +31788,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                             <div class="col-md-12">
                                 <div class="panel widget">
                                     <div class="panel-heading vd_bg-grey">
-                                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Distress-Search
+                                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Decree-Search
                                             Panel</h3>
                                     </div>
                                     <!-- panel heading -->
@@ -32149,6 +32325,182 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
     </div>
             ';
 
+        break;
+
+        case 606:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Archive Decree</h3>
+                  </div>
+                <select id="intcombo">
+                <option value="" selected>Select One...</option>';
+                $result =mysql_query("select * from decrees where status=1");
+                $num_results = mysql_num_rows($result);
+                  for ($i=0; $i <$num_results; $i++) {
+                      $row=mysql_fetch_array($result);
+                      $code=stripslashes($row['id']);
+                      echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['party1']).'-'.stripslashes($row['party2']).'</option>';
+                  }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+      $('#intcombo').select2();
+      $('#intcombo').on('select2:select', function (e) {
+    var param = $('#intcombo').val();
+    var str = $('#item5').val();
+    var parts=param.split('-',3);
+    param=parts[0];
+   archivedecree(param);
+      });
+           </script>";
+
+        break;
+
+        case 607:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+                $result = mysql_query("insert into log values('','".$username." accesses find distress Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+
+                echo '<div class="vd_container" id="container">
+                <div class="vd_content clearfix">
+                    <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger" data-toggle="modal"
+                            data-target="#myModal"><a></a></button>
+            
+                    <div class="vd_content-section clearfix">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel widget">
+                                    <div class="panel-heading vd_bg-grey">
+                                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Archived Decree-Search
+                                            Panel</h3>
+                                    </div>
+                                    <!-- panel heading -->
+                                    <div class="panel-body table-responsive">
+                                        <table class="table table-striped" id="data-tables">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>suit No.</th>
+                                                <th>party1</th>
+                                                <th>party2</th>
+                                                <th>Decree Date</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!-- panel body -->
+                                </div>
+                                <!-- Panel Widget -->
+                            </div>
+                            <!-- col-md-12 -->
+                        </div>
+                        <!-- row -->
+            
+                    </div>
+                    <!-- .vd_content-section -->
+            
+                </div>
+                <!-- .vd_content -->
+            </div>
+            <!-- .vd_container -->
+            
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header vd_bg-green vd_white">
+                            <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                    class="fa fa-times"></i></button>
+                            <h4 class="modal-title" id="myModalLabel">Function List</h4>
+                        </div>
+                        <!-- /.modal-header -->
+                        <div class="modal-body">
+                            <form class="form-horizontal" action="#" role="form">
+            
+                                <div class="form-group">';
+                                    $arr=array();
+                                    $resulta =mysql_query("select * from accesstbl");
+                                    $num_resultsa = mysql_num_rows($resulta);
+                                    for ($v=0; $v <$num_resultsa; $v++) {
+                                    $rowa=mysql_fetch_array($resulta);
+                                    $var=stripslashes($rowa[$usertype]);
+                                    $code=stripslashes($rowa['AccessCode']);
+                                    $arr[$code]=$var;
+                                    }
+            
+                                    if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                      onclick="majoropen(601)">Decree Info</label><br/>';}
+                                    if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                      onclick="majoropen(604)">Activate Decree</label><br/>';}
+                                    echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
+                                </div>
+            
+            
+                            </form>
+                        </div>
+                        <!-- /.modal-body -->
+                    </div>
+                    <!-- /.modal-contet -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            
+            
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    "use strict";
+            
+                    var eventFired = function (type) {
+                        console.log(type)
+            
+                        setTimeout(function () {
+                            $("#data-tables tbody tr").off("click").on("click", function (event) {
+                                $("#tenparam").val($(this).find("td").eq(0).html());
+                                openoptmodal($(this).find("td").eq(0).html())
+                            });
+                        }, 500);
+                    }
+            
+            
+                    $("#data-tables")
+                        .on("order.dt", function () {
+                            eventFired("Order");
+                        })
+                        .on("search.dt", function () {
+                            eventFired("Search");
+                        })
+                        .on("draw.dt", function () {
+                            eventFired("Page");
+                        })
+                        .DataTable({
+                            "processing": true,
+                            "serverSide": true,
+                            "ajax": "json.php?id=601"
+                        });
+            
+            
+                });
+            </script>
+            <style>td {
+                cursor: pointer
+            } </style>';
+          
         break;
 
         case 700:
@@ -32713,6 +33065,182 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
         break;
 
+        case 706:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Archive Notice</h3>
+                  </div>
+                <select id="intcombo">
+                <option value="" selected>Select One...</option>';
+                $result =mysql_query("select * from court_notices where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['instructing_party']).'-'.stripslashes($row['debtor_name']).'-'.stripslashes($row['amount']).'</option>';
+                        }
+                    echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+      $('#intcombo').select2();
+      $('#intcombo').on('select2:select', function (e) {
+    var param = $('#intcombo').val();
+    var str = $('#item5').val();
+    var parts=param.split('-',3);
+    param=parts[0];
+   archivenotice(param);
+      });
+           </script>";
+
+        break;
+
+        case 707:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+                $result = mysql_query("insert into log values('','".$username." accesses find notice search  Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+
+                echo '<div class="vd_container" id="container">
+                <div class="vd_content clearfix">
+                    <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger" data-toggle="modal"
+                            data-target="#myModal"><a></a></button>
+            
+                    <div class="vd_content-section clearfix">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel widget">
+                                    <div class="panel-heading vd_bg-grey">
+                                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Archive Notice-Search
+                                            Panel</h3>
+                                    </div>
+                                    <!-- panel heading -->
+                                    <div class="panel-body table-responsive">
+                                        <table class="table table-striped" id="data-tables">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Instructing Party</th>
+                                                <th>Debtor</th>
+                                                <th>Amount</th>
+                                                <th>Notice Date</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!-- panel body -->
+                                </div>
+                                <!-- Panel Widget -->
+                            </div>
+                            <!-- col-md-12 -->
+                        </div>
+                        <!-- row -->
+            
+                    </div>
+                    <!-- .vd_content-section -->
+            
+                </div>
+                <!-- .vd_content -->
+            </div>
+            <!-- .vd_container -->
+            
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header vd_bg-green vd_white">
+                            <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                    class="fa fa-times"></i></button>
+                            <h4 class="modal-title" id="myModalLabel">Function List</h4>
+                        </div>
+                        <!-- /.modal-header -->
+                        <div class="modal-body">
+                            <form class="form-horizontal" action="#" role="form">
+            
+                                <div class="form-group">';
+                                    $arr=array();
+                                    $resulta =mysql_query("select * from accesstbl");
+                                    $num_resultsa = mysql_num_rows($resulta);
+                                    for ($v=0; $v <$num_resultsa; $v++) {
+                                    $rowa=mysql_fetch_array($resulta);
+                                    $var=stripslashes($rowa[$usertype]);
+                                    $code=stripslashes($rowa['AccessCode']);
+                                    $arr[$code]=$var;
+                                    }
+            
+                                    if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                      onclick="majoropen(701)">Notice Info</label><br/>';}
+                                    if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                      onclick="majoropen(704)">Activate Notice</label><br/>';}
+                                    echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
+                                </div>
+            
+            
+                            </form>
+                        </div>
+                        <!-- /.modal-body -->
+                    </div>
+                    <!-- /.modal-contet -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            
+            
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    "use strict";
+            
+                    var eventFired = function (type) {
+                        console.log(type)
+            
+                        setTimeout(function () {
+                            $("#data-tables tbody tr").off("click").on("click", function (event) {
+                                $("#tenparam").val($(this).find("td").eq(0).html());
+                                openoptmodal($(this).find("td").eq(0).html())
+                            });
+                        }, 500);
+                    }
+            
+            
+                    $("#data-tables")
+                        .on("order.dt", function () {
+                            eventFired("Order");
+                        })
+                        .on("search.dt", function () {
+                            eventFired("Search");
+                        })
+                        .on("draw.dt", function () {
+                            eventFired("Page");
+                        })
+                        .DataTable({
+                            "processing": true,
+                            "serverSide": true,
+                            "ajax": "json.php?id=701"
+                        });
+            
+            
+                });
+            </script>
+            <style>td {
+                cursor: pointer
+            } </style>';
+          
+        break;
+
         case 800:
           $result = mysql_query("insert into log values('','".$username." accesses new Proclamation panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
           echo '<div class="vd_container" id="container">
@@ -32928,6 +33456,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
       <!-- .vd_container -->
       ';
         break;
+
         case 801:
           $param=0;
           if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
@@ -33505,6 +34034,182 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
     </div>
             ';
 
+        break;
+
+        case 806:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Archive Proclamation</h3>
+                  </div>
+                <select id="intcombo">
+                <option value="" selected>Select One...</option>';
+                $result =mysql_query("select * from proclamations where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['creditorname']).' vs '.stripslashes($row['debtorname']).'</option>';
+                        }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+      $('#intcombo').select2();
+      $('#intcombo').on('select2:select', function (e) {
+    var param = $('#intcombo').val();
+    var str = $('#item5').val();
+    var parts=param.split('-',3);
+    param=parts[0];
+   archiveproclamation(param);
+      });
+           </script>";
+        break;
+
+        case 807:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+                $result = mysql_query("insert into log values('','".$username." accesses find notice search  Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+
+                echo '<div class="vd_container" id="container">
+                <div class="vd_content clearfix">
+                    <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger" data-toggle="modal"
+                            data-target="#myModal"><a></a></button>
+            
+                    <div class="vd_content-section clearfix">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel widget">
+                                    <div class="panel-heading vd_bg-grey">
+                                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Archive Proclamation-Search
+                                            Panel</h3>
+                                    </div>
+                                    <!-- panel heading -->
+                                    <div class="panel-body table-responsive">
+                                        <table class="table table-striped" id="data-tables">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Creditor</th>
+                                                <th>Debtor</th>
+                                                <th>Amount</th>
+                                                <th>Decree Date</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!-- panel body -->
+                                </div>
+                                <!-- Panel Widget -->
+                            </div>
+                            <!-- col-md-12 -->
+                        </div>
+                        <!-- row -->
+            
+                    </div>
+                    <!-- .vd_content-section -->
+            
+                </div>
+                <!-- .vd_content -->
+            </div>
+            <!-- .vd_container -->
+            
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header vd_bg-green vd_white">
+                            <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                    class="fa fa-times"></i></button>
+                            <h4 class="modal-title" id="myModalLabel">Function List</h4>
+                        </div>
+                        <!-- /.modal-header -->
+                        <div class="modal-body">
+                            <form class="form-horizontal" action="#" role="form">
+            
+                                <div class="form-group">';
+                                    $arr=array();
+                                    $resulta =mysql_query("select * from accesstbl");
+                                    $num_resultsa = mysql_num_rows($resulta);
+                                    for ($v=0; $v <$num_resultsa; $v++) {
+                                    $rowa=mysql_fetch_array($resulta);
+                                    $var=stripslashes($rowa[$usertype]);
+                                    $code=stripslashes($rowa['AccessCode']);
+                                    $arr[$code]=$var;
+                                    }
+            
+                                    if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                      onclick="majoropen(801)">Proclamation Info</label><br/>';}
+                                    if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                      onclick="majoropen(804)">Activate Proclamation</label><br/>';}
+            
+                                    echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
+                                </div>
+            
+            
+                            </form>
+                        </div>
+                        <!-- /.modal-body -->
+                    </div>
+                    <!-- /.modal-contet -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            
+            
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    "use strict";
+            
+                    var eventFired = function (type) {
+                        console.log(type)
+            
+                        setTimeout(function () {
+                            $("#data-tables tbody tr").off("click").on("click", function (event) {
+                                $("#tenparam").val($(this).find("td").eq(0).html());
+                                openoptmodal($(this).find("td").eq(0).html())
+                            });
+                        }, 500);
+                    }
+            
+            
+                    $("#data-tables")
+                        .on("order.dt", function () {
+                            eventFired("Order");
+                        })
+                        .on("search.dt", function () {
+                            eventFired("Search");
+                        })
+                        .on("draw.dt", function () {
+                            eventFired("Page");
+                        })
+                        .DataTable({
+                            "processing": true,
+                            "serverSide": true,
+                            "ajax": "json.php?id=801"
+                        });
+            
+            
+                });
+            </script>
+            <style>td {
+                cursor: pointer
+            } </style>';
+          
         break;
 
 }
