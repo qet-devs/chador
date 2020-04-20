@@ -456,7 +456,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
                 <li>
                      <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="archivedistress()" >
+          echo'<a  href="#" onclick="checkoutdistress()" >
                         <span class="menu-text">Archive Distress</span>  
                         </a>';} ?>
                 </li> 
@@ -517,7 +517,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
                 <li>
                      <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="archivedecree()" >
+          echo'<a  href="#" onclick="checkoutdecree()" >
                         <span class="menu-text">Archive Decree</span>  
                         </a>';} ?>
                 </li> 
@@ -525,7 +525,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                
                <li>
                      <?php if($rightsarr[119]=='YES'){
-              echo'<a  href="#" onclick="archiveddecrees()" >
+              echo'<a  href="#" onclick="archiveddecree()" >
                         <span class="menu-text">Archived Decrees</span>  
                         </a>';} ?>
                 </li> 
@@ -578,7 +578,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
                 <li>
                      <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="archivenotice()" >
+          echo'<a  href="#" onclick="checkoutnotice()" >
                         <span class="menu-text">Archive Notice</span>  
                         </a>';} ?>
                 </li> 
@@ -639,7 +639,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
                 <li>
                      <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="archiveproclamation()" >
+          echo'<a  href="#" onclick="checkoutproclamation()" >
                         <span class="menu-text">Archive Proclamation</span>  
                         </a>';} ?>
                 </li> 
@@ -647,7 +647,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                
                <li>
                      <?php if($rightsarr[119]=='YES'){
-              echo'<a  href="#" onclick="archivedproclamations()" >
+              echo'<a  href="#" onclick="archivedproclamation()" >
                         <span class="menu-text">Archived Proclamations</span>  
                         </a>';} ?>
                 </li> 

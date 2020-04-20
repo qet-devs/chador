@@ -546,6 +546,18 @@ case 4:
 									  });
 								break;
 
+								case 502:
+								
+								break;
+
+								case 503:
+									archivedistress(b);
+								break;
+
+								case 504:
+									activatedistress(b);
+								break;
+
 								case 600:
 									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
 									$.ajax({
@@ -566,6 +578,18 @@ case 4:
 									$('#mainp').html(data);
 									  }
 									  });
+								break;
+
+								case 602:
+
+								break;
+
+								case 603:
+									archivedecree(b);
+								break;
+
+								case 604:
+									activatedecree(b);
 								break;
 
 								case 700:
@@ -590,6 +614,18 @@ case 4:
 									  });
 								break;
 
+								case 702:
+
+								break;
+
+								case 703:
+									archivenotice(b);
+								break;
+
+								case 704:
+									activatenotice(b);
+								break;
+
 								case 800:
 									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
 									$.ajax({
@@ -610,6 +646,18 @@ case 4:
 									$('#mainp').html(data);
 									  }
 									  });
+								break;
+
+								case 802:
+
+								break;
+
+								case 803:
+									archiveproclamation(b);
+								break;
+
+								case 804:
+									activateproclamation(b);
 								break;
 
 
@@ -9691,6 +9739,76 @@ function distressfile(){
 	});
 }
 
+function checkoutdistress(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:506},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function archivedistress(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Distress Letter will be Archived!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, Archive them!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:502,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
+function activatedistress(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Distress Letter will be Activated!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#5cb85c",
+		confirmButtonText: "Yes, Activate it!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:503,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
+function archiveddistress(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:507},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
 function newdecree(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -9852,6 +9970,77 @@ function decreefile(){
 	});
 }
 
+function checkoutdecree(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:606},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function archiveddecree(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:607},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function archivedecree(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Court Decree will be Archived!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, Archive them!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:602,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
+function activatedecree(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Decree will be Activated!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#5cb85c",
+		confirmButtonText: "Yes, Activate it!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:603,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
+
 function newnotice(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -9969,6 +10158,78 @@ function noticefile(){
 	});
 }
 
+function checkoutnotice(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:706},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function archivednotice(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:707},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function archivenotice(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Court Notice will be Archived!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, Archive them!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:702,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
+
+function activatenotice(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Notice will be Activated!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#5cb85c",
+		confirmButtonText: "Yes, Activate it!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:703,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
+
 function newproclamation(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -10039,6 +10300,66 @@ function savenewproclamation(){
 	}
 }
 
+function saveproclamation(param){
+	var auctioneername = $('#auct_name').val();
+	var auctphone = $('#auct_phone').val();
+	var auctaddress = $('#auct_address').val();
+	var trader = $('#auct_trader').val();
+	var creditorname = $('#creditor_name').val();
+	var creditoraddress = $('#creditor_address').val();
+	var debtorname = $('#debtor_name').val();
+	var debtoraddress = $('#debtor_address').val();
+	var amount = $('#amount').val();
+	var auctcharges = $('#auct_charges').val();
+	var advfee = $('#adv_fee').val();
+	var court = $('#court').val();
+	var courtdate = $('#court_date').val();
+	var caseno = $('#case_no').val();
+	var decreedate = $('#decree_date').val();
+	var returndate = $('#return_date').val();
+	var warrantdate = $('#warrant_date').val();
+	var noticedays = $('#notice_days').val();
+
+	if(auctioneername==''||auctphone==''||trader==''||auctaddress==''||creditorname==''||creditoraddress==''||debtorname==''||debtoraddress==''
+	||court==''||courtdate==''|| caseno==''||decreedate==''||returndate==''||amount==''||auctcharges==''||advfee==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:801,
+			param:param,
+			auctioneername:auctioneername,
+			auctaddress:auctaddress,
+			auctphone:auctphone,
+			trader:trader,
+			creditorname:creditorname,
+			creditoraddress:creditoraddress,
+			debtorname:debtorname,
+			debtoraddress:debtoraddress,
+			amount:amount,
+			auctcharges:auctcharges,
+			advfee:advfee,
+			court:court,
+			courtdate:courtdate,
+			caseno:caseno,
+			decreedate:decreedate,
+			returndate:returndate,
+			warrantdate:warrantdate,
+			noticedays:noticedays
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
+
 function findproclamation(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -10071,5 +10392,80 @@ function proclamationfile(){
 	}
 	});
 }
+
+function checkoutproclamation(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:806},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function archivedproclamation(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:807},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function archiveproclamation(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Proclamation will be Archived!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, Archive them!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:802,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
+
+function activateproclamation(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Proclamation will be Activated!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#5cb85c",
+		confirmButtonText: "Yes, Activate it!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:803,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
+
+
+
 
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});

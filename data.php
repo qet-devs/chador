@@ -6161,6 +6161,22 @@ switch($id){
 								}
 							break;
 
+							case 502:
+								$param=$tid=$_GET['param'];
+								$result= mysql_query("update distress set status=0 where id='".$param."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." archives distress.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>setTimeout(function() {checkoutdistress();},500);</script>	';
+							
+							break;
+
+							case 503:
+								$param=$tid=$_GET['param'];
+								$result= mysql_query("update distress set status=1 where id='".$param."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." activates distress.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>setTimeout(function() {checkoutdistress();},500);</script>	';
+							
+							break;
+
 							case 600:
 								$suitno = $_GET['suitno'];
 								$holder = $_GET['holder'];
@@ -6237,6 +6253,22 @@ switch($id){
 								}
 							break;
 
+							case 602:
+								$param=$tid=$_GET['param'];
+								$result= mysql_query("update decrees set status=0 where id='".$param."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." archives decree.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>setTimeout(function() {checkoutdecree();},500);</script>	';
+							
+							break;
+
+							case 603:
+								$param=$tid=$_GET['param'];
+								$result= mysql_query("update decrees set status=1 where id='".$param."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." activates decree.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>setTimeout(function() {checkoutdecree();},500);</script>	';
+							
+							break;
+
 							case 700:
 								$party = $_GET['party'];
 								$debtor = $_GET['debtor'];
@@ -6292,6 +6324,22 @@ switch($id){
 								}
 							break;
 
+							case 702:
+								$param=$tid=$_GET['param'];
+								$result= mysql_query("update court_notices set status=0 where id='".$param."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." archives notice.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>setTimeout(function() {checkoutnotice();},500);</script>	';
+							
+							break;
+
+							case 703:
+								$param=$tid=$_GET['param'];
+								$result= mysql_query("update court_notices set status=1 where id='".$param."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." activates notice.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>setTimeout(function() {checkoutnotice();},500);</script>	';
+							
+							break;
+
 							case 800:
 								$auctname = $_GET['auctioneername'];
 								$auctphone = $_GET['auctphone'];
@@ -6333,4 +6381,56 @@ switch($id){
 								}
 							break;
 
+							case 801:
+								$id = $_GET['param'];
+								$auctname = $_GET['auctioneername'];
+								$auctphone = $_GET['auctphone'];
+								$auctaddress = $_GET['auctaddress'];
+								$trader = $_GET['trader'];
+								$creditorname = $_GET['creditorname'];
+								$creditoraddress = $_GET['creditoraddress'];
+								$debtorname = $_GET['debtorname'];
+								$debtoraddress = $_GET['debtoraddress'];
+								$amount = $_GET['amount'];
+								$auctcharges = $_GET['auctcharges'];
+								$advfee = $_GET['advfee'];
+								$court = $_GET['court'];
+								$courtdate = $_GET['courtdate'];
+								$caseno = $_GET['caseno'];
+								$decreedate = $_GET['decreedate'];
+								$returndate = $_GET['returndate'];
+								$warrantdate = $_GET['warrantdate'];
+								$noticedays = $_GET['noticedays'];
+
+			
+								$resultc = mysql_query("UPDATE `proclamations` SET `auctioneername`='".$auctname."',`auctaddress`='".$auctaddress."',`auctphone`='".$auctphone."',`trader`='".$trader."',`creditorname`='".$creditorname."',`creditoraddress`='".$creditoraddress."',`debtorname`='".$debtorname."',`debtoraddress`='".$debtoraddress."',`amount`='".$amount."',`auctcharges`='".$auctcharges."',`advfee`='".$advfee."',`court`='".$court."',`date`='".$date."',`caseno`='".$caseno."',`decreedate`='".$decreedate."',`warrantdate`='".$warrantdate."',`returndate`='".$returndate."',`noticedays`='".$noticedays."',`username`='".$username."' WHERE `id`='".$id."'");
+									
+								
+								if($resultc){
+								echo '<script>swal("Success!", "Proclamation updated successfully", "success");</script>';
+								
+								$resulta = mysql_query("insert into log values('0','".$username." updates Proclamation','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+								echo"<script>setTimeout(function() {newproclamation();},500);</script>";	
+								}
+								else{
+									echo '<script>swal("Error", "failed to save Proclamation info!", "error");</script>';
+								}
+							break;
+
+							case 802:
+								$param=$tid=$_GET['param'];
+								$result= mysql_query("update proclamations set status=0 where id='".$param."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." archives proclamation.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>setTimeout(function() {checkoutproclamation();},500);</script>	';
+							
+							break;
+
+							case 803:
+								$param=$tid=$_GET['param'];
+								$result= mysql_query("update proclamations set status=1 where id='".$param."'")  or die (mysql_error());
+								$resulta = mysql_query("insert into log values('','".$username." activates proclamation.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>setTimeout(function() {checkoutproclamation();},500);</script>	';
+							
+							break;
+							
 		}
