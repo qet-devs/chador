@@ -6006,8 +6006,15 @@ switch($id){
 								
 							}
 
-							$resultc = mysql_query("INSERT INTO `letters`( `partyname`, `partyaddress`, `advocatename`, `advocateaddress`, `ownername`, `owneraddress`, `debtorname`, `debtoraddress`, `propaddress`, `propperson`, `propdescription`, `adinstructions`, `expenditure`, `date`, `amount`, `dailyrates`, `estlegalcost`, `estauctioneersfees`, `reserveprice`, `reason`, `status`, `username`)
-							 VALUES ('".$partyname."','".$partyaddress."','".$advocatename."','".$advocataddress."','".$ownername."','".$owneraddress."','".$debtorname."','".$debtoraddress."','".$propertylocation."','".$propertyperson."','".$propertydescription."','".$adinstructions."','".$expenditure."','".$datepicker."','".$amount."','".$dailyrates."','".$estlegalcost."','".$estauctioneersfees."','".$reserveprice."','".$reason."','1','".$username."')");
+							
+							$resulty = mysql_query("select * from letters order by id desc limit 0,1");
+							$rowy=mysql_fetch_array($resulty);
+							$tid=stripslashes($rowy['id'])+1;
+
+							$uid='CHAD-LET-'.sprintf("%04d",$tid);
+
+							$resultc = mysql_query("INSERT INTO `letters`(`uid`, `partyname`, `partyaddress`, `advocatename`, `advocateaddress`, `ownername`, `owneraddress`, `debtorname`, `debtoraddress`, `propaddress`, `propperson`, `propdescription`, `adinstructions`, `expenditure`, `date`, `amount`, `dailyrates`, `estlegalcost`, `estauctioneersfees`, `reserveprice`, `reason`, `status`, `username`)
+							 VALUES ('".$uid."','".$partyname."','".$partyaddress."','".$advocatename."','".$advocataddress."','".$ownername."','".$owneraddress."','".$debtorname."','".$debtoraddress."','".$propertylocation."','".$propertyperson."','".$propertydescription."','".$adinstructions."','".$expenditure."','".$datepicker."','".$amount."','".$dailyrates."','".$estlegalcost."','".$estauctioneersfees."','".$reserveprice."','".$reason."','1','".$username."')");
 							
 								//register log
 							$resulta = mysql_query("insert into log values('0','".$username." creates new letter id=".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
@@ -6077,7 +6084,7 @@ switch($id){
 								$est_value = $_GET['est_value'];
 								
 //echo json_encode($_GET);
-							$resultg = mysql_query("INSERT INTO `letter_property_description`(`letter_id`, `description`, `condition`, `est_value`, `username`, `status`) VALUES ('".$id."','".$description."','".$condition."','".$est_value."','".$username."','1')");
+							$resultg = mysql_query("INSERT INTO `property_description`(`letter_id`, `description`, `condition`, `est_value`, `username`, `status`) VALUES ('".$id."','".$description."','".$condition."','".$est_value."','".$username."','1')");
 							
 							//register log
 							$resulta = mysql_query("insert into log values('0','".$username." creates  letter property description where letter id:".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
@@ -6094,11 +6101,11 @@ switch($id){
 
 							case 404:
 								$propid=$_GET['propid'];
-								$letid=$_GET['letid'];
+								$uid=$_GET['uid'];
 								
-								$result= mysql_query("update letter_property_description set status=0 where id='".$propid."'")  or die (mysql_error());
+								$result= mysql_query("update property_description set status=0 where id='".$propid."'")  or die (mysql_error());
 								$resulta = mysql_query("insert into log values('','".$username." archives letter.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
-								echo'<script>setTimeout(function() {getletterproperty('.$letid.');},500);</script>	';
+								echo'<script>setTimeout(function() {getletterproperty('.$uid.');},500);</script>	';
 							break;
 
 							case 405:
@@ -6122,9 +6129,16 @@ switch($id){
 										echo '<script>swal("Error", "Distress with similar information already exists. !Consult the System Admin", "error");</script>';
 									
 								}
+
+								
+							$resulty = mysql_query("select * from distress order by id desc limit 0,1");
+							$rowy=mysql_fetch_array($resulty);
+							$tid=stripslashes($rowy['id'])+1;
+
+							$uid='CHAD-DIS-'.sprintf("%04d",$tid);
 	
-								$resultc = mysql_query("INSERT INTO `distress`( `landlord`, `tenant`, `to`, `at`, `amount`, `months`, `status`, `username`) 
-								VALUES ('".$landlord."','".$tenant."','".$to."','".$date."','".$amount."','".$months."','1','".$username."')");
+								$resultc = mysql_query("INSERT INTO `distress`(`uid`, `landlord`, `tenant`, `to`, `at`, `amount`, `months`, `status`, `username`) 
+								VALUES ('".$uid."','".$landlord."','".$tenant."','".$to."','".$date."','".$amount."','".$months."','1','".$username."')");
 									
 								
 								if($resultc){
@@ -6197,14 +6211,21 @@ switch($id){
 								$courtfee = $_GET['courtfee'];
 								$subincurred = $_GET['subincurred'];
 
-								$resultx =mysql_query("select * from decree where party1='".$party1."' and party2='".$party2."'");
+								$resultx =mysql_query("select * from decrees where party1='".$party1."' and party2='".$party2."'");
 								if(mysql_num_rows($resultx)>0){
 										echo '<script>swal("Error", "Decree with similar information already exists. !Consult the System Admin", "error");</script>';
 									
 								}
-	
-								$resultc = mysql_query("INSERT INTO `decrees`( `suitno`, `court`, `party1`, `party2`, `decree_date`, `appeal`, `payment`, `adjournment`, `date`, `results`, `principal`, `interest`, `cost_awarded`, `court_fee`, `subs_incurred`, `against`, `mode`, `holder`, `username`, `status`) 
-								VALUES ('".$suitno."','".$court."','".$party1."','".$party2."','".$decreedate."','".$appeal."','".$payment."','".$adjournment."','".$date."','".$result."','".$principal."','".$interest."','".$costawarded."','".$courtfee."','".$subincurred."','".$against."','".$mode."','".$holder."','".$username."','1')");
+								
+								
+							$resulty = mysql_query("select * from decrees order by id desc limit 0,1");
+							$rowy=mysql_fetch_array($resulty);
+							$tid=stripslashes($rowy['id'])+1;
+
+							$uid='CHAD-DEC-'.sprintf("%04d",$tid);
+
+								$resultc = mysql_query("INSERT INTO `decrees`(`uid`, `suitno`, `court`, `party1`, `party2`, `decree_date`, `appeal`, `payment`, `adjournment`, `date`, `results`, `principal`, `interest`, `cost_awarded`, `court_fee`, `subs_incurred`, `against`, `mode`, `holder`, `username`, `status`) 
+								VALUES ('".$uid."','".$suitno."','".$court."','".$party1."','".$party2."','".$decreedate."','".$appeal."','".$payment."','".$adjournment."','".$date."','".$result."','".$principal."','".$interest."','".$costawarded."','".$courtfee."','".$subincurred."','".$against."','".$mode."','".$holder."','".$username."','1')");
 									
 								
 								if($resultc){
@@ -6283,9 +6304,16 @@ switch($id){
 										echo '<script>swal("Error", "Notice with similar information already exists. !Consult the System Admin", "error");</script>';
 									
 								}
+
+								
+							$resulty = mysql_query("select * from court_notices order by id desc limit 0,1");
+							$rowy=mysql_fetch_array($resulty);
+							$tid=stripslashes($rowy['id'])+1;
+
+							$uid='CHAD-NOT-'.sprintf("%04d",$tid);
 	
-								$resultc = mysql_query("INSERT INTO `court_notices`(`instructing_party`, `debtor_name`, `amount`, `charges`, `notice_date`, `days`, `date_served`, `username`, `status`) 
-								VALUES ('".$party."','".$debtor."','".$amount."','".$charges."','".$noticedate."','".$noticedays."','".$datereserved."','".$username."','1')");
+								$resultc = mysql_query("INSERT INTO `court_notices`(`uid`,`instructing_party`, `debtor_name`, `amount`, `charges`, `notice_date`, `days`, `date_served`, `username`, `status`) 
+								VALUES ('".$uid."','".$party."','".$debtor."','".$amount."','".$charges."','".$noticedate."','".$noticedays."','".$datereserved."','".$username."','1')");
 									
 								
 								if($resultc){
@@ -6365,9 +6393,16 @@ switch($id){
 										echo '<script>swal("Error", "Proclamation with similar information already exists. !Consult the System Admin", "error");</script>';
 									
 								}
+
+								
+							$resulty = mysql_query("select * from proclamations order by id desc limit 0,1");
+							$rowy=mysql_fetch_array($resulty);
+							$tid=stripslashes($rowy['id'])+1;
+
+							$uid='CHAD-PRO-'.sprintf("%04d",$tid);
 	
-								$resultc = mysql_query("INSERT INTO `proclamations`(`auctioneername`, `auctaddress`, `auctphone`, `trader`, `creditorname`, `creditoraddress`, `debtorname`, `debtoraddress`, `amount`, `auctcharges`, `advfee`, `court`, `date`, `caseno`, `decreedate`, `warrantdate`, `returndate`, `noticedays`, `status`, `username`) 
-								VALUES ('".$auctname."','".$auctaddress."','".$auctphone."','".$trader."','".$creditorname."','".$creditoraddress."','".$debtorname."','".$debtoraddress."','".$amount."','".$auctcharges."','".$advfee."','".$court."','".$date."','".$caseno."','".$decreedate."','".$warrantdate."','".$returndate."','".$noticedays."','1','".$username."')");
+								$resultc = mysql_query("INSERT INTO `proclamations`(`uid`,`auctioneername`, `auctaddress`, `auctphone`, `trader`, `creditorname`, `creditoraddress`, `debtorname`, `debtoraddress`, `amount`, `auctcharges`, `advfee`, `court`, `date`, `caseno`, `decreedate`, `warrantdate`, `returndate`, `noticedays`, `status`, `username`) 
+								VALUES ('".$uid."','".$auctname."','".$auctaddress."','".$auctphone."','".$trader."','".$creditorname."','".$creditoraddress."','".$debtorname."','".$debtoraddress."','".$amount."','".$auctcharges."','".$advfee."','".$court."','".$date."','".$caseno."','".$decreedate."','".$warrantdate."','".$returndate."','".$noticedays."','1','".$username."')");
 									
 								
 								if($resultc){

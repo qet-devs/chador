@@ -1237,7 +1237,6 @@ $resultc = mysql_query("INSERT INTO tenants (id, tid, bname, address, phone, ema
 							
 $tid+=1;
 
-
 }
 
 ?>

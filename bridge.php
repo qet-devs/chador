@@ -1,45 +1,43 @@
 <?php include('db_fns.php');
-$id=$_GET['id'];
-date_default_timezone_set('Africa/Nairobi');  
-if(isset($_SESSION['valid_user'])){
-$username=$_SESSION['valid_user'];
-$result =mysql_query("select * from users where name='".$username."'");
-$row=mysql_fetch_array($result);
-$usertype=stripslashes($row['position']);
-$userid=stripslashes($row['userid']);
-$profilepic=stripslashes($row['photo']);
-$pass=stripslashes($row['password']);
-$userfid=stripslashes($row['fid']);
+$id = $_GET['id'];
+date_default_timezone_set('Africa/Nairobi');
+if (isset($_SESSION['valid_user'])) {
+    $username = $_SESSION['valid_user'];
+    $result = mysql_query("select * from users where name='" . $username . "'");
+    $row = mysql_fetch_array($result);
+    $usertype = stripslashes($row['position']);
+    $userid = stripslashes($row['userid']);
+    $profilepic = stripslashes($row['photo']);
+    $pass = stripslashes($row['password']);
+    $userfid = stripslashes($row['fid']);
 
 //check password
-if($pass=='5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8'&&$id!=64){
+    if ($pass == '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8' && $id != 64) {
 
-  echo "<script>
+        echo "<script>
   changelogin();
   $().customAlert();
   alert('Error!', '<p>You have to change your Password Right away!</p>');
   
   </script>";
-}
+    }
 
-$result =mysql_query("select * from company");
-$row=mysql_fetch_array($result);
-$comname=stripslashes($row['CompanyName']);
-$comadd=$Add=stripslashes($row['Address']);
-$comloc=stripslashes($row['Location']);
-$comprop=stripslashes($row['Property']);
-$complot=stripslashes($row['Plot']);
+    $result = mysql_query("select * from company");
+    $row = mysql_fetch_array($result);
+    $comname = stripslashes($row['CompanyName']);
+    $comadd = $Add = stripslashes($row['Address']);
+    $comloc = stripslashes($row['Location']);
+    $comprop = stripslashes($row['Property']);
+    $complot = stripslashes($row['Plot']);
 
-include('functions.php'); 
+    include('functions.php');
 }
 //else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 ?>
-<script type="text/javascript" src="custom/custom.js"></script>
-<script src="js/excellentexport.js"></script>
+    <script type="text/javascript" src="custom/custom.js"></script>
+    <script src="js/excellentexport.js"></script>
 <?php
-
-
 
 
 switch($id){
@@ -30533,7 +30531,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
         case 407:
           $id = $_GET['param'];
-          $query = mysql_query("select * from letter_property_description where status=1 and letter_id='".$id."'");
+          $query = mysql_query("select * from property_description where status=1 and uid='".$id."'");
           $num_rows = mysql_num_rows($query);
           echo '<table class="table table-striped table-hover no-head-border">
           <thead class="vd_bg-black vd_white">
@@ -30554,7 +30552,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               <td>'.$row['description'].'</td>
               <td>'.$row['condition'].'</td>
               <td>'.$row['est_value'].'</td>
-              <td><button class="btn btn-danger" onclick="delletpropdes('.$row['id'].', '.$id.')"><i class="fa fa-trash"></> Delete</button></td>
+              <td><button class="btn btn-danger" onclick="delpropdes('.$row['id'].', '.$id.')"><i class="fa fa-trash"></> Delete</button></td>
               </tr>';
           }
           echo '</tbody></table>';
@@ -30631,6 +30629,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
         <div class="vd_content-section clearfix">
             <div class="row" id="form-basic">
+
                 <div class="col-md-12">
                     <div class="panel widget">
                         <div class="panel-heading vd_bg-grey">
@@ -30691,6 +30690,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                             </div>
                             <!-- Panel body -->
                                 </div>
+                                
                                 <div class="tab-pane " id="tab2">
                                 <div class="panel-body">
                                 <div class="form-group">
@@ -30719,7 +30719,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </thead>
                                 <tbody>';
 
-                              getletpropdes($tid);
+                              getpropdes($rowx['uid']);
                               
                               echo '
                                 </tbody>
@@ -31292,9 +31292,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                         <div class="panel-body">
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#tab1" data-toggle="tab">Distress Information</a></li>
-                                <li><a href="#tab2" data-toggle="tab">Property Description</a></li>
                                 <li><a href="#tab3" data-toggle="tab">Documents</a></li>
-                                <li><a href="#tab4" data-toggle="tab">Charges</a></li>
+                                <li><a href="#tab4" data-toggle="tab">Arrears</a></li>
                                 <li><a href="#tab5" data-toggle="tab">Upload Documents</a></li>
                             </ul>
                             <br/>
@@ -31326,10 +31325,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 <input type="text" class="form-control" id="months" value="'.$rowx['months'].'">
                             </div>
 
-                                </div>
-
-                                <div class="tab-pane " id="tab2">
-                                
                                 </div>
 
                                 <div class="tab-pane " id="tab3">
@@ -32240,8 +32235,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                         </div>
                         <div class="panel-body">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1" data-toggle="tab">letter Information</a></li>
-                                <li><a href="#tab2" data-toggle="tab">Property Description</a></li>
+                                <li class="active"><a href="#tab1" data-toggle="tab">Decree Information</a></li>
                                 <li><a href="#tab3" data-toggle="tab">Documents</a></li>
                                 <li><a href="#tab4" data-toggle="tab">Charges</a></li>
                                 <li><a href="#tab5" data-toggle="tab">Upload Documents</a></li>
@@ -32249,7 +32243,40 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                             <br/>
                             <div class="tab-content mgbt-xs-20">
                                 <div class="tab-pane active" id="tab1">
-                                
+                                <div class="form-group">
+                                          <label for="">Suit No.</label>
+                                          <input type="text" class="form-control" id="suitno" value="'.$rowx['suitno'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Decree Holder.</label>
+                                          <input type="text" class="form-control" id="holder" value="'.$rowx['holder'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Court.</label>
+                                          <input type="text" class="form-control" id="court" value="'.$rowx['court'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Name of parties.</label>
+                                          <input type="text" class="form-control" id="party1" value="'.$rowx['party1'].'">
+                                          <label for="">-VS-.</label>
+                                          <input type="text" class="form-control" id="party2" value="'.$rowx['party2'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Against whom to execute</label>
+                                          <input type="text" class="form-control" id="against" value="'.$rowx['against'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Appeal prefered from decree</label>
+                                          <input type="text" id="appeal" class="form-control" value="'.$rowx['appeal'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Decree Date</label>
+                                          <input type="text" class="form-control" id="datepicker" value="'.$rowx['decree_date'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label>Court Mode of assistance</label>
+                                          <textarea name="mode" class="form-control" id="mode">'.$rowx['mode'].'</textarea>
+                                      </div>
                                 </div>
 
                                 <div class="tab-pane " id="tab2">
@@ -32266,7 +32293,92 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
 
                                 <div class="tab-pane " id="tab4">
-                                
+                                <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Edit  Adjournment or Payment Details</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label for="">Adjournment</label>
+                                          <input type="text" class="form-control" id="adj" value="'.$rowx['adjournment'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Payment</label>
+                                          <input type="text" class="form-control" id="payment" value="'.$rowx['payment'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Date</label>
+                                          <input type="text" class="form-control date" id="datepicker1" value="'.$rowx['date'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Results</label>
+                                          <textarea id="result" name="result" class="form-control">'.$rowx['result'].'</textarea>
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+
+                              <div class="panel widget">
+                              <div class="panel-heading vd_bg-grey">
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                    Edit  Amount with interests</h3>
+                              </div>
+                              <!--                        panel heading-->
+                              <div class="panel-body">
+                                  <!--                            form content goes here-->
+                                  <div class="form-group">
+                                      <label for="">Principal Amount</label>
+                                      <input type="text" class="form-control" id="principal_amount" value="'.$rowx['principal'].'">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Interest</label>
+                                      <input type="text" class="form-control" id="interest" value="'.$rowx['interest'].'">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Total</label>
+                                      <input type="text" class="form-control" id="total">
+                                  </div>
+      
+                              </div>
+                              <!-- Panel body -->
+                          </div>
+                          <!-- Panel Widget -->
+
+                          <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Edit  Amount of costs</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label for="">Cost Awarded</label>
+                                          <input type="text" class="form-control" id="cost_awarded" value="'.$rowx['cost_awarded'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Court Collection Fee</label>
+                                          <input type="text" class="form-control" id="court_fee" value="'.$rowx['court_fee'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Subsequent incurred</label>
+                                          <input type="text" class="form-control" id="sub_incurred" value="'.$rowx['subs_incurred'].'">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="">Total</label>
+                                          <input type="text" class="form-control" id="total_costs">
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+
                                 </div>
 
                                 <div class="tab-pane " id="tab5">
@@ -32978,20 +33090,63 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                         </div>
                         <div class="panel-body">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1" data-toggle="tab">letter Information</a></li>
-                                <li><a href="#tab2" data-toggle="tab">Property Description</a></li>
+                                <li class="active"><a href="#tab1" data-toggle="tab">Notice Information</a></li>
                                 <li><a href="#tab3" data-toggle="tab">Documents</a></li>
-                                <li><a href="#tab4" data-toggle="tab">Charges</a></li>
                                 <li><a href="#tab5" data-toggle="tab">Upload Documents</a></li>
                             </ul>
                             <br/>
                             <div class="tab-content mgbt-xs-20">
                                 <div class="tab-pane active" id="tab1">
-                                
+                                <div class="panel widget">
+                                <div class="panel-heading vd_bg-grey">
+                                    <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                      Notice Details</h3>
                                 </div>
-
-                                <div class="tab-pane " id="tab2">
-                                
+                                <!--                        panel heading-->
+                                <div class="panel-body">
+                                    <!--                            form content goes here-->
+                                    <div class="form-group">
+                                        <label>Instructing party -:<span style="color:#f00">*</span></label>
+                                        <input type="text" id="instructing_party" class="form-control" value="'.$rowx['instructing_party'].'">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label>Debtor\'s Name -:<span style="color:#f00">*</span></label>
+                                        <input type="text" id="debtorsname" class="form-control" value="'.$rowx['debtor_name'].'">
+                                    </div>
+        
+        
+                                    <div class="form-group">
+                                        <label>Amount owed -:<span style="color:#f00">*</span></label>
+                                        <input type="text" id="amount_owed" class="form-control" value="'.$rowx['amount'].'">
+                                    </div>
+        
+        
+                                    <div class="form-group">
+                                        <label>Recovery Charges -:<span style="color:#f00">*</span></label>
+                                        <input type="text" id="recovery_charges" class="form-control" value="'.$rowx['charges'].'">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label>Notice Date<span style="color:#f00">*</span></label>
+                                        <input type="text" id="notice_date" value="'.$rowx['notice_date'].'" class="form-control date">
+                                    </div>
+        
+        
+                                    <div class="form-group">
+                                        <label >Number of Days<span style="color:#f00">*</span></label>
+                                        <input type="text" id="noticedays" class="form-control" value="'.$rowx['days'].'">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label >Date Served <span style="color:#f00">*</span></label>
+                                        <input type="text" id="date_served" class="form-control date" value="'.$rowx['date_served'].'">
+                                    </div>
+        
+                                </div>
+                                <!-- Panel body -->
+                            </div>
+                            <!-- Panel Widget -->
                                 </div>
 
                                 <div class="tab-pane " id="tab3">
@@ -33002,10 +33157,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </div>
                                 </div>
 
-
-                                <div class="tab-pane " id="tab4">
-                                
-                                </div>
 
                                 <div class="tab-pane " id="tab5">
                                 <div class="col-md-6">
@@ -33949,7 +34100,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                         </div>
                         <div class="panel-body">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab1" data-toggle="tab">letter Information</a></li>
+                                <li class="active"><a href="#tab1" data-toggle="tab">Proclamation Information</a></li>
+                                <li><a href="#tab6" data-toggle="tab">Court Details</a></li>
                                 <li><a href="#tab2" data-toggle="tab">Property Description</a></li>
                                 <li><a href="#tab3" data-toggle="tab">Documents</a></li>
                                 <li><a href="#tab4" data-toggle="tab">Charges</a></li>
@@ -33958,7 +34110,148 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                             <br/>
                             <div class="tab-content mgbt-xs-20">
                                 <div class="tab-pane active" id="tab1">
-                                
+                                <div class="row" id="form-basic">
+          
+                          <div class="col-md-6">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Auctioneer Details</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label>Name -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="auct_name" class="form-control" value="'.$rowx['auctioneername'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Phone -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="auct_phone" class="form-control" value="'.$rowx['auctphone'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Address -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="auct_address" class="form-control" value="'.$rowx['auctaddress'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Trader -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="auct_trader" class="form-control" value="'.$rowx['trader'].'">
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                          <div class="col-md-6">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Creditor/Landlord Details</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label>Name -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="creditor_name" class="form-control" value="'.$rowx['creditorname'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Address -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="creditor_address" class="form-control" value="'.$rowx['creditoraddress'].'">
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                          <div class="col-md-6">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Debtor/Tenant Details</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label>Name -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="debtor_name" class="form-control" value="'.$rowx['debtorname'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Address -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="debtor_address" class="form-control" value="'.$rowx['debtoraddress'].'">
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                      </div>
+                                </div>
+
+                                <div class="tab-pane " id="tab6">
+
+                                <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Court Details</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label>court <span style="color:#f00">*</span></label>
+                                          <input type="text" id="court" class="form-control" value="'.$rowx['court'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>date <span style="color:#f00">*</span></label>
+                                          <input type="text" id="court_date" class="form-control date" value="'.$rowx['date'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Case Number<span style="color:#f00">*</span></label>
+                                          <input type="text" id="case_no" class="form-control" value="'.$rowx['caseno'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Date of Decree/Letter of instruction<span style="color:#f00">*</span></label>
+                                          <input type="text" id="decree_date" class="form-control date" value="'.$rowx['decreedate'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Date of return to court/Creditor<span style="color:#f00">*</span></label>
+                                          <input type="text" id="return_date" class="form-control date" value="'.$rowx['returndate'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Warrant or letter of instructions date<span style="color:#f00">*</span></label>
+                                          <input type="text" id="warrant_date" class="form-control date" value="'.$rowx['warrantdate'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Number of Notice Days<span style="color:#f00">*</span></label>
+                                          <input type="text" id="notice_days" class="form-control" value="'.$rowx['noticedays'].'">
+                                      </div>
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+
                                 </div>
 
                                 <div class="tab-pane " id="tab2">
@@ -33975,7 +34268,35 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
 
                                 <div class="tab-pane " id="tab4">
-                                
+
+                                <div class="panel widget">
+                                <div class="panel-heading vd_bg-grey">
+                                    <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                    proclamation Details</h3>
+                                </div>
+                                <!--                        panel heading-->
+                                <div class="panel-body">
+                                    <!--                            form content goes here-->
+                                    <div class="form-group">
+                                        <label>Decretal sum/Amount outstanding / Rent arrears <span style="color:#f00">*</span></label>
+                                        <input type="text" id="amount" class="form-control" value="'.$rowx['amount'].'">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label>Auctioneer charges <span style="color:#f00">*</span></label>
+                                        <input type="text" id="auct_charges" class="form-control" value="'.$rowx['auctcharges'].'">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label>Advocate fee<span style="color:#f00">*</span></label>
+                                        <input type="text" id="adv_fee" class="form-control" value="'.$rowx['advfee'].'">
+                                    </div>
+        
+                                </div>
+                                <!-- Panel body -->
+                            </div>
+                            <!-- Panel Widget -->
+                            
                                 </div>
 
                                 <div class="tab-pane " id="tab5">
@@ -34210,6 +34531,142 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 cursor: pointer
             } </style>';
           
+        break;
+
+        case 808:
+          if (isset($_GET['param'])) {
+            $param = $tid = $_GET['param'];
+            $resulta = mysql_query("select * from proclamations where id='" . $param . "' limit 0,1");
+            $row = mysql_fetch_array($resulta);
+        
+            if (!isset($_GET['keyy'])) {
+                $_SESSION['links'][] = $id . '-' . $param;
+                end($_SESSION['links']);
+                $keyy = key($_SESSION['links']);
+            } else {
+                $keyy = $_GET['keyy'];
+            }
+        
+        }
+        
+        
+        $result = mysql_query("insert into log values('','" . $username . " accesses proclamation property description
+        Panel.','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo '
+        <div class="vd_container" id="container">
+            <div class="vd_content clearfix">
+        
+        
+                <div class="vd_content-section clearfix">
+                    <div class="row" id="form-basic">
+                        <div class="col-md-12">
+                            <div class="panel widget">
+                                <div class="panel-heading vd_bg-grey">
+                                    <h3 class="panel-title">
+                                    <span class="menu-icon"><i class="fa fa-th-list"></i></span>
+                                    Proclamation Property Description Panel
+                                   </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" action="#" role="form">
+        
+                                        <div class="form-group">
+                                            <label style="float:left" class="col-sm-1">Debtor Name:<span style="color:#f00">*</span></label>
+                                            <div class="col-sm-5 controls">
+                                                <input type="text" placeholder="" id="debtorname" value="' . $row['debtorname'] . '" readonly>
+                                                <input type="hidden" id="uid" value="' . $row['uid'] . '"/>
+                                            </div>
+        
+                                            <label style="float:left" class="col-sm-1">Creditor Name:<span
+                                                        style="color:#f00">*</span></label>
+                                            <div class="col-sm-5 controls">
+                                                <input type="text" value="' . $row['creditorname'] . '" id="creditorname" readonly>
+                                            </div>
+        
+        
+                                        </div>
+        
+                                        <div class="form-group">
+        
+                                            <label style="float:left" class="col-sm-1">Description:<span
+                                                        style="color:#f00">*</span></label>
+                                            <div class="col-sm-5 controls">
+                                                <textarea id="description" class="form-control"></textarea>
+                                            </div>
+                                            <label style="float:left" class="col-sm-1">Condition:<span
+                                                        style="color:#f00">*</span></label>
+                                            <div class="col-sm-5 controls">
+                                                <textarea id="condition" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            
+                                            <label style="float:left" class="col-sm-1">Estimated Value:<span
+                                                        style="color:#f00">*</span></label>
+                                            <div class="col-sm-5 controls">
+                                                <input type="text" id="est_value" class="form-control">
+                                            </div>
+                                           <div class="col-sm-2 controls">
+                                                <button class="btn vd_btn vd_bg-green" onclick="addletterpropdesc()">
+                                                <span class="menu-icon"><i class="icon icon-add-to-list"></i></span>
+                                                Add Description
+                                                </button>
+                                            </div>
+        
+                                            <div class="col-sm-2 controls">
+                                                <button class="btn vd_btn vd_bg-yellow" onclick="viewrent()"><span
+                                                            class="menu-icon"><i class="fa fa-search"></i></span>View List
+                                                </button>
+                                            </div>
+        
+                                            <div class="col-sm-2 controls">
+                                                <button class="btn vd_btn vd_bg-red" onclick="emptyrent()"><span
+                                                            class="menu-icon"><i class="fa fa-trash-o"></i></span>Empty List
+                                                </button>
+                                            </div>
+                                        </div>
+        
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Panel Widget -->
+                        </div>
+                        <!-- col-md-12 -->
+        
+        
+                        <div class="col-md-12">
+                            <div class="panel widget">
+                                <div class="panel-heading vd_bg-grey">
+                                    <h3 class="panel-title"><span class="menu-icon"> 
+                                    <i class="fa fa-th-list"></i> </span> Property Description
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" action="#" role="form">
+                                        <div id="display">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- Panel Widget -->
+                        </div>
+                        <!-- col-md-12 -->
+        
+        
+                    </div>
+                    <!-- row -->
+                </div>
+        
+        
+            </div>
+            <!-- .vd_content-section -->
+        
+        </div>
+        <!-- .vd_content -->
+        </div>
+        <!-- .vd_container --> ';
+        echo"<script>setTimeout(function() {getproclamationproperty(".$row['id'].");},500);</script>";
+        
         break;
 
 }

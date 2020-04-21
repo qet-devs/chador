@@ -649,7 +649,7 @@ case 4:
 								break;
 
 								case 802:
-
+									getproclamationproperty(b);
 								break;
 
 								case 803:
@@ -9613,11 +9613,11 @@ function getletterproperty(param){
    
 }
 
-function delletpropdes(propid, letid){
+function delpropdes(propid, uid){
 	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:50%" alt="Loading"/>');
 	$.ajax({
 		url: 'data.php',
-		data: {id:404,propid:propid,letid:letid},
+		data: {id:404,propid:propid,uid:uid},
 		success: function (data) {
 			$('#display').html(data);
 		}
@@ -10464,6 +10464,18 @@ function activateproclamation(param){
 
 }
 
+
+function getproclamationproperty(param){
+	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:50%" alt="Loading"/>');
+	$.ajax({
+		url: 'bridge.php',
+		data: {id:808,param:param},
+		success: function (data) {
+			$('#display').html(data);
+		}
+	});
+   
+}
 
 
 
