@@ -30435,7 +30435,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                             <label style="float:left" class="col-sm-1">Property Owner:<span style="color:#f00">*</span></label>
                                             <div class="col-sm-5 controls">
                                                 <input type="text" placeholder="" id="property_owner" value="' . $row['ownername'] . '" readonly>
-                                                <input type="hidden" id="letterId" value="' . $row['id'] . '"/>
+                                                <input type="hidden" id="uid" value="' . $row['uid'] . '"/>
                                             </div>
         
                                             <label style="float:left" class="col-sm-1">Property Location:<span
@@ -30468,21 +30468,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                 <input type="text" id="est_value" class="form-control">
                                             </div>
                                            <div class="col-sm-2 controls">
-                                                <button class="btn vd_btn vd_bg-green" onclick="addletterpropdesc()">
+                                                <button class="btn vd_btn vd_bg-green" onclick="addpropertydesciption()">
                                                 <span class="menu-icon"><i class="icon icon-add-to-list"></i></span>
                                                 Add Description
-                                                </button>
-                                            </div>
-        
-                                            <div class="col-sm-2 controls">
-                                                <button class="btn vd_btn vd_bg-yellow" onclick="viewrent()"><span
-                                                            class="menu-icon"><i class="fa fa-search"></i></span>View List
-                                                </button>
-                                            </div>
-        
-                                            <div class="col-sm-2 controls">
-                                                <button class="btn vd_btn vd_bg-red" onclick="emptyrent()"><span
-                                                            class="menu-icon"><i class="fa fa-trash-o"></i></span>Empty List
                                                 </button>
                                             </div>
                                         </div>
@@ -30526,7 +30514,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         <!-- .vd_content -->
         </div>
         <!-- .vd_container --> ';
-        echo"<script>setTimeout(function() {getletterproperty(".$row['id'].");},500);</script>";
+        echo"<script>setTimeout(function() {getpropertydescription(".$row['uid'].");},500);</script>";
         break;
 
         case 407:
@@ -34607,21 +34595,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                 <input type="text" id="est_value" class="form-control">
                                             </div>
                                            <div class="col-sm-2 controls">
-                                                <button class="btn vd_btn vd_bg-green" onclick="addletterpropdesc()">
+                                                <button class="btn vd_btn vd_bg-green" onclick="addpropertydescription()">
                                                 <span class="menu-icon"><i class="icon icon-add-to-list"></i></span>
                                                 Add Description
-                                                </button>
-                                            </div>
-        
-                                            <div class="col-sm-2 controls">
-                                                <button class="btn vd_btn vd_bg-yellow" onclick="viewrent()"><span
-                                                            class="menu-icon"><i class="fa fa-search"></i></span>View List
-                                                </button>
-                                            </div>
-        
-                                            <div class="col-sm-2 controls">
-                                                <button class="btn vd_btn vd_bg-red" onclick="emptyrent()"><span
-                                                            class="menu-icon"><i class="fa fa-trash-o"></i></span>Empty List
                                                 </button>
                                             </div>
                                         </div>
@@ -34665,7 +34641,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         <!-- .vd_content -->
         </div>
         <!-- .vd_container --> ';
-        echo"<script>setTimeout(function() {getproclamationproperty(".$row['id'].");},500);</script>";
+        echo"<script>setTimeout(function() {getpropertydescription(".$row['uid'].");},500);</script>";
         
         break;
 

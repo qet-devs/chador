@@ -6078,20 +6078,20 @@ switch($id){
 							break;
 
 							case 403:
-								$id = $_GET['tid'];
+								$uid = $_GET['uid'];
 								$description = $_GET['description'];
 								$condition = $_GET['condition'];
 								$est_value = $_GET['est_value'];
 								
 //echo json_encode($_GET);
-							$resultg = mysql_query("INSERT INTO `property_description`(`letter_id`, `description`, `condition`, `est_value`, `username`, `status`) VALUES ('".$id."','".$description."','".$condition."','".$est_value."','".$username."','1')");
+							$resultg = mysql_query("INSERT INTO `property_description`(`uid`, `description`, `condition`, `est_value`, `username`, `status`) VALUES ('".$uid."','".$description."','".$condition."','".$est_value."','".$username."','1')");
 							
 							//register log
-							$resulta = mysql_query("insert into log values('0','".$username." creates  letter property description where letter id:".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+							$resulta = mysql_query("insert into log values('0','".$username." creates property description where uid:".$uid."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
 							
 							if($resultg){
 							echo '<script>swal("Success!", "Property description saved successfully", "success");</script>';
-							echo"<script>setTimeout(function() {getletterproperty(".$id.");},500);</script>";
+							echo"<script>setTimeout(function() {getpropertydescription(".$uid.");},500);</script>";
 								
 							}
 							else{

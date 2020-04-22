@@ -649,7 +649,14 @@ case 4:
 								break;
 
 								case 802:
-									getproclamationproperty(b);
+									$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:808,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									}
+									});
 								break;
 
 								case 803:
@@ -9552,14 +9559,14 @@ function archivedletters(){
 	});
 }
 
-function addletterpropdesc(){
-    var tid = $('#letterId').val();
+function addpropertydescription(){
+    var uid = $('#uid').val();
     var description = $('#description').val();
     var condition = $('#condition').val();
     var est_value = $('#est_value').val();
     
-    if (tid == '') {
-        swal("Error", "Invalid letter id", "error");
+    if (uid == '') {
+        swal("Error", "Invalid unique id", "error");
     } else if (description == '') {
         swal("Error", "Provide a description", "error");
     } else if (condition == '' ) {
@@ -9572,7 +9579,7 @@ function addletterpropdesc(){
             url: 'data.php',
             data: {
                 id: 403,
-                tid: tid,
+                uid: uid,
 				description:description,
 				condition:condition,
 				est_value:est_value
@@ -9601,7 +9608,7 @@ function letterfile(){
 	});
 }
 
-function getletterproperty(param){
+function getpropertydescription(param){
 	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:50%" alt="Loading"/>');
 	$.ajax({
 		url: 'bridge.php',
@@ -10465,17 +10472,7 @@ function activateproclamation(param){
 }
 
 
-function getproclamationproperty(param){
-	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:50%" alt="Loading"/>');
-	$.ajax({
-		url: 'bridge.php',
-		data: {id:808,param:param},
-		success: function (data) {
-			$('#display').html(data);
-		}
-	});
-   
-}
+
 
 
 
