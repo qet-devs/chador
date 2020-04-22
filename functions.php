@@ -5,9 +5,9 @@ function getcurlink($key)
     return $key . '-' . $_SESSION['links'][$key];
 }
 
-function getletpropdes($id)
+function getpropdes($id)
 {
-    $query = mysql_query("select * from letter_property_description where status=1 and letter_id='" . $id . "'");
+    $query = mysql_query("select * from property_description where status=1 and uid='" . $id . "'");
     $num_rows = mysql_num_rows($query);
     $count = 1;
     for ($i = 0; $i < $num_rows; $i++) {
