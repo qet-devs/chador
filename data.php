@@ -6090,8 +6090,8 @@ switch($id){
 							$resulta = mysql_query("insert into log values('0','".$username." creates property description where uid:".$uid."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
 							
 							if($resultg){
-							echo '<script>swal("Success!", "Property description saved successfully", "success");</script>';
-							echo"<script>setTimeout(function() {getpropertydescription(".$uid.");},500);</script>";
+							echo '<script>swal("Success!", "Property description saved successfully", "success");console.log('.$uid.');</script>';
+							echo"<script>getpropertydescription('".$uid."');</script>";
 								
 							}
 							else{
@@ -6101,11 +6101,12 @@ switch($id){
 
 							case 404:
 								$propid=$_GET['propid'];
-								$uid=$_GET['uid'];
+								$query = mysql_query("select * from property_description where id ='".$propid."'");
+								$row = mysql_fetch_array($query);
 								
 								$result= mysql_query("update property_description set status=0 where id='".$propid."'")  or die (mysql_error());
-								$resulta = mysql_query("insert into log values('','".$username." archives letter.id:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
-								echo'<script>setTimeout(function() {getletterproperty('.$uid.');},500);</script>	';
+								$resulta = mysql_query("insert into log values('','".$username." archives property description.id:".$propid."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+								echo'<script>getpropertydescription("'.$row['uid'].'");</script>	';
 							break;
 
 							case 405:

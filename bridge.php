@@ -30514,7 +30514,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         <!-- .vd_content -->
         </div>
         <!-- .vd_container --> ';
-        echo"<script>setTimeout(function() {getpropertydescription(".$row['uid'].");},500);</script>";
+        echo"<script>setTimeout(function() {getpropertydescription('".$row['uid']."');},500);</script>";
         break;
 
         case 407:
@@ -30540,7 +30540,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               <td>'.$row['description'].'</td>
               <td>'.$row['condition'].'</td>
               <td>'.$row['est_value'].'</td>
-              <td><button class="btn btn-danger" onclick="delpropdes('.$row['id'].', '.$id.')"><i class="fa fa-trash"></> Delete</button></td>
+              <td><button class="btn btn-danger" onclick="delpropdes('.$row['id'].')"><i class="fa fa-trash"></> Delete</button></td>
               </tr>';
           }
           echo '</tbody></table>';
@@ -34641,7 +34641,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         <!-- .vd_content -->
         </div>
         <!-- .vd_container --> ';
-        echo"<script>setTimeout(function() {getpropertydescription(".$row['uid'].");},500);</script>";
+        echo"<script>setTimeout(function() {getpropertydescription('".$row['uid']."');},500);</script>";
         
         break;
 
