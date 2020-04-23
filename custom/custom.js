@@ -9609,6 +9609,7 @@ function letterfile(){
 }
 
 function getpropertydescription(param){
+	//console.log("param = ",param);
 	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:50%" alt="Loading"/>');
 	$.ajax({
 		url: 'bridge.php',
@@ -9620,11 +9621,12 @@ function getpropertydescription(param){
    
 }
 
-function delpropdes(propid, uid){
+function delpropdes(propid){
+	console.log(propid);
 	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:50%" alt="Loading"/>');
 	$.ajax({
 		url: 'data.php',
-		data: {id:404,propid:propid,uid:uid},
+		data: {id:404,propid:propid},
 		success: function (data) {
 			$('#display').html(data);
 		}

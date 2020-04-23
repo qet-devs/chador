@@ -29868,8 +29868,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                                       onclick="majoropen(400)">Edit Letter</label><br/>';}
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(405)">Letter Info</label><br/>';}
-                                    if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(401)">Property Description</label><br/>';}
+                                    // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                    //                                   onclick="majoropen(401)">Property Description</label><br/>';}
                                     if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(403)">Archive Letter</label><br/>';}
                                     echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
@@ -30514,7 +30514,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         <!-- .vd_content -->
         </div>
         <!-- .vd_container --> ';
-        echo"<script>setTimeout(function() {getpropertydescription(".$row['uid'].");},500);</script>";
+        echo"<script>setTimeout(function() {getpropertydescription('".$row['uid']."');},500);</script>";
         break;
 
         case 407:
@@ -30540,7 +30540,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               <td>'.$row['description'].'</td>
               <td>'.$row['condition'].'</td>
               <td>'.$row['est_value'].'</td>
-              <td><button class="btn btn-danger" onclick="delpropdes('.$row['id'].', '.$id.')"><i class="fa fa-trash"></> Delete</button></td>
+              <td><button class="btn btn-danger" onclick="delpropdes('.$row['id'].')"><i class="fa fa-trash"></> Delete</button></td>
               </tr>';
           }
           echo '</tbody></table>';
@@ -30693,26 +30693,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                     <label>Legal description<span style="color:#f00">*</span></label>
                                     <textarea type="text" id="propertydescription" class="form-control">'.$rowx['propdescription'].'</textarea>
                                 </div>
-
-                                <h4>Property Description table</h4>
-
-                                <table class="table table-striped table-hover no-head-border">
-                                <thead class="vd_bg-black vd_white">
-                                  <tr>
-                                    <th>#</th>
-                                    <th>Description</th>
-                                    <th>Condition</th>
-                                    <th>Estimated Value</th>
-                                  </tr>
-                                </thead>
-                                <tbody>';
-
-                              getpropdes($rowx['uid']);
-                              
-                              echo '
-                                </tbody>
-                                </table>
-    
                             </div>
                                 </div>
 
@@ -30721,9 +30701,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                                 <div class="tab-pane " id="tab3">
                                 <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
-                                ';
-                                getdocs($tid);
-                                echo '
+                                
                                 </div>
                                 </div>
 
@@ -30806,9 +30784,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </dd>
                                 <iframe name="leiframe" id="leiframe" class="leiframe">
                                 </iframe>
-                                <input type="hidden"  name="soi" value="'.$soi.'"/>
-                                <input type="hidden"  name="sap" value="'.$sap.'"/>
-                                <input type="hidden"  name="tid" value="'.$tid.'"/>
+                                <input type="hidden"  name="soi" value=""/>
+                                <input type="hidden"  name="sap" value=""/>
+                                <input type="hidden"  name="tid" value=""/>
                                 <input type="hidden" id="id" name="id"  value="1"/>
                                 <div class="cleaner_h5"></div>
                                 <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%" type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload</button>
@@ -30994,8 +30972,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                                       onclick="majoropen(500)">Edit Distress</label><br/>';}
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(501)">Distress Info</label><br/>';}
-                                    if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(502)">Arrears</label><br/>';}
+                                    // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                    //                                   onclick="majoropen(502)">Arrears</label><br/>';}
                                     if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(503)">Archive Distress</label><br/>';}
                                     echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
@@ -31317,9 +31295,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                                 <div class="tab-pane " id="tab3">
                                 <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
-                                ';
-                                getdocs($tid);
-                                echo '
+                                
                                 </div>
                                 </div>
 
@@ -31833,8 +31809,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                                       onclick="majoropen(600)">Edit Decree</label><br/>';}
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(601)">Decree Info</label><br/>';}
-                                    if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(602)">Property Description</label><br/>';}
+                                    // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                    //                                   onclick="majoropen(602)">Property Description</label><br/>';}
                                     if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(603)">Archive Decree</label><br/>';}
                                     echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
@@ -32273,9 +32249,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                                 <div class="tab-pane " id="tab3">
                                 <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
-                                ';
-                                getdocs($tid);
-                                echo '
+                                
                                 </div>
                                 </div>
 
@@ -33139,9 +33113,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                                 <div class="tab-pane " id="tab3">
                                 <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
-                                ';
-                                getdocs($tid);
-                                echo '
+                                
                                 </div>
                                 </div>
 
@@ -34248,9 +34220,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                                 <div class="tab-pane " id="tab3">
                                 <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
-                                ';
-                                getdocs($tid);
-                                echo '
+                                
                                 </div>
                                 </div>
 
@@ -34641,7 +34611,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         <!-- .vd_content -->
         </div>
         <!-- .vd_container --> ';
-        echo"<script>setTimeout(function() {getpropertydescription(".$row['uid'].");},500);</script>";
+        echo"<script>setTimeout(function() {getpropertydescription('".$row['uid']."');},500);</script>";
         
         break;
 
