@@ -31235,9 +31235,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             $result = mysql_query("insert into log values('','".$username." accesses distress File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
             $resultx =mysql_query("select * from distress where id='".$param."' limit 0,1");
             $rowx=mysql_fetch_array($resultx);
-            $lof=stripslashes($rowx['lof']);
+            $lof="Distress";
             $stat=stripslashes($rowx['status']);
-            $tid=stripslashes($rowx['id']);
+            $tid=stripslashes($rowx['uid']);
             
           
           
@@ -31340,8 +31340,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </dd>
                                 <iframe name="leiframe" id="leiframe" class="leiframe">
                                 </iframe>
-                                <input type="hidden"  name="soi" value="'.$soi.'"/>
-                                <input type="hidden"  name="sap" value="'.$sap.'"/>
+                                <input type="hidden"  name="soi" value="'.$lof.'"/>
+                                <input type="hidden"  name="sap" value="'.$stat.'"/>
                                 <input type="hidden"  name="tid" value="'.$tid.'"/>
                                 <input type="hidden" id="id" name="id"  value="1"/>
                                 <div class="cleaner_h5"></div>
