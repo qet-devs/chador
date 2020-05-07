@@ -30603,9 +30603,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             $result = mysql_query("insert into log values('','".$username." accesses letter File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
             $resultx =mysql_query("select * from letters where id='".$param."' limit 0,1");
             $rowx=mysql_fetch_array($resultx);
-            $lof=stripslashes($rowx['lof']);
+            $lof="Letter";
             $stat=stripslashes($rowx['status']);
-            $tid=stripslashes($rowx['id']);
+            $tid=stripslashes($rowx['uid']);
             
           
           
@@ -30784,9 +30784,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </dd>
                                 <iframe name="leiframe" id="leiframe" class="leiframe">
                                 </iframe>
-                                <input type="hidden"  name="soi" value=""/>
-                                <input type="hidden"  name="sap" value=""/>
-                                <input type="hidden"  name="tid" value=""/>
+                                <input type="hidden"  name="soi" value="'.$lof.'"/>
+                                <input type="hidden"  name="sap" value="'.$stat.'"/>
+                                <input type="hidden"  name="tid" value="'.$tid.'"/>
                                 <input type="hidden" id="id" name="id"  value="1"/>
                                 <div class="cleaner_h5"></div>
                                 <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%" type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload</button>
@@ -32177,7 +32177,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             $result = mysql_query("insert into log values('','".$username." accesses decree File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
             $resultx =mysql_query("select * from decrees where id='".$param."' limit 0,1");
             $rowx=mysql_fetch_array($resultx);
-            $lof=stripslashes($rowx['lof']);
+            $lof="Decrees";
             $stat=stripslashes($rowx['status']);
             $tid=stripslashes($rowx['id']);
             
@@ -32379,8 +32379,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </dd>
                                 <iframe name="leiframe" id="leiframe" class="leiframe">
                                 </iframe>
-                                <input type="hidden"  name="soi" value="'.$soi.'"/>
-                                <input type="hidden"  name="sap" value="'.$sap.'"/>
+                                <input type="hidden"  name="soi" value="'.$lof.'"/>
+                                <input type="hidden"  name="sap" value="'.$stat.'"/>
                                 <input type="hidden"  name="tid" value="'.$tid.'"/>
                                 <input type="hidden" id="id" name="id"  value="1"/>
                                 <div class="cleaner_h5"></div>
@@ -33030,9 +33030,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             $result = mysql_query("insert into log values('','".$username." accesses Notice File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
             $resultx =mysql_query("select * from court_notices where id='".$param."' limit 0,1");
             $rowx=mysql_fetch_array($resultx);
-            $lof=stripslashes($rowx['lof']);
+            $lof="Notice";
             $stat=stripslashes($rowx['status']);
-            $tid=stripslashes($rowx['id']);
+            $tid=stripslashes($rowx['uid']);
             
           
           
@@ -33154,8 +33154,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </dd>
                                 <iframe name="leiframe" id="leiframe" class="leiframe">
                                 </iframe>
-                                <input type="hidden"  name="soi" value="'.$soi.'"/>
-                                <input type="hidden"  name="sap" value="'.$sap.'"/>
+                                <input type="hidden"  name="soi" value="'.$lof.'"/>
+                                <input type="hidden"  name="sap" value="'.$stat.'"/>
                                 <input type="hidden"  name="tid" value="'.$tid.'"/>
                                 <input type="hidden" id="id" name="id"  value="1"/>
                                 <div class="cleaner_h5"></div>
@@ -34038,9 +34038,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             $result = mysql_query("insert into log values('','".$username." accesses proclamation File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
             $resultx =mysql_query("select * from proclamations where id='".$param."' limit 0,1");
             $rowx=mysql_fetch_array($resultx);
-            $lof=stripslashes($rowx['lof']);
+            $lof="Proclamation";
             $stat=stripslashes($rowx['status']);
-            $tid=stripslashes($rowx['id']);
+            $tid=stripslashes($rowx['uid']);
             
           
           
@@ -34293,8 +34293,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </dd>
                                 <iframe name="leiframe" id="leiframe" class="leiframe">
                                 </iframe>
-                                <input type="hidden"  name="soi" value="'.$soi.'"/>
-                                <input type="hidden"  name="sap" value="'.$sap.'"/>
+                                <input type="hidden"  name="soi" value="'.$lof.'"/>
+                                <input type="hidden"  name="sap" value="'.$stat.'"/>
                                 <input type="hidden"  name="tid" value="'.$tid.'"/>
                                 <input type="hidden" id="id" name="id"  value="1"/>
                                 <div class="cleaner_h5"></div>
