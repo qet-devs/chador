@@ -6015,11 +6015,17 @@ switch($id){
 
 							$resultc = mysql_query("INSERT INTO `letters`(`uid`, `partyname`, `partyaddress`, `advocatename`, `advocateaddress`, `ownername`, `owneraddress`, `debtorname`, `debtoraddress`, `propaddress`, `propperson`, `propdescription`, `adinstructions`, `expenditure`, `date`, `amount`, `dailyrates`, `estlegalcost`, `estauctioneersfees`, `reserveprice`, `reason`, `status`, `username`)
 							 VALUES ('".$uid."','".$partyname."','".$partyaddress."','".$advocatename."','".$advocataddress."','".$ownername."','".$owneraddress."','".$debtorname."','".$debtoraddress."','".$propertylocation."','".$propertyperson."','".$propertydescription."','".$adinstructions."','".$expenditure."','".$datepicker."','".$amount."','".$dailyrates."','".$estlegalcost."','".$estauctioneersfees."','".$reserveprice."','".$reason."','1','".$username."')");
-							
+		
+
 								//register log
 							$resulta = mysql_query("insert into log values('0','".$username." creates new letter id=".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
 							
+
 							if($resultc){
+								// insert to clients
+
+								$creditor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$ownername."', 'creditor', '".$owneraddress."', '".$uid."')") or die('error');
+								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtorname."', 'debtor', '".$debtoraddress."', '".$uid."')") or die('error');
 							echo '<script>swal("Success!", "Instruction letter information saved successfully", "success");</script>';
 							
 							echo"<script>setTimeout(function() {newletter();},500);</script>";	

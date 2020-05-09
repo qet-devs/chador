@@ -22,6 +22,8 @@ function getpropdes($id)
     
 }
 
+
+
 function getdocs($id)
 {
     $resulta = mysql_query("select * from tendocs where  tid='" . $id . "' order by stamp desc");
