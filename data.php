@@ -6327,6 +6327,8 @@ switch($id){
 									
 								
 								if($resultc){
+									$party = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party."', 'Notice', '', '".$uid."')") or die('error');
+								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtor."', 'Notice', '', '".$uid."')") or die('error');
 								echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new Notice','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
