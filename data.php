@@ -6149,6 +6149,7 @@ switch($id){
 									
 								
 								if($resultc){
+									$distress = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$tenant."', 'distress', '', '".$uid."')") or die('error');
 								echo '<script>swal("Success!", "Instruction distress information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new distress id=".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
@@ -6236,6 +6237,8 @@ switch($id){
 									
 								
 								if($resultc){
+									$party1 = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party1."', 'decree', '', '".$uid."')") or die('error');
+								$party2 = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party2."', 'decree', '', '".$uid."')") or die('error');
 								echo '<script>swal("Success!", "Decree information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new decree','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
