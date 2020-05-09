@@ -6418,6 +6418,8 @@ switch($id){
 									
 								
 								if($resultc){
+									$auctioneer = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$creditorname."', 'proclamation', '".$creditoraddress."', '".$uid."')") or die('error');
+								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtorname."', 'proclamation', '".$debtoraddress."', '".$uid."')") or die('error');
 								echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new Proclamation','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
