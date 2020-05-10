@@ -6011,15 +6011,21 @@ switch($id){
 							$rowy=mysql_fetch_array($resulty);
 							$tid=stripslashes($rowy['id'])+1;
 
-							$uid='CHAD-LET-'.sprintf("%04d",$tid);
+							$uid='CHADLET'.sprintf("%04d",$tid);
 
 							$resultc = mysql_query("INSERT INTO `letters`(`uid`, `partyname`, `partyaddress`, `advocatename`, `advocateaddress`, `ownername`, `owneraddress`, `debtorname`, `debtoraddress`, `propaddress`, `propperson`, `propdescription`, `adinstructions`, `expenditure`, `date`, `amount`, `dailyrates`, `estlegalcost`, `estauctioneersfees`, `reserveprice`, `reason`, `status`, `username`)
 							 VALUES ('".$uid."','".$partyname."','".$partyaddress."','".$advocatename."','".$advocataddress."','".$ownername."','".$owneraddress."','".$debtorname."','".$debtoraddress."','".$propertylocation."','".$propertyperson."','".$propertydescription."','".$adinstructions."','".$expenditure."','".$datepicker."','".$amount."','".$dailyrates."','".$estlegalcost."','".$estauctioneersfees."','".$reserveprice."','".$reason."','1','".$username."')");
-							
+		
+
 								//register log
 							$resulta = mysql_query("insert into log values('0','".$username." creates new letter id=".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
 							
+
 							if($resultc){
+								// insert to clients
+
+								$creditor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$ownername."', 'creditor', '".$owneraddress."', '".$uid."')") or die('error');
+								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtorname."', 'debtor', '".$debtoraddress."', '".$uid."')") or die('error');
 							echo '<script>swal("Success!", "Instruction letter information saved successfully", "success");</script>';
 							
 							echo"<script>setTimeout(function() {newletter();},500);</script>";	
@@ -6136,13 +6142,14 @@ switch($id){
 							$rowy=mysql_fetch_array($resulty);
 							$tid=stripslashes($rowy['id'])+1;
 
-							$uid='CHAD-DIS-'.sprintf("%04d",$tid);
+							$uid='CHADDIS'.sprintf("%04d",$tid);
 	
 								$resultc = mysql_query("INSERT INTO `distress`(`uid`, `landlord`, `tenant`, `to`, `at`, `amount`, `months`, `status`, `username`) 
 								VALUES ('".$uid."','".$landlord."','".$tenant."','".$to."','".$date."','".$amount."','".$months."','1','".$username."')");
 									
 								
 								if($resultc){
+									$distress = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$tenant."', 'distress', '', '".$uid."')") or die('error');
 								echo '<script>swal("Success!", "Instruction distress information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new distress id=".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
@@ -6223,13 +6230,15 @@ switch($id){
 							$rowy=mysql_fetch_array($resulty);
 							$tid=stripslashes($rowy['id'])+1;
 
-							$uid='CHAD-DEC-'.sprintf("%04d",$tid);
+							$uid='CHADDEC'.sprintf("%04d",$tid);
 
 								$resultc = mysql_query("INSERT INTO `decrees`(`uid`, `suitno`, `court`, `party1`, `party2`, `decree_date`, `appeal`, `payment`, `adjournment`, `date`, `results`, `principal`, `interest`, `cost_awarded`, `court_fee`, `subs_incurred`, `against`, `mode`, `holder`, `username`, `status`) 
 								VALUES ('".$uid."','".$suitno."','".$court."','".$party1."','".$party2."','".$decreedate."','".$appeal."','".$payment."','".$adjournment."','".$date."','".$result."','".$principal."','".$interest."','".$costawarded."','".$courtfee."','".$subincurred."','".$against."','".$mode."','".$holder."','".$username."','1')");
 									
 								
 								if($resultc){
+									$party1 = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party1."', 'decree', '', '".$uid."')") or die('error');
+								$party2 = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party2."', 'decree', '', '".$uid."')") or die('error');
 								echo '<script>swal("Success!", "Decree information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new decree','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
@@ -6311,13 +6320,15 @@ switch($id){
 							$rowy=mysql_fetch_array($resulty);
 							$tid=stripslashes($rowy['id'])+1;
 
-							$uid='CHAD-NOT-'.sprintf("%04d",$tid);
+							$uid='CHADNOT'.sprintf("%04d",$tid);
 	
 								$resultc = mysql_query("INSERT INTO `court_notices`(`uid`,`instructing_party`, `debtor_name`, `amount`, `charges`, `notice_date`, `days`, `date_served`, `username`, `status`) 
 								VALUES ('".$uid."','".$party."','".$debtor."','".$amount."','".$charges."','".$noticedate."','".$noticedays."','".$datereserved."','".$username."','1')");
 									
 								
 								if($resultc){
+									$party = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party."', 'Notice', '', '".$uid."')") or die('error');
+								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtor."', 'Notice', '', '".$uid."')") or die('error');
 								echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new Notice','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
@@ -6400,13 +6411,15 @@ switch($id){
 							$rowy=mysql_fetch_array($resulty);
 							$tid=stripslashes($rowy['id'])+1;
 
-							$uid='CHAD-PRO-'.sprintf("%04d",$tid);
+							$uid='CHADPRO'.sprintf("%04d",$tid);
 	
 								$resultc = mysql_query("INSERT INTO `proclamations`(`uid`,`auctioneername`, `auctaddress`, `auctphone`, `trader`, `creditorname`, `creditoraddress`, `debtorname`, `debtoraddress`, `amount`, `auctcharges`, `advfee`, `court`, `date`, `caseno`, `decreedate`, `warrantdate`, `returndate`, `noticedays`, `status`, `username`) 
 								VALUES ('".$uid."','".$auctname."','".$auctaddress."','".$auctphone."','".$trader."','".$creditorname."','".$creditoraddress."','".$debtorname."','".$debtoraddress."','".$amount."','".$auctcharges."','".$advfee."','".$court."','".$date."','".$caseno."','".$decreedate."','".$warrantdate."','".$returndate."','".$noticedays."','1','".$username."')");
 									
 								
 								if($resultc){
+									$auctioneer = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$creditorname."', 'proclamation', '".$creditoraddress."', '".$uid."')") or die('error');
+								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtorname."', 'proclamation', '".$debtoraddress."', '".$uid."')") or die('error');
 								echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new Proclamation','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
