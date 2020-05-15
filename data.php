@@ -6165,6 +6165,7 @@ switch($id){
 
 							case 501:
 								$id = $_GET['param'];
+								$uid = $_GET['uid'];
 								$landlord = $_GET['landlord'];
 								$tenant = $_GET['tenant'];
 								$to = $_GET['to'];
@@ -6173,7 +6174,7 @@ switch($id){
 								$months = $_GET['months'];
 
 								$resultc = mysql_query("UPDATE `distress` SET `landlord`='".$landlord."',`tenant`='".$tenant."',`to`='".$to."',`at`='".$date."',`amount`='".$amount."',`months`='".$months."',`username`='".$username."' WHERE `id`='".$id."'");
-									
+									$update_tenant_distress = mysql_query("update tenants set bname='".$landlord."', dname='".$tenant."' where tid='".$uid."'");
 								
 								if($resultc){
 								echo '<script>swal("Success!", "Instruction distress information updated successfully", "success");</script>';

@@ -9693,6 +9693,7 @@ function savenewdistress(){
 }
 
 function savedistress(param){
+	var uid = $('#uid').val();
 	var landlord = $('#landlord').val();
 	var tenant = $('#tenant').val();
 	var to = $('#to').val();
@@ -9706,6 +9707,7 @@ function savedistress(param){
 	}else{
 		var data = {
 			id:501,
+			uid:uid,
 			param:param,
 			landlord:landlord,
 			tenant:tenant,

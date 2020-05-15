@@ -31373,6 +31373,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                        panel heading-->
                                   <div class="panel-body">
                                       <!--                            form content goes here-->
+
+                                      <input type="hidden" id="uid" value="'.$rowx['uid'].'">
                                       <div class="form-group">
                                           <label for="">Landlord</label>
                                           <input type="text" id="landlord" class="form-control" value="'.$rowx['landlord'].'">
