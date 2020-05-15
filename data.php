@@ -6332,9 +6332,9 @@ switch($id){
 									
 								
 								if($resultc){
-									$party = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party."', 'Notice', '', '".$uid."')") or die('error');
-								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtor."', 'Notice', '', '".$uid."')") or die('error');
-								echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
+									$client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
+									VALUES ('0','".$uid."','Notice','".$party."','','','','".$debtor."','','".date('d/m/Y')."','".date('Ymd')."',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+									echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new Notice','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 								echo"<script>setTimeout(function() {newnotice();},500);</script>";	
