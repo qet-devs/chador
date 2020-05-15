@@ -9427,6 +9427,7 @@ function findletter(){
 
 function saveletter(param){
 	var party_name = $('#partyname').val();
+	var uid = $('#uid').val();
 	var party_address = $('#partyaddress').val();
 	var advocate_name = $('#advocatename').val();
 	var advocate_address = $('#advocateaddress').val();
@@ -9454,6 +9455,7 @@ function saveletter(param){
 			var data = {
 				id:401,
 				param:param,
+				uid:uid,
 				partyname:party_name,
 				partyaddress:party_address,
 				advocatename:advocate_name,

@@ -6026,9 +6026,6 @@ switch($id){
 								$client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
 								 VALUES ('0','".$uid."','letter','".$ownername."','".$owneraddress."','','','".$debtorname."','','".date('d/m/Y')."','".date('Ymd')."',1,'','','','','','','','','',1,'','','','',0,0,'','')");
 							
-							if($client){
-								echo '<script>console.log("tenant insert success");</script>';
-							}
 								echo '<script>swal("Success!", "Instruction letter information saved successfully", "success");</script>';
 							
 							echo"<script>setTimeout(function() {newletter();},500);</script>";	
@@ -6040,6 +6037,7 @@ switch($id){
 
 							case 401:
 								$id = $_GET['param'];
+								$uid = $_GET['uid'];
 								$partyname = $_GET['partyname'];
 								$partyaddress = $_GET['partyaddress'];
 								$advocatename = $_GET['advocatename'];
@@ -6063,6 +6061,7 @@ switch($id){
 
 							$resultg = mysql_query("UPDATE `letters` SET `partyname`='".$partyname."',`partyaddress`='".$partyaddress."',`advocatename`='".$advocatename."',`advocateaddress`='".$advocataddress."',`ownername`='".$ownername."',`owneraddress`='".$owneraddress."',`debtorname`='".$debtorname."',`debtoraddress`='".$debtoraddress."',`propaddress`='".$propertylocation."',`propperson`='".$propertyperson."',`propdescription`='".$propertydescription."',`adinstructions`='".$adinstructions."',`expenditure`='".$expenditure."',`date`='".$datepicker."',`amount`='".$amount."',`dailyrates`='".$dailyrates."',`estlegalcost`='".$estlegalcost."',`estauctioneersfees`='".$estauctioneersfees."',`reserveprice`='".$reserveprice."',`reason`='".$reason."' WHERE `id`='".$id."'")    or die (mysql_error());
 							
+							$update_tenant_table = mysql_query("update tenants set bname='".$ownername."', address='".$owneraddress."', dname='".$debtorname."' WHERE `tid`='".$uid."'");
 							//register log
 							$resulta = mysql_query("insert into log values('0','".$username." updates  letter info where letter id:".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
 							
