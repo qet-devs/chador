@@ -6420,13 +6420,13 @@ switch($id){
 							$uid='CHADPRO'.sprintf("%04d",$tid);
 	
 								$resultc = mysql_query("INSERT INTO `proclamations`(`uid`,`auctioneername`, `auctaddress`, `auctphone`, `trader`, `creditorname`, `creditoraddress`, `debtorname`, `debtoraddress`, `amount`, `auctcharges`, `advfee`, `court`, `date`, `caseno`, `decreedate`, `warrantdate`, `returndate`, `noticedays`, `status`, `username`) 
-								VALUES ('".$uid."','".$auctname."','".$auctaddress."','".$auctphone."','".$trader."','".$creditorname."','".$creditoraddress."','".$debtorname."','".$debtoraddress."','".$amount."','".$auctcharges."','".$advfee."','".$court."','".$date."','".$caseno."','".$decreedate."','".$warrantdate."','".$returndate."','".$noticedays."','1','".$username."')");
+								VALUES ('".$uid."','".$auctname."','".$auctaddress."','".$auctphone."','".$trader."','".$creditorname."','".$creditoraddress."','".$debtorname."','".$debtoraddress."','".$amount."','".$auctcharges."','".$advfee."','".$court."','".$courtdate."','".$caseno."','".$decreedate."','".$warrantdate."','".$returndate."','".$noticedays."','1','".$username."')");
 									
 								
 								if($resultc){
-									$auctioneer = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$creditorname."', 'proclamation', '".$creditoraddress."', '".$uid."')") or die('error');
-								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtorname."', 'proclamation', '".$debtoraddress."', '".$uid."')") or die('error');
-								echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
+									$client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
+									VALUES ('0','".$uid."','Proclamation','".$creditorname."','','','','".$debtorname."','','".date('d/m/Y')."','".date('Ymd')."',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+									echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new Proclamation','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 								echo"<script>setTimeout(function() {newproclamation();},500);</script>";	
@@ -6438,6 +6438,7 @@ switch($id){
 
 							case 801:
 								$id = $_GET['param'];
+								$uid = $_GET['uid'];
 								$auctname = $_GET['auctioneername'];
 								$auctphone = $_GET['auctphone'];
 								$auctaddress = $_GET['auctaddress'];
@@ -6459,7 +6460,7 @@ switch($id){
 
 			
 								$resultc = mysql_query("UPDATE `proclamations` SET `auctioneername`='".$auctname."',`auctaddress`='".$auctaddress."',`auctphone`='".$auctphone."',`trader`='".$trader."',`creditorname`='".$creditorname."',`creditoraddress`='".$creditoraddress."',`debtorname`='".$debtorname."',`debtoraddress`='".$debtoraddress."',`amount`='".$amount."',`auctcharges`='".$auctcharges."',`advfee`='".$advfee."',`court`='".$court."',`date`='".$date."',`caseno`='".$caseno."',`decreedate`='".$decreedate."',`warrantdate`='".$warrantdate."',`returndate`='".$returndate."',`noticedays`='".$noticedays."',`username`='".$username."' WHERE `id`='".$id."'");
-									
+								$update_tenant_proclamation = mysql_query("update tenants set bname='".$creditorname."', dname='".$debtorname."' where tid='".$uid."'");
 								
 								if($resultc){
 								echo '<script>swal("Success!", "Proclamation updated successfully", "success");</script>';

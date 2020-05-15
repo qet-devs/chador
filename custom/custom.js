@@ -10329,6 +10329,7 @@ function savenewproclamation(){
 }
 
 function saveproclamation(param){
+	var uid = $('#uid').val();
 	var auctioneername = $('#auct_name').val();
 	var auctphone = $('#auct_phone').val();
 	var auctaddress = $('#auct_address').val();
@@ -10355,6 +10356,7 @@ function saveproclamation(param){
 	}else{
 		var data = {
 			id:801,
+			uid:uid,
 			param:param,
 			auctioneername:auctioneername,
 			auctaddress:auctaddress,
