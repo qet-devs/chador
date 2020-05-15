@@ -29871,6 +29871,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                     // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                     //                                   onclick="majoropen(401)">Property Description</label><br/>';}
                                     if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                      onclick="majoropen(406)">Invoice</label><br/>';}
+                                    if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(403)">Archive Letter</label><br/>';}
                                     echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
                                 </div>
@@ -30804,6 +30806,269 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
     </div>
             ';
 
+        break;
+
+        case 410:
+          if(isset($_SESSION['rent'])){unset($_SESSION['rent']);}
+            if(isset($_GET['param'])){
+             $param=$tid=$_GET['param'];
+             $resulta =mysql_query("select * from letters where id='".$param."' limit 0,1");
+              $row=mysql_fetch_array($resulta);
+              $item=stripslashes($row['id']).'-'.stripslashes($row['ownername']).'-'.stripslashes($row['debtorname']).'-'.stripslashes($row['uid']);
+
+if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+             echo "<script>
+                var item='".$item."';
+                $('#tenant').val(item);
+               </script>";
+          }
+
+           echo'<script>document.onkeydown = keydown;
+        function keydown(evt){
+          if (!evt) evt = event;
+      
+             if (evt.keyCode==115){ //f4
+              evt.preventDefault();
+              $("#itemname").parent().find("input:first").focus();  
+             }
+             if (evt.keyCode==119){ //f8
+             evt.preventDefault();
+              viewrent(); 
+                }
+               if (evt.keyCode==112){ //f1
+             evt.preventDefault();
+               addrent(); 
+                }
+            if (evt.keyCode==121){ //f10
+            evt.preventDefault();
+            submitrent(); 
+                }
+           if (evt.keyCode==120){ //f9
+            evt.preventDefault();
+                  emptyrent(); 
+                }
+            
+            if (evt.keyCode==114){ //f3
+            evt.preventDefault();
+            removelastrent();
+          }
+         
+      }</script>';
+
+
+        if(isset($_GET['loadex'])){
+
+            $tenants='';
+            $resulta =mysql_query("select * from letters where status=0");
+            $num_resultsa = mysql_num_rows($resulta); 
+            for ($i=0; $i <$num_resultsa; $i++) {
+            $row=mysql_fetch_array($resulta);
+            $item=stripslashes($row['id']).'-'.stripslashes($row['ownername']).'-'.stripslashes($row['debtorname']).'-'.stripslashes($row['uid']);
+            $tenants.='"'.$item.'",';
+            }
+            $len=strlen($tenants);
+            $a=$len-1;
+            $tenants=substr($tenants,0,$a);
+            
+            
+          }else{
+
+            $tenants=$_SESSION['tenants'];
+          }
+
+    $result = mysql_query("insert into log values('','".$username." accesses letter Invoicing Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+      echo'<div class="vd_container" id="container">
+        <div class="vd_content clearfix">
+       
+          
+          <div class="vd_content-section clearfix">
+            <div class="row" id="form-basic">
+                <div class="col-md-12">
+                <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Member Invoicing<span onclick="loadextenants()" style="float:right;cursor:pointer"><u>Load Ex-Members</u></span></h3>
+                  </div>
+                  <div class="panel-body">
+                    <form class="form-horizontal" action="#" role="form">
+
+                     <div class="form-group">
+                        <label style="float:left" class="col-sm-1">Member:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+                        <input type="text" placeholder="" id="tenant">
+                        <input type="hidden" id="totitems"/>
+                        </div>
+
+                        <label style="float:left" class="col-sm-1">Month:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-2 controls">
+                        <input type="text" placeholder="" id="month" readonly>
+                        </div>
+
+                        
+
+                        
+                      </div>
+
+                       <div class="form-group">
+
+                       <label style="float:left" class="col-sm-1">Item:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-3 controls">
+                        <input type="text" placeholder="" id="itemname">
+                        </div>
+
+
+                        <label style="float:left" class="col-sm-1">Qty:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-1 controls">
+                         <input type="text" id="qty" onkeyup="calcitemtotal(this)">
+                        </div>
+                      <label style="float:left" class="col-sm-1">Price:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-2 controls">
+                          <input type="text" id="price" autocomplete="off" onkeyup="calcitemtotal(this)">
+                        </div>
+
+                        <label style="float:left" class="col-sm-1">Total:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-2 controls">
+                          <input type="text" id="total" disabled>
+                        </div>
+                        </div>
+
+
+                        <div class="form-group">
+                        <label style="float:left" class="col-sm-1">Remarks:</label>
+                        <div class="col-sm-5 controls">
+                         <input type="text" id="notes">
+                        </div>
+                        
+                          <div class="col-sm-2 controls">
+                            <button class="btn vd_btn vd_bg-green" onclick="addrent()"><span class="menu-icon"><i class="icon icon-add-to-list"></i></span>Add Item</button>
+                         </div>
+
+                          <div class="col-sm-2 controls">
+                            <button class="btn vd_btn vd_bg-yellow" onclick="viewrent()"><span class="menu-icon"><i class="fa fa-search"></i></span>View List</button>
+                         </div>
+
+                          <div class="col-sm-2 controls">
+                            <button class="btn vd_btn vd_bg-red" onclick="emptyrent()"><span class="menu-icon"><i class="fa fa-trash-o"></i></span>Empty List</button>
+                         </div>
+                        </div>
+
+                          <div class="form-group" style="display:none">
+                          <label style="float:left" class="col-sm-2">Include in Statement?</label>
+                          <div class="col-sm-1 controls">
+                          <input  name="statementstatus" value="1" type="checkbox">
+                          </div>
+                         
+                          <label style="float:left" class="col-sm-2">Commisionable?</label>
+                          <div class="col-sm-1 controls">
+                          <input  name="commstatus" value="1" type="checkbox">
+                          </div>
+                          </div>
+
+                    </form>
+                  </div>
+                </div>
+                <!-- Panel Widget --> 
+              </div>
+              <!-- col-md-12 --> 
+
+
+              <div class="col-md-12">
+                <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Items List</h3>
+                  </div>
+                  <div class="panel-body">
+                    <form class="form-horizontal" action="#" role="form">
+                    <div id="display">
+
+
+                    </div>
+                   </form>
+                  </div>
+                </div>
+                <!-- Panel Widget --> 
+              </div>
+              <!-- col-md-12 --> 
+
+              
+              </div>
+            <!-- row --> 
+              </div>
+            
+
+
+            
+          </div>
+          <!-- .vd_content-section --> 
+          
+        </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container --> ';
+
+      echo "<script>
+          var tenants = [".$tenants."];
+          $( '#tenant' ).autocomplete({
+            source: tenants,
+            select: function( event, ui ) {
+                setTimeout(function() {
+                var param = $('#tenant').val();
+                var parts=param.split('-',3);
+                param=parts[0];
+                $('#display').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:50%\" alt=\"Loading\"/>');
+                $.ajax({
+                url:'bridge.php',
+                data:{id:411,param:param},
+                success:function(data){
+                $('#display').html(data);
+                }
+                });
+                },500);
+            }
+
+            });
+          </script>";
+
+
+        echo '<script>
+           var activities = ['.$_SESSION['activities'].'];
+          $( "#itemname" ).autocomplete({source: activities});
+          </script>';
+          echo "<script>  $( '#month' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
+
+
+        break;
+
+        case 411:
+          $param=$tid=$_GET['param'];
+          //$sess=$_GET['sess'];
+          
+          $resulta =mysql_query("select * from letters where id='".$tid."' limit 0,1");
+          $row=mysql_fetch_array($resulta);
+          $bal=gettenantbalance($row['tid']);
+          $hid=stripslashes($row['hid']);
+
+         
+
+          $resulta =mysql_query("select * from mainhouses where houseid='".$hid."' limit 0,1");
+          $row=mysql_fetch_array($resulta);
+          $details=stripslashes($row['details']);
+
+
+          
+
+          if(strlen($details)>0){
+
+            $details=preg_replace('~\n~', '',$details);
+
+            echo"<script>swal('Property Notification!', '".$details."');</script>";
+
+          }
+         
+                  
+          
+
+         
         break;
         
         case 500:

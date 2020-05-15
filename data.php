@@ -6023,10 +6023,13 @@ switch($id){
 
 							if($resultc){
 								// insert to clients
-
-								$creditor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$ownername."', 'creditor', '".$owneraddress."', '".$uid."')") or die('error');
-								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtorname."', 'debtor', '".$debtoraddress."', '".$uid."')") or die('error');
-							echo '<script>swal("Success!", "Instruction letter information saved successfully", "success");</script>';
+								$client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
+								 VALUES ('0','".$uid."','letter','".$ownername."','".$owneraddress."','','','".$debtorname."','','".date('d/m/Y')."','".date('Ymd')."',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+							
+							if($client){
+								echo '<script>console.log("tenant insert success");</script>';
+							}
+								echo '<script>swal("Success!", "Instruction letter information saved successfully", "success");</script>';
 							
 							echo"<script>setTimeout(function() {newletter();},500);</script>";	
 							}
