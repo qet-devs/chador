@@ -10115,6 +10115,7 @@ function savenewnotice(){
 }
 
 function savenotice(param){
+	var uid = $('#uid').val();
 	var instructingparty = $('#instructing_party').val();
 	var debtorsname = $('#debtorsname').val();
 	var amountowed = $('#amount_owed').val();
@@ -10129,6 +10130,7 @@ function savenotice(param){
 	}else{
 		var data = {
 			id:701,
+			uid:uid,
 			param:param,
 			party:instructingparty,
 			debtor:debtorsname,

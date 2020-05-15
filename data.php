@@ -6346,6 +6346,7 @@ switch($id){
 
 							case 701:
 								$id = $_GET['param'];
+								$uid = $_GET['uid'];
 								$party = $_GET['party'];
 								$debtor = $_GET['debtor'];
 								$amount = $_GET['amount'];
@@ -6356,7 +6357,7 @@ switch($id){
 
 								
 								$resultc = mysql_query("UPDATE `court_notices` SET `instructing_party`='".$party."',`debtor_name`='".$debtor."',`amount`='".$amount."',`charges`='".$charges."',`notice_date`='".$noticedate."',`days`='".$noticedays."',`date_served`='".$datereserved."',`username`='".$username."' WHERE `id`='".$id."'");
-									
+								$update_tenant_notice = mysql_query("update tenants set bname='".$party."', dname='".$debtor."' where tid='".$uid."'");	
 								
 								if($resultc){
 								echo '<script>swal("Success!", "Notice information updated successfully", "success");</script>';

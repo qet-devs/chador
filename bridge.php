@@ -33158,6 +33158,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                        panel heading-->
                                   <div class="panel-body">
                                       <!--                            form content goes here-->
+                                      <input type="hidden" id="uid" value="'.$rowx['uid'].'">
                                       <div class="form-group">
                                           <label>Instructing party -:<span style="color:#f00">*</span></label>
                                           <input type="text" id="instructing_party" class="form-control" value="'.$rowx['instructing_party'].'">
