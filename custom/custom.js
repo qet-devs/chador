@@ -9903,6 +9903,7 @@ function savenewdecree(){
 }
 
 function savedecree(param){
+	var uid = $('#uid').val();
 	var suitno = $('#suitno').val();
 	var holder = $('#holder').val();
 	var court = $('#court').val();
@@ -9928,6 +9929,7 @@ function savedecree(param){
 	}else{
 		var data = {
 			id:601,
+			uid:uid,
 			param:param,
 			suitno:suitno,
 			holder:holder,

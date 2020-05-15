@@ -6255,6 +6255,7 @@ switch($id){
 
 							case 601:
 								$id = $_GET['param'];
+								$uid = $_GET['uid'];
 								$suitno = $_GET['suitno'];
 								$holder = $_GET['holder'];
 								$court = $_GET['court'];
@@ -6276,7 +6277,7 @@ switch($id){
 	
 								$resultc = mysql_query("UPDATE `decrees` SET `suitno`='".$suitno."',`court`='".$court."',`party1`='".$party1."',`party2`='".$party2."',`decree_date`='".$decreedate."',`appeal`='".$appeal."',`payment`='".$payment."',`adjournment`='".$adjournment."',`date`='".$date."',`results`='".$result."',`principal`='".$principal."',`interest`='".$interest."',`cost_awarded`='".$costawarded."',`court_fee`='".$courtfee."',`subs_incurred`='".$subincurred."',`against`='".$against."',`mode`='".$mode."',`holder`='".$holder."',`username`='".$username."' WHERE `id`='".$id."'");
 									
-								
+								$update_tenant_decree = mysql_query("update tenants set bname='".$party1."', dname='".$party2."' where tid='".$uid."'");
 								if($resultc){
 								echo '<script>swal("Success!", "Decree information updated successfully", "success");</script>';
 								

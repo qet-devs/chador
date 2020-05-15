@@ -31853,7 +31853,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   </div>
                                   <div class="form-group">
                                       <label for="">Decree Date</label>
-                                      <input type="text" class="form-control" id="datepicker">
+                                      <input type="text" class="form-control date" id="datepicker">
                                   </div>
                                   <div class="form-group">
                                       <label>Court Mode of assistance</label>
@@ -32212,6 +32212,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                        panel heading-->
                                   <div class="panel-body">
                                       <!--                            form content goes here-->
+                                      <input type="hidden" id="uid" value="'.$rowx['uid'].'">
                                       <div class="form-group">
                                           <label for="">Suit No.</label>
                                           <input type="text" class="form-control" id="suitno" value="'.$rowx['suitno'].'">
@@ -32240,7 +32241,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       </div>
                                       <div class="form-group">
                                           <label for="">Decree Date</label>
-                                          <input type="text" class="form-control" id="datepicker" value="'.$rowx['decree_date'].'">
+                                          <input type="text" class="form-control date" id="datepicker" value="'.$rowx['decree_date'].'">
                                       </div>
                                       <div class="form-group">
                                           <label>Court Mode of assistance</label>
