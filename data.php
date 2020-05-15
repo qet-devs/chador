@@ -6241,9 +6241,9 @@ switch($id){
 									
 								
 								if($resultc){
-									$party1 = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party1."', 'decree', '', '".$uid."')") or die('error');
-								$party2 = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party2."', 'decree', '', '".$uid."')") or die('error');
-								echo '<script>swal("Success!", "Decree information saved successfully", "success");</script>';
+									$client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
+									VALUES ('0','".$uid."','decree','".$party1."','','','','".$party2."','','".date('d/m/Y')."','".date('Ymd')."',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+									echo '<script>swal("Success!", "Decree information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new decree','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 								echo"<script>setTimeout(function() {newdecree();},500);</script>";	
