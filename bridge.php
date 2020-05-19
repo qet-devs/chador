@@ -29681,11 +29681,16 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="panel-body">
                                   <div class="form-group">
                                       <label>Estimated Legal Cost:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="estlegalcost" value="TO BE ASSESSED" class="form-control">
+                                      <input type="text"  onkeyup="calclettertotal()"  id="estlegalcost" placeholder="TO BE ASSESSED" class="form-control">
                                   </div>
                                   <div class="form-group">
                                       <label>Estimated Auctioneers fees:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="estauctioneersfees" value="TO SCALE" class="form-control">
+                                      <input type="text" onkeyup="calclettertotal()" id="estauctioneersfees" placeholder="TO SCALE" class="form-control">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label>Total Fees:<span style="color:#f00">*</span></label>
+                                      <input type="text" id="totalfees" disabled class="form-control">
                                   </div>
                               </div>
                               <!-- Panel body -->

@@ -2700,6 +2700,7 @@ function invoicing(){
 
 
 function addrent(){
+	
 var str = $('#tenant').val();
 var parts=str.split('-',3);
 var tid = parts[0];
@@ -2738,6 +2739,7 @@ else if(price==''){
 swal("Error", "Enter the Price!", "error");	
 }
 
+
 else{
 	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:50%" alt="Loading"/>');
 	$.ajax({
@@ -2751,6 +2753,7 @@ else{
 		$('#itemname').val('');$('#qty').val('');$('#price').val('');$('#total').val('');
 		$("#tenant").prop("disabled",true);
 }
+
 }
 
 function delrent(pid){
@@ -10502,3 +10505,18 @@ function activateproclamation(param){
 
 
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});
+
+function calclettertotal(){
+
+
+var estlegalcost = $('#estlegalcost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+var estauctioneersfees = $('#estauctioneersfees').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+if(estlegalcost==''){estlegalcost=0;}if(estauctioneersfees==''){estauctioneersfees=0;}
+
+var tot=parseFloat(estlegalcost,10)+parseFloat(estauctioneersfees,10);
+tot=(tot).formatMoney(2, '.', ',');
+$('#totalfees').val(tot);
+
+
+}
