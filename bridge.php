@@ -10026,7 +10026,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
              $param=$tid=$_GET['param'];
              $resulta =mysql_query("select * from tenants where tid='".$param."' limit 0,1");
               $row=mysql_fetch_array($resulta);
-              $item=stripslashes($row['tid']).'-'.stripslashes($row['bname']).'-'.stripslashes($row['hname']).'-'.stripslashes($row['roomno']);
+              $item=stripslashes($row['tid']).'-'.stripslashes($row['bname']).'-'.stripslashes($row['dname']).'-'.stripslashes($row['roomno']);
 
 if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
 else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
@@ -10072,11 +10072,11 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         if(isset($_GET['loadex'])){
 
             $tenants='';
-            $resulta =mysql_query("select * from tenants where status=0");
+            $resulta =mysql_query("select * from tenants where status=1");
             $num_resultsa = mysql_num_rows($resulta); 
             for ($i=0; $i <$num_resultsa; $i++) {
             $row=mysql_fetch_array($resulta);
-            $item=stripslashes($row['tid']).'-'.stripslashes($row['bname']).'-'.stripslashes($row['hname']).'-'.stripslashes($row['roomno']).'-Rent:'.number_format(floatval($row['monrent']),2);
+            $item=stripslashes($row['tid']).'  '.stripslashes($row['bname']);
             $tenants.='"'.$item.'",';
             }
             $len=strlen($tenants);
@@ -10116,9 +10116,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                         <input type="text" placeholder="" id="month" readonly>
                         </div>
 
-                        
-
-                        
                       </div>
 
                        <div class="form-group">

@@ -2752,6 +2752,7 @@ else{
 		$("#tenant").prop("disabled",true);
 }
 }
+
 function delrent(pid){
 $('#del' + pid).html('<img id="img-spinner" src="img/spin.gif" style="width:20px" alt="Loading"/>');
 $.ajax({
