@@ -524,6 +524,17 @@ case 4:
 					  
 								break;
 
+								case 406:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:410,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									  }
+									  });
+								break;
+
 								case 500:
 									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
 									$.ajax({
@@ -9416,6 +9427,7 @@ function findletter(){
 
 function saveletter(param){
 	var party_name = $('#partyname').val();
+	var uid = $('#uid').val();
 	var party_address = $('#partyaddress').val();
 	var advocate_name = $('#advocatename').val();
 	var advocate_address = $('#advocateaddress').val();
@@ -9443,6 +9455,7 @@ function saveletter(param){
 			var data = {
 				id:401,
 				param:param,
+				uid:uid,
 				partyname:party_name,
 				partyaddress:party_address,
 				advocatename:advocate_name,
@@ -9680,6 +9693,7 @@ function savenewdistress(){
 }
 
 function savedistress(param){
+	var uid = $('#uid').val();
 	var landlord = $('#landlord').val();
 	var tenant = $('#tenant').val();
 	var to = $('#to').val();
@@ -9693,6 +9707,7 @@ function savedistress(param){
 	}else{
 		var data = {
 			id:501,
+			uid:uid,
 			param:param,
 			landlord:landlord,
 			tenant:tenant,
@@ -9888,6 +9903,7 @@ function savenewdecree(){
 }
 
 function savedecree(param){
+	var uid = $('#uid').val();
 	var suitno = $('#suitno').val();
 	var holder = $('#holder').val();
 	var court = $('#court').val();
@@ -9913,6 +9929,7 @@ function savedecree(param){
 	}else{
 		var data = {
 			id:601,
+			uid:uid,
 			param:param,
 			suitno:suitno,
 			holder:holder,
@@ -10098,6 +10115,7 @@ function savenewnotice(){
 }
 
 function savenotice(param){
+	var uid = $('#uid').val();
 	var instructingparty = $('#instructing_party').val();
 	var debtorsname = $('#debtorsname').val();
 	var amountowed = $('#amount_owed').val();
@@ -10112,6 +10130,7 @@ function savenotice(param){
 	}else{
 		var data = {
 			id:701,
+			uid:uid,
 			param:param,
 			party:instructingparty,
 			debtor:debtorsname,
@@ -10310,6 +10329,7 @@ function savenewproclamation(){
 }
 
 function saveproclamation(param){
+	var uid = $('#uid').val();
 	var auctioneername = $('#auct_name').val();
 	var auctphone = $('#auct_phone').val();
 	var auctaddress = $('#auct_address').val();
@@ -10336,6 +10356,7 @@ function saveproclamation(param){
 	}else{
 		var data = {
 			id:801,
+			uid:uid,
 			param:param,
 			auctioneername:auctioneername,
 			auctaddress:auctaddress,

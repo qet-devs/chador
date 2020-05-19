@@ -202,6 +202,8 @@ function gettenantbalance($tid)
 
 }
 
+
+
 function checkinvoiceexists($key)
 {
 

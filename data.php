@@ -6023,10 +6023,10 @@ switch($id){
 
 							if($resultc){
 								// insert to clients
-
-								$creditor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$ownername."', 'creditor', '".$owneraddress."', '".$uid."')") or die('error');
-								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtorname."', 'debtor', '".$debtoraddress."', '".$uid."')") or die('error');
-							echo '<script>swal("Success!", "Instruction letter information saved successfully", "success");</script>';
+								$client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
+								 VALUES ('0','".$uid."','letter','".$ownername."','".$owneraddress."','','','".$debtorname."','','".date('d/m/Y')."','".date('Ymd')."',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+							
+								echo '<script>swal("Success!", "Instruction letter information saved successfully", "success");</script>';
 							
 							echo"<script>setTimeout(function() {newletter();},500);</script>";	
 							}
@@ -6037,6 +6037,7 @@ switch($id){
 
 							case 401:
 								$id = $_GET['param'];
+								$uid = $_GET['uid'];
 								$partyname = $_GET['partyname'];
 								$partyaddress = $_GET['partyaddress'];
 								$advocatename = $_GET['advocatename'];
@@ -6060,6 +6061,7 @@ switch($id){
 
 							$resultg = mysql_query("UPDATE `letters` SET `partyname`='".$partyname."',`partyaddress`='".$partyaddress."',`advocatename`='".$advocatename."',`advocateaddress`='".$advocataddress."',`ownername`='".$ownername."',`owneraddress`='".$owneraddress."',`debtorname`='".$debtorname."',`debtoraddress`='".$debtoraddress."',`propaddress`='".$propertylocation."',`propperson`='".$propertyperson."',`propdescription`='".$propertydescription."',`adinstructions`='".$adinstructions."',`expenditure`='".$expenditure."',`date`='".$datepicker."',`amount`='".$amount."',`dailyrates`='".$dailyrates."',`estlegalcost`='".$estlegalcost."',`estauctioneersfees`='".$estauctioneersfees."',`reserveprice`='".$reserveprice."',`reason`='".$reason."' WHERE `id`='".$id."'")    or die (mysql_error());
 							
+							$update_tenant_table = mysql_query("update tenants set bname='".$ownername."', address='".$owneraddress."', dname='".$debtorname."' WHERE `tid`='".$uid."'");
 							//register log
 							$resulta = mysql_query("insert into log values('0','".$username." updates  letter info where letter id:".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
 							
@@ -6149,8 +6151,9 @@ switch($id){
 									
 								
 								if($resultc){
-									$distress = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$tenant."', 'distress', '', '".$uid."')") or die('error');
-								echo '<script>swal("Success!", "Instruction distress information saved successfully", "success");</script>';
+								$client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
+									VALUES ('0','".$uid."','distress','".$landlord."','','','','".$tenant."','','".date('d/m/Y')."','".date('Ymd')."',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+							   echo '<script>swal("Success!", "Instruction distress information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new distress id=".$id."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 								echo"<script>setTimeout(function() {newdistress();},500);</script>";	
@@ -6162,6 +6165,7 @@ switch($id){
 
 							case 501:
 								$id = $_GET['param'];
+								$uid = $_GET['uid'];
 								$landlord = $_GET['landlord'];
 								$tenant = $_GET['tenant'];
 								$to = $_GET['to'];
@@ -6170,7 +6174,7 @@ switch($id){
 								$months = $_GET['months'];
 
 								$resultc = mysql_query("UPDATE `distress` SET `landlord`='".$landlord."',`tenant`='".$tenant."',`to`='".$to."',`at`='".$date."',`amount`='".$amount."',`months`='".$months."',`username`='".$username."' WHERE `id`='".$id."'");
-									
+									$update_tenant_distress = mysql_query("update tenants set bname='".$landlord."', dname='".$tenant."' where tid='".$uid."'");
 								
 								if($resultc){
 								echo '<script>swal("Success!", "Instruction distress information updated successfully", "success");</script>';
@@ -6237,9 +6241,9 @@ switch($id){
 									
 								
 								if($resultc){
-									$party1 = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party1."', 'decree', '', '".$uid."')") or die('error');
-								$party2 = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party2."', 'decree', '', '".$uid."')") or die('error');
-								echo '<script>swal("Success!", "Decree information saved successfully", "success");</script>';
+									$client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
+									VALUES ('0','".$uid."','decree','".$party1."','','','','".$party2."','','".date('d/m/Y')."','".date('Ymd')."',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+									echo '<script>swal("Success!", "Decree information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new decree','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 								echo"<script>setTimeout(function() {newdecree();},500);</script>";	
@@ -6251,6 +6255,7 @@ switch($id){
 
 							case 601:
 								$id = $_GET['param'];
+								$uid = $_GET['uid'];
 								$suitno = $_GET['suitno'];
 								$holder = $_GET['holder'];
 								$court = $_GET['court'];
@@ -6272,7 +6277,7 @@ switch($id){
 	
 								$resultc = mysql_query("UPDATE `decrees` SET `suitno`='".$suitno."',`court`='".$court."',`party1`='".$party1."',`party2`='".$party2."',`decree_date`='".$decreedate."',`appeal`='".$appeal."',`payment`='".$payment."',`adjournment`='".$adjournment."',`date`='".$date."',`results`='".$result."',`principal`='".$principal."',`interest`='".$interest."',`cost_awarded`='".$costawarded."',`court_fee`='".$courtfee."',`subs_incurred`='".$subincurred."',`against`='".$against."',`mode`='".$mode."',`holder`='".$holder."',`username`='".$username."' WHERE `id`='".$id."'");
 									
-								
+								$update_tenant_decree = mysql_query("update tenants set bname='".$party1."', dname='".$party2."' where tid='".$uid."'");
 								if($resultc){
 								echo '<script>swal("Success!", "Decree information updated successfully", "success");</script>';
 								
@@ -6327,9 +6332,9 @@ switch($id){
 									
 								
 								if($resultc){
-									$party = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$party."', 'Notice', '', '".$uid."')") or die('error');
-								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtor."', 'Notice', '', '".$uid."')") or die('error');
-								echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
+									$client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
+									VALUES ('0','".$uid."','Notice','".$party."','','','','".$debtor."','','".date('d/m/Y')."','".date('Ymd')."',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+									echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new Notice','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 								echo"<script>setTimeout(function() {newnotice();},500);</script>";	
@@ -6341,6 +6346,7 @@ switch($id){
 
 							case 701:
 								$id = $_GET['param'];
+								$uid = $_GET['uid'];
 								$party = $_GET['party'];
 								$debtor = $_GET['debtor'];
 								$amount = $_GET['amount'];
@@ -6351,7 +6357,7 @@ switch($id){
 
 								
 								$resultc = mysql_query("UPDATE `court_notices` SET `instructing_party`='".$party."',`debtor_name`='".$debtor."',`amount`='".$amount."',`charges`='".$charges."',`notice_date`='".$noticedate."',`days`='".$noticedays."',`date_served`='".$datereserved."',`username`='".$username."' WHERE `id`='".$id."'");
-									
+								$update_tenant_notice = mysql_query("update tenants set bname='".$party."', dname='".$debtor."' where tid='".$uid."'");	
 								
 								if($resultc){
 								echo '<script>swal("Success!", "Notice information updated successfully", "success");</script>';
@@ -6414,13 +6420,13 @@ switch($id){
 							$uid='CHADPRO'.sprintf("%04d",$tid);
 	
 								$resultc = mysql_query("INSERT INTO `proclamations`(`uid`,`auctioneername`, `auctaddress`, `auctphone`, `trader`, `creditorname`, `creditoraddress`, `debtorname`, `debtoraddress`, `amount`, `auctcharges`, `advfee`, `court`, `date`, `caseno`, `decreedate`, `warrantdate`, `returndate`, `noticedays`, `status`, `username`) 
-								VALUES ('".$uid."','".$auctname."','".$auctaddress."','".$auctphone."','".$trader."','".$creditorname."','".$creditoraddress."','".$debtorname."','".$debtoraddress."','".$amount."','".$auctcharges."','".$advfee."','".$court."','".$date."','".$caseno."','".$decreedate."','".$warrantdate."','".$returndate."','".$noticedays."','1','".$username."')");
+								VALUES ('".$uid."','".$auctname."','".$auctaddress."','".$auctphone."','".$trader."','".$creditorname."','".$creditoraddress."','".$debtorname."','".$debtoraddress."','".$amount."','".$auctcharges."','".$advfee."','".$court."','".$courtdate."','".$caseno."','".$decreedate."','".$warrantdate."','".$returndate."','".$noticedays."','1','".$username."')");
 									
 								
 								if($resultc){
-									$auctioneer = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$creditorname."', 'proclamation', '".$creditoraddress."', '".$uid."')") or die('error');
-								$debtor = mysql_query("INSERT INTO `clients`(`name`, `type`, `phone`,  `uid`) VALUES ('".$debtorname."', 'proclamation', '".$debtoraddress."', '".$uid."')") or die('error');
-								echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
+									$client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
+									VALUES ('0','".$uid."','Proclamation','".$creditorname."','','','','".$debtorname."','','".date('d/m/Y')."','".date('Ymd')."',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+									echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
 								
 								$resulta = mysql_query("insert into log values('0','".$username." creates new Proclamation','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 								echo"<script>setTimeout(function() {newproclamation();},500);</script>";	
@@ -6432,6 +6438,7 @@ switch($id){
 
 							case 801:
 								$id = $_GET['param'];
+								$uid = $_GET['uid'];
 								$auctname = $_GET['auctioneername'];
 								$auctphone = $_GET['auctphone'];
 								$auctaddress = $_GET['auctaddress'];
@@ -6453,7 +6460,7 @@ switch($id){
 
 			
 								$resultc = mysql_query("UPDATE `proclamations` SET `auctioneername`='".$auctname."',`auctaddress`='".$auctaddress."',`auctphone`='".$auctphone."',`trader`='".$trader."',`creditorname`='".$creditorname."',`creditoraddress`='".$creditoraddress."',`debtorname`='".$debtorname."',`debtoraddress`='".$debtoraddress."',`amount`='".$amount."',`auctcharges`='".$auctcharges."',`advfee`='".$advfee."',`court`='".$court."',`date`='".$date."',`caseno`='".$caseno."',`decreedate`='".$decreedate."',`warrantdate`='".$warrantdate."',`returndate`='".$returndate."',`noticedays`='".$noticedays."',`username`='".$username."' WHERE `id`='".$id."'");
-									
+								$update_tenant_proclamation = mysql_query("update tenants set bname='".$creditorname."', dname='".$debtorname."' where tid='".$uid."'");
 								
 								if($resultc){
 								echo '<script>swal("Success!", "Proclamation updated successfully", "success");</script>';
