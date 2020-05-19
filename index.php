@@ -250,7 +250,7 @@ function login(){
         success:function(data){
           if(data==0){
            swal("Success", "Login successful.Redirecting....", "success");
-            window.location.href = "main.php";
+            window.location.href = "main.php?#";
           }else $('#message').html(data);
           }
           });
