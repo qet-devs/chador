@@ -355,7 +355,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
      
     <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+          <span class="menu-icon"><i class="fa fa-file-text-o"> </i></span>
             <span class="menu-text">Letters</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
@@ -417,7 +417,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+          <span class="menu-icon"><i class="fa fa-briefcase"> </i></span>
             <span class="menu-text">Distress</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
@@ -478,7 +478,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+          <span class="menu-icon"><i class="fa fa-gavel"> </i></span>
             <span class="menu-text">Decrees</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
@@ -539,7 +539,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+          <span class="menu-icon"><i class="fa fa-building"> </i></span>
             <span class="menu-text">Notice</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
@@ -600,7 +600,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+          <span class="menu-icon"><i class="fa fa-list-alt"> </i></span>
             <span class="menu-text">Proclamations</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
