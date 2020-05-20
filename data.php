@@ -6097,16 +6097,16 @@ switch ($id) {
         }
         break;
     case 400:
-        $partyname = $_GET['partyname'];
-        $partyaddress = $_GET['partyaddress'];
-        $advocatename = $_GET['advocatename'];
-        $advocataddress = $_GET['advocatename'];
-        $ownername = $_GET['ownername'];
-        $owneraddress = $_GET['owneraddress'];
-        $debtorname = $_GET['debtorname'];
-        $debtoraddress = $_GET['debtoraddress'];
+        $partyname = strtoupper($_GET['partyname']);
+        $partyaddress = strtoupper($_GET['partyaddress']);
+        $advocatename = strtoupper($_GET['advocatename']);
+        $advocataddress = strtoupper($_GET['advocatename']);
+        $ownername = strtoupper($_GET['ownername']);
+        $owneraddress = strtoupper($_GET['owneraddress']);
+        $debtorname = strtoupper($_GET['debtorname']);
+        $debtoraddress = strtoupper($_GET['debtoraddress']);
         $propertylocation = $_GET['propertylocation'];
-        $propertyperson = $_GET['propertyperson'];
+        $propertyperson = strtoupper($_GET['propertyperson']);
         $propertydescription = $_GET['propertydescription'];
         $adinstructions = $_GET['adinstructions'];
         $expenditure = $_GET['expenditure'];
@@ -6157,16 +6157,16 @@ switch ($id) {
     case 401:
         $id = $_GET['param'];
         $uid = $_GET['uid'];
-        $partyname = $_GET['partyname'];
-        $partyaddress = $_GET['partyaddress'];
-        $advocatename = $_GET['advocatename'];
-        $advocataddress = $_GET['advocatename'];
-        $ownername = $_GET['ownername'];
-        $owneraddress = $_GET['owneraddress'];
-        $debtorname = $_GET['debtorname'];
-        $debtoraddress = $_GET['debtoraddress'];
+        $partyname = strtoupper($_GET['partyname']);
+        $partyaddress = strtoupper($_GET['partyaddress']);
+        $advocatename = strtoupper($_GET['advocatename']);
+        $advocataddress = strtoupper($_GET['advocatename']);
+        $ownername = strtoupper($_GET['ownername']);
+        $owneraddress = strtoupper($_GET['owneraddress']);
+        $debtorname = strtoupper($_GET['debtorname']);
+        $debtoraddress = strtoupper($_GET['debtoraddress']);
         $propertylocation = $_GET['propertylocation'];
-        $propertyperson = $_GET['propertyperson'];
+        $propertyperson = strtoupper($_GET['propertyperson']);
         $propertydescription = $_GET['propertydescription'];
         $adinstructions = $_GET['adinstructions'];
         $expenditure = $_GET['expenditure'];
@@ -6243,9 +6243,9 @@ switch ($id) {
         break;
 
     case 500:
-        $landlord = $_GET['landlord'];
-        $tenant = $_GET['tenant'];
-        $to = $_GET['to'];
+        $landlord = strtoupper($_GET['landlord']);
+        $tenant = strtoupper($_GET['tenant']);
+        $to = strtoupper($_GET['to']);
         $date = $_GET['date'];
         $amount = $_GET['amount'];
         $months = $_GET['months'];
@@ -6282,9 +6282,9 @@ switch ($id) {
     case 501:
         $id = $_GET['param'];
         $uid = $_GET['uid'];
-        $landlord = $_GET['landlord'];
-        $tenant = $_GET['tenant'];
-        $to = $_GET['to'];
+        $landlord = strtoupper($_GET['landlord']);
+        $tenant = strtoupper($_GET['tenant']);
+        $to = strtoupper($_GET['to']);
         $date = $_GET['date'];
         $amount = $_GET['amount'];
         $months = $_GET['months'];
@@ -6320,11 +6320,11 @@ switch ($id) {
 
     case 600:
         $suitno = $_GET['suitno'];
-        $holder = $_GET['holder'];
+        $holder = strtoupper($_GET['holder']);
         $court = $_GET['court'];
-        $party1 = $_GET['party1'];
-        $party2 = $_GET['party2'];
-        $against = $_GET['against'];
+        $party1 = strtoupper($_GET['party1']);
+        $party2 = strtoupper($_GET['party2']);
+        $against = strtoupper($_GET['against']);
         $appeal = $_GET['appeal'];
         $decreedate = $_GET['decreedate'];
         $mode = $_GET['mode'];
@@ -6371,11 +6371,11 @@ switch ($id) {
         $id = $_GET['param'];
         $uid = $_GET['uid'];
         $suitno = $_GET['suitno'];
-        $holder = $_GET['holder'];
+        $holder = strtoupper($_GET['holder']);
         $court = $_GET['court'];
-        $party1 = $_GET['party1'];
-        $party2 = $_GET['party2'];
-        $against = $_GET['against'];
+        $party1 = strtoupper($_GET['party1']);
+        $party2 = strtoupper($_GET['party2']);
+        $against = strtoupper($_GET['against']);
         $appeal = $_GET['appeal'];
         $decreedate = $_GET['decreedate'];
         $mode = $_GET['mode'];
@@ -6419,8 +6419,8 @@ switch ($id) {
         break;
 
     case 700:
-        $party = $_GET['party'];
-        $debtor = $_GET['debtor'];
+        $party = strtoupper($_GET['party']);
+        $debtor = strtoupper($_GET['debtor']);
         $amount = $_GET['amount'];
         $charges = $_GET['charges'];
         $noticedate = $_GET['noticedate'];
@@ -6459,8 +6459,8 @@ switch ($id) {
     case 701:
         $id = $_GET['param'];
         $uid = $_GET['uid'];
-        $party = $_GET['party'];
-        $debtor = $_GET['debtor'];
+        $party = strtoupper($_GET['party']);
+        $debtor = strtoupper($_GET['debtor']);
         $amount = $_GET['amount'];
         $charges = $_GET['charges'];
         $noticedate = $_GET['noticedate'];
@@ -6498,14 +6498,14 @@ switch ($id) {
         break;
 
     case 800:
-        $auctname = $_GET['auctioneername'];
+        $auctname = strtoupper($_GET['auctioneername']);
         $auctphone = $_GET['auctphone'];
-        $auctaddress = $_GET['auctaddress'];
-        $trader = $_GET['trader'];
-        $creditorname = $_GET['creditorname'];
-        $creditoraddress = $_GET['creditoraddress'];
-        $debtorname = $_GET['debtorname'];
-        $debtoraddress = $_GET['debtoraddress'];
+        $auctaddress = strtoupper($_GET['auctaddress']);
+        $trader = strtoupper($_GET['trader']);
+        $creditorname = strtoupper($_GET['creditorname']);
+        $creditoraddress = strtoupper($_GET['creditoraddress']);
+        $debtorname = strtoupper($_GET['debtorname']);
+        $debtoraddress = strtoupper($_GET['debtoraddress']);
         $amount = $_GET['amount'];
         $auctcharges = $_GET['auctcharges'];
         $advfee = $_GET['advfee'];
@@ -6549,14 +6549,14 @@ switch ($id) {
     case 801:
         $id = $_GET['param'];
         $uid = $_GET['uid'];
-        $auctname = $_GET['auctioneername'];
-        $auctphone = $_GET['auctphone'];
-        $auctaddress = $_GET['auctaddress'];
-        $trader = $_GET['trader'];
-        $creditorname = $_GET['creditorname'];
-        $creditoraddress = $_GET['creditoraddress'];
-        $debtorname = $_GET['debtorname'];
-        $debtoraddress = $_GET['debtoraddress'];
+        $auctname = strtoupper($_GET['auctioneername']);
+        $auctphone = strtoupper($_GET['auctphone']);
+        $auctaddress = strtoupper($_GET['auctaddress']);
+        $trader = strtoupper($_GET['trader']);
+        $creditorname = strtoupper($_GET['creditorname']);
+        $creditoraddress = strtoupper($_GET['creditoraddress']);
+        $debtorname = strtoupper($_GET['debtorname']);
+        $debtoraddress = strtoupper($_GET['debtoraddress']);
         $amount = $_GET['amount'];
         $auctcharges = $_GET['auctcharges'];
         $advfee = $_GET['advfee'];
