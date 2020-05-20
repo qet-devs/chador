@@ -29575,6 +29575,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <h4><label>Instructing Party </label></h4>
                                   <div class="form-group">
                                       <label>Name<span style="color:#f00">*</span></label>
+                                      
                                       <input type="text" id="partyname" value="" class="form-control">
                                   </div>
                                   <div class="form-group">
