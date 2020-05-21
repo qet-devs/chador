@@ -57,9 +57,9 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
-    <title>KPA Central CRM</title>
-    <meta name="keywords" content="KPA Central CRM" />
-    <meta name="description" content="KPA Central CRM">
+    <title>CHADOR CRM</title>
+    <meta name="keywords" content="CHADOR CRM" />
+    <meta name="description" content="CHADOR CRM">
     <meta name="author" content="Venmond">
     
     <!-- Set the viewport width to device width for mobile -->
@@ -145,7 +145,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
           <div class="vd_top-nav vd_nav-width  ">
           <div class="vd_panel-header">
           	<div class="logo">
-            	<a href="#" style="font-size:12px">KPA CENTRAL CRM</a>
+            	<a href="#" style="font-size:12px">CHADOR CRM</a>
              </div>
             <!-- logo -->
             <div class="vd_panel-menu  hidden-sm hidden-xs" data-intro="<strong>Minimize Left Navigation</strong><br/>Toggle navigation size to medium or small size. You can set both button or one button only. See full option at documentation." data-step=1>
