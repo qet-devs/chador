@@ -719,7 +719,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                  <li>
                     <?php if($rightsarr[143]=='YES'){
           echo'<a  href="#" onclick="multipleinvoicing()" >
-                        <span class="menu-text">Multiple Member Invoicing</span>  
+                        <span class="menu-text">Multiple Client Invoicing</span>  
                     </a>';} ?>
                 </li> 
 
@@ -740,13 +740,13 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                  <li>
                     <?php if($rightsarr[176]=='YES'){
           echo'<a  href="#" onclick="refunds()" >
-                        <span class="menu-text">Member Refunds</span>  
+                        <span class="menu-text">Client Refunds</span>  
                     </a>';} ?>
                 </li> 
                 <li>
                     <?php if($rightsarr[146]=='YES'){
           echo'<a  href="#" onclick="findrent()" >
-                        <span class="menu-text">Find Member Entries</span>  
+                        <span class="menu-text">Find Client Entries</span>  
                     </a>';} ?>
                 </li> 
                 <li>

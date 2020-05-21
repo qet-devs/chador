@@ -599,7 +599,7 @@ echo'
             </span>  
         </div>   
         <div class="menu-text clearfix" style="font-size:15px">
-            Dormant Members
+            Dormant Clients
         </div>  
      </a>                                                                
 </div>                    </div>
@@ -620,7 +620,7 @@ echo'
             </span>  
         </div>   
         <div class="menu-text clearfix" style="font-size:15px">
-            Active Members
+            Active Clients
         </div>  
      </a>                              
                                                                     
@@ -785,7 +785,7 @@ echo'
           <div id="home-tab" class="tab-pane active"> 
             <div class="panel-body">
            <button class="btn vd_btn vd_bg-green" onclick="togglenewsms()"><span class="menu-icon"><i class="fa fa-envelope"></i></span>New Notification</button>
-           <button class="btn vd_btn vd_bg-yellow" onclick="notifybalances()"><span class="menu-icon"><i class="fa fa-rocket"></i></span>Notify Members With Balances</button>
+           <button class="btn vd_btn vd_bg-yellow" onclick="notifybalances()"><span class="menu-icon"><i class="fa fa-rocket"></i></span>Notify Clients With Balances</button>
             <div style="clear:both;width:100%;margin-bottom:10px"></div>
 
             <div id="newsms" class="col-md-12" style="border:1px solid #ccc;">
@@ -3822,7 +3822,7 @@ echo'<div class="vd_container" id="container">
 
                       The   Service   Charge   does   not   cover   common   area   electricity   or electricity and water exclusively consumed by the Tenant, which will be metered separately and payable by the Tenant.<br/>
 
-                      The Members will be required to deposit with the Landlord both water and electricity deposit totalling to  
+                      The Clients will be required to deposit with the Landlord both water and electricity deposit totalling to  
                        <input disabled type="text" id="utildep1" class="input-border-btm width-20 vd_bd-red" placeholder="fill here" value="KShs. ">
                       </p>
                       </div>
@@ -3895,7 +3895,7 @@ echo'<div class="vd_container" id="container">
 
                      <br/> (iii) The Tenant shall have procured all Insurances required under the provisions of the Tenancy (herein referred to) and shall have furnished   the   Landlord   with   certificates   of   such Insurances; and The Landlord shall have consented in writing to the commencement of the Tenant`s fitting out works.
 
-                      <br/>The fitting out work shall not interfere and/or create a nuisance or disturbance with the use, occupancy, or enjoyment of The Point by the Landlord, other Members or shoppers or at all.
+                      <br/>The fitting out work shall not interfere and/or create a nuisance or disturbance with the use, occupancy, or enjoyment of The Point by the Landlord, other Clients or shoppers or at all.
 
                       <br/><b>Work Hours:</b>   Any fitting out work is to be done during the specific working hours of 8:00 a.m. to 7:00 p.m. unless otherwise agreed in writing by the Landlord.
 
@@ -4458,7 +4458,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               <div class="col-md-12">
                 <div class="panel widget">
                   <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Members-Search Panel</h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Clients-Search Panel</h3>
                   </div>
                   <div class="panel-body table-responsive">
                     <table class="table table-striped" id="data-tables">
@@ -4466,8 +4466,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                         <tr>
                           <th>KPA No</th>
                           <th>Serial No</th>
-                          <th>Members Id No</th>
-                          <th>Members Name</th>
+                          <th>Clients Id No</th>
+                          <th>Clients Name</th>
                           <th>Phone</th>
                           <th>Entry Date</th>
                           <th>Balance</th>
@@ -4514,11 +4514,11 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       $arr[$code]=$var;
                                     }
 
-                                  if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left" onclick="majoropen(4)">Edit Member</label><br/>';}
-                                  if($arr[113]=='YES'){echo'  <label class="col-sm-11" style="cursor:pointer;float:left" onclick="majoropen(5)">Member Info</label><br/>';}
-                                  if($arr[142]=='YES'){echo'  <label class="col-sm-11" style="cursor:pointer;float:left" onclick="majoropen(6)">Invoice Member</label><br/>';}
-                                  if($arr[145]=='YES'){echo'  <label class="col-sm-11" style="cursor:pointer;float:left;float:left" onclick="majoropen(7)">Receipt Member</label><br/>';}
-                                  if($arr[114]=='YES'){echo'  <label class="col-sm-11" style="cursor:pointer;float:left" onclick="majoropen(8)">Archive Member</label><br/>';}
+                                  if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left" onclick="majoropen(4)">Edit Client</label><br/>';}
+                                  if($arr[113]=='YES'){echo'  <label class="col-sm-11" style="cursor:pointer;float:left" onclick="majoropen(5)">Client Info</label><br/>';}
+                                  if($arr[142]=='YES'){echo'  <label class="col-sm-11" style="cursor:pointer;float:left" onclick="majoropen(6)">Invoice Client</label><br/>';}
+                                  if($arr[145]=='YES'){echo'  <label class="col-sm-11" style="cursor:pointer;float:left;float:left" onclick="majoropen(7)">Receipt Client</label><br/>';}
+                                  if($arr[114]=='YES'){echo'  <label class="col-sm-11" style="cursor:pointer;float:left" onclick="majoropen(8)">Archive Client</label><br/>';}
 
                                    if($arr[114]=='YES'){echo'  <label class="col-sm-11" style="cursor:pointer;float:left" onclick="majoropen(12)">Assign Card</label><br/>';}
 
@@ -5203,7 +5203,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
      
                 <div style="width:100%;padding:20px">
                 <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Member File</h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Client File</h3>
                   </div>
                 <select id="intcombo"><option value="" selected>Select One...</option> ';
                    $result =mysql_query("select * from tenants where status=1");
@@ -5276,7 +5276,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               <div class="col-md-12">
                 <div class="panel widget">
                   <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Member File-'.stripslashes($rowx['bname']).'-['.stripslashes($rowx['roomno']).'] </h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Client File-'.stripslashes($rowx['bname']).'-['.stripslashes($rowx['roomno']).'] </h3>
                   </div>
                  <div class="panel-body">
                   <ul class="nav nav-tabs">
@@ -5293,7 +5293,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                       <form class="form-horizontal" action="#" role="form">
 
                       <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Member Status</label>
+                        <label style="float:left" class="col-sm-4">Client Status</label>
                         <div class="col-sm-8 controls">
                           <input type="text" id="bname" value="'.$status.'" style="background:'.$col.'" disabled>
                         </div>
@@ -5303,7 +5303,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                      <form class="form-horizontal" action="#" role="form">
                       <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Member Name<span style="color:#f00">*</span></label>
+                        <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
                         <div class="col-sm-8 controls">
                           <input type="text" id="bname" value="'.stripslashes($rowx['bname']).'" disabled>
                         </div>
@@ -5693,7 +5693,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               <div class="col-md-12">
                 <div class="panel widget">
                   <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Ex-Members-Search Panel</h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Ex-Clients-Search Panel</h3>
                   </div>
                   <div class="panel-body table-responsive">
                     <table class="table table-striped" id="data-tables">
@@ -5701,8 +5701,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                          <tr>
                           <th>KPA No</th>
                           <th>Serial No</th>
-                          <th>Members Id No</th>
-                          <th>Members Name</th>
+                          <th>Clients Id No</th>
+                          <th>Clients Name</th>
                           <th>Phone</th>
                           <th>Entry Date</th>
                           <th>Balance</th>
@@ -10099,13 +10099,13 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 <div class="col-md-12">
                 <div class="panel widget">
                   <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Member Invoicing<span onclick="loadextenants()" style="float:right;cursor:pointer"><u>Load Ex-Members</u></span></h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Client Invoicing<span onclick="loadextenants()" style="float:right;cursor:pointer"><u>Load Ex-Clients</u></span></h3>
                   </div>
                   <div class="panel-body">
                     <form class="form-horizontal" action="#" role="form">
 
                      <div class="form-group">
-                        <label style="float:left" class="col-sm-1">Member:<span style="color:#f00">*</span></label>
+                        <label style="float:left" class="col-sm-1">Client:<span style="color:#f00">*</span></label>
                         <div class="col-sm-8 controls">
                         <input type="text" placeholder="" id="tenant">
                         <input type="hidden" id="totitems"/>
@@ -10406,13 +10406,13 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 <div class="col-md-12">
                 <div class="panel widget">
                   <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Receive Payments<span onclick="loadextenants()" style="float:right;cursor:pointer"><u>Load Ex-Members</u></span></h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Receive Payments<span onclick="loadextenants()" style="float:right;cursor:pointer"><u>Load Ex-Clients</u></span></h3>
                   </div>
                   <div class="panel-body">
                     <form class="form-horizontal" action="#" role="form">
 
                      <div class="form-group">
-                        <label style="float:left" class="col-sm-2">Member:<span style="color:#f00">*</span></label>
+                        <label style="float:left" class="col-sm-2">Client:<span style="color:#f00">*</span></label>
                         <div class="col-sm-7 controls">
                         <input type="text" placeholder="" id="tenant">
                         </div>
@@ -13891,15 +13891,15 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                       ';}if($_SESSION['rightsarr'][165]=='YES'){echo'
                       <div class="panel panel-default">
                         <div class="panel-heading vd_bg-blue">
-                          <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"> Members Reports </a> </h4>
+                          <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"> Clients Reports </a> </h4>
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse">
                           <div class="panel-body"> 
-                              <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep1()">Members By Status</label></a><br/>
-                             <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep4()" ">Members with Balances</label></a><br/>
-                              <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep5()" ">Members with Overpayments</label></a><br/>
-                              <a><label style="cursor:pointer" class="col-sm-12" onclick="tenstate()">Members Statements</label></a><br/>
-                              <a><label style="cursor:pointer" class="col-sm-12" onclick="tenageing()">Members Ageing Analysis</label></a><br/>';
+                              <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep1()">Clients By Status</label></a><br/>
+                             <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep4()" ">Clients with Balances</label></a><br/>
+                              <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep5()" ">Clients with Overpayments</label></a><br/>
+                              <a><label style="cursor:pointer" class="col-sm-12" onclick="tenstate()">Clients Statements</label></a><br/>
+                              <a><label style="cursor:pointer" class="col-sm-12" onclick="tenageing()">Clients Ageing Analysis</label></a><br/>';
                               //<a><label style="cursor:pointer" class="col-sm-12" onclick="landstate()">Landlord Account Statements</label></a><br/>
                               echo'
                             
@@ -15402,8 +15402,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                             <div class="col-sm-7 controls">
                             <select id="itemname" class="select">
                               <option value="All">All</option>
-                              <option value="1">Active Members</option>
-                              <option value="0">Ex-Members</option>
+                              <option value="1">Active Clients</option>
+                              <option value="0">Ex-Clients</option>
                               </select>
                               </div>
                           </div>
@@ -20847,7 +20847,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 <div class="col-md-9">
                 <div class="panel widget">
                   <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Multiple Members Invoicing</h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Multiple Clients Invoicing</h3>
                   </div>
                   <div class="panel-body">
                     <form class="form-horizontal" action="#" role="form">
@@ -25910,8 +25910,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                         <tr>
                           <th>Card Id</th>
                           <th>Card No</th>
-                          <th>Member No</th>
-                          <th>Members Name</th>
+                          <th>Client No</th>
+                          <th>Clients Name</th>
                           <th>Register Date</th>
                           <th>Status</th>
                          </tr>
@@ -26097,7 +26097,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                             $num_results = mysql_num_rows($result);
                            echo'<select id="membername"  class="input-border-btm" required   >';
 
-                            echo'<option value="" selected>Select Member</option>';
+                            echo'<option value="" selected>Select Client</option>';
                            
                            
                            for ($i=0; $i <$num_results; $i++) {
@@ -26754,8 +26754,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 <tr>
                                   <th style="display:none">Date</th> 
                                   <th>Date</th>
-                                  <th>Member Name</th>
-                                  <th>Member Number</th>
+                                  <th>Client Name</th>
+                                  <th>Client Number</th>
                                   <th>Status</th>
                                  
                                  </tr>
@@ -27443,7 +27443,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 <tr>
                                   <th style="display:none">Date</th> 
                                   <th>Date-Time</th>
-                                  <th>Member Name</th>
+                                  <th>Client Name</th>
                                   <th>Comment</th>
                                  
                                  </tr>
@@ -28111,8 +28111,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 <tr>
                                   <th style="display:none">Date</th> 
                                   <th>Date</th>
-                                  <th>Member Name</th>
-                                  <th>Member Number</th>
+                                  <th>Client Name</th>
+                                  <th>Client Number</th>
                                   <th>Status</th>
                                  
                                  </tr>
@@ -28461,7 +28461,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                     <table class="table table-striped" id="data-tables">
                       <thead>
                         <tr>
-                          <th>Member Name</th>
+                          <th>Client Name</th>
                           <th>Email</th>
                           <th>Include</th>
                         </tr>
@@ -28653,8 +28653,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                       <thead>
                         <tr>
                           <th>Serial No</th>
-                          <th>Members Id No</th>
-                          <th>Members Name</th>
+                          <th>Clients Id No</th>
+                          <th>Clients Name</th>
                           <th>Phone</th>
                           <th>Date</th>
                           <th>Time</th>
@@ -28802,8 +28802,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                       <thead>
                         <tr>
                           <th>Serial No</th>
-                          <th>Members Id No</th>
-                          <th>Members Name</th>
+                          <th>Clients Id No</th>
+                          <th>Clients Name</th>
                           <th>Email</th>
                           <th>Date</th>
                           <th>Time</th>
@@ -29160,7 +29160,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               <div class="col-md-12">
                 <div class="panel widget">
                   <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Member CME Panel</h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Client CME Panel</h3>
                   </div>
                   <div class="panel-body table-responsive">
                     <table class="table table-striped" id="data-tables">
@@ -29424,7 +29424,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               <div class="col-md-12">
                 <div class="panel widget">
                   <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Member Forums Panel</h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Client Forums Panel</h3>
                   </div>';
 
                    $resultx =mysql_query("select * from forums order by id desc limit 0,1");
@@ -30907,13 +30907,13 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 <div class="col-md-12">
                 <div class="panel widget">
                   <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Member Invoicing<span onclick="loadextenants()" style="float:right;cursor:pointer"><u>Load Ex-Members</u></span></h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Client Invoicing<span onclick="loadextenants()" style="float:right;cursor:pointer"><u>Load Ex-Clients</u></span></h3>
                   </div>
                   <div class="panel-body">
                     <form class="form-horizontal" action="#" role="form">
 
                      <div class="form-group">
-                        <label style="float:left" class="col-sm-1">Member:<span style="color:#f00">*</span></label>
+                        <label style="float:left" class="col-sm-1">Client:<span style="color:#f00">*</span></label>
                         <div class="col-sm-8 controls">
                         <input type="text" placeholder="" id="tenant">
                         <input type="hidden" id="totitems"/>
