@@ -16,7 +16,7 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
-    <title>KPA Central CRM</title>
+    <title>CHADOR CRM</title>
     <meta name="keywords" content="HTML5 Template, CSS3, All Purpose Admin Template, Vendroid" />
     <meta name="description" content="Login Pages - Responsive Admin HTML Template">
     <meta name="author" content="Venmond">
@@ -113,7 +113,7 @@
               <div class="panel widget" style="background:#fff">
                 <div class="panel-body" style="border:1px solid #ddd">
                   <img src="img/logos/clogo.jpeg" style="margin-bottom:10px;"/> 
-                   <label class="control-label" for="username" style="font-size:20px;font-weight:bold;text-align: center;margin-bottom:10px;">KPA CENTRAL BRANCH CRM</label>
+                   <label class="control-label" for="username" style="font-size:20px;font-weight:bold;text-align: center;margin-bottom:10px;">CHADOR BRANCH CRM</label>
                   <form class="form-horizontal" id="login-form" action="#" role="form">
                     <div class="form-group  mgbt-xs-20">
                       <div class="col-md-12">

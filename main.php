@@ -57,9 +57,9 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="utf-8" />
-    <title>KPA Central CRM</title>
-    <meta name="keywords" content="KPA Central CRM" />
-    <meta name="description" content="KPA Central CRM">
+    <title>CHADOR CRM</title>
+    <meta name="keywords" content="CHADOR CRM" />
+    <meta name="description" content="CHADOR CRM">
     <meta name="author" content="Venmond">
     
     <!-- Set the viewport width to device width for mobile -->
@@ -145,7 +145,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
           <div class="vd_top-nav vd_nav-width  ">
           <div class="vd_panel-header">
           	<div class="logo">
-            	<a href="#" style="font-size:12px">KPA CENTRAL CRM</a>
+            	<a href="#" style="font-size:12px">CHADOR CRM</a>
              </div>
             <!-- logo -->
             <div class="vd_panel-menu  hidden-sm hidden-xs" data-intro="<strong>Minimize Left Navigation</strong><br/>Toggle navigation size to medium or small size. You can set both button or one button only. See full option at documentation." data-step=1>
@@ -355,7 +355,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
      
     <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+          <span class="menu-icon"><i class="fa fa-file-text-o"> </i></span>
             <span class="menu-text">Letters</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
@@ -417,7 +417,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+          <span class="menu-icon"><i class="fa fa-briefcase"> </i></span>
             <span class="menu-text">Distress</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
@@ -478,7 +478,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+          <span class="menu-icon"><i class="fa fa-gavel"> </i></span>
             <span class="menu-text">Decrees</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
@@ -539,7 +539,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+          <span class="menu-icon"><i class="fa fa-building"> </i></span>
             <span class="menu-text">Notice</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
@@ -600,7 +600,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+          <span class="menu-icon"><i class="fa fa-list-alt"> </i></span>
             <span class="menu-text">Proclamations</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
@@ -719,7 +719,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                  <li>
                     <?php if($rightsarr[143]=='YES'){
           echo'<a  href="#" onclick="multipleinvoicing()" >
-                        <span class="menu-text">Multiple Member Invoicing</span>  
+                        <span class="menu-text">Multiple Client Invoicing</span>  
                     </a>';} ?>
                 </li> 
 
@@ -740,13 +740,13 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                  <li>
                     <?php if($rightsarr[176]=='YES'){
           echo'<a  href="#" onclick="refunds()" >
-                        <span class="menu-text">Member Refunds</span>  
+                        <span class="menu-text">Client Refunds</span>  
                     </a>';} ?>
                 </li> 
                 <li>
                     <?php if($rightsarr[146]=='YES'){
           echo'<a  href="#" onclick="findrent()" >
-                        <span class="menu-text">Find Member Entries</span>  
+                        <span class="menu-text">Find Client Entries</span>  
                     </a>';} ?>
                 </li> 
                 <li>
