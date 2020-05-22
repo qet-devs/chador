@@ -34,393 +34,393 @@ $combranch=stripslashes($row['BranchName']);
 $comacno=stripslashes($row['AcNo']);
 switch($id){
 	case 1:
-	$title='Kpa Central CRM Letter of Offer';
+	$title='CHADOR CRM Letter of Offer';
 	break;
   case 1.1:
-  $title='Kpa Central CRM Letter of Offer';
+  $title='CHADOR CRM Letter of Offer';
   break;
   case 2:
-  $title='Kpa Central CRM Deposits Receipt';
+  $title='CHADOR CRM Deposits Receipt';
   break;
   case 3:
-  $title='Kpa Central CRM Vacate Notice';
+  $title='CHADOR CRM Vacate Notice';
   break;
   case 4:
-  $title='Kpa Central CRM Requisition Note';
+  $title='CHADOR CRM Requisition Note';
   break;
   case 5:
-  $title='Kpa Central CRM Invoices';
+  $title='CHADOR CRM Invoices';
   break;
   case 6:
-  $title='Kpa Central CRM Receipts';
+  $title='CHADOR CRM Receipts';
   break;
 
   case 7:
-  $title='Kpa Central CRM Water Invoices';
+  $title='CHADOR CRM Water Invoices';
   break;
 
   case 8:
-  $title='Kpa Central CRM Electricity Invoices';
+  $title='CHADOR CRM Electricity Invoices';
   break;
 
   case 9:
-  $title='Kpa Central CRM Trial Balance';
+  $title='CHADOR CRM Trial Balance';
   break;
 
   case 10:
-  $title='Kpa Central CRM Income Statement';
+  $title='CHADOR CRM Income Statement';
   break;
 
   case 11:
-  $title='Kpa Central CRM Balance Sheet';
+  $title='CHADOR CRM Balance Sheet';
   break;
 
   case 12:
-  $title='Kpa Central CRM Invoices Reports';
+  $title='CHADOR CRM Invoices Reports';
   break;
 
   case 12.1:
-  $title='Kpa Central CRM Credit Notes Reports';
+  $title='CHADOR CRM Credit Notes Reports';
   break;
 
   case 12.2:
-  $title='Kpa Central CRM Refunds Reports';
+  $title='CHADOR CRM Refunds Reports';
   break;
 
   case 13:
-  $title='Kpa Central CRM Receipts Reports';
+  $title='CHADOR CRM Receipts Reports';
   break;
 
   case 14:
-  $title='Kpa Central CRM Summarized Invoices Reports';
+  $title='CHADOR CRM Summarized Invoices Reports';
   break;
 
   case 15:
-  $title='Kpa Central CRM Summarized Receipts Reports';
+  $title='CHADOR CRM Summarized Receipts Reports';
   break;
 
   case 16:
-  $title='Kpa Central CRM Invoices vs Receipts Reports';
+  $title='CHADOR CRM Invoices vs Receipts Reports';
   break;
 
   case 16.1:
-  $title='Kpa Central CRM Invoices vs Receipts By FieldPerson Reports';
+  $title='CHADOR CRM Invoices vs Receipts By FieldPerson Reports';
   break;
 
   case 16.2:
-  $title='Kpa Central CRM Invoices vs Receipts By FieldPerson Reports';
+  $title='CHADOR CRM Invoices vs Receipts By FieldPerson Reports';
   break;
 
   case 16.3:
-  $title='Kpa Central CRM Invoices vs Receipts By Property Reports';
+  $title='CHADOR CRM Invoices vs Receipts By Property Reports';
   break;
 
   case 16.4:
-  $title='Kpa Central CRM Invoices vs Receipts By FieldPerson Reports';
+  $title='CHADOR CRM Invoices vs Receipts By FieldPerson Reports';
   break;
 
   case 16.5:
-  $title='Kpa Central CRM Invoices vs Receipts By FieldPerson Reports';
+  $title='CHADOR CRM Invoices vs Receipts By FieldPerson Reports';
   break;
 
   case 17:
-  $title='Kpa Central CRM Rent Projection Report';
+  $title='CHADOR CRM Rent Projection Report';
   break;
 
   case 18:
-  $title='Kpa Central CRM Members Reports';
+  $title='CHADOR CRM Members Reports';
   break;
 
   case 19:
-  $title='Kpa Central CRM Deposits Reports';
+  $title='CHADOR CRM Deposits Reports';
   break;
 
   case 20:
-  $title='Kpa Central CRM Lease Reports';
+  $title='CHADOR CRM Lease Reports';
   break;
 
   case 21:
-  $title='Kpa Central CRM Lease Reports';
+  $title='CHADOR CRM Lease Reports';
   break;
 
   case 22:
-  $title='Kpa Central CRM Checkout Reports';
+  $title='CHADOR CRM Checkout Reports';
   break;
 
   case 23:
-  $title='Kpa Central CRM Documents Register Reports';
+  $title='CHADOR CRM Documents Register Reports';
   break;
 
   case 24:
-  $title='Kpa Central CRM Show of Interests Reports';
+  $title='CHADOR CRM Show of Interests Reports';
   break;
 
   case 25:
-  $title='Kpa Central CRM Shop Applications Reports';
+  $title='CHADOR CRM Shop Applications Reports';
   break;
 
   case 26:
-  $title='Kpa Central CRM Letter of Offers Reports';
+  $title='CHADOR CRM Letter of Offers Reports';
   break;
 
   case 27:
-  $title='Kpa Central CRM Pre-Members Reports';
+  $title='CHADOR CRM Pre-Members Reports';
   break;
 
   case 28:
-  $title='Kpa Central CRM Properties Reports';
+  $title='CHADOR CRM Properties Reports';
   break;
 
   case 28.1:
-  $title='Kpa Central CRM All Field Persons Reports';
+  $title='CHADOR CRM All Field Persons Reports';
   break;
 
   case 29:
-  $title='Kpa Central CRM Property Units Reports';
+  $title='CHADOR CRM Property Units Reports';
   break;
 
   case 30:
-  $title='Kpa Central CRM Requisition Reports';
+  $title='CHADOR CRM Requisition Reports';
   break;
 
   case 31:
-  $title='Kpa Central CRM Items List Reports';
+  $title='CHADOR CRM Items List Reports';
   break;
 
   case 32:
-  $title='Kpa Central CRM Chart of Accounts';
+  $title='CHADOR CRM Chart of Accounts';
   break;
 
   case 33:
-  $title='Kpa Central CRM Suppliers List';
+  $title='CHADOR CRM Suppliers List';
   break;
 
   case 34:
-  $title='Kpa Central CRM System Users List';
+  $title='CHADOR CRM System Users List';
   break;
 
   case 35:
-  $title='Kpa Central CRM User Access Report';
+  $title='CHADOR CRM User Access Report';
   break;
 
   case 36:
-  $title='Kpa Central CRM Ledger Reports';
+  $title='CHADOR CRM Ledger Reports';
   break;
 
   case 37:
-  $title='Kpa Central CRM MemberStatement';
+  $title='CHADOR CRM MemberStatement';
   break;
 
   case 38:
-  $title='Kpa Central CRM Landlord Statement';
+  $title='CHADOR CRM Landlord Statement';
   break;
 
   case 39:
-  $title='Kpa Central CRM Supplier Statement';
+  $title='CHADOR CRM Supplier Statement';
   break;
 
   case 40:
-  $title='Kpa Central CRM Activity Log Report';
+  $title='CHADOR CRM Activity Log Report';
   break;
 
   case 41:
-  $title='Kpa Central CRM Custom Reports';
+  $title='CHADOR CRM Custom Reports';
   break;
 
   case 42:
-  $title='Kpa Central CRM Water Invoices Reports';
+  $title='CHADOR CRM Water Invoices Reports';
   break;
 
   case 43:
-  $title='Kpa Central CRM Electricity Invoices Reports';
+  $title='CHADOR CRM Electricity Invoices Reports';
   break;
 
   case 44:
-  $title='Kpa Central CRM Utility Payments Reports';
+  $title='CHADOR CRM Utility Payments Reports';
   break;
 
   case 45:
-  $title='Kpa Central CRM Utility Reconciliations Reports';
+  $title='CHADOR CRM Utility Reconciliations Reports';
   break;
   case 46:
-  $title='Kpa Central CRM Purchases Note';
+  $title='CHADOR CRM Purchases Note';
   break;
 
   case 47:
-  $title='Kpa Central CRM Supplier Ageing Analysis';
+  $title='CHADOR CRM Supplier Ageing Analysis';
   break;
 
   case 48:
-  $title='Kpa Central CRM Supplier Invoices Report';
+  $title='CHADOR CRM Supplier Invoices Report';
   break;
 
   case 49:
-  $title='Kpa Central CRM Summarized Supplier Invoices Report';
+  $title='CHADOR CRM Summarized Supplier Invoices Report';
   break;
 
   case 50:
-  $title='Kpa Central CRM Output VAT Reports';
+  $title='CHADOR CRM Output VAT Reports';
   break;
 
   case 51:
-  $title='Kpa Central CRM Unit Activity Log Report';
+  $title='CHADOR CRM Unit Activity Log Report';
   break;
 
    case 52:
-  $title='Kpa Central CRM Members Ageing Analysis';
+  $title='CHADOR CRM Members Ageing Analysis';
   break;
 
   case 53:
-  $title='Kpa Central CRM Input VAT Reports';
+  $title='CHADOR CRM Input VAT Reports';
   break;
 
   case 54:
-  $title='Kpa Central CRM Rent Escalations Reports';
+  $title='CHADOR CRM Rent Escalations Reports';
   break;
 
   case 54.1:
-  $title='Kpa Central CRM Archived Members Reports';
+  $title='CHADOR CRM Archived Members Reports';
   break;
 
   case 55:
-  $title='Kpa Central CRM Credit Notes';
+  $title='CHADOR CRM Credit Notes';
   break;
 
   case 56:
-  $title='Kpa Central CRM Commision Summary Report';
+  $title='CHADOR CRM Commision Summary Report';
   break;
 
   case 57:
-  $title='Kpa Central CRM Daily Financial Report';
+  $title='CHADOR CRM Daily Financial Report';
   break;
 
   case 58:
-  $title='Kpa Central CRM Expenses Report';
+  $title='CHADOR CRM Expenses Report';
   break;
 
   case 59:
-  $title='Kpa Central CRM Monthly Expenses Summary';
+  $title='CHADOR CRM Monthly Expenses Summary';
   break;
 
   case 60:
-  $title='Kpa Central CRM Refund Notes';
+  $title='CHADOR CRM Refund Notes';
   break;
 
   case 61:
-  $title='Kpa Central CRM Balances by Item Reports';
+  $title='CHADOR CRM Balances by Item Reports';
   break;
 
   case 62:
-  $title='Kpa Central CRM Itemized MemberStatement';
+  $title='CHADOR CRM Itemized MemberStatement';
   break;
 
   case 63:
-  $title='Kpa Central CRM Landlord Monthly Statement';
+  $title='CHADOR CRM Landlord Monthly Statement';
   break;
 
   case 64:
-  $title='Kpa Central CRM Paid/Unpaid Landlords Report';
+  $title='CHADOR CRM Paid/Unpaid Landlords Report';
   break;
 
   case 65:
-  $title='Kpa Central CRM Tax Summary Report';
+  $title='CHADOR CRM Tax Summary Report';
   break;
 
   case 66:
-  $title='Kpa Central CRM Landlord Transactions Report';
+  $title='CHADOR CRM Landlord Transactions Report';
   break;
 
   case 67:
-  $title='Kpa Central CRM Agency Agreement Report';
+  $title='CHADOR CRM Agency Agreement Report';
   break;
 
   case 68:
-  $title='Kpa Central CRM Unpaid Water Invoices Report';
+  $title='CHADOR CRM Unpaid Water Invoices Report';
   break;
 
   case 69:
-  $title='Kpa Central CRM Income Category Statements Report';
+  $title='CHADOR CRM Income Category Statements Report';
   break;
 
   case 70:
-  $title='Kpa Central CRM Income Summary Statements Report';
+  $title='CHADOR CRM Income Summary Statements Report';
   break;
 
   case 71:
-  $title='Kpa Central CRM MemberContracts Reports';
+  $title='CHADOR CRM MemberContracts Reports';
   break;
 
 
   case 72:
-  $title='Kpa Central CRM Loan Amortization Schedule';
+  $title='CHADOR CRM Loan Amortization Schedule';
   break;
 
   case 73:
-  $title='Kpa Central CRM Budget Management Report';
+  $title='CHADOR CRM Budget Management Report';
   break;
 
   case 74:
-  $title='Kpa Central CRM Properties by Group Report';
+  $title='CHADOR CRM Properties by Group Report';
   break;
 
   case 75:
-  $title='Kpa Central CRM Field persons by Group Report';
+  $title='CHADOR CRM Field persons by Group Report';
   break;
 
   case 76:
-  $title='Kpa Central CRM Share Accounts Report';
+  $title='CHADOR CRM Share Accounts Report';
   break;
 
   case 77:
-  $title='Kpa Central CRM Loan Accounts Report';
+  $title='CHADOR CRM Loan Accounts Report';
   break;
 
   case 78:
-  $title='Kpa Central CRM Loans Ageing Report';
+  $title='CHADOR CRM Loans Ageing Report';
   break;
 
   case 79:
-  $title='Kpa Central CRM Shares Ageing Report';
+  $title='CHADOR CRM Shares Ageing Report';
   break;
 
   case 80:
-  $title='Kpa Central CRM Member Statement Report';
+  $title='CHADOR CRM Member Statement Report';
   break;
 
   case 81:
-  $title='Kpa Central CRM Loans Arrears Report';
+  $title='CHADOR CRM Loans Arrears Report';
   break;
 
   case 82:
-  $title='Kpa Central CRM Almost Due Loans Report';
+  $title='CHADOR CRM Almost Due Loans Report';
   break;
 
   case 83:
-  $title='Kpa Central CRM Cashier Transactions Report';
+  $title='CHADOR CRM Cashier Transactions Report';
   break;
 
   case 84:
-  $title='Kpa Central CRM Loans Repayment Report';
+  $title='CHADOR CRM Loans Repayment Report';
   break;
 
   case 85:
-  $title='Kpa Central CRM Landlord Payments Report';
+  $title='CHADOR CRM Landlord Payments Report';
   break;
 
   case 86:
-  $title='Kpa Central CRM Landlord Payments Report';
+  $title='CHADOR CRM Landlord Payments Report';
   break;
 
   case 87:
-  $title='Kpa Central CRM Employee Advances Report';
+  $title='CHADOR CRM Employee Advances Report';
   break;
 
   case 88:
-  $title='Kpa Central Unit Checkin/Checkout Report';
+  $title='CHADOR Unit Checkin/Checkout Report';
   break;
 
    case 89:
-  $title='Kpa Central Membership Certificate';
+  $title='CHADOR Membership Certificate';
   break;
 
 
@@ -2547,7 +2547,7 @@ body,p{
 get_object("barcode").innerHTML=DrawHTMLBarcode_Code39(get_object("barcode").innerHTML,1,"yes","in",0,3,0.4,3,"bottom","center","","black","white");
 /* ]]> */
 </script>
-<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:14px">Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;MemberName: <?php  echo $bname ?><BR/>KPA No: <?php  echo $rno ?>&nbsp; &nbsp;&nbsp;&nbsp;<?php  echo $doctitle ?> No: <?php  echo $invno ?></p>
+<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:14px">Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientName: <?php  echo $bname ?><BR/>Client No: <?php  echo $rno ?>&nbsp; &nbsp;&nbsp;&nbsp;<?php  echo $doctitle ?> No: <?php  echo $invno ?></p>
 <div style="clear:both; margin-bottom:10px"></div>
 
 <div style="clear:both"/>
@@ -2685,7 +2685,7 @@ body,p{
 get_object("barcode").innerHTML=DrawHTMLBarcode_Code39(get_object("barcode").innerHTML,1,"yes","in",0,3,0.4,3,"bottom","center","","black","white");
 
 </script-->
-<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:11px">Bank Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Entry Date:<?php  echo stamptodate($entrydate) ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;MemberName: <?php  echo $bname ?>&nbsp; &nbsp;&nbsp;&nbsp;MemberNo: <?php  echo $tid ?><BR/>KPA No: <?php  echo $rno ?>&nbsp; &nbsp;&nbsp;&nbsp;Receipt No: <?php  echo $rcptno ?></p>
+<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:11px">Bank Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Entry Date:<?php  echo stamptodate($entrydate) ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientName: <?php  echo $bname ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientNo: <?php  echo $tid ?><BR/> No: <?php  echo $rno ?>&nbsp; &nbsp;&nbsp;&nbsp;Receipt No: <?php  echo $rcptno ?></p>
 <div style="clear:both; margin-bottom:10px"></div>
 
 <div style="clear:both"/>
@@ -6357,8 +6357,8 @@ $fname='members_reports';
 <tr style="width:100%; height:20px;color:#fff; background:#333; padding:0">
         <td  style="width:4%;">No.</td>
         <td  style="width:10%;">Entry Date</td>
-        <td  style="width:10%;">KPA No</td>
-        <td  style="width:15%;">MemberName</td>
+        <td  style="width:10%;">Client No</td>
+        <td  style="width:15%;">ClientName</td>
         <td  style="width:8%;">Phone</td>
         <td  style="width:8%;">Email</td>
         <td  style="width:8%;">Rent</td>
@@ -10401,7 +10401,7 @@ $fname='debtors_ageing_list';
 <tr style="width:100%; height:20px;color:#fff; background:#333; padding:0">
       <td  style="width:8%;">No.</td>
       <td  style="width:24%;">Name</td>
-      <td  style="width:8%;">KPA No</td>
+      <td  style="width:8%;">Client No</td>
       <td  style="width:10%;">Telephone</td>
       <td  style="width:10%;">1-30 Days</td>
       <td  style="width:10%;">31-60 Days</td>
@@ -12003,7 +12003,7 @@ body,p{
 get_object("barcode").innerHTML=DrawHTMLBarcode_Code39(get_object("barcode").innerHTML,1,"yes","in",0,3,0.4,3,"bottom","center","","black","white");
 /* ]]> */
 </script>
-<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:14px">Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;MemberName: <?php  echo $bname ?>&nbsp; &nbsp;&nbsp;&nbsp;KPA No: <?php  echo $rno ?><br/><?php  echo $doctitle ?> No: <?php  echo $credno ?></p>
+<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:14px">Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientName: <?php  echo $bname ?>&nbsp; &nbsp;&nbsp;&nbsp;Client No: <?php  echo $rno ?><br/><?php  echo $doctitle ?> No: <?php  echo $credno ?></p>
 <div style="clear:both; margin-bottom:10px"></div>
 
 <div style="clear:both"/>
@@ -12151,8 +12151,8 @@ $fname='invoice_vs_receipts_reports';
 <tr style="width:100%; height:20px;color:#fff; background:#333; padding:0">
         <td  style="width:5%;">No.</td>
         <td  style="width:10%;">Date</td>
-        <td  style="width:20%;">MemberName</td>
-        <td  style="width:5%;">KPA No</td>
+        <td  style="width:20%;">ClientName</td>
+        <td  style="width:5%;">Client No</td>
         <td  style="width:5%;">Inv No</td>
         <td  style="width:10%;">Month</td>
         <td  style="width:15%;">Entry Name</td>
@@ -12268,7 +12268,7 @@ $curbal=stripslashes($rowx['bal']);
 <div style="clear:both; margin-bottom:10px"></div>
 <div style="clear:both; margin-bottom:5px; margin-bottom:5px;border-bottom:1px dotted #333"></div>
 <p style="color:#333;text-align:center;margin:0 0 0 10px">Name: <?php  echo stripslashes($rowx['bname']) ?>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KPA No: <?php  echo stripslashes($rowx['kpano']) ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Phone: <?php  echo stripslashes($rowx['phone']);  ?></p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Client No: <?php  echo stripslashes($rowx['kpano']) ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Phone: <?php  echo stripslashes($rowx['phone']);  ?></p>
 <div style="clear:both; margin-bottom:10px;border-bottom:1px dotted #333"></div>
 <div style="clear:both; margin-bottom:10px"></div>
 

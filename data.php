@@ -6098,14 +6098,14 @@ switch ($id) {
         break;
     case 400:
         $partyname = strtoupper($_GET['partyname']);
-        $partyaddress = strtoupper($_GET['partyaddress']);
+        $partyaddress = ucwords($_GET['partyaddress']);
         $advocatename = strtoupper($_GET['advocatename']);
-        $advocataddress = strtoupper($_GET['advocatename']);
+        $advocataddress = ucwords($_GET['advocateaddress']);
         $ownername = strtoupper($_GET['ownername']);
-        $owneraddress = strtoupper($_GET['owneraddress']);
+        $owneraddress = ucwords($_GET['owneraddress']);
         $debtorname = strtoupper($_GET['debtorname']);
-        $debtoraddress = strtoupper($_GET['debtoraddress']);
-        $propertylocation = $_GET['propertylocation'];
+        $debtoraddress = ucwords($_GET['debtoraddress']);
+        $propertylocation = ucwords($_GET['propertylocation']);
         $propertyperson = strtoupper($_GET['propertyperson']);
         $propertydescription = $_GET['propertydescription'];
         $adinstructions = $_GET['adinstructions'];
@@ -6133,8 +6133,7 @@ switch ($id) {
 
         $uid = 'LET' . sprintf("%06d", $tid);
 
-        $resultc = mysql_query("INSERT INTO `letters`(`uid`, `partyname`, `partyaddress`, `advocatename`, `advocateaddress`, `ownername`, `owneraddress`, `debtorname`, `debtoraddress`, `propaddress`, `propperson`, `propdescription`, `adinstructions`, `expenditure`, `date`, `amount`, `dailyrates`, `estlegalcost`, `estauctioneersfees`, `reserveprice`, `reason`, `status`, `username`)
-							 VALUES ('" . $uid . "','" . $partyname . "','" . $partyaddress . "','" . $advocatename . "','" . $advocataddress . "','" . $ownername . "','" . $owneraddress . "','" . $debtorname . "','" . $debtoraddress . "','" . $propertylocation . "','" . $propertyperson . "','" . $propertydescription . "','" . $adinstructions . "','" . $expenditure . "','" . $datepicker . "','" . $amount . "','" . $dailyrates . "','" . $estlegalcost . "','" . $estauctioneersfees . "','" . $reserveprice . "','" . $reason . "','1','" . $username . "')");
+        $resultc = mysql_query("INSERT INTO `letters` VALUES ('0','" . $uid . "','" . $partyname . "','" . $partyaddress . "','" . $advocatename . "','" . $advocataddress . "','" . $ownername . "','" . $owneraddress . "','" . $debtorname . "','" . $debtoraddress . "','" . $propertylocation . "','" . $propertyperson . "','" . $propertydescription . "','" . $adinstructions . "','" . $expenditure . "','" . $datepicker . "','" . $amount . "','" . $dailyrates . "','" . $estlegalcost . "','" . $estauctioneersfees . "','" . $reserveprice . "','" . $reason . "','1','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
 
         //register log
@@ -6158,14 +6157,14 @@ switch ($id) {
         $id = $_GET['param'];
         $uid = $_GET['uid'];
         $partyname = strtoupper($_GET['partyname']);
-        $partyaddress = strtoupper($_GET['partyaddress']);
+        $partyaddress = ucwords($_GET['partyaddress']);
         $advocatename = strtoupper($_GET['advocatename']);
-        $advocataddress = strtoupper($_GET['advocatename']);
+        $advocataddress = ucwords($_GET['advocateaddress']);
         $ownername = strtoupper($_GET['ownername']);
-        $owneraddress = strtoupper($_GET['owneraddress']);
+        $owneraddress = ucwords($_GET['owneraddress']);
         $debtorname = strtoupper($_GET['debtorname']);
-        $debtoraddress = strtoupper($_GET['debtoraddress']);
-        $propertylocation = $_GET['propertylocation'];
+        $debtoraddress = ucwords($_GET['debtoraddress']);
+        $propertylocation = ucwords($_GET['propertylocation']);
         $propertyperson = strtoupper($_GET['propertyperson']);
         $propertydescription = $_GET['propertydescription'];
         $adinstructions = $_GET['adinstructions'];
@@ -6210,7 +6209,7 @@ switch ($id) {
         $est_value = $_GET['est_value'];
 
 //echo json_encode($_GET);
-        $resultg = mysql_query("INSERT INTO `property_description`(`uid`, `description`, `condition`, `est_value`, `username`, `status`) VALUES ('" . $uid . "','" . $description . "','" . $condition . "','" . $est_value . "','" . $username . "','1')");
+        $resultg = mysql_query("INSERT INTO `property_description`(`uid`, `description`, `condition`, `est_value`, `username`, `status`) VALUES ('" . $uid . "','" . $description . "','" . $condition . "','" . $est_value . "','" . $username . "','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
         //register log
         $resulta = mysql_query("insert into log values('0','" . $username . " creates property description where uid:" . $uid . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
@@ -6264,7 +6263,7 @@ switch ($id) {
         $uid = 'DIS' . sprintf("%06d", $tid);
 
         $resultc = mysql_query("INSERT INTO `distress`(`uid`, `landlord`, `tenant`, `to`, `at`, `amount`, `months`, `status`, `username`) 
-								VALUES ('" . $uid . "','" . $landlord . "','" . $tenant . "','" . $to . "','" . $date . "','" . $amount . "','" . $months . "','1','" . $username . "')");
+								VALUES ('" . $uid . "','" . $landlord . "','" . $tenant . "','" . $to . "','" . $date . "','" . $amount . "','" . $months . "','1','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
 
         if ($resultc) {
@@ -6352,7 +6351,7 @@ switch ($id) {
         $uid = 'DEC' . sprintf("%06d", $tid);
 
         $resultc = mysql_query("INSERT INTO `decrees`(`uid`, `suitno`, `court`, `party1`, `party2`, `decree_date`, `appeal`, `payment`, `adjournment`, `date`, `results`, `principal`, `interest`, `cost_awarded`, `court_fee`, `subs_incurred`, `against`, `mode`, `holder`, `username`, `status`) 
-								VALUES ('" . $uid . "','" . $suitno . "','" . $court . "','" . $party1 . "','" . $party2 . "','" . $decreedate . "','" . $appeal . "','" . $payment . "','" . $adjournment . "','" . $date . "','" . $result . "','" . $principal . "','" . $interest . "','" . $costawarded . "','" . $courtfee . "','" . $subincurred . "','" . $against . "','" . $mode . "','" . $holder . "','" . $username . "','1')");
+								VALUES ('" . $uid . "','" . $suitno . "','" . $court . "','" . $party1 . "','" . $party2 . "','" . $decreedate . "','" . $appeal . "','" . $payment . "','" . $adjournment . "','" . $date . "','" . $result . "','" . $principal . "','" . $interest . "','" . $costawarded . "','" . $courtfee . "','" . $subincurred . "','" . $against . "','" . $mode . "','" . $holder . "','" . $username . "','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
 
         if ($resultc) {
@@ -6441,7 +6440,7 @@ switch ($id) {
         $uid = 'NOT' . sprintf("%06d", $tid);
 
         $resultc = mysql_query("INSERT INTO `court_notices`(`uid`,`instructing_party`, `debtor_name`, `amount`, `charges`, `notice_date`, `days`, `date_served`, `username`, `status`) 
-								VALUES ('" . $uid . "','" . $party . "','" . $debtor . "','" . $amount . "','" . $charges . "','" . $noticedate . "','" . $noticedays . "','" . $datereserved . "','" . $username . "','1')");
+								VALUES ('" . $uid . "','" . $party . "','" . $debtor . "','" . $amount . "','" . $charges . "','" . $noticedate . "','" . $noticedays . "','" . $datereserved . "','" . $username . "','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . ")");
 
 
         if ($resultc) {
@@ -6531,7 +6530,7 @@ switch ($id) {
         $uid = 'PRO' . sprintf("%06d", $tid);
 
         $resultc = mysql_query("INSERT INTO `proclamations`(`uid`,`auctioneername`, `auctaddress`, `auctphone`, `trader`, `creditorname`, `creditoraddress`, `debtorname`, `debtoraddress`, `amount`, `auctcharges`, `advfee`, `court`, `date`, `caseno`, `decreedate`, `warrantdate`, `returndate`, `noticedays`, `status`, `username`) 
-								VALUES ('" . $uid . "','" . $auctname . "','" . $auctaddress . "','" . $auctphone . "','" . $trader . "','" . $creditorname . "','" . $creditoraddress . "','" . $debtorname . "','" . $debtoraddress . "','" . $amount . "','" . $auctcharges . "','" . $advfee . "','" . $court . "','" . $courtdate . "','" . $caseno . "','" . $decreedate . "','" . $warrantdate . "','" . $returndate . "','" . $noticedays . "','1','" . $username . "')");
+								VALUES ('" . $uid . "','" . $auctname . "','" . $auctaddress . "','" . $auctphone . "','" . $trader . "','" . $creditorname . "','" . $creditoraddress . "','" . $debtorname . "','" . $debtoraddress . "','" . $amount . "','" . $auctcharges . "','" . $advfee . "','" . $court . "','" . $courtdate . "','" . $caseno . "','" . $decreedate . "','" . $warrantdate . "','" . $returndate . "','" . $noticedays . "','1','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
 
         if ($resultc) {
