@@ -31925,15 +31925,15 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label for="">Principal Amount</label>
-                                      <input type="text" class="control" id="principal_amount">
+                                      <input type="text" class="control" id="principal_amount" onkeyup="calcamount()" >
                                   </div>
                                   <div class="form-group">
                                       <label for="">Interest</label>
-                                      <input type="text" class="control" id="interest">
+                                      <input type="text" class="control" id="interest" onkeyup="calcamount()" >
                                   </div>
                                   <div class="form-group">
                                       <label for="">Total</label>
-                                      <input type="text" class="control" id="total">
+                                      <input type="text" class="control" id="amount_total" disabled>
                                   </div>
       
                               </div>
@@ -31951,19 +31951,19 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label for="">Cost Awarded</label>
-                                      <input type="text" class="control" id="cost_awarded">
+                                      <input type="text" class="control" onkeyup="calctotalcost()" id="cost_awarded">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Court Collection Fee</label>
-                                      <input type="text" class="control" id="court_fee">
+                                      <input type="text" class="control" onkeyup="calctotalcost()" id="court_fee">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Subsequent incurred</label>
-                                      <input type="text" class="control" id="sub_incurred">
+                                      <input type="text" class="control" onkeyup="calctotalcost()" id="sub_incurred">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Total</label>
-                                      <input type="text" class="control" id="total_costs">
+                                      <input type="text" class="control" id="total_costs" disabled>
                                   </div>
       
                               </div>

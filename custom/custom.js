@@ -10520,3 +10520,32 @@ $('#totalfees').val(tot);
 
 
 }
+
+function calcamount(){
+
+
+	var principalamount = $('#principal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var interest = $('#interest').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	
+	if(principalamount==''){principalamount=0;}if(interest==''){interest=0;}
+	
+	var tot=parseFloat(principalamount,10)+parseFloat(interest,10);
+	tot=(tot).formatMoney(2, '.', ',');
+	$('#amount_total').val(tot);
+	
+}
+
+function calctotalcost(){
+
+
+	var cost_awarded = $('#cost_awarded').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court_fee = $('#court_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var sub_incurred = $('#sub_incurred').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	
+	if(cost_awarded==''){cost_awarded=0;}if(court_fee==''){court_fee=0;}if(sub_incurred==''){sub_incurred=0;}
+	
+	var tot=parseFloat(cost_awarded,10)+parseFloat(court_fee,10)+parseFloat(sub_incurred,10);
+	tot=(tot).formatMoney(2, '.', ',');
+	$('#total_costs').val(tot);
+	
+}
