@@ -13917,11 +13917,11 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                           </div>
                           <div id="collapseTree" class="panel-collapse collapse">
                             <div class="panel-body"> 
-                                <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep1()">Letters</label></a><br/>
-                               <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep4()" ">Distress</label></a><br/>
-                                <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep5()" ">Decree</label></a><br/>
-                                <a><label style="cursor:pointer" class="col-sm-12" onclick="tenstate()">Notice</label></a><br/>
-                                <a><label style="cursor:pointer" class="col-sm-12" onclick="tenageing()">Proclamation</label></a><br/>';
+                                <a><label style="cursor:pointer" class="col-sm-12" onclick="lettersrep()">Letters</label></a><br/>
+                               <a><label style="cursor:pointer" class="col-sm-12" onclick="distressrep()" ">Distress</label></a><br/>
+                                <a><label style="cursor:pointer" class="col-sm-12" onclick="decreerep()" ">Decree</label></a><br/>
+                                <a><label style="cursor:pointer" class="col-sm-12" onclick="noticerep()">Notice</label></a><br/>
+                                <a><label style="cursor:pointer" class="col-sm-12" onclick="proclamationrep()">Proclamation</label></a><br/>';
                                 //<a><label style="cursor:pointer" class="col-sm-12" onclick="landstate()">Landlord Account Statements</label></a><br/>
                                 echo'
                               
