@@ -13910,7 +13910,29 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                 
 
-                      ';}if($_SESSION['rightsarr'][169]=='YES'){echo'
+                      ';}if($_SESSION['rightsarr'][165]=='YES'){echo'
+                        <div class="panel panel-default">
+                          <div class="panel-heading vd_bg-black">
+                            <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseTree"> Front Office </a> </h4>
+                          </div>
+                          <div id="collapseTree" class="panel-collapse collapse">
+                            <div class="panel-body"> 
+                                <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep1()">Letters</label></a><br/>
+                               <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep4()" ">Distress</label></a><br/>
+                                <a><label style="cursor:pointer" class="col-sm-12" onclick="tenrep5()" ">Decree</label></a><br/>
+                                <a><label style="cursor:pointer" class="col-sm-12" onclick="tenstate()">Notice</label></a><br/>
+                                <a><label style="cursor:pointer" class="col-sm-12" onclick="tenageing()">Proclamation</label></a><br/>';
+                                //<a><label style="cursor:pointer" class="col-sm-12" onclick="landstate()">Landlord Account Statements</label></a><br/>
+                                echo'
+                              
+                              
+                             </div>
+                             </div>
+                        </div>
+  
+                  
+  
+                        ';}if($_SESSION['rightsarr'][169]=='YES'){echo'
                       <div class="panel panel-default">
                         <div class="panel-heading vd_bg-green vd_bd-green">
                           <h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven"> Accounts Reports</a> </h4>
