@@ -31112,6 +31112,58 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
          
         break;
+
+        case 413:
+          $title='Letters By Status';
+          echo '              <div class="form-group"> 
+                              <p style="text-align:center;font-size:16px;font-weight:bold;text-decoration:underline">'.$title.'</p> 
+                              </div>          
+                              <div class="form-group">
+                                  <label style="float:left" class="col-sm-5">Status<span style="color:#f00">*</span></label>
+                                  <div class="col-sm-7 controls">
+                                  <select id="itemname" class="select">
+                                    <option value="All">All</option>
+                                    <option value="1">Active Letters</option>
+                                    <option value="0">Deactivated Letters</option>
+                                    </select>
+                                    </div>
+                                </div>
+      
+                              <div class="form-group">
+                              <label style="float:left" class="col-sm-5">Start Date<span style="color:#f00">*</span></label>
+                              <div class="col-sm-7 controls">
+                              <input type="text" id="date1" class="date">
+                              </div>
+                              </div>
+      
+      
+                              <div class="form-group">
+                              <label style="float:left" class="col-sm-5">End Date<span style="color:#f00">*</span></label>
+                              <div class="col-sm-7 controls">
+                                <input type="text" id="date2" class="date">
+                              </div>
+                              </div>
+      
+                              <div class="vd_checkbox checkbox-success">
+                                  <input type="checkbox" value="1" name="viewall"  id="checkbox-3">
+                                  <label for="checkbox-3"> View All? </label>
+                              </div>
+      
+                              <div class="form-group form-actions">
+                              <div class="col-sm-3"> </div>
+                              <div class="col-sm-9">
+                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="entertenrep1()"><i class="fa fa-save"></i> Submit</button>
+                                <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
+                                <div id="message2" style="width:40px;height:40px;float:right"></div>
+                              </div>
+                            </div>
+      
+      
+                            ';
+      
+                         echo "<script>  $( '.date' ).datepicker({ dateFormat: 'dd/mm/yy'});  </script>";
+      
+        break;
         
         case 500:
           $result = mysql_query("insert into log values('','".$username." accesses new distress panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
@@ -31845,6 +31897,58 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 cursor: pointer
             } </style>';
          
+        break;
+
+        case 508:
+          $title='Distress By Status';
+          echo '              <div class="form-group"> 
+                              <p style="text-align:center;font-size:16px;font-weight:bold;text-decoration:underline">'.$title.'</p> 
+                              </div>          
+                              <div class="form-group">
+                                  <label style="float:left" class="col-sm-5">Status<span style="color:#f00">*</span></label>
+                                  <div class="col-sm-7 controls">
+                                  <select id="itemname" class="select">
+                                    <option value="All">All</option>
+                                    <option value="1">Active Distress</option>
+                                    <option value="0">Deactivated Distress</option>
+                                    </select>
+                                    </div>
+                                </div>
+      
+                              <div class="form-group">
+                              <label style="float:left" class="col-sm-5">Start Date<span style="color:#f00">*</span></label>
+                              <div class="col-sm-7 controls">
+                              <input type="text" id="date1" class="date">
+                              </div>
+                              </div>
+      
+      
+                              <div class="form-group">
+                              <label style="float:left" class="col-sm-5">End Date<span style="color:#f00">*</span></label>
+                              <div class="col-sm-7 controls">
+                                <input type="text" id="date2" class="date">
+                              </div>
+                              </div>
+      
+                              <div class="vd_checkbox checkbox-success">
+                                  <input type="checkbox" value="1" name="viewall"  id="checkbox-3">
+                                  <label for="checkbox-3"> View All? </label>
+                              </div>
+      
+                              <div class="form-group form-actions">
+                              <div class="col-sm-3"> </div>
+                              <div class="col-sm-9">
+                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="entertenrep1()"><i class="fa fa-save"></i> Submit</button>
+                                <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
+                                <div id="message2" style="width:40px;height:40px;float:right"></div>
+                              </div>
+                            </div>
+      
+      
+                            ';
+      
+                         echo "<script>  $( '.date' ).datepicker({ dateFormat: 'dd/mm/yy'});  </script>";
+      
         break;
 
         case 600:
@@ -32867,6 +32971,58 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
           
         break;
 
+        case 608:
+          $title='Decree By Status';
+          echo '              <div class="form-group"> 
+                              <p style="text-align:center;font-size:16px;font-weight:bold;text-decoration:underline">'.$title.'</p> 
+                              </div>          
+                              <div class="form-group">
+                                  <label style="float:left" class="col-sm-5">Status<span style="color:#f00">*</span></label>
+                                  <div class="col-sm-7 controls">
+                                  <select id="itemname" class="select">
+                                    <option value="All">All</option>
+                                    <option value="1">Active Decrees</option>
+                                    <option value="0">Deactivated Decrees</option>
+                                    </select>
+                                    </div>
+                                </div>
+      
+                              <div class="form-group">
+                              <label style="float:left" class="col-sm-5">Start Date<span style="color:#f00">*</span></label>
+                              <div class="col-sm-7 controls">
+                              <input type="text" id="date1" class="date">
+                              </div>
+                              </div>
+      
+      
+                              <div class="form-group">
+                              <label style="float:left" class="col-sm-5">End Date<span style="color:#f00">*</span></label>
+                              <div class="col-sm-7 controls">
+                                <input type="text" id="date2" class="date">
+                              </div>
+                              </div>
+      
+                              <div class="vd_checkbox checkbox-success">
+                                  <input type="checkbox" value="1" name="viewall"  id="checkbox-3">
+                                  <label for="checkbox-3"> View All? </label>
+                              </div>
+      
+                              <div class="form-group form-actions">
+                              <div class="col-sm-3"> </div>
+                              <div class="col-sm-9">
+                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="entertenrep1()"><i class="fa fa-save"></i> Submit</button>
+                                <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
+                                <div id="message2" style="width:40px;height:40px;float:right"></div>
+                              </div>
+                            </div>
+      
+      
+                            ';
+      
+                         echo "<script>  $( '.date' ).datepicker({ dateFormat: 'dd/mm/yy'});  </script>";
+      
+        break;
+
         case 700:
           $result = mysql_query("insert into log values('','".$username." accesses new Notice panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
           echo '<div class="vd_container" id="container">
@@ -33641,6 +33797,58 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 cursor: pointer
             } </style>';
           
+        break;
+
+        case 708:
+          $title='Notice By Status';
+          echo '              <div class="form-group"> 
+                              <p style="text-align:center;font-size:16px;font-weight:bold;text-decoration:underline">'.$title.'</p> 
+                              </div>          
+                              <div class="form-group">
+                                  <label style="float:left" class="col-sm-5">Status<span style="color:#f00">*</span></label>
+                                  <div class="col-sm-7 controls">
+                                  <select id="itemname" class="select">
+                                    <option value="All">All</option>
+                                    <option value="1">Active Notices</option>
+                                    <option value="0">Deactivated Notices</option>
+                                    </select>
+                                    </div>
+                                </div>
+      
+                              <div class="form-group">
+                              <label style="float:left" class="col-sm-5">Start Date<span style="color:#f00">*</span></label>
+                              <div class="col-sm-7 controls">
+                              <input type="text" id="date1" class="date">
+                              </div>
+                              </div>
+      
+      
+                              <div class="form-group">
+                              <label style="float:left" class="col-sm-5">End Date<span style="color:#f00">*</span></label>
+                              <div class="col-sm-7 controls">
+                                <input type="text" id="date2" class="date">
+                              </div>
+                              </div>
+      
+                              <div class="vd_checkbox checkbox-success">
+                                  <input type="checkbox" value="1" name="viewall"  id="checkbox-3">
+                                  <label for="checkbox-3"> View All? </label>
+                              </div>
+      
+                              <div class="form-group form-actions">
+                              <div class="col-sm-3"> </div>
+                              <div class="col-sm-9">
+                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="entertenrep1()"><i class="fa fa-save"></i> Submit</button>
+                                <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
+                                <div id="message2" style="width:40px;height:40px;float:right"></div>
+                              </div>
+                            </div>
+      
+      
+                            ';
+      
+                         echo "<script>  $( '.date' ).datepicker({ dateFormat: 'dd/mm/yy'});  </script>";
+      
         break;
 
         case 800:
@@ -34882,6 +35090,58 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         <!-- .vd_container --> ';
         echo"<script>setTimeout(function() {getpropertydescription('".$row['uid']."');},500);</script>";
         
+        break;
+
+        case 809:
+          $title='Proclamation By Status';
+          echo '              <div class="form-group"> 
+                              <p style="text-align:center;font-size:16px;font-weight:bold;text-decoration:underline">'.$title.'</p> 
+                              </div>          
+                              <div class="form-group">
+                                  <label style="float:left" class="col-sm-5">Status<span style="color:#f00">*</span></label>
+                                  <div class="col-sm-7 controls">
+                                  <select id="itemname" class="select">
+                                    <option value="All">All</option>
+                                    <option value="1">Active Proclamations</option>
+                                    <option value="0">Deactivated Proclamations</option>
+                                    </select>
+                                    </div>
+                                </div>
+      
+                              <div class="form-group">
+                              <label style="float:left" class="col-sm-5">Start Date<span style="color:#f00">*</span></label>
+                              <div class="col-sm-7 controls">
+                              <input type="text" id="date1" class="date">
+                              </div>
+                              </div>
+      
+      
+                              <div class="form-group">
+                              <label style="float:left" class="col-sm-5">End Date<span style="color:#f00">*</span></label>
+                              <div class="col-sm-7 controls">
+                                <input type="text" id="date2" class="date">
+                              </div>
+                              </div>
+      
+                              <div class="vd_checkbox checkbox-success">
+                                  <input type="checkbox" value="1" name="viewall"  id="checkbox-3">
+                                  <label for="checkbox-3"> View All? </label>
+                              </div>
+      
+                              <div class="form-group form-actions">
+                              <div class="col-sm-3"> </div>
+                              <div class="col-sm-9">
+                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="entertenrep1()"><i class="fa fa-save"></i> Submit</button>
+                                <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
+                                <div id="message2" style="width:40px;height:40px;float:right"></div>
+                              </div>
+                            </div>
+      
+      
+                            ';
+      
+                         echo "<script>  $( '.date' ).datepicker({ dateFormat: 'dd/mm/yy'});  </script>";
+      
         break;
 
 }

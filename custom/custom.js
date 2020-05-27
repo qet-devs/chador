@@ -10554,7 +10554,7 @@ function lettersrep(){
 	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
-	data:{id:77},
+	data:{id:413},
 	success:function(data){
 	$('#display').html(data);
 	}
@@ -10565,7 +10565,7 @@ function distressrep(){
 	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
-	data:{id:77},
+	data:{id:508},
 	success:function(data){
 	$('#display').html(data);
 	}
@@ -10576,7 +10576,7 @@ function decreerep(){
 	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
-	data:{id:77},
+	data:{id:608},
 	success:function(data){
 	$('#display').html(data);
 	}
@@ -10587,7 +10587,7 @@ function noticerep(){
 	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
-	data:{id:77},
+	data:{id:708},
 	success:function(data){
 	$('#display').html(data);
 	}
@@ -10598,7 +10598,7 @@ function proclamationrep(){
 	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
-	data:{id:77},
+	data:{id:809},
 	success:function(data){
 	$('#display').html(data);
 	}
