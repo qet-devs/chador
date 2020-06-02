@@ -31152,7 +31152,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="form-group form-actions">
                               <div class="col-sm-3"> </div>
                               <div class="col-sm-9">
-                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="entertenrep1()"><i class="fa fa-save"></i> Submit</button>
+                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="getlettersreport()"><i class="fa fa-save"></i> Submit</button>
                                 <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
                                 <div id="message2" style="width:40px;height:40px;float:right"></div>
                               </div>
@@ -31938,7 +31938,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="form-group form-actions">
                               <div class="col-sm-3"> </div>
                               <div class="col-sm-9">
-                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="entertenrep2()"><i class="fa fa-save"></i> Submit</button>
+                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="getdistressreport()"><i class="fa fa-save"></i> Submit</button>
                                 <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
                                 <div id="message2" style="width:40px;height:40px;float:right"></div>
                               </div>
@@ -33010,7 +33010,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="form-group form-actions">
                               <div class="col-sm-3"> </div>
                               <div class="col-sm-9">
-                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="entertenrep1()"><i class="fa fa-save"></i> Submit</button>
+                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="getdecreereport()"><i class="fa fa-save"></i> Submit</button>
                                 <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
                                 <div id="message2" style="width:40px;height:40px;float:right"></div>
                               </div>
@@ -33838,7 +33838,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="form-group form-actions">
                               <div class="col-sm-3"> </div>
                               <div class="col-sm-9">
-                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="entertenrep1()"><i class="fa fa-save"></i> Submit</button>
+                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="getdecreereport()"><i class="fa fa-save"></i> Submit</button>
                                 <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
                                 <div id="message2" style="width:40px;height:40px;float:right"></div>
                               </div>
@@ -35131,7 +35131,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="form-group form-actions">
                               <div class="col-sm-3"> </div>
                               <div class="col-sm-9">
-                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="entertenrep1()"><i class="fa fa-save"></i> Submit</button>
+                                <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="getproclamationreport()"><i class="fa fa-save"></i> Submit</button>
                                 <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
                                 <div id="message2" style="width:40px;height:40px;float:right"></div>
                               </div>

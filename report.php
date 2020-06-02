@@ -431,7 +431,19 @@ switch($id){
   case 91:
     $title='CHADOR Distress Report';
     break;
+    
+  case 92:
+    $title='CHADOR Decree Report';
+    break;
 
+    case 93:
+      $title='CHADOR Notice Report';
+      break;
+
+      
+    case 94:
+      $title='CHADOR Proclamation Report';
+      break;
 }
 ?>
 
@@ -16705,7 +16717,7 @@ switch($code){
   $result =mysql_query("select * from distress where  status=1 order by landlord");
   }
   else{
-    $result =mysql_query("select * from distress  where stamp>='".$d1."' and stamp<='".$d2."'  and status=1 order by distress");
+    $result =mysql_query("select * from distress  where stamp>='".$d1."' and stamp<='".$d2."'  and status=1 order by landlord");
   }
 
   break;
@@ -16768,5 +16780,466 @@ $aa=$i+1;
 
   break;
 
-
+  case 92:
+    $date=date('Y/m/d');
+  if(isset($_GET['name'])){
+    $name=$_GET['name'];
+  }else {$name=0;}
+  $code=$_GET['code'];
+  
+  
+  if($code==1){
+    
+    if($name==1){$title='Active Decree';}
+    else if($name=='All'){$title='All Decrees';}
+    else if($name==0){$title='Deactivated Decree';}
+    
+  }
+  if($code==2){$title='Members By Property';}
+  if($code==5){$title='Members By Group/Field Person';}
+  if($code==6){$title='Members By Sales Person';}
+  
+  if(isset($_GET['d1'])){
+    $d1=datereverse($_GET['d1']);
+  }else $d1=0;
+  if(isset($_GET['d2'])){
+    $d2=datereverse($_GET['d2']);
+  }else $d2=0;
+  $fname='decree_reports';
+  
+  ?>
+  <div class="panel-body maindiv" style="width:98%;min-height:260px; border:1px solid #333">
+    <div style="clear:both; margin-bottom:10px;"></div>
+  <img src="<?php echo $logo ?>" style="max-height:105px; margin:0px 10px 0 10px;width:18%; position:absolute;"/>
+  <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px"><?php  echo $comname ?></p>
+  <div style="clear:both"></div>
+  <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">P.O Box <?php  echo $Add ?><br/>Tel: <?php  echo $tel ?>
+  <br/>Website: <?php  echo $web ?><br/>Email: <?php  echo $email ?></p><div style="clear:both"></div>
+  <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">DECREE LIST REPORT [<?php  echo $title ?>]
+  <br/><strong style="font-size:11px">Date:<?php  echo date('d/m/Y') ?></strong></p>
+  <?php if($d1!=0){?>
+  <p style="text-align:center; font-weight:bold;margin:0 0 0 0px">From:&nbsp;&nbsp;<?php  echo dateprint($d1) ?>&nbsp;&nbsp;To:&nbsp;<?php  echo dateprint($d2) ?></p>
+  <?php } else if($code==6){?>
+  <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">DAILY SUMMARY REPORT</p>
+  <?php } else if($code==7){?>
+  
+  <?php } else {?>
+  <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">Full Statement Report</p>
+  <?php } ?>
+  <?php $d1=preg_replace('~/~', '', $d1); $d2=preg_replace('~/~', '', $d2);?>
+  
+  <div style="clear:both; margin-bottom:10px"></div>
+  
+  
+  <p><a id="toexcel" download="<?php  echo $fname ?>.xls" href="data:application/vnd.ms-excel;base64,PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4bWxuczp4PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTpleGNlbCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL1RSL1JFQy1odG1sNDAiPjxoZWFkPjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PVVURi04Ij48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD48eDpFeGNlbFdvcmtib29rPjx4OkV4Y2VsV29ya3NoZWV0cz48eDpFeGNlbFdvcmtzaGVldD48eDpOYW1lPnVuZGVmaW5lZDwveDpOYW1lPjx4OldvcmtzaGVldE9wdGlvbnM+PHg6RGlzcGxheUdyaWRsaW5lcy8+PC94OldvcmtzaGVldE9wdGlvbnM+PC94OkV4Y2VsV29ya3NoZWV0PjwveDpFeGNlbFdvcmtzaGVldHM+PC94OkV4Y2VsV29ya2Jvb2s+PC94bWw+PCFbZW5kaWZdLS0+PC9oZWFkPjxib2R5Pjx0YWJsZT4KICAgIDx0Ym9keT48dHI+CiAgICAgICAgPHRkPjEwMDwvdGQ+CiAgICAgICAgPHRkPjIwMDwvdGQ+CiAgICAgICAgPHRkPjMwMDwvdGQ+CiAgICA8L3RyPgogICAgPHRyPgogICAgICAgIDx0ZD40MDA8L3RkPgogICAgICAgIDx0ZD41MDA8L3RkPgogICAgICAgIDx0ZD42MDA8L3RkPgogICAgPC90cj4KPC90Ym9keT48L3RhYmxlPjwvYm9keT48L2h0bWw+" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheet Name Here');"><img src="img/excel.png" style="30px; height:30px; float:right; margin-right:10px"  title="Convert to Excel"/></a></p>
+  <img src="img/adobe.png" style="30px; height:30px; float:right; margin-right:10px; cursor:pointer" onclick="window.print() " title="Convert to Pdf"/>
+  <div style="clear:both; margin-bottom:10px"></div>
+  
+  <table id="datatable"  style="width:100%;text-align:center;font-size:11px; font-weight:bold; padding:0;" >
+  <tbody>
+  <tr style="width:100%; height:20px;color:#fff; background:#333; padding:0">
+          <td  style="width:4%;">No.</td>
+          <td  style="width:10%;">Party 1</td>
+          <td  style="width:10%;">Party 2</td>
+          <td  style="width:15%;">Holder</td>
+          <td  style="width:8%;">Court</td>
+          <td  style="width:8%;">Suit No.</td>
+          <td  style="width:8%;">Principal</td>
+          <td  style="width:8%;">Against</td>
+          <td  style="width:10%;">Entry Date</td>
+      </tr>
+  
+  
+  <?php
+  switch($code){
+    case 1:
+  
+    if($d1==0){
+    if($name=='All'){$x='';}else {$x='Where status='.$name;}
+    $result =mysql_query("select * from decrees ".$x." order by party1");
+    }
+    else{
+      if($name=='All'){$x='';}else {$x=' and status='.$name;}
+      $result =mysql_query("select * from decrees  where stamp>='".$d1."' and stamp<='".$d2."' ".$x." order by party1");
+    }
+  
+    break;
+  
+    case 2:
+  
+    if($d1==0){
+    $result =mysql_query("select * from decrees where  status=1 order by party1");
+    }
+    else{
+      $result =mysql_query("select * from decrees  where stamp>='".$d1."' and stamp<='".$d2."'  and status=1 order by party1");
+    }
+  
+    break;
+  
+    case 3:
+  
+    if($name=='All'){
+    $result =mysql_query("select * from decrees where status=1  order by party1");
+   
+    }
+    else{
+      $result =mysql_query("select * from decrees where status=1  order by party1");
+    }
+  
+    
+  
+    break;
+    
+  }
+   
+   
+  $a=0;$b=0;
+  $num_results = mysql_num_rows($result);
+  for ($i=0; $i <$num_results; $i++) {
+  $rowa=mysql_fetch_array($result);
+  $status=stripslashes($rowa['status']);
+  //$a+=preg_replace('~,~', '', stripslashes($rowa['monrent']));
+  //$b+=preg_replace('~,~', '', stripslashes($rowa['bal']));
+  
+  $aa=$i+1;
+    $sent='';
+    if($i%2==0){$col='#fff';}else{$col='#f0f0f0';}
+    echo'<tr style="width:100%; height:20px;padding:0; background:'.$col.'; font-weight:normal  ">';    
+    ?>
+    <td  style="width:4%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo $aa ?></td>
+    <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['party1']) ?></td>
+     <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['party2']) ?></td>
+    <td  style="width:15%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['holder']) ?></td>
+    <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['court']) ?></td>
+    <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['suitno']) ?></td>
+    <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><script>document.writeln(( <?php  echo stripslashes($rowa['principal']) ?>).formatMoney(2, '.', ','));</script></td>
+    <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['against']) ?></td>
+    <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stamptodate(stripslashes($rowa['stamp'])) ?></td>
+    </tr>
+  
+  <?php } 
+  
+  ?>
+  
+  </tbody>
+  </table>
+  
+  
+  <div style="clear:both; margin-bottom:20px"></div>
+  <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">Thank You for your Partnership.</p>
+  <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">Report Pulled By <?php  echo $username ?>.</p>
+  </div>
+  <?php 
+  
+  
+    break;
+  
+    case 93:
+      $date=date('Y/m/d');
+    if(isset($_GET['name'])){
+      $name=$_GET['name'];
+    }else {$name=0;}
+    $code=$_GET['code'];
+    
+    
+    if($code==1){
+      
+      if($name==1){$title='Active Notice';}
+      else if($name=='All'){$title='All Notice';}
+      else if($name==0){$title='Deactivated Notice';}
+      
+    }
+    if($code==2){$title='Members By Property';}
+    if($code==5){$title='Members By Group/Field Person';}
+    if($code==6){$title='Members By Sales Person';}
+    
+    if(isset($_GET['d1'])){
+      $d1=datereverse($_GET['d1']);
+    }else $d1=0;
+    if(isset($_GET['d2'])){
+      $d2=datereverse($_GET['d2']);
+    }else $d2=0;
+    $fname='notice_reports';
+    
+    ?>
+    <div class="panel-body maindiv" style="width:98%;min-height:260px; border:1px solid #333">
+      <div style="clear:both; margin-bottom:10px;"></div>
+    <img src="<?php echo $logo ?>" style="max-height:105px; margin:0px 10px 0 10px;width:18%; position:absolute;"/>
+    <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px"><?php  echo $comname ?></p>
+    <div style="clear:both"></div>
+    <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">P.O Box <?php  echo $Add ?><br/>Tel: <?php  echo $tel ?>
+    <br/>Website: <?php  echo $web ?><br/>Email: <?php  echo $email ?></p><div style="clear:both"></div>
+    <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">NOTICE REPORT [<?php  echo $title ?>]
+    <br/><strong style="font-size:11px">Date:<?php  echo date('d/m/Y') ?></strong></p>
+    <?php if($d1!=0){?>
+    <p style="text-align:center; font-weight:bold;margin:0 0 0 0px">From:&nbsp;&nbsp;<?php  echo dateprint($d1) ?>&nbsp;&nbsp;To:&nbsp;<?php  echo dateprint($d2) ?></p>
+    <?php } else if($code==6){?>
+    <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">DAILY SUMMARY REPORT</p>
+    <?php } else if($code==7){?>
+    
+    <?php } else {?>
+    <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">Full Statement Report</p>
+    <?php } ?>
+    <?php $d1=preg_replace('~/~', '', $d1); $d2=preg_replace('~/~', '', $d2);?>
+    
+    <div style="clear:both; margin-bottom:10px"></div>
+    
+    
+    <p><a id="toexcel" download="<?php  echo $fname ?>.xls" href="data:application/vnd.ms-excel;base64,PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4bWxuczp4PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTpleGNlbCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL1RSL1JFQy1odG1sNDAiPjxoZWFkPjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PVVURi04Ij48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD48eDpFeGNlbFdvcmtib29rPjx4OkV4Y2VsV29ya3NoZWV0cz48eDpFeGNlbFdvcmtzaGVldD48eDpOYW1lPnVuZGVmaW5lZDwveDpOYW1lPjx4OldvcmtzaGVldE9wdGlvbnM+PHg6RGlzcGxheUdyaWRsaW5lcy8+PC94OldvcmtzaGVldE9wdGlvbnM+PC94OkV4Y2VsV29ya3NoZWV0PjwveDpFeGNlbFdvcmtzaGVldHM+PC94OkV4Y2VsV29ya2Jvb2s+PC94bWw+PCFbZW5kaWZdLS0+PC9oZWFkPjxib2R5Pjx0YWJsZT4KICAgIDx0Ym9keT48dHI+CiAgICAgICAgPHRkPjEwMDwvdGQ+CiAgICAgICAgPHRkPjIwMDwvdGQ+CiAgICAgICAgPHRkPjMwMDwvdGQ+CiAgICA8L3RyPgogICAgPHRyPgogICAgICAgIDx0ZD40MDA8L3RkPgogICAgICAgIDx0ZD41MDA8L3RkPgogICAgICAgIDx0ZD42MDA8L3RkPgogICAgPC90cj4KPC90Ym9keT48L3RhYmxlPjwvYm9keT48L2h0bWw+" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheet Name Here');"><img src="img/excel.png" style="30px; height:30px; float:right; margin-right:10px"  title="Convert to Excel"/></a></p>
+    <img src="img/adobe.png" style="30px; height:30px; float:right; margin-right:10px; cursor:pointer" onclick="window.print() " title="Convert to Pdf"/>
+    <div style="clear:both; margin-bottom:10px"></div>
+    
+    <table id="datatable"  style="width:100%;text-align:center;font-size:11px; font-weight:bold; padding:0;" >
+    <tbody>
+    <tr style="width:100%; height:20px;color:#fff; background:#333; padding:0">
+            <td  style="width:4%;">No.</td>
+            <td  style="width:10%;">Party 1</td>
+            <td  style="width:10%;">Party 2</td>
+            <td  style="width:15%;">Holder</td>
+            <td  style="width:8%;">Court</td>
+            <td  style="width:8%;">Suit No.</td>
+            <td  style="width:8%;">Principal</td>
+            <td  style="width:8%;">Against</td>
+            <td  style="width:10%;">Entry Date</td>
+        </tr>
+    
+    
+    <?php
+    switch($code){
+      case 1:
+    
+      if($d1==0){
+      if($name=='All'){$x='';}else {$x='Where status='.$name;}
+      $result =mysql_query("select * from decree ".$x." order by party1");
+      }
+      else{
+        if($name=='All'){$x='';}else {$x=' and status='.$name;}
+        $result =mysql_query("select * from decree  where stamp>='".$d1."' and stamp<='".$d2."' ".$x." order by party1");
+      }
+    
+      break;
+    
+      case 2:
+    
+      if($d1==0){
+      $result =mysql_query("select * from decree where  status=1 order by party1");
+      }
+      else{
+        $result =mysql_query("select * from decree  where stamp>='".$d1."' and stamp<='".$d2."'  and status=1 order by party1");
+      }
+    
+      break;
+    
+      case 3:
+    
+      if($name=='All'){
+      $result =mysql_query("select * from decree where status=1  order by party1");
+     
+      }
+      else{
+        $result =mysql_query("select * from decree where status=1  order by party1");
+      }
+    
+      
+    
+      break;
+      
+    }
+     
+     
+    $a=0;$b=0;
+    $num_results = mysql_num_rows($result);
+    for ($i=0; $i <$num_results; $i++) {
+    $rowa=mysql_fetch_array($result);
+    $status=stripslashes($rowa['status']);
+    //$a+=preg_replace('~,~', '', stripslashes($rowa['monrent']));
+    //$b+=preg_replace('~,~', '', stripslashes($rowa['bal']));
+    
+    $aa=$i+1;
+      $sent='';
+      if($i%2==0){$col='#fff';}else{$col='#f0f0f0';}
+      echo'<tr style="width:100%; height:20px;padding:0; background:'.$col.'; font-weight:normal  ">';    
+      ?>
+      <td  style="width:4%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo $aa ?></td>
+      <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['party1']) ?></td>
+       <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['party2']) ?></td>
+      <td  style="width:15%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['holder']) ?></td>
+      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['court']) ?></td>
+      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['suitno']) ?></td>
+      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><script>document.writeln(( <?php  echo stripslashes($rowa['principal']) ?>).formatMoney(2, '.', ','));</script></td>
+      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['against']) ?></td>
+      <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stamptodate(stripslashes($rowa['stamp'])) ?></td>
+      </tr>
+    
+    <?php } 
+    
+    ?>
+    
+    </tbody>
+    </table>
+    
+    
+    <div style="clear:both; margin-bottom:20px"></div>
+    <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">Thank You for your Partnership.</p>
+    <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">Report Pulled By <?php  echo $username ?>.</p>
+    </div>
+    <?php 
+    
+    
+      break;
+  
+      case 94:
+        $date=date('Y/m/d');
+      if(isset($_GET['name'])){
+        $name=$_GET['name'];
+      }else {$name=0;}
+      $code=$_GET['code'];
+      
+      
+      if($code==1){
+        
+        if($name==1){$title='Active Decree';}
+        else if($name=='All'){$title='All Decrees';}
+        else if($name==0){$title='Deactivated Decree';}
+        
+      }
+      if($code==2){$title='Members By Property';}
+      if($code==5){$title='Members By Group/Field Person';}
+      if($code==6){$title='Members By Sales Person';}
+      
+      if(isset($_GET['d1'])){
+        $d1=datereverse($_GET['d1']);
+      }else $d1=0;
+      if(isset($_GET['d2'])){
+        $d2=datereverse($_GET['d2']);
+      }else $d2=0;
+      $fname='notice_reports';
+      
+      ?>
+      <div class="panel-body maindiv" style="width:98%;min-height:260px; border:1px solid #333">
+        <div style="clear:both; margin-bottom:10px;"></div>
+      <img src="<?php echo $logo ?>" style="max-height:105px; margin:0px 10px 0 10px;width:18%; position:absolute;"/>
+      <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px"><?php  echo $comname ?></p>
+      <div style="clear:both"></div>
+      <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">P.O Box <?php  echo $Add ?><br/>Tel: <?php  echo $tel ?>
+      <br/>Website: <?php  echo $web ?><br/>Email: <?php  echo $email ?></p><div style="clear:both"></div>
+      <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">NOTICE REPORT [<?php  echo $title ?>]
+      <br/><strong style="font-size:11px">Date:<?php  echo date('d/m/Y') ?></strong></p>
+      <?php if($d1!=0){?>
+      <p style="text-align:center; font-weight:bold;margin:0 0 0 0px">From:&nbsp;&nbsp;<?php  echo dateprint($d1) ?>&nbsp;&nbsp;To:&nbsp;<?php  echo dateprint($d2) ?></p>
+      <?php } else if($code==6){?>
+      <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">DAILY SUMMARY REPORT</p>
+      <?php } else if($code==7){?>
+      
+      <?php } else {?>
+      <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">Full Statement Report</p>
+      <?php } ?>
+      <?php $d1=preg_replace('~/~', '', $d1); $d2=preg_replace('~/~', '', $d2);?>
+      
+      <div style="clear:both; margin-bottom:10px"></div>
+      
+      
+      <p><a id="toexcel" download="<?php  echo $fname ?>.xls" href="data:application/vnd.ms-excel;base64,PGh0bWwgeG1sbnM6bz0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6b2ZmaWNlIiB4bWxuczp4PSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOm9mZmljZTpleGNlbCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnL1RSL1JFQy1odG1sNDAiPjxoZWFkPjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PVVURi04Ij48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD48eDpFeGNlbFdvcmtib29rPjx4OkV4Y2VsV29ya3NoZWV0cz48eDpFeGNlbFdvcmtzaGVldD48eDpOYW1lPnVuZGVmaW5lZDwveDpOYW1lPjx4OldvcmtzaGVldE9wdGlvbnM+PHg6RGlzcGxheUdyaWRsaW5lcy8+PC94OldvcmtzaGVldE9wdGlvbnM+PC94OkV4Y2VsV29ya3NoZWV0PjwveDpFeGNlbFdvcmtzaGVldHM+PC94OkV4Y2VsV29ya2Jvb2s+PC94bWw+PCFbZW5kaWZdLS0+PC9oZWFkPjxib2R5Pjx0YWJsZT4KICAgIDx0Ym9keT48dHI+CiAgICAgICAgPHRkPjEwMDwvdGQ+CiAgICAgICAgPHRkPjIwMDwvdGQ+CiAgICAgICAgPHRkPjMwMDwvdGQ+CiAgICA8L3RyPgogICAgPHRyPgogICAgICAgIDx0ZD40MDA8L3RkPgogICAgICAgIDx0ZD41MDA8L3RkPgogICAgICAgIDx0ZD42MDA8L3RkPgogICAgPC90cj4KPC90Ym9keT48L3RhYmxlPjwvYm9keT48L2h0bWw+" onclick="return ExcellentExport.excel(this, 'datatable', 'Sheet Name Here');"><img src="img/excel.png" style="30px; height:30px; float:right; margin-right:10px"  title="Convert to Excel"/></a></p>
+      <img src="img/adobe.png" style="30px; height:30px; float:right; margin-right:10px; cursor:pointer" onclick="window.print() " title="Convert to Pdf"/>
+      <div style="clear:both; margin-bottom:10px"></div>
+      
+      <table id="datatable"  style="width:100%;text-align:center;font-size:11px; font-weight:bold; padding:0;" >
+      <tbody>
+      <tr style="width:100%; height:20px;color:#fff; background:#333; padding:0">
+              <td  style="width:4%;">No.</td>
+              <td  style="width:10%;">Party 1</td>
+              <td  style="width:10%;">Party 2</td>
+              <td  style="width:15%;">Holder</td>
+              <td  style="width:8%;">Court</td>
+              <td  style="width:8%;">Suit No.</td>
+              <td  style="width:8%;">Principal</td>
+              <td  style="width:8%;">Against</td>
+              <td  style="width:10%;">Entry Date</td>
+          </tr>
+      
+      
+      <?php
+      switch($code){
+        case 1:
+      
+        if($d1==0){
+        if($name=='All'){$x='';}else {$x='Where status='.$name;}
+        $result =mysql_query("select * from decree ".$x." order by party1");
+        }
+        else{
+          if($name=='All'){$x='';}else {$x=' and status='.$name;}
+          $result =mysql_query("select * from decree  where stamp>='".$d1."' and stamp<='".$d2."' ".$x." order by party1");
+        }
+      
+        break;
+      
+        case 2:
+      
+        if($d1==0){
+        $result =mysql_query("select * from decree where  status=1 order by party1");
+        }
+        else{
+          $result =mysql_query("select * from decree  where stamp>='".$d1."' and stamp<='".$d2."'  and status=1 order by party1");
+        }
+      
+        break;
+      
+        case 3:
+      
+        if($name=='All'){
+        $result =mysql_query("select * from decree where status=1  order by party1");
+       
+        }
+        else{
+          $result =mysql_query("select * from decree where status=1  order by party1");
+        }
+      
+        
+      
+        break;
+        
+      }
+       
+       
+      $a=0;$b=0;
+      $num_results = mysql_num_rows($result);
+      for ($i=0; $i <$num_results; $i++) {
+      $rowa=mysql_fetch_array($result);
+      $status=stripslashes($rowa['status']);
+      //$a+=preg_replace('~,~', '', stripslashes($rowa['monrent']));
+      //$b+=preg_replace('~,~', '', stripslashes($rowa['bal']));
+      
+      $aa=$i+1;
+        $sent='';
+        if($i%2==0){$col='#fff';}else{$col='#f0f0f0';}
+        echo'<tr style="width:100%; height:20px;padding:0; background:'.$col.'; font-weight:normal  ">';    
+        ?>
+        <td  style="width:4%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo $aa ?></td>
+        <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['party1']) ?></td>
+         <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['party2']) ?></td>
+        <td  style="width:15%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['holder']) ?></td>
+        <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['court']) ?></td>
+        <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['suitno']) ?></td>
+        <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><script>document.writeln(( <?php  echo stripslashes($rowa['principal']) ?>).formatMoney(2, '.', ','));</script></td>
+        <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['against']) ?></td>
+        <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stamptodate(stripslashes($rowa['stamp'])) ?></td>
+        </tr>
+      
+      <?php } 
+      
+      ?>
+      
+      </tbody>
+      </table>
+      
+      
+      <div style="clear:both; margin-bottom:20px"></div>
+      <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">Thank You for your Partnership.</p>
+      <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">Report Pulled By <?php  echo $username ?>.</p>
+      </div>
+      <?php 
+      
+      
+        break;
+   
 }
