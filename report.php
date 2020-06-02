@@ -17098,9 +17098,9 @@ $aa=$i+1;
       
       if($code==1){
         
-        if($name==1){$title='Active Decree';}
-        else if($name=='All'){$title='All Decrees';}
-        else if($name==0){$title='Deactivated Decree';}
+        if($name==1){$title='Active Proclamation';}
+        else if($name=='All'){$title='All Proclamation';}
+        else if($name==0){$title='Deactivated Proclamation';}
         
       }
       if($code==2){$title='Members By Property';}
@@ -17113,7 +17113,7 @@ $aa=$i+1;
       if(isset($_GET['d2'])){
         $d2=datereverse($_GET['d2']);
       }else $d2=0;
-      $fname='notice_reports';
+      $fname='proclamation_reports';
       
       ?>
       <div class="panel-body maindiv" style="width:98%;min-height:260px; border:1px solid #333">
@@ -17123,7 +17123,7 @@ $aa=$i+1;
       <div style="clear:both"></div>
       <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">P.O Box <?php  echo $Add ?><br/>Tel: <?php  echo $tel ?>
       <br/>Website: <?php  echo $web ?><br/>Email: <?php  echo $email ?></p><div style="clear:both"></div>
-      <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">NOTICE REPORT [<?php  echo $title ?>]
+      <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">PROCLAMATION LIST REPORT [<?php  echo $title ?>]
       <br/><strong style="font-size:11px">Date:<?php  echo date('d/m/Y') ?></strong></p>
       <?php if($d1!=0){?>
       <p style="text-align:center; font-weight:bold;margin:0 0 0 0px">From:&nbsp;&nbsp;<?php  echo dateprint($d1) ?>&nbsp;&nbsp;To:&nbsp;<?php  echo dateprint($d2) ?></p>
@@ -17147,13 +17147,13 @@ $aa=$i+1;
       <tbody>
       <tr style="width:100%; height:20px;color:#fff; background:#333; padding:0">
               <td  style="width:4%;">No.</td>
-              <td  style="width:10%;">Party 1</td>
-              <td  style="width:10%;">Party 2</td>
-              <td  style="width:15%;">Holder</td>
+              <td  style="width:15%;">Creditor Name</td>
+              <td  style="width:15%;">Debtor Name</td>
+              <td  style="width:5%;">Notice Days</td>
               <td  style="width:8%;">Court</td>
-              <td  style="width:8%;">Suit No.</td>
-              <td  style="width:8%;">Principal</td>
-              <td  style="width:8%;">Against</td>
+              <td  style="width:8%;">Case No</td>
+              <td  style="width:8%;">Amount</td>
+              <td  style="width:8%;">Auct Charges</td>
               <td  style="width:10%;">Entry Date</td>
           </tr>
       
@@ -17164,11 +17164,11 @@ $aa=$i+1;
       
         if($d1==0){
         if($name=='All'){$x='';}else {$x='Where status='.$name;}
-        $result =mysql_query("select * from decree ".$x." order by party1");
+        $result =mysql_query("select * from proclamations ".$x." order by creditorname");
         }
         else{
           if($name=='All'){$x='';}else {$x=' and status='.$name;}
-          $result =mysql_query("select * from decree  where stamp>='".$d1."' and stamp<='".$d2."' ".$x." order by party1");
+          $result =mysql_query("select * from proclamations  where stamp>='".$d1."' and stamp<='".$d2."' ".$x." order by creditorname");
         }
       
         break;
@@ -17176,10 +17176,10 @@ $aa=$i+1;
         case 2:
       
         if($d1==0){
-        $result =mysql_query("select * from decree where  status=1 order by party1");
+        $result =mysql_query("select * from proclamations where  status=1 order by creditorname");
         }
         else{
-          $result =mysql_query("select * from decree  where stamp>='".$d1."' and stamp<='".$d2."'  and status=1 order by party1");
+          $result =mysql_query("select * from proclamations  where stamp>='".$d1."' and stamp<='".$d2."'  and status=1 order by creditorname");
         }
       
         break;
@@ -17187,11 +17187,11 @@ $aa=$i+1;
         case 3:
       
         if($name=='All'){
-        $result =mysql_query("select * from decree where status=1  order by party1");
+        $result =mysql_query("select * from proclamations where status=1  order by creditorname");
        
         }
         else{
-          $result =mysql_query("select * from decree where status=1  order by party1");
+          $result =mysql_query("select * from proclamations where status=1  order by creditorname");
         }
       
         
@@ -17215,13 +17215,13 @@ $aa=$i+1;
         echo'<tr style="width:100%; height:20px;padding:0; background:'.$col.'; font-weight:normal  ">';    
         ?>
         <td  style="width:4%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo $aa ?></td>
-        <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['party1']) ?></td>
-         <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['party2']) ?></td>
-        <td  style="width:15%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['holder']) ?></td>
+        <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['creditorname']) ?></td>
+         <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['debtorname']) ?></td>
+        <td  style="width:15%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['noticedays']) ?></td>
         <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['court']) ?></td>
-        <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['suitno']) ?></td>
-        <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><script>document.writeln(( <?php  echo stripslashes($rowa['principal']) ?>).formatMoney(2, '.', ','));</script></td>
-        <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['against']) ?></td>
+        <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['caseno']) ?></td>
+        <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><script>document.writeln(( <?php  echo stripslashes($rowa['amount']) ?>).formatMoney(2, '.', ','));</script></td>
+        <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><script>document.writeln(( <?php  echo stripslashes($rowa['auctcharges']) ?>).formatMoney(2, '.', ','));</script></td>
         <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stamptodate(stripslashes($rowa['stamp'])) ?></td>
         </tr>
       
