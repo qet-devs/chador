@@ -16993,13 +16993,13 @@ $aa=$i+1;
     <tbody>
     <tr style="width:100%; height:20px;color:#fff; background:#333; padding:0">
             <td  style="width:4%;">No.</td>
-            <td  style="width:10%;">Party 1</td>
-            <td  style="width:10%;">Party 2</td>
-            <td  style="width:15%;">Holder</td>
-            <td  style="width:8%;">Court</td>
-            <td  style="width:8%;">Suit No.</td>
-            <td  style="width:8%;">Principal</td>
-            <td  style="width:8%;">Against</td>
+            <td  style="width:15%;">Debtor</td>
+            <td  style="width:15%;">Instructing Party</td>
+            <td  style="width:5%;">Notice Date</td>
+            <td  style="width:8%;">Notice Days</td>
+            <td  style="width:8%;">Date Served</td>
+            <td  style="width:8%;">Amount</td>
+            <td  style="width:8%;">charges</td>
             <td  style="width:10%;">Entry Date</td>
         </tr>
     
@@ -17010,11 +17010,11 @@ $aa=$i+1;
     
       if($d1==0){
       if($name=='All'){$x='';}else {$x='Where status='.$name;}
-      $result =mysql_query("select * from decree ".$x." order by party1");
+      $result =mysql_query("select * from court_notices ".$x." order by debtor_name");
       }
       else{
         if($name=='All'){$x='';}else {$x=' and status='.$name;}
-        $result =mysql_query("select * from decree  where stamp>='".$d1."' and stamp<='".$d2."' ".$x." order by party1");
+        $result =mysql_query("select * from court_notices  where stamp>='".$d1."' and stamp<='".$d2."' ".$x." order by debtor_name");
       }
     
       break;
@@ -17022,10 +17022,10 @@ $aa=$i+1;
       case 2:
     
       if($d1==0){
-      $result =mysql_query("select * from decree where  status=1 order by party1");
+      $result =mysql_query("select * from court_notices where  status=1 order by debtor_name");
       }
       else{
-        $result =mysql_query("select * from decree  where stamp>='".$d1."' and stamp<='".$d2."'  and status=1 order by party1");
+        $result =mysql_query("select * from court_notices  where stamp>='".$d1."' and stamp<='".$d2."'  and status=1 order by debtor_name");
       }
     
       break;
@@ -17033,11 +17033,11 @@ $aa=$i+1;
       case 3:
     
       if($name=='All'){
-      $result =mysql_query("select * from decree where status=1  order by party1");
+      $result =mysql_query("select * from court_notices where status=1  order by debtor_name");
      
       }
       else{
-        $result =mysql_query("select * from decree where status=1  order by party1");
+        $result =mysql_query("select * from court_notices where status=1  order by debtor_name");
       }
     
       
@@ -17061,13 +17061,13 @@ $aa=$i+1;
       echo'<tr style="width:100%; height:20px;padding:0; background:'.$col.'; font-weight:normal  ">';    
       ?>
       <td  style="width:4%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo $aa ?></td>
-      <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['party1']) ?></td>
-       <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['party2']) ?></td>
-      <td  style="width:15%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['holder']) ?></td>
-      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['court']) ?></td>
-      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['suitno']) ?></td>
-      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><script>document.writeln(( <?php  echo stripslashes($rowa['principal']) ?>).formatMoney(2, '.', ','));</script></td>
-      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['against']) ?></td>
+      <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['debtor_name']) ?></td>
+       <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['instructing_party']) ?></td>
+      <td  style="width:15%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['notice_date']) ?></td>
+      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['days']) ?></td>
+      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stripslashes($rowa['date_served']) ?></td>
+      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><script>document.writeln(( <?php  echo stripslashes($rowa['amount']) ?>).formatMoney(2, '.', ','));</script></td>
+      <td  style="width:8%;border-width:0.5px; border-color:#666; border-style:solid; "><script>document.writeln(( <?php  echo stripslashes($rowa['charges']) ?>).formatMoney(2, '.', ','));</script></td>
       <td  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid; "><?php  echo stamptodate(stripslashes($rowa['stamp'])) ?></td>
       </tr>
     
