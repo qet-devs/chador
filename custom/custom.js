@@ -10549,3 +10549,123 @@ function calctotalcost(){
 	$('#total_costs').val(tot);
 	
 }
+
+function lettersrep(){
+	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:413},
+	success:function(data){
+	$('#display').html(data);
+	}
+	});
+}
+
+function getlettersreport(){
+	var code=1;
+var d1 = $('#date1').val();
+var d2 = $('#date2').val();
+var name = $('#itemname').val();
+var view = $('input[name=viewall]:checked').val();
+if(!(view)){view=0}
+if((d1==''||d2=='')&&view==0){
+		swal("Error", "Enter the Start and End Dates!", "error");
+}
+else {window.open("report.php?id=90&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
+}
+
+function distressrep(){
+	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:508},
+	success:function(data){
+	$('#display').html(data);
+	}
+	});
+}
+
+function getdistressreport(){
+	var code=1;
+var d1 = $('#date1').val();
+var d2 = $('#date2').val();
+var name = $('#itemname').val();
+var view = $('input[name=viewall]:checked').val();
+if(!(view)){view=0}
+if((d1==''||d2=='')&&view==0){
+		swal("Error", "Enter the Start and End Dates!", "error");
+}
+else {window.open("report.php?id=91&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
+}
+
+function decreerep(){
+	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:608},
+	success:function(data){
+	$('#display').html(data);
+	}
+	});
+}
+
+function getdecreereport(){
+	var code=1;
+var d1 = $('#date1').val();
+var d2 = $('#date2').val();
+var name = $('#itemname').val();
+var view = $('input[name=viewall]:checked').val();
+if(!(view)){view=0}
+if((d1==''||d2=='')&&view==0){
+		swal("Error", "Enter the Start and End Dates!", "error");
+}
+else {window.open("report.php?id=92&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
+}
+
+function noticerep(){
+	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:708},
+	success:function(data){
+	$('#display').html(data);
+	}
+	});
+}
+
+function getnoticereport(){
+	var code=1;
+var d1 = $('#date1').val();
+var d2 = $('#date2').val();
+var name = $('#itemname').val();
+var view = $('input[name=viewall]:checked').val();
+if(!(view)){view=0}
+if((d1==''||d2=='')&&view==0){
+		swal("Error", "Enter the Start and End Dates!", "error");
+}
+else {window.open("report.php?id=93&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
+}
+
+function proclamationrep(){
+	$('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:809},
+	success:function(data){
+	$('#display').html(data);
+	}
+	});
+}
+
+function getproclamationreport(){
+	var code=1;
+var d1 = $('#date1').val();
+var d2 = $('#date2').val();
+var name = $('#itemname').val();
+var view = $('input[name=viewall]:checked').val();
+if(!(view)){view=0}
+if((d1==''||d2=='')&&view==0){
+		swal("Error", "Enter the Start and End Dates!", "error");
+}
+else {window.open("report.php?id=94&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
+}
