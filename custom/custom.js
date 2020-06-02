@@ -4723,7 +4723,7 @@ if(!(view)){view=0}
 if((d1==''||d2=='')&&view==0){
 		swal("Error", "Enter the Start and End Dates!", "error");
 }
-else {window.open("report.php?id=18&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
+else {window.open("report.php?id=90&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
 }
 
 function tenrep2(a){
@@ -4752,7 +4752,7 @@ else if(name==''){
 	swal("Error", "Select the Property!", "error");
 }
 
-else {window.open("report.php?id=18&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
+else {window.open("report.php?id=91&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
 }
 
 
