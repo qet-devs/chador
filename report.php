@@ -16636,9 +16636,9 @@ $code=$_GET['code'];
 
 if($code==1){
   
-  if($name==1){$title='Active Letters';}
-  else if($name=='All'){$title='All Letters';}
-  else if($name==0){$title='Deactivated';}
+  if($name==1){$title='Active Distress';}
+  else if($name=='All'){$title='All Distress';}
+  else if($name==0){$title='Deactivated Distress';}
   
 }
 if($code==2){$title='Members By Property';}
@@ -16661,7 +16661,7 @@ $fname='distress_reports';
 <div style="clear:both"></div>
 <p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">P.O Box <?php  echo $Add ?><br/>Tel: <?php  echo $tel ?>
 <br/>Website: <?php  echo $web ?><br/>Email: <?php  echo $email ?></p><div style="clear:both"></div>
-<p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">LETTER LIST REPORT [<?php  echo $title ?>]
+<p style="text-align:center;font-size:11px; font-weight:bold;margin:0 0 0 0px">DISTRESS LIST REPORT [<?php  echo $title ?>]
 <br/><strong style="font-size:11px">Date:<?php  echo date('d/m/Y') ?></strong></p>
 <?php if($d1!=0){?>
 <p style="text-align:center; font-weight:bold;margin:0 0 0 0px">From:&nbsp;&nbsp;<?php  echo dateprint($d1) ?>&nbsp;&nbsp;To:&nbsp;<?php  echo dateprint($d2) ?></p>

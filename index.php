@@ -113,7 +113,7 @@
               <div class="panel widget" style="background:#fff">
                 <div class="panel-body" style="border:1px solid #ddd">
                   <img src="img/logos/clogo.jpeg" style="margin-bottom:10px;"/> 
-                   <label class="control-label" for="username" style="font-size:20px;font-weight:bold;text-align: center;margin-bottom:10px;">CHADOR BRANCH CRM</label>
+                   <label class="control-label" for="username" style="font-size:20px;font-weight:bold;text-align: center;margin-bottom:10px;">CHADOR AUCTIONEERS CRM</label>
                   <form class="form-horizontal" id="login-form" action="#" role="form">
                     <div class="form-group  mgbt-xs-20">
                       <div class="col-md-12">
