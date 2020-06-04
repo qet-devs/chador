@@ -6262,7 +6262,7 @@ switch ($id) {
 
         $uid = 'DIS' . sprintf("%06d", $tid);
 
-        $resultc = mysql_query("INSERT INTO `distress`(`uid`, `landlord`, `tenant`, `to`, `at`, `amount`, `months`, `status`, `username`) 
+        $resultc = mysql_query("INSERT INTO `distress`( `uid`, `landlord`, `tenant`, `to`, `at`, `amount`, `months`, `status`, `username`, `stamp`, `date`, `time`) 
 								VALUES ('" . $uid . "','" . $landlord . "','" . $tenant . "','" . $to . "','" . $date . "','" . $amount . "','" . $months . "','1','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
 
