@@ -122,7 +122,7 @@
                         </div>
                         <div class="vd_input-wrapper" id="email-input-wrapper"  style="display:none"></span>
                              <select id="property" class="required">
-                              <option value="kpa"></option>
+                              <option value="kpa"></option> 
                                </select>
                         </div>
 
