@@ -67,11 +67,10 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
     
     
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/ico/apple-touch-icon-144-precomposed.html">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="img/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="img/home.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
     
     
     <!-- CSS -->
@@ -332,7 +331,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
         </div>
     	 <div class="vd_menu">
 
-        <ul class="menuitem">
+        <ul class="menuitem text-capitalize">
 
           <li style="">
           <a><span class="menu-text">This copy is licensed to:</span></a>
