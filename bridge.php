@@ -31964,44 +31964,38 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                           <div class="panel widget">
                               <div class="panel-heading vd_bg-grey">
                                   <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Decree Details</h3>
+                                      Court Details</h3>
                               </div>
                               <!--                        panel heading-->
                               <div class="panel-body text-capitalize">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label for="">Suit No.</label>
-                                      <input type="text" class="control" id="suitno">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="">Decree Holder.</label>
-                                      <input type="text" class="control" id="holder">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="">Court.</label>
+                                      <label for="">Court</label>
                                       <input type="text" class="control" id="court">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Name of parties.</label>
-                                      <input type="text" class="control" id="party1">
-                                      <label for="">-VS-.</label>
-                                      <input type="text" class="control" id="party2">
+                                      <label for="">Case No.</label>
+                                      <input type="text" class="control" id="caseno">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Against whom to execute</label>
-                                      <input type="text" class="control" id="against">
+                                      <label for="">Plaintiffs</label>
+                                      <textarea name="plaintiff" class="control" id="plaintiff"></textarea>
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Appeal prefered from decree</label>
-                                      <input type="text" id="appeal" class="control">
+                                      <label for="">Defendants</label>
+                                      <textarea name="defendant" class="control" id="defendant"></textarea>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Claim</label>
+                                      <input type="text" class="control" id="claim">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Court Date</label>
+                                      <input type="text" class="control date" id="court_date">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Decree Date</label>
-                                      <input type="text" class="control date" id="datepicker">
-                                  </div>
-                                  <div class="form-group">
-                                      <label>Court Mode of assistance</label>
-                                      <textarea name="mode" class="control" id="mode"></textarea>
+                                      <input type="text" class="control date" id="decree_date">
                                   </div>
                               </div>
                               <!-- Panel body -->
@@ -32010,29 +32004,38 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                           
                           <div class="panel widget">
                               <div class="panel-heading vd_bg-grey">
-                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Adjournment or Payment Details</h3>
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Payment Details</h3>
                               </div>
                               <!--                        panel heading-->
                               <div class="panel-body">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label for="">Adjournment</label>
-                                      <input type="text" class="control" id="adj">
+                                      <label for="">Principal Amount</label>
+                                      <input type="text" class="control" id="principal">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Payment</label>
-                                      <input type="text" class="control" id="payment">
+                                      <label for="">Interest</label>
+                                      <input type="text" class="control" id="interest">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Date</label>
-                                      <input type="text" class="control date" id="datepicker1">
+                                  <label >Payment Duration</label>
+                                  <div class="form-group">
+                                      <label for="">From Date</label>
+                                      <input type="text" class="control date" id="start_date">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Results</label>
-                                      <textarea id="result" name="result" class="control"></textarea>
+                                      <label for="">To Date</label>
+                                      <input type="text" class="control date" id="end_date">
                                   </div>
-      
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Rate per annum</label>
+                                      <input type="text" class="control" id="rate">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Decretal Amount</label>
+                                      <input type="text" class="control" id="decretal_amount" disabled>
+                                  </div>
                               </div>
                               <!-- Panel body -->
                           </div>
@@ -32043,55 +32046,47 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                       <div class="col-md-6">
                           <div class="panel widget">
                               <div class="panel-heading vd_bg-grey">
-                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Amount with interests</h3>
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Stated Costs</h3>
                               </div>
                               <!--                        panel heading-->
                               <div class="panel-body">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label for="">Principal Amount</label>
-                                      <input type="text" class="control" id="principal_amount" onkeyup="calcamount()" >
+                                      <label for="">Party and Party Costs on higher scale</label>
+                                      <input type="text" class="control" id="party_cost" onkeyup="calcamount()" >
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Interest</label>
-                                      <input type="text" class="control" id="interest" onkeyup="calcamount()" >
+                                      <label for="">Attendances</label>
+                                      <input type="text" class="control" id="attendances" onkeyup="calcamount()" >
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Total</label>
-                                      <input type="text" class="control" id="amount_total" disabled>
-                                  </div>
-      
-                              </div>
-                              <!-- Panel body -->
-                          </div>
-                          <!-- Panel Widget -->
-                          
-                          <div class="panel widget">
-                              <div class="panel-heading vd_bg-grey">
-                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Amount of costs</h3>
-                              </div>
-                              <!--                        panel heading-->
-                              <div class="panel-body">
-                                  <!--                            form content goes here-->
-                                  <div class="form-group">
-                                      <label for="">Cost Awarded</label>
-                                      <input type="text" class="control" onkeyup="calctotalcost()" id="cost_awarded">
+                                      <label for="">Court Fees</label>
+                                      <input type="text" class="control" id="court_fees" >
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Court Collection Fee</label>
-                                      <input type="text" class="control" onkeyup="calctotalcost()" id="court_fee">
+                                      <label for="">Witness Expenses/Summons</label>
+                                      <input type="text" class="control" id="witness_exp" >
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Subsequent incurred</label>
-                                      <input type="text" class="control" onkeyup="calctotalcost()" id="sub_incurred">
+                                      <label for="">Other Disbursements</label>
+                                      <input type="text" class="control" id="disbursements" >
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Total</label>
+                                      <label for="">Decree</label>
+                                      <input type="text" class="control" id="decree_cost" >
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Service of Summons</label>
+                                      <input type="text" class="control" id="summons" >
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Certificate of costs</label>
+                                      <input type="text" class="control" id="cert_costs" >
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Total Costs</label>
                                       <input type="text" class="control" id="total_costs" disabled>
-                                  </div>
-      
+                                  </div>      
                               </div>
                               <!-- Panel body -->
                           </div>

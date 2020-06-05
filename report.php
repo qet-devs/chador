@@ -444,6 +444,10 @@ switch($id){
     case 94:
       $title='CHADOR Proclamation Report';
       break;
+
+      case 95:
+        $title='CHADOR SALE FORM 1';
+      break;
 }
 ?>
 
@@ -17244,5 +17248,7 @@ $aa=$i+1;
       
       
         break;
+
+        
    
 }
