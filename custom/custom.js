@@ -9994,7 +9994,7 @@ function finddecree(){
 	});
 }
 
-function editdecree(){
+function appdecree(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
@@ -10692,4 +10692,52 @@ if((d1==''||d2=='')&&view==0){
 		swal("Error", "Enter the Start and End Dates!", "error");
 }
 else {window.open("report.php?id=94&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
+}
+
+function saveappl(param){
+	var assistance_mode = $('#assistance_mode').val();
+	var advocate = $('#advocate').val();
+	var decree_holder = $('#decree_holder').val();
+	var court_col_fee = $('#court_col_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var sub_incurred = $('#sub_incurred').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total_cost = $('#total_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+	if(assistance_mode==''|| court_col_fee=='' || sub_incurred=='' || advocate==''||total_cost==''||decree_holder==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:604,
+			param:param,
+			assistance_mode:assistance_mode,
+			advocate:advocate,
+			court_col_fee:court_col_fee,
+			sub_incurred:sub_incurred,
+			total_cost:total_cost,
+			decree_holder:decree_holder,
+		};
+
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+
+}
+
+function calctotalcosts(){
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var cost_awarded = $('#cost_awarded').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court_fee = $('#court_col_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var sub_incurred = $('#sub_incurred').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	
+	if(court_fee==''){court_fee=0;}if(sub_incurred==''){sub_incurred=0;}
+	
+	var tot=parseFloat(cost_awarded,10)+parseFloat(court_fee,10)+parseFloat(sub_incurred,10)+parseFloat(decretal_amount,10);
+	tot=(tot).formatMoney(2, '.', ',');
+	$('#total_costs').val(tot);
 }

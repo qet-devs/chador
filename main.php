@@ -501,8 +501,8 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
                 <li>
                     <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="editdecree()" >
-                        <span class="menu-text">Edit decree Info</span>  
+          echo'<a  href="#" onclick="appdecree()" >
+                        <span class="menu-text">Execution</span>  
                     </a>';} ?>
                 </li> 
              

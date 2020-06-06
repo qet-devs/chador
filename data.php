@@ -6425,6 +6425,27 @@ switch ($id) {
 
         break;
 
+        case 604:
+            $param = $_GET['param'];
+            $assistance_mode = $_GET['assistance_mode'];
+            $advocate = $_GET['advocate'];
+            $court_col_fee = $_GET['court_col_fee'];
+            $sub_incurred = $_GET['sub_incurred'];
+            $total_cost = $_GET['total_cost'];
+            $decree_holder = $_GET['decree_holder'];
+            
+        $resultc = mysql_query("UPDATE `decrees` SET decree_holder='".$decree_holder."', assistance_mode='".$assistance_mode."', advocate='".$advocate."', sub_incurred='".$sub_incurred."', court_col_fee='".$court_col_fee."', total_costs='".$total_cost."' WHERE `id`='".$param."'");
+
+        if ($resultc) {
+            echo '<script>swal("Success!", "Application saved successfully", "success");</script>';
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " generates decree execution application ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {newdecree();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to generate decree execution application!", "error");</script>';
+        }
+        break;
+
     case 700:
         $party = strtoupper($_GET['party']);
         $debtor = strtoupper($_GET['debtor']);
