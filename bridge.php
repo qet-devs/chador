@@ -31970,31 +31970,31 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="panel-body text-capitalize">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label for="">Court</label>
+                                      <label for="">Court<span style="color:#f00">*</span></label>
                                       <input type="text" class="control" id="court">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Case No.</label>
-                                      <input type="text" class="control" id="caseno">
+                                      <label for="">Case No.<span style="color:#f00">*</span></label>
+                                      <input type="text" class="control" id="case_no">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Plaintiffs</label>
+                                      <label for="">Plaintiffs<span style="color:#f00">*</span></label>
                                       <textarea name="plaintiff" class="control" id="plaintiff"></textarea>
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Defendants</label>
+                                      <label for="">Defendants<span style="color:#f00">*</span></label>
                                       <textarea name="defendant" class="control" id="defendant"></textarea>
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Claim</label>
+                                      <label for="">Claim<span style="color:#f00">*</span></label>
                                       <input type="text" class="control" id="claim">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Court Date</label>
+                                      <label for="">Court Date<span style="color:#f00">*</span></label>
                                       <input type="text" class="control date" id="court_date">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Decree Date</label>
+                                      <label for="">Decree Date<span style="color:#f00">*</span></label>
                                       <input type="text" class="control date" id="decree_date">
                                   </div>
                               </div>
@@ -32010,12 +32010,12 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="panel-body">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label for="">Principal Amount</label>
-                                      <input type="text" class="control" id="principal">
+                                      <label for="">Principal Amount<span style="color:#f00">*</span></label>
+                                      <input type="text" class="control" id="principal" onkeyup="calcdecretal()">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Interest</label>
-                                      <input type="text" class="control" id="interest">
+                                      <label for="">Interest<span style="color:#f00">*</span></label>
+                                      <input type="text" class="control" id="interest" onkeyup="calcdecretal()">
                                   </div>
                                   <div class="form-group">
                                   <label >Payment Duration</label>
@@ -32033,7 +32033,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <input type="text" class="control" id="rate">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Decretal Amount</label>
+                                      <label for="">Decretal Amount<span style="color:#f00">*</span></label>
                                       <input type="text" class="control" id="decretal_amount" disabled>
                                   </div>
                               </div>
@@ -32061,31 +32061,31 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   </div>
                                   <div class="form-group">
                                       <label for="">Court Fees</label>
-                                      <input type="text" class="control" id="court_fees" >
+                                      <input type="text" class="control" id="court_fees" onkeyup="calcamount()">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Witness Expenses/Summons</label>
-                                      <input type="text" class="control" id="witness_exp" >
+                                      <input type="text" class="control" id="witness_exp" onkeyup="calcamount()">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Other Disbursements</label>
-                                      <input type="text" class="control" id="disbursements" >
+                                      <input type="text" class="control" id="disbursements" onkeyup="calcamount()">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Decree</label>
-                                      <input type="text" class="control" id="decree_cost" >
+                                      <input type="text" class="control" id="decree_cost" onkeyup="calcamount()">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Service of Summons</label>
-                                      <input type="text" class="control" id="summons" >
+                                      <input type="text" class="control" id="summons" onkeyup="calcamount()">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Certificate of costs</label>
-                                      <input type="text" class="control" id="cert_costs" >
+                                      <input type="text" class="control" id="cert_costs" onkeyup="calcamount()">
                                   </div>
                                   <div class="form-group">
                                       <label for="">Total Costs</label>
-                                      <input type="text" class="control" id="total_costs" disabled>
+                                      <input type="text" class="control" id="total_cost" disabled>
                                   </div>      
                               </div>
                               <!-- Panel body -->
