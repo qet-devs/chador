@@ -9916,26 +9916,30 @@ function savenewdecree(){
 
 function savedecree(param){
 	var uid = $('#uid').val();
-	var suitno = $('#suitno').val();
-	var holder = $('#holder').val();
+	var case_no = $('#case_no').val();
 	var court = $('#court').val();
-	var party1 = $('#party1').val();
-	var party2 = $('#party2').val();
-	var against = $('#against').val();
-	var appeal = $('#appeal').val();
-	var decreedate = $('#datepicker').val();
-	var mode  = $('#mode').val();
-	var adjournment = $('#adj').val();
-	var payment = $('#payment').val();
-	var date = $('#datepicker1').val();
-	var result = $('#result').val();
-	var principal = $('#principal_amount').val();
-	var interest = $('#interest').val();
-	var costawarded = $('#cost_awarded').val();
-	var courtfee = $('#court_fee').val();
-	var subincurred = $('#sub_incurred').val();
+	var plaintiff = $('#plaintiff').val();
+	var defendant = $('#defendant').val();
+	var claim = $('#claim').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court_date = $('#court_date').val();
+	var decree_date = $('#decree_date').val();
+	var principal = $('#principal').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var interest = $('#interest').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var start_date = $('#start_date').val();
+	var end_date = $('#end_date').val();
+	var rate = $('#rate').val();
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var party_cost = $('#party_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var attendances = $('#attendances').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court_fees = $('#court_fees').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var witness_exp = $('#witness_exp').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var disbursements = $('#disbursements').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var decree_cost = $('#decree_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var summons = $('#summons').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var cert_costs = $('#cert_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total_cost = $('#total_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	
-	if(suitno==''||holder==''||party1==''||party2==''||court==''||decreedate==''){
+	if(param=='' || uid==''||case_no==''||court==''||plaintiff==''||defendant==''||decretal_amount==''||decree_date=='' || total_cost==''){
 		swal("Error", "Make sure you enter all the required fields!", "error");
 		return;
 	}else{
@@ -9943,24 +9947,28 @@ function savedecree(param){
 			id:601,
 			uid:uid,
 			param:param,
-			suitno:suitno,
-			holder:holder,
+			case_no:case_no,
 			court:court,
-			party1:party1,
-			party2:party2,
-			against:against,
-			appeal:appeal,
-			decreedate:decreedate,
-			mode:mode,
-			adjournment:adjournment,
-			payment:payment,
-			date:date,
-			result:result,
+			plaintiff:plaintiff,
+			defendant:defendant,
+			claim:claim,
+			court_date:court_date,
+			decree_date:decree_date,
+			start_date:start_date,
+			end_date:end_date,
+			rate:rate,
+			decretal_amount:decretal_amount,
+			party_cost:party_cost,
 			principal:principal,
 			interest:interest,
-			costawarded:costawarded,
-			courtfee:courtfee,
-			subincurred:subincurred,
+			attendances:attendances,
+			court_fees:court_fees,
+			witness_exp:witness_exp,
+			disbursements:disbursements,
+			decree_cost:decree_cost,
+			summons:summons,
+			cert_costs:cert_costs,
+			total_cost:total_cost,
 		};
 
 		//console.log(data);
