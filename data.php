@@ -6438,6 +6438,7 @@ switch ($id) {
 
         if ($resultc) {
             echo '<script>swal("Success!", "Application saved successfully", "success");</script>';
+            echo "<script>window.open('report.php?id=96&param=" . $param . "');</script>";
 
             $resulta = mysql_query("insert into log values('0','" . $username . " generates decree execution application ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newdecree();},500);</script>";
