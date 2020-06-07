@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : conn
 Source Server Version : 50525
 Source Host           : 127.0.0.1:3306
-Source Database       : kpa
+Source Database       : chador
 
 Target Server Type    : MYSQL
 Target Server Version : 50525
 File Encoding         : 65001
 
-Date: 2020-06-03 15:57:27
+Date: 2020-06-07 22:58:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -284,7 +284,7 @@ CREATE TABLE `backup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=355 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=363 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of backup
@@ -486,6 +486,14 @@ INSERT INTO `backup` VALUES ('351', '02/06/2020');
 INSERT INTO `backup` VALUES ('352', '02/06/2020');
 INSERT INTO `backup` VALUES ('353', '03/06/2020');
 INSERT INTO `backup` VALUES ('354', '03/06/2020');
+INSERT INTO `backup` VALUES ('355', '04/06/2020');
+INSERT INTO `backup` VALUES ('356', '04/06/2020');
+INSERT INTO `backup` VALUES ('357', '05/06/2020');
+INSERT INTO `backup` VALUES ('358', '05/06/2020');
+INSERT INTO `backup` VALUES ('359', '06/06/2020');
+INSERT INTO `backup` VALUES ('360', '06/06/2020');
+INSERT INTO `backup` VALUES ('361', '07/06/2020');
+INSERT INTO `backup` VALUES ('362', '07/06/2020');
 
 -- ----------------------------
 -- Table structure for banktbl
@@ -916,7 +924,7 @@ CREATE TABLE `company` (
 -- ----------------------------
 -- Records of company
 -- ----------------------------
-INSERT INTO `company` VALUES ('KPA CENTRAL BRANCH', '0726738023', '7685 THIKA', 'www.kpacentral.or.ke', 'info@kpacentral.or.ke', 'FULL', '25', 'img/logos/point.jpeg', '1', 'Pharmaceutical Excellence', 'THIKA', 'P0511855821', 'img/watermarks/point.png', '', 'BENARD GITHIRWA MUHORO(KARIA)', '3205 DADORA', '', '', '', '', '', 'CO-OPERATIVE BANK', 'THIKA BRANCH', '01134034540100');
+INSERT INTO `company` VALUES ('CHADOR AUCTIONEERS', '0720602229', '27304-00100 NAIROBI', '', 'chadorauctioneers06@gmail.com', 'FULL', '25', 'img/logos/point.jpeg', '1', '', 'THIKA', 'A003587294Z', 'img/watermarks/point.png', '', '', '', 'THIKA', '', '', '', '', 'EQUITY', 'THIKA KENYATTA AVENUE', '0340261938630');
 
 -- ----------------------------
 -- Table structure for contracts
@@ -1079,38 +1087,53 @@ INSERT INTO `creditnotes` VALUES ('1', '1', '', '', '', '', '1', ' KANGETHE', '2
 DROP TABLE IF EXISTS `decrees`;
 CREATE TABLE `decrees` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(255) NOT NULL,
-  `suitno` varchar(255) NOT NULL,
-  `court` varchar(255) NOT NULL,
-  `party1` varchar(255) DEFAULT NULL,
-  `party2` varchar(255) DEFAULT NULL,
-  `decree_date` varchar(255) DEFAULT NULL,
-  `appeal` varchar(255) DEFAULT NULL,
-  `payment` varchar(255) DEFAULT NULL,
-  `adjournment` varchar(255) DEFAULT NULL,
-  `date` varchar(255) DEFAULT NULL,
-  `results` varchar(255) DEFAULT NULL,
+  `uid` varchar(255) DEFAULT NULL,
+  `case_no` varchar(255) DEFAULT NULL,
+  `court` varchar(255) DEFAULT NULL,
+  `plaintiffs` varchar(255) DEFAULT NULL,
+  `defendants` varchar(255) DEFAULT NULL,
+  `claim` varchar(255) DEFAULT NULL,
+  `court_date` varchar(255) DEFAULT NULL,
   `principal` varchar(255) DEFAULT NULL,
+  `interest_rate` varchar(255) DEFAULT NULL,
+  `period_start` varchar(255) DEFAULT NULL,
+  `period_end` varchar(255) DEFAULT NULL,
   `interest` varchar(255) DEFAULT NULL,
-  `cost_awarded` varchar(255) DEFAULT NULL,
-  `court_fee` varchar(255) DEFAULT NULL,
-  `subs_incurred` varchar(255) DEFAULT NULL,
-  `against` varchar(255) DEFAULT NULL,
-  `mode` varchar(255) DEFAULT NULL,
-  `holder` varchar(255) DEFAULT NULL,
+  `decretal_amount` varchar(255) DEFAULT NULL,
+  `party_cost` varchar(255) DEFAULT NULL,
+  `attendances` varchar(255) DEFAULT NULL,
+  `court_fees` varchar(255) DEFAULT NULL,
+  `witness_expenses` varchar(255) DEFAULT NULL,
+  `disbursement` varchar(255) DEFAULT NULL,
+  `decree_holder` varchar(255) DEFAULT NULL,
+  `decree_cost` varchar(255) DEFAULT NULL,
+  `summons` varchar(255) DEFAULT NULL,
+  `cert_cost` varchar(255) DEFAULT NULL,
+  `schedule_cost` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
+  `assistance_mode` varchar(255) DEFAULT NULL,
+  `applicant` varchar(255) DEFAULT NULL,
+  `advocate` varchar(255) DEFAULT NULL,
+  `decree_date` varchar(255) DEFAULT NULL,
   `status` varchar(255) NOT NULL,
   `stamp` varchar(20) DEFAULT NULL,
-  `ddate` varchar(10) DEFAULT NULL,
+  `date` varchar(10) DEFAULT NULL,
   `time` varchar(10) DEFAULT NULL,
+  `court_col_fee` varchar(255) DEFAULT NULL,
+  `sub_incurred` varchar(255) DEFAULT NULL,
+  `total_costs` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of decrees
 -- ----------------------------
-INSERT INTO `decrees` VALUES ('1', 'CHADDEC0001', 'civil suit no 8873 of 2016', 'nairobi', 'JINSING ENTERPRISE COMPANY LIMITED', 'AFRICA MERCHANT ASSURANCE LIMITED', '18/03/2020', 'nil', 'nil', 'nil', '', '', '1560000', '51699', '212930', '1500', '950', 'AFRICAN MERCHANT ASSURANCE LIMITED', 'warrant of attachment and sale', 'LESINKO NJOROGE & GATHOGO ADVOCATES', 'pm001', '1', '202006031545', null, null);
-INSERT INTO `decrees` VALUES ('2', 'CHADDEC0002', '7569', 'nairobi', 'DASANI WATER LIMITED', 'KERINGET WATER COMPANY', '02/03/2020', 'nil', 'nil', 'nil', '05/05/2020', '', '45000000', '450000', '4800', '5000', '500', 'KERINGET', 'issuance of letter of instruction', 'LESINKO NJOROGE & GATHOGO ADVOCATES', 'pm001', '1', '202006031545', null, null);
+INSERT INTO `decrees` VALUES ('1', 'CHADDEC0001', 'CIVIL SUIT NO 8873 OF 2016', 'NAIROBI', 'JINSING ENTERPRISE COMPANY LIMITED', 'AFRICA MERCHANT ASSURANCE LIMITED', '17000000', '08/06/2020', '2000000', '12', '17/06/2020', '25/06/2020', '1560000', '3560000.00', '500000', '25000', '950', '55500', '2000', 'Kanyi Karuchi & Co. Advocates', '3000', '20000', '250', '606700.00', 'pm001', 'By issuance of warrant of attachment and sale and allocate execution to ', null, 'Kanyi Karuchi & Co. Advocates', '09/06/2020', '1', '202006031545', null, null, '1500', '950', '4169150.00');
+INSERT INTO `decrees` VALUES ('2', 'CHADDEC0002', '7569', 'nairobi', 'DASANI WATER LIMITED', 'KERINGET WATER COMPANY', '02/03/2020', 'nil', 'nil', 'nil', '05/05/2020', '', '45000000', '450000', '4800', '5000', '500', 'KERINGET', 'issuance of letter of instruction', null, null, null, 'LESINKO NJOROGE & GATHOGO ADVOCATES', null, 'pm001', null, null, null, null, '1', '202006031545', null, null, null, null, null);
+INSERT INTO `decrees` VALUES ('3', 'CIVIL CASE NO 10 OF 2015', 'CIVIL CASE NO 10 OF 2015', 'THE CHIEF MAGISTRATE COURT KIAMBU', 'JANE WAMUCII WANJIKU ', 'LALI ABUBAKAR,  ALLAN MACHARIA,  LEONARD KONGONI WAMBU', '15500', '01/06/2020', '158100', '12', '04/05/2020', '11/06/2020', '188161', '346261.00', '120000', '22000', '70000', '', '', '150', '150', '3000', '100', '217330.00', '', '', '', '', '01/06/2020', '1', '202006060702', '06/06/2020', '07:02', null, null, null);
+INSERT INTO `decrees` VALUES ('4', 'KJNJNJ', '2313', 'CHIEF MAGISTRATE COURT MILIMANI', 'JOSEPH LIDO', 'PINOCCCIO BUOY', '80000', '09/06/2020', '580000', '10', '01/06/2020', '01/06/2020', '182000', '762000.00', '78000', '6000', '45000', '5800', '4000', '4646546', '6445', '6000', '600', '151845.00', '', '', '', '', '08/06/2020', '1', '202006060718', '06/06/2020', '07:18', null, null, null);
+INSERT INTO `decrees` VALUES ('5', '90', 'JO', 'JHJHJH', 'NBBVBV', '4500', '01/06/2020', '47000', '12', '01/06/2020', '22/06/2020', '245', '47245.00', '782222', '2222', '1111', '111', '1122', '', '2222', '2222', '2221', '793453.00', 'pm001', '', '', '', '', '01/06/2020', '1', '202006060724', '06/06/2020', '07:24', null, null, null);
+INSERT INTO `decrees` VALUES ('6', 'DEC000006', '67HB', 'JHHA', 'ZCXBVBNB', 'XZXCCV', '446556', '01/06/2020', '564654654', '14', '16/06/2020', '15/06/2020', '11245', '564665899.00', '5464', '545645', '645', '54', '45', '', '554', '5', '6', '552418.00', 'pm001', '', '', '', '23/06/2020', '1', '202006060745', '06/06/2020', '07:45', null, null, null);
 
 -- ----------------------------
 -- Table structure for deductions
@@ -4263,7 +4286,7 @@ CREATE TABLE `ledgers` (
   `parent` int(1) DEFAULT NULL,
   `address` text,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=136 DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
 -- ----------------------------
 -- Records of ledgers
@@ -4285,7 +4308,7 @@ INSERT INTO `ledgers` VALUES ('15', '625', 'Cash', 'Asset', '-52500', '1', '02/0
 INSERT INTO `ledgers` VALUES ('16', '626', 'RAFIKI BANK', 'Asset', '8000', '1', '02/07/2016', '111', 'Bank', null, 'ksh', '1', '1207', 'Bank', 'Asset', '1', '0', '626');
 INSERT INTO `ledgers` VALUES ('17', '627', 'Deposits Liability', 'Liability', '-21000', '1', '02/07/2016', '111', 'Other', null, 'ksh', '1', '4001', 'Long Term Liability', 'Liability', '1', '0', '627');
 INSERT INTO `ledgers` VALUES ('18', '628', 'Accounts Receivable', 'Asset', '2463691.63', '1', '02/07/2016', '111', 'Other', null, 'ksh', '1', '1302', 'Accounts Receivable', 'Asset', '1', '0', '628');
-INSERT INTO `ledgers` VALUES ('19', '629', 'Accounts Payable', 'Liability', '5500', '1', '02/07/2016', '111', 'Other', null, 'ksh', '1', '4602', 'Accounts Payable', 'Liability', '1', '0', '629');
+INSERT INTO `ledgers` VALUES ('19', '629', 'Accounts Payable', 'Liability', '5500', '1', '02/07/2016', '111', 'Other', null, 'ksh', '1', '4602', 'Accounts Payable', 'Liability', '1', '1', '629');
 INSERT INTO `ledgers` VALUES ('20', '630', 'Inventory', 'Asset', null, '1', '02/07/2016', '111', 'Other', null, 'ksh', null, '1501', 'Current Asset', 'Asset', '1', '0', '630');
 INSERT INTO `ledgers` VALUES ('21', '631', 'Equipment', 'Asset', null, '1', '02/07/2016', '111', 'Other', null, 'ksh', null, '1001', 'Fixed Asset', 'Asset', '1', '0', '631');
 INSERT INTO `ledgers` VALUES ('22', '632', 'Furniture and Fixtures', 'Asset', null, '1', '02/07/2016', '111', 'Other', null, 'ksh', null, '1004', 'Fixed Asset', 'Asset', '1', '0', '632');
@@ -4342,6 +4365,7 @@ INSERT INTO `ledgers` VALUES ('130', '713', 'Electricity bill payment', 'Expense
 INSERT INTO `ledgers` VALUES ('131', '714', 'Sacco Liability', 'Liability', '2455', '1', '', '111', 'Other', '0', 'ksh', '0', '4205', 'Current Liability', 'Liability', '1', '0', '714');
 INSERT INTO `ledgers` VALUES ('132', '715', 'Landlord Additional Pay', 'Liability', null, '1', '', '111', 'Other', '0', 'ksh', '0', '4206', 'Current Liability', 'Liability', '1', '0', '715');
 INSERT INTO `ledgers` VALUES ('134', '742', 'Banks', 'Asset', '0', '1', '', 'MAIN', 'Other', '3', 'ksh', '0', '76545', 'Asset', 'Asset', '1', '0', '742');
+INSERT INTO `ledgers` VALUES ('135', '743', 'EN003', 'Liability', '0', '1', '', 'MAIN', 'Other', '4', 'ksh', '0', '1234', 'Accounts Payable', '629', '2', '0', '629-743');
 
 -- ----------------------------
 -- Table structure for ledgerstatus
@@ -4596,18 +4620,18 @@ CREATE TABLE `lof` (
 -- ----------------------------
 -- Records of lof
 -- ----------------------------
-INSERT INTO `lof` VALUES ('1', 'JOHN MUGAMBI', '63', '29', '302', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '10/05/2019', '20190510', '09/05/2118', '21180509', '12000', '05th', '10/05/2019', '20', 'From 10/05/2019 to 09/05/2019-Rent Free<br/>From 10/05/2019 to 09/05/2020-KShs.12,000<br/>From 10/05/2020 to 09/05/2021-KShs.14,400<br/>From 10/05/2021 to 09/05/2022-KShs.17,280<br/>From 10/05/2022 to 09/05/2023-KShs.20,736<br/>From 10/05/2023 to 09/05/2024-KShs.24,883<br/>From 10/05/2024 to 09/05/2025-KShs.29,860<br/>From 10/05/2025 to 09/05/2026-KShs.35,832<br/>From 10/05/2026 to 09/05/2027-KShs.42,998<br/>From 10/05/2027 to 09/05/2028-KShs.51,598<br/>From 10/05/2028 to 09/05/2029-KShs.61,917<br/>From 10/05/2029 to 09/05/2030-KShs.74,301<br/>From 10/05/2030 to 09/05/2031-KShs.89,161<br/>From 10/05/2031 to 09/05/2032-KShs.106,993<br/>From 10/05/2032 to 09/05/2033-KShs.128,392<br/>From 10/05/2033 to 09/05/2034-KShs.154,070<br/>From 10/05/2034 to 09/05/2035-KShs.184,884<br/>From 10/05/2035 to 09/05/2036-KShs.221,861<br/>From 10/05/2036 to 09/05/2037-KShs.266,233<br/>From 10/05/2037 to 09/05/2038-KShs.319,480<br/>From 10/05/2038 to 09/05/2039-KShs.383,376<br/>From 10/05/2039 to 09/05/2040-KShs.460,051<br/>From 10/05/2040 to 09/05/2041-KShs.552,061<br/>From 10/05/2041 to 09/05/2042-KShs.662,474<br/>From 10/05/2042 to 09/05/2043-KShs.794,968<br/>From 10/05/2043 to 09/05/2044-KShs.953,962<br/>From 10/05/2044 to 09/05/2045-KShs.1,144,755<br/>From 10/05/2045 to 09/05/2046-KShs.1,373,705<br/>From 10/05/2046 to 09/05/2047-KShs.1,648,447<br/>From 10/05/2047 to 09/05/2048-KShs.1,978,136<br/>From 10/05/2048 to 09/05/2049-KShs.2,373,763<br/>From 10/05/2049 to 09/05/2050-KShs.2,848,516<br/>From 10/05/2050 to 09/05/2051-KShs.3,418,219<br/>From 10/05/2051 to 09/05/2052-KShs.4,101,863<br/>From 10/05/2052 to 09/05/2053-KShs.4,922,235<br/>From 10/05/2053 to 09/05/2054-KShs.5,906,682<br/>From 10/05/2054 to 09/05/2055-KShs.7,088,018<br/>From 10/05/2055 to 09/05/2056-KShs.8,505,622<br/>From 10/05/2056 to 09/05/2057-KShs.10,206,747<br/>From 10/05/2057 to 09/05/2058-KShs.12,248,096<br/>From 10/05/2058 to 09/05/2059-KShs.14,697,715<br/>From 10/05/2059 to 09/05/2060-KShs.17,637,258<br/>From 10/05/2060 to 09/05/2061-KShs.21,164,710<br/>From 10/05/2061 to 09/05/2062-KShs.25,397,652<br/>From 10/05/2062 to 09/05/2063-KShs.30,477,182<br/>From 10/05/2063 to 09/05/2064-KShs.36,572,618<br/>From 10/05/2064 to 09/05/2065-KShs.43,887,142<br/>From 10/05/2065 to 09/05/2066-KShs.52,664,571<br/>From 10/05/2066 to 09/05/2067-KShs.63,197,485<br/>From 10/05/2067 to 09/05/2068-KShs.75,836,982<br/>From 10/05/2068 to 09/05/2069-KShs.91,004,378<br/>From 10/05/2069 to 09/05/2070-KShs.109,205,253<br/>From 10/05/2070 to 09/05/2071-KShs.131,046,304<br/>From 10/05/2071 to 09/05/2072-KShs.157,255,565<br/>From 10/05/2072 to 09/05/2073-KShs.188,706,678<br/>From 10/05/2073 to 09/05/2074-KShs.226,448,013<br/>From 10/05/2074 to 09/05/2075-KShs.271,737,616<br/>From 10/05/2075 to 09/05/2076-KShs.326,085,139<br/>From 10/05/2076 to 09/05/2077-KShs.391,302,167<br/>From 10/05/2077 to 09/05/2078-KShs.469,562,601<br/>From 10/05/2078 to 09/05/2079-KShs.563,475,121<br/>From 10/05/2079 to 09/05/2080-KShs.676,170,145<br/>From 10/05/2080 to 09/05/2081-KShs.811,404,174<br/>From 10/05/2081 to 09/05/2082-KShs.973,685,009<br/>From 10/05/2082 to 09/05/2083-KShs.1,168,422,011<br/>From 10/05/2083 to 09/05/2084-KShs.1,402,106,413<br/>From 10/05/2084 to 09/05/2085-KShs.1,682,527,695<br/>From 10/05/2085 to 09/05/2086-KShs.2,019,033,235<br/>From 10/05/2086 to 09/05/2087-KShs.2,422,839,881<br/>From 10/05/2087 to 09/05/2088-KShs.2,907,407,858<br/>From 10/05/2088 to 09/05/2089-KShs.3,488,889,429<br/>From 10/05/2089 to 09/05/2090-KShs.4,186,667,315<br/>From 10/05/2090 to 09/05/2091-KShs.5,024,000,778<br/>From 10/05/2091 to 09/05/2092-KShs.6,028,800,934<br/>From 10/05/2092 to 09/05/2093-KShs.7,234,561,120<br/>From 10/05/2093 to 09/05/2094-KShs.8,681,473,345<br/>From 10/05/2094 to 09/05/2095-KShs.10,417,768,014<br/>From 10/05/2095 to 09/05/2096-KShs.12,501,321,616<br/>From 10/05/2096 to 09/05/2097-KShs.15,001,585,939<br/>From 10/05/2097 to 09/05/2098-KShs.18,001,903,127<br/>From 10/05/2098 to 09/05/2099-KShs.21,602,283,753<br/>From 10/05/2099 to 09/05/2100-KShs.25,922,740,503<br/>From 10/05/2100 to 09/05/2101-KShs.31,107,288,604<br/>From 10/05/2101 to 09/05/2102-KShs.37,328,746,325<br/>From 10/05/2102 to 09/05/2103-KShs.44,794,495,590<br/>From 10/05/2103 to 09/05/2104-KShs.53,753,394,708<br/>From 10/05/2104 to 09/05/2105-KShs.64,504,073,649<br/>From 10/05/2105 to 09/05/2106-KShs.77,404,888,379<br/>From 10/05/2106 to 09/05/2107-KShs.92,885,866,055<br/>From 10/05/2107 to 09/05/2108-KShs.111,463,039,266<br/>From 10/05/2108 to 09/05/2109-KShs.133,755,647,119<br/>From 10/05/2109 to 09/05/2110-KShs.160,506,776,543<br/>From 10/05/2110 to 09/05/2111-KShs.192,608,131,852<br/>From 10/05/2111 to 09/05/2112-KShs.231,129,758,222<br/>From 10/05/2112 to 09/05/2113-KShs.277,355,709,866<br/>From 10/05/2113 to 09/05/2114-KShs.332,826,851,840<br/>From 10/05/2114 to 09/05/2115-KShs.399,392,222,208<br/>From 10/05/2115 to 09/05/2116-KShs.479,270,666,649<br/>From 10/05/2116 to 09/05/2117-KShs.575,124,799,979<br/>From 10/05/2117 to 09/05/2118-KShs.690,149,759,975', '4000', '', '1', '1', '12000', '', '', '0', '', '', '28100', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.4,000<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.100<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.28,100', '22/05/2019', '20190522', 'pm001', '1', '20190622', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '100', '99', '0', '12000', '2000', '2000', '20286', '302111', null);
-INSERT INTO `lof` VALUES ('2', 'PRINCE MUNENE', '7685 THIKA', '31', '101,102', 'BENSON MBURU', 'GROUND FLOOR', '99 Years 0 Months', '01/06/2019', '20190601', '31/05/2118', '21180531', '28000', '05th', '01/06/2019', '0', '', 'NaN', '', '1', '1', '28000', '', '', '0', '', '', '61000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.28,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.28,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.5,000<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.61,000', '11/06/2019', '20190611', 'pm001', '1', '20190711', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '5000', '99', '0', '', '', '', '', '', null);
+INSERT INTO `lof` VALUES ('1', 'JOHN MUGAMBI', '63', '29', '302', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '10/05/2019', '20190510', '09/05/2118', '21180509', '12000', '05th', '10/05/2019', '20', 'From 10/05/2019 to 09/05/2019-Rent Free<br/>From 10/05/2019 to 09/05/2020-KShs.12,000<br/>From 10/05/2020 to 09/05/2021-KShs.14,400<br/>From 10/05/2021 to 09/05/2022-KShs.17,280<br/>From 10/05/2022 to 09/05/2023-KShs.20,736<br/>From 10/05/2023 to 09/05/2024-KShs.24,883<br/>From 10/05/2024 to 09/05/2025-KShs.29,860<br/>From 10/05/2025 to 09/05/2026-KShs.35,832<br/>From 10/05/2026 to 09/05/2027-KShs.42,998<br/>From 10/05/2027 to 09/05/2028-KShs.51,598<br/>From 10/05/2028 to 09/05/2029-KShs.61,917<br/>From 10/05/2029 to 09/05/2030-KShs.74,301<br/>From 10/05/2030 to 09/05/2031-KShs.89,161<br/>From 10/05/2031 to 09/05/2032-KShs.106,993<br/>From 10/05/2032 to 09/05/2033-KShs.128,392<br/>From 10/05/2033 to 09/05/2034-KShs.154,070<br/>From 10/05/2034 to 09/05/2035-KShs.184,884<br/>From 10/05/2035 to 09/05/2036-KShs.221,861<br/>From 10/05/2036 to 09/05/2037-KShs.266,233<br/>From 10/05/2037 to 09/05/2038-KShs.319,480<br/>From 10/05/2038 to 09/05/2039-KShs.383,376<br/>From 10/05/2039 to 09/05/2040-KShs.460,051<br/>From 10/05/2040 to 09/05/2041-KShs.552,061<br/>From 10/05/2041 to 09/05/2042-KShs.662,474<br/>From 10/05/2042 to 09/05/2043-KShs.794,968<br/>From 10/05/2043 to 09/05/2044-KShs.953,962<br/>From 10/05/2044 to 09/05/2045-KShs.1,144,755<br/>From 10/05/2045 to 09/05/2046-KShs.1,373,705<br/>From 10/05/2046 to 09/05/2047-KShs.1,648,447<br/>From 10/05/2047 to 09/05/2048-KShs.1,978,136<br/>From 10/05/2048 to 09/05/2049-KShs.2,373,763<br/>From 10/05/2049 to 09/05/2050-KShs.2,848,516<br/>From 10/05/2050 to 09/05/2051-KShs.3,418,219<br/>From 10/05/2051 to 09/05/2052-KShs.4,101,863<br/>From 10/05/2052 to 09/05/2053-KShs.4,922,235<br/>From 10/05/2053 to 09/05/2054-KShs.5,906,682<br/>From 10/05/2054 to 09/05/2055-KShs.7,088,018<br/>From 10/05/2055 to 09/05/2056-KShs.8,505,622<br/>From 10/05/2056 to 09/05/2057-KShs.10,206,747<br/>From 10/05/2057 to 09/05/2058-KShs.12,248,096<br/>From 10/05/2058 to 09/05/2059-KShs.14,697,715<br/>From 10/05/2059 to 09/05/2060-KShs.17,637,258<br/>From 10/05/2060 to 09/05/2061-KShs.21,164,710<br/>From 10/05/2061 to 09/05/2062-KShs.25,397,652<br/>From 10/05/2062 to 09/05/2063-KShs.30,477,182<br/>From 10/05/2063 to 09/05/2064-KShs.36,572,618<br/>From 10/05/2064 to 09/05/2065-KShs.43,887,142<br/>From 10/05/2065 to 09/05/2066-KShs.52,664,571<br/>From 10/05/2066 to 09/05/2067-KShs.63,197,485<br/>From 10/05/2067 to 09/05/2068-KShs.75,836,982<br/>From 10/05/2068 to 09/05/2069-KShs.91,004,378<br/>From 10/05/2069 to 09/05/2070-KShs.109,205,253<br/>From 10/05/2070 to 09/05/2071-KShs.131,046,304<br/>From 10/05/2071 to 09/05/2072-KShs.157,255,565<br/>From 10/05/2072 to 09/05/2073-KShs.188,706,678<br/>From 10/05/2073 to 09/05/2074-KShs.226,448,013<br/>From 10/05/2074 to 09/05/2075-KShs.271,737,616<br/>From 10/05/2075 to 09/05/2076-KShs.326,085,139<br/>From 10/05/2076 to 09/05/2077-KShs.391,302,167<br/>From 10/05/2077 to 09/05/2078-KShs.469,562,601<br/>From 10/05/2078 to 09/05/2079-KShs.563,475,121<br/>From 10/05/2079 to 09/05/2080-KShs.676,170,145<br/>From 10/05/2080 to 09/05/2081-KShs.811,404,174<br/>From 10/05/2081 to 09/05/2082-KShs.973,685,009<br/>From 10/05/2082 to 09/05/2083-KShs.1,168,422,011<br/>From 10/05/2083 to 09/05/2084-KShs.1,402,106,413<br/>From 10/05/2084 to 09/05/2085-KShs.1,682,527,695<br/>From 10/05/2085 to 09/05/2086-KShs.2,019,033,235<br/>From 10/05/2086 to 09/05/2087-KShs.2,422,839,881<br/>From 10/05/2087 to 09/05/2088-KShs.2,907,407,858<br/>From 10/05/2088 to 09/05/2089-KShs.3,488,889,429<br/>From 10/05/2089 to 09/05/2090-KShs.4,186,667,315<br/>From 10/05/2090 to 09/05/2091-KShs.5,024,000,778<br/>From 10/05/2091 to 09/05/2092-KShs.6,028,800,934<br/>From 10/05/2092 to 09/05/2093-KShs.7,234,561,120<br/>From 10/05/2093 to 09/05/2094-KShs.8,681,473,345<br/>From 10/05/2094 to 09/05/2095-KShs.10,417,768,014<br/>From 10/05/2095 to 09/05/2096-KShs.12,501,321,616<br/>From 10/05/2096 to 09/05/2097-KShs.15,001,585,939<br/>From 10/05/2097 to 09/05/2098-KShs.18,001,903,127<br/>From 10/05/2098 to 09/05/2099-KShs.21,602,283,753<br/>From 10/05/2099 to 09/05/2100-KShs.25,922,740,503<br/>From 10/05/2100 to 09/05/2101-KShs.31,107,288,604<br/>From 10/05/2101 to 09/05/2102-KShs.37,328,746,325<br/>From 10/05/2102 to 09/05/2103-KShs.44,794,495,590<br/>From 10/05/2103 to 09/05/2104-KShs.53,753,394,708<br/>From 10/05/2104 to 09/05/2105-KShs.64,504,073,649<br/>From 10/05/2105 to 09/05/2106-KShs.77,404,888,379<br/>From 10/05/2106 to 09/05/2107-KShs.92,885,866,055<br/>From 10/05/2107 to 09/05/2108-KShs.111,463,039,266<br/>From 10/05/2108 to 09/05/2109-KShs.133,755,647,119<br/>From 10/05/2109 to 09/05/2110-KShs.160,506,776,543<br/>From 10/05/2110 to 09/05/2111-KShs.192,608,131,852<br/>From 10/05/2111 to 09/05/2112-KShs.231,129,758,222<br/>From 10/05/2112 to 09/05/2113-KShs.277,355,709,866<br/>From 10/05/2113 to 09/05/2114-KShs.332,826,851,840<br/>From 10/05/2114 to 09/05/2115-KShs.399,392,222,208<br/>From 10/05/2115 to 09/05/2116-KShs.479,270,666,649<br/>From 10/05/2116 to 09/05/2117-KShs.575,124,799,979<br/>From 10/05/2117 to 09/05/2118-KShs.690,149,759,975', '4000', '', '1', '1', '12000', '', '', '0', '', '', '28100', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.4,000<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.100<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.28,100', '22/05/2019', '20190522', 'pm001', '1', '20190622', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '100', '99', '0', '12000', '2000', '2000', '20286', '302111', null);
+INSERT INTO `lof` VALUES ('2', 'PRINCE MUNENE', '7685 THIKA', '31', '101,102', 'BENSON MBURU', 'GROUND FLOOR', '99 Years 0 Months', '01/06/2019', '20190601', '31/05/2118', '21180531', '28000', '05th', '01/06/2019', '0', '', 'NaN', '', '1', '1', '28000', '', '', '0', '', '', '61000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.28,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.28,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.5,000<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.61,000', '11/06/2019', '20190611', 'pm001', '1', '20190711', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '5000', '99', '0', '', '', '', '', '', null);
 INSERT INTO `lof` VALUES ('3', 'ALEX MBAKA', '101 MERU', '32', '103', 'BENSON MBURU', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '14000', '05th', '01/07/2019', '0', '', '7000', '', '1', '1', '14000', '', '', '0', '', '', '35000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.14,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.14,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.7,000<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.35,000', '10/07/2019', '20190710', 'pm001', '2', '20190810', '0', '1', '20190826', '10', '10', '1', 'Residential', '0', '', '99', '0', '14000', '2000', '3000', '101', '102', '2000');
-INSERT INTO `lof` VALUES ('4', 'd3d', 'd3d', '33', '324352', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '3234', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '3234', '', '', '0', '', '', '6468', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.3,234<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.3,234<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.6,468', '23/07/2019', '20190723', 'pm001', '1', '20190823', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '', '99', '0', '15000', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('5', 'JOHN DOE', '123 4567', '34', '1098', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '15000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '15000', '', '', '0', '', '', '30000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.15,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.15,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.30,000', '23/07/2019', '20190723', 'pm001', '1', '20190823', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('6', 'JOHN DOE', '123 NAIROBI', '35', '101', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '25200', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.1,200<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.25,200', '26/07/2019', '20190726', 'pm001', '1', '20190826', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '1200', '99', '0', '12000', '2500', '12000', '', '', '');
-INSERT INTO `lof` VALUES ('7', 'PRINCE MBABU', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('8', 'PRINCE KINYUA', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('9', 'PRINCE YASHUA', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('10', 'BONIFACE CALISTRO', '123 NAIROBI', '36', 'A2', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '04th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('11', 'IRENE KINYUA', '23243', '38', '109', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '10/07/2019', '20190710', '09/07/2118', '21180709', '12000', '16th', '10/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('12', 'r4', 'r4', '39', '123', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '14/10/2019', '20191014', '13/10/2118', '21181013', '23000', '16th', '14/10/2019', '0', '', 'NaN', '', '1', '1', '23000', '', '', '0', '', '', '46000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.23,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.23,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.46,000', '25/10/2019', '20191025', 'pm001', '1', '20191125', '0', '1', '20200603', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('4', 'd3d', 'd3d', '33', '324352', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '3234', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '3234', '', '', '0', '', '', '6468', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.3,234<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.3,234<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.6,468', '23/07/2019', '20190723', 'pm001', '1', '20190823', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '', '99', '0', '15000', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('5', 'JOHN DOE', '123 4567', '34', '1098', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '15000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '15000', '', '', '0', '', '', '30000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.15,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.15,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.30,000', '23/07/2019', '20190723', 'pm001', '1', '20190823', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('6', 'JOHN DOE', '123 NAIROBI', '35', '101', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '25200', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.1,200<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.25,200', '26/07/2019', '20190726', 'pm001', '1', '20190826', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '1200', '99', '0', '12000', '2500', '12000', '', '', '');
+INSERT INTO `lof` VALUES ('7', 'PRINCE MBABU', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('8', 'PRINCE KINYUA', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('9', 'PRINCE YASHUA', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('10', 'BONIFACE CALISTRO', '123 NAIROBI', '36', 'A2', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '04th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('11', 'IRENE KINYUA', '23243', '38', '109', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '10/07/2019', '20190710', '09/07/2118', '21180709', '12000', '16th', '10/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('12', 'r4', 'r4', '39', '123', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '14/10/2019', '20191014', '13/10/2118', '21181013', '23000', '16th', '14/10/2019', '0', '', 'NaN', '', '1', '1', '23000', '', '', '0', '', '', '46000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.23,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.23,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.46,000', '25/10/2019', '20191025', 'pm001', '1', '20191125', '0', '1', '20200607', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for log
@@ -4622,7 +4646,7 @@ CREATE TABLE `log` (
   `date` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11562 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11749 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of log
@@ -11700,6 +11724,193 @@ INSERT INTO `log` VALUES ('11558', 'pm001 accesses new Proclamation panel.', 'pm
 INSERT INTO `log` VALUES ('11559', 'pm001 accesses Reports Panel.', 'pm001', '202006031550', '15:50', '03/06/2020', '1');
 INSERT INTO `log` VALUES ('11560', 'pm001 accesses find notice search  Panel.', 'pm001', '202006031550', '15:50', '03/06/2020', '1');
 INSERT INTO `log` VALUES ('11561', 'pm001 accesses Reports Panel.', 'pm001', '202006031551', '15:51', '03/06/2020', '1');
+INSERT INTO `log` VALUES ('11562', 'pm001 logs into system', 'pm001', '202006041037', '10:37', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11563', 'pm001 accesses Reports Panel.', 'pm001', '202006041038', '10:38', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11564', 'PM001 logs into system', 'PM001', '202006041105', '11:05', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11565', 'PM001 accesses new letter panel.', 'PM001', '202006041106', '11:06', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11566', 'PM001 accesses find letter Panel.', 'PM001', '202006041106', '11:06', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11567', 'PM001 accesses find distress Panel.', 'PM001', '202006041106', '11:06', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11568', 'PM001 accesses find distress Panel.', 'PM001', '202006041106', '11:06', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11569', 'PM001 accesses new letter panel.', 'PM001', '202006041109', '11:09', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11570', 'PM001 accesses find letter Panel.', 'PM001', '202006041109', '11:09', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11571', 'PM001 accesses Reports Panel.', 'PM001', '202006041110', '11:10', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11572', 'pm001 logs into system', 'pm001', '202006041118', '11:18', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11573', 'pm001 accesses Reports Panel.', 'pm001', '202006041118', '11:18', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11574', 'pm001 logs into system', 'pm001', '202006041149', '11:49', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11575', 'pm001 accesses Reports Panel.', 'pm001', '202006041150', '11:50', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11576', 'pm001 accesses Reports Panel.', 'pm001', '202006041151', '11:51', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11577', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006041151', '11:51', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11578', 'pm001 inserts new User into System.User NAME:ADMIN', 'pm001', '202006041153', '11:53', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11579', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006041153', '11:53', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11580', 'pm001 inserts new User into System.User NAME:ESTHER NDICHO', 'pm001', '202006041155', '11:55', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11581', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006041155', '11:55', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11582', 'pm001 inserts new User into System.User NAME:MARTHA THOGORI', 'pm001', '202006041157', '11:57', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11583', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006041157', '11:57', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11584', 'pm001 inserts new User into System.User NAME:CAROLINE MUTHEE', 'pm001', '202006041158', '11:58', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11585', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006041158', '11:58', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11586', 'pm001 inserts new User into System.User NAME:ELIUD WAMBU', 'pm001', '202006041159', '11:59', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11587', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006041159', '11:59', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11588', 'pm001 inserts new User into System.User NAME:TOBIAS MARAO', 'pm001', '202006041200', '12:00', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11589', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006041200', '12:00', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11590', 'pm001 inserts new User into System.User NAME:ELIAS KIMANI', 'pm001', '202006041201', '12:01', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11591', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006041201', '12:01', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11592', 'pm001 inserts new User into System.User NAME:RUFUS KIMANI', 'pm001', '202006041202', '12:02', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11593', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006041202', '12:02', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11594', 'pm001  updates user data.User Id:8', 'pm001', '202006041203', '12:03', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11595', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006041203', '12:03', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11596', 'pm001  accesses Chart of Accounts Panel.', 'pm001', '202006041203', '12:03', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11597', 'pm001 inserts data into ledgers database.Ledger name:EN003', 'pm001', '202006041205', '12:05', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11598', 'en003 logs into system', 'en003', '202006041210', '12:10', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11599', 'en003 accesses Change Login Credentials Panel.', 'en003', '202006041210', '12:10', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11600', 'en003 accesses Change Login Credentials Panel.', 'en003', '202006041210', '12:10', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11601', 'en003 accesses Change Login Credentials Panel.', 'en003', '202006041210', '12:10', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11602', 'en003 logs into system', 'en003', '202006041211', '12:11', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11603', 'en003 accesses Change Login Credentials Panel.', 'en003', '202006041212', '12:12', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11604', 'en003 accesses Change Login Credentials Panel.', 'en003', '202006041212', '12:12', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11605', 'en003 accesses Change Login Credentials Panel.', 'en003', '202006041212', '12:12', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11606', 'en003 accesses Tenant Invoicing Panel.', 'en003', '202006041212', '12:12', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11607', 'en003 accesses Change Login Credentials Panel.', 'en003', '202006041212', '12:12', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11608', 'en003 updates login details.', 'en003', '202006041213', '12:13', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11609', 'en003 accesses Change Login Credentials Panel.', 'en003', '202006041213', '12:13', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11610', 'en003 logs into system', 'en003', '202006041213', '12:13', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11611', 'en003 accesses Tenant Invoicing Panel.', 'en003', '202006041213', '12:13', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11612', 'en003 accesses Tenant Invoicing Panel.', 'en003', '202006041214', '12:14', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11613', 'en003 accesses Tenant Invoicing Panel.', 'en003', '202006041214', '12:14', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11614', 'en003 accesses Multiple Members Invoicing Panel.', 'en003', '202006041214', '12:14', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11615', 'en003 accesses Set Billable Items Panel.', 'en003', '202006041216', '12:16', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11616', 'en003 accesses Multiple Members Invoicing Panel.', 'en003', '202006041217', '12:17', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11617', 'en003 accesses new letter panel.', 'en003', '202006041218', '12:18', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11618', 'en003 logs into system', 'en003', '202006041223', '12:23', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11619', 'en003 accesses Reports Panel.', 'en003', '202006041224', '12:24', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11620', 'en003 accesses new letter panel.', 'en003', '202006041224', '12:24', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11621', 'en003 accesses new decree panel.', 'en003', '202006041226', '12:26', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11622', 'en003 accesses new distress panel.', 'en003', '202006041229', '12:29', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11623', 'en003 accesses new decree panel.', 'en003', '202006041229', '12:29', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11624', 'en003 accesses find distress Panel.', 'en003', '202006041231', '12:31', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11625', 'en003 accesses decree File Panel.Record ID:2', 'en003', '202006041231', '12:31', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11626', 'en003 accesses Reports Panel.', 'en003', '202006041231', '12:31', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11627', 'en003 accesses new decree panel.', 'en003', '202006041232', '12:32', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11628', 'pm001 logs into system', 'pm001', '202006041558', '15:58', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11629', 'Ew006 logs into system', 'Ew006', '202006041603', '16:03', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11630', 'Ew006 accesses Change Login Credentials Panel.', 'Ew006', '202006041603', '16:03', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11631', 'Ew006 accesses Change Login Credentials Panel.', 'Ew006', '202006041603', '16:03', '04/06/2020', '1');
+INSERT INTO `log` VALUES ('11632', 'pm001 logs into system', 'pm001', '202006051019', '10:19', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11633', 'pm001 checks todo task.', 'pm001', '202006051022', '10:22', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11634', 'pm001 accesses Reports Panel.', 'pm001', '202006051023', '10:23', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11635', 'pm001 accesses Tenant Invoicing Panel.', 'pm001', '202006051024', '10:24', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11636', 'pm001 accesses Multiple Members Invoicing Panel.', 'pm001', '202006051024', '10:24', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11637', 'pm001 accesses Reports Panel.', 'pm001', '202006051024', '10:24', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11638', 'pm001 accesses find letter Panel.', 'pm001', '202006051027', '10:27', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11639', 'pm001 accesses new distress panel.', 'pm001', '202006051027', '10:27', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11640', 'pm001 accesses new Notice panel.', 'pm001', '202006051027', '10:27', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11641', 'pm001 accesses new letter panel.', 'pm001', '202006051030', '10:30', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11642', 'pm001 accesses Notice File Panel.Record ID:1', 'pm001', '202006051031', '10:31', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11643', 'pm001 logs into system', 'pm001', '202006051206', '12:06', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11644', 'pm001 logs into system', 'pm001', '202006051254', '12:54', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11645', 'pm001 accesses find distress Panel.', 'pm001', '202006051254', '12:54', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11646', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006051254', '12:54', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11647', 'pm001 accesses find notice search  Panel.', 'pm001', '202006051257', '12:57', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11648', 'pm001 accesses new letter panel.', 'pm001', '202006051302', '13:02', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11649', 'pm001 accesses new Proclamation panel.', 'pm001', '202006051302', '13:02', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11650', 'pm001 logs into system', 'pm001', '202006051428', '14:28', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11651', 'pm001 logs into system', 'pm001', '202006051514', '15:14', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11652', 'pm001 accesses find notice search  Panel.', 'pm001', '202006051514', '15:14', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11653', 'pm001 accesses new Proclamation panel.', 'pm001', '202006051514', '15:14', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11654', 'pm001 accesses System Users Manager Panel.', 'pm001', '202006051520', '15:20', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11655', 'pm001 accesses Reports Panel.', 'pm001', '202006051521', '15:21', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11656', 'pm001 logs into system', 'pm001', '202006051533', '15:33', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11657', 'pm001 accesses new decree panel.', 'pm001', '202006051533', '15:33', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11658', 'pm001 logs into system', 'pm001', '202006051611', '16:11', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11659', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006051618', '16:18', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11660', 'pm001 accesses letter File Panel.Record ID:2', 'pm001', '202006051619', '16:19', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11661', 'pm001 logs into system', 'pm001', '202006052144', '21:44', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11662', 'pm001 accesses new decree panel.', 'pm001', '202006052149', '21:49', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11663', 'pm001 logs into system', 'pm001', '202006052234', '22:34', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11664', 'pm001 accesses new decree panel.', 'pm001', '202006052234', '22:34', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11665', 'pm001 accesses new decree panel.', 'pm001', '202006052236', '22:36', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11666', 'pm001 logs into system', 'pm001', '202006052312', '23:12', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11667', 'pm001 accesses new decree panel.', 'pm001', '202006052313', '23:13', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11668', 'pm001 accesses new decree panel.', 'pm001', '202006052317', '23:17', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11669', 'pm001 logs into system', 'pm001', '202006052338', '23:38', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11670', 'pm001 accesses new decree panel.', 'pm001', '202006052338', '23:38', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11671', 'pm001 accesses new decree panel.', 'pm001', '202006052341', '23:41', '05/06/2020', '1');
+INSERT INTO `log` VALUES ('11672', 'pm001 logs into system', 'pm001', '202006060602', '06:02', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11673', 'pm001 accesses new decree panel.', 'pm001', '202006060605', '06:05', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11674', 'pm001 logs into system', 'pm001', '202006060649', '06:49', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11675', 'pm001 accesses new decree panel.', 'pm001', '202006060649', '06:49', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11676', 'pm001 accesses new decree panel.', 'pm001', '202006060649', '06:49', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11677', 'pm001 creates new decree', 'pm001', '202006060702', '07:02', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11678', 'pm001 accesses new decree panel.', 'pm001', '202006060702', '07:02', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11679', 'pm001 accesses new decree panel.', 'pm001', '202006060714', '07:14', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11680', 'pm001 creates new decree', 'pm001', '202006060718', '07:18', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11681', 'pm001 accesses new decree panel.', 'pm001', '202006060718', '07:18', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11682', 'pm001 accesses new decree panel.', 'pm001', '202006060722', '07:22', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11683', 'pm001 creates new decree', 'pm001', '202006060724', '07:24', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11684', 'pm001 accesses new decree panel.', 'pm001', '202006060724', '07:24', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11685', 'pm001 accesses new decree panel.', 'pm001', '202006060744', '07:44', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11686', 'pm001 creates new decree', 'pm001', '202006060745', '07:45', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11687', 'pm001 accesses new decree panel.', 'pm001', '202006060745', '07:45', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11688', 'pm001 logs into system', 'pm001', '202006060901', '09:01', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11689', 'pm001 accesses find distress Panel.', 'pm001', '202006060902', '09:02', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11690', 'pm001 accesses find distress Panel.', 'pm001', '202006060906', '09:06', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11691', 'pm001 accesses find distress Panel.', 'pm001', '202006060913', '09:13', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11692', 'pm001 accesses find distress Panel.', 'pm001', '202006060915', '09:15', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11693', 'pm001 accesses find distress Panel.', 'pm001', '202006060916', '09:16', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11694', 'pm001 accesses decree edit File Panel.Record ID:4', 'pm001', '202006060918', '09:18', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11695', 'pm001 updates decree info ', 'pm001', '202006060928', '09:28', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11696', 'pm001 accesses new decree panel.', 'pm001', '202006060928', '09:28', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11697', 'pm001 accesses find distress Panel.', 'pm001', '202006060928', '09:28', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11698', 'pm001 accesses find distress Panel.', 'pm001', '202006060932', '09:32', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11699', 'pm001 accesses decree edit File Panel.Record ID:3', 'pm001', '202006060932', '09:32', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11700', 'pm001 updates decree info ', 'pm001', '202006060938', '09:38', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11701', 'pm001 accesses new decree panel.', 'pm001', '202006060938', '09:38', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11702', 'pm001 accesses find distress Panel.', 'pm001', '202006060938', '09:38', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11703', 'pm001 accesses decree edit File Panel.Record ID:3', 'pm001', '202006060939', '09:39', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11704', 'pm001 accesses find distress Panel.', 'pm001', '202006060941', '09:41', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11705', 'pm001 accesses decree edit File Panel.Record ID:3', 'pm001', '202006060941', '09:41', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11706', 'pm001 updates decree info ', 'pm001', '202006060942', '09:42', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11707', 'pm001 accesses new decree panel.', 'pm001', '202006060942', '09:42', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11708', 'pm001 accesses find distress Panel.', 'pm001', '202006060942', '09:42', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11709', 'pm001 accesses Reports Panel.', 'pm001', '202006060947', '09:47', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11710', 'pm001 logs into system', 'pm001', '202006061006', '10:06', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11711', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061010', '10:10', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11712', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061020', '10:20', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11713', 'pm001 accesses decree edit File Panel.Record ID:', 'pm001', '202006061035', '10:35', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11714', 'pm001 accesses decree edit File Panel.Record ID:', 'pm001', '202006061039', '10:39', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11715', 'pm001 accesses decree edit File Panel.Record ID:', 'pm001', '202006061041', '10:41', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11716', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061042', '10:42', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11717', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061049', '10:49', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11718', 'pm001 accesses find distress Panel.', 'pm001', '202006061050', '10:50', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11719', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061050', '10:50', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11720', 'pm001 updates decree info ', 'pm001', '202006061054', '10:54', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11721', 'pm001 accesses new decree panel.', 'pm001', '202006061054', '10:54', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11722', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061056', '10:56', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11723', 'pm001 logs into system', 'pm001', '202006061259', '12:59', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11724', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061300', '13:00', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11725', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061302', '13:02', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11726', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061305', '13:05', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11727', 'pm001 accesses decree edit File Panel.Record ID:3', 'pm001', '202006061317', '13:17', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11728', 'pm001 logs into system', 'pm001', '202006061725', '17:25', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11729', 'pm001 accesses decree edit File Panel.Record ID:3', 'pm001', '202006061725', '17:25', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11730', 'pm001 logs into system', 'pm001', '202006061919', '19:19', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11731', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061920', '19:20', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11732', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061922', '19:22', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11733', 'pm001 generates decree execution application ', 'pm001', '202006061924', '19:24', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11734', 'pm001 accesses new decree panel.', 'pm001', '202006061925', '19:25', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11735', 'pm001 logs into system', 'pm001', '202006061956', '19:56', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11736', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006061956', '19:56', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11737', 'pm001 logs into system', 'pm001', '202006062031', '20:31', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11738', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006062032', '20:32', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11739', 'pm001 generates decree execution application ', 'pm001', '202006062032', '20:32', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11740', 'pm001 accesses new decree panel.', 'pm001', '202006062032', '20:32', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11741', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006062032', '20:32', '06/06/2020', '1');
+INSERT INTO `log` VALUES ('11742', 'pm001 logs into system', 'pm001', '202006071525', '15:25', '07/06/2020', '1');
+INSERT INTO `log` VALUES ('11743', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006071527', '15:27', '07/06/2020', '1');
+INSERT INTO `log` VALUES ('11744', 'pm001 accesses Reports Panel.', 'pm001', '202006071527', '15:27', '07/06/2020', '1');
+INSERT INTO `log` VALUES ('11745', 'pm001 logs into system', 'pm001', '202006072204', '22:04', '07/06/2020', '1');
+INSERT INTO `log` VALUES ('11746', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006072207', '22:07', '07/06/2020', '1');
+INSERT INTO `log` VALUES ('11747', 'pm001 generates decree execution application ', 'pm001', '202006072207', '22:07', '07/06/2020', '1');
+INSERT INTO `log` VALUES ('11748', 'pm001 accesses new decree panel.', 'pm001', '202006072207', '22:07', '07/06/2020', '1');
 
 -- ----------------------------
 -- Table structure for mainhouses
@@ -11820,7 +12031,7 @@ CREATE TABLE `messages` (
   `stamp` varchar(20) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=234 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=306 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of messages
@@ -11874,6 +12085,78 @@ INSERT INTO `messages` VALUES ('230', 'pm001', 'System', 'The lease term for ten
 INSERT INTO `messages` VALUES ('231', 'pm001', 'System', 'The lease term for tenant: JESSICA WHITE- will expire on //. Kindly make the necessary arrangements.', '', '24/05/2020-12:04 PM', '20200524', '0');
 INSERT INTO `messages` VALUES ('232', 'pm001', 'System', 'The lease term for tenant: JESSICA WHITE- has expired; and  record inactivated. Be aware.', '', '24/05/2020-12:04 PM', '20200524', '0');
 INSERT INTO `messages` VALUES ('233', 'pm001', 'System', 'The rent for month of 06_2020 has been posted.', '', '02/06/2020-11:10 AM', '20200602', '0');
+INSERT INTO `messages` VALUES ('234', 'pm001', 'System', 'The lease term for tenant: JANE WAMUCII- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('235', 'ad002', 'System', 'The lease term for tenant: JANE WAMUCII- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('236', 'EN003', 'System', 'The lease term for tenant: JANE WAMUCII- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('237', 'MT004', 'System', 'The lease term for tenant: JANE WAMUCII- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('238', 'CM005', 'System', 'The lease term for tenant: JANE WAMUCII- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('239', 'EW006', 'System', 'The lease term for tenant: JANE WAMUCII- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('240', 'TM007', 'System', 'The lease term for tenant: JANE WAMUCII- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('241', 'eM008', 'System', 'The lease term for tenant: JANE WAMUCII- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('242', 'RK009', 'System', 'The lease term for tenant: JANE WAMUCII- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('243', 'pm001', 'System', 'The lease term for tenant: JANE WAMUCII- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('244', 'ad002', 'System', 'The lease term for tenant: JANE WAMUCII- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('245', 'EN003', 'System', 'The lease term for tenant: JANE WAMUCII- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('246', 'MT004', 'System', 'The lease term for tenant: JANE WAMUCII- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('247', 'CM005', 'System', 'The lease term for tenant: JANE WAMUCII- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('248', 'EW006', 'System', 'The lease term for tenant: JANE WAMUCII- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('249', 'TM007', 'System', 'The lease term for tenant: JANE WAMUCII- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('250', 'eM008', 'System', 'The lease term for tenant: JANE WAMUCII- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('251', 'RK009', 'System', 'The lease term for tenant: JANE WAMUCII- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('252', 'pm001', 'System', 'The lease term for tenant: JJJBHJBHJ- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('253', 'ad002', 'System', 'The lease term for tenant: JJJBHJBHJ- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('254', 'EN003', 'System', 'The lease term for tenant: JJJBHJBHJ- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('255', 'MT004', 'System', 'The lease term for tenant: JJJBHJBHJ- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('256', 'CM005', 'System', 'The lease term for tenant: JJJBHJBHJ- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('257', 'EW006', 'System', 'The lease term for tenant: JJJBHJBHJ- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('258', 'TM007', 'System', 'The lease term for tenant: JJJBHJBHJ- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('259', 'eM008', 'System', 'The lease term for tenant: JJJBHJBHJ- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('260', 'RK009', 'System', 'The lease term for tenant: JJJBHJBHJ- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('261', 'pm001', 'System', 'The lease term for tenant: JJJBHJBHJ- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('262', 'ad002', 'System', 'The lease term for tenant: JJJBHJBHJ- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('263', 'EN003', 'System', 'The lease term for tenant: JJJBHJBHJ- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('264', 'MT004', 'System', 'The lease term for tenant: JJJBHJBHJ- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('265', 'CM005', 'System', 'The lease term for tenant: JJJBHJBHJ- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('266', 'EW006', 'System', 'The lease term for tenant: JJJBHJBHJ- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('267', 'TM007', 'System', 'The lease term for tenant: JJJBHJBHJ- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('268', 'eM008', 'System', 'The lease term for tenant: JJJBHJBHJ- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('269', 'RK009', 'System', 'The lease term for tenant: JJJBHJBHJ- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('270', 'pm001', 'System', 'The lease term for tenant: JHJHJH- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('271', 'ad002', 'System', 'The lease term for tenant: JHJHJH- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('272', 'EN003', 'System', 'The lease term for tenant: JHJHJH- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('273', 'MT004', 'System', 'The lease term for tenant: JHJHJH- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('274', 'CM005', 'System', 'The lease term for tenant: JHJHJH- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('275', 'EW006', 'System', 'The lease term for tenant: JHJHJH- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('276', 'TM007', 'System', 'The lease term for tenant: JHJHJH- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('277', 'eM008', 'System', 'The lease term for tenant: JHJHJH- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('278', 'RK009', 'System', 'The lease term for tenant: JHJHJH- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('279', 'pm001', 'System', 'The lease term for tenant: JHJHJH- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('280', 'ad002', 'System', 'The lease term for tenant: JHJHJH- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('281', 'EN003', 'System', 'The lease term for tenant: JHJHJH- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('282', 'MT004', 'System', 'The lease term for tenant: JHJHJH- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('283', 'CM005', 'System', 'The lease term for tenant: JHJHJH- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('284', 'EW006', 'System', 'The lease term for tenant: JHJHJH- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('285', 'TM007', 'System', 'The lease term for tenant: JHJHJH- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('286', 'eM008', 'System', 'The lease term for tenant: JHJHJH- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('287', 'RK009', 'System', 'The lease term for tenant: JHJHJH- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('288', 'pm001', 'System', 'The lease term for tenant: ZCXBVBNB- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('289', 'ad002', 'System', 'The lease term for tenant: ZCXBVBNB- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('290', 'EN003', 'System', 'The lease term for tenant: ZCXBVBNB- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('291', 'MT004', 'System', 'The lease term for tenant: ZCXBVBNB- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('292', 'CM005', 'System', 'The lease term for tenant: ZCXBVBNB- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('293', 'EW006', 'System', 'The lease term for tenant: ZCXBVBNB- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('294', 'TM007', 'System', 'The lease term for tenant: ZCXBVBNB- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('295', 'eM008', 'System', 'The lease term for tenant: ZCXBVBNB- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('296', 'RK009', 'System', 'The lease term for tenant: ZCXBVBNB- will expire on //. Kindly make the necessary arrangements.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('297', 'pm001', 'System', 'The lease term for tenant: ZCXBVBNB- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('298', 'ad002', 'System', 'The lease term for tenant: ZCXBVBNB- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('299', 'EN003', 'System', 'The lease term for tenant: ZCXBVBNB- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('300', 'MT004', 'System', 'The lease term for tenant: ZCXBVBNB- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('301', 'CM005', 'System', 'The lease term for tenant: ZCXBVBNB- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('302', 'EW006', 'System', 'The lease term for tenant: ZCXBVBNB- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('303', 'TM007', 'System', 'The lease term for tenant: ZCXBVBNB- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('304', 'eM008', 'System', 'The lease term for tenant: ZCXBVBNB- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
+INSERT INTO `messages` VALUES ('305', 'RK009', 'System', 'The lease term for tenant: ZCXBVBNB- has expired; and  record inactivated. Be aware.', '', '07/06/2020-03:25 PM', '20200607', '0');
 
 -- ----------------------------
 -- Table structure for metering
@@ -12022,7 +12305,7 @@ CREATE TABLE `notices` (
   `delivery_status` varchar(1) DEFAULT NULL,
   `refno` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3047 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3091 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of notices
@@ -14934,17 +15217,61 @@ INSERT INTO `notices` VALUES ('3032', 'LOF Reminder', 'Hallo PRINCE YASHUA. We n
 INSERT INTO `notices` VALUES ('3033', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '02/06/2020', '11:10 AM', '20200602', '202006021110', '1', '', '0', '0');
 INSERT INTO `notices` VALUES ('3034', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '02/06/2020', '11:10 AM', '20200602', '202006021110', '1', '', '0', '0');
 INSERT INTO `notices` VALUES ('3035', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '02/06/2020', '11:10 AM', '20200602', '202006021110', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3036', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3037', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3038', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3039', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3040', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3041', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3042', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3043', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3044', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3045', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3046', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3036', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3037', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3038', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3039', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3040', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3041', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3042', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3043', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3044', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3045', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3046', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '03/06/2020', '01:49 PM', '20200603', '202006031349', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3047', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3048', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3049', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3050', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3051', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3052', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3053', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3054', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3055', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3056', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3057', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '04/06/2020', '10:38 AM', '20200604', '202006041038', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3058', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3059', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3060', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3061', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3062', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3063', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3064', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3065', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3066', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3067', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3068', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '05/06/2020', '10:20 AM', '20200605', '202006051020', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3069', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3070', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3071', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3072', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3073', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3074', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3075', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3076', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3077', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3078', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3079', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '06/06/2020', '06:02 AM', '20200606', '202006060602', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3080', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3081', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3082', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3083', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3084', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3085', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3086', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3087', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3088', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3089', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3090', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '07/06/2020', '03:25 PM', '20200607', '202006071525', '0', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for nssf
@@ -18877,7 +19204,7 @@ CREATE TABLE `tenants` (
   `profile` text,
   `pointsbal` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1265 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1269 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tenants
@@ -20145,6 +20472,10 @@ INSERT INTO `tenants` VALUES ('1261', 'CHADPRO0002', 'Proclamation', 'MAGGY KEND
 INSERT INTO `tenants` VALUES ('1262', 'LET000006', 'letter', 'JANE BLACKO', 'LONDON TOWN', '', '', 'PRESLEY JONAS', '', '', '20/05/2020', '20200520', '1', '', '', '', '', '', '', '0', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '06_2020', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `tenants` VALUES ('1263', 'LET000007', 'letter', 'ROBIN KIPLETING', 'RUAKA', '', '', 'KURIA MOSES', '', '', '22/05/2020', '20200522', '1', '', '', '', '', '', '', '0', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '06_2020', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `tenants` VALUES ('1264', 'LET000008', 'letter', 'JESSICA WHITE', 'KIUTA', '', '', 'MAVERN KILONZO', '', '', '22/05/2020', '20200522', '1', '', '', '', '', '', '', '0', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '06_2020', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `tenants` VALUES ('1265', 'DEC000003', 'decree', 'JANE WAMUCII', '', '', '', 'LALI ABUBAKAR', '', '', '06/06/2020', '20200606', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `tenants` VALUES ('1266', 'DEC000004', 'decree', 'JJJBHJBHJ', '', '', '', 'JHBHJBHJBHJ', '', '', '06/06/2020', '20200606', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `tenants` VALUES ('1267', 'DEC000005', 'decree', 'JHJHJH', '', '', '', 'NBBVBV', '', '', '06/06/2020', '20200606', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `tenants` VALUES ('1268', 'DEC000006', 'decree', 'ZCXBVBNB', '', '', '', 'XZXCCV', '', '', '06/06/2020', '20200606', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for tendocs
@@ -20221,7 +20552,7 @@ INSERT INTO `todo` VALUES ('16', 'Balance', '05/02/2020', '20200205', '10:39 AM'
 INSERT INTO `todo` VALUES ('17', '21ST FEB EXECUTIVE MEETING', '17/02/2020', '20200217', '06:48 AM', '202002170648', 'MKPACENT-0003', '0');
 INSERT INTO `todo` VALUES ('18', '21ST FEB 2020 EXECUTIVE MEETING', '17/02/2020', '20200217', '06:49 AM', '202002170649', 'MKPACENT-0003', '0');
 INSERT INTO `todo` VALUES ('19', 'receipt', '28/02/2020', '20200228', '03:39 PM', '202002281539', 'MKPACENT-0600', '0');
-INSERT INTO `todo` VALUES ('20', 'ghhj', '19/03/2020', '20200319', '09:22 AM', '202003190922', 'pm001', '0');
+INSERT INTO `todo` VALUES ('20', 'ghhj', '19/03/2020', '20200319', '09:22 AM', '202003190922', 'pm001', '1');
 INSERT INTO `todo` VALUES ('21', 'kkllk', '13/05/2020', '20200513', '06:53 PM', '202005131853', 'pm001', '1');
 
 -- ----------------------------
@@ -20289,12 +20620,20 @@ CREATE TABLE `users` (
   `fid` varchar(20) DEFAULT NULL,
   `status` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES ('1', 'pm001', 'Admin', 'img/users/1.jpg', '145394f8d6fd241a9d82e035c7c43018764b368c', 'ADMINISTRATION', 'SYSTEM ADMIN', 'NAIROBI', null, '1');
+INSERT INTO `users` VALUES ('2', 'ad002', 'Admin', '', 'cd257771133242a1cca7e20a959f45cc73142130', 'ADMINISTRATION', 'ADMIN', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('3', 'EN003', 'Accounts', '', '9122e2ae9e6c742b7a0d0d8babc11082e78d65b9', 'ACCOUNTING', 'ESTHER NDICHO', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('4', 'MT004', 'Manager', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'ADMINISTRATION', 'MARTHA THOGORI', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('5', 'CM005', 'Sales', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'SALES', 'CAROLINE MUTHEE', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('6', 'EW006', 'Director', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'ADMINISTRATION', 'ELIUD WAMBU', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('7', 'TM007', 'Sales', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'SALES', 'TOBIAS MARAO', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('8', 'eM008', 'Sales', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'SALES', 'ELIAS MACHIRI', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('9', 'RK009', 'Sales', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'SALES', 'RUFUS KIMANI', 'THIKA', '', '1');
 
 -- ----------------------------
 -- Table structure for utilities
@@ -20448,7 +20787,7 @@ CREATE TABLE `weather` (
 -- ----------------------------
 -- Records of weather
 -- ----------------------------
-INSERT INTO `weather` VALUES ('1', 'Nairobi', '23.4', '23', '24', '56', '2.6', 'broken clouds');
+INSERT INTO `weather` VALUES ('1', 'Nairobi', '19.6', '19', '20', '68', '2.6', 'broken clouds');
 
 -- ----------------------------
 -- Table structure for workshopregister

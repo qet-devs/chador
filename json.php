@@ -490,10 +490,11 @@ $where = "";
                 // indexes
                     $columns = array(
                         array( 'db' => 'id', 'dt' => 0 ),
-                        array( 'db' => 'suitno', 'dt' => 1 ),
-                        array( 'db' => 'party1', 'dt' => 2 ),
-                        array( 'db' => 'party2',  'dt' => 3 ),
-                        array( 'db' => 'decree_date',    'dt' => 4 )
+                        array( 'db' => 'plaintiffs', 'dt' => 1 ),
+                        array( 'db' => 'defendants',  'dt' => 2 ),
+                        array('db'=>'decretal_amount', 'dt'=>3),
+                        array('db'=>'schedule_cost','dt'=>4),
+                        array( 'db' => 'decree_date',    'dt' => 5 )
                     );
             
                 break;
@@ -512,10 +513,11 @@ $where = "";
                     // indexes
                         $columns = array(
                             array( 'db' => 'id', 'dt' => 0 ),
-                            array( 'db' => 'suitno', 'dt' => 1 ),
-                            array( 'db' => 'party1', 'dt' => 2 ),
-                            array( 'db' => 'party2',  'dt' => 3 ),
-                            array( 'db' => 'decree_date',    'dt' => 4 )
+                            array( 'db' => 'plaintiffs', 'dt' => 1 ),
+                            array( 'db' => 'defendants',  'dt' => 2 ),
+                            array('db'=>'decretal_amount', 'dt'=>3),
+                            array('db'=>'schedule_cost','dt'=>4),
+                            array( 'db' => 'decree_date',    'dt' => 5 )
                         );
                 
                     break;

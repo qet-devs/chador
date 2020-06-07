@@ -31964,44 +31964,38 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                           <div class="panel widget">
                               <div class="panel-heading vd_bg-grey">
                                   <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Decree Details</h3>
+                                      Court Details</h3>
                               </div>
                               <!--                        panel heading-->
                               <div class="panel-body text-capitalize">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label for="">Suit No.</label>
-                                      <input type="text" class="control" id="suitno">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="">Decree Holder.</label>
-                                      <input type="text" class="control" id="holder">
-                                  </div>
-                                  <div class="form-group">
-                                      <label for="">Court.</label>
+                                      <label for="">Court<span style="color:#f00">*</span></label>
                                       <input type="text" class="control" id="court">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Name of parties.</label>
-                                      <input type="text" class="control" id="party1">
-                                      <label for="">-VS-.</label>
-                                      <input type="text" class="control" id="party2">
+                                      <label for="">Case No.<span style="color:#f00">*</span></label>
+                                      <input type="text" class="control" id="case_no">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Against whom to execute</label>
-                                      <input type="text" class="control" id="against">
+                                      <label for="">Plaintiffs<span style="color:#f00">*</span></label>
+                                      <textarea name="plaintiff" class="control" id="plaintiff"></textarea>
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Appeal prefered from decree</label>
-                                      <input type="text" id="appeal" class="control">
+                                      <label for="">Defendants<span style="color:#f00">*</span></label>
+                                      <textarea name="defendant" class="control" id="defendant"></textarea>
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Decree Date</label>
-                                      <input type="text" class="control date" id="datepicker">
+                                      <label for="">Claim<span style="color:#f00">*</span></label>
+                                      <input type="text" class="control" id="claim">
                                   </div>
                                   <div class="form-group">
-                                      <label>Court Mode of assistance</label>
-                                      <textarea name="mode" class="control" id="mode"></textarea>
+                                      <label for="">Court Date<span style="color:#f00">*</span></label>
+                                      <input type="text" class="control date" id="court_date">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Decree Date<span style="color:#f00">*</span></label>
+                                      <input type="text" class="control date" id="decree_date">
                                   </div>
                               </div>
                               <!-- Panel body -->
@@ -32010,29 +32004,38 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                           
                           <div class="panel widget">
                               <div class="panel-heading vd_bg-grey">
-                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Adjournment or Payment Details</h3>
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Payment Details</h3>
                               </div>
                               <!--                        panel heading-->
                               <div class="panel-body">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label for="">Adjournment</label>
-                                      <input type="text" class="control" id="adj">
+                                      <label for="">Principal Amount<span style="color:#f00">*</span></label>
+                                      <input type="text" class="control" id="principal" onkeyup="calcdecretal()">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Payment</label>
-                                      <input type="text" class="control" id="payment">
+                                      <label for="">Interest<span style="color:#f00">*</span></label>
+                                      <input type="text" class="control" id="interest" onkeyup="calcdecretal()">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Date</label>
-                                      <input type="text" class="control date" id="datepicker1">
+                                  <label >Payment Duration</label>
+                                  <div class="form-group">
+                                      <label for="">From Date</label>
+                                      <input type="text" class="control date" id="start_date">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Results</label>
-                                      <textarea id="result" name="result" class="control"></textarea>
+                                      <label for="">To Date</label>
+                                      <input type="text" class="control date" id="end_date">
                                   </div>
-      
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Rate per annum</label>
+                                      <input type="text" class="control" id="rate">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Decretal Amount<span style="color:#f00">*</span></label>
+                                      <input type="text" class="control" id="decretal_amount" disabled>
+                                  </div>
                               </div>
                               <!-- Panel body -->
                           </div>
@@ -32043,55 +32046,47 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                       <div class="col-md-6">
                           <div class="panel widget">
                               <div class="panel-heading vd_bg-grey">
-                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Amount with interests</h3>
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Stated Costs</h3>
                               </div>
                               <!--                        panel heading-->
                               <div class="panel-body">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label for="">Principal Amount</label>
-                                      <input type="text" class="control" id="principal_amount" onkeyup="calcamount()" >
+                                      <label for="">Party and Party Costs on higher scale</label>
+                                      <input type="text" class="control" id="party_cost" onkeyup="calcamount()" >
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Interest</label>
-                                      <input type="text" class="control" id="interest" onkeyup="calcamount()" >
+                                      <label for="">Attendances</label>
+                                      <input type="text" class="control" id="attendances" onkeyup="calcamount()" >
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Total</label>
-                                      <input type="text" class="control" id="amount_total" disabled>
-                                  </div>
-      
-                              </div>
-                              <!-- Panel body -->
-                          </div>
-                          <!-- Panel Widget -->
-                          
-                          <div class="panel widget">
-                              <div class="panel-heading vd_bg-grey">
-                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Amount of costs</h3>
-                              </div>
-                              <!--                        panel heading-->
-                              <div class="panel-body">
-                                  <!--                            form content goes here-->
-                                  <div class="form-group">
-                                      <label for="">Cost Awarded</label>
-                                      <input type="text" class="control" onkeyup="calctotalcost()" id="cost_awarded">
+                                      <label for="">Court Fees</label>
+                                      <input type="text" class="control" id="court_fees" onkeyup="calcamount()">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Court Collection Fee</label>
-                                      <input type="text" class="control" onkeyup="calctotalcost()" id="court_fee">
+                                      <label for="">Witness Expenses/Summons</label>
+                                      <input type="text" class="control" id="witness_exp" onkeyup="calcamount()">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Subsequent incurred</label>
-                                      <input type="text" class="control" onkeyup="calctotalcost()" id="sub_incurred">
+                                      <label for="">Other Disbursements</label>
+                                      <input type="text" class="control" id="disbursements" onkeyup="calcamount()">
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Total</label>
-                                      <input type="text" class="control" id="total_costs" disabled>
+                                      <label for="">Decree</label>
+                                      <input type="text" class="control" id="decree_cost" onkeyup="calcamount()">
                                   </div>
-      
+                                  <div class="form-group">
+                                      <label for="">Service of Summons</label>
+                                      <input type="text" class="control" id="summons" onkeyup="calcamount()">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Certificate of costs</label>
+                                      <input type="text" class="control" id="cert_costs" onkeyup="calcamount()">
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Total Costs</label>
+                                      <input type="text" class="control" id="total_cost" disabled>
+                                  </div>      
                               </div>
                               <!-- Panel body -->
                           </div>
@@ -32159,10 +32154,11 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                             <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>suit No.</th>
-                                                <th>party1</th>
-                                                <th>party2</th>
-                                                <th>Decree Date</th>
+                                                <th>Plaintiffs</th>
+                                                <th>Defendants</th>
+                                                <th>Amount</th>
+                                                <th>Charges</th>
+                                                <th>Dated</th>
                                             </tr>
                                             </thead>
                                         </table>
@@ -32281,7 +32277,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                 <div style="width:100%;padding:20px">
                 <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit decree Info</h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Application Of Execution Of Decree</h3>
                   </div>
                 <select id="intcombo" class="text-capitalize">
                 <option value="" selected>Select One...</option>';
@@ -32290,7 +32286,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                       for ($i=0; $i <$num_results; $i++) {
                           $row=mysql_fetch_array($result);
                           $code=stripslashes($row['id']);
-                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['party1']).' vs '.stripslashes($row['party2']).'</option>';
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['plaintiffs']).'<strong> vs </strong>'.stripslashes($row['defendants']).'</option>';
                         }
                    echo'</select>
                      <div class="cleaner_h10"></div>
@@ -32311,7 +32307,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
             $.ajax({
             url:'bridge.php',
-            data:{id:603,param:param},
+            data:{id:609,param:param},
             success:function(data){
             $('#mainp').html(data);
             }
@@ -32337,145 +32333,140 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                   <div class="vd_content-section clearfix">
                       <div class="row" id="form-basic">
           
-                          <div class="col-md-6">
-                              <div class="panel widget">
-                                  <div class="panel-heading vd_bg-grey">
-                                      <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                        Edit  Decree Details</h3>
-                                  </div>
-                                  <!--                        panel heading-->
-                                  <div class="panel-body text-capitalize">
-                                      <!--                            form content goes here-->
-                                      <input type="hidden" id="uid" value="'.$rowx['uid'].'">
-                                      <div class="form-group">
-                                          <label for="">Suit No.</label>
-                                          <input type="text" class="control" id="suitno" value="'.$rowx['suitno'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Decree Holder.</label>
-                                          <input type="text" class="control" id="holder" value="'.$rowx['holder'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Court.</label>
-                                          <input type="text" class="control" id="court" value="'.$rowx['court'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Name of parties.</label>
-                                          <input type="text" class="control" id="party1" value="'.$rowx['party1'].'">
-                                          <label for="">-VS-.</label>
-                                          <input type="text" class="control" id="party2" value="'.$rowx['party2'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Against whom to execute</label>
-                                          <input type="text" class="control" id="against" value="'.$rowx['against'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Appeal prefered from decree</label>
-                                          <input type="text" id="appeal" class="control" value="'.$rowx['appeal'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Decree Date</label>
-                                          <input type="text" class="control date" id="datepicker" value="'.$rowx['decree_date'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label>Court Mode of assistance</label>
-                                          <textarea name="mode" class="control" id="mode">'.$rowx['mode'].'</textarea>
-                                      </div>
-                                  </div>
-                                  <!-- Panel body -->
-                              </div>
-                              <!-- Panel Widget -->
-                              
-                              <div class="panel widget">
-                                  <div class="panel-heading vd_bg-grey">
-                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                        Edit  Adjournment or Payment Details</h3>
-                                  </div>
-                                  <!--                        panel heading-->
-                                  <div class="panel-body">
-                                      <!--                            form content goes here-->
-                                      <div class="form-group">
-                                          <label for="">Adjournment</label>
-                                          <input type="text" class="control" id="adj" value="'.$rowx['adjournment'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Payment</label>
-                                          <input type="text" class="control" id="payment" value="'.$rowx['payment'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Date</label>
-                                          <input type="text" class="control date" id="datepicker1" value="'.$rowx['date'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Results</label>
-                                          <textarea id="result" name="result" class="control">'.$rowx['result'].'</textarea>
-                                      </div>
-          
-                                  </div>
-                                  <!-- Panel body -->
-                              </div>
-                              <!-- Panel Widget -->
+                      <div class="col-md-6">
+                      <div class="panel widget">
+                          <div class="panel-heading vd_bg-grey">
+                              <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                  Court Details</h3>
                           </div>
-                          <!-- col-md-6 -->
-          
-                          <div class="col-md-6">
-                              <div class="panel widget">
-                                  <div class="panel-heading vd_bg-grey">
-                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                        Edit  Amount with interests</h3>
-                                  </div>
-                                  <!--                        panel heading-->
-                                  <div class="panel-body">
-                                      <!--                            form content goes here-->
-                                      <div class="form-group">
-                                          <label for="">Principal Amount</label>
-                                          <input type="text" class="control" id="principal_amount" value="'.$rowx['principal'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Interest</label>
-                                          <input type="text" class="control" id="interest" value="'.$rowx['interest'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Total</label>
-                                          <input type="text" class="control" id="total">
-                                      </div>
-          
-                                  </div>
-                                  <!-- Panel body -->
+                          <!--                        panel heading-->
+                          <div class="panel-body text-capitalize">
+                              <!--                            form content goes here-->
+                              <div class="form-group">
+                                  <label for="">Court<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control" id="court" value="'.$rowx['court'].'">
+                                  <input type="hidden" id="uid" value="'.$rowx['uid'].'">
                               </div>
-                              <!-- Panel Widget -->
-                              
-                              <div class="panel widget">
-                                  <div class="panel-heading vd_bg-grey">
-                                      <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                        Edit  Amount of costs</h3>
-                                  </div>
-                                  <!--                        panel heading-->
-                                  <div class="panel-body text-capitalize">
-                                      <!--                            form content goes here-->
-                                      <div class="form-group">
-                                          <label for="">Cost Awarded</label>
-                                          <input type="text" class="control" id="cost_awarded" value="'.$rowx['cost_awarded'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Court Collection Fee</label>
-                                          <input type="text" class="control" id="court_fee" value="'.$rowx['court_fee'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Subsequent incurred</label>
-                                          <input type="text" class="control" id="sub_incurred" value="'.$rowx['subs_incurred'].'">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="">Total</label>
-                                          <input type="text" class="control" id="total_costs">
-                                      </div>
-          
-                                  </div>
-                                  <!-- Panel body -->
+                              <div class="form-group">
+                                  <label for="">Case No.<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control" id="case_no" value="'.$rowx['case_no'].'">
                               </div>
-                              <!-- Panel Widget -->
-                              
-                              <div class="panel widget">
+                              <div class="form-group">
+                                  <label for="">Plaintiffs<span style="color:#f00">*</span></label>
+                                  <textarea name="plaintiff" class="control" id="plaintiff">'.$rowx['plaintiffs'].'</textarea>
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Defendants<span style="color:#f00">*</span></label>
+                                  <textarea name="defendant" class="control" id="defendant">'.$rowx['defendants'].'</textarea>
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Claim<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control" id="claim" value="'.$rowx['claim'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Court Date<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control date" id="court_date" value="'.$rowx['court_date'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Decree Date<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control date" id="decree_date" value="'.$rowx['decree_date'].'">
+                              </div>
+                          </div>
+                          <!-- Panel body -->
+                      </div>
+                      <!-- Panel Widget -->
+                      
+                      <div class="panel widget">
+                          <div class="panel-heading vd_bg-grey">
+                              <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Payment Details</h3>
+                          </div>
+                          <!--                        panel heading-->
+                          <div class="panel-body">
+                              <!--                            form content goes here-->
+                              <div class="form-group">
+                                  <label for="">Principal Amount<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control" id="principal" onkeyup="calcdecretal()" value="'.$rowx['principal'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Interest<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control" id="interest" onkeyup="calcdecretal()" value="'.$rowx['interest'].'">
+                              </div>
+                              <div class="form-group">
+                              <label >Payment Duration</label>
+                              <div class="form-group">
+                                  <label for="">From Date</label>
+                                  <input type="text" class="control date" id="start_date" value="'.$rowx['period_start'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">To Date</label>
+                                  <input type="text" class="control date" id="end_date" value="'.$rowx['period_end'].'">
+                              </div>
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Rate per annum</label>
+                                  <input type="text" class="control" id="rate" value="'.$rowx['interest_rate'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Decretal Amount<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control" id="decretal_amount" disabled value="'.$rowx['decretal_amount'].'">
+                              </div>
+                          </div>
+                          <!-- Panel body -->
+                      </div>
+                      <!-- Panel Widget -->
+                  </div>
+                  <!-- col-md-6 -->
+  
+                  <div class="col-md-6">
+                      <div class="panel widget">
+                          <div class="panel-heading vd_bg-grey">
+                              <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Stated Costs</h3>
+                          </div>
+                          <!--                        panel heading-->
+                          <div class="panel-body">
+                              <!--                            form content goes here-->
+                              <div class="form-group">
+                                  <label for="">Party and Party Costs on higher scale</label>
+                                  <input type="text" class="control" id="party_cost" onkeyup="calcamount()" value="'.$rowx['party_cost'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Attendances</label>
+                                  <input type="text" class="control" id="attendances" onkeyup="calcamount()" value="'.$rowx['attendances'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Court Fees</label>
+                                  <input type="text" class="control" id="court_fees" onkeyup="calcamount()" value="'.$rowx['court_fees'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Witness Expenses/Summons</label>
+                                  <input type="text" class="control" id="witness_exp" onkeyup="calcamount()" value="'.$rowx['witness_expenses'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Other Disbursements</label>
+                                  <input type="text" class="control" id="disbursements" onkeyup="calcamount()" value="'.$rowx['disbursement'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Decree</label>
+                                  <input type="text" class="control" id="decree_cost" onkeyup="calcamount()" value="'.$rowx['decree_cost'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Service of Summons</label>
+                                  <input type="text" class="control" id="summons" onkeyup="calcamount()" value="'.$rowx['summons'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Certificate of costs</label>
+                                  <input type="text" class="control" id="cert_costs" onkeyup="calcamount()" value="'.$rowx['cert_cost'].'">
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Total Costs</label>
+                                  <input type="text" class="control" id="total_cost" disabled value="'.$rowx['schedule_cost'].'">
+                              </div>      
+                          </div>
+                          <!-- Panel body -->
+                      </div>
+                      <!-- Panel Widget -->
+                      
+                      <div class="panel widget">
                                   <div class="panel-heading vd_bg-grey">
                                       <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
                                           Decree Actions</h3>
@@ -32861,11 +32852,12 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                         <table class="table table-striped text-capitalize" id="data-tables">
                                             <thead>
                                             <tr>
-                                                <th>ID</th>
-                                                <th>suit No.</th>
-                                                <th>party1</th>
-                                                <th>party2</th>
-                                                <th>Decree Date</th>
+                                            <th>ID</th>
+                                            <th>Plaintiffs</th>
+                                            <th>Defendants</th>
+                                            <th>Amount</th>
+                                            <th>Charges</th>
+                                            <th>Dated</th>
                                             </tr>
                                             </thead>
                                         </table>
@@ -33021,6 +33013,165 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
       
                          echo "<script>  $( '.date' ).datepicker({ dateFormat: 'dd/mm/yy'});  </script>";
       
+        break;
+
+        case 609:
+          $tid=$param=$_GET['param'];$_SESSION['housediv']=array();
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+              $result = mysql_query("insert into log values('','".$username." accesses decree edit File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+              $resultx =mysql_query("select * from decrees where id='".$param."' limit 0,1");
+              $rowx=mysql_fetch_array($resultx);
+
+              echo '<div class="vd_container" id="container">
+              <div class="vd_content clearfix" style="">
+          
+                  <div class="vd_content-section clearfix">
+                      <div class="row" id="form-basic">
+          
+                      <div class="col-md-6">
+                      <div class="panel widget">
+                          <div class="panel-heading vd_bg-grey">
+                              <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                  Court Details</h3>
+                          </div>
+                          <!--                        panel heading-->
+                          <div class="panel-body text-capitalize">
+                              <!--                            form content goes here-->
+                              <div class="form-group">
+                                  <label for="">Court<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control" id="court" value="'.$rowx['court'].'" disabled>
+                                  <input type="hidden" id="uid" value="'.$rowx['uid'].'" disabled>
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Case No.<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control" id="case_no" value="'.$rowx['case_no'].'" disabled>
+                              </div>
+                              <div class="form-group">
+
+                                  <label for="">Names of Parties<span style="color:#f00">*</span></label>
+                                  <textarea name="plaintiff" class="control" id="plaintiff" disabled>'.$rowx['plaintiffs'].'</textarea>
+                                  <br><strong> -VS- </strong> 
+                                  <textarea name="defendant" class="control" id="defendant" disabled>'.$rowx['defendants'].'</textarea>
+                              </div>
+                              <div class="form-group">
+                                  <label for="">Decree Date<span style="color:#f00">*</span></label>
+                                  <input type="text" class="control date" id="decree_date" value="'.$rowx['decree_date'].'" disabled>
+                              </div>
+                          </div>
+                          <!-- Panel body -->
+                      </div>
+                      <!-- Panel Widget -->
+
+                      
+                      <div class="panel widget">
+                          <div class="panel-heading vd_bg-grey">
+                              <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Additional Info</h3>
+                          </div>
+                          <!--                        panel heading-->
+                          <div class="panel-body">
+                              <!--                            form content goes here-->
+                              
+                              <div class="form-group">
+                                  <label for="">Against Whom to execute<span style="color:#f00">*</span></label>
+                                  <textarea name="defendants" id="defendants" class="control" disabled>'.$rowx['defendants'].'</textarea>
+                              </div> 
+                              <div class="form-group">
+                                  <label for="">Mode of Court Assistance<span style="color:#f00">*</span></label>
+                                  <textarea name="assistance_mode" id="assistance_mode" class="control" >'.$rowx['assistance_mode'].'</textarea>
+                              </div> 
+                              <div class="form-group">
+                                  <label for="">Decree Holder<span style="color:#f00">*</span></label>
+                                  <input type="text" name="decree_holder" id="decree_holder" class="control" value="'.$rowx['decree_holder'].'">
+                              </div> 
+                              <div class="form-group">
+                                  <label for="">Advocate<span style="color:#f00">*</span></label>
+                                  <input type="text" name="advocate" id="advocate" class="control" value="'.$rowx['advocate'].'">
+                              </div> 
+                          </div>
+                          <!-- Panel body -->
+                      </div>
+                      <!-- Panel Widget -->
+                      
+                    </div>
+                  <!-- col-md-6 -->
+  
+                  <div class="col-md-6">
+                  <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Payment Details</h3>
+                  </div>
+                  <!--                        panel heading-->
+                  <div class="panel-body">
+                      <!--                            form content goes here-->
+                      <div class="form-group">
+                          <label for="">Principal Amount<span style="color:#f00">*</span></label>
+                          <input type="text" class="control" id="principal" value="'.$rowx['principal'].'" disabled>
+                      </div>
+                      <div class="form-group">
+                          <label for="">Interest<span style="color:#f00">*</span></label>
+                          <input type="text" class="control" id="interest" value="'.$rowx['interest'].'" disabled>
+                      </div>
+                      <div class="form-group">
+                          <label for="">Decretal Amount<span style="color:#f00">*</span></label>
+                          <input type="text" class="control" id="decretal_amount" disabled value="'.$rowx['decretal_amount'].'">
+                      </div>
+                      <div class="form-group">
+                          <label for="">Cost Awarded<span style="color:#f00">*</span></label>
+                          <input type="text" class="control" id="cost_awarded" disabled value="'.$rowx['schedule_cost'].'">
+                      </div>
+                      <div class="form-group">
+                          <label for="">Court Collection Fee<span style="color:#f00">*</span></label>
+                          <input type="text" class="control" id="court_col_fee" onkeyup="calctotalcosts()" value="'.$rowx['court_col_fee'].'">
+                      </div>
+                      <div class="form-group">
+                          <label for="">Subsequent incurred<span style="color:#f00">*</span></label>
+                          <input type="text" class="control" id="sub_incurred" onkeyup="calctotalcosts()" value="'.$rowx['sub_incurred'].'">
+                      </div>
+                      <div class="form-group">
+                          <label for="">Total Costs<span style="color:#f00">*</span></label>
+                          <input type="text" class="control" id="total_costs" disabled value="'.$rowx['total_costs'].'">
+                      </div>
+                  </div>
+                  <!-- Panel body -->
+              </div>
+              <!-- Panel Widget -->
+
+                      <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                          Decree Actions</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body text-capitalize">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group form-actions">
+                                          <div class="col-sm-4"></div>
+                                          <div class="col-sm-7">
+                                              <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                      onclick="saveappl('.$param.')"><i class="icon-ok"></i> Save                          </button>
+                                              <button class="btn btn-danger" type="button" onclick="hidecont()">Cancel</button>
+                                              <div id="message" style="width:40px;height:40px;float:right"></div>
+                                          </div>
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                      </div>
+                      <!-- row -->
+                  </div>
+                  <!-- .vd_content-section -->
+          
+              </div>
+              <!-- .vd_content -->
+          </div>
+          <!-- .vd_container -->';
+
         break;
 
         case 700:

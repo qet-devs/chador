@@ -444,6 +444,14 @@ switch($id){
     case 94:
       $title='CHADOR Proclamation Report';
       break;
+
+      case 95:
+        $title='CHADOR SALE FORM 1';
+      break;
+
+      case 96:
+        $title='CHADOR APPLICATION OF EXECUTION OF DECREE';
+      break;
 }
 ?>
 
@@ -17244,5 +17252,95 @@ $aa=$i+1;
       
       
         break;
+
+        case 96:
+          $id = $_GET['param'];
+
+          $resultx = mysql_query("select * from decrees where id='".$id."'");
+          $rowxx = mysql_fetch_array($resultx);
+          ?>
+          <div style=" font-family: 'Times New Roman', Times, serif; width:80%; margin: 10px auto; height:800px">
+    <div class="text-center">
+        <h4 style=" font-family: 'Times New Roman', Times, serif;"><u><b>REPUBLIC OF KENYA</b></u></h4>
+        <h4 style=" font-family: 'Times New Roman', Times, serif;"><u><b>APPLICATION OF EXECUTION OF DECREE</b></u></h4>
+        <h4 style=" font-family: 'Times New Roman', Times, serif;"><u><b>IN THE CHIEF MAGISTRATES COURT AT KIAMBU</b></u></h4>
+    </div>
+
+    <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?>,</b></span> Decree holder, hereby apply for execution of the decree herein below set forth.<p>
+        <table class="table table-bordered">
+            <tr class="row">
+                <td class="col-md-2">1.</td>
+                <td class="col-md-4">No. of suit</td>
+                <td class="col-md-6"><span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['case_no'];?></b></span></td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-2">2.</td>
+                <td class="col-md-4">Names of parties</td>
+                <td class="col-md-6"><span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['plaintiffs'];?> -VS- <?php echo $rowxx['defendants'];?></b></span></td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-2">3.</td>
+                <td class="col-md-4">Date of decree</td>
+                <td class="col-md-6"><?php echo $rowxx['decree_date'];?></td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-2">4.</td>
+                <td class="col-md-4">Whether any appeal preferred form Decree</td>
+                <td class="col-md-6">Nil</td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-2">5.</td>
+                <td class="col-md-4">Payment, or adjournment, if any, with date and results.</td>
+                <td class="col-md-6">Nil</td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-2">6.</td>
+                <td class="col-md-4">Previous application, if any, with date and results.</td>
+                <td class="col-md-6">Nil</td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-2">7.</td>
+                <td class="col-md-4">Amount with interest due upon the decree or other relief granted thereby together with particulars of any cross-decree.</td>
+                <td class="col-md-6">
+                    <div>Principal Amount               <span class="float-right">Ksh <?php echo $rowxx['principal'];?></span></div>
+                    <p>Interest                       <span class="float-right">Ksh <?php echo $rowxx['interest'];?></span></p>
+                    <p>Decretal Amount                <span class="float-right">Ksh <?php echo $rowxx['decretal_amount'];?></span></p>
+                </td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-2">8.</td>
+                <td class="col-md-4">Amount of costs,</td>
+                <td class="col-md-6">  
+                    <p>Cost Awarded              <span class="float-right"> Ksh <?php echo $rowxx['schedule_cost'];?></span></p>
+                    <p>Court collection fee                       <span class="float-right">Ksh <?php echo $rowxx['court_col_fee'];?></span></p>
+                    <p>Subsequent incurred               <span class="float-right"> Ksh <?php echo $rowxx['sub_incurred'];?></span></p>
+                    <p><b>TOTAL                          <span class="float-right">Ksh <?php echo $rowxx['total_costs'];?></span></b></p>
+                </td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-2">9.</td>
+                <td class="col-md-4">Against whom to execute</td>
+                <td class="col-md-6"><span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['defendants'];?></b></span></td>
+            </tr>
+            <tr class="row">
+                <td class="col-md-1">10.</td>
+                <td class="col-md-3">Mode in which the assistance of court is required.</td>
+                <td class="col-md-8"><?php echo $rowxx['assistance_mode'];?><span style=" font-family: 'Times New Roman', Times, serif;"><b>M/S CHADOR AUCTIONEERS</b></span></td>
+            </tr>
+        </table>
+        <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?></b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief.....................Decree Holder.</p>
+    
+        <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['advocate'];?></b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief, and as far I have been able to ascertain the interest of the Defendant in the property therein.
+        <br>
+        Specified.......................................Decree Holder.</p>
+      
+        <p><b><u>DRAWN & FILED BY:</u></b></p>
+        <p><b>KANYI KIRUCHI & CO. ADVOCATES</b></p>
+        <p><b>THIKA BUSINESS CENTRE, 5<sup>th</sup> FLOOR</b></p>
+        <p><b>THIKA.</b></p>
+</div>
+
+          <?php
+        break;       
    
 }

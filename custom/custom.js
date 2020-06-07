@@ -9849,49 +9849,57 @@ function newdecree(){
 }
 
 function savenewdecree(){
-	var suitno = $('#suitno').val();
-	var holder = $('#holder').val();
+	var case_no = $('#case_no').val();
 	var court = $('#court').val();
-	var party1 = $('#party1').val();
-	var party2 = $('#party2').val();
-	var against = $('#against').val();
-	var appeal = $('#appeal').val();
-	var decreedate = $('#datepicker').val();
-	var mode  = $('#mode').val();
-	var adjournment = $('#adj').val();
-	var payment = $('#payment').val();
-	var date = $('#datepicker1').val();
-	var result = $('#result').val();
-	var principal = $('#principal_amount').val();
-	var interest = $('#interest').val();
-	var costawarded = $('#cost_awarded').val();
-	var courtfee = $('#court_fee').val();
-	var subincurred = $('#sub_incurred').val();
+	var plaintiff = $('#plaintiff').val();
+	var defendant = $('#defendant').val();
+	var claim = $('#claim').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court_date = $('#court_date').val();
+	var decree_date = $('#decree_date').val();
+	var principal = $('#principal').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var interest = $('#interest').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var start_date = $('#start_date').val();
+	var end_date = $('#end_date').val();
+	var rate = $('#rate').val();
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var party_cost = $('#party_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var attendances = $('#attendances').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court_fees = $('#court_fees').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var witness_exp = $('#witness_exp').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var disbursements = $('#disbursements').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var decree_cost = $('#decree_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var summons = $('#summons').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var cert_costs = $('#cert_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total_cost = $('#total_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	
-	if(suitno==''||holder==''||party1==''||party2==''||court==''||decreedate==''){
+	if(case_no==''||court==''||plaintiff==''||defendant==''||decretal_amount==''||decree_date=='' || total_cost==''){
 		swal("Error", "Make sure you enter all the required fields!", "error");
 		return;
 	}else{
 		var data = {
 			id:600,
-			suitno:suitno,
-			holder:holder,
+			case_no:case_no,
 			court:court,
-			party1:party1,
-			party2:party2,
-			against:against,
-			appeal:appeal,
-			decreedate:decreedate,
-			mode:mode,
-			adjournment:adjournment,
-			payment:payment,
-			date:date,
-			result:result,
+			plaintiff:plaintiff,
+			defendant:defendant,
+			claim:claim,
+			court_date:court_date,
+			decree_date:decree_date,
+			start_date:start_date,
+			end_date:end_date,
+			rate:rate,
+			decretal_amount:decretal_amount,
+			party_cost:party_cost,
 			principal:principal,
 			interest:interest,
-			costawarded:costawarded,
-			courtfee:courtfee,
-			subincurred:subincurred,
+			attendances:attendances,
+			court_fees:court_fees,
+			witness_exp:witness_exp,
+			disbursements:disbursements,
+			decree_cost:decree_cost,
+			summons:summons,
+			cert_costs:cert_costs,
+			total_cost:total_cost,
 		};
 
 		//console.log(data);
@@ -9908,26 +9916,30 @@ function savenewdecree(){
 
 function savedecree(param){
 	var uid = $('#uid').val();
-	var suitno = $('#suitno').val();
-	var holder = $('#holder').val();
+	var case_no = $('#case_no').val();
 	var court = $('#court').val();
-	var party1 = $('#party1').val();
-	var party2 = $('#party2').val();
-	var against = $('#against').val();
-	var appeal = $('#appeal').val();
-	var decreedate = $('#datepicker').val();
-	var mode  = $('#mode').val();
-	var adjournment = $('#adj').val();
-	var payment = $('#payment').val();
-	var date = $('#datepicker1').val();
-	var result = $('#result').val();
-	var principal = $('#principal_amount').val();
-	var interest = $('#interest').val();
-	var costawarded = $('#cost_awarded').val();
-	var courtfee = $('#court_fee').val();
-	var subincurred = $('#sub_incurred').val();
+	var plaintiff = $('#plaintiff').val();
+	var defendant = $('#defendant').val();
+	var claim = $('#claim').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court_date = $('#court_date').val();
+	var decree_date = $('#decree_date').val();
+	var principal = $('#principal').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var interest = $('#interest').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var start_date = $('#start_date').val();
+	var end_date = $('#end_date').val();
+	var rate = $('#rate').val();
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var party_cost = $('#party_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var attendances = $('#attendances').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court_fees = $('#court_fees').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var witness_exp = $('#witness_exp').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var disbursements = $('#disbursements').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var decree_cost = $('#decree_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var summons = $('#summons').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var cert_costs = $('#cert_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total_cost = $('#total_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	
-	if(suitno==''||holder==''||party1==''||party2==''||court==''||decreedate==''){
+	if(param=='' || uid==''||case_no==''||court==''||plaintiff==''||defendant==''||decretal_amount==''||decree_date=='' || total_cost==''){
 		swal("Error", "Make sure you enter all the required fields!", "error");
 		return;
 	}else{
@@ -9935,24 +9947,28 @@ function savedecree(param){
 			id:601,
 			uid:uid,
 			param:param,
-			suitno:suitno,
-			holder:holder,
+			case_no:case_no,
 			court:court,
-			party1:party1,
-			party2:party2,
-			against:against,
-			appeal:appeal,
-			decreedate:decreedate,
-			mode:mode,
-			adjournment:adjournment,
-			payment:payment,
-			date:date,
-			result:result,
+			plaintiff:plaintiff,
+			defendant:defendant,
+			claim:claim,
+			court_date:court_date,
+			decree_date:decree_date,
+			start_date:start_date,
+			end_date:end_date,
+			rate:rate,
+			decretal_amount:decretal_amount,
+			party_cost:party_cost,
 			principal:principal,
 			interest:interest,
-			costawarded:costawarded,
-			courtfee:courtfee,
-			subincurred:subincurred,
+			attendances:attendances,
+			court_fees:court_fees,
+			witness_exp:witness_exp,
+			disbursements:disbursements,
+			decree_cost:decree_cost,
+			summons:summons,
+			cert_costs:cert_costs,
+			total_cost:total_cost,
 		};
 
 		//console.log(data);
@@ -9978,7 +9994,7 @@ function finddecree(){
 	});
 }
 
-function editdecree(){
+function appdecree(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
@@ -10506,17 +10522,17 @@ function activateproclamation(param){
 
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});
 
-function calclettertotal(){
+function calcdecretal(){
 
 
-var estlegalcost = $('#estlegalcost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
-var estauctioneersfees = $('#estauctioneersfees').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+var principal = $('#principal').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+var interest = $('#interest').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 
-if(estlegalcost==''){estlegalcost=0;}if(estauctioneersfees==''){estauctioneersfees=0;}
+if(principal==''){principal=0;}if(interest==''){interest=0;}
 
-var tot=parseFloat(estlegalcost,10)+parseFloat(estauctioneersfees,10);
+var tot=parseFloat(principal,10)+parseFloat(interest,10);
 tot=(tot).formatMoney(2, '.', ',');
-$('#totalfees').val(tot);
+$('#decretal_amount').val(tot);
 
 
 }
@@ -10524,14 +10540,22 @@ $('#totalfees').val(tot);
 function calcamount(){
 
 
-	var principalamount = $('#principal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
-	var interest = $('#interest').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var party_cost = $('#party_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var attendances = $('#attendances').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court_fees = $('#court_fees').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var witness_exp = $('#witness_exp').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var disbursements = $('#disbursements').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var decree_cost = $('#decree_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var summons = $('#summons').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var cert_costs = $('#cert_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	
-	if(principalamount==''){principalamount=0;}if(interest==''){interest=0;}
-	
-	var tot=parseFloat(principalamount,10)+parseFloat(interest,10);
+	if(party_cost==''){party_cost=0;}if(attendances==''){attendances=0;}if(court_fees==''){court_fees=0;}if(summons==''){summons=0;}
+	if(witness_exp==''){witness_exp=0;}if(disbursements==''){disbursements=0;}if(decree_cost==''){decree_cost=0;}
+	if(cert_costs==''){cert_costs=0;}
+	var tot=parseFloat(party_cost,10)+parseFloat(attendances,10)+parseFloat(court_fees,10)+parseFloat(witness_exp,10)+parseFloat(disbursements,10)
+	+parseFloat(decree_cost,10)+parseFloat(summons,10)+parseFloat(cert_costs,10);
 	tot=(tot).formatMoney(2, '.', ',');
-	$('#amount_total').val(tot);
+	$('#total_cost').val(tot);
 	
 }
 
@@ -10668,4 +10692,52 @@ if((d1==''||d2=='')&&view==0){
 		swal("Error", "Enter the Start and End Dates!", "error");
 }
 else {window.open("report.php?id=94&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
+}
+
+function saveappl(param){
+	var assistance_mode = $('#assistance_mode').val();
+	var advocate = $('#advocate').val();
+	var decree_holder = $('#decree_holder').val();
+	var court_col_fee = $('#court_col_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var sub_incurred = $('#sub_incurred').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total_cost = $('#total_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+	if(assistance_mode==''|| court_col_fee=='' || sub_incurred=='' || advocate==''||total_cost==''||decree_holder==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:604,
+			param:param,
+			assistance_mode:assistance_mode,
+			advocate:advocate,
+			court_col_fee:court_col_fee,
+			sub_incurred:sub_incurred,
+			total_cost:total_cost,
+			decree_holder:decree_holder,
+		};
+
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+
+}
+
+function calctotalcosts(){
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var cost_awarded = $('#cost_awarded').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court_fee = $('#court_col_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var sub_incurred = $('#sub_incurred').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	
+	if(court_fee==''){court_fee=0;}if(sub_incurred==''){sub_incurred=0;}
+	
+	var tot=parseFloat(cost_awarded,10)+parseFloat(court_fee,10)+parseFloat(sub_incurred,10)+parseFloat(decretal_amount,10);
+	tot=(tot).formatMoney(2, '.', ',');
+	$('#total_costs').val(tot);
 }
