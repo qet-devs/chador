@@ -592,7 +592,15 @@ case 4:
 								break;
 
 								case 602:
-
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:609,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									}
+									});
+						
 								break;
 
 								case 603:
@@ -602,6 +610,19 @@ case 4:
 								case 604:
 									activatedecree(b);
 								break;
+								
+
+								case 605:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:610,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									}
+									});
+
+									break;
 
 								case 700:
 									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
