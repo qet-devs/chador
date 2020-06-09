@@ -17346,7 +17346,14 @@ $aa=$i+1;
         <p><b>KANYI KIRUCHI & CO. ADVOCATES</b></p>
         <p><b>THIKA BUSINESS CENTRE, 5<sup>th</sup> FLOOR</b></p>
         <p><b>THIKA.</b></p>
+
+        <script type="text/javascript">
+window.print();
+window.onfocus=function(){ window.close();}
+</script>
+
 </div>
+
 
           <?php
         break;  
