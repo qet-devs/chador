@@ -592,7 +592,15 @@ case 4:
 								break;
 
 								case 602:
-
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:609,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									}
+									});
+						
 								break;
 
 								case 603:
@@ -602,6 +610,19 @@ case 4:
 								case 604:
 									activatedecree(b);
 								break;
+								
+
+								case 605:
+									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+									$.ajax({
+									url:'bridge.php',
+									data:{id:610,param:b},
+									success:function(data){
+									$('#mainp').html(data);
+									}
+									});
+
+									break;
 
 								case 700:
 									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
@@ -10740,4 +10761,175 @@ function calctotalcosts(){
 	var tot=parseFloat(cost_awarded,10)+parseFloat(court_fee,10)+parseFloat(sub_incurred,10)+parseFloat(decretal_amount,10);
 	tot=(tot).formatMoney(2, '.', ',');
 	$('#total_costs').val(tot);
+}
+
+function saveauction(param){
+	var auct_name = $('#auct_name').val();
+	var auct_phone = $('#auct_phone').val();
+	var auct_address = $('#auct_address').val();
+	var auct_trader = $('#auct_trader').val();
+
+	if(auct_name==''|| auct_phone=='' || auct_address=='' || auct_trader==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:605,
+			param:param,
+			auct_name:auct_name,
+			auct_phone:auct_phone,
+			auct_address:auct_address,
+			auct_trader:auct_trader,
+		};
+
+		$('#auct_btn').html('<button class="btn btn-success control" >saving....</button>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#mainp').html(data);
+		}
+		});
+	}
+
+
+}
+
+function proclamationtabs(param){
+	$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:610,param:param},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function savecharges(param){
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total_debt = $('#total_debt').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+	if(decretal_amount==''|| auct_charges=='' || total_debt==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:606,
+			param:param,
+			decretal_amount:decretal_amount,
+			adv_fee:adv_fee,
+			total_debt:total_debt,
+			auct_charges:auct_charges,
+		};
+
+		$('#charges_btn').html('<button class="btn btn-success control" >saving....</button>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#mainp').html(data);
+		}
+		});
+	}
+}
+
+function caltotcharges(){
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	
+	if(adv_fee==''){adv_fee=0;}if(auct_charges==''){auct_charges=0;}
+	
+	var tot=parseFloat(auct_charges,10)+parseFloat(adv_fee,10)+parseFloat(decretal_amount,10);
+	tot=(tot).formatMoney(2, '.', ',');
+	$('#total_debt').val(tot);
+}
+
+function savelegal(param){
+	var court = $('#court').val();
+	var case_no = $('#case_no').val();
+	var court_date = $('#court_date').val();
+	var decree_date = $('#decree_date').val();
+	var return_date = $('#return_date').val();
+	var warrant_date = $('#warrant_date').val();
+	var notice_days = $('#notice_days').val();
+
+	if(court==''|| court_date=='' || decree_date=='' || notice_days==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:607,
+			param:param,
+			court:court,
+			case_no:case_no,
+			court_date:court_date,
+			decree_date:decree_date,
+			return_date:return_date,
+			warrant_date:warrant_date,
+			notice_days:notice_days,
+		};
+
+		$('#legal_btn').html('<button class="btn btn-success control" >saving....</button>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#mainp').html(data);
+		}
+		});
+	}
+}
+
+function propertydescription(param){
+	$('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+	$.ajax({
+		url:'bridge.php',
+		data:{id:611,param:param},
+		success:function(data){
+		$('#property_table').html(data);
+		}
+	});
+}
+
+function saveproperty(param){
+	var description = $('#description').val();
+	var condition = $('#condition').val();
+	var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+	if(description==''||est_value==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data = {
+			id:608,
+			param:param,
+			description:description,
+			condition:condition,
+			est_value:est_value
+		};
+		$('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+		$.ajax({
+			url:'data.php',
+			data:data,
+			success:function(data){
+				clearpropertyform();
+			$('#property_table').html(data);
+			}
+		});
+
+	}
+}
+
+function clearpropertyform(){
+	$('#description').val("");
+	$('#condition').val("");
+	$('#est_value').val("");
+}
+
+function printproclamation(param){
+	window.open("report.php?id=97&param=" + param);
 }

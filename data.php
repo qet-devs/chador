@@ -6447,6 +6447,82 @@ switch ($id) {
         }
         break;
 
+        case 605:
+            $param = $_GET['param'];
+            $auct_name = strtoupper($_GET['auct_name']);
+            $auct_phone = strtoupper($_GET['auct_phone']);
+            $auct_address = strtoupper($_GET['auct_address']);
+            $auct_trader = strtoupper($_GET['auct_trader']);
+
+            $resultc = mysql_query("update decrees set auctioneer='".$auct_name."', auct_phone='".$auct_phone."', auct_address='".$auct_address."', auct_trader='".$auct_trader."' where  id='".$param."'");
+            if($resultc){
+                echo '<script>swal("Success!", "Auction details saved successfully", "success");</script>';
+            
+            $resulta = mysql_query("insert into log values('0','" . $username . " updates auction details decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {proclamationtabs(".$param.");},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to save auction details!", "error");</script>';
+        }
+        break;
+
+        
+        case 606:
+            $param = $_GET['param'];
+            $decretal_amount = $_GET['decretal_amount'];
+            $auct_charges = $_GET['auct_charges'];
+            $total_debt = $_GET['total_debt'];
+            $adv_fee = $_GET['adv_fee'];
+
+            $resultc = mysql_query("update decrees set auct_charges='".$auct_charges."', debt='".$total_debt."', decretal_amount='".$decretal_amount."', adv_fee='".$adv_fee."' where  id='".$param."'");
+            if($resultc){
+                echo '<script>swal("Success!", "Charges saved successfully", "success");</script>';
+            
+            $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation charges decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {proclamationtabs(".$param.");},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to save charges details!", "error");</script>';
+        }
+        break;
+
+case 607:
+    $param = $_GET['param'];
+    $court = strtoupper($_GET['court']);
+    $case_no = strtoupper($_GET['case_no']);
+    $court_date = $_GET['court_date'];
+    $decree_date = $_GET['decree_date'];
+    $return_date = $_GET['return_date'];
+    $warrant_date = $_GET['warrant_date'];
+    $notice_days = $_GET['notice_days'];
+
+    $resultc = mysql_query("update decrees set court='".$court."', case_no='".$case_no."', court_date='".$court_date."', decree_date='".$decree_date."', notice_days='".$notice_days."', return_date='".$return_date."', warrant_date='".$warrant_date."' where  id='".$param."'");
+    if($resultc){
+        echo '<script>swal("Success!", "Legal details saved successfully", "success");</script>';
+    
+        $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation charges decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo "<script>setTimeout(function() {proclamationtabs(".$param.");},500);</script>";
+    } else {
+        echo '<script>swal("Error", "failed to save legal details!", "error");</script>';
+    }
+break;
+
+case 608:
+    $param = $_GET['param'];
+    $description = $_GET['description'];
+    $condition = $_GET['condition'];
+    $est_value = $_GET['est_value'];
+
+    $resultc = mysql_query("insert into property_description values('0', '".$param."', '".$description."', '".$condition."', '".$est_value."', '".$username."', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+    
+    if($resultc){
+        echo '<script>swal("Success!", "property saved successfully", "success");</script>';
+    
+        $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation charges decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo "<script>setTimeout(function() {propertydescription(".$param.");},500);</script>";
+    } else {
+        echo '<script>swal("Error", "failed to save property details!", "error");</script>';
+    }
+break;
+
     case 700:
         $party = strtoupper($_GET['party']);
         $debtor = strtoupper($_GET['debtor']);

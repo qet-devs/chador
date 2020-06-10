@@ -452,6 +452,14 @@ switch($id){
       case 96:
         $title='CHADOR APPLICATION OF EXECUTION OF DECREE';
       break;
+
+      case 97:
+        $title='CHADOR PROCLAMATION';
+      break;
+
+      case 98:
+        $title = 'NOTIFICATION OF SALE';
+      break;
 }
 ?>
 
@@ -17267,7 +17275,7 @@ $aa=$i+1;
     </div>
 
     <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?>,</b></span> Decree holder, hereby apply for execution of the decree herein below set forth.<p>
-        <table class="table table-bordered">
+        <table class="table table-bordered" style="border-color:#000000">
             <tr class="row">
                 <td class="col-md-2">1.</td>
                 <td class="col-md-4">No. of suit</td>
@@ -17348,6 +17356,166 @@ window.onfocus=function(){ window.close();}
 
 
           <?php
-        break;       
+        break;  
+        
+        case 97:
+          
+          $id = $_GET['param'];
+
+          $resultx = mysql_query("select * from decrees where id='".$id."'");
+          $rowx = mysql_fetch_array($resultx);
+
+          if($rowx['notice_days']=='7'){
+            $notice_days = "seven (7) days";
+          }else{
+            $notice_days = "fourteen (14) days";
+          }
+          ?>
+          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
+    <div class="row">
+    <div class="col-md-3">
+    <img src="img/logos/point.jpg" alt="" srcset="">
+    </div>
+    <div class="col-md-6">
+    <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
+    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
+    </div>
+    <div class="col-md-3">
+        <div class="text-right" >
+            Thika Business Centre,<br>
+            5th floor, Suite 3<br>
+            Opp Equity Plaza - Thika<br>
+            Nairobi branch:Comet House,<br>
+            P.O BOX 27304-00100 Nairobi<br>
+            Tel:0720 602229 Cell: 0722 595966<br>
+            Email: chadorauctioneers06@gmail.com<br>
+            <b style="">Sale Form 2</b>
+
+        </div>
+    </div>
+
+    <div class="clear text-center">
+    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>THE AUCTIONEERS ACT NO. 5 OF 1996</b></u></h4>
+    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>PROCLAMATION OF THE ATTACHMENT / REPOSSESSION/DISTRAINT OF</b></u></h4>
+    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MOVABLE PROPERTY</b></u></h4>
+    </div>
+        
+    <ol>
+        <li>Auctioneer's Name: <b style=" font-family: 'Times New Roman', Times, sans-serif;"><?php echo $rowx['auctioneer'];?>  Tel: <?php echo $rowx['auct_phone'];?></b> Address <b><?php echo $rowx['auct_address'];?></b> trading as:<b><?php echo $rowx['auct_trader'];?></b></li>
+        <li>Creditor's/Landlord's name and address <b>.................... <?php echo $rowx['plaintiffs'];?> </b></li>
+        <li>Debtor's/ Tenant's name and address <b>............... <?php echo $rowx['defendants'];?></b></li>
+        <li>Decretal sum/Amount outstanding / Rent arrears as at ...................ksh. <?php echo $rowx['decretal_amount'];?> </li>
+        <li>Auctioneers charges Kshs.......kshs. <?php echo $rowx['auct_charges'];?> </li>
+        <li>Advocate fee Kshs...........Kshs. <?php echo $rowx['adv_fee'];?> <br> Total . <?php echo $rowx['debt'];?> </li>
+        <li>In court .... <b><?php echo $rowx['court'];?></b> </li> 
+        <li>Case Number .... <b><?php echo $rowx['case_no'];?></b>Date of Decree/Letter of instructions..  <b><?php echo $rowx['decree_date'];?> </b> </li>
+        <li>Date of return to court/creditor...... <b><?php echo $rowx['return_date'];?></b> </li>
+        <li>Warrant or letter of instructions dated .. <b><?php echo $rowx['warrant_date'];?></b> was given by above mentioned court/creditor and you are hereby notified that the movable property described in the scheduled hereto is hereby
+         duly attached / repossed / distrained and left in your custody for <b>...... <?php echo $notice_days;?> </b>from today. At the expiry of <b>...... <?php echo $notice_days;?></b>from this proclamation the same will be removed to the auctioneer's premises and sold by public auction 
+         (or in the case of propert under hire purchase may be sold by private treaty) unless the amount due together with costs of this attachment / repossession / distraint as specified overleaf shall be in the meantime have been paid.</li>
+    </ol>
+    <div class="text-center">
+        <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></h4>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Condition</th>
+                <th>Estimated Value(Kshs)</th>
+            </tr>
+        </thead>
+        <?php
+        $query = mysql_query("select * from property_description where uid='".$id."'");
+        $num_rows = mysql_num_rows($query);
+  $total = 0;
+  for ($i = 0; $i < $num_rows; $i++) {
+      $row = mysql_fetch_array($query);
+      $total += $row['est_value'];
+      echo '<tr>
+      <td>' . $row['description'] . '</td>
+      <td>' . $row['condition'] . '</td>
+      <td>' . $row['est_value'] . '</td>
+      </tr>';
+  }
+        ?>
+    </table>
+<b>Signature</b>: Judgement Debtor/Agent............................................................ <br>
+Auctioneer:....................................Witness if any.......................... <br>
+Dated:........................................................... <br>
+<b>NB:</b><i>it is an offense to remove, alter, damage, substitute or alienate any goods compromised in the proclamation untill they are redeemed by payment in full</i><br>
+<b>Estimated cost of this attachment / repossession / distraint Kshs.............................. kshs <?php echo $total;?> </b>
+<p>(Transport charges, insurance, storage, advertisements and other incidentals will be charged at cost as and then they rise.</p>
+</div>
+          <?php
+        break;
+
+        case 98:
+          
+          $id = $_GET['param'];
+
+          $resultx = mysql_query("select * from decrees where id='".$id."'");
+          $rowxx = mysql_fetch_array($resultx);
+          ?>
+          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
+    <div class="row">
+    <div class="col-md-3">
+    <img src="img/logos/point.jpg" alt="" srcset="">
+    </div>
+    <div class="col-md-6">
+    <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
+    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
+    </div>
+    <div class="col-md-3">
+        <div class="text-right" >
+            Thika Business Centre,<br>
+            7th floor, Suite 7-5<br>
+            Opp Equity Plaza - Thika<br>
+            P.O BOX 27304-00100 Nairobi<br>
+            Tel:0720 602229 Cell: 0722 595966<br>
+            Email: chadorauctioneers06@gmail.com<br>
+            <b style="">Sale Form 3</b>
+<br/><br/>
+        </div>
+    </div>
+
+    <div class="clear text-center">
+    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>NOTIFICATION OF SALE OF MOVABLE PROPERTIES</b></u></h4>
+    <h4 class="clear text-center" style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>IN THE MATTER OF REPOSSESSION, DISTRESS, WARRRANTS AND IN THE </b></u></h4>
+    <h4 class="clear text-center" style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MATTER OF AUCTIONEERS ACT No. 5 of 1996</b></u></h4>
+    </div>
+    <br/><br/>
+        
+    
+        <p>____________________________________________________ <b style=" font-family: 'Times New Roman', Times, sans-serif;">CREDITOR/LANDLORD/PLANTIFF  Versus</b> _____________________________________________________ <b>DEBTORS/TENANT/DEFENDANT<br/></p>
+        <p>TAKE NOTICE THAT </b> the goods proclaimed on the ................day of .......20........And: listed herein below have been moved to my auction room and will be sold by public auction on................Time...............place.................</p>
+        <p>unless the amount claimed by the creditor/Landlord plus auctioneers fees and cost of Kshs.......................................Are paid to the auctioneer.<br/>
+        <b></b></p>
+       
+    <br/>
+    <br/>
+    <br/>
+    <div class="text-center">
+        <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF REPOSSED/ATTACHED PROPERTIES</b></u></h4>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Condition</th>
+                <th>Estimated Value(Kshs)</th>
+            </tr>
+        </thead>
+    </table>
+<b>Signature</b>: Judgement Debtor/Agent............................................................<br>
+Auctioneer:....................................Witness if any..........................<br>
+Dated:...........................................................<br>
+<b>NB:</b><i>
+<b>Estimated cost of this attachment / repossession / distraint Kshs...............................</b>
+<p>(Transport charges, insurance, storage, advertisements and other incidentals will be charged at cost as and then they rise.</p>
+</div>
+
+          <?php
+        break;
    
 }
