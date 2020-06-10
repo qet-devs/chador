@@ -10805,3 +10805,75 @@ function proclamationtabs(param){
 	}
 	});
 }
+
+function savecharges(param){
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total_debt = $('#total_debt').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+	if(decretal_amount==''|| auct_charges=='' || adv_fee=='' || total_debt==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:606,
+			param:param,
+			decretal_amount:decretal_amount,
+			adv_fee:adv_fee,
+			total_debt:total_debt,
+			auct_charges:auct_charges,
+		};
+
+		$('#charges_btn').html('<button class="btn btn-success control" >saving....</button>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#mainp').html(data);
+		}
+		});
+	}
+}
+
+function caltotcharges(){
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	
+	if(adv_fee==''){adv_fee=0;}if(auct_charges==''){auct_charges=0;}
+	
+	var tot=parseFloat(auct_charges,10)+parseFloat(adv_fee,10)+parseFloat(decretal_amount,10);
+	tot=(tot).formatMoney(2, '.', ',');
+	$('#total_debt').val(tot);
+}
+
+functon savelegal(param){
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total_debt = $('#total_debt').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+	if(decretal_amount==''|| auct_charges=='' || adv_fee=='' || total_debt==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:607,
+			param:param,
+			decretal_amount:decretal_amount,
+			adv_fee:adv_fee,
+			total_debt:total_debt,
+			auct_charges:auct_charges,
+		};
+
+		$('#charges_btn').html('<button class="btn btn-success control" >saving....</button>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#mainp').html(data);
+		}
+		});
+	}
+}

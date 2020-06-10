@@ -6465,6 +6465,29 @@ switch ($id) {
         }
         break;
 
+        
+        case 606:
+            $param = $_GET['param'];
+            $decretal_amount = $_GET['decretal_amount'];
+            $auct_charges = $_GET['auct_charges'];
+            $total_debt = $_GET['total_debt'];
+            $adv_fee = $_GET['adv_fee'];
+
+            $resultc = mysql_query("update decrees set auct_charges='".$auct_charges."', debt='".$total_debt."', decretal_amount='".$decretal_amount."', adv_fee='".$adv_fee."' where  id='".$param."'");
+            if($resultc){
+                echo '<script>swal("Success!", "Charges saved successfully", "success");</script>';
+            
+            $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation charges decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {proclamationtabs(".$param.");},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to save charges details!", "error");</script>';
+        }
+        break;
+
+case 607:
+
+break;
+
     case 700:
         $party = strtoupper($_GET['party']);
         $debtor = strtoupper($_GET['debtor']);

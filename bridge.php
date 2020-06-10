@@ -33263,27 +33263,27 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label>Decretal sum/Amount outstanding / Rent arrears <span style="color:#f00">*</span></label>
-                                      <input type="text" id="amount" value="'.$row['decretal_amount'].'" class="control">
+                                      <input type="text" id="decretal_amount" value="'.$row['decretal_amount'].'" class="control" onkeyup="caltotcharges()">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Auctioneer charges <span style="color:#f00">*</span></label>
-                                      <input type="text" id="auct_charges" value="'.$row['auct_charges'].'" class="control">
+                                      <input type="text" id="auct_charges" value="'.$row['auct_charges'].'" class="control" onkeyup="caltotcharges()">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Advocate fee<span style="color:#f00">*</span></label>
-                                      <input type="text" id="adv_fee" value="'.$row['adv_fee'].'" class="control">
+                                      <input type="text" id="adv_fee" value="'.$row['adv_fee'].'" class="control" onkeyup="caltotcharges()">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Total<span style="color:#f00">*</span></label>
-                                      <input type="text" id="total_debt" value="'.$row['debt'].'" class="control">
+                                      <input type="text" id="total_debt" value="'.$row['debt'].'"  class="control" disabled>
                                   </div>
 
                                   
-                                  <div class="form-group">
-                                      <button class="btn btn-success btn-lg control" >Save</button>
+                                  <div class="form-group" id="charges_btn">
+                                      <button class="btn btn-success control" onclick="savecharges('.$param.')">Save</button>
                                   </div>
                               </div>
                               <!-- Panel body -->
