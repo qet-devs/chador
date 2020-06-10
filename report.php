@@ -17363,7 +17363,13 @@ window.onfocus=function(){ window.close();}
           $id = $_GET['param'];
 
           $resultx = mysql_query("select * from decrees where id='".$id."'");
-          $rowxx = mysql_fetch_array($resultx);
+          $rowx = mysql_fetch_array($resultx);
+
+          if($rowx['notice_days']=='7'){
+            $notice_days = "seven (7) days";
+          }else{
+            $notice_days = "fourteen (14) days";
+          }
           ?>
           <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
     <div class="row">
@@ -17395,17 +17401,17 @@ window.onfocus=function(){ window.close();}
     </div>
         
     <ol>
-        <li>Auctioneer's Name: <b style=" font-family: 'Times New Roman', Times, sans-serif;">ELIUD C. Wambu  Tel: 0720 602229, 0722 595966</b> P.O BOX <b>27304-00100 Nairobi</b> trading as:<b>CHADOR AUCTIONEERS</b></li>
-        <li>Creditor's/Landlord's name and address <b>.................... </b></li>
-        <li>Debtor's/ Tenant's name and address <b>............... </b></li>
-        <li>Decretal sum/Amount outstanding / Rent arrears as at ...................ksh....... </li>
-        <li>Auctioneers charges Kshs.......kshs.... </li>
-        <li>Advocate fee Kshs...........Kshs...... <br> Total ......... </li>
-        <li>In court</li>
-        <li>Case Number ....................Date of Decree/Letter of instructions............... </li>
-        <li>Date of return to court/creditor.......................... </li>
-        <li>Warrant or letter of instructions dated .................was given by above mentioned court/creditor and you are hereby notified that the movable property described in the scheduled hereto is hereby
-         duly attached / repossed / distrained and left in your custody for <b>.......... </b>from today. At the expiry of <b>...... </b>from this proclamation the same will be removed to the auctioneer's premises and sold by public auction 
+        <li>Auctioneer's Name: <b style=" font-family: 'Times New Roman', Times, sans-serif;"><?php echo $rowx['auctioneer'];?>  Tel: <?php echo $rowx['auct_phone'];?></b> Address <b><?php echo $rowx['auct_address'];?></b> trading as:<b><?php echo $rowx['auct_trader'];?></b></li>
+        <li>Creditor's/Landlord's name and address <b>.................... <?php echo $rowx['plaintiffs'];?> </b></li>
+        <li>Debtor's/ Tenant's name and address <b>............... <?php echo $rowx['defendants'];?></b></li>
+        <li>Decretal sum/Amount outstanding / Rent arrears as at ...................ksh. <?php echo $rowx['decretal_amount'];?> </li>
+        <li>Auctioneers charges Kshs.......kshs. <?php echo $rowx['auct_charges'];?> </li>
+        <li>Advocate fee Kshs...........Kshs. <?php echo $rowx['adv_fee'];?> <br> Total . <?php echo $rowx['debt'];?> </li>
+        <li>In court .... <b><?php echo $rowx['court'];?></b> </li> 
+        <li>Case Number .... <b><?php echo $rowx['case_no'];?></b>Date of Decree/Letter of instructions..  <b><?php echo $rowx['decree_date'];?> </b> </li>
+        <li>Date of return to court/creditor...... <b><?php echo $rowx['return_date'];?></b> </li>
+        <li>Warrant or letter of instructions dated .. <b><?php echo $rowx['warrant_date'];?></b> was given by above mentioned court/creditor and you are hereby notified that the movable property described in the scheduled hereto is hereby
+         duly attached / repossed / distrained and left in your custody for <b>...... <?php echo $notice_days;?> </b>from today. At the expiry of <b>...... <?php echo $notice_days;?></b>from this proclamation the same will be removed to the auctioneer's premises and sold by public auction 
          (or in the case of propert under hire purchase may be sold by private treaty) unless the amount due together with costs of this attachment / repossession / distraint as specified overleaf shall be in the meantime have been paid.</li>
     </ol>
     <div class="text-center">
@@ -17419,12 +17425,26 @@ window.onfocus=function(){ window.close();}
                 <th>Estimated Value(Kshs)</th>
             </tr>
         </thead>
+        <?php
+        $query = mysql_query("select * from property_description where uid='".$id."'");
+        $num_rows = mysql_num_rows($query);
+  $total = 0;
+  for ($i = 0; $i < $num_rows; $i++) {
+      $row = mysql_fetch_array($query);
+      $total += $row['est_value'];
+      echo '<tr>
+      <td>' . $row['description'] . '</td>
+      <td>' . $row['condition'] . '</td>
+      <td>' . $row['est_value'] . '</td>
+      </tr>';
+  }
+        ?>
     </table>
 <b>Signature</b>: Judgement Debtor/Agent............................................................ <br>
 Auctioneer:....................................Witness if any.......................... <br>
 Dated:........................................................... <br>
 <b>NB:</b><i>it is an offense to remove, alter, damage, substitute or alienate any goods compromised in the proclamation untill they are redeemed by payment in full</i><br>
-<b>Estimated cost of this attachment / repossession / distraint Kshs............................... </b>
+<b>Estimated cost of this attachment / repossession / distraint Kshs.............................. kshs <?php echo $total;?> </b>
 <p>(Transport charges, insurance, storage, advertisements and other incidentals will be charged at cost as and then they rise.</p>
 </div>
           <?php

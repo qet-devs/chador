@@ -10931,5 +10931,5 @@ function clearpropertyform(){
 }
 
 function printproclamation(param){
-	
+	window.open("report.php?id=97&param=" + param);
 }
