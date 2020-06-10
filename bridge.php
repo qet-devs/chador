@@ -33211,8 +33211,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane active" id="auctioneer">
                                 
-                                <div class="panel widget " width="80%">
-                              <div class="panel-heading bg-primary">
+                                <div class="panel widget "  width="80%">
+                              <div class="panel-heading vd_bg-black" >
                                   <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
                                       Auctioneer Details</h3>
                               </div>
@@ -33221,22 +33221,27 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label>Name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="auct_name" value="" class="control">
+                                      <input type="text" id="auct_name" value="'.$row['auctioneer'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Phone -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="auct_phone" value="" class="control">
+                                      <input type="text" id="auct_phone" value="'.$row['auct_phone'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Address -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="auct_address" value="" class="control">
+                                      <input type="text" id="auct_address" value="'.$row['auct_address'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Trader -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="auct_trader" value="" class="control">
+                                      <input type="text" id="auct_trader" value="'.$row['auct_trader'].'" class="control">
+                                  </div>
+
+                                  
+                                  <div class="form-group" id="auct_btn">
+                                      <button class="btn btn-success control" onclick="saveauction('.$param.')" >Submit</button>
                                   </div>
       
                               </div>
@@ -33258,22 +33263,27 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label>Decretal sum/Amount outstanding / Rent arrears <span style="color:#f00">*</span></label>
-                                      <input type="text" id="amount" value="" class="control">
+                                      <input type="text" id="amount" value="'.$row['decretal_amount'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Auctioneer charges <span style="color:#f00">*</span></label>
-                                      <input type="text" id="auct_charges" value="" class="control">
+                                      <input type="text" id="auct_charges" value="'.$row['auct_charges'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Advocate fee<span style="color:#f00">*</span></label>
-                                      <input type="text" id="adv_fee" value="" class="control">
+                                      <input type="text" id="adv_fee" value="'.$row['adv_fee'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Total<span style="color:#f00">*</span></label>
-                                      <input type="text" id="total" value="" class="control">
+                                      <input type="text" id="total_debt" value="'.$row['debt'].'" class="control">
+                                  </div>
+
+                                  
+                                  <div class="form-group">
+                                      <button class="btn btn-success btn-lg control" >Save</button>
                                   </div>
                               </div>
                               <!-- Panel body -->
@@ -33293,38 +33303,42 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                     <!--                            form content goes here-->
                                     <div class="form-group">
                                         <label>court <span style="color:#f00">*</span></label>
-                                        <input type="text" id="court" value="" class="control">
+                                        <input type="text" id="court" value="'.$row['court'].'" class="control">
                                     </div>
         
                                     <div class="form-group">
                                         <label>date <span style="color:#f00">*</span></label>
-                                        <input type="text" id="court_date" value="" class="control date">
+                                        <input type="text" id="court_date" value="'.$row['court_date'].'" class="control date">
                                     </div>
         
                                     <div class="form-group">
                                         <label>Case Number<span style="color:#f00">*</span></label>
-                                        <input type="text" id="case_no" value="" class="control">
+                                        <input type="text" id="case_no" value="'.$row['case_no'].'" class="control">
                                     </div>
         
                                     <div class="form-group">
                                         <label>Date of Decree/Letter of instruction<span style="color:#f00">*</span></label>
-                                        <input type="text" id="decree_date" value="" class="control date">
+                                        <input type="text" id="decree_date" value="'.$row['decree_date'].'" class="control date">
                                     </div>
         
                                     <div class="form-group">
                                         <label>Date of return to court/Creditor<span style="color:#f00">*</span></label>
-                                        <input type="text" id="return_date" value="" class="control date">
+                                        <input type="text" id="return_date" value="'.$row['return_date'].'" class="control date">
                                     </div>
         
                                     <div class="form-group">
                                         <label>Warrant or letter of instructions date<span style="color:#f00">*</span></label>
-                                        <input type="text" id="warrant_date" value="" class="control date">
+                                        <input type="text" id="warrant_date" value="'.$row['warrant_date'].'" class="control date">
                                     </div>
         
                                     <div class="form-group">
                                         <label>Number of Notice Days<span style="color:#f00">*</span></label>
-                                        <input type="text" id="notice_days" value="" class="control">
+                                        <input type="text" id="notice_days" value="'.$row['notice_days'].'" class="control">
                                     </div>
+                                    
+                                  <div class="form-group">
+                                      <button class="btn btn-success btn-lg control" >Save</button>
+                                  </div>
                                 </div>
                                 <!-- Panel body -->
                             </div>
@@ -33334,6 +33348,41 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                                 <div role="tabpanel" class="tab-pane" id="property">
                                 
+                                <div class="panel widget">
+                                <div class="panel-heading vd_bg-black">
+                                    <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Property Details</h3>
+                                </div>
+                                <!--                        panel heading-->
+                                <div class="panel-body">
+                                    <!--                            form content goes here-->
+                                  
+                                    <div class="form-group">
+                                      <label>Description</label>
+                                      <textarea class="control" id="description"></textarea>
+                                    </div>
+
+                                  <div class="form-group">
+                                    <label>Condition</label>
+                                    <input type="text" class="control" id="condition">
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Estimated Value</label>
+                                    <input type="text" class="control" id="est_value">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <button class="btn btn-success control" >Add</button>
+                                  </div>
+                                </div>
+                                <!-- Panel body -->
+                            </div>
+                            <!-- Panel Widget -->
+                            
+                              <div id="property-table">
+                                
+                              </div>
                                 </div>
                               </div>
                             

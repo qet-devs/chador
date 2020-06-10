@@ -6447,6 +6447,24 @@ switch ($id) {
         }
         break;
 
+        case 605:
+            $param = $_GET['param'];
+            $auct_name = strtoupper($_GET['auct_name']);
+            $auct_phone = strtoupper($_GET['auct_phone']);
+            $auct_address = strtoupper($_GET['auct_address']);
+            $auct_trader = strtoupper($_GET['auct_trader']);
+
+            $resultc = mysql_query("update decrees set auctioneer='".$auct_name."', auct_phone='".$auct_phone."', auct_address='".$auct_address."', auct_trader='".$auct_trader."' where  id='".$param."'");
+            if($resultc){
+                echo '<script>swal("Success!", "Auction details saved successfully", "success");</script>';
+            
+            $resulta = mysql_query("insert into log values('0','" . $username . " updates auction details decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {proclamationtabs(".$param.");},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to save auction details!", "error");</script>';
+        }
+        break;
+
     case 700:
         $party = strtoupper($_GET['party']);
         $debtor = strtoupper($_GET['debtor']);

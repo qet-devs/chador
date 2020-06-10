@@ -10762,3 +10762,46 @@ function calctotalcosts(){
 	tot=(tot).formatMoney(2, '.', ',');
 	$('#total_costs').val(tot);
 }
+
+function saveauction(param){
+	var auct_name = $('#auct_name').val();
+	var auct_phone = $('#auct_phone').val();
+	var auct_address = $('#auct_address').val();
+	var auct_trader = $('#auct_trader').val();
+
+	if(auct_name==''|| auct_phone=='' || auct_address=='' || auct_trader==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:605,
+			param:param,
+			auct_name:auct_name,
+			auct_phone:auct_phone,
+			auct_address:auct_address,
+			auct_trader:auct_trader,
+		};
+
+		$('#auct_btn').html('<button class="btn btn-success control" >saving....</button>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#mainp').html(data);
+		}
+		});
+	}
+
+
+}
+
+function proclamationtabs(param){
+	$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:610,param:param},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
