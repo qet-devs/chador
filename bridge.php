@@ -33194,10 +33194,12 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                           <div class="panel widget">
                               <div class="panel-heading vd_bg-grey">
                                   <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Decree File-'.stripslashes($row['plaintiffs']).' VS '.stripslashes($row['defendants']).' </h3>
+                                      Proclamation File-'.stripslashes($row['plaintiffs']).' VS '.stripslashes($row['defendants']).' </h3>
                               </div>
                               <div class="panel-body text-capitalize">
                               <div>
+
+                              <button class="btn btn-success btn-lg pull-right" onclick="printproclamation('.$param.')">Print Proclamation</button>
 
                               <!-- Nav tabs -->
                               <ul class="nav nav-tabs" role="tablist">
@@ -33336,8 +33338,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                         <input type="text" id="notice_days" value="'.$row['notice_days'].'" class="control">
                                     </div>
                                     
-                                  <div class="form-group">
-                                      <button class="btn btn-success btn-lg control" >Save</button>
+                                  <div class="form-group" id="legal_btn">
+                                      <button class="btn btn-success control" onclick="savelegal('.$param.')">Save</button>
                                   </div>
                                 </div>
                                 <!-- Panel body -->
@@ -33372,15 +33374,15 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                     <input type="text" class="control" id="est_value">
                                   </div>
 
-                                  <div class="form-group">
-                                      <button class="btn btn-success control" >Add</button>
+                                  <div class="form-group" >
+                                      <button class="btn btn-success control" onclick="saveproperty('.$param.')" >Add</button>
                                   </div>
                                 </div>
                                 <!-- Panel body -->
                             </div>
                             <!-- Panel Widget -->
                             
-                              <div id="property-table">
+                              <div id="property_table">
                                 
                               </div>
                                 </div>
@@ -33395,6 +33397,34 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
           </div>
           </div>
           ';
+
+          echo '<script>propertydescription('.$param.')</script>';
+        break;
+
+        case 611:
+          $param = $_GET['param'];
+          $query = mysql_query("select * from property_description where uid='".$param."'");
+          $num_rows = mysql_num_rows($query);
+    $count = 1;
+    echo '<table class="table table-bordered table-hover">
+    <thead>
+          <tr>
+          <td>No.</td>
+          <td>Description</td>
+          <td>Condition</td>
+          <td>Estimated Value(Kshs)</td>
+          </tr>
+    </thead>';
+    for ($i = 0; $i < $num_rows; $i++) {
+        $row = mysql_fetch_array($query);
+        echo '<tr>
+        <td>' . $count++ . '</td>
+        <td>' . $row['description'] . '</td>
+        <td>' . $row['condition'] . '</td>
+        <td>' . $row['est_value'] . '</td>
+        </tr>';
+    }
+    echo '</table>';
         break;
 
         case 700:
