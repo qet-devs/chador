@@ -33427,6 +33427,196 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
     echo '</table>';
         break;
 
+        case 612:
+          
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Decree Fee Note</h3>
+                  </div>
+                <select id="intcombo" class="text-capitalize">
+                <option value="" selected>Select One...</option>';
+                   $result =mysql_query("select * from decrees where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['plaintiffs']).'<strong> vs </strong>'.stripslashes($row['defendants']).'</option>';
+                        }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+            $('#intcombo').select2();
+            $('#intcombo').on('select2:select', function (e) {
+             var param = $('#intcombo').val();
+            var str = $('#item5').val();
+            var parts=param.split('-',3);
+            param=parts[0];
+            $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+            $.ajax({
+            url:'bridge.php',
+            data:{id:613,param:param},
+            success:function(data){
+            $('#mainp').html(data);
+            }
+            });
+
+
+          });
+           </script>";
+
+        break;
+
+        case 613:
+
+          $param = $_GET['param'];
+          $result = mysql_query("select * from decrees where id='".$param."' limit 0,1" );
+          if($result){
+            $row = mysql_fetch_array($result);
+          }
+
+          echo '
+          <div class="vd_container" id="container">
+            <div class="vd_content clearfix" style="">
+              <div class="vd_content-section clearfix">
+              <div class="panel widget">
+              <div class="panel-heading vd_bg-grey">
+                  <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                      Fee Note Form</h3>
+              </div>
+              <!--                        panel heading-->
+              <div class="panel-body text-capitalize">
+          
+                 <div class="row">
+                    <div class="form-group col-md-6">
+                      <label>Receipient</label>
+                      <input type="text" id="receipient" class="control">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Date</label>
+                      <input type="text" id="note_date" class="control date">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Reference</label>
+                      <input type="text" id="reference" class="control">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label>Remarks</label>
+                      <textarea type="text" id="remarks" class="control"></textarea>
+                    </div> 
+
+                    <table class="table table-bordered">
+                        <tr>
+                          <td>NO</td>
+                          <td>PARTICULARS</td>
+                          <td>KSHS</td>
+                        </tr>
+
+                        <tr>
+                          <td>1</td>
+                          <td>Receipt of court warrant/letter of instruction</td>
+                          <td><input type="text" class="control" id="court_warrant"></td>
+                        </tr>
+                        <tr>
+                          <td>2</td>
+                          <td>Fees before  attachment/ Repossession</td>
+                          <td><input type="text" class="control" id="before_attachment"></td>
+                        </tr>
+                        <tr>
+                          <td>3</td>
+                          <td>Fees on attachment/ Repossession / Distraint</td>
+                          <td><input type="text" class="control" id="on_attachment"></td>
+                        </tr>
+                        <tr>
+                          <td>4</td>
+                          <td>Transport</td>
+                          <td><input type="text" class="control" id="transport"></td>
+                        </tr>
+                        <tr>
+                          <td>5</td>
+                          <td>Labour</td>
+                          <td><input type="text" class="control" id="labour"></td>
+                        </tr>
+                        <tr>
+                          <td>6</td>
+                          <td>Hire of breakdown / Towing</td>
+                          <td><input type="text" class="control" id="towing"></td>
+                        </tr>
+                        <tr>
+                          <td>7</td>
+                          <td>Hire of police assistance</td>
+                          <td><input type="text" class="control" id="police_assistance"></td>
+                        </tr>
+                        <tr>
+                          <td>8</td>
+                          <td>Investigation fee</td>
+                          <td><input type="text" class="control" id="investigation_fee"></td>
+                        </tr>
+                        <tr>
+                          <td>9</td>
+                          <td>Advertisement charges</td>
+                          <td><input type="text" class="control" id="ad_charges"></td>
+                        </tr>
+                        <tr>
+                          <td>10</td>
+                          <td>Valuation fee</td>
+                          <td><input type="text" class="control" id="valuation_fee"></td>
+                        </tr>
+                        <tr>
+                          <td>11</td>
+                          <td>Sale commission</td>
+                          <td><input type="text" class="control" id="sale_commission"></td>
+                        </tr>
+                        <tr>
+                          <td>12</td>
+                          <td>Storage charges</td>
+                          <td><input type="text" class="control" id="storage_charges"></td>
+                        </tr>
+                        <tr>
+                          <td>13</td>
+                          <td>V.A.T 16%</td>
+                          <td><input type="text" class="control" id="vat"></td>
+                        </tr>
+                        <tr>
+                          <td>14</td>
+                          <td>Others</td>
+                          <td><input type="text" class="control" id="others"></td>
+                        </tr>
+                        <tr>
+                          <td>15</td>
+                          <td>Miscellaneous expenses</td>
+                          <td><input type="text" class="control" id="mis_expenses"></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>TOTAL</td>
+                          <td><input type="text" class="control" id="total" disabled></td>
+                        </tr>
+                    </table>
+                    <div class="form-group">
+                      <button class="btn btn-success" >Save</button>
+                    </div>
+
+                </div>
+                </div>
+                 </div>
+              </div>
+            </div>
+          </div>
+          ';
+
+        break;
+
+
         case 700:
           $result = mysql_query("insert into log values('','".$username." accesses new Notice panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
           echo '<div class="vd_container" id="container">

@@ -505,8 +505,13 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                         <span class="menu-text">Execution</span>  
                     </a>';} ?>
                 </li> 
-             
-
+          
+                <li>
+                    <?php if($rightsarr[109]=='YES'){
+          echo'<a  href="#" onclick="decreefeenote()" >
+                        <span class="menu-text">Fee Note</span>  
+                    </a>';} ?>
+                </li>
             <li>
                      <?php if($rightsarr[113]=='YES'){
           echo'<a  href="#" onclick="decreefile()" >

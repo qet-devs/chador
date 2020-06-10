@@ -17517,5 +17517,53 @@ Dated:...........................................................<br>
 
           <?php
         break;
+
+        case 99:
+          $id = $_GET['param'];
+
+          $resultx = mysql_query("select * from decrees where id='".$id."'");
+          $rowx = mysql_fetch_array($resultx);
+
+          ?>
+          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
+    <div class="row">
+    <div class="col-md-3">
+    <img src="img/logos/point.jpg" alt="" srcset="">
+    </div>
+    <div class="col-md-6">
+    <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
+    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
+    </div>
+    <div class="col-md-3">
+        <div class="text-right" >
+            Thika Business Centre,<br>
+            5th floor, Suite 3<br>
+            Opp Equity Plaza - Thika<br>
+            Nairobi branch:Comet House,<br>
+            P.O BOX 27304-00100 Nairobi<br>
+            Tel:0720 602229 Cell: 0722 595966<br>
+            Email: chadorauctioneers06@gmail.com<br>
+            <b style="">Sale Form 2</b>
+
+        </div>
+    </div>
+    <hr>
+    <div class="clear text-center">
+    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SALE CATALOGUE AUCTION DATE: <?php echo $rowx['auct_date'];?></b></u></h4>
+    </div>
+    <?php
+      $query = mysql_query("select * from property_description where uid='".$id."'");
+      $num_rows = mysql_num_rows($query);
+      $total = 0;
+      for ($i = 0; $i < $num_rows; $i++) {
+        $row = mysql_fetch_array($query);
+        $total += $row['est_value'];
+        echo '<tr>
+        <td>' . $row['description'] . '</td>
+        <td>' . $row['condition'] . '</td>
+        <td>' . $row['est_value'] . '</td>
+        </tr>';
+      }
+        break;
    
 }

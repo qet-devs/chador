@@ -10026,6 +10026,17 @@ function appdecree(){
 	});
 }
 
+function decreefeenote(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:612},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
 function decreefile(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
