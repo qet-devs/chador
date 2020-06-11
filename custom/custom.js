@@ -10026,6 +10026,78 @@ function appdecree(){
 	});
 }
 
+function decreefeenote(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:612},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function savedecreenote(param){
+	var note_date = $('#note_date').val();
+	var court_warrant = $('#court_warrant').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var before_attachment = $('#before_attachment').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var on_attachment = $('#on_attachment').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var transport = $('#transport').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var labour = $('#labour').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var towing = $('#towing').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var police_assistance = $('#police_assistance').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var investigation_fee = $('#investigation_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var ad_charges  = $('#ad_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var valuation_fee = $('#valuation_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var sale_commission = $('#sale_commission').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var storage_charges = $('#storage_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var vat = $('#vat').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var others = $('#others').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var mis_expenses = $('#mis_expenses').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total = $('#total').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var remarks = $('#remarks').val();
+	var uid = $('#uid').val();
+
+	if(note_date=='' || uid=='' ){
+		swal("Error", "please provide the missing info", "error");
+		return;
+	}else{
+		var data = {
+			id:609,
+			param:param,
+			uid:uid,
+			note_date:note_date,
+			court_warrant:court_warrant,
+			before_attachment:before_attachment,
+			on_attachment:on_attachment,
+			transport:transport,
+			labour:labour,
+			towing:towing,
+			police_assistance:police_assistance,
+			investigation_fee:investigation_fee,
+			ad_charges:ad_charges,
+			valuation_fee:valuation_fee,
+			sale_commission:sale_commission,
+			storage_charges:storage_charges,
+			vat:vat,
+			others:others,
+			mis_expenses:mis_expenses,
+			total:total,
+			remarks:remarks
+		};
+
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'data.php',
+	data:data,
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+	}
+
+}
+
 function decreefile(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -10932,4 +11004,40 @@ function clearpropertyform(){
 
 function printproclamation(param){
 	window.open("report.php?id=97&param=" + param);
+}
+
+function printfeenote(param){
+	console.log(param);
+	window.open("report.php?id=100&param=" + param);
+}
+
+function calcfeenotetotal(){
+	var court_warrant = $('#court_warrant').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var before_attachment = $('#before_attachment').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var on_attachment = $('#on_attachment').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var transport = $('#transport').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var labour = $('#labour').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var towing = $('#towing').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var police_assistance = $('#police_assistance').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var investigation_fee = $('#investigation_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var ad_charges  = $('#ad_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var valuation_fee = $('#valuation_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var sale_commission = $('#sale_commission').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var storage_charges = $('#storage_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var vat = $('#vat').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var others = $('#others').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var mis_expenses = $('#mis_expenses').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+if(court_warrant==''){court_warrant=0;}if(before_attachment==''){before_attachment=0;}
+if(on_attachment==''){on_attachment=0;}if(transport==''){transport=0;}if(labour==''){labour=0;}
+if(towing==''){towing=0;}if(police_assistance==''){police_assistance=0}if(investigation_fee==''){investigation_fee=0;}
+if(ad_charges==''){ad_charges=0;}if(valuation_fee==''){valuation_fee=0;}if(sale_commission==''){sale_commission=0;}
+if(storage_charges==''){storage_charges=0;}if(vat==''){vat=0;}if(others==''){others=0;}if(mis_expenses==''){mis_expenses=0;}
+
+var tot=parseFloat(court_warrant,10)+parseFloat(before_attachment,10)+parseFloat(on_attachment,10)+parseFloat(transport, 10)
++parseFloat(labour, 10)+parseFloat(towing, 10)+parseFloat(police_assistance, 10)+parseFloat(investigation_fee,10)+parseFloat(ad_charges,10)
++parseFloat(valuation_fee, 10)+parseFloat(sale_commission, 10)+parseFloat(storage_charges, 10)+parseFloat(vat, 10)+parseFloat(others, 10)+parseFloat(mis_expenses, 10);
+	tot=(tot).formatMoney(2, '.', ',');
+	$('#total').val(tot);
+	
 }

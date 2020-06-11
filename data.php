@@ -6523,6 +6523,112 @@ case 608:
     }
 break;
 
+case 609:
+    $param = $_GET['param'];
+    $uid = $_GET['uid'];
+    $note_date = $_GET['note_date'];
+    $court_warrant = $_GET['court_warrant'];
+    $before_attachment = $_GET['before_attachment'];
+    $on_attachment = $_GET['on_attachment'];
+    $transport = $_GET['transport'];
+    $labour = $_GET['labour'];
+    $towing = $_GET['towing'];
+    $police_assistance = $_GET['police_assistance'];
+    $investigation_fee = $_GET['investigation_fee'];
+    $ad_charges = $_GET['ad_charges'];
+    $valuation_fee = $_GET['valuation_fee'];
+    $sale_commission = $_GET['sale_commission'];
+    $storage_charges = $_GET['storage_charges'];
+    $vat = $_GET['vat'];
+    $others = $_GET['others'];
+    $mis_expenses = $_GET['mis_expenses'];
+    $total = $_GET['total'];
+    $remarks = $_GET['remarks'];
+
+    //echo var_dump($_GET);
+$qry = mysql_query("select * from fee_note where uid='".$uid."'");
+
+$num_rows = mysql_num_rows($qry);
+
+if($num_rows>0){
+    $sql = "
+    UPDATE `fee_note`
+SET `receipt` ='".$court_warrant."', `before_attachment` ='".$before_attachment."', `on_attachment` ='".$on_attachment."', `transport` ='".$transport."', `labour` ='".$labour."', `towing` ='".$towing."', `police_assistance` ='".$police_assistance."', `investigation_fee` ='".$investigation_fee."', `ad_charges` ='".$ad_charges."', `valuation_fee` ='".$valuation_fee."', `sale_commission` ='".$sale_commission."', `storage_charges` ='".$storage_charges."', `vat` ='".$vat."', `others` ='".$others."', `misc_expenses` ='".$mis_expenses."', `total` ='".$total."', `username` ='".$username."', `type` ='decree', `remarks` ='".$remarks."', `note_date` = '".$note_date."'
+WHERE
+	`uid`='".$uid."'
+    ";
+}else{
+    $sql = "
+    INSERT INTO `fee_note` (
+        `receipt`,
+        `before_attachment`,
+        `on_attachment`,
+        `transport`,
+        `labour`,
+        `towing`,
+        `police_assistance`,
+        `investigation_fee`,
+        `ad_charges`,
+        `valuation_fee`,
+        `sale_commission`,
+        `storage_charges`,
+        `vat`,
+        `others`,
+        `misc_expenses`,
+        `total`,
+        `username`,
+        `type`,
+        `uid`,
+        `stamp`,
+        `date`,
+        `time`,
+        `remarks`,
+        `note_date`
+    )
+    VALUES
+        (
+            '".$court_warrant."',
+            '".$before_attachment."',
+            '".$on_attachment."',
+            '".$transport."',
+            '".$labour."',
+            '".$towing."',
+            '".$police_assistance."',
+            '".$investigation_fee."',
+            '".$ad_charges."',
+            '".$valuation_fee."',
+            '".$sale_commission."',
+            '".$storage_charges."',
+            '".$vat."',
+            '".$others."',
+            '".$mis_expenses."',
+            '".$total."',
+            '".$username."',
+            'decree',
+            '".$uid."',
+            '" . date(' YmdHi ') . "',
+            '" . date(' d / m / Y ') . "',
+            '" . date(' H : i ') . "',
+            '".$remarks."',
+            '".$note_date."'
+        )
+    ";
+}
+
+$resultc = mysql_query($sql);
+    //$result = mysql_query("INSERT INTO `fee_note` VALUES ('".$court_warrant."','".$before_attachment."','".$on_attachment."','".$transport."','".$labour."','".$towing."','".$police_assistance."','".$investigation_fee."','".$ad_charges."','".$valuation_fee."','".$sale_commission."','".$storage_charges."','".$vat."','".$others."','".$mis_expenses."', '".$total."','".$username."','decree','".$uid."','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','".$remarks."')");
+  //echo $result;
+    if($resultc){
+        echo '<script>swal("Success!", "Fee note saved successfully", "success");</script>';
+
+        $resulta = mysql_query("insert into log values('0','" . $username . " creates fee note decree uid='".$uid."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo "<script>setTimeout(function() {decreefeenote();},500);</script>";
+    } else {
+        echo '<script>swal("Error", "failed to save fee note!", "error");</script>';
+    }
+
+break;
+
     case 700:
         $party = strtoupper($_GET['party']);
         $debtor = strtoupper($_GET['debtor']);
