@@ -17565,5 +17565,253 @@ Dated:...........................................................<br>
         </tr>';
       }
         break;
+
+        case 100:
+
+          $param = $_GET['param'];
+          $resulta = mysql_query("select * from decrees where id='".$param."' limit 0,1");
+          
+          if( $resulta){
+            $rowx=mysql_fetch_array($resulta);
+            
+          }
+          $resultc = mysql_query("select * from fee_note where uid='".$rowx['uid']."' limit 0,1");
+            $row = mysql_fetch_array($resultc);
+
+            //echo var_dump($row);
+?>
+
+<div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
+    <div class="row">
+    <div class="col-md-3">
+    <img src="img/logos/point.jpg" alt="" srcset="">
+    </div>
+    <div class="col-md-6">
+    <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
+    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
+    </div>
+    <div class="col-md-3">
+        <div class="text-right" >
+            Thika Business Centre,<br>
+            5th floor, Suite 3<br>
+            Opp Equity Plaza - Thika<br>
+            P.O BOX 27304-00100 Nairobi<br>
+            Tel:0720 602229 Cell: 0722 595966<br>
+            Email: chadorauctioneers06@gmail.com<br>
+           
+<br/><br/>
+        </div>
+    </div>
+
+    <div class="clear text-center">
+    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>FEE NOTE</b></u></h4>
+    <!-- <h4 class="clear text-center" style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>IN THE MATTER OF REPOSSESSION, DISTRESS, WARRRANTS AND IN THE </b></u></h4>
+    <h4 class="clear text-center" style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MATTER OF AUCTIONEERS ACT No. 5 of 1996</b></u></h4> -->
+    </div>
+    <br/><br/>
+        
+    
+        <p>To: _______________<b><u><?php echo $rowx['defendants'];?></u></b>______________________________________________________________________________  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;&nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;&nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;    Date: ________________<b><?php echo $row['note_date'];?></b></p>
+        <p>  &nbsp;  &nbsp;  &nbsp; _____________________________________________________________________________________________</p>
+        <p>  &nbsp;  &nbsp;  &nbsp; _____________________________________________________________________________________________</p>
+
+        <p><b>Ref:   &nbsp;  &nbsp; ___<b><?php echo $rowx['plaintiffs']." -VS- ".$rowx['defendants'];?></b>____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</b></p>
+       
+    <br/>
+    <br/>
+    <br/>
+    <div class="text-center">
+        
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>NO</th>
+                <th>PARTICULARS</th>
+                <th>KSHS.</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+        <td>
+        1
+        </td>
+        <td>
+        Receipt of court warrant/letter of instruction
+        </td>
+        <td><b><?php echo $row['receipt'];?></b></td>
+        </tr>
+       
+
+       
+        <tr>
+        <td>
+        2
+        </td>
+        <td>
+        Fees before attachment/Repossession
+        </td>
+        <td><b><?php echo $row['before_attachment'];?></b></td>
+        </tr>
+        
+
+        <tr>
+        <td>
+        3
+        </td>
+        <td>
+        Fees on attachment/Repossession/Distraint
+        </td>
+        <td><b><?php echo $row['on_attachment'];?></b></td>
+        </tr>
+
+        <tr>
+        <td>
+        4
+        </td>
+        <td>
+        Transport
+        </td>
+        <td><b><?php echo $row['transport'];?></b></td>
+        </tr>
+
+        <tr>
+        <td>
+
+        5
+        </td>
+        <td>
+        Labour
+        </td>
+        <td><b><?php echo $row['labour'];?></b></td>
+        </tr>
+
+        <tr>
+        <td>
+        6
+        </td>
+        <td>
+        Hire of breakdown/Towing
+        </td>
+        <td><b><?php echo $row['towing'];?></b></td>
+        </tr>
+
+        <tr>
+        <td>
+        7
+        </td>
+        <td>
+        Hire of Police Assistance
+        </td>
+        <td><b><?php echo $row['police_assistance'];?></b></td>
+        </tr>
+
+        <tr>
+        <td>
+        8
+        </td>
+        <td>
+        Investigation fee
+        </td>
+        <td><b><?php echo $row['investigation_fee'];?></b></td>
+        </tr>
+
+              <tr>
+        <td>  
+        9
+        </td>
+        <td>
+        Advertisement charges
+        </td>
+        <td><b><?php echo $row['ad_charges'];?></b></td>
+        </tr>
+
+        
+        <tr>
+        <td>
+        10
+        </td>
+        <td>
+        Valuation fee
+        </td>
+        <td><b><?php echo $row['valuation_fee'];?></b></td>
+        </tr>
+
+        
+        <tr>
+        <td>
+        11
+        </td>
+        <td>
+        Sales commission
+        </td>
+        <td><b><?php echo $row['sale_commission'];?></b></td>
+        </tr>
+
+
+        <tr>
+        <td>
+        12
+        </td>
+        <td>
+        Storage charges
+        </td>
+        <td><b><?php echo $row['storage_charges'];?></b></td>
+        </tr>
+        
+        <tr>
+        <td>
+        13
+        </td>
+        <td>
+        V.A.T 16%
+        </td>
+        <td><b><?php echo $row['vat'];?></b></td>
+        </tr>
+        
+        <tr>
+        <td>
+        14
+        </td>
+        <td>
+       Others
+        </td>
+        <td><b><?php echo $row['others'];?></b></td>
+        </tr>
+
+        
+        <tr>
+        <td>
+        15
+        </td>
+        <td>
+       Miscellaneous expenses
+        </td>
+        <td><b><?php echo $row['misc_expenses'];?></b></td>
+        </tr>
+        
+        <tr>
+        <td>
+        
+        </td>
+        <td>
+        TOTAL
+        </td>
+        <td><b><?php echo $row['total'];?></b></td>
+        </tr>
+      </tbody>
+    </table>
+<b>Remarks:</b>: ________________<b><?php echo $row['remarks'];?></b>____________________________________________________________________________<br>
+Thank you<br>
+<b>For:Chador Auctioneers</b><i><br/>
+<b>_________________________</b><br/>
+Signature
+
+</div>
+
+</body>
+</html>
+<?php
+        break;
    
 }

@@ -33611,6 +33611,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                     </table>
                     <div class="form-group">
                       <button class="btn btn-success" onclick="savedecreenote('.$row['id'].')">Save</button>
+                      <button class="btn btn-info" onclick="printfeenote('.$row['id'].')">Print fee note</button>
                     </div>
 
                 </div>

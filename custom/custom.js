@@ -11006,6 +11006,11 @@ function printproclamation(param){
 	window.open("report.php?id=97&param=" + param);
 }
 
+function printfeenote(param){
+	console.log(param);
+	window.open("report.php?id=100&param=" + param);
+}
+
 function calcfeenotetotal(){
 	var court_warrant = $('#court_warrant').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var before_attachment = $('#before_attachment').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
