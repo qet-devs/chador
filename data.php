@@ -6511,7 +6511,7 @@ case 608:
     $condition = $_GET['condition'];
     $est_value = $_GET['est_value'];
 
-    $resultc = mysql_query("insert into property_description values('0', '".$param."', '".$description."', '".$condition."', '".$est_value."', '".$username."', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+    $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`) values('".$param."', '".$description."', '".$condition."', '".$est_value."', '".$username."', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
     
     if($resultc){
         echo '<script>swal("Success!", "property saved successfully", "success");</script>';

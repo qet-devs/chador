@@ -17544,6 +17544,11 @@ Dated:...........................................................<br>
 <p>(Transport charges, insurance, storage, advertisements and other incidentals will be charged at cost as and then they rise.</p>
 </div>
 
+
+<script type="text/javascript">
+window.print();
+window.onfocus=function(){ window.close();}
+</script>
           <?php
         break;
 
@@ -17614,6 +17619,10 @@ Dated:...........................................................<br>
     
 </div>
 
+<script type="text/javascript">
+window.print();
+window.onfocus=function(){ window.close();}
+</script>
 </body>
 </html>
     <?php
@@ -17865,6 +17874,10 @@ Signature
 
 </div>
 
+<script type="text/javascript">
+window.print();
+window.onfocus=function(){ window.close();}
+</script>
 </body>
 </html>
 <?php
