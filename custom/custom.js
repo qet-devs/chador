@@ -10967,7 +10967,7 @@ function propertydescription(param){
 	});
 }
 
-function saveproperty(param){
+function savedecreeproperty(param){
 	var description = $('#description').val();
 	var condition = $('#condition').val();
 	var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');

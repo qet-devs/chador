@@ -32509,9 +32509,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         break;
 
         case 604:
-          $param=0;
-          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+         
           echo '<div class="vd_container" id="container">
         <div class="vd_content clearfix" style="">
 
@@ -33199,7 +33197,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="panel-body text-capitalize">
                               <div>
 
-                              <button class="btn btn-success btn-lg pull-right" onclick="printproclamation('.$param.')">Print Proclamation</button>
+                              <button class="btn btn-info pull-right" onclick="printproclamation('.$param.')">Print Proclamation</button>
 
                               <!-- Nav tabs -->
                               <ul class="nav nav-tabs" role="tablist">
@@ -33265,7 +33263,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label>Decretal sum/Amount outstanding / Rent arrears <span style="color:#f00">*</span></label>
-                                      <input type="text" id="decretal_amount" value="'.$row['decretal_amount'].'" class="control" onkeyup="caltotcharges()">
+                                      <input type="text" id="decretal_amount" value="'.$row['decretal_amount'].'" class="control" disabled>
                                   </div>
       
                                   <div class="form-group">
@@ -33375,7 +33373,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   </div>
 
                                   <div class="form-group" >
-                                      <button class="btn btn-success control" onclick="saveproperty('.$param.')" >Add</button>
+                                      <button class="btn btn-success control" onclick="savedecreeproperty('.$param.')" >Add</button>
                                   </div>
                                 </div>
                                 <!-- Panel body -->
