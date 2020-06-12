@@ -460,6 +460,13 @@ switch($id){
       case 98:
         $title = 'NOTIFICATION OF SALE';
       break;
+      
+      case 99:
+        $title = 'SALE CATALOGUE';
+      break;
+      case 100:
+        $title = 'FEE NOTE';
+      break;
 }
 ?>
 
@@ -17455,7 +17462,7 @@ Dated:........................................................... <br>
           $id = $_GET['param'];
 
           $resultx = mysql_query("select * from decrees where id='".$id."'");
-          $rowxx = mysql_fetch_array($resultx);
+          $rowx = mysql_fetch_array($resultx);
           ?>
           <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
     <div class="row">
@@ -17487,9 +17494,13 @@ Dated:........................................................... <br>
     <br/><br/>
         
     
-        <p>____________________________________________________ <b style=" font-family: 'Times New Roman', Times, sans-serif;">CREDITOR/LANDLORD/PLANTIFF  Versus</b> _____________________________________________________ <b>DEBTORS/TENANT/DEFENDANT<br/></p>
-        <p>TAKE NOTICE THAT </b> the goods proclaimed on the ................day of .......20........And: listed herein below have been moved to my auction room and will be sold by public auction on................Time...............place.................</p>
-        <p>unless the amount claimed by the creditor/Landlord plus auctioneers fees and cost of Kshs.......................................Are paid to the auctioneer.<br/>
+        <div class="row"> 
+        <h6 class="col-md-12"><b><u><?php echo $rowx['plaintiffs'];?></u> <span style=" font-family: 'Times New Roman', Times, sans-serif;" class="pull-right">CREDITOR/LANDLORD/PLANTIFF</span></b></h6> 
+        <h6 class="col-md-12"><b><span style=" font-family: 'Times New Roman', Times, sans-serif;" class="pull-right"> Versus</span></b></h6> 
+        <h6 class="col-md-12"><b><u><?php echo $rowx['defendants'];?></u> <span  style=" font-family: 'Times New Roman', Times, sans-serif;" class="pull-right">DEBTORS/TENANT/DEFENDANT</span></b></h6>
+        </div>
+        <p>TAKE NOTICE THAT </b> the goods proclaimed on the <b><?php echo $rowx['proclamation_date'];?></b>And: listed herein below have been moved to my auction room and will be sold by public auction on <b><?php echo $rowx['auct_date'];?></b> Time <b><?php echo $rowx['auct_time'];?></b> place <b><?php echo $rowx['auct_location'];?></b> </p>
+        <p>unless the amount claimed by the creditor/Landlord plus auctioneers fees and cost of Kshs <b><?php echo $rowx['debt'];?></b> Are paid to the auctioneer.<br/>
         <b></b></p>
        
     <br/>
@@ -17506,12 +17517,30 @@ Dated:........................................................... <br>
                 <th>Estimated Value(Kshs)</th>
             </tr>
         </thead>
+        <?php
+          $qry = mysql_query("select * from property_description where uid='".$rowx['id']."'");
+          $num_rows = mysql_num_rows($qry);
+
+          if($num_rows > 0){
+            $total = 0;
+  for ($i = 0; $i < $num_rows; $i++) {
+      $row = mysql_fetch_array($qry);
+      $total += $row['est_value'];
+      echo '<tr>
+      <td>' . $row['description'] . '</td>
+      <td>' . $row['condition'] . '</td>
+      <td>' . $row['est_value'] . '</td>
+      </tr>';
+  }
+  
+          }
+        ?>
     </table>
 <b>Signature</b>: Judgement Debtor/Agent............................................................<br>
 Auctioneer:....................................Witness if any..........................<br>
 Dated:...........................................................<br>
 <b>NB:</b><i>
-<b>Estimated cost of this attachment / repossession / distraint Kshs...............................</b>
+<b>Estimated cost of this attachment / repossession / distraint <b><u> Kshs <?php echo $total;?></u></b></b>
 <p>(Transport charges, insurance, storage, advertisements and other incidentals will be charged at cost as and then they rise.</p>
 </div>
 
@@ -17523,6 +17552,7 @@ Dated:...........................................................<br>
 
           $resultx = mysql_query("select * from decrees where id='".$id."'");
           $rowx = mysql_fetch_array($resultx);
+          $param = $rowx['uid'];
 
           ?>
           <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
@@ -17551,19 +17581,42 @@ Dated:...........................................................<br>
     <div class="clear text-center">
     <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SALE CATALOGUE AUCTION DATE: <?php echo $rowx['auct_date'];?></b></u></h4>
     </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Amount(Kshs)</th>
+            </tr>
+        </thead>
+        <?php
+          $qry = mysql_query("select distinct lot as lot from property_description where uid='".$param."'");
+          while ($lot = mysql_fetch_array($qry)) {
+            echo '<tr><td><h4>Lot '.$lot['lot'].'</h4></td></td></td></tr>';
+            $result = mysql_query("select * from property_description where lot='".$lot['lot']."'");
+            $num_rows = mysql_num_rows($result);
+  
+            if($num_rows > 0){
+              $total = 0;
+              for ($i = 0; $i < $num_rows; $i++) {
+                  $row = mysql_fetch_array($result);
+                  $total += $row['amount'];
+                  echo '<tr>
+                  <td>' . $row['description'] . '</td>
+                  <td>' . $row['amount'] . '</td>
+                  </tr>';
+              }
+              
+            }
+          }
+
+        ?>
+    </table>
+    
+</div>
+
+</body>
+</html>
     <?php
-      $query = mysql_query("select * from property_description where uid='".$id."'");
-      $num_rows = mysql_num_rows($query);
-      $total = 0;
-      for ($i = 0; $i < $num_rows; $i++) {
-        $row = mysql_fetch_array($query);
-        $total += $row['est_value'];
-        echo '<tr>
-        <td>' . $row['description'] . '</td>
-        <td>' . $row['condition'] . '</td>
-        <td>' . $row['est_value'] . '</td>
-        </tr>';
-      }
         break;
 
         case 100:
@@ -17610,17 +17663,20 @@ Dated:...........................................................<br>
     </div>
     <br/><br/>
         
-    
-        <p>To: _______________<b><u><?php echo $rowx['defendants'];?></u></b>______________________________________________________________________________  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;&nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;&nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;    Date: ________________<b><?php echo $row['note_date'];?></b></p>
-        <p>  &nbsp;  &nbsp;  &nbsp; _____________________________________________________________________________________________</p>
-        <p>  &nbsp;  &nbsp;  &nbsp; _____________________________________________________________________________________________</p>
+    <div class="row">
+          <div class="col-md-6">
+          <p>To: <b><u><?php echo $rowx['defendants'];?></u></b></p>
+          </div>
+          <div class="col-md-4 col-md-offset-2">
+          <p>Date: <b><u><?php echo $row['note_date'];?></u></b></p>
+          </div>
 
-        <p><b>Ref:   &nbsp;  &nbsp; ___<b><?php echo $rowx['plaintiffs']." -VS- ".$rowx['defendants'];?></b>____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</b></p>
-       
-    <br/>
-    <br/>
-    <br/>
-    <div class="text-center">
+          <div class="col-md-12">
+              <p>Ref: <b><u><?php echo $rowx['plaintiffs']." -VS- ".$rowx['defendants'];?></u></b></p>
+          </div>
+    </div>
+         
+    <div class="text-center clear">
         
     </div>
     <table class="table table-bordered">
@@ -17801,7 +17857,7 @@ Dated:...........................................................<br>
         </tr>
       </tbody>
     </table>
-<b>Remarks:</b>: ________________<b><?php echo $row['remarks'];?></b>____________________________________________________________________________<br>
+<b>Remarks:</b>: <b><textarea class="control"><?php echo $row['remarks'];?></textarea></b><br>
 Thank you<br>
 <b>For:Chador Auctioneers</b><i><br/>
 <b>_________________________</b><br/>
