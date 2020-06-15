@@ -571,13 +571,13 @@ case 4:
 
 								case 600:
 									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-									$.ajax({
-									url:'bridge.php',
-									data:{id:603,param:b},
-									success:function(data){
-									$('#mainp').html(data);
-									  }
-									  });
+										$.ajax({
+										url:'bridge.php',
+										data:{id:603,param:b},
+										success:function(data){
+											$('#mainp').html(data);
+										}
+									});
 								break;
 
 								case 601:
@@ -9858,7 +9858,7 @@ function archiveddistress(){
 	});
 }
 
-function newdecree(){
+function decree(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
@@ -9874,7 +9874,6 @@ function savenewdecree(){
 	var court = $('#court').val();
 	var plaintiff = $('#plaintiff').val();
 	var defendant = $('#defendant').val();
-	var claim = $('#claim').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var court_date = $('#court_date').val();
 	var decree_date = $('#decree_date').val();
 	var principal = $('#principal').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
@@ -9893,7 +9892,7 @@ function savenewdecree(){
 	var cert_costs = $('#cert_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var total_cost = $('#total_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	
-	if(case_no==''||court==''||plaintiff==''||defendant==''||decretal_amount==''||decree_date=='' || total_cost==''){
+	if(case_no==''||court==''||plaintiff==''||defendant==''||decretal_amount==''){
 		swal("Error", "Make sure you enter all the required fields!", "error");
 		return;
 	}else{
@@ -9903,7 +9902,6 @@ function savenewdecree(){
 			court:court,
 			plaintiff:plaintiff,
 			defendant:defendant,
-			claim:claim,
 			court_date:court_date,
 			decree_date:decree_date,
 			start_date:start_date,
@@ -9941,7 +9939,6 @@ function savedecree(param){
 	var court = $('#court').val();
 	var plaintiff = $('#plaintiff').val();
 	var defendant = $('#defendant').val();
-	var claim = $('#claim').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var court_date = $('#court_date').val();
 	var decree_date = $('#decree_date').val();
 	var principal = $('#principal').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
@@ -9960,7 +9957,7 @@ function savedecree(param){
 	var cert_costs = $('#cert_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var total_cost = $('#total_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	
-	if(param=='' || uid==''||case_no==''||court==''||plaintiff==''||defendant==''||decretal_amount==''||decree_date=='' || total_cost==''){
+	if(param=='' || uid==''||case_no==''||court==''||plaintiff==''||defendant==''){
 		swal("Error", "Make sure you enter all the required fields!", "error");
 		return;
 	}else{
@@ -9972,7 +9969,6 @@ function savedecree(param){
 			court:court,
 			plaintiff:plaintiff,
 			defendant:defendant,
-			claim:claim,
 			court_date:court_date,
 			decree_date:decree_date,
 			start_date:start_date,
@@ -10015,7 +10011,7 @@ function finddecree(){
 	});
 }
 
-function appdecree(){
+function decreeapplication(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',

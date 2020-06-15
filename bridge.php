@@ -31986,10 +31986,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <textarea name="defendant" class="control" id="defendant"></textarea>
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Claim<span style="color:#f00">*</span></label>
-                                      <input type="text" class="control" id="claim">
-                                  </div>
-                                  <div class="form-group">
                                       <label for="">Court Date<span style="color:#f00">*</span></label>
                                       <input type="text" class="control date" id="court_date">
                                   </div>
@@ -32362,10 +32358,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="form-group">
                                   <label for="">Defendants<span style="color:#f00">*</span></label>
                                   <textarea name="defendant" class="control" id="defendant">'.$rowx['defendants'].'</textarea>
-                              </div>
-                              <div class="form-group">
-                                  <label for="">Claim<span style="color:#f00">*</span></label>
-                                  <input type="text" class="control" id="claim" value="'.$rowx['claim'].'">
                               </div>
                               <div class="form-group">
                                   <label for="">Court Date<span style="color:#f00">*</span></label>

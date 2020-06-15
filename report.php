@@ -17378,33 +17378,31 @@ window.onfocus=function(){ window.close();}
             $notice_days = "fourteen (14) days";
           }
           ?>
-          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
+          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 0px auto;">
     <div class="row">
-    <div class="col-md-3">
-    <img src="img/logos/point.jpg" alt="" srcset="">
+    <div class="col-md-12 text-center">
+    <img src="img/logos/point.jpg" alt="" class="pull-left" width="10%">
+    
+    <h5 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h5>
+    <h6 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h6>
     </div>
-    <div class="col-md-6">
-    <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
-    </div>
-    <div class="col-md-3">
-        <div class="text-right" >
-            Thika Business Centre,<br>
-            5th floor, Suite 3<br>
-            Opp Equity Plaza - Thika<br>
-            Nairobi branch:Comet House,<br>
-            P.O BOX 27304-00100 Nairobi<br>
-            Tel:0720 602229 Cell: 0722 595966<br>
-            Email: chadorauctioneers06@gmail.com<br>
-            <b style="">Sale Form 2</b>
-
+    <div class="col-md-12 ">
+        <div class="text-center" >
+            <p> Thika Business Centre, 5th floor, Suite 3
+            Opp Equity Plaza - Thika
+            Nairobi branch:Comet House,</p>
+            <p> P.O BOX 27304-00100 Nairobi
+            Tel:0720 602229 Cell: 0722 595966 </p>
+           <p> Email: chadorauctioneers06@gmail.com</p>
+            
         </div>
     </div>
 
+    
     <div class="clear text-center">
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>THE AUCTIONEERS ACT NO. 5 OF 1996</b></u></h4>
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>PROCLAMATION OF THE ATTACHMENT / REPOSSESSION/DISTRAINT OF</b></u></h4>
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MOVABLE PROPERTY</b></u></h4>
+    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>THE AUCTIONEERS ACT NO. 5 OF 1996</b></u></p>
+    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>PROCLAMATION OF THE ATTACHMENT / REPOSSESSION/DISTRAINT OF</b></u></p>
+    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MOVABLE PROPERTY</b></u></p>
     </div>
         
     <ol>
@@ -17422,7 +17420,7 @@ window.onfocus=function(){ window.close();}
          (or in the case of propert under hire purchase may be sold by private treaty) unless the amount due together with costs of this attachment / repossession / distraint as specified overleaf shall be in the meantime have been paid.</li>
     </ol>
     <div class="text-center">
-        <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></h4>
+        <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></p>
     </div>
     <table class="table table-bordered">
         <thead>
@@ -17557,13 +17555,13 @@ window.onfocus=function(){ window.close();}
 
           $resultx = mysql_query("select * from decrees where id='".$id."'");
           $rowx = mysql_fetch_array($resultx);
-          $param = $rowx['uid'];
+          $param = $rowx['id'];
 
           ?>
           <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
     <div class="row">
     <div class="col-md-3">
-    <img src="img/logos/point.jpg" alt="" srcset="">
+    <img src="img/logos/point.jpg" alt="" srcset="" width="20%">
     </div>
     <div class="col-md-6">
     <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
