@@ -6752,8 +6752,7 @@ break;
 
             $resulta = mysql_query("insert into log values('0','" . $username . " creates new Proclamation','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newproclamation();},500);</script>";
-        } else {
-            echo '<script>swal("Error", "failed to save Proclamation info!", "error");</script>';
+            
         }
         break;
 
@@ -6808,5 +6807,69 @@ break;
         echo '<script>setTimeout(function() {checkoutproclamation();},500);</script>	';
 
         break;
+
+
+        case 900:
+            $debtor = strtoupper($_GET['debtor']);
+            $rdate = $_GET['rdate'];
+            $i_party = strtoupper($_GET['i_party']);
+            $property = strtoupper($_GET['property']);
+           
+    
+            $resultx = mysql_query("select * from repossession where debtor='" . $debtor . "' and property='" . $property . "'");
+            if (mysql_num_rows($resultx) > 0) {
+                echo '<script>swal("Error", "Repossession with similar information already exists. !Consult the System Admin", "error");</script>';
+    
+            }
+    
+    
+            $resulty = mysql_query("select * from repossession order by id desc limit 0,1");
+            $rowy = mysql_fetch_array($resulty);
+            $tid = stripslashes($rowy['id']) + 1;
+
+            
+            $uid = 'REP' . sprintf("%06d", $tid);
+    
+            $resultc = mysql_query("INSERT INTO `repossession`(`uid`, `debtor`, `rdate`, `i_party`, `property`,`status`, `username` ) 
+                                    VALUES ('".$uid."','" . $debtor . "','" . $rdate . "','" . $i_party . "','" . $property . "','" . $username . "', '1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+    
+    
+            if ($resultc) {
+                $client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
+                                        VALUES ('0','" . $uid . "','Repossession','" . $debtor . "','','','','" . $property . "','','" . date('d/m/Y') . "','" . date('Ymd') . "',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+                echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
+    
+                $resulta = mysql_query("insert into log values('0','" . $username . " creates new Repossession','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+                echo "<script>setTimeout(function() {newrepossession();},500);</script>";
+            } else {
+                echo '<script>swal("Error", "failed to save Repossession info!", "error");</script>';
+            }
+            break;
+
+            case 901:
+                $id = $_GET['param'];
+                $uid = $_GET['uid'];
+                $debtor = strtoupper($_GET['debtor']);
+                $rdate = ($_GET['rdate']);
+                $i_party = strtoupper($_GET['i_party']);
+                $property = strtoupper($_GET['property']);
+               
+                
+        
+        
+                $resultc = mysql_query("UPDATE `repossession` SET `debtor`='" . $debtor . "',`rdate`='" . $rdate . "',`i_party`='" . $i_party . "', `username`='" . $username . "' WHERE `id`='" . $id . "'");
+                $update_tenant_proclamation = mysql_query("update tenants set bname='" . $debtor. "', dname='" . $property . "' where tid='" . $uid . "'");
+        
+                if ($resultc) {
+                    echo '<script>swal("Success!", "Repossession updated successfully", "success");</script>';
+        
+                    $resulta = mysql_query("insert into log values('0','" . $username . " updates Repossession','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+                    echo "<script>setTimeout(function() {newrepossession();},500);</script>";
+                } else {
+                    echo '<script>swal("Error", "failed to save Proclamation info!", "error");</script>';
+                }
+                break;
+        
+           
 
 }
