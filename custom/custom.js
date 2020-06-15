@@ -10053,6 +10053,9 @@ function savedecreenote(param){
 	var total = $('#total').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var remarks = $('#remarks').val();
 	var uid = $('#uid').val();
+	var note_type = $('#note_type option:selected').val();
+	var reciepient = $('#reciepient').val();
+	var ref = $('#reference').val();
 
 	if(note_date=='' || uid=='' ){
 		swal("Error", "please provide the missing info", "error");
@@ -10079,17 +10082,20 @@ function savedecreenote(param){
 			others:others,
 			mis_expenses:mis_expenses,
 			total:total,
-			remarks:remarks
+			remarks:remarks,
+			note_type:note_type,
+			reciepient:reciepient,
+			ref:ref
 		};
 
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'data.php',
-	data:data,
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+		$.ajax({
+			url:'data.php',
+			data:data,
+			success:function(data){
+			$('#mainp').html(data);
+			}
+		});
 	}
 
 }
@@ -10783,27 +10789,29 @@ if((d1==''||d2=='')&&view==0){
 else {window.open("report.php?id=94&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
 }
 
-function saveappl(param){
+function saveapplication(param){
 	var assistance_mode = $('#assistance_mode').val();
-	var advocate = $('#advocate').val();
 	var decree_holder = $('#decree_holder').val();
+	var holder_address = $('#holder_address').val();
+	var holder_location = $('#holder_location').val();
 	var court_col_fee = $('#court_col_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var sub_incurred = $('#sub_incurred').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var total_cost = $('#total_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 
-	if(assistance_mode==''|| court_col_fee=='' || sub_incurred=='' || advocate==''||total_cost==''||decree_holder==''){
+	if(assistance_mode==''|| court_col_fee=='' || sub_incurred=='' ||total_cost==''||decree_holder==''){
 		swal("Error", "Please fill all required fields", "error");
 		return;
 	}else{
 		var data={
 			id:604,
 			param:param,
+			holder_address:holder_address,
 			assistance_mode:assistance_mode,
-			advocate:advocate,
 			court_col_fee:court_col_fee,
 			sub_incurred:sub_incurred,
 			total_cost:total_cost,
 			decree_holder:decree_holder,
+			holder_location:holder_location,
 		};
 
 		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');

@@ -33079,8 +33079,13 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <input type="text" name="decree_holder" id="decree_holder" class="control" value="'.$rowx['decree_holder'].'">
                               </div> 
                               <div class="form-group">
-                                  <label for="">Advocate<span style="color:#f00">*</span></label>
-                                  <input type="text" name="advocate" id="advocate" class="control" value="'.$rowx['advocate'].'">
+                                  <label for="">Decree Holder Address<span style="color:#f00">*</span></label>
+                                  <input type="text" name="decree_holder" id="holder_address" class="control" value="'.$rowx['holder_address'].'">
+                              </div> 
+                              
+                              <div class="form-group">
+                                  <label for="">Decree Holder Location<span style="color:#f00">*</span></label>
+                                  <input type="text" name="holder_location" id="holder_location" class="control" value="'.$rowx['holder_address'].'">
                               </div> 
                           </div>
                           <!-- Panel body -->
@@ -33143,7 +33148,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                           <div class="col-sm-4"></div>
                                           <div class="col-sm-7">
                                               <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                                      onclick="saveappl('.$param.')"><i class="icon-ok"></i> Save                          </button>
+                                                      onclick="saveapplication('.$param.')"><i class="icon-ok"></i> Save                          </button>
                                               <button class="btn btn-danger" type="button" onclick="hidecont()">Cancel</button>
                                               <div id="message" style="width:40px;height:40px;float:right"></div>
                                           </div>
@@ -33491,20 +33496,29 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               </div>
               <!--                        panel heading-->
               <div class="panel-body text-capitalize">
-          
-                 <div class="row">
-                    <div class="form-group col-md-6">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                      <label>Select Type of Fee Note</label>
+                      <select id="note_type" class="control" >
+                        <option value="1">On Attachment Fee Note</option>
+                        <option value="2">Proclamation Fee Note</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-4">
                       <label>Receipient</label>
-                      <input type="text" id="reciepient" class="control" value="'.$row['defendants'].'">
+                      <input type="text" id="reciepient" class="control" value="'.$row['reciepient'].'">
                       <input type="hidden" id="uid" value="'.$row['uid'].'">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                       <label>Date</label>
                       <input type="text" id="note_date" class="control date" value="'.$rowx['note_date'].'">
                     </div>
+
+                    </div>
+                    <div class="row">
                     <div class="form-group col-md-6">
                       <label>Reference</label>
-                      <textarea type="text" id="reference" class="control">'.$row['plaintiffs'].' -VS- '.$row['defendants'].'</textarea>
+                      <textarea type="text" id="reference" class="control">'.$row['court'] .' - '.$row['plaintiffs'].' -VS- '.$row['defendants'].'</textarea>
                     </div>
                     <div class="form-group col-md-6">
                       <label>Remarks</label>

@@ -450,6 +450,8 @@ switch($id){
       break;
 
       case 96:
+        header("content-type: application/vnd.ms-word");
+        header("content-Disposition: attachment; Filename=word.doc");
         $title='CHADOR APPLICATION OF EXECUTION OF DECREE';
       break;
 
@@ -17282,7 +17284,7 @@ $aa=$i+1;
     </div>
 
     <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?>,</b></span> Decree holder, hereby apply for execution of the decree herein below set forth.<p>
-        <table class="table table-bordered" style="border-color:#000000">
+        <table class="table" style="border:1px solid #000000">
             <tr class="row">
                 <td class="col-md-2">1.</td>
                 <td class="col-md-4">No. of suit</td>
@@ -17345,19 +17347,15 @@ $aa=$i+1;
         </table>
         <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?></b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief.....................Decree Holder.</p>
     
-        <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['advocate'];?></b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief, and as far I have been able to ascertain the interest of the Defendant in the property therein.
+        <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?></b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief, and as far I have been able to ascertain the interest of the Defendant in the property therein.
         <br>
         Specified.......................................Decree Holder.</p>
       
         <p><b><u>DRAWN & FILED BY:</u></b></p>
-        <p><b>KANYI KIRUCHI & CO. ADVOCATES</b></p>
-        <p><b>THIKA BUSINESS CENTRE, 5<sup>th</sup> FLOOR</b></p>
-        <p><b>THIKA.</b></p>
+        <p><b><?php echo $rowxx['decree_holder'];?></b></p>
+        <p><b><?php echo $rowxx['holder_address'];?></b></p>
+        <p><b><?php echo $rowxx['holder_location'];?>. </b></p>
 
-        <script type="text/javascript">
-window.print();
-window.onfocus=function(){ window.close();}
-</script>
 
 </div>
 
