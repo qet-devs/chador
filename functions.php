@@ -62,7 +62,7 @@ function getdocsletter($id)
     for ($i = 0; $i < $num_resultsa; $i++) {
         $rowa = mysql_fetch_array($resulta);
         $name = stripslashes($rowa['name']);
-        $type = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+        $type = strtoupper(pathinfo($name, PATHINFO_EXTENSION));
         // if (exif_imagetype('uploads/tenants/' . $name . '')) {
         //     $src = 'uploads/tenants/' . $name;
         // } else if ($type == 'pdf') {

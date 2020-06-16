@@ -626,7 +626,7 @@ $where = "";
                                 // parameter represents the DataTables column identifier. In this case simple
                                 // indexes
                                     $columns = array(
-                                        array( 'db' => 'id', 'dt' => 0 ),
+                                        array( 'db' => 'uid', 'dt' => 0 ),
                                         array( 'db' => 'debtor', 'dt' => 1 ),
                                         array( 'db' => 'rdate', 'dt' => 2 ),
                                         array( 'db' => 'i_party',  'dt' => 3 ),

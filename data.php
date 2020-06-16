@@ -6829,9 +6829,9 @@ break;
 
             
             $uid = 'REP' . sprintf("%06d", $tid);
+           
     
-            $resultc = mysql_query("INSERT INTO `repossession`(`uid`, `debtor`, `rdate`, `i_party`, `property`,`status`, `username` ) 
-                                    VALUES ('".$uid."','" . $debtor . "','" . $rdate . "','" . $i_party . "','" . $property . "','" . $username . "', '1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+            $resultc = mysql_query("INSERT INTO `repossession` VALUES ('0','".$uid."','" . $debtor . "','" . $rdate . "','" . $i_party . "','" . $property . "','1','" . $username . "', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
     
     
             if ($resultc) {

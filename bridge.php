@@ -30751,7 +30751,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </h3>
                             </div>
                              
-                                <div class="panel-body">
+                                <div class="panel-body" style="font-size:20px;font-family:baskerville">
                                           <ul>';
                                           getdocsletter();
                                           echo '</ul>             
@@ -30760,65 +30760,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                
                       
                       
-                                                          <!-- panel heading -->
-                                                          <div class="panel-body table-responsive">
-                                                              <table class="table table-striped text-capitalize" id="data-tables">
-                                                                  <thead>
-                                                                  <tr>
-                                                                      <th>ID</th>
-                                                                      <th>Date</th>
-                                                                      <th>File Name</th>
-                                                                      <th>Description</th>
-                                                                      <th>Download<th>
-                                                                      
-                      
-                                                                     
-                                                                  </tr>
-                                                                  </thead>
-                                                              </table>
-                                                          </div>
-                                                          <!-- panel body -->
-                                                     
-                                  
-                                  
-                                  <script type="text/javascript">
-                                      $(document).ready(function () {
-                                          "use strict";
-                                  
-                                          var eventFired = function (type) {
-                                              console.log(type)
-                                  
-                                              setTimeout(function () {
-                                                  $("#data-tables tbody tr").off("click").on("click", function (event) {
-                                                      $("#tenparam").val($(this).find("td").eq(0).html());
-                                                      openoptmodal($(this).find("td").eq(0).html())
-                                                  });
-                                              }, 500);
-                                          }
-                                  
-                                  
-                                          $("#data-tables")
-                                              .on("order.dt", function () {
-                                                  eventFired("Order");
-                                              })
-                                              .on("search.dt", function () {
-                                                  eventFired("Search");
-                                              })
-                                              .on("draw.dt", function () {
-                                                  eventFired("Page");
-                                              })
-                                              .DataTable({
-                                                  "processing": true,
-                                                  "serverSide": true,
-                                                  "ajax": "json.php?id=950"
-                                              });
-                                  
-                                  
-                                      });
-                                  </script>
-                                  <style>td {
-                                      cursor: pointer
-                                  } </style>;
+                                                       
 
 
                                 
