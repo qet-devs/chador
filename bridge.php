@@ -30647,9 +30647,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             $result = mysql_query("insert into log values('','".$username." accesses letter File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
             $resultx =mysql_query("select * from letters where id='".$param."' limit 0,1");
             $rowx=mysql_fetch_array($resultx);
-            $lof=stripslashes($rowx['lof']);
+            $lof="Letter";
             $stat=stripslashes($rowx['status']);
-            $tid=stripslashes($rowx['id']);
+            $tid=stripslashes($rowx['uid']);
             
           
           
@@ -30745,7 +30745,27 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                                 <div class="tab-pane " id="tab3">
                                 <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
+                                <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                   Uploaded documents
+                                </h3>
+                            </div>
+                             
+                                <div class="panel-body" style="font-size:20px;font-family:baskerville">
+                                          <ul>';
+                                          getdocsletter();
+                                          echo '</ul>             
+                            
+                                <!-- block -->
+                               
+                      
+                      
+                                                       
+
+
                                 
+
+                                </div>
                                 </div>
                                 </div>
 
@@ -30828,9 +30848,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </dd>
                                 <iframe name="leiframe" id="leiframe" class="leiframe">
                                 </iframe>
-                                <input type="hidden"  name="soi" value=""/>
-                                <input type="hidden"  name="sap" value=""/>
-                                <input type="hidden"  name="tid" value=""/>
+                                <input type="hidden"  name="soi" value="'.$lof.'"/>
+                                <input type="hidden"  name="sap" value="'.$stat.'"/>
+                                <input type="hidden"  name="tid" value="'.$tid.'"/>
                                 <input type="hidden" id="id" name="id"  value="1"/>
                                 <div class="cleaner_h5"></div>
                                 <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%" type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload</button>
@@ -31656,7 +31676,12 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                                 <div class="tab-pane " id="tab3">
                                 <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
+                                 <!-- block -->
+                     
                                 
+
+
+
                                 </div>
                                 </div>
 
@@ -32564,7 +32589,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             $result = mysql_query("insert into log values('','".$username." accesses decree File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
             $resultx =mysql_query("select * from decrees where id='".$param."' limit 0,1");
             $rowx=mysql_fetch_array($resultx);
-            $lof=stripslashes($rowx['lof']);
+            $lof="Decrees";
             $stat=stripslashes($rowx['status']);
             $tid=stripslashes($rowx['id']);
             
@@ -32766,8 +32791,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </dd>
                                 <iframe name="leiframe" id="leiframe" class="leiframe">
                                 </iframe>
-                                <input type="hidden"  name="soi" value="'.$soi.'"/>
-                                <input type="hidden"  name="sap" value="'.$sap.'"/>
+                                <input type="hidden"  name="soi" value="'.$lof.'"/>
+                                <input type="hidden"  name="sap" value="'.$stat.'"/>
                                 <input type="hidden"  name="tid" value="'.$tid.'"/>
                                 <input type="hidden" id="id" name="id"  value="1"/>
                                 <div class="cleaner_h5"></div>
@@ -34077,9 +34102,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             $result = mysql_query("insert into log values('','".$username." accesses Notice File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
             $resultx =mysql_query("select * from court_notices where id='".$param."' limit 0,1");
             $rowx=mysql_fetch_array($resultx);
-            $lof=stripslashes($rowx['lof']);
+            $lof="Notice";
             $stat=stripslashes($rowx['status']);
-            $tid=stripslashes($rowx['id']);
+            $tid=stripslashes($rowx['uid']);
             
           
           
@@ -34201,8 +34226,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </dd>
                                 <iframe name="leiframe" id="leiframe" class="leiframe">
                                 </iframe>
-                                <input type="hidden"  name="soi" value="'.$soi.'"/>
-                                <input type="hidden"  name="sap" value="'.$sap.'"/>
+                                <input type="hidden"  name="soi" value="'.$lof.'"/>
+                                <input type="hidden"  name="sap" value="'.$stat.'"/>
                                 <input type="hidden"  name="tid" value="'.$tid.'"/>
                                 <input type="hidden" id="id" name="id"  value="1"/>
                                 <div class="cleaner_h5"></div>
@@ -35201,7 +35226,281 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
           
                                       <div class="form-group">
                                           <label>Address -:<span style="color:#f00">*</span></label>
-                                          <input type="text" id="creditor_address" class="control" value="'.$rowx['creditoraddress'].'">
+                                          <input type="text" id="debtor_address" class="form-control" value="'.$rowx['debtoraddress'].'">
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                          <div class="col-md-6">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Edit  proclamation Details</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label>Decretal sum/Amount outstanding / Rent arrears <span style="color:#f00">*</span></label>
+                                          <input type="text" id="amount" class="form-control" value="'.$rowx['amount'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Auctioneer charges <span style="color:#f00">*</span></label>
+                                          <input type="text" id="auct_charges" class="form-control" value="'.$rowx['auctcharges'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Advocate fee<span style="color:#f00">*</span></label>
+                                          <input type="text" id="adv_fee" class="form-control" value="'.$rowx['advfee'].'">
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                          <div class="col-md-6">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Edit  Court Details</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label>court <span style="color:#f00">*</span></label>
+                                          <input type="text" id="court" class="form-control" value="'.$rowx['court'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>date <span style="color:#f00">*</span></label>
+                                          <input type="text" id="court_date" class="form-control date" value="'.$rowx['date'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Case Number<span style="color:#f00">*</span></label>
+                                          <input type="text" id="case_no" class="form-control" value="'.$rowx['caseno'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Date of Decree/Letter of instruction<span style="color:#f00">*</span></label>
+                                          <input type="text" id="decree_date" class="form-control date" value="'.$rowx['decreedate'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Date of return to court/Creditor<span style="color:#f00">*</span></label>
+                                          <input type="text" id="return_date" class="form-control date" value="'.$rowx['returndate'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Warrant or letter of instructions date<span style="color:#f00">*</span></label>
+                                          <input type="text" id="warrant_date" class="form-control date" value="'.$rowx['warrantdate'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Number of Notice Days<span style="color:#f00">*</span></label>
+                                          <input type="text" id="notice_days" class="form-control" value="'.$rowx['noticedays'].'">
+                                      </div>
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                          <div class="col-md-6">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                          Proclamation Actions</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group form-actions">
+                                          <div class="col-sm-4"></div>
+                                          <div class="col-sm-7">
+                                              <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                      onclick="saveproclamation('.$param.')"><i class="icon-ok"></i> update
+                                              </button>
+                                              <button class="btn btn-danger" type="button" onclick="hidecont()">Cancel</button>
+                                              <div id="message" style="width:40px;height:40px;float:right"></div>
+                                          </div>
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                      </div>
+                      <!-- row -->
+                  </div>
+                  <!-- .vd_content-section -->
+          
+              </div>
+              <!-- .vd_content -->
+          </div>
+          <!-- .vd_container -->
+          ';
+        break;
+
+        case 804:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span> Proclamation file</h3>
+                  </div>
+                <select id="intcombo">
+                <option value="" selected>Select One...</option>';
+                   $result =mysql_query("select * from proclamations where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['creditorname']).' vs '.stripslashes($row['debtorname']).'</option>';
+                        }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+            $('#intcombo').select2();
+            $('#intcombo').on('select2:select', function (e) {
+             var param = $('#intcombo').val();
+            var str = $('#item5').val();
+            var parts=param.split('-',3);
+            param=parts[0];
+            $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+            $.ajax({
+            url:'bridge.php',
+            data:{id:805,param:param},
+            success:function(data){
+            $('#mainp').html(data);
+            }
+            });
+
+
+          });
+           </script>";
+
+        break;
+
+        case 805:
+          $tid= $param=$_GET['param'];
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+            $result = mysql_query("insert into log values('','".$username." accesses proclamation File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+            $resultx =mysql_query("select * from proclamations where id='".$param."' limit 0,1");
+            $rowx=mysql_fetch_array($resultx);
+            $lof="Proclamation";
+            $stat=stripslashes($rowx['status']);
+            $tid=stripslashes($rowx['uid']);
+            
+          
+          
+            if($stat==1){$status='Active';$col='#1fae66';}else if($stat==0){$status='Archived';$col='#f85d2c';}else{$status='Contract Expired';$col='#f89c2c';}
+
+            echo '
+            <div class="vd_container" id="container">
+    <div class="vd_content clearfix" style="">
+
+        <div class="vd_content-section clearfix">
+            <div class="row" id="form-basic">
+                <div class="col-md-12">
+                    <div class="panel widget">
+                        <div class="panel-heading vd_bg-grey">
+                            <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                Proclamation File-'.stripslashes($rowx['creditorname']).' VS '.stripslashes($rowx['debtorname']).' </h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab1" data-toggle="tab">Proclamation Information</a></li>
+                                <li><a href="#tab6" data-toggle="tab">Court Details</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Property Description</a></li>
+                                <li><a href="#tab3" data-toggle="tab">Documents</a></li>
+                                <li><a href="#tab4" data-toggle="tab">Charges</a></li>
+                                <li><a href="#tab5" data-toggle="tab">Upload Documents</a></li>
+                            </ul>
+                            <br/>
+                            <div class="tab-content mgbt-xs-20">
+                                <div class="tab-pane active" id="tab1">
+                                <div class="row" id="form-basic">
+          
+                          <div class="col-md-6">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Auctioneer Details</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label>Name -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="auct_name" class="form-control" value="'.$rowx['auctioneername'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Phone -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="auct_phone" class="form-control" value="'.$rowx['auctphone'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Address -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="auct_address" class="form-control" value="'.$rowx['auctaddress'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Trader -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="auct_trader" class="form-control" value="'.$rowx['trader'].'">
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                          <div class="col-md-6">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Creditor/Landlord Details</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group">
+                                          <label>Name -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="creditor_name" class="form-control" value="'.$rowx['creditorname'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Address -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="creditor_address" class="form-control" value="'.$rowx['creditoraddress'].'">
                                       </div>
           
                                   </div>
@@ -35370,8 +35669,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 </dd>
                                 <iframe name="leiframe" id="leiframe" class="leiframe">
                                 </iframe>
-                                <input type="hidden"  name="soi" value="'.$soi.'"/>
-                                <input type="hidden"  name="sap" value="'.$sap.'"/>
+                                <input type="hidden"  name="soi" value="'.$lof.'"/>
+                                <input type="hidden"  name="sap" value="'.$stat.'"/>
                                 <input type="hidden"  name="tid" value="'.$tid.'"/>
                                 <input type="hidden" id="id" name="id"  value="1"/>
                                 <div class="cleaner_h5"></div>
@@ -35952,6 +36251,746 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
       <!-- .vd_container -->
       ';
         break;
+
+        case 900:
+          $result = mysql_query("insert into log values('','".$username." accesses new Repossession panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+          echo '
+          <div class="vd_container" id="container">
+          <div class="vd_content clearfix" style="">
+      
+              <div class="vd_content-section clearfix">
+                  <div class="row" id="form-basic">
+      
+                      <div class="col-md-6 text-capitalize">
+                          <div class="panel widget">
+                              <div class="panel-heading vd_bg-grey">
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                      Debtor Details</h3>
+                              </div>
+                              <!--                        panel heading-->
+                              <div class="panel-body">
+                                  <!--                            form content goes here-->
+                                  <div class="form-group">
+                                      <label>Debtor Name -:<span style="color:#f00">*</span></label>
+                                      <input type="text" id="rep_name" value="" class="control">
+                                  </div>
+                                                            
+                            
+      
+                              </div>
+                              <!-- Panel body -->
+                          </div>
+                          <!-- Panel Widget -->
+                          
+                          <div class="panel widget">
+                              <div class="panel-heading vd_bg-grey">
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                      Date</h3>
+                              </div>
+                              <!--                        panel heading-->
+                              <div class="panel-body">
+                                  <!--                            form content goes here-->
+                                  <div class="form-group">
+                                      <label>Specified Timeline<span style="color:#f00">*</span></label>
+                                      <input type="date" id="rep_date" value="" class="control">
+                                  </div>
+      
+                                  
+      
+                              </div>
+                              <!-- Panel body -->
+                          </div>
+                          <!-- Panel Widget -->
+                          
+                          <div class="panel widget">
+                              <div class="panel-heading vd_bg-grey">
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                      Instructing Party Details</h3>
+                              </div>
+                              <!--                        panel heading-->
+                              <div class="panel-body">
+                                  <!--                            form content goes here-->
+                                  <div class="form-group">
+                                      <label> Instructing Party Name -:<span style="color:#f00">*</span></label>
+                                      <input type="text" id="instructing_name" value="" class="control">
+                                  </div>
+      
+                                 
+      
+                              </div>
+                              <!-- Panel body -->
+                          </div>
+                          <!-- Panel Widget -->
+                          
+                            <div class="panel widget">
+                              <div class="panel-heading vd_bg-grey">
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                      Property Details</h3>
+                              </div>
+                              <!--                        panel heading-->
+                              <div class="panel-body">
+                                  <!--                            form content goes here-->
+                                  <div class="form-group">
+                                      <label>Property Name:- <span style="color:#f00">*</span></label>
+                                      <input type="text" id="property" value="" class="control">
+                                  </div>
+      
+                                
+      
+                              </div>
+                              <!-- Panel body -->
+                          </div>
+                          <!-- Panel Widget -->
+                      </div>
+                      <!-- col-md-6 -->
+      
+                      <div class="col-md-6 text-capitalize">                          
+                         
+                          <!-- Panel Widget -->
+                          
+                          <div class="panel widget">
+                              <div class="panel-heading vd_bg-grey">
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                      Repossession Actions</h3>
+                              </div>
+                              <!--                        panel heading-->
+                              <div class="panel-body">
+                                  <!--                            form content goes here-->
+                                  <div class="form-group form-actions">
+                                      <div class="col-sm-4"></div>
+                                      <div class="col-sm-7">
+                                          <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                  onclick="savenewrepossession()"><i class="icon-ok"></i> Save
+                                          </button>
+                                          <button class="btn btn-danger" type="button" onclick="hidecont()">Cancel</button>
+                                          <div id="message" style="width:40px;height:40px;float:right"></div>
+                                      </div>
+                                  </div>
+      
+                              </div>
+                              <!-- Panel body -->
+                          </div>
+                          <!-- Panel Widget -->
+                      </div>
+                      <!-- col-md-6 -->
+      
+                  </div>
+                  <!-- row -->
+              </div>
+              <!-- .vd_content-section -->
+      
+          </div>
+          <!-- .vd_content -->
+      </div>
+      <!-- .vd_container -->
+      ';
+
+
+        break;
+
+
+        case 901:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+                $result = mysql_query("insert into log values('','".$username." accesses find notice search  Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+
+                echo '<div class="vd_container" id="container">
+                <div class="vd_content clearfix">
+                    <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger" data-toggle="modal"
+                            data-target="#myModal"><a></a></button>
+            
+                    <div class="vd_content-section clearfix">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel widget">
+                                    <div class="panel-heading vd_bg-grey ">
+                                        <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Repossession-Search
+                                            Panel</h3>
+                                    </div>
+                                    <!-- panel heading -->
+                                    <div class="panel-body table-responsive">
+                                        <table class="table table-striped text-capitalize" id="data-tables">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Debtor</th>
+                                                <th>Date</th>
+                                                <th>Instruction Party</th>
+                                                <th>Property</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <!-- panel body -->
+                                </div>
+                                <!-- Panel Widget -->
+                            </div>
+                            <!-- col-md-12 -->
+                        </div>
+                        <!-- row -->
+            
+                    </div>
+                    <!-- .vd_content-section -->
+            
+                </div>
+                <!-- .vd_content -->
+            </div>
+            <!-- .vd_container -->
+            
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header vd_bg-green vd_white">
+                            <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i
+                                    class="fa fa-times"></i></button>
+                            <h4 class="modal-title" id="myModalLabel">Function List</h4>
+                        </div>
+                        <!-- /.modal-header -->
+                        <div class="modal-body">
+                            <form class="form-horizontal" action="#" role="form">
+            
+                                <div class="form-group">';
+                                    $arr=array();
+                                    $resulta =mysql_query("select * from accesstbl");
+                                    $num_resultsa = mysql_num_rows($resulta);
+                                    for ($v=0; $v <$num_resultsa; $v++) {
+                                    $rowa=mysql_fetch_array($resulta);
+                                    $var=stripslashes($rowa[$usertype]);
+                                    $code=stripslashes($rowa['AccessCode']);
+                                    $arr[$code]=$var;
+                                    }
+            
+                                    if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                      onclick="majoropen(900)">Edit Repossession</label><br/>';}
+                                    if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                      onclick="majoropen(901)">Repossession Info</label><br/>';}
+                                   
+            
+                                    echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
+                                </div>
+            
+            
+                            </form>
+                        </div>
+                        <!-- /.modal-body -->
+                    </div>
+                    <!-- /.modal-contet -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+            
+            
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    "use strict";
+            
+                    var eventFired = function (type) {
+                        console.log(type)
+            
+                        setTimeout(function () {
+                            $("#data-tables tbody tr").off("click").on("click", function (event) {
+                                $("#tenparam").val($(this).find("td").eq(0).html());
+                                openoptmodal($(this).find("td").eq(0).html())
+                            });
+                        }, 500);
+                    }
+            
+            
+                    $("#data-tables")
+                        .on("order.dt", function () {
+                            eventFired("Order");
+                        })
+                        .on("search.dt", function () {
+                            eventFired("Search");
+                        })
+                        .on("draw.dt", function () {
+                            eventFired("Page");
+                        })
+                        .DataTable({
+                            "processing": true,
+                            "serverSide": true,
+                            "ajax": "json.php?id=900"
+                        });
+            
+            
+                });
+            </script>
+            <style>td {
+                cursor: pointer
+            } </style>';
+          
+        break;
+
+
+        case 902:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit Repossession Info</h3>
+                  </div>
+                <select id="intcombo" class="text-capitalize">
+                <option value="" selected>Select One...</option>';
+                   $result =mysql_query("select * from repossession where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['debtor']).'  '.stripslashes($row['property']).'</option>';
+                        }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+            $('#intcombo').select2();
+            $('#intcombo').on('select2:select', function (e) {
+             var param = $('#intcombo').val();
+            var str = $('#item5').val();
+            var parts=param.split('-',3);
+            param=parts[0];
+            $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+            $.ajax({
+            url:'bridge.php',
+            data:{id:903,param:param},
+            success:function(data){
+            $('#mainp').html(data);
+            }
+            });
+
+
+          });
+           </script>";
+
+        break;
+
+        case 903:
+          $tid=$param=$_GET['param'];$_SESSION['housediv']=array();
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+              $result = mysql_query("insert into log values('','".$username." accesses edit respossession File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+              $resultx =mysql_query("select * from repossession where id='".$param."' limit 0,1");
+              $rowx=mysql_fetch_array($resultx);
+
+              echo '<div class="vd_container" id="container">
+              <div class="vd_content clearfix" style="">
+          
+                  <div class="vd_content-section clearfix">
+                      <div class="row" id="form-basic">
+          
+                          <div class="col-md-6 text-capitalize">
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Edit  Repossession Details</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <input type="hidden" id="uid" value="'.$rowx['uid'].'">
+                                      <div class="form-group">
+                                          <label>Debtor name -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="rep_name" class="control" value="'.$rowx['debtor'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Date specified -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="rep_date" class="control" value="'.$rowx['rdate'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Instructing party name -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="instructing_name" class="control" value="'.$rowx['i_party'].'">
+                                      </div>
+          
+                                      <div class="form-group">
+                                          <label>Property name -:<span style="color:#f00">*</span></label>
+                                          <input type="text" id="property" class="control" value="'.$rowx['property'].'">
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                              
+                              
+                              <!-- Panel Widget -->
+                              
+                            
+                              <!-- Panel Widget -->
+                              
+                             
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                          <div class="col-md-6 text-capitalize">
+                             
+                              <!-- Panel Widget -->
+                              
+                              <div class="panel widget">
+                                  <div class="panel-heading vd_bg-grey">
+                                      <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                          Repossession Actions</h3>
+                                  </div>
+                                  <!--                        panel heading-->
+                                  <div class="panel-body">
+                                      <!--                            form content goes here-->
+                                      <div class="form-group form-actions">
+                                          <div class="col-sm-4"></div>
+                                          <div class="col-sm-7">
+                                              <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                      onclick="saverepossession('.$param.')"><i class="icon-ok"></i> update
+                                              </button>
+                                              <button class="btn btn-danger" type="button" onclick="hidecont()">Cancel</button>
+                                              <div id="message" style="width:40px;height:40px;float:right"></div>
+                                          </div>
+                                      </div>
+          
+                                  </div>
+                                  <!-- Panel body -->
+                              </div>
+                              <!-- Panel Widget -->
+                          </div>
+                          <!-- col-md-6 -->
+          
+                      </div>
+                      <!-- row -->
+                  </div>
+                  <!-- .vd_content-section -->
+          
+              </div>
+              <!-- .vd_content -->
+          </div>
+          <!-- .vd_container -->
+          ';
+        break;
+
+        case 904:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+              echo '<div class="vd_container" id="container">
+                  <div class="vd_content clearfix" style="">
+               
+                          <div style="width:100%;padding:20px">
+                          <div class="panel-heading vd_bg-grey">
+                              <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Repossession File</h3>
+                            </div>
+                          <select id="intcombo" class="text-capitalize"><option value="" selected>Select One...</option> ';
+                             $result =mysql_query("select * from repossession where status=1");
+                              $num_results = mysql_num_rows($result);
+                                for ($i=0; $i <$num_results; $i++) {
+                                    $row=mysql_fetch_array($result);
+                                    $code=stripslashes($row['id']);
+                                    echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['debtor']).'-'.stripslashes($row['property']).'</option>';
+                                  }
+                             echo'</select>
+                               <div class="cleaner_h10"></div>
+                               <div class="col-sm-7">
+                                <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                              </div>
+                              </div>
+                  <!-- .vd_content --> 
+                </div>
+                <!-- .vd_container -->';
+                echo "<script>
+                      $('#intcombo').select2();
+                      $('#intcombo').on('select2:select', function (e) {
+                    var param = $('#intcombo').val();
+                    var str = $('#item5').val();
+                    var parts=param.split('-',3);
+                    param=parts[0];
+                    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                    $.ajax({
+                    url:'bridge.php',
+                    data:{id:905,param:param},
+                    success:function(data){
+                    $('#mainp').html(data);
+                      }
+                      });
+          
+          
+                    });
+                     </script>";
+          
+        break;
+
+        case 905:
+          $tid= $param=$_GET['param'];
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+            $result = mysql_query("insert into log values('','".$username." accesses repossession File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+            $resultx =mysql_query("select * from repossession where id='".$param."' limit 0,1");
+            $rowx=mysql_fetch_array($resultx);
+            $lof=stripslashes($rowx['lof']);
+            $stat=stripslashes($rowx['status']);
+            $tid=stripslashes($rowx['id']);
+            
+          
+          
+            if($stat==1){$status='Active';$col='#1fae66';}else if($stat==0){$status='Archived';$col='#f85d2c';}else{$status='Contract Expired';$col='#f89c2c';}
+
+            echo '
+            <div class="vd_container" id="container">
+    <div class="vd_content clearfix" style="">
+
+        <div class="vd_content-section clearfix">
+            <div class="row" id="form-basic">
+
+                <div class="col-md-12">
+                    <div class="panel widget">
+                        <div class="panel-heading vd_bg-grey">
+                            <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                Repossession File-'.stripslashes($rowx['debtor']).' VS '.stripslashes($rowx['property']).' </h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs text-capitalize">
+                                <li class="active"><a href="#tab1" data-toggle="tab">Repossess Information</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Download Documents</a></li>
+                                <li><a href="#tab3" data-toggle="tab">Upload Documents</a></li>
+                                
+                            </ul>
+                            <br/>
+                            <div class="tab-content mgbt-xs-20">
+                                <div class="tab-pane active" id="tab1">
+                                <div class="panel-body">
+                                <h4><label>Repossession Letter Details </label></h4>
+                                <div class="form-group">
+                                    <label>Debtor Name<span style="color:#f00">*</span></label>
+                                    <input type="text" id="rep_name" value="'.$rowx['debtor'].'" class="control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Date<span style="color:#f00">*</span></label>
+                                    <input type="date" id="rep_date" class="control" value="'.$rowx['rdate'].'">
+                                </div>
+    
+                                <h4><label>Instructing Party</label></h4>
+                                <div class="form-group">
+                                    <label>Name<span style="color:#f00">*</span></label>
+                                    <input type="text" id="instructing_name" class="control" value="'.$rowx['i_party'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address<span style="color:#f00">*</span></label>
+                                    <input type="text" id="property" class="control" value="'.$rowx['property'].'">
+                                </div>   
+                             
+    
+                            
+                            </div>
+                            <!-- Panel body -->
+                                </div>
+                                
+                                <div class="tab-pane " id="tab2">
+                                <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
+                                <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                   Uploaded documents
+                                </h3>
+                            </div>
+                             
+                                <div class="panel-body" style="font-size:20px;font-family:baskerville">
+                                          <ul>';
+                                          
+                                          $resulta = mysql_query("select * from tendocs where  tid='".$rowx['uid']."' order by stamp desc");
+    $num_resultsa = mysql_num_rows($resulta);
+    for ($i = 0; $i < $num_resultsa; $i++) {
+      $rowa = mysql_fetch_array($resulta);
+      echo '<li><a href="'.$rowa['link'].'">'.$rowa['details'].'</a></li>';
+
+    }
+                                          echo '</ul>             
+                            
+                                <!-- block -->
+                               
+                      
+                      
+                                                       
+
+
+                                
+
+                                </div>
+                                </div>
+                                </div>
+
+
+
+
+                              
+
+                                
+
+
+                                <div class="tab-pane " id="tab3">
+                                <div class="col-md-6">
+                                <form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
+                                <div class="cleaner"></div> 
+                                <div class="form-group">
+                                <label style="float:left" class="col-sm-3">Name:<span style="color:#f00">*</span></label>
+                                <div class="col-sm-9 controls">
+                                  <input type="text" id="fname"  name="fname"  required>
+                                </div>
+                                </div>
+                                 <div class="cleaner_h5"></div>
+                                <div class="form-group">
+                                <label style="float:left" class="col-sm-3">Type:<span style="color:#f00">*</span></label>
+                                <div class="col-sm-9 controls">
+                                  <select style="padding:5px" name="type" id="doctype">
+                                    <option value="" selected>Select One...</option>
+                                     <option value="Certificate of Incorporation">Certificate of Incorporation</option>
+                                      <option value="Checkout Documents">Checkout Documents</option>
+                                   <option value="ID_Card_Copies">ID_Card_Copies</option>
+                                    <option value="Lease Document">Lease Document</option>
+                                    <option value="Memorandum/Articles_of_Association">Memorandum/Articles_of_Association</option>
+                                   <option value="Pin/Vat_Certificate">Pin/Vat_Certificate</option>
+                                    <option value="Unit Handover Photos">Unit Handover Photos</option>
+                                    <option value="Pin_Copies">Pin_Copies</option>
+                                    <option value="Other Documents">Other Documents</option>
+                                    </select>
+                                </div>
+                                </div>
+        
+                                <div class="cleaner_h5"></div>
+                                <dd class="custuploadblock_js">
+                                <input style="opacity:0; float:left;" name="image" id="photoupload"  
+                                class="transfileform_js" type="file">
+                                </dd>
+                                <iframe name="leiframe" id="leiframe" class="leiframe">
+                                </iframe>
+                                <input type="hidden"  name="soi" value=""/>
+                                <input type="hidden"  name="sap" value="repossession"/>
+                                <input type="hidden"  name="tid" value="'.$rowx['uid'].'"/>
+                                <input type="hidden" id="id" name="id"  value="1"/>
+                                <div class="cleaner_h5"></div>
+                                <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%" type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload</button>
+                                </form>
+        
+                                </div>
+                               </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            ';
+
+        break;
+
+
+        //  case 950:
+        //   $param=0;
+        //   if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+        //   else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+        //         $result = mysql_query("insert into log values('','".$username." accesses find tendocs Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+
+        //         echo '<div class="vd_container" id="container">
+
+        //         <div class="vd_content clearfix">
+        //             <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger" data-toggle="modal"
+        //                     data-target="#myModal"><a></a></button>
+            
+        //             <div class="vd_content-section clearfix">
+        //                 <div class="row">
+        //                     <div class="col-md-12">
+        //                         <div class="panel widget">
+        //                             <div class="panel-heading vd_bg-grey">
+        //                                 <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Uploaded Documents
+        //                                     Panel</h3>
+        //                             </div>
+
+
+        //                             <!-- panel heading -->
+        //                             <div class="panel-body table-responsive">
+        //                                 <table class="table table-striped text-capitalize" id="data-tables">
+        //                                     <thead>
+        //                                     <tr>
+        //                                         <th>ID</th>
+        //                                         <th>Date</th>
+        //                                         <th>File Name</th>
+        //                                         <th>Description</th>
+
+                                               
+        //                                     </tr>
+        //                                     </thead>
+        //                                 </table>
+        //                             </div>
+        //                             <!-- panel body -->
+        //                         </div>
+        //                         <!-- Panel Widget -->
+        //                     </div>
+        //                     <!-- col-md-12 -->
+        //                 </div>
+        //                 <!-- row -->
+            
+        //             </div>
+        //             <!-- .vd_content-section -->
+            
+        //         </div>
+        //         <!-- .vd_content -->
+        //     </div>
+        //     <!-- .vd_container -->
+            
+            
+            
+        //     <script type="text/javascript">
+        //         $(document).ready(function () {
+        //             "use strict";
+            
+        //             var eventFired = function (type) {
+        //                 console.log(type)
+            
+        //                 setTimeout(function () {
+        //                     $("#data-tables tbody tr").off("click").on("click", function (event) {
+        //                         $("#tenparam").val($(this).find("td").eq(0).html());
+        //                         openoptmodal($(this).find("td").eq(0).html())
+        //                     });
+        //                 }, 500);
+        //             }
+            
+            
+        //             $("#data-tables")
+        //                 .on("order.dt", function () {
+        //                     eventFired("Order");
+        //                 })
+        //                 .on("search.dt", function () {
+        //                     eventFired("Search");
+        //                 })
+        //                 .on("draw.dt", function () {
+        //                     eventFired("Page");
+        //                 })
+        //                 .DataTable({
+        //                     "processing": true,
+        //                     "serverSide": true,
+        //                     "ajax": "json.php?id=950"
+        //                 });
+            
+            
+        //         });
+        //     </script>
+        //     <style>td {
+        //         cursor: pointer
+        //     } </style>';
+               
+        // break;
+
+
 
 }
 ?>

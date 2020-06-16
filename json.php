@@ -613,6 +613,55 @@ $where = "";
                         
                             break;
 
+                            case 900:
+                                // DB table to use
+                                $table = 'repossession';
+                                 
+                                // Table's primary key
+                                $primaryKey = 'id';
+                                $where = "status=1";
+                                 
+                                // Array of database columns which should be read and sent back to DataTables.
+                                // The `db` parameter represents the column name in the database, while the `dt`
+                                // parameter represents the DataTables column identifier. In this case simple
+                                // indexes
+                                    $columns = array(
+                                        array( 'db' => 'uid', 'dt' => 0 ),
+                                        array( 'db' => 'debtor', 'dt' => 1 ),
+                                        array( 'db' => 'rdate', 'dt' => 2 ),
+                                        array( 'db' => 'i_party',  'dt' => 3 ),
+                                        array( 'db' => 'property',    'dt' => 4 )
+                                    );
+                            
+                                break;
+                          
+    
+
+                                case 950:
+                                    // DB table to use
+                                    $table = 'tendocs';
+                                     
+                                    // Table's primary key
+                                    $primaryKey = 'id';
+                                    $where = "status=1";
+                                     
+                                    // Array of database columns which should be read and sent back to DataTables.
+                                    // The `db` parameter represents the column name in the database, while the `dt`
+                                    // parameter represents the DataTables column identifier. In this case simple
+                                    // indexes
+                                        $columns = array(
+                                            array( 'db' => 'id', 'dt' => 0 ),
+                                            array( 'db' => 'date', 'dt' => 1 ),
+                                            array( 'db' => 'name', 'dt' => 2 ),
+                                            array( 'db' => 'type',  'dt' => 3 ),
+                                            array( 'db' => 'link', 'dt' =>4)
+                                            
+                                        );
+                                
+                                    break;
+                        
+            
+
 }
  
 

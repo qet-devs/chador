@@ -218,6 +218,15 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                   <input type="radio" name="category" value="tendocs">
                   <span>Proclamation</span></label>
               </li>
+
+              <li>
+                <label>
+                  <input type="radio" name="category" value="repossess">
+                  <span>Repossession</span></label>
+              </li>
+
+             
+              
             </ul>
           </div>
         </div>
@@ -657,6 +666,86 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
             </ul>   
         </div>
     </li> 
+
+    <!-- repossession -->
+    <li>
+      <a href="javascript:void(0);" data-action="click-trigger">
+          <span class="menu-icon"><i class="fa fa-list-alt"> </i></span>
+            <span class="menu-text">Repossession</span>  
+            <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
+        </a>
+      <div class="child-menu"  data-action="click-target">
+            <ul>
+
+              <li style="">
+                    <?php if($rightsarr[107]=='YES'){
+          echo'<a  href="#" onclick="newrepossession()" >
+                        <span class="menu-text">New Repossession</span>  
+                    </a>';} ?>
+                </li> 
+
+                <li>
+                    <?php if($rightsarr[109]=='YES'){
+          echo'<a  href="#" onclick="editrepossession()" >
+                        <span class="menu-text">Edit Repossession Info</span>  
+                    </a>';} ?>
+                </li> 
+                
+                <li>
+                    <?php if($rightsarr[108]=='YES'){
+          echo'<a  href="#" onclick="findrepossession()" >
+                        <span class="menu-text">Find Repossession</span>  
+                    </a>';} ?>
+                </li> 
+                <li>
+                    <?php if($rightsarr[108]=='YES'){
+          echo'<a  href="#" onclick="repossessionfile()" >
+                        <span class="menu-text">File Repossession</span>  
+                    </a>';} ?>
+                </li> 
+
+                
+             
+
+           
+
+
+                
+            </ul>   
+        </div>
+    </li> 
+
+
+
+ <!-- repossession -->
+    <li>
+      <a href="javascript:void(0);" data-action="click-trigger">
+          <span class="menu-icon"><i class="fa fa-list-alt"> </i></span>
+            <span class="menu-text">Documents</span>  
+            <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
+        </a>
+      <div class="child-menu"  data-action="click-target">
+            <ul>
+
+              <li style="">
+                    <?php if($rightsarr[107]=='YES'){
+          echo'<a  href="#" onclick="finddocument()" >
+                        <span class="menu-text">View</span>  
+                    </a>';} ?>
+                </li> 
+
+             
+                
+             
+
+      
+
+                
+            </ul>   
+        </div>
+    </li> 
+
+
 
       <li>
       <a href="javascript:void(0);" data-action="click-trigger">
