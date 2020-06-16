@@ -36349,7 +36349,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label>Specified Timeline<span style="color:#f00">*</span></label>
-                                      <input type="date" id="rep_date" value="" class="control">
+                                      <input type="text" id="rep_date" value="" class="control date">
                                   </div>
       
                                   
@@ -36665,7 +36665,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
           
                                       <div class="form-group">
                                           <label>Date specified -:<span style="color:#f00">*</span></label>
-                                          <input type="text" id="rep_date" class="control" value="'.$rowx['rdate'].'">
+                                          <input type="text"  id="rep_date" class="control date" value="'.$rowx['rdate'].'">
                                       </div>
           
                                       <div class="form-group">
