@@ -10050,7 +10050,7 @@ function warrantproclamation(){
 	}
 	});
 }
-function decreefeenote(){
+function decreeproperty(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',

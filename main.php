@@ -456,8 +456,8 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
           
                 <li>
                     <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="decreefeenote()" >
-                        <span class="menu-text">Fee Note</span>  
+          echo'<a  href="#" onclick="decreeproperty()" >
+                        <span class="menu-text">Property</span>  
                     </a>';} ?>
                 </li>
             
