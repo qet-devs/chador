@@ -364,7 +364,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
     <li>
       <a href="javascript:void(0);" data-action="click-trigger">
           <span class="menu-icon"><i class="fa fa-file-text-o"> </i></span>
-            <span class="menu-text">Letters</span>  
+            <span class="menu-text">Debt collection</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
       <div class="child-menu"  data-action="click-target">
@@ -425,69 +425,8 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 <li>
       <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-briefcase"> </i></span>
-            <span class="menu-text">Distress</span>  
-            <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
-        </a>
-      <div class="child-menu"  data-action="click-target">
-            <ul>
-
-              <li style="">
-                    <?php if($rightsarr[107]=='YES'){
-          echo'<a  href="#" onclick="newdistress()" >
-                        <span class="menu-text">New Distress</span>  
-                    </a>';} ?>
-                </li> 
-
-                
-                <li>
-                    <?php if($rightsarr[108]=='YES'){
-          echo'<a  href="#" onclick="finddistress()" >
-                        <span class="menu-text">Find Distress</span>  
-                    </a>';} ?>
-                </li> 
-
-                <li>
-                    <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="editdistress()" >
-                        <span class="menu-text">Edit Distress Info</span>  
-                    </a>';} ?>
-                </li> 
-             
-
-            <li>
-                     <?php if($rightsarr[113]=='YES'){
-          echo'<a  href="#" onclick="distressfile()" >
-                        <span class="menu-text">Distress File</span>  
-                        </a>';} ?>
-                </li> 
-
-                <li>
-                     <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="checkoutdistress()" >
-                        <span class="menu-text">Archive Distress</span>  
-                        </a>';} ?>
-                </li> 
-
-               
-               <li>
-                     <?php if($rightsarr[119]=='YES'){
-              echo'<a  href="#" onclick="archiveddistress()" >
-                        <span class="menu-text">Archived Distress</span>  
-                        </a>';} ?>
-                </li> 
-
-
-
-                
-            </ul>   
-        </div>
-    </li> 
-
-<li>
-      <a href="javascript:void(0);" data-action="click-trigger">
           <span class="menu-icon"><i class="fa fa-gavel"> </i></span>
-            <span class="menu-text">Decrees</span>  
+            <span class="menu-text">Warrants</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
       <div class="child-menu"  data-action="click-target">
@@ -495,8 +434,8 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
               <li style="">
                     <?php if($rightsarr[107]=='YES'){
-          echo'<a  href="#" onclick="newdecree()" >
-                        <span class="menu-text">New Decree</span>  
+          echo'<a  href="#" onclick="decree()" >
+                        <span class="menu-text">Decree</span>  
                     </a>';} ?>
                 </li> 
 
@@ -510,8 +449,8 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
                 <li>
                     <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="appdecree()" >
-                        <span class="menu-text">Execution</span>  
+          echo'<a  href="#" onclick="decreeapplication()" >
+                        <span class="menu-text">Application</span>  
                     </a>';} ?>
                 </li> 
           
@@ -522,6 +461,12 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                     </a>';} ?>
                 </li>
             
+                <li>
+                    <?php if($rightsarr[109]=='YES'){
+          echo'<a  href="#" onclick="warrantproclamation()" >
+                        <span class="menu-text">Proclamation</span>  
+                    </a>';} ?>
+                </li>
 
                 <li>
                      <?php if($rightsarr[114]=='YES'){
@@ -545,71 +490,11 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
         </div>
     </li> 
 
-<li>
-      <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-building"> </i></span>
-            <span class="menu-text">Notice</span>  
-            <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
-        </a>
-      <div class="child-menu"  data-action="click-target">
-            <ul>
-
-              <li style="">
-                    <?php if($rightsarr[107]=='YES'){
-          echo'<a  href="#" onclick="newnotice()" >
-                        <span class="menu-text">New Notice</span>  
-                    </a>';} ?>
-                </li> 
-
-                
-                <li>
-                    <?php if($rightsarr[108]=='YES'){
-          echo'<a  href="#" onclick="findnotice()" >
-                        <span class="menu-text">Find Notice</span>  
-                    </a>';} ?>
-                </li> 
-
-                <li>
-                    <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="editnotice()" >
-                        <span class="menu-text">Edit notice Info</span>  
-                    </a>';} ?>
-                </li> 
-             
-
-            <li>
-                     <?php if($rightsarr[113]=='YES'){
-          echo'<a  href="#" onclick="noticefile()" >
-                        <span class="menu-text">Notice File</span>  
-                        </a>';} ?>
-                </li> 
-
-                <li>
-                     <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="checkoutnotice()" >
-                        <span class="menu-text">Archive Notice</span>  
-                        </a>';} ?>
-                </li> 
-
-               
-               <li>
-                     <?php if($rightsarr[119]=='YES'){
-              echo'<a  href="#" onclick="archivednotice()" >
-                        <span class="menu-text">Archived Notice</span>  
-                        </a>';} ?>
-                </li> 
-
-
-
-                
-            </ul>   
-        </div>
-    </li> 
 
 <li>
       <a href="javascript:void(0);" data-action="click-trigger">
           <span class="menu-icon"><i class="fa fa-list-alt"> </i></span>
-            <span class="menu-text">Proclamations</span>  
+            <span class="menu-text">Reposession</span>  
             <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
         </a>
       <div class="child-menu"  data-action="click-target">

@@ -32011,10 +32011,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <textarea name="defendant" class="control" id="defendant"></textarea>
                                   </div>
                                   <div class="form-group">
-                                      <label for="">Claim<span style="color:#f00">*</span></label>
-                                      <input type="text" class="control" id="claim">
-                                  </div>
-                                  <div class="form-group">
                                       <label for="">Court Date<span style="color:#f00">*</span></label>
                                       <input type="text" class="control date" id="court_date">
                                   </div>
@@ -32387,10 +32383,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="form-group">
                                   <label for="">Defendants<span style="color:#f00">*</span></label>
                                   <textarea name="defendant" class="control" id="defendant">'.$rowx['defendants'].'</textarea>
-                              </div>
-                              <div class="form-group">
-                                  <label for="">Claim<span style="color:#f00">*</span></label>
-                                  <input type="text" class="control" id="claim" value="'.$rowx['claim'].'">
                               </div>
                               <div class="form-group">
                                   <label for="">Court Date<span style="color:#f00">*</span></label>
@@ -33112,8 +33104,13 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <input type="text" name="decree_holder" id="decree_holder" class="control" value="'.$rowx['decree_holder'].'">
                               </div> 
                               <div class="form-group">
-                                  <label for="">Advocate<span style="color:#f00">*</span></label>
-                                  <input type="text" name="advocate" id="advocate" class="control" value="'.$rowx['advocate'].'">
+                                  <label for="">Decree Holder Address<span style="color:#f00">*</span></label>
+                                  <input type="text" name="decree_holder" id="holder_address" class="control" value="'.$rowx['holder_address'].'">
+                              </div> 
+                              
+                              <div class="form-group">
+                                  <label for="">Decree Holder Location<span style="color:#f00">*</span></label>
+                                  <input type="text" name="holder_location" id="holder_location" class="control" value="'.$rowx['holder_address'].'">
                               </div> 
                           </div>
                           <!-- Panel body -->
@@ -33176,7 +33173,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                           <div class="col-sm-4"></div>
                                           <div class="col-sm-7">
                                               <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                                      onclick="saveappl('.$param.')"><i class="icon-ok"></i> Save                          </button>
+                                                      onclick="saveapplication('.$param.')"><i class="icon-ok"></i> Save                          </button>
                                               <button class="btn btn-danger" type="button" onclick="hidecont()">Cancel</button>
                                               <div id="message" style="width:40px;height:40px;float:right"></div>
                                           </div>
@@ -33524,20 +33521,29 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               </div>
               <!--                        panel heading-->
               <div class="panel-body text-capitalize">
-          
-                 <div class="row">
-                    <div class="form-group col-md-6">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                      <label>Select Type of Fee Note</label>
+                      <select id="note_type" class="control" >
+                        <option value="1">On Attachment Fee Note</option>
+                        <option value="2">Proclamation Fee Note</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-4">
                       <label>Receipient</label>
-                      <input type="text" id="reciepient" class="control" value="'.$row['defendants'].'">
+                      <input type="text" id="reciepient" class="control" value="'.$row['reciepient'].'">
                       <input type="hidden" id="uid" value="'.$row['uid'].'">
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                       <label>Date</label>
                       <input type="text" id="note_date" class="control date" value="'.$rowx['note_date'].'">
                     </div>
+
+                    </div>
+                    <div class="row">
                     <div class="form-group col-md-6">
                       <label>Reference</label>
-                      <textarea type="text" id="reference" class="control">'.$row['plaintiffs'].' -VS- '.$row['defendants'].'</textarea>
+                      <textarea type="text" id="reference" class="control">'.$row['court'] .' - '.$row['plaintiffs'].' -VS- '.$row['defendants'].'</textarea>
                     </div>
                     <div class="form-group col-md-6">
                       <label>Remarks</label>
@@ -33644,6 +33650,57 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             </div>
           </div>
           ';
+
+        break;
+
+        case 614:
+          $param=0;
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+          echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Warrant Proclamation</h3>
+                  </div>
+                <select id="intcombo" class="text-capitalize">
+                <option value="" selected>Select One...</option>';
+                   $result =mysql_query("select * from decrees where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['plaintiffs']).'<strong> vs </strong>'.stripslashes($row['defendants']).'</option>';
+                        }
+                   echo'</select>
+                     <div class="cleaner_h10"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+            $('#intcombo').select2();
+            $('#intcombo').on('select2:select', function (e) {
+             var param = $('#intcombo').val();
+            var str = $('#item5').val();
+            var parts=param.split('-',3);
+            param=parts[0];
+            $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+            $.ajax({
+            url:'bridge.php',
+            data:{id:610,param:param},
+            success:function(data){
+            $('#mainp').html(data);
+            }
+            });
+
+
+          });
+           </script>";
 
         break;
 

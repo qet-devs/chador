@@ -6322,7 +6322,6 @@ switch ($id) {
         $court = strtoupper($_GET['court']);
         $plaintiff = strtoupper($_GET['plaintiff']);
         $defendant = strtoupper($_GET['defendant']);
-        $claim = $_GET['claim'];
         $decree_date = $_GET['decree_date'];
         $court_date = $_GET['court_date'];
         $start_date = $_GET['start_date'];
@@ -6354,17 +6353,77 @@ switch ($id) {
 
         $uid = 'DEC' . sprintf("%06d", $tid);
 
-        $sql = 
-        $resultc = mysql_query("INSERT INTO `decrees`VALUES ('','".$uid."','".$case_no."','".$court."','".$plaintiff."','".$defendant."','".$claim."','".$court_date."','".$principal."','".$rate."','".$start_date."','".$end_date."','".$interest."','".$decretal_amount."','".$party_cost."','".$attendances."','".$court_fees."','".$witness_exp."','".$disbursements."','','".$decree_cost."','".$summons."','".$cert_costs."','".$total_cost."','".$username."','','','','".$decree_date."','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+        $sql = "
+        INSERT INTO `decrees` (
+            `uid`,
+            `case_no`,
+            `court`,
+            `plaintiffs`,
+            `defendants`,
+            `court_date`,
+            `principal`,
+            `interest_rate`,
+            `period_start`,
+            `period_end`,
+            `interest`,
+            `decretal_amount`,
+            `party_cost`,
+            `attendances`,
+            `court_fees`,
+            `witness_expenses`,
+            `disbursement`,
+            `decree_cost`,
+            `summons`,
+            `cert_cost`,
+            `schedule_cost`,
+            `username`,
+            `decree_date`,
+            `status`,
+            `stamp`,
+            `date`,
+            `time`
+        )
+        VALUES
+            (
+                '".$uid."',
+                '".$case_no."',
+                '".$court."',
+                '".$plaintiff."',
+                '".$defendant."',
+                '".$court_date."',
+                '".$principal."',
+                '".$rate."',
+                '".$start_date."',
+                '".$end_date."',
+                '".$interest."',
+                '".$decretal_amount."',
+                '".$party_cost."',
+                '".$attendances."',
+                '".$court_fees."',
+                '".$witness_exp."',
+                '".$disbursements."',
+                '".$decree_cost."',
+                '".$summons."',
+                '".$cert_costs."',
+                '".$total_cost."',
+                '".$username."',
+                '".$decree_date."',
+                '1',
+                '" . date('YmdHi') . "',
+                '" . date('d/m/Y') . "',
+                '" . date('H:i') . "'
+            )
+        ";
+//$resultc = mysql_query("INSERT INTO `decrees`VALUES ('','".$uid."','".$case_no."','".$court."','".$plaintiff."','".$defendant."','".$court_date."','".$principal."','".$rate."','".$start_date."','".$end_date."','".$interest."','".$decretal_amount."','".$party_cost."','".$attendances."','".$court_fees."','".$witness_exp."','".$disbursements."','','".$decree_cost."','".$summons."','".$cert_costs."','".$total_cost."','".$username."','','','','".$decree_date."','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
-
+$resultc = mysql_query($sql);
         if ($resultc) {
             $client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
 									VALUES ('0','" . $uid . "','decree','" . $plaintiff . "','','','','" . $defendant . "','','" . date('d/m/Y') . "','" . date('Ymd') . "',1,'','','','','','','','','',1,'','','','',0,0,'','')");
             echo '<script>swal("Success!", "Decree information saved successfully", "success");</script>';
 
             $resulta = mysql_query("insert into log values('0','" . $username . " creates new decree','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo "<script>setTimeout(function() {newdecree();},500);</script>";
+            echo "<script>setTimeout(function() {decree();},500);</script>";
         } else {
             echo '<script>swal("Error", "failed to save decree info!", "error");</script>';
         }
@@ -6377,7 +6436,6 @@ switch ($id) {
         $court = strtoupper($_GET['court']);
         $plaintiff = strtoupper($_GET['plaintiff']);
         $defendant = strtoupper($_GET['defendant']);
-        $claim = $_GET['claim'];
         $decree_date = $_GET['decree_date'];
         $court_date = $_GET['court_date'];
         $start_date = $_GET['start_date'];
@@ -6396,14 +6454,14 @@ switch ($id) {
         $cert_costs = $_GET['cert_costs'];
         $total_cost = $_GET['total_cost'];
 
-        $resultc = mysql_query("UPDATE `decrees` SET `case_no`='".$case_no."',`court`='".$court."',`plaintiffs`='".$plaintiff."',`defendants`='".$defendant."',`claim`='".$claim."',`court_date`='".$court_date."',`principal`='".$principal."',`interest_rate`='".$rate."',`period_start`='".$start_date."',`period_end`='".$end_date."',`interest`='".$interest."',`decretal_amount`='".$decretal_amount."',`party_cost`='".$party_cost."',`attendances`='".$attendances."',`court_fees`='".$court_fees."',`witness_expenses`='".$witness_exp."',`disbursement`='".$disbursements."',`decree_cost`='".$decree_cost."',`summons`='".$summons."',`cert_cost`='".$cert_costs."',`schedule_cost`='".$total_cost."',`decree_date`='".$decree_date."' WHERE `id`='".$id."'");
+        $resultc = mysql_query("UPDATE `decrees` SET `case_no`='".$case_no."',`court`='".$court."',`plaintiffs`='".$plaintiff."',`defendants`='".$defendant."',`court_date`='".$court_date."',`principal`='".$principal."',`interest_rate`='".$rate."',`period_start`='".$start_date."',`period_end`='".$end_date."',`interest`='".$interest."',`decretal_amount`='".$decretal_amount."',`party_cost`='".$party_cost."',`attendances`='".$attendances."',`court_fees`='".$court_fees."',`witness_expenses`='".$witness_exp."',`disbursement`='".$disbursements."',`decree_cost`='".$decree_cost."',`summons`='".$summons."',`cert_cost`='".$cert_costs."',`schedule_cost`='".$total_cost."',`decree_date`='".$decree_date."' WHERE `id`='".$id."'");
 
         $update_tenant_decree = mysql_query("update tenants set bname='" . $plaintiff . "', dname='" . $defendant . "' where tid='" . $uid . "'");
         if ($resultc) {
             echo '<script>swal("Success!", "Decree information updated successfully", "success");</script>';
 
             $resulta = mysql_query("insert into log values('0','" . $username . " updates decree info ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo "<script>setTimeout(function() {newdecree();},500);</script>";
+            echo "<script>setTimeout(function() {finddecree();},500);</script>";
         } else {
             echo '<script>swal("Error", "failed to update decree info!", "error");</script>';
         }
@@ -6428,20 +6486,21 @@ switch ($id) {
         case 604:
             $param = $_GET['param'];
             $assistance_mode = $_GET['assistance_mode'];
-            $advocate = $_GET['advocate'];
             $court_col_fee = $_GET['court_col_fee'];
             $sub_incurred = $_GET['sub_incurred'];
             $total_cost = $_GET['total_cost'];
-            $decree_holder = $_GET['decree_holder'];
+            $decree_holder = strtoupper($_GET['decree_holder']);
+            $holder_address = strtoupper($_GET['holder_address']);
+            $holder_location = strtoupper($_GET['holder_location']);
             
-        $resultc = mysql_query("UPDATE `decrees` SET decree_holder='".$decree_holder."', assistance_mode='".$assistance_mode."', advocate='".$advocate."', sub_incurred='".$sub_incurred."', court_col_fee='".$court_col_fee."', total_costs='".$total_cost."' WHERE `id`='".$param."'");
+        $resultc = mysql_query("UPDATE `decrees` SET decree_holder='".$decree_holder."', holder_location='".$holder_location."', holder_address='".$holder_address."', assistance_mode='".$assistance_mode."', sub_incurred='".$sub_incurred."', court_col_fee='".$court_col_fee."', total_costs='".$total_cost."' WHERE `id`='".$param."'");
 
         if ($resultc) {
             echo '<script>swal("Success!", "Application saved successfully", "success");</script>';
             echo "<script>window.open('report.php?id=96&param=" . $param . "');</script>";
 
             $resulta = mysql_query("insert into log values('0','" . $username . " generates decree execution application ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo "<script>setTimeout(function() {newdecree();},500);</script>";
+            echo "<script>setTimeout(function() {finddecree();},500);</script>";
         } else {
             echo '<script>swal("Error", "failed to generate decree execution application!", "error");</script>';
         }
@@ -6544,6 +6603,10 @@ case 609:
     $mis_expenses = $_GET['mis_expenses'];
     $total = $_GET['total'];
     $remarks = $_GET['remarks'];
+    $note_type = $_GET['note_type'];
+    $reciepient = $_GET['reciepient'];
+    $ref = $_GET['ref'];
+
 
     //echo var_dump($_GET);
 $qry = mysql_query("select * from fee_note where uid='".$uid."'");
@@ -6553,7 +6616,7 @@ $num_rows = mysql_num_rows($qry);
 if($num_rows>0){
     $sql = "
     UPDATE `fee_note`
-SET `receipt` ='".$court_warrant."', `before_attachment` ='".$before_attachment."', `on_attachment` ='".$on_attachment."', `transport` ='".$transport."', `labour` ='".$labour."', `towing` ='".$towing."', `police_assistance` ='".$police_assistance."', `investigation_fee` ='".$investigation_fee."', `ad_charges` ='".$ad_charges."', `valuation_fee` ='".$valuation_fee."', `sale_commission` ='".$sale_commission."', `storage_charges` ='".$storage_charges."', `vat` ='".$vat."', `others` ='".$others."', `misc_expenses` ='".$mis_expenses."', `total` ='".$total."', `username` ='".$username."', `type` ='decree', `remarks` ='".$remarks."', `note_date` = '".$note_date."'
+SET `receipt` ='".$court_warrant."', `before_attachment` ='".$before_attachment."',`note_type`='".$note_type."',`ref`='".$ref."', `reciepeint`='".$reciepient."', `on_attachment` ='".$on_attachment."', `transport` ='".$transport."', `labour` ='".$labour."', `towing` ='".$towing."', `police_assistance` ='".$police_assistance."', `investigation_fee` ='".$investigation_fee."', `ad_charges` ='".$ad_charges."', `valuation_fee` ='".$valuation_fee."', `sale_commission` ='".$sale_commission."', `storage_charges` ='".$storage_charges."', `vat` ='".$vat."', `others` ='".$others."', `misc_expenses` ='".$mis_expenses."', `total` ='".$total."', `username` ='".$username."', `type` ='decree', `remarks` ='".$remarks."', `note_date` = '".$note_date."'
 WHERE
 	`uid`='".$uid."'
     ";
@@ -6583,7 +6646,10 @@ WHERE
         `date`,
         `time`,
         `remarks`,
-        `note_date`
+        `note_date`,
+        `note_type`,
+        `ref`,
+        `reciepient`
     )
     VALUES
         (
@@ -6606,18 +6672,20 @@ WHERE
             '".$username."',
             'decree',
             '".$uid."',
-            '" . date(' YmdHi ') . "',
-            '" . date(' d / m / Y ') . "',
-            '" . date(' H : i ') . "',
+            '" . date('YmdHi') . "',
+            '" . date('d/m/Y') . "',
+            '" . date('H:i') . "',
             '".$remarks."',
-            '".$note_date."'
+            '".$note_date."',
+            '".$note_type."',
+            '".$ref."',
+            '".$reciepient."'
         )
     ";
 }
 
 $resultc = mysql_query($sql);
-    //$result = mysql_query("INSERT INTO `fee_note` VALUES ('".$court_warrant."','".$before_attachment."','".$on_attachment."','".$transport."','".$labour."','".$towing."','".$police_assistance."','".$investigation_fee."','".$ad_charges."','".$valuation_fee."','".$sale_commission."','".$storage_charges."','".$vat."','".$others."','".$mis_expenses."', '".$total."','".$username."','decree','".$uid."','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','".$remarks."')");
-  //echo $result;
+    
     if($resultc){
         echo '<script>swal("Success!", "Fee note saved successfully", "success");</script>';
 

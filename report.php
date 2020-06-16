@@ -450,10 +450,20 @@ switch($id){
       break;
 
       case 96:
+        header("content-type: application/vnd.ms-word");
+        header("content-Disposition: attachment; Filename=word.doc");
         $title='CHADOR APPLICATION OF EXECUTION OF DECREE';
       break;
 
       case 97:
+        // We'll be outputting a PDF
+header('Content-Type: application/pdf');
+
+// It will be called downloaded.pdf
+header('Content-Disposition: attachment; filename="proclamation.pdf"');
+
+// The PDF source is in original.pdf
+readfile('original.pdf');
         $title='CHADOR PROCLAMATION';
       break;
 
@@ -17282,7 +17292,7 @@ $aa=$i+1;
     </div>
 
     <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?>,</b></span> Decree holder, hereby apply for execution of the decree herein below set forth.<p>
-        <table class="table table-bordered" style="border-color:#000000">
+        <table class="table" style="border:1px solid #000000">
             <tr class="row">
                 <td class="col-md-2">1.</td>
                 <td class="col-md-4">No. of suit</td>
@@ -17345,19 +17355,15 @@ $aa=$i+1;
         </table>
         <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?></b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief.....................Decree Holder.</p>
     
-        <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['advocate'];?></b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief, and as far I have been able to ascertain the interest of the Defendant in the property therein.
+        <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?></b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief, and as far I have been able to ascertain the interest of the Defendant in the property therein.
         <br>
         Specified.......................................Decree Holder.</p>
       
         <p><b><u>DRAWN & FILED BY:</u></b></p>
-        <p><b>KANYI KIRUCHI & CO. ADVOCATES</b></p>
-        <p><b>THIKA BUSINESS CENTRE, 5<sup>th</sup> FLOOR</b></p>
-        <p><b>THIKA.</b></p>
+        <p><b><?php echo $rowxx['decree_holder'];?></b></p>
+        <p><b><?php echo $rowxx['holder_address'];?></b></p>
+        <p><b><?php echo $rowxx['holder_location'];?>. </b></p>
 
-        <script type="text/javascript">
-window.print();
-window.onfocus=function(){ window.close();}
-</script>
 
 </div>
 
@@ -17378,33 +17384,31 @@ window.onfocus=function(){ window.close();}
             $notice_days = "fourteen (14) days";
           }
           ?>
-          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
+          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 0px auto;">
     <div class="row">
-    <div class="col-md-3">
-    <img src="img/logos/point.jpg" alt="" srcset="">
+    <div class="col-md-12 text-center">
+    <img src="img/logos/point.jpg" alt="" class="pull-left" width="10%">
+    
+    <h5 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h5>
+    <h6 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h6>
     </div>
-    <div class="col-md-6">
-    <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
-    </div>
-    <div class="col-md-3">
-        <div class="text-right" >
-            Thika Business Centre,<br>
-            5th floor, Suite 3<br>
-            Opp Equity Plaza - Thika<br>
-            Nairobi branch:Comet House,<br>
-            P.O BOX 27304-00100 Nairobi<br>
-            Tel:0720 602229 Cell: 0722 595966<br>
-            Email: chadorauctioneers06@gmail.com<br>
-            <b style="">Sale Form 2</b>
-
+    <div class="col-md-12 ">
+        <div class="text-center" >
+            <p> Thika Business Centre, 5th floor, Suite 3
+            Opp Equity Plaza - Thika
+            Nairobi branch:Comet House,</p>
+            <p> P.O BOX 27304-00100 Nairobi
+            Tel:0720 602229 Cell: 0722 595966 </p>
+           <p> Email: chadorauctioneers06@gmail.com</p>
+            
         </div>
     </div>
 
+    
     <div class="clear text-center">
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>THE AUCTIONEERS ACT NO. 5 OF 1996</b></u></h4>
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>PROCLAMATION OF THE ATTACHMENT / REPOSSESSION/DISTRAINT OF</b></u></h4>
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MOVABLE PROPERTY</b></u></h4>
+    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>THE AUCTIONEERS ACT NO. 5 OF 1996</b></u></p>
+    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>PROCLAMATION OF THE ATTACHMENT / REPOSSESSION/DISTRAINT OF</b></u></p>
+    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MOVABLE PROPERTY</b></u></p>
     </div>
         
     <ol>
@@ -17422,7 +17426,7 @@ window.onfocus=function(){ window.close();}
          (or in the case of propert under hire purchase may be sold by private treaty) unless the amount due together with costs of this attachment / repossession / distraint as specified overleaf shall be in the meantime have been paid.</li>
     </ol>
     <div class="text-center">
-        <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></h4>
+        <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></p>
     </div>
     <table class="table table-bordered">
         <thead>
@@ -17557,13 +17561,13 @@ window.onfocus=function(){ window.close();}
 
           $resultx = mysql_query("select * from decrees where id='".$id."'");
           $rowx = mysql_fetch_array($resultx);
-          $param = $rowx['uid'];
+          $param = $rowx['id'];
 
           ?>
           <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
     <div class="row">
     <div class="col-md-3">
-    <img src="img/logos/point.jpg" alt="" srcset="">
+    <img src="img/logos/point.jpg" alt="" srcset="" width="20%">
     </div>
     <div class="col-md-6">
     <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>

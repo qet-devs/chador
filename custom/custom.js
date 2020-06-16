@@ -571,13 +571,13 @@ case 4:
 
 								case 600:
 									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-									$.ajax({
-									url:'bridge.php',
-									data:{id:603,param:b},
-									success:function(data){
-									$('#mainp').html(data);
-									  }
-									  });
+										$.ajax({
+										url:'bridge.php',
+										data:{id:603,param:b},
+										success:function(data){
+											$('#mainp').html(data);
+										}
+									});
 								break;
 
 								case 601:
@@ -9876,7 +9876,7 @@ function archiveddistress(){
 	});
 }
 
-function newdecree(){
+function decree(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
@@ -9892,7 +9892,6 @@ function savenewdecree(){
 	var court = $('#court').val();
 	var plaintiff = $('#plaintiff').val();
 	var defendant = $('#defendant').val();
-	var claim = $('#claim').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var court_date = $('#court_date').val();
 	var decree_date = $('#decree_date').val();
 	var principal = $('#principal').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
@@ -9911,7 +9910,7 @@ function savenewdecree(){
 	var cert_costs = $('#cert_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var total_cost = $('#total_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	
-	if(case_no==''||court==''||plaintiff==''||defendant==''||decretal_amount==''||decree_date=='' || total_cost==''){
+	if(case_no==''||court==''||plaintiff==''||defendant==''||decretal_amount==''){
 		swal("Error", "Make sure you enter all the required fields!", "error");
 		return;
 	}else{
@@ -9921,7 +9920,6 @@ function savenewdecree(){
 			court:court,
 			plaintiff:plaintiff,
 			defendant:defendant,
-			claim:claim,
 			court_date:court_date,
 			decree_date:decree_date,
 			start_date:start_date,
@@ -9959,7 +9957,6 @@ function savedecree(param){
 	var court = $('#court').val();
 	var plaintiff = $('#plaintiff').val();
 	var defendant = $('#defendant').val();
-	var claim = $('#claim').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var court_date = $('#court_date').val();
 	var decree_date = $('#decree_date').val();
 	var principal = $('#principal').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
@@ -9978,7 +9975,7 @@ function savedecree(param){
 	var cert_costs = $('#cert_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var total_cost = $('#total_cost').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	
-	if(param=='' || uid==''||case_no==''||court==''||plaintiff==''||defendant==''||decretal_amount==''||decree_date=='' || total_cost==''){
+	if(param=='' || uid==''||case_no==''||court==''||plaintiff==''||defendant==''){
 		swal("Error", "Make sure you enter all the required fields!", "error");
 		return;
 	}else{
@@ -9990,7 +9987,6 @@ function savedecree(param){
 			court:court,
 			plaintiff:plaintiff,
 			defendant:defendant,
-			claim:claim,
 			court_date:court_date,
 			decree_date:decree_date,
 			start_date:start_date,
@@ -10033,7 +10029,7 @@ function finddecree(){
 	});
 }
 
-function appdecree(){
+function decreeapplication(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
@@ -10044,6 +10040,16 @@ function appdecree(){
 	});
 }
 
+function warrantproclamation(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:614},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
 function decreefeenote(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -10075,6 +10081,9 @@ function savedecreenote(param){
 	var total = $('#total').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var remarks = $('#remarks').val();
 	var uid = $('#uid').val();
+	var note_type = $('#note_type option:selected').val();
+	var reciepient = $('#reciepient').val();
+	var ref = $('#reference').val();
 
 	if(note_date=='' || uid=='' ){
 		swal("Error", "please provide the missing info", "error");
@@ -10101,20 +10110,24 @@ function savedecreenote(param){
 			others:others,
 			mis_expenses:mis_expenses,
 			total:total,
-			remarks:remarks
+			remarks:remarks,
+			note_type:note_type,
+			reciepient:reciepient,
+			ref:ref
 		};
 
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'data.php',
-	data:data,
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+		$.ajax({
+			url:'data.php',
+			data:data,
+			success:function(data){
+			$('#mainp').html(data);
+			}
+		});
 	}
 
 }
+
 
 function decreefile(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
@@ -10925,27 +10938,29 @@ if((d1==''||d2=='')&&view==0){
 else {window.open("report.php?id=94&" + "\nd1=" + d1 + '&' + "\nd2=" + d2 + '&' + "\nname=" + name + '&' + "\ncode=" + code);}
 }
 
-function saveappl(param){
+function saveapplication(param){
 	var assistance_mode = $('#assistance_mode').val();
-	var advocate = $('#advocate').val();
 	var decree_holder = $('#decree_holder').val();
+	var holder_address = $('#holder_address').val();
+	var holder_location = $('#holder_location').val();
 	var court_col_fee = $('#court_col_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var sub_incurred = $('#sub_incurred').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var total_cost = $('#total_costs').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 
-	if(assistance_mode==''|| court_col_fee=='' || sub_incurred=='' || advocate==''||total_cost==''||decree_holder==''){
+	if(assistance_mode==''|| court_col_fee=='' || sub_incurred=='' ||total_cost==''||decree_holder==''){
 		swal("Error", "Please fill all required fields", "error");
 		return;
 	}else{
 		var data={
 			id:604,
 			param:param,
+			holder_address:holder_address,
 			assistance_mode:assistance_mode,
-			advocate:advocate,
 			court_col_fee:court_col_fee,
 			sub_incurred:sub_incurred,
 			total_cost:total_cost,
 			decree_holder:decree_holder,
+			holder_location:holder_location,
 		};
 
 		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
