@@ -225,12 +225,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                   <span>Repossession</span></label>
               </li>
 
-              <li>
-                <label>
-                  <input type="radio" name="category" value="documents">
-                  <span>Documents</span></label>
-              </li>
-
+             
               
             </ul>
           </div>
@@ -700,6 +695,12 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                     <?php if($rightsarr[108]=='YES'){
           echo'<a  href="#" onclick="findrepossession()" >
                         <span class="menu-text">Find Repossession</span>  
+                    </a>';} ?>
+                </li> 
+                <li>
+                    <?php if($rightsarr[108]=='YES'){
+          echo'<a  href="#" onclick="repossessionfile()" >
+                        <span class="menu-text">File Repossession</span>  
                     </a>';} ?>
                 </li> 
 

@@ -10496,6 +10496,18 @@ function findrepossession(){
 }
 
 
+
+function repossessionfile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:904},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
 function newproclamation(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({

@@ -35997,7 +35997,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="panel-body">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label>Name -:<span style="color:#f00">*</span></label>
+                                      <label>Debtor Name -:<span style="color:#f00">*</span></label>
                                       <input type="text" id="rep_name" value="" class="control">
                                   </div>
                                                             
@@ -36017,7 +36017,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="panel-body">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label><span style="color:#f00">*</span></label>
+                                      <label>Specified Timeline<span style="color:#f00">*</span></label>
                                       <input type="date" id="rep_date" value="" class="control">
                                   </div>
       
@@ -36037,7 +36037,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="panel-body">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label>Name -:<span style="color:#f00">*</span></label>
+                                      <label> Instructing Party Name -:<span style="color:#f00">*</span></label>
                                       <input type="text" id="instructing_name" value="" class="control">
                                   </div>
       
@@ -36057,7 +36057,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="panel-body">
                                   <!--                            form content goes here-->
                                   <div class="form-group">
-                                      <label>Name:- <span style="color:#f00">*</span></label>
+                                      <label>Property Name:- <span style="color:#f00">*</span></label>
                                       <input type="text" id="property" value="" class="control">
                                   </div>
       
@@ -36328,22 +36328,22 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <!--                            form content goes here-->
                                       <input type="hidden" id="uid" value="'.$rowx['uid'].'">
                                       <div class="form-group">
-                                          <label>Name -:<span style="color:#f00">*</span></label>
+                                          <label>Debtor name -:<span style="color:#f00">*</span></label>
                                           <input type="text" id="rep_name" class="control" value="'.$rowx['debtor'].'">
                                       </div>
           
                                       <div class="form-group">
-                                          <label>Phone -:<span style="color:#f00">*</span></label>
+                                          <label>Date specified -:<span style="color:#f00">*</span></label>
                                           <input type="text" id="rep_date" class="control" value="'.$rowx['rdate'].'">
                                       </div>
           
                                       <div class="form-group">
-                                          <label>Address -:<span style="color:#f00">*</span></label>
+                                          <label>Instructing party name -:<span style="color:#f00">*</span></label>
                                           <input type="text" id="instructing_name" class="control" value="'.$rowx['i_party'].'">
                                       </div>
           
                                       <div class="form-group">
-                                          <label>Trader -:<span style="color:#f00">*</span></label>
+                                          <label>Property name -:<span style="color:#f00">*</span></label>
                                           <input type="text" id="property" class="control" value="'.$rowx['property'].'">
                                       </div>
           
@@ -36404,101 +36404,317 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
           <!-- .vd_container -->
           ';
         break;
-         case 950:
+
+        case 904:
           $param=0;
           if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
           else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-                $result = mysql_query("insert into log values('','".$username." accesses find tendocs Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+              echo '<div class="vd_container" id="container">
+                  <div class="vd_content clearfix" style="">
+               
+                          <div style="width:100%;padding:20px">
+                          <div class="panel-heading vd_bg-grey">
+                              <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Repossession File</h3>
+                            </div>
+                          <select id="intcombo" class="text-capitalize"><option value="" selected>Select One...</option> ';
+                             $result =mysql_query("select * from repossession where status=1");
+                              $num_results = mysql_num_rows($result);
+                                for ($i=0; $i <$num_results; $i++) {
+                                    $row=mysql_fetch_array($result);
+                                    $code=stripslashes($row['id']);
+                                    echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['debtor']).'-'.stripslashes($row['property']).'</option>';
+                                  }
+                             echo'</select>
+                               <div class="cleaner_h10"></div>
+                               <div class="col-sm-7">
+                                <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                              </div>
+                              </div>
+                  <!-- .vd_content --> 
+                </div>
+                <!-- .vd_container -->';
+                echo "<script>
+                      $('#intcombo').select2();
+                      $('#intcombo').on('select2:select', function (e) {
+                    var param = $('#intcombo').val();
+                    var str = $('#item5').val();
+                    var parts=param.split('-',3);
+                    param=parts[0];
+                    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                    $.ajax({
+                    url:'bridge.php',
+                    data:{id:905,param:param},
+                    success:function(data){
+                    $('#mainp').html(data);
+                      }
+                      });
+          
+          
+                    });
+                     </script>";
+          
+        break;
 
-                echo '<div class="vd_container" id="container">
-
-                <div class="vd_content clearfix">
-                    <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger" data-toggle="modal"
-                            data-target="#myModal"><a></a></button>
+        case 905:
+          $tid= $param=$_GET['param'];
+          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+            $result = mysql_query("insert into log values('','".$username." accesses repossession File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+            $resultx =mysql_query("select * from repossession where id='".$param."' limit 0,1");
+            $rowx=mysql_fetch_array($resultx);
+            $lof=stripslashes($rowx['lof']);
+            $stat=stripslashes($rowx['status']);
+            $tid=stripslashes($rowx['id']);
             
-                    <div class="vd_content-section clearfix">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="panel widget">
-                                    <div class="panel-heading vd_bg-grey">
-                                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Uploaded Documents
-                                            Panel</h3>
-                                    </div>
+          
+          
+            if($stat==1){$status='Active';$col='#1fae66';}else if($stat==0){$status='Archived';$col='#f85d2c';}else{$status='Contract Expired';$col='#f89c2c';}
+
+            echo '
+            <div class="vd_container" id="container">
+    <div class="vd_content clearfix" style="">
+
+        <div class="vd_content-section clearfix">
+            <div class="row" id="form-basic">
+
+                <div class="col-md-12">
+                    <div class="panel widget">
+                        <div class="panel-heading vd_bg-grey">
+                            <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                Repossession File-'.stripslashes($rowx['debtor']).' VS '.stripslashes($rowx['property']).' </h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-tabs text-capitalize">
+                                <li class="active"><a href="#tab1" data-toggle="tab">Repossess Information</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Download Documents</a></li>
+                                <li><a href="#tab3" data-toggle="tab">Upload Documents</a></li>
+                                
+                            </ul>
+                            <br/>
+                            <div class="tab-content mgbt-xs-20">
+                                <div class="tab-pane active" id="tab1">
+                                <div class="panel-body">
+                                <h4><label>Repossession Letter Details </label></h4>
+                                <div class="form-group">
+                                    <label>Debtor Name<span style="color:#f00">*</span></label>
+                                    <input type="text" id="rep_name" value="'.$rowx['debtor'].'" class="control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Date<span style="color:#f00">*</span></label>
+                                    <input type="date" id="rep_date" class="control" value="'.$rowx['rdate'].'">
+                                </div>
+    
+                                <h4><label>Instructing Party</label></h4>
+                                <div class="form-group">
+                                    <label>Name<span style="color:#f00">*</span></label>
+                                    <input type="text" id="instructing_name" class="control" value="'.$rowx['i_party'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Address<span style="color:#f00">*</span></label>
+                                    <input type="text" id="property" class="control" value="'.$rowx['property'].'">
+                                </div>   
+                             
+    
+                            
+                            </div>
+                            <!-- Panel body -->
+                                </div>
+                                
+                                <div class="tab-pane " id="tab2">
+                                <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
+                                <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                   Uploaded documents
+                                </h3>
+                            </div>
+                             
+                                <div class="panel-body" style="font-size:20px;font-family:baskerville">
+                                          <ul>';
+                                          
+                                          $resulta = mysql_query("select * from tendocs where  tid='".$rowx['uid']."' order by stamp desc");
+    $num_resultsa = mysql_num_rows($resulta);
+    for ($i = 0; $i < $num_resultsa; $i++) {
+      $rowa = mysql_fetch_array($resulta);
+      echo '<li><a href="'.$rowa['link'].'">'.$rowa['details'].'</a></li>';
+
+    }
+                                          echo '</ul>             
+                            
+                                <!-- block -->
+                               
+                      
+                      
+                                                       
 
 
-                                    <!-- panel heading -->
-                                    <div class="panel-body table-responsive">
-                                        <table class="table table-striped text-capitalize" id="data-tables">
-                                            <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Date</th>
-                                                <th>File Name</th>
-                                                <th>Description</th>
+                                
+
+                                </div>
+                                </div>
+                                </div>
+
+
+
+
+                              
+
+                                
+
+
+                                <div class="tab-pane " id="tab3">
+                                <div class="col-md-6">
+                                <form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
+                                <div class="cleaner"></div> 
+                                <div class="form-group">
+                                <label style="float:left" class="col-sm-3">Name:<span style="color:#f00">*</span></label>
+                                <div class="col-sm-9 controls">
+                                  <input type="text" id="fname"  name="fname"  required>
+                                </div>
+                                </div>
+                                 <div class="cleaner_h5"></div>
+                                <div class="form-group">
+                                <label style="float:left" class="col-sm-3">Type:<span style="color:#f00">*</span></label>
+                                <div class="col-sm-9 controls">
+                                  <select style="padding:5px" name="type" id="doctype">
+                                    <option value="" selected>Select One...</option>
+                                     <option value="Certificate of Incorporation">Certificate of Incorporation</option>
+                                      <option value="Checkout Documents">Checkout Documents</option>
+                                   <option value="ID_Card_Copies">ID_Card_Copies</option>
+                                    <option value="Lease Document">Lease Document</option>
+                                    <option value="Memorandum/Articles_of_Association">Memorandum/Articles_of_Association</option>
+                                   <option value="Pin/Vat_Certificate">Pin/Vat_Certificate</option>
+                                    <option value="Unit Handover Photos">Unit Handover Photos</option>
+                                    <option value="Pin_Copies">Pin_Copies</option>
+                                    <option value="Other Documents">Other Documents</option>
+                                    </select>
+                                </div>
+                                </div>
+        
+                                <div class="cleaner_h5"></div>
+                                <dd class="custuploadblock_js">
+                                <input style="opacity:0; float:left;" name="image" id="photoupload"  
+                                class="transfileform_js" type="file">
+                                </dd>
+                                <iframe name="leiframe" id="leiframe" class="leiframe">
+                                </iframe>
+                                <input type="hidden"  name="soi" value=""/>
+                                <input type="hidden"  name="sap" value="repossession"/>
+                                <input type="hidden"  name="tid" value="'.$rowx['uid'].'"/>
+                                <input type="hidden" id="id" name="id"  value="1"/>
+                                <div class="cleaner_h5"></div>
+                                <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%" type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload</button>
+                                </form>
+        
+                                </div>
+                               </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            ';
+
+        break;
+
+
+        //  case 950:
+        //   $param=0;
+        //   if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+        //   else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+        //         $result = mysql_query("insert into log values('','".$username." accesses find tendocs Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+
+        //         echo '<div class="vd_container" id="container">
+
+        //         <div class="vd_content clearfix">
+        //             <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger" data-toggle="modal"
+        //                     data-target="#myModal"><a></a></button>
+            
+        //             <div class="vd_content-section clearfix">
+        //                 <div class="row">
+        //                     <div class="col-md-12">
+        //                         <div class="panel widget">
+        //                             <div class="panel-heading vd_bg-grey">
+        //                                 <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Uploaded Documents
+        //                                     Panel</h3>
+        //                             </div>
+
+
+        //                             <!-- panel heading -->
+        //                             <div class="panel-body table-responsive">
+        //                                 <table class="table table-striped text-capitalize" id="data-tables">
+        //                                     <thead>
+        //                                     <tr>
+        //                                         <th>ID</th>
+        //                                         <th>Date</th>
+        //                                         <th>File Name</th>
+        //                                         <th>Description</th>
 
                                                
-                                            </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-                                    <!-- panel body -->
-                                </div>
-                                <!-- Panel Widget -->
-                            </div>
-                            <!-- col-md-12 -->
-                        </div>
-                        <!-- row -->
+        //                                     </tr>
+        //                                     </thead>
+        //                                 </table>
+        //                             </div>
+        //                             <!-- panel body -->
+        //                         </div>
+        //                         <!-- Panel Widget -->
+        //                     </div>
+        //                     <!-- col-md-12 -->
+        //                 </div>
+        //                 <!-- row -->
             
-                    </div>
-                    <!-- .vd_content-section -->
+        //             </div>
+        //             <!-- .vd_content-section -->
             
-                </div>
-                <!-- .vd_content -->
-            </div>
-            <!-- .vd_container -->
-            
-            
-            
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    "use strict";
-            
-                    var eventFired = function (type) {
-                        console.log(type)
-            
-                        setTimeout(function () {
-                            $("#data-tables tbody tr").off("click").on("click", function (event) {
-                                $("#tenparam").val($(this).find("td").eq(0).html());
-                                openoptmodal($(this).find("td").eq(0).html())
-                            });
-                        }, 500);
-                    }
+        //         </div>
+        //         <!-- .vd_content -->
+        //     </div>
+        //     <!-- .vd_container -->
             
             
-                    $("#data-tables")
-                        .on("order.dt", function () {
-                            eventFired("Order");
-                        })
-                        .on("search.dt", function () {
-                            eventFired("Search");
-                        })
-                        .on("draw.dt", function () {
-                            eventFired("Page");
-                        })
-                        .DataTable({
-                            "processing": true,
-                            "serverSide": true,
-                            "ajax": "json.php?id=950"
-                        });
+            
+        //     <script type="text/javascript">
+        //         $(document).ready(function () {
+        //             "use strict";
+            
+        //             var eventFired = function (type) {
+        //                 console.log(type)
+            
+        //                 setTimeout(function () {
+        //                     $("#data-tables tbody tr").off("click").on("click", function (event) {
+        //                         $("#tenparam").val($(this).find("td").eq(0).html());
+        //                         openoptmodal($(this).find("td").eq(0).html())
+        //                     });
+        //                 }, 500);
+        //             }
             
             
-                });
-            </script>
-            <style>td {
-                cursor: pointer
-            } </style>';
+        //             $("#data-tables")
+        //                 .on("order.dt", function () {
+        //                     eventFired("Order");
+        //                 })
+        //                 .on("search.dt", function () {
+        //                     eventFired("Search");
+        //                 })
+        //                 .on("draw.dt", function () {
+        //                     eventFired("Page");
+        //                 })
+        //                 .DataTable({
+        //                     "processing": true,
+        //                     "serverSide": true,
+        //                     "ajax": "json.php?id=950"
+        //                 });
+            
+            
+        //         });
+        //     </script>
+        //     <style>td {
+        //         cursor: pointer
+        //     } </style>';
                
-        break;
+        // break;
 
 
 
