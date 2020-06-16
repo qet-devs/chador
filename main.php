@@ -452,6 +452,12 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                     </a>';} ?>
                 </li>
             
+                <li>
+                    <?php if($rightsarr[109]=='YES'){
+          echo'<a  href="#" onclick="warrantproclamation()" >
+                        <span class="menu-text">Proclamation</span>  
+                    </a>';} ?>
+                </li>
 
                 <li>
                      <?php if($rightsarr[114]=='YES'){

@@ -456,6 +456,14 @@ switch($id){
       break;
 
       case 97:
+        // We'll be outputting a PDF
+header('Content-Type: application/pdf');
+
+// It will be called downloaded.pdf
+header('Content-Disposition: attachment; filename="proclamation.pdf"');
+
+// The PDF source is in original.pdf
+readfile('original.pdf');
         $title='CHADOR PROCLAMATION';
       break;
 
