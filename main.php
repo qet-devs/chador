@@ -490,68 +490,6 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
         </div>
     </li> 
 
-
-<li>
-      <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-list-alt"> </i></span>
-            <span class="menu-text">Reposession</span>  
-            <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
-        </a>
-      <div class="child-menu"  data-action="click-target">
-            <ul>
-
-              <li style="">
-                    <?php if($rightsarr[107]=='YES'){
-          echo'<a  href="#" onclick="newproclamation()" >
-                        <span class="menu-text">New Proclamation</span>  
-                    </a>';} ?>
-                </li> 
-
-                
-                <li>
-                    <?php if($rightsarr[108]=='YES'){
-          echo'<a  href="#" onclick="findproclamation()" >
-                        <span class="menu-text">Find Proclamation</span>  
-                    </a>';} ?>
-                </li> 
-
-                <li>
-                    <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="editproclamation()" >
-                        <span class="menu-text">Edit Proclamation Info</span>  
-                    </a>';} ?>
-                </li> 
-             
-
-            <li>
-                     <?php if($rightsarr[113]=='YES'){
-          echo'<a  href="#" onclick="proclamationfile()" >
-                        <span class="menu-text">Proclamation File</span>  
-                        </a>';} ?>
-                </li> 
-
-                <li>
-                     <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="checkoutproclamation()" >
-                        <span class="menu-text">Archive Proclamation</span>  
-                        </a>';} ?>
-                </li> 
-
-               
-               <li>
-                     <?php if($rightsarr[119]=='YES'){
-              echo'<a  href="#" onclick="archivedproclamation()" >
-                        <span class="menu-text">Archived Proclamations</span>  
-                        </a>';} ?>
-                </li> 
-
-
-
-                
-            </ul>   
-        </div>
-    </li> 
-
     <!-- repossession -->
     <li>
       <a href="javascript:void(0);" data-action="click-trigger">
@@ -603,32 +541,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
 
 
  <!-- repossession -->
-    <li>
-      <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-list-alt"> </i></span>
-            <span class="menu-text">Documents</span>  
-            <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
-        </a>
-      <div class="child-menu"  data-action="click-target">
-            <ul>
-
-              <li style="">
-                    <?php if($rightsarr[107]=='YES'){
-          echo'<a  href="#" onclick="finddocument()" >
-                        <span class="menu-text">View</span>  
-                    </a>';} ?>
-                </li> 
-
-             
-                
-             
-
-      
-
-                
-            </ul>   
-        </div>
-    </li> 
+    
 
 
 
