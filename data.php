@@ -6574,6 +6574,23 @@ case 607:
     
 break;
 
+case 950:
+    $param = $_GET['param'];
+    $description = $_GET['description'];
+    $condition = $_GET['condition'];
+    $est_value = $_GET['est_value'];
+
+    $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`) values('".$param."', '".$description."', '".$condition."', '".$est_value."', '".$username."', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+    
+    if($resultc){
+        echo '<script>swal("Success!", "Notification of Sale saved successfully", "success");</script>';
+    
+        $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation charges decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo "<script>setTimeout(function() {notificationdescription(".$param.");},500);</script>";
+    } else {
+        echo '<script>swal("Error", "failed to save sale notification details!", "error");</script>';
+    }
+break;
 case 608:
     $param = $_GET['param'];
     $description = $_GET['description'];
@@ -6593,6 +6610,7 @@ case 608:
         echo '<script>swal("Error", "failed to save property details!", "error");</script>';
     }
 break;
+
 
 case 609:
     $param = $_GET['param'];
@@ -6949,6 +6967,42 @@ break;
                     echo '<script>swal("Error", "failed to save Proclamation info!", "error");</script>';
                 }
                 break;
+
+                case 905:
+                    $param = $_GET['param'];
+                    $creditor_name = strtoupper($_GET['plaintiffs']);
+                    $debtor_name = strtoupper($_GET['defendants']);
+                    $proclamation_date = strtoupper($_GET['proclamation_date']);
+                    $auct_date = strtoupper($_GET['auct_date']);
+                    $auct_time = strtoupper($_GET['auct_time']);                   
+                    $auct_location= strtoupper($_GET['auct_location']);
+                    $auct_charges = strtoupper($_GET['auct_charges']);
+                   
+        
+                    $resultc = mysql_query("update decrees set plaintiffs='".$plaintiffs."', defendants='".$defendants."', proclamation_date='".$proclamation_date."', auct_date='".$auct_date."', auct_time='".$auct_time."', auct_location='".$auct_location."', auct_charges='".$auct_charges."' where  id='".$param."'");
+                    if($resultc){
+                        echo '<script>swal("Success!", "Notification of sale details saved successfully", "success");</script>';
+                    
+                    $resulta = mysql_query("insert into log values('0','" . $username . " updates auction details decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+                    echo "<script>setTimeout(function() {notificationtabs(".$param.");},500);</script>";
+                } else {
+                    echo '<script>swal("Error", "failed to save notification of sale details!", "error");</script>';
+                }
+                break;
+                case 906:
+                    $param = $tid = $_GET['param'];
+                    $result = mysql_query("update repossession set status=0 where id='" . $param . "'") or die (mysql_error());
+                    $resulta = mysql_query("insert into log values('','" . $username . " archives letter.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+                    echo '<script>setTimeout(function() {checkoutrepossession();},500);</script>	';
+            
+                    break;
+                    case 907:
+                        $param = $tid = $_GET['param'];
+                        $result = mysql_query("update repossession set status=1 where id='" . $param . "'") or die (mysql_error());
+                        $resulta = mysql_query("insert into log values('','" . $username . " activates repossession.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+                        echo '<script>archivedrepossession();</script>	';
+                
+                        break;
         
            
 
