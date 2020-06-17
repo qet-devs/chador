@@ -10838,384 +10838,75 @@ function archivenotice(param) {
 
 }
 
-
-function activatenotice(param) {
-    swal({
-            title: "Are you sure?",
-            text: "The Notice will be Activated!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#5cb85c",
-            confirmButtonText: "Yes, Activate it!",
-            closeOnConfirm: true
-        },
-        function () {
-            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-            $.ajax({
-                url: 'data.php',
-                data: {id: 703, param: param},
-                success: function (data) {
-                    $('#message').html(data);
-                }
-            });
-
-        });
-
+function propertydescription(param){
+	$('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+	$.ajax({
+		url:'bridge.php',
+		data:{id:611,param:param},
+		success:function(data){
+		$('#property_table').html(data);
+		}
+	});
 }
 
+function savedecreeproperty(param){
+	var description = $('#description').val();
+	var condition = $('#condition').val();
+	var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var source = $('#source').val();
+	var uid = $('#uid').val();
 
-function newrepossession() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 900},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
+	if(description==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data = {
+			id:608,
+			param:param,
+			description:description,
+			condition:condition,
+			est_value:est_value,
+			source:source,
+			uid:uid
+		};
+		$('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+		$.ajax({
+			url:'data.php',
+			data:data,
+			success:function(data){
+				clearpropertyform();
+			$('#property_table').html(data);
+			}
+		});
+
+	}
 }
 
-function savenewrepossession() {
-    var debtor = $('#rep_name').val();
-    var rdate = $('#rep_date').val();
-    var i_party = $('#instructing_name').val();
-    var property = $('#property').val();
+function savenotificationproperty(param){
+	var description = $('#description').val();
+	var condition = $('#condition').val();
+	var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 
-
-    if (debtor == '' || rdate == '' || i_party == '' || property == '') {
-        swal("Error", "Make sure you enter all the required fields!", "error");
-        return;
-    } else {
-        var data = {
-            id: 900,
-            debtor: debtor,
-            rdate: rdate,
-            i_party: i_party,
-            property: property
-
-        };
-
-        //console.log(data);
-        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-        $.ajax({
-            url: 'data.php',
-            data: data,
-            success: function (data) {
-                $('#message').html(data);
-            }
-        });
-    }
-}
-
-
-function editrepossession() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 902},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-
-function saverepossession(param) {
-    var uid = $('#uid').val();
-    var debtor = $('#rep_name').val();
-    var rdate = $('#rep_date').val();
-    var i_party = $('#instructing_name').val();
-    var property = $('#property').val();
-
-
-    if (debtor == '' || rdate == '' || i_party == '' || property == '') {
-        swal("Error", "Make sure you enter all the required fields!", "error");
-        return;
-    } else {
-        var data = {
-            id: 901,
-            uid: uid,
-            param: param,
-            debtor: debtor,
-            rdate: rdate,
-            i_party: i_party,
-            property: property
-
-
-        };
-
-        //console.log(data);
-        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-        $.ajax({
-            url: 'data.php',
-            data: data,
-            success: function (data) {
-                $('#message').html(data);
-            }
-        });
-    }
-}
-
-
-function findrepossession() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 901},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-
-function repossessionfile() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 904},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-function newproclamation() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 800},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-function savenewproclamation() {
-    var auctioneername = $('#auct_name').val();
-    var auctphone = $('#auct_phone').val();
-    var auctaddress = $('#auct_address').val();
-    var trader = $('#auct_trader').val();
-    var creditorname = $('#creditor_name').val();
-    var creditoraddress = $('#creditor_address').val();
-    var debtorname = $('#debtor_name').val();
-    var debtoraddress = $('#debtor_address').val();
-    var amount = $('#amount').val();
-    var auctcharges = $('#auct_charges').val();
-    var advfee = $('#adv_fee').val();
-    var court = $('#court').val();
-    var courtdate = $('#court_date').val();
-    var caseno = $('#case_no').val();
-    var decreedate = $('#decree_date').val();
-    var returndate = $('#return_date').val();
-    var warrantdate = $('#warrant_date').val();
-    var noticedays = $('#notice_days').val();
-
-    if (auctioneername == '' || auctphone == '' || trader == '' || auctaddress == '' || creditorname == '' || creditoraddress == '' || debtorname == '' || debtoraddress == ''
-        || court == '' || courtdate == '' || caseno == '' || decreedate == '' || returndate == '' || amount == '' || auctcharges == '' || advfee == '') {
-        swal("Error", "Make sure you enter all the required fields!", "error");
-        return;
-    } else {
-        var data = {
-            id: 800,
-            auctioneername: auctioneername,
-            auctaddress: auctaddress,
-            auctphone: auctphone,
-            trader: trader,
-            creditorname: creditorname,
-            creditoraddress: creditoraddress,
-            debtorname: debtorname,
-            debtoraddress: debtoraddress,
-            amount: amount,
-            auctcharges: auctcharges,
-            advfee: advfee,
-            court: court,
-            courtdate: courtdate,
-            caseno: caseno,
-            decreedate: decreedate,
-            returndate: returndate,
-            warrantdate: warrantdate,
-            noticedays: noticedays
-        };
-
-        //console.log(data);
-        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-        $.ajax({
-            url: 'data.php',
-            data: data,
-            success: function (data) {
-                $('#message').html(data);
-            }
-        });
-    }
-}
-
-
-function saveproclamation(param) {
-    var uid = $('#uid').val();
-    var auctioneername = $('#auct_name').val();
-    var auctphone = $('#auct_phone').val();
-    var auctaddress = $('#auct_address').val();
-    var trader = $('#auct_trader').val();
-    var creditorname = $('#creditor_name').val();
-    var creditoraddress = $('#creditor_address').val();
-    var debtorname = $('#debtor_name').val();
-    var debtoraddress = $('#debtor_address').val();
-    var amount = $('#amount').val();
-    var auctcharges = $('#auct_charges').val();
-    var advfee = $('#adv_fee').val();
-    var court = $('#court').val();
-    var courtdate = $('#court_date').val();
-    var caseno = $('#case_no').val();
-    var decreedate = $('#decree_date').val();
-    var returndate = $('#return_date').val();
-    var warrantdate = $('#warrant_date').val();
-    var noticedays = $('#notice_days').val();
-
-    if (auctioneername == '' || auctphone == '' || trader == '' || auctaddress == '' || creditorname == '' || creditoraddress == '' || debtorname == '' || debtoraddress == ''
-        || court == '' || courtdate == '' || caseno == '' || decreedate == '' || returndate == '' || amount == '' || auctcharges == '' || advfee == '') {
-        swal("Error", "Make sure you enter all the required fields!", "error");
-        return;
-    } else {
-        var data = {
-            id: 801,
-            uid: uid,
-            param: param,
-            auctioneername: auctioneername,
-            auctaddress: auctaddress,
-            auctphone: auctphone,
-            trader: trader,
-            creditorname: creditorname,
-            creditoraddress: creditoraddress,
-            debtorname: debtorname,
-            debtoraddress: debtoraddress,
-            amount: amount,
-            auctcharges: auctcharges,
-            advfee: advfee,
-            court: court,
-            courtdate: courtdate,
-            caseno: caseno,
-            decreedate: decreedate,
-            returndate: returndate,
-            warrantdate: warrantdate,
-            noticedays: noticedays
-        };
-
-        //console.log(data);
-        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-        $.ajax({
-            url: 'data.php',
-            data: data,
-            success: function (data) {
-                $('#message').html(data);
-            }
-        });
-    }
-}
-
-function findproclamation() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 801},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-function editproclamation() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 802},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-function proclamationfile() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 804},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-function checkoutproclamation() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 806},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-function archivedproclamation() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 807},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-function archiveproclamation(param) {
-    swal({
-            title: "Are you sure?",
-            text: "The Proclamation will be Archived!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, Archive them!",
-            closeOnConfirm: true
-        },
-        function () {
-            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-            $.ajax({
-                url: 'data.php',
-                data: {id: 802, param: param},
-                success: function (data) {
-                    $('#message').html(data);
-                }
-            });
-
-        });
-
-}
-
-
-function activateproclamation(param) {
-    swal({
-            title: "Are you sure?",
-            text: "The Proclamation will be Activated!",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#5cb85c",
-            confirmButtonText: "Yes, Activate it!",
-            closeOnConfirm: true
-        },
-        function () {
-            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-            $.ajax({
-                url: 'data.php',
-                data: {id: 803, param: param},
-                success: function (data) {
-                    $('#message').html(data);
-                }
-            });
-
-        });
-
-}
+	if(description==''||est_value=='' ){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data = {
+			id:950,
+			param:param,
+			description:description,
+			condition:condition,
+			est_value:est_value
+		};
+		$('#desc_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+		$.ajax({
+			url:'data.php',
+			data:data,
+			success:function(data){
+				clearnotificationform();
+			$('#desc_table').html(data);
+			}
+		});        ;}
 
 
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});
@@ -11526,7 +11217,11 @@ function caltotcharges() {
     $('#total_debt').val(tot);
 }
 
-
+function clearnotificationform(){
+	$('#description').val("");
+	$('#condition').val("");
+	$('#est_value').val("");
+}
 function propertydescription(param) {
     $('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
     $.ajax({
@@ -11707,4 +11402,4 @@ function calcfeenotetotal() {
     tot = (tot).formatMoney(2, '.', ',');
     $('#total').val(tot);
 
-}
+}}
