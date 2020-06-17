@@ -10981,37 +10981,6 @@ function calctotalcosts(){
 	$('#total_costs').val(tot);
 }
 
-function saveauction(param){
-	var auct_name = $('#auct_name').val();
-	var auct_phone = $('#auct_phone').val();
-	var auct_address = $('#auct_address').val();
-	var auct_trader = $('#auct_trader').val();
-
-	if(auct_name==''|| auct_phone=='' || auct_address=='' || auct_trader==''){
-		swal("Error", "Please fill all required fields", "error");
-		return;
-	}else{
-		var data={
-			id:605,
-			param:param,
-			auct_name:auct_name,
-			auct_phone:auct_phone,
-			auct_address:auct_address,
-			auct_trader:auct_trader,
-		};
-
-		$('#auct_btn').html('<button class="btn btn-success control" >saving....</button>');
-		$.ajax({
-		url:'data.php',
-		data:data,
-		success:function(data){
-		$('#mainp').html(data);
-		}
-		});
-	}
-
-
-}
 
 function proclamationtabs(param){
 	$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
@@ -11024,35 +10993,7 @@ function proclamationtabs(param){
 	});
 }
 
-function savecharges(param){
-	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
-	var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
-	var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
-	var total_debt = $('#total_debt').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 
-	if(decretal_amount==''|| auct_charges=='' || total_debt==''){
-		swal("Error", "Please fill all required fields", "error");
-		return;
-	}else{
-		var data={
-			id:606,
-			param:param,
-			decretal_amount:decretal_amount,
-			adv_fee:adv_fee,
-			total_debt:total_debt,
-			auct_charges:auct_charges,
-		};
-
-		$('#charges_btn').html('<button class="btn btn-success control" >saving....</button>');
-		$.ajax({
-		url:'data.php',
-		data:data,
-		success:function(data){
-		$('#mainp').html(data);
-		}
-		});
-	}
-}
 
 function caltotcharges(){
 	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
@@ -11066,41 +11007,6 @@ function caltotcharges(){
 	$('#total_debt').val(tot);
 }
 
-function savelegal(param){
-	var court = $('#court').val();
-	var case_no = $('#case_no').val();
-	var court_date = $('#court_date').val();
-	var decree_date = $('#decree_date').val();
-	var return_date = $('#return_date').val();
-	var warrant_date = $('#warrant_date').val();
-	var notice_days = $('#notice_days').val();
-
-	if(court==''|| court_date=='' || decree_date=='' || notice_days==''){
-		swal("Error", "Please fill all required fields", "error");
-		return;
-	}else{
-		var data={
-			id:607,
-			param:param,
-			court:court,
-			case_no:case_no,
-			court_date:court_date,
-			decree_date:decree_date,
-			return_date:return_date,
-			warrant_date:warrant_date,
-			notice_days:notice_days,
-		};
-
-		$('#legal_btn').html('<button class="btn btn-success control" >saving....</button>');
-		$.ajax({
-		url:'data.php',
-		data:data,
-		success:function(data){
-		$('#mainp').html(data);
-		}
-		});
-	}
-}
 
 function propertydescription(param){
 	$('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
@@ -11148,8 +11054,59 @@ function clearpropertyform(){
 	$('#est_value').val("");
 }
 
-function printproclamation(param){
-	window.open("report.php?id=97&param=" + param);
+function saveproclamation(param){
+	var auct_name = $('#auct_name').val();
+	var auct_phone = $('#auct_phone').val();
+	var auct_address = $('#auct_address').val();
+	var auct_trader = $('#auct_trader').val();
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total_debt = $('#total_debt').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var court = $('#court').val();
+	var case_no = $('#case_no').val();
+	var court_date = $('#court_date').val();
+	var decree_date = $('#decree_date').val();
+	var return_date = $('#return_date').val();
+	var warrant_date = $('#warrant_date').val();
+	var notice_days = $('#notice_days').val();
+
+
+	if(auct_name==''|| auct_phone=='' || auct_address=='' || court==''|| court_date=='' || decree_date=='' ||
+	 notice_days=='' || auct_trader==''|| decretal_amount==''|| auct_charges=='' || total_debt==''  ){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:605,
+			param:param,
+			auct_name:auct_name,
+			auct_phone:auct_phone,
+			auct_address:auct_address,
+			auct_trader:auct_trader,
+			decretal_amount:decretal_amount,
+			adv_fee:adv_fee,
+			total_debt:total_debt,
+			auct_charges:auct_charges,
+			court:court,
+			case_no:case_no,
+			court_date:court_date,
+			decree_date:decree_date,
+			return_date:return_date,
+			warrant_date:warrant_date,
+			notice_days:notice_days,
+		};
+
+		$('#auct_btn').html('<button class="btn btn-success control" >saving....</button>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#mainp').html(data);
+		}
+		});
+	}
+
 }
 
 function printfeenote(param){

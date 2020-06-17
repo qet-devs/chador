@@ -33082,7 +33082,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <div class="panel-body text-capitalize">
                               <div>
 
-                              <button class="btn btn-info pull-right" onclick="printproclamation('.$param.')">Print Proclamation</button>
+                              <button class="btn btn-success pull-right" onclick="saveproclamation('.$param.')">Submit</button>
 
                               <!-- Nav tabs -->
                               <ul class="nav nav-tabs" role="tablist">
@@ -33124,10 +33124,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <input type="text" id="auct_trader" value="'.$row['auct_trader'].'" class="control">
                                   </div>
 
-                                  
-                                  <div class="form-group" id="auct_btn">
-                                      <button class="btn btn-success control" onclick="saveauction('.$param.')" >Submit</button>
-                                  </div>
       
                               </div>
                               <!-- Panel body -->
@@ -33166,10 +33162,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <input type="text" id="total_debt" value="'.$row['debt'].'"  class="control" disabled>
                                   </div>
 
-                                  
-                                  <div class="form-group" id="charges_btn">
-                                      <button class="btn btn-success control" onclick="savecharges('.$param.')">Save</button>
-                                  </div>
                               </div>
                               <!-- Panel body -->
                           </div>
@@ -33221,9 +33213,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                         <input type="text" id="notice_days" value="'.$row['notice_days'].'" class="control">
                                     </div>
                                     
-                                  <div class="form-group" id="legal_btn">
-                                      <button class="btn btn-success control" onclick="savelegal('.$param.')">Save</button>
-                                  </div>
                                 </div>
                                 <!-- Panel body -->
                             </div>
