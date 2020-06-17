@@ -32682,7 +32682,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                   for ($i=0; $i <$num_results; $i++) {
                       $row=mysql_fetch_array($result);
                       $code=stripslashes($row['id']);
-                      echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['party1']).'-'.stripslashes($row['party2']).'</option>';
+                      echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['plaintiffs']).'-'.stripslashes($row['defendants']).'</option>';
                   }
                    echo'</select>
                      <div class="cleaner_h10"></div>
