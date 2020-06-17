@@ -61,19 +61,7 @@ function getdocsletter($id)
     $num_resultsa = mysql_num_rows($resulta);
     for ($i = 0; $i < $num_resultsa; $i++) {
         $rowa = mysql_fetch_array($resulta);
-        $name = stripslashes($rowa['name']);
-        $type = strtoupper(pathinfo($name, PATHINFO_EXTENSION));
-        // if (exif_imagetype('uploads/tenants/' . $name . '')) {
-        //     $src = 'uploads/tenants/' . $name;
-        // } else if ($type == 'pdf') {
-        //     $src = 'img/adobe.png';
-        // } else if ($type == 'xls' || $type == 'xlsx') {
-        //     $src = 'img/excel.png';
-        // } else if ($type == 'doc' || $type == 'rtf' || $type == 'docx') {
-        //     $src = 'img/word.png';
-        // } else {
-        //     $src = 'img/format.png';
-        // }
+        
         echo '<li><a href="'.$rowa['link'].'">'.$rowa['details'].'</a></li>';
 
     }

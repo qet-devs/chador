@@ -447,19 +447,13 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                     </a>';} ?>
                 </li> 
           
-                <li>
-                    <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="decreeproperty()" >
-                        <span class="menu-text">Property</span>  
-                    </a>';} ?>
-                </li>
-            
-                <li>
-                    <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="warrantproclamation()" >
-                        <span class="menu-text">Proclamation</span>  
-                    </a>';} ?>
-                </li>
+
+            <li>
+                     <?php if($rightsarr[113]=='YES'){
+          echo'<a  href="#" onclick="decreefile()" >
+                        <span class="menu-text">File Uploads</span>  
+                        </a>';} ?>
+                </li> 
 
                 <li>
                      <?php if($rightsarr[114]=='YES'){
@@ -475,10 +469,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                         <span class="menu-text">Archived Decrees</span>  
                         </a>';} ?>
                 </li> 
-
-
-
-                
+          
             </ul>   
         </div>
     </li> 
