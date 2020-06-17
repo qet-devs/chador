@@ -502,7 +502,12 @@ case 4:
 		
 					break;
 
-
+					case 910:
+						archiverepossession(b);
+						break;
+						case 911:
+							activaterepossession(b);
+							break;
 
 					case 403:
 						archiveletter(b);
@@ -9545,6 +9550,31 @@ function checkoutletter(){
 	});
 }
 
+
+function archiverepossession(param){
+	swal({
+		title: "Are you sure?",
+		text: "The repossession will be Archived!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, Archive them!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:906,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
 function archiveletter(param){
 	swal({
 		title: "Are you sure?",
@@ -9568,6 +9598,31 @@ function archiveletter(param){
 	  });
 
 }
+
+function activaterepossession(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Repossession will be activated!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, Activate Repossession!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:907,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
 
 function activateletter(param){
 	swal({
@@ -9598,6 +9653,18 @@ function archivedletters(){
 	$.ajax({
 	url:'bridge.php',
 	data:{id:405},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+
+function archivedrepossession(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:911},
 	success:function(data){
 	$('#mainp').html(data);
 	}
@@ -10521,6 +10588,39 @@ function repossessionfile(){
 	});
 }
 
+function checkoutrepossession(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:910},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+function notificationdescription(param){
+	$('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+	$.ajax({
+		url:'bridge.php',
+		data:{id:908,param:param},
+		success:function(data){
+		$('#property_table').html(data);
+		}
+	});
+}
+
+
+function notificationsalefile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:906},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
 function newproclamation(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -11020,6 +11120,45 @@ function saveauction(param){
 
 }
 
+function savenotification(param){
+	var plaintiffs = $('#plaintiffs').val();
+	var defendants = $('#defendants').val();
+	var proclamation_date = $('#proclamation_date').val();
+	var auct_date =$('#auct_date').val();
+	var auct_time = $('#auct_time').val();
+	var auct_location = $('#auct_location').val();
+	var auct_charges = $('#auct_charges').val();
+	
+	if(plaintiffs==''|| defendants=='' || proclamation_date=='' || auct_date=='' || auct_time=='' || auct_location=='' || auct_charges=='' ){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:905,
+			param:param,
+			plaintiffs:plaintiffs,
+			defendants:defendants,
+			proclamation_date:proclamation_date,
+			auct_date:auct_date,
+			auct_time:auct_time,
+			auct_location:auct_location,
+			auct_charges:auct_charges,
+			
+		};
+
+		$('#auct_btn').html('<button class="btn btn-success control" >saving....</button>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#mainp').html(data);
+		}
+		});
+	}
+
+
+}
+
 function proclamationtabs(param){
 	$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
 	$.ajax({
@@ -11031,7 +11170,49 @@ function proclamationtabs(param){
 	});
 }
 
+
+function notificationtabs(param){
+	$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:907,param:param},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
 function savecharges(param){
+	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var total_debt = $('#total_debt').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+	if(decretal_amount==''|| auct_charges=='' || total_debt==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data={
+			id:606,
+			param:param,
+			decretal_amount:decretal_amount,
+			adv_fee:adv_fee,
+			total_debt:total_debt,
+			auct_charges:auct_charges,
+		};
+
+		$('#charges_btn').html('<button class="btn btn-success control" >saving....</button>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#mainp').html(data);
+		}
+		});
+	}
+}
+
+function savesales(param){
 	var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 	var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
@@ -11149,10 +11330,49 @@ function savedecreeproperty(param){
 	}
 }
 
+function savenotificationproperty(sale){
+	var description = $('#description').val();
+	var condition = $('#condition').val();
+	var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+	if(description==''||est_value==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data = {
+			id:950,
+			sale:sale,
+			description:description,
+			condition:condition,
+			est_value:est_value
+		};
+		$('#notification_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+		$.ajax({
+			url:'data.php',
+			data:data,
+			success:function(data){
+				clearnotificationform();
+			$('#notification_table').html(data);
+			}
+		});
+
+	}
+}
+
 function clearpropertyform(){
 	$('#description').val("");
 	$('#condition').val("");
 	$('#est_value').val("");
+
+}
+
+function clearnotificationform(){
+	$('#description').val("");
+	$('#condn').val("");
+	$('#est_vn').val("");
+}
+function printnotification(param){
+	window.open("report.php?id=150&param=" + param);
 }
 
 function printproclamation(param){
