@@ -6492,6 +6492,14 @@ $resultc = mysql_query($sql);
             $decree_holder = strtoupper($_GET['decree_holder']);
             $holder_address = strtoupper($_GET['holder_address']);
             $holder_location = strtoupper($_GET['holder_location']);
+            $court = strtoupper($_GET['court']);
+            $case_no = strtoupper($_GET['case_no']);
+            $court_date = $_GET['court_date'];
+            $decree_date = $_GET['decree_date'];
+            $return_date = $_GET['return_date'];
+            $warrant_date = $_GET['warrant_date'];
+            $notice_days = $_GET['notice_days'];
+
             
         $resultc = mysql_query("UPDATE `decrees` SET decree_holder='".$decree_holder."', holder_location='".$holder_location."', holder_address='".$holder_address."', assistance_mode='".$assistance_mode."', sub_incurred='".$sub_incurred."', court_col_fee='".$court_col_fee."', total_costs='".$total_cost."' WHERE `id`='".$param."'");
 
@@ -6512,56 +6520,58 @@ $resultc = mysql_query($sql);
             $auct_phone = strtoupper($_GET['auct_phone']);
             $auct_address = strtoupper($_GET['auct_address']);
             $auct_trader = strtoupper($_GET['auct_trader']);
+            $decretal_amount = $_GET['decretal_amount'];
+            $auct_charges = $_GET['auct_charges'];
+            $total_debt = $_GET['total_debt'];
+            $adv_fee = $_GET['adv_fee'];
+            $court = strtoupper($_GET['court']);
+            $case_no = strtoupper($_GET['case_no']);
+            $court_date = $_GET['court_date'];
+            $decree_date = $_GET['decree_date'];
+            $return_date = $_GET['return_date'];
+            $warrant_date = $_GET['warrant_date'];
+            $notice_days = $_GET['notice_days'];
 
-            $resultc = mysql_query("update decrees set auctioneer='".$auct_name."', auct_phone='".$auct_phone."', auct_address='".$auct_address."', auct_trader='".$auct_trader."' where  id='".$param."'");
+            $sql = "
+            UPDATE decrees
+            SET auctioneer = '".$auct_name."',
+            auct_phone = '".$auct_phone."',
+            auct_address = '".$auct_address."',
+            auct_trader = '".$auct_trader."',
+            auct_charges = '".$auct_charges."',
+            debt = '".$total_debt."',
+            decretal_amount = '".$decretal_amount."',
+            adv_fee = '".$adv_fee."',
+            court = '".$court."',
+            case_no = '".$case_no."',
+            court_date = '".$court_date."',
+            decree_date = '".$decree_date."',
+            notice_days = '".$notice_days."',
+            return_date = '".$return_date."',
+            warrant_date = '".$warrant_date."'
+            WHERE
+                id = '".$param."'
+            ";
+
+            $resultc = mysql_query($sql);
             if($resultc){
-                echo '<script>swal("Success!", "Auction details saved successfully", "success");</script>';
+                echo '<script>swal("Success!", "proclamation details saved successfully", "success");</script>';
             
-            $resulta = mysql_query("insert into log values('0','" . $username . " updates auction details decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation details decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {proclamationtabs(".$param.");},500);</script>";
+            echo '<script>window.open("report.php?id=97&param=" + '.$param.');</script>';
         } else {
-            echo '<script>swal("Error", "failed to save auction details!", "error");</script>';
+            echo '<script>swal("Error", "failed to save proclamation details!", "error");</script>';
         }
         break;
 
         
         case 606:
-            $param = $_GET['param'];
-            $decretal_amount = $_GET['decretal_amount'];
-            $auct_charges = $_GET['auct_charges'];
-            $total_debt = $_GET['total_debt'];
-            $adv_fee = $_GET['adv_fee'];
-
-            $resultc = mysql_query("update decrees set auct_charges='".$auct_charges."', debt='".$total_debt."', decretal_amount='".$decretal_amount."', adv_fee='".$adv_fee."' where  id='".$param."'");
-            if($resultc){
-                echo '<script>swal("Success!", "Charges saved successfully", "success");</script>';
             
-            $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation charges decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo "<script>setTimeout(function() {proclamationtabs(".$param.");},500);</script>";
-        } else {
-            echo '<script>swal("Error", "failed to save charges details!", "error");</script>';
-        }
         break;
 
 case 607:
-    $param = $_GET['param'];
-    $court = strtoupper($_GET['court']);
-    $case_no = strtoupper($_GET['case_no']);
-    $court_date = $_GET['court_date'];
-    $decree_date = $_GET['decree_date'];
-    $return_date = $_GET['return_date'];
-    $warrant_date = $_GET['warrant_date'];
-    $notice_days = $_GET['notice_days'];
-
-    $resultc = mysql_query("update decrees set court='".$court."', case_no='".$case_no."', court_date='".$court_date."', decree_date='".$decree_date."', notice_days='".$notice_days."', return_date='".$return_date."', warrant_date='".$warrant_date."' where  id='".$param."'");
-    if($resultc){
-        echo '<script>swal("Success!", "Legal details saved successfully", "success");</script>';
     
-        $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation charges decree id='".$param."' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-        echo "<script>setTimeout(function() {proclamationtabs(".$param.");},500);</script>";
-    } else {
-        echo '<script>swal("Error", "failed to save legal details!", "error");</script>';
-    }
 break;
 
 case 950:
@@ -6586,8 +6596,10 @@ case 608:
     $description = $_GET['description'];
     $condition = $_GET['condition'];
     $est_value = $_GET['est_value'];
+    $source = $_GET['source'];
+    $uid = $_GET['uid'];
 
-    $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`) values('".$param."', '".$description."', '".$condition."', '".$est_value."', '".$username."', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+    $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`, `source`) values('".$uid."', '".$description."', '".$condition."', '".$est_value."', '".$username."', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '".$source."')");
     
     if($resultc){
         echo '<script>swal("Success!", "property saved successfully", "success");</script>';
