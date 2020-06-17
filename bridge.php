@@ -32230,9 +32230,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(601)">Decree Info</label><br/>';}
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(605)">Proclamation</label><br/>';}
+                                                                        onclick="majoropen(602)">Application</label><br/>';}
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                      onclick="majoropen(602)">Execution</label><br/>';}
+                                                                      onclick="majoropen(605)">Proclamation</label><br/>';}
                                     // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                     //                                   onclick="majoropen(602)">Property Description</label><br/>';}
                                     if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
@@ -32294,54 +32294,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         break;
 
         case 602:
-          $param=0;
-          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-          echo '<div class="vd_container" id="container">
-        <div class="vd_content clearfix" style="">
-
-                <div style="width:100%;padding:20px">
-                <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Application Of Execution Of Decree</h3>
-                  </div>
-                <select id="intcombo" class="text-capitalize">
-                <option value="" selected>Select One...</option>';
-                   $result =mysql_query("select * from decrees where status=1");
-                    $num_results = mysql_num_rows($result);
-                      for ($i=0; $i <$num_results; $i++) {
-                          $row=mysql_fetch_array($result);
-                          $code=stripslashes($row['id']);
-                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['plaintiffs']).'<strong> vs </strong>'.stripslashes($row['defendants']).'</option>';
-                        }
-                   echo'</select>
-                     <div class="cleaner_h10"></div>
-                     <div class="col-sm-7">
-                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
-                    </div>
-                    </div>
-        <!-- .vd_content --> 
-      </div>
-      <!-- .vd_container -->';
-      echo "<script>
-            $('#intcombo').select2();
-            $('#intcombo').on('select2:select', function (e) {
-             var param = $('#intcombo').val();
-            var str = $('#item5').val();
-            var parts=param.split('-',3);
-            param=parts[0];
-            $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-            $.ajax({
-            url:'bridge.php',
-            data:{id:609,param:param},
-            success:function(data){
-            $('#mainp').html(data);
-            }
-            });
-
-
-          });
-           </script>";
-
+          
         break;
 
         case 603:

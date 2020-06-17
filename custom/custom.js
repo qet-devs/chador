@@ -592,15 +592,7 @@ case 4:
 								break;
 
 								case 602:
-									$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-									$.ajax({
-									url:'bridge.php',
-									data:{id:609,param:b},
-									success:function(data){
-									$('#mainp').html(data);
-									}
-									});
-						
+									decreeapplication(b);
 								break;
 
 								case 603:
@@ -10029,15 +10021,16 @@ function finddecree(){
 	});
 }
 
-function decreeapplication(){
-	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+function decreeapplication(param){
+	$('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
 	$.ajax({
 	url:'bridge.php',
-	data:{id:602},
+	data:{id:609,param:param},
 	success:function(data){
 	$('#mainp').html(data);
 	}
 	});
+
 }
 
 function warrantproclamation(){
