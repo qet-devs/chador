@@ -10605,7 +10605,7 @@ function notificationdescription(param){
 		url:'bridge.php',
 		data:{id:908,param:param},
 		success:function(data){
-		$('#property_table').html(data);
+		$('#desc_table').html(data);
 		}
 	});
 }
@@ -11305,8 +11305,10 @@ function savedecreeproperty(param){
 	var description = $('#description').val();
 	var condition = $('#condition').val();
 	var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+	var source = $('#source').val();
+	var uid = $('#uid').val();
 
-	if(description==''||est_value==''){
+	if(description==''){
 		swal("Error", "Please fill all required fields", "error");
 		return;
 	}else{
@@ -11315,7 +11317,9 @@ function savedecreeproperty(param){
 			param:param,
 			description:description,
 			condition:condition,
-			est_value:est_value
+			est_value:est_value,
+			source:source,
+			uid:uid
 		};
 		$('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
 		$.ajax({
@@ -11330,29 +11334,29 @@ function savedecreeproperty(param){
 	}
 }
 
-function savenotificationproperty(sale){
+function savenotificationproperty(param){
 	var description = $('#description').val();
 	var condition = $('#condition').val();
 	var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
 
-	if(description==''||est_value==''){
+	if(description==''||est_value=='' ){
 		swal("Error", "Please fill all required fields", "error");
 		return;
 	}else{
 		var data = {
 			id:950,
-			sale:sale,
+			param:param,
 			description:description,
 			condition:condition,
 			est_value:est_value
 		};
-		$('#notification_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+		$('#desc_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
 		$.ajax({
 			url:'data.php',
 			data:data,
 			success:function(data){
 				clearnotificationform();
-			$('#notification_table').html(data);
+			$('#desc_table').html(data);
 			}
 		});
 
@@ -11368,8 +11372,8 @@ function clearpropertyform(){
 
 function clearnotificationform(){
 	$('#description').val("");
-	$('#condn').val("");
-	$('#est_vn').val("");
+	$('#condition').val("");
+	$('#est_value').val("");
 }
 function printnotification(param){
 	window.open("report.php?id=150&param=" + param);

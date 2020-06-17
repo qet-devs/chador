@@ -6586,8 +6586,10 @@ case 608:
     $description = $_GET['description'];
     $condition = $_GET['condition'];
     $est_value = $_GET['est_value'];
+    $source = $_GET['source'];
+    $uid = $GET['uid'];
 
-    $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`) values('".$param."', '".$description."', '".$condition."', '".$est_value."', '".$username."', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+    $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`) values('".$uid."', '".$description."', '".$condition."', '".$est_value."', '".$username."', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
     
     if($resultc){
         echo '<script>swal("Success!", "property saved successfully", "success");</script>';
@@ -6958,8 +6960,8 @@ break;
 
                 case 905:
                     $param = $_GET['param'];
-                    $creditor_name = strtoupper($_GET['plaintiffs']);
-                    $debtor_name = strtoupper($_GET['defendants']);
+                    $plaintiffs = strtoupper($_GET['plaintiffs']);
+                    $defendants = strtoupper($_GET['defendants']);
                     $proclamation_date = strtoupper($_GET['proclamation_date']);
                     $auct_date = strtoupper($_GET['auct_date']);
                     $auct_time = strtoupper($_GET['auct_time']);                   

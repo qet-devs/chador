@@ -17940,21 +17940,17 @@ window.onfocus=function(){ window.close();}
     <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>PROCLAMATION OF THE ATTACHMENT / REPOSSESSION/DISTRAINT OF</b></u></p>
     <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MOVABLE PROPERTY</b></u></p>
     </div>
-        
-    <ol>
-        <li>Auctioneer's Name: <b style=" font-family: 'Times New Roman', Times, sans-serif;"><?php echo $rowx['auctioneer'];?>  Tel: <?php echo $rowx['auct_phone'];?></b> Address <b><?php echo $rowx['auct_address'];?></b> trading as:<b><?php echo $rowx['auct_trader'];?></b></li>
-        <li>Creditor's/Landlord's name and address <b>.................... <?php echo $rowx['plaintiffs'];?> </b></li>
-        <li>Debtor's/ Tenant's name and address <b>............... <?php echo $rowx['defendants'];?></b></li>
-        <li>Decretal sum/Amount outstanding / Rent arrears as at ...................ksh. <?php echo $rowx['decretal_amount'];?> </li>
-        <li>Auctioneers charges Kshs.......kshs. <?php echo $rowx['auct_charges'];?> </li>
-        <li>Advocate fee Kshs...........Kshs. <?php echo $rowx['adv_fee'];?> <br> Total . <?php echo $rowx['debt'];?> </li>
-        <li>In court .... <b><?php echo $rowx['court'];?></b> </li> 
-        <li>Case Number .... <b><?php echo $rowx['case_no'];?></b>Date of Decree/Letter of instructions..  <b><?php echo $rowx['decree_date'];?> </b> </li>
-        <li>Date of return to court/creditor...... <b><?php echo $rowx['return_date'];?></b> </li>
-        <li>Warrant or letter of instructions dated .. <b><?php echo $rowx['warrant_date'];?></b> was given by above mentioned court/creditor and you are hereby notified that the movable property described in the scheduled hereto is hereby
-         duly attached / repossed / distrained and left in your custody for <b>...... <?php echo $notice_days;?> </b>from today. At the expiry of <b>...... <?php echo $notice_days;?></b>from this proclamation the same will be removed to the auctioneer's premises and sold by public auction 
-         (or in the case of propert under hire purchase may be sold by private treaty) unless the amount due together with costs of this attachment / repossession / distraint as specified overleaf shall be in the meantime have been paid.</li>
-    </ol>
+
+    <p><?php echo $rowx['plaintiffs'];?><b>CREDITOR/ LANDLORD/ PLAINTIFF</b></p>
+
+    <p><b>Versus</b></p>
+    <p><?php echo $rowx['defendants'];?><b>DEBTOR/ TENANT/ DEFENDANT</b></p>
+    <p><b>TAKE NOTICE THAT </b>the goods proclaimed on the<?php echo $rowx['proclamation_date'];?> And </p>
+    <p>listed herin below have been moved to my auction room and will be sold by public auction</p>
+    <p>on<?php echo $rowx['auct_date'];?> Time<?php echo$rowx['auct_time'];?>place<?php echo $rowx['auct_location'];?></p>
+    <p>unless the amount claimed by the creditor/Landlord plus auctioneers fees and cost of</p>
+    <p>Kshs.<?php echo rowx['auct_charges'];?> Are paid to the auctioneer.</p>
+
     <div class="text-center">
         <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></p>
     </div>
