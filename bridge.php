@@ -33233,11 +33233,13 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   
                                     <div class="form-group">
                                       <label>Description</label>
+                                      <input type="hidden" id="source" value="proclamation">
                                       <textarea class="control" id="description"></textarea>
                                     </div>
 
                                   <div class="form-group">
                                     <label>Condition</label>
+                                    <input type="hidden" id="uid" value="'.$row['uid'].'">
                                     <input type="text" class="control" id="condition">
                                   </div>
 
@@ -33275,28 +33277,33 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
         case 611:
           $param = $_GET['param'];
-          $query = mysql_query("select * from property_description where uid='".$param."'");
-          $num_rows = mysql_num_rows($query);
-    $count = 1;
-    echo '<table class="table table-bordered table-hover">
-    <thead>
-          <tr>
-          <td>No.</td>
-          <td>Description</td>
-          <td>Condition</td>
-          <td>Estimated Value(Kshs)</td>
-          </tr>
-    </thead>';
-    for ($i = 0; $i < $num_rows; $i++) {
-        $row = mysql_fetch_array($query);
-        echo '<tr>
-        <td>' . $count++ . '</td>
-        <td>' . $row['description'] . '</td>
-        <td>' . $row['condition'] . '</td>
-        <td>' . $row['est_value'] . '</td>
-        </tr>';
-    }
-    echo '</table>';
+          
+          $query = mysql_query("select * from decrees where id='".$param."'");
+          if($row = mysql_fetch_array($query)){
+            $qry = mysql_query("select * from property_description where uid = '".$row['uid']."'");
+            $num_rows = mysql_num_rows($qry);
+            $count = 1;
+            echo '<table class="table table-bordered table-hover">
+            <thead>
+                  <tr>
+                  <td>No.</td>
+                  <td>Description</td>
+                  <td>Condition</td>
+                  <td>Estimated Value(Kshs)</td>
+                  </tr>
+            </thead>';
+            for ($i = 0; $i < $num_rows; $i++) {
+                $row = mysql_fetch_array($qry);
+                echo '<tr>
+                <td>' . $count++ . '</td>
+                <td>' . $row['description'] . '</td>
+                <td>' . $row['condition'] . '</td>
+                <td>' . $row['est_value'] . '</td>
+                </tr>';
+            }
+            echo '</table>';
+          }
+          
         break;
 
         case 612:
