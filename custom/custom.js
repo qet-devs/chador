@@ -10330,9 +10330,9 @@ function newrepossession(){
 }
 
 function savenewrepossession(){
-	var debtor = $('#rep_name').val();
-	var rdate = $('#rep_date').val();
-	var i_party = $('#instructing_name').val();
+	var debtor = $('#debtor').val();
+	var rdate = $('#rdate').val();
+	var i_party = $('#i_party').val();
 	var property = $('#property').val();
 	
 
