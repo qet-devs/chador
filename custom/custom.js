@@ -540,6 +540,32 @@ function majoropen(a) {
                 });
 
                 break;
+
+                case 900:
+                    //edit letter
+                    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+                    $.ajax({
+                        url: 'bridge.php',
+                        data: {id: 902, param: b},
+                        success: function (data) {
+                            $('#mainp').html(data);
+                        }
+                    });
+    
+                    break;
+
+                    
+            case 901:
+                $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                $.ajax({
+                    url: 'bridge.php',
+                    data: {id: 904, param: b},
+                    success: function (data) {
+                        $('#mainp').html(data);
+                    }
+                });
+
+                break;
                 case 910:
 						archiverepossession(b);
 						break;
