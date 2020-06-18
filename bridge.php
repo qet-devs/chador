@@ -36792,8 +36792,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                               <!-- Nav tabs -->
                               <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#auctioneer" aria-controls="auctioneer" role="tab" data-toggle="tab">Auctioning Details</a></li>
+                                <li role="presentation"><a href="#property" aria-controls="property" role="tab" data-toggle="tab">Property</a></li>
+                                <li role="presentation"><a href="#noticedetails" aria-controls="notice" role="tab" data-toggle="tab">Notice details</a></li>
                                 
-                                <li role="presentation"><a href="#property" aria-controls="legal" role="tab" data-toggle="tab">Property</a></li>
                                
                               </ul>
                             
@@ -36823,9 +36824,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <label>Date of goods proclaimed -:<span style="color:#f00"></span></label>
                                       <input type="text" id="rdate" value="'.$row['rdate'].'" class="control date">
                                   </div>
-                                  
-
-                 
+                                              
 
                                   
                                   <div class="form-group" id="auct_btn">
@@ -36839,16 +36838,18 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                                 </div>
 
-                               
+
                                 <div role="tabpanel" class="tab-pane" id="property">
                                 
                                 <div class="panel widget">
                                 <div class="panel-heading vd_bg-black">
                                     <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                        Property Details</h3>
+                                        Schedule of repossessed properties</h3>
                                 </div>
                                 <!--                        panel heading-->
                                 <div class="panel-body">
+                                    <!--                            form content goes here-->
+                                  
                                     <!--                            form content goes here-->
                                   
                                   
@@ -36873,13 +36874,61 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <button class="btn btn-success control" onclick="savenotificationproperty('.$param.')" >Add</button>
                                   </div>
                                 </div>
+                                  
                                 <!-- Panel body -->
                             </div>
                             <!-- Panel Widget -->
                             
                               <div id="desc_table">
                                 
+                               </div>
+
+
+                                </div>
+
+                               
+                                <div role="tabpanel" class="tab-pane" id="noticedetails">
+                                
+                                <div class="panel widget">
+                                <div class="panel-heading vd_bg-black">
+                                    <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Notice auction details</h3>
+                                </div>
+                                <!--                        panel heading-->
+                                <div class="panel-body">
+                                <div class="form-group">
+                                <label>Auction Date</label>
+                            
+                                <input type="text" class="control date" id="day"></textarea>
                               </div>
+
+                            <div class="form-group">
+                              <label>Auction Time</label>
+                            
+                              <input type="text" class="control" id="ntime">
+                            </div>
+
+                            <div class="form-group">
+                              <label>Auction Location</label>
+                              <input type="text" class="control" id="place">
+                            </div>
+
+                            <div class="form-group">
+                            <label>Auction charges</label>
+                            <input type="text" class="control" id="charges">
+                          </div>
+                            <div class="form-group" >
+                                <button class="btn btn-success control" onclick="savedetails()" >Save</button>
+                            </div>
+                          </div>
+                                   
+                                <!-- Panel body -->
+                            </div>
+                            <!-- Panel Widget -->
+                            
+                              
+
+
                                 </div>
                               </div>
                             
