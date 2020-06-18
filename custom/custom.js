@@ -540,6 +540,13 @@ function majoropen(a) {
                 });
 
                 break;
+                case 910:
+						archiverepossession(b);
+						break;
+						case 911:
+							activaterepossession(b);
+							break;
+
 
 
             case 403:
@@ -10005,6 +10012,30 @@ function checkoutletter() {
     });
 }
 
+function archiverepossession(param){
+	swal({
+		title: "Are you sure?",
+		text: "The repossession will be Archived!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, Archive them!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:906,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
 function archiveletter(param) {
     swal({
             title: "Are you sure?",
@@ -10029,6 +10060,32 @@ function archiveletter(param) {
 
 }
 
+function activaterepossession(param){
+	swal({
+		title: "Are you sure?",
+		text: "The Repossession will be activated!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, Activate Repossession!",
+		closeOnConfirm: true
+	  },
+	  function(){
+		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		  $.ajax({
+		  url:'data.php',
+		  data:{id:907,param:param},
+		  success:function(data){
+		  $('#message').html(data);
+		  }
+		  });	
+		
+	  });
+
+}
+
+
+
 function activateletter(param) {
     swal({
             title: "Are you sure?",
@@ -10051,6 +10108,17 @@ function activateletter(param) {
 
         });
 
+}
+
+function archivedrepossession(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:911},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
 }
 
 function archivedletters() {

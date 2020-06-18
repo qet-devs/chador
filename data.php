@@ -6418,8 +6418,7 @@ switch ($id) {
 
         $resultc = mysql_query($sql);
         if ($resultc) {
-            $client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
-									VALUES ('0','" . $uid . "','decree','" . $plaintiff . "','','','','" . $defendant . "','','" . date('d/m/Y') . "','" . date('Ymd') . "',1,'','','','','','','','','',1,'','','','',0,0,'','')");
+            $client = mysql_query("INSERT INTO tenants (id, tid, lof, bname,  dname, date, stamp, status) VALUES ('0','" . $uid . "','decree','" . $plaintiff . "', '".$defendant . "','" . date('d/m/Y') . "','" . date('Ymd') . "', '1')");
             echo '<script>swal("Success!", "Decree information saved successfully", "success");</script>';
 
             $resulta = mysql_query("insert into log values('0','" . $username . " creates new decree','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
