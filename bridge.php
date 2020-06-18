@@ -36898,7 +36898,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
         case 908:
           $param = $_GET['param'];
-          $query = mysql_query("select * from decrees where id='".$param."'");
+          $query = mysql_query("select * from repossession where id='".$param."'");
           if($row = mysql_fetch_array($query)){
             $qry = mysql_query("select * from property_description where uid='".$row['uid']."'");
             $num_rows = mysql_num_rows($qry);
