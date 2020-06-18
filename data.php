@@ -6750,7 +6750,7 @@ WHERE
         $uid = 'NOT' . sprintf("%06d", $tid);
 
         $resultc = mysql_query("INSERT INTO `court_notices`(`uid`,`instructing_party`, `debtor_name`, `amount`, `charges`, `notice_date`, `days`, `date_served`, `username`, `status`) 
-								VALUES ('" . $uid . "','" . $party . "','" . $debtor . "','" . $amount . "','" . $charges . "','" . $noticedate . "','" . $noticedays . "','" . $datereserved . "','" . $username . "','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . ")");
+								VALUES ('" . $uid . "','" . $party . "','" . $debtor . "','" . $amount . "','" . $charges . "','" . $noticedate . "','" . $noticedays . "','" . $datereserved . "','" . $username . "','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
 
         if ($resultc) {
