@@ -572,6 +572,33 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                         <span class="menu-text">File Repossession</span>  
                     </a>';} ?>
                 </li> 
+
+
+                <li>
+                    <?php if($rightsarr[108]=='YES'){
+          echo'<a  href="#" onclick="notificationsalefile()" >
+                        <span class="menu-text">Notification of Sale</span>  
+                    </a>';} ?>
+                </li> 
+
+                <li>
+                     <?php if($rightsarr[114]=='YES'){
+          echo'<a  href="#" onclick="checkoutrepossession()" >
+                        <span class="menu-text">Archive Repossession</span>  
+                        </a>';} ?>
+                </li> 
+
+               
+               <li>
+                     <?php if($rightsarr[119]=='YES'){
+              echo'<a  href="#" onclick="archivedrepossession()" >
+                        <span class="menu-text">Archived Repossession</span>  
+                        </a>';} ?>
+                </li> 
+
+             
+
+           
                 
             </ul>   
         </div>

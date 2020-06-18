@@ -6579,8 +6579,10 @@ switch ($id) {
         $description = $_GET['description'];
         $condition = $_GET['condition'];
         $est_value = $_GET['est_value'];
+        $source = $_GET['source'];
+        $uid = $_Get['uid'];
 
-        $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`) values('" . $param . "', '" . $description . "', '" . $condition . "', '" . $est_value . "', '" . $username . "', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+        $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`,`source`) values('" . $param . "', '" . $description . "', '" . $condition . "', '" . $est_value . "', '" . $username . "', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '".$source."')");
 
         if ($resultc) {
             echo '<script>swal("Success!", "Notification of Sale saved successfully", "success");</script>';
