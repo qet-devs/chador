@@ -11134,7 +11134,9 @@ function savedecreeproperty(param){
 function savenotificationproperty(param){
 	var description = $('#description').val();
 	var condition = $('#condition').val();
-	var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+    var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+    var source = $('#source').val();
+    var uid = $('#uid').val();
 
 	if(description==''||est_value=='' ){
 		swal("Error", "Please fill all required fields", "error");
@@ -11145,7 +11147,9 @@ function savenotificationproperty(param){
 			param:param,
 			description:description,
 			condition:condition,
-			est_value:est_value
+            est_value:est_value,
+            source:source,
+            uid:uid
 		};
 		$('#desc_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
 		$.ajax({
