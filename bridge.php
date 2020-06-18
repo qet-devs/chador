@@ -36726,12 +36726,12 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                   </div>
                 <select id="intcombo" class="text-capitalize">
                 <option value="" selected>Select One...</option>';
-                   $result =mysql_query("select * from decrees where status=1");
+                   $result =mysql_query("select * from repossession status=1");
                     $num_results = mysql_num_rows($result);
                       for ($i=0; $i <$num_results; $i++) {
                           $row=mysql_fetch_array($result);
                           $code=stripslashes($row['id']);
-                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['plaintiffs']).'<strong> vs </strong>'.stripslashes($row['defendants']).'</option>';
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['debtor']).'<strong> vs </strong>'.stripslashes($row['i_party']).'</option>';
                         }
                    echo'</select>
                      <div class="cleaner_h10"></div>
@@ -36782,12 +36782,12 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                           <div class="panel widget">
                               <div class="panel-heading vd_bg-grey">
                                   <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Notification of Sale File-'.stripslashes($row['plaintiffs']).' VS '.stripslashes($row['defendants']).' </h3>
+                                      Notification of Sale File-'.stripslashes($row['debtor']).' VS '.stripslashes($row['i_party']).' </h3>
                               </div>
                               <div class="panel-body text-capitalize">
                               <div>
 
-                              <button class="btn btn-info pull-right" onclick="printnotification('.$param.')">Print Proclamation</button>
+                              <button class="btn btn-info pull-right" onclick="printnotification('.$param.')">Print Notification of Sale</button>
 
                               <!-- Nav tabs -->
                               <ul class="nav nav-tabs" role="tablist">
@@ -36811,37 +36811,38 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label> Creditor name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="plaintiffs" value="'.$row['plaintiffs'].'" class="control">
+                                      <input type="text" id="debtor" value="'.$row['debtor'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Debtor name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="defendants" value="'.$row['defendants'].'" class="control">
+                                      <input type="text" id="i_party" value="'.$row['i_party'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
-                                      <label>Date of goods proclmation -:<span style="color:#f00"></span></label>
-                                      <input type="text" id="proclamation_date" value="'.$row['proclamation_date'].'" class="control date">
+                                      <label>Date of goods proclaimed -:<span style="color:#f00"></span></label>
+                                      <input type="text" id="rdate" value="'.$row['rdate'].'" class="control date">
                                   </div>
+                                  
 
-                                  <div class="form-group">
-                                  <label>Date of auction  -:<span style="color:#f00"></span></label>
-                                  <input type="text" id="auct_date" value="'.$row['auct_date'].'" class="control date">
-                              </div>
+                  //                 <div class="form-group">
+                  //                 <label>Date of auction  -:<span style="color:#f00"></span></label>
+                  //                 <input type="text" id="auct_date" value="'.$row['auct_date'].'" class="control date">
+                  //             </div>
 
-                              <div class="form-group">
-                              <label>Time of auction -:<span style="color:#f00"></span></label>
-                              <input type="text" id="auct_time" value="'.$row['auct_time'].'" class="control">
-                          </div>
+                  //             <div class="form-group">
+                  //             <label>Time of auction -:<span style="color:#f00"></span></label>
+                  //             <input type="text" id="auct_time" value="'.$row['auct_time'].'" class="control">
+                  //         </div>
 
-                          <div class="form-group">
-                          <label>Location of auction -:<span style="color:#f00"></span></label>
-                          <input type="text" id="auct_location" value="'.$row['auct_location'].'" class="control">
-                      </div>
-                      <div class="form-group">
-                      <label>Amount paid to the auctioneers -:<span style="color:#f00"></span></label>
-                      <input type="text" id="auct_charges" value="'.$row['auct_charges'].'" class="control">
-                  </div>
+                  //         <div class="form-group">
+                  //         <label>Location of auction -:<span style="color:#f00"></span></label>
+                  //         <input type="text" id="auct_location" value="'.$row['auct_location'].'" class="control">
+                  //     </div>
+                  //     <div class="form-group">
+                  //     <label>Amount paid to the auctioneers -:<span style="color:#f00"></span></label>
+                  //     <input type="text" id="auct_charges" value="'.$row['auct_charges'].'" class="control">
+                  // </div>
 
                                   
                                   <div class="form-group" id="auct_btn">
@@ -36870,7 +36871,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   
                                     <div class="form-group">
                                       <label>Description</label>
-                                      <input type="hidden" id="source" value="proclamation">
+                                      <input type="hidden" id="source" value="repossession">
                                       <textarea class="control" id="description"></textarea>
                                     </div>
 

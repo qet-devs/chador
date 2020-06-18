@@ -11453,6 +11453,18 @@ function proclamationtabs(param) {
 }
 
 
+function notificationtabs(param) {
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 907, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
 function caltotcharges() {
     var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
     var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
@@ -11580,6 +11592,40 @@ function saveproclamation(param) {
     }
 
 }
+
+
+function savenotification(param) {
+    var debtor = $('#debtor').val();
+    var i_party = $('#i_party').val();
+    var rdate = $('#rdate').val();
+    
+
+
+    if (debtor == '' || i_party == '' || rdate == '' ) {
+        swal("Error", "Please fill all required fields", "error");
+        return;
+    } else {
+        var data = {
+            id: 910,
+            param: param,
+            debtor: debtor,
+            i_party: i_party,
+            rdate: rdate,
+            
+        };
+
+        $('#auct_btn').html('<button class="btn btn-success control" >saving....</button>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#mainp').html(data);
+            }
+        });
+    }
+
+}
+
 
 function printfeenote(param) {
     console.log(param);
