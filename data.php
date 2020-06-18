@@ -6579,14 +6579,14 @@ switch ($id) {
         $condition = $_GET['condition'];
         $est_value = $_GET['est_value'];
         $source = $_GET['source'];
-        $uid = $_Get['uid'];
+        $uid = $_GET['uid'];
 
-        $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`,`source`) values('" . $param . "', '" . $description . "', '" . $condition . "', '" . $est_value . "', '" . $username . "', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '".$source."')");
+        $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`,`source`) values('" . $uid . "', '" . $description . "', '" . $condition . "', '" . $est_value . "', '" . $username . "', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '".$source."')");
 
         if ($resultc) {
             echo '<script>swal("Success!", "Notification of Sale saved successfully", "success");</script>';
 
-            $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation charges decree id='" . $param . "' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            $resulta = mysql_query("insert into log values('0','" . $username . " updates notification charges decree id='" . $param . "' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {notificationdescription(" . $param . ");},500);</script>";
         } else {
             echo '<script>swal("Error", "failed to save sale notification details!", "error");</script>';
@@ -6930,13 +6930,13 @@ WHERE
         $uid = 'REP' . sprintf("%06d", $tid);
 
 
-        $resultc = mysql_query("INSERT INTO `repossession` VALUES ('0','" . $uid . "','" . $debtor . "','" . $rdate . "','" . $i_party . "','" . $property . "','1','" . $username . "', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+        $resultc = mysql_query("INSERT INTO `repossession` VALUES ('0','" . $uid . "','" . $debtor . "','" . $rdate . "','" . $i_party . "','" . $property . "','".$day."','".$ntime."','".$place."','1','" . $username . "', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
 
         if ($resultc) {
             $client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
                                         VALUES ('0','" . $uid . "','Repossession','" . $debtor . "','','','','" . $property . "','','" . date('d/m/Y') . "','" . date('Ymd') . "',1,'','','','','','','','','',1,'','','','',0,0,'','')");
-            echo '<script>swal("Success!", "Notice information saved successfully", "success");</script>';
+            echo '<script>swal("Success!", "Repossession information saved successfully", "success");</script>';
 
             $resulta = mysql_query("insert into log values('0','" . $username . " creates new Repossession','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newrepossession();},500);</script>";

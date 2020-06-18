@@ -36092,7 +36092,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label>Debtor Name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="rep_name" value="" class="control">
+                                      <input type="text" id="debtor" value="" class="control">
                                   </div>
                                                             
                             
@@ -36112,7 +36112,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label>Specified Timeline<span style="color:#f00">*</span></label>
-                                      <input type="date" id="rep_date" value="" class="control date">
+                                      <input type="date" id="rdate" value="" class="control date">
                                   </div>
       
                                   
@@ -36132,7 +36132,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label> Instructing Party Name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="instructing_name" value="" class="control">
+                                      <input type="text" id="i_party" value="" class="control">
                                   </div>
       
                                  
