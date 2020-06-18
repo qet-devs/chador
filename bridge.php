@@ -36726,7 +36726,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                   </div>
                 <select id="intcombo" class="text-capitalize">
                 <option value="" selected>Select One...</option>';
-                   $result =mysql_query("select * from repossession status=1");
+                   $result =mysql_query("select * from repossession where status=1");
                     $num_results = mysql_num_rows($result);
                       for ($i=0; $i <$num_results; $i++) {
                           $row=mysql_fetch_array($result);
@@ -36768,8 +36768,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
         case 907:
           $param = $_GET['param'];
-          mysql_query("insert into log values('','".$username." accesses notification of sale panel.decree id ".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
-          $resulta = mysql_query("select * from decrees where id='".$param."' limit 0,1");
+          mysql_query("insert into log values('','".$username." accesses notification of sale panel.repossession id ".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+          $resulta = mysql_query("select * from repossession where id='".$param."' limit 0,1");
           $row = mysql_fetch_array($resulta);
           echo '
           
@@ -36825,24 +36825,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   </div>
                                   
 
-                  //                 <div class="form-group">
-                  //                 <label>Date of auction  -:<span style="color:#f00"></span></label>
-                  //                 <input type="text" id="auct_date" value="'.$row['auct_date'].'" class="control date">
-                  //             </div>
-
-                  //             <div class="form-group">
-                  //             <label>Time of auction -:<span style="color:#f00"></span></label>
-                  //             <input type="text" id="auct_time" value="'.$row['auct_time'].'" class="control">
-                  //         </div>
-
-                  //         <div class="form-group">
-                  //         <label>Location of auction -:<span style="color:#f00"></span></label>
-                  //         <input type="text" id="auct_location" value="'.$row['auct_location'].'" class="control">
-                  //     </div>
-                  //     <div class="form-group">
-                  //     <label>Amount paid to the auctioneers -:<span style="color:#f00"></span></label>
-                  //     <input type="text" id="auct_charges" value="'.$row['auct_charges'].'" class="control">
-                  // </div>
+                 
 
                                   
                                   <div class="form-group" id="auct_btn">
