@@ -7041,6 +7041,34 @@ WHERE
                         echo '<script>archivedrepossession();</script>	';
                 
                         break;
+                        case 910:
+                            $param = $_GET['param'];
+                            $debtor = strtoupper($_GET['debtor']);
+                            $i_party = strtoupper($_GET['i_party']);
+                            $rdate = strtoupper($_GET['rdate']);
+                            
+                            $sql = "
+                                UPDATE repossession
+                                SET debtor = '" . $debtor . "',
+                                i_party = '" . $i_party . "',
+                                rdate = '" . $rdate . "',
+                                
+                                WHERE
+                                    id = '" . $param . "'
+                                ";
+                    
+                            $resultc = mysql_query($sql);
+                            if ($resultc) {
+                                echo '<script>swal("Success!", "Notification details saved successfully", "success");</script>';
+                    
+                                $resulta = mysql_query("insert into log values('0','" . $username . " updates notification details repossession id='" . $param . "' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+                                echo "<script>setTimeout(function() {notificationtabs(" . $param . ");},500);</script>";
+                                echo '<script>window.open("report.php?id=150&param=" + ' . $param . ');</script>';
+                            } else {
+                                echo '<script>swal("Error", "failed to save notification details!", "error");</script>';
+                            }
+                            break;
+                    
         
            
 
