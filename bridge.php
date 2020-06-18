@@ -36916,7 +36916,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
           $param = $_GET['param'];
           $query = mysql_query("select * from decrees where id='".$param."'");
           if($row = mysql_fetch_array($query)){
-            $qry = mysql_query("select * from property_decsription where uid='".$row['uid']."'");
+            $qry = mysql_query("select * from property_description where uid='".$row['uid']."'");
             $num_rows = mysql_num_rows($qry);
             $count = 1;
             echo '<table class="table table-bordered table-hover">
