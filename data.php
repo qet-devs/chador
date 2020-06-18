@@ -6945,27 +6945,30 @@ WHERE
         }
         break;
 
-    case 901:
-        $id = $_GET['param'];
-        $uid = $_GET['uid'];
-        $debtor = strtoupper($_GET['debtor']);
-        $rdate = ($_GET['rdate']);
-        $i_party = strtoupper($_GET['i_party']);
-        $property = strtoupper($_GET['property']);
-
-
-        $resultc = mysql_query("UPDATE `repossession` SET `debtor`='" . $debtor . "',`rdate`='" . $rdate . "',`i_party`='" . $i_party . "', `username`='" . $username . "' WHERE `id`='" . $id . "'");
-        $update_tenant_proclamation = mysql_query("update tenants set bname='" . $debtor . "', dname='" . $property . "' where tid='" . $uid . "'");
-
-        if ($resultc) {
-            echo '<script>swal("Success!", "Repossession updated successfully", "success");</script>';
-
-            $resulta = mysql_query("insert into log values('0','" . $username . " updates Repossession','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo "<script>setTimeout(function() {newrepossession();},500);</script>";
-        } else {
-            echo '<script>swal("Error", "failed to save Proclamation info!", "error");</script>';
-        }
-        break;
+ 
+        case 901:
+            $id = $_GET['param'];
+            $uid = $_GET['uid'];
+            $debtor = strtoupper($_GET['debtor']);
+            $rdate = $_GET['rdate'];
+            $i_party = strtoupper($_GET['i_party']);
+            $property = strtoupper($_GET['property']);
+           
+            
+    
+    
+            $resultc = mysql_query("UPDATE `repossession` SET `debtor`='" . $debtor . "',`rdate`='" . $rdate . "',`i_party`='" . $i_party . "', `username`='" . $username . "' WHERE `id`='" . $id . "'");
+            $update_tenant_proclamation = mysql_query("update tenants set bname='" . $debtor. "', dname='" . $property . "' where tid='" . $uid . "'");
+    
+            if ($resultc) {
+                echo '<script>swal("Success!", "Repossession updated successfully", "success");</script>';
+    
+                $resulta = mysql_query("insert into log values('0','" . $username . " updates Repossession','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+                echo "<script>setTimeout(function() {newrepossession();},500);</script>";
+            } else {
+                echo '<script>swal("Error", "failed to save Proclamation info!", "error");</script>';
+            }
+            break;
 
     case 905:
         $param = $_GET['param'];
