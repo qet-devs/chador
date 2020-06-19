@@ -11045,6 +11045,7 @@ function savenotice(param) {
     }
 }
 
+
 function findnotice() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
@@ -11122,17 +11123,49 @@ function archivenotice(param) {
 
         });
 
+
 }
 
-function propertydescription(param) {
-    $('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 611, param: param},
-        success: function (data) {
-            $('#property_table').html(data);
-        }
-    });
+function propertydescription(param){
+	$('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+	$.ajax({
+		url:'bridge.php',
+		data:{id:611,param:param},
+		success:function(data){
+		$('#property_table').html(data);
+		}
+	});
+}
+
+function savedecreeproperty(param){
+	var description = $('#description').val();
+	var condition = $('#condition').val();
+	var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+
+	if(description==''||est_value==''){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data = {
+			id:608,
+			param:param,
+			description:description,
+			condition:condition,
+			est_value:est_value,
+			source:source,
+			uid:uid
+		};
+		$('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+		$.ajax({
+			url:'data.php',
+			data:data,
+			success:function(data){
+				clearpropertyform();
+			$('#property_table').html(data);
+			}
+		});
+
+	}
 }
 
 function savedecreeproperty(param) {
