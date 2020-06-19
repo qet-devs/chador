@@ -36285,6 +36285,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             
                                     if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(900)">Edit Repossession</label><br/>';}
+                                   if($arr[112]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                        onclick="majoropen(902)">Proclamation</label><br/>';}                                  
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(901)">Repossession Info</label><br/>';}
                                    
@@ -37197,11 +37199,11 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label>Creditor Name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="debtor" value="'.$row['debtor'].'" class="control">
+                                      <input type="text" id="debtor" value="'.$row['i_party'].'" class="control">
                                   </div>
                                   <div class="form-group">
-                                      <label>Creditor Name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="i_party" value="'.$row['i_party'].'" class="control">
+                                      <label>Debtor Name -:<span style="color:#f00">*</span></label>
+                                      <input type="text" id="i_party" value="'.$row['debtor'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
@@ -37323,7 +37325,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   </div>
 
                                   <div class="form-group" >
-                                      <button class="btn btn-success control" onclick="savedecreeproperty('.$param.')" >Add</button>
+                                      <button class="btn btn-success control" onclick="saverepproperty('.$param.')" >Add</button>
                                   </div>
                                 </div>
                                 <!-- Panel body -->

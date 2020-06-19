@@ -7150,6 +7150,56 @@ echo "<script>setTimeout(function() {newauction();},500);</script>";
 echo '<script>swal("Error", "failed to save Repossession info!", "error");</script>';
 }
 break;
+
+case 913:
+    $param = $_GET['param'];
+    $description = $_GET['description'];
+    $condition = $_GET['condition'];
+    $est_value = $_GET['est_value'];
+    $source = $_GET['source'];
+    $uid = $_GET['uid'];
+
+    $resultc = mysql_query("insert into property_description ( `uid`, `description`, `condition`, `est_value`, `username`, `status`, `stamp`, `date`, `time`, `source`) values('" . $uid . "', '" . $description . "', '" . $condition . "', '" . $est_value . "', '" . $username . "', '1', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '" . $source . "')");
+
+    if ($resultc) {
+        echo '<script>swal("Success!", "property saved successfully", "success");</script>';
+
+        $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation charges decree id='" . $param . "' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo "<script>setTimeout(function() {propertydescription(" . $param . ");},500);</script>";
+    } else {
+        echo '<script>swal("Error", "failed to save property details!", "error");</script>';
+    }
+    break;
+
+    case 914:
+        $param = $_GET['param'];
+        $i_party = strtoupper($_GET['i_party']);
+        $debtor = strtoupper($_GET['debtor']);
+        $charges = $_GET['charges'];
+       
+
+        $sql = "
+            UPDATE repossession
+            SET i_party = '" . $i_party . "',
+            debtor = '" . $debtor . "',
+            charges = '" . $charges . "',
+            
+            WHERE
+                id = '" . $param . "'
+            ";
+
+        $resultc = mysql_query($sql);
+        if ($resultc) {
+            echo '<script>swal("Success!", "proclamation details saved successfully", "success");</script>';
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation details repossess id='" . $param . "' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {notificationtabs(" . $param . ");},500);</script>";
+            echo '<script>window.open("report.php?id=150&param=" + ' . $param . ');</script>';
+        } else {
+            echo '<script>swal("Error", "failed to save proclamation details!", "error");</script>';
+        }
+        break;
+
     
         
            

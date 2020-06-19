@@ -761,7 +761,8 @@ function majoropen(a) {
             case 804:
                 activateproclamation(b);
                 break;
-                case 900:
+               
+                    case 902:
                     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
                     $.ajax({
                         url: 'bridge.php',
@@ -11603,6 +11604,42 @@ function propertydescription(param) {
     });
 }
 
+
+function saverepproperty(param) {
+    var description = $('#description').val();
+    var condition = $('#condition').val();
+    var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
+    var source = $('#source').val();
+    var uid = $('#uid').val();
+
+    if (description == '') {
+        swal("Error", "Please fill all required fields", "error");
+        return;
+    } else {
+        var data = {
+            id: 913,
+            param: param,
+            description: description,
+            condition: condition,
+            est_value: est_value,
+            source: source,
+            uid: uid
+
+        };
+        $('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                clearpropertyform();
+                $('#property_table').html(data);
+            }
+        });
+
+    }
+}
+
+
 function savedecreeproperty(param) {
     var description = $('#description').val();
     var condition = $('#condition').val();
@@ -11699,46 +11736,23 @@ function saveproclamation(param) {
 }
 
 function saveproclamationnotice(param) {
-    var auct_name = $('#auct_name').val();
-    var auct_phone = $('#auct_phone').val();
-    var auct_address = $('#auct_address').val();
-    var auct_trader = $('#auct_trader').val();
-    var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
-    var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
-    var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
-    var total_debt = $('#total_debt').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
-    var court = $('#court').val();
-    var case_no = $('#case_no').val();
-    var court_date = $('#court_date').val();
-    var decree_date = $('#decree_date').val();
-    var return_date = $('#return_date').val();
-    var warrant_date = $('#warrant_date').val();
-    var notice_days = $('#notice_days').val();
+    var i_party = $('#i_party').val();
+    var debtor = $('#debtor').val();
+    var charges = $('#charges').val();
+    
 
 
-    if (auct_name == '' || auct_phone == '' || auct_address == '' || court == '' || court_date == '' || decree_date == '' ||
-        notice_days == '' || auct_trader == '' || decretal_amount == '' || auct_charges == '' || total_debt == '') {
+    if (i_party == '' || debtor == '' || charges == '') {
         swal("Error", "Please fill all required fields", "error");
         return;
     } else {
         var data = {
-            id: 605,
+            id: 914,
             param: param,
-            auct_name: auct_name,
-            auct_phone: auct_phone,
-            auct_address: auct_address,
-            auct_trader: auct_trader,
-            decretal_amount: decretal_amount,
-            adv_fee: adv_fee,
-            total_debt: total_debt,
-            auct_charges: auct_charges,
-            court: court,
-            case_no: case_no,
-            court_date: court_date,
-            decree_date: decree_date,
-            return_date: return_date,
-            warrant_date: warrant_date,
-            notice_days: notice_days,
+            i_party: i_party,
+            debtor: debtor,
+            charges: charges,
+            
         };
 
         $('#auct_btn').html('<button class="btn btn-success control" >saving....</button>');
