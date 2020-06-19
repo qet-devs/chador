@@ -457,14 +457,6 @@ switch($id){
       break;
 
       case 97:
-//         // We'll be outputting a PDF
-// header('Content-Type: application/pdf');
-
-// // It will be called downloaded.pdf
-// header('Content-Disposition: attachment; filename="proclamation.pdf"');
-
-// // The PDF source is in original.pdf
-// readfile('original.pdf');
         $title='CHADOR PROCLAMATION';
       break;
 
@@ -17379,21 +17371,7 @@ $aa=$i+1;
 
 
 </div>';
-// instantiate and use the dompdf class
-$dompdf = new Dompdf();
-$dompdf->loadHtml($content);
 
-// (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'portrait');
-
-// Render the HTML as PDF
-$dompdf->render();
-ob_end_clean();
-// Output the generated PDF to Browser
-$dompdf->stream('proclamation',array('Attachment'=>0));
-// 0 = preview
-// 1 = download
-//printdocument($content);
         break;  
         
         case 97:
@@ -17437,7 +17415,7 @@ $dompdf->stream('proclamation',array('Attachment'=>0));
             </div>
                 
             <ol>
-                <li>Auctioneer\'s Name: <b style=" font-family: \'Times New Roman\', Times, sans-serif;">'.$rowx['auctioneer'].'  Tel: '.$rowx['auct_phone'].'</b> Address <b>'.$rowx['auct_address'].'</b> trading as:<b>'.$rowx['auct_trader'].'</b></li>
+                <li>Auctioneer\'s Name: <b style=" font-family: \'Times New Roman\', Times, sans-serif;">ELIUD C. WAMBU  Tel: 0720 602229, 0722 595966</b> Address <b> P.O. BOX 27304-00100 NAIROBI</b> trading as: <b>CHADOR AUCTIONEERS</b></li>
                 <li>Creditor\'s/Landlord\'s name and address <b>.................... '.$rowx['plaintiffs'].' </b></li>
                 <li>Debtor\'s/ Tenant\'s name and address <b>............... '.$rowx['defendants'].'</b></li>
                 <li>Decretal sum/Amount outstanding / Rent arrears as at ...................ksh. '.$rowx['decretal_amount'].' </li>
@@ -17478,26 +17456,10 @@ $dompdf->stream('proclamation',array('Attachment'=>0));
         Auctioneer:....................................Witness if any.......................... <br>
         Dated:........................................................... <br>
         <b>NB:</b><i>it is an offense to remove, alter, damage, substitute or alienate any goods compromised in the proclamation untill they are redeemed by payment in full</i><br>
-        <b>Estimated cost of this attachment / repossession / distraint Kshs..............................  </b>
+        <b>Estimated cost of this attachment / repossession / distraint Kshs..........................................  </b>
         <p>(Transport charges, insurance, storage, advertisements and other incidentals will be charged at cost as and then they rise.</p>
         </div>
                 ';
-// instantiate and use the dompdf class
-$dompdf = new Dompdf();
-$dompdf->loadHtml($content);
-
-// (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'portrait');
-
-// Render the HTML as PDF
-$dompdf->render();
-ob_end_clean();
-// Output the generated PDF to Browser
-$dompdf->stream('proclamation',array('Attachment'=>0));
-// 0 = preview
-// 1 = download
-
-       // printdocument($content);
         break;
 
         case 98:
@@ -17506,78 +17468,71 @@ $dompdf->stream('proclamation',array('Attachment'=>0));
 
           $resultx = mysql_query("select * from decrees where id='".$id."'");
           $rowx = mysql_fetch_array($resultx);
-          ?>
-          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
-    <div class="row">
-    <div class="col-md-3">
-    <img src="img/logos/point.jpg" alt="" srcset="">
-    </div>
-    <div class="col-md-6">
-    <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
-    </div>
-    <div class="col-md-3">
-        <div class="text-right" >
-            Thika Business Centre,<br>
-            7th floor, Suite 7-5<br>
-            Opp Equity Plaza - Thika<br>
-            P.O BOX 27304-00100 Nairobi<br>
-            Tel:0720 602229 Cell: 0722 595966<br>
-            Email: chadorauctioneers06@gmail.com<br>
-            <b style="">Sale Form 3</b>
-<br/><br/>
-        </div>
-    </div>
-
-    <div class="clear text-center">
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>NOTIFICATION OF SALE OF MOVABLE PROPERTIES</b></u></h4>
-    <h4 class="clear text-center" style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>IN THE MATTER OF REPOSSESSION, DISTRESS, WARRRANTS AND IN THE </b></u></h4>
-    <h4 class="clear text-center" style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MATTER OF AUCTIONEERS ACT No. 5 of 1996</b></u></h4>
+          $content = '
+          <div style=" font-family: \'Times New Roman\', Times, sans-serif; width:98%; margin: 0px auto;">
+          <div style="height:100px; ">
+      <img src="img/logos/point.jpg" alt="" style="position:absolute; left:0px; width:15%">
+      <div style="width:85%;text-align:center;position:absolute; right:0px;">
+      <h1 style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
+      <p style=" font-family: \'Times New Roman\', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></p>
+      </div>
+      </div>
+      <hr>
+          <div style="text-align:center" >
+              <p> Thika Business Centre, 5th floor, Suite 3
+              Opp Equity Plaza - Thika
+              Nairobi branch:Comet House,
+              P.O BOX 27304-00100 Nairobi
+              Tel:0720 602229 Cell: 0722 595966 
+          Email: chadorauctioneers06@gmail.com</p>
+              
+          </div>
+      
+  <hr>
+      
+      <div style="text-align:center">
+    <h4 style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>NOTIFICATION OF SALE OF MOVABLE PROPERTIES</b></u></h4>
+    <h4 class="clear text-center" style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>IN THE MATTER OF REPOSSESSION, DISTRESS, WARRRANTS AND IN THE </b></u></h4>
+    <h4 class="clear text-center" style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>MATTER OF AUCTIONEERS ACT No. 5 of 1996</b></u></h4>
     </div>
     <br/><br/>
         
     
         <div class="row"> 
-        <h6 class="col-md-12"><b><u><?php echo $rowx['plaintiffs'];?></u> <span style=" font-family: 'Times New Roman', Times, sans-serif;" class="pull-right">CREDITOR/LANDLORD/PLANTIFF</span></b></h6> 
-        <h6 class="col-md-12"><b><span style=" font-family: 'Times New Roman', Times, sans-serif;" class="pull-right"> Versus</span></b></h6> 
-        <h6 class="col-md-12"><b><u><?php echo $rowx['defendants'];?></u> <span  style=" font-family: 'Times New Roman', Times, sans-serif;" class="pull-right">DEBTORS/TENANT/DEFENDANT</span></b></h6>
+        <h6 class="col-md-12"><b><u>'.$rowx['plaintiffs'].'</u> <span style=" font-family: \'Times New Roman\', Times, sans-serif;" class="pull-right">CREDITOR/LANDLORD/PLANTIFF</span></b></h6> 
+        <h6 class="col-md-12"><b><span style=" font-family: \'Times New Roman\', Times, sans-serif;" class="pull-right"> Versus</span></b></h6> 
+        <h6 class="col-md-12"><b><u>'.$rowx['defendants'].'</u> <span  style=" font-family: \'Times New Roman\', Times, sans-serif;" class="pull-right">DEBTORS/TENANT/DEFENDANT</span></b></h6>
         </div>
-        <p>TAKE NOTICE THAT </b> the goods proclaimed on the <b><?php echo $rowx['proclamation_date'];?></b>And: listed herein below have been moved to my auction room and will be sold by public auction on <b><?php echo $rowx['auct_date'];?></b> Time <b><?php echo $rowx['auct_time'];?></b> place <b><?php echo $rowx['auct_location'];?></b> </p>
-        <p>unless the amount claimed by the creditor/Landlord plus auctioneers fees and cost of Kshs <b><?php echo $rowx['debt'];?></b> Are paid to the auctioneer.<br/>
+        <p>TAKE NOTICE THAT </b> the goods proclaimed on the <b>'.$rowx['proclamation_date'].'</b>And: listed herein below have been moved to my auction room and will be sold by public auction on <b>'.$rowx['auct_date'].'</b> Time <b>'.$rowx['auct_time'].'</b> place <b>'.$rowx['auct_location'].'</b> </p>
+        <p>unless the amount claimed by the creditor/Landlord plus auctioneers fees and cost of Kshs <b>'.$rowx['debt'].'</b> Are paid to the auctioneer.<br/>
         <b></b></p>
        
     <br/>
     <br/>
     <br/>
     <div class="text-center">
-        <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF REPOSSED/ATTACHED PROPERTIES</b></u></h4>
-    </div>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Description</th>
-                <th>Condition</th>
-                <th>Estimated Value(Kshs)</th>
-            </tr>
-        </thead>
-        <?php
-          $qry = mysql_query("select * from property_description where uid='".$rowx['id']."'");
-          $num_rows = mysql_num_rows($qry);
-
-          if($num_rows > 0){
-            $total = 0;
-  for ($i = 0; $i < $num_rows; $i++) {
-      $row = mysql_fetch_array($qry);
-      $total += $row['est_value'];
-      echo '<tr>
-      <td>' . $row['description'] . '</td>
-      <td>' . $row['condition'] . '</td>
-      <td>' . $row['est_value'] . '</td>
-      </tr>';
-  }
-  
-          }
-        ?>
+            <p style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></p>
+        </div>
+        <table style="width:80%; border:1px solid black;border-collapse: collapse;">
+            <thead>
+                <tr style="border:1px solid black">
+                    <th style="width:40%; border:1px solid black">Description</th>
+                    <th style="width:30%; border:1px solid black">Condition</th>
+                    <th style="width:10%; border:1px solid black">Estimated Value(Kshs)</th>
+                </tr>
+            </thead>';
+            
+            $query = mysql_query("select * from property_description where uid='".$rowx['uid']."' and status='1'");
+            $num_rows = mysql_num_rows($query);
+        for ($i = 0; $i < $num_rows; $i++) {
+        $row = mysql_fetch_array($query);
+        $content .= '<tr style="border:1px solid black">
+        <td style="width:40%; border:1px solid black">' . $row['description'] . '</td>
+        <td style="width:20%; border:1px solid black">' . $row['condition'] . '</td>
+        <td style="width:20%; border:1px solid black">' . $row['est_value'] . '</td>
+        </tr>';
+        }
+        $content .='
     </table>
 <b>Signature</b>: Judgement Debtor/Agent............................................................<br>
 Auctioneer:....................................Witness if any..........................<br>
@@ -17585,83 +17540,13 @@ Dated:...........................................................<br>
 <b>NB:</b><i>
 <b>Estimated cost of this attachment / repossession / distraint <b><u> Kshs <?php echo $total;?></u></b></b>
 <p>(Transport charges, insurance, storage, advertisements and other incidentals will be charged at cost as and then they rise.</p>
-</div>
+</div>';
 
 
-<script type="text/javascript">
-window.print();
-window.onfocus=function(){ window.close();}
-</script>
-          <?php
         break;
 
         case 99:
-          $id = $_GET['param'];
 
-          $resultx = mysql_query("select * from decrees where id='".$id."'");
-          $rowx = mysql_fetch_array($resultx);
-          $param = $rowx['id'];
-
-          $content = '
-          <div style=" font-family: \'Times New Roman\', Times, sans-serif; width:80%; margin: 10px auto;">
-    <div class="row">
-    <div class="col-md-3">
-    <img src="img/logos/point.jpg" alt="" srcset="" width="20%">
-    </div>
-    <div class="col-md-6">
-    <h1 style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
-    <h4 style=" font-family: \'Times New Roman\', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
-    </div>
-    <div class="col-md-3">
-        <div class="text-right" >
-            Thika Business Centre,<br>
-            5th floor, Suite 3<br>
-            Opp Equity Plaza - Thika<br>
-            Nairobi branch:Comet House,<br>
-            P.O BOX 27304-00100 Nairobi<br>
-            Tel:0720 602229 Cell: 0722 595966<br>
-            Email: chadorauctioneers06@gmail.com<br>
-            <b style="">Sale Form 2</b>
-
-        </div>
-    </div>
-    <hr>
-    <div class="clear text-center">
-    <h4 style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>SALE CATALOGUE AUCTION DATE: '.$rowx['auct_date'].'</b></u></h4>
-    </div>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Description</th>
-                <th>Amount(Kshs)</th>
-            </tr>
-        </thead>';
-        
-          $qry = mysql_query("select distinct lot as lot from property_description where uid='".$param."'");
-          while ($lot = mysql_fetch_array($qry)) {
-            $content .= '<tr><td><h4>Lot '.$lot['lot'].'</h4></td></td></td></tr>';
-            $result = mysql_query("select * from property_description where lot='".$lot['lot']."'");
-            $num_rows = mysql_num_rows($result);
-  
-            if($num_rows > 0){
-              $total = 0;
-              for ($i = 0; $i < $num_rows; $i++) {
-                  $row = mysql_fetch_array($result);
-                  $total += $row['amount'];
-                  echo '<tr>
-                  <td>' . $row['description'] . '</td>
-                  <td>' . $row['amount'] . '</td>
-                  </tr>';
-              }
-              
-            }
-          }
-
-        ?>
-    </table>
-    
-</div>
-';
         break;
 
         case 100:
@@ -17670,15 +17555,12 @@ window.onfocus=function(){ window.close();}
           $resulta = mysql_query("select * from decrees where id='".$param."' limit 0,1");
           
           if( $resulta){
-            $rowx=mysql_fetch_array($resulta);
-            
-          }
-          $resultc = mysql_query("select * from fee_note where uid='".$rowx['uid']."' limit 0,1");
+            $rowx=mysql_fetch_array($resulta); 
+            $resultc = mysql_query("select * from fee_note where uid='".$rowx['uid']."' limit 0,1");
             $row = mysql_fetch_array($resultc);
+          }
 
             $content = ' 
-
-
 <div style=" font-family: \Times New Roman\', Times, sans-serif; width:80%; margin: 10px auto;">
     <div class="row">
     <div class="col-md-3">
@@ -17914,98 +17796,15 @@ Signature
 </body>
 </html>';
 
+//printdocument($content);
         break;
 
 
-
-        case 150:
-          
-          $id = $_GET['param'];
-
-          $resultx = mysql_query("select * from decrees where id='".$id."'");
-          $rowx = mysql_fetch_array($resultx);
-
-          if($rowx['notice_days']=='7'){
-            $notice_days = "seven (7) days";
-          }else{
-            $notice_days = "fourteen (14) days";
-          }
-          ?>
-          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 0px auto;">
-    <div class="row">
-    <div class="col-md-12 text-center">
-    <img src="img/logos/point.jpg" alt="" class="pull-left" width="10%">
-    
-    <h5 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h5>
-    <h6 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h6>
-    </div>
-    <div class="col-md-12 ">
-        <div class="text-center" >
-            <p> Thika Business Centre, 5th floor, Suite 3
-            Opp Equity Plaza - Thika
-            Nairobi branch:Comet House,</p>
-            <p> P.O BOX 27304-00100 Nairobi
-            Tel:0720 602229 Cell: 0722 595966 </p>
-           <p> Email: chadorauctioneers06@gmail.com</p>
-            
-        </div>
-    </div>
-
-    
-    <div class="clear text-center">
-    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>THE AUCTIONEERS ACT NO. 5 OF 1996</b></u></p>
-    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>PROCLAMATION OF THE ATTACHMENT / REPOSSESSION/DISTRAINT OF</b></u></p>
-    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MOVABLE PROPERTY</b></u></p>
-    </div>
-
-    <p><?php echo $rowx['plaintiffs'];?><b>CREDITOR/ LANDLORD/ PLAINTIFF</b></p>
-
-    <p><b>Versus</b></p>
-    <p><?php echo $rowx['defendants'];?><b>DEBTOR/ TENANT/ DEFENDANT</b></p>
-    <p><b>TAKE NOTICE THAT </b>the goods proclaimed on the<?php echo $rowx['proclamation_date'];?> And </p>
-    <p>listed herin below have been moved to my auction room and will be sold by public auction</p>
-    <p>on<?php echo $rowx['auct_date'];?> Time<?php echo$rowx['auct_time'];?>place<?php echo $rowx['auct_location'];?></p>
-    <p>unless the amount claimed by the creditor/Landlord plus auctioneers fees and cost of</p>
-    <p>Kshs.<?php echo rowx['auct_charges'];?> Are paid to the auctioneer.</p>
-
-    <div class="text-center">
-        <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></p>
-    </div>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Description</th>
-                <th>Condition</th>
-                <th>Estimated Value(Kshs)</th>
-            </tr>
-        </thead>
-        <?php
-        $query = mysql_query("select * from property_description where uid='".$id."'");
-        $num_rows = mysql_num_rows($query);
-  $total = 0;
-  for ($i = 0; $i < $num_rows; $i++) {
-      $row = mysql_fetch_array($query);
-      $total += $row['est_value'];
-      echo '<tr>
-      <td>' . $row['description'] . '</td>
-      <td>' . $row['condition'] . '</td>
-      <td>' . $row['est_value'] . '</td>
-      </tr>';
-  }
-        ?>
-    </table>
-<b>Signature</b>: Judgement Debtor/Agent............................................................ <br>
-Auctioneer:....................................Witness if any.......................... <br>
-Dated:........................................................... <br>
-<b>NB:</b><i>it is an offense to remove, alter, damage, substitute or alienate any goods compromised in the proclamation untill they are redeemed by payment in full</i><br>
-<b>Estimated cost of this attachment / repossession / distraint Kshs.............................. kshs <?php echo $total;?> </b>
-<p>(Transport charges, insurance, storage, advertisements and other incidentals will be charged at cost as and then they rise.</p>
-</div>
-          <?php
-        break;
 
    
 }
+
+if(!empty($content)){
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
 $dompdf->loadHtml($content);
@@ -18015,6 +17814,8 @@ $dompdf->setPaper('A4', 'portrait');
 
 // Render the HTML as PDF
 $dompdf->render();
-
+ob_end_clean();
 // Output the generated PDF to Browser
 $dompdf->stream('proclamation',array('Attachment'=>0));
+
+}

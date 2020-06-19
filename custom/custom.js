@@ -541,20 +541,20 @@ function majoropen(a) {
 
                 break;
 
-                case 900:
-                    //edit letter
-                    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-                    $.ajax({
-                        url: 'bridge.php',
-                        data: {id: 902, param: b},
-                        success: function (data) {
-                            $('#mainp').html(data);
-                        }
-                    });
-    
-                    break;
+            case 900:
+                //edit letter
+                $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+                $.ajax({
+                    url: 'bridge.php',
+                    data: {id: 902, param: b},
+                    success: function (data) {
+                        $('#mainp').html(data);
+                    }
+                });
 
-                    
+                break;
+
+
             case 901:
                 $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
                 $.ajax({
@@ -566,13 +566,12 @@ function majoropen(a) {
                 });
 
                 break;
-                case 910:
-						archiverepossession(b);
-						break;
-						case 911:
-							activaterepossession(b);
-							break;
-
+            case 910:
+                archiverepossession(b);
+                break;
+            case 911:
+                activaterepossession(b);
+                break;
 
 
             case 403:
@@ -10050,27 +10049,27 @@ function checkoutletter() {
     });
 }
 
-function archiverepossession(param){
-	swal({
-		title: "Are you sure?",
-		text: "The repossession will be Archived!",
-		type: "warning",
-		showCancelButton: true,
-		confirmButtonColor: "#DD6B55",
-		confirmButtonText: "Yes, Archive them!",
-		closeOnConfirm: true
-	  },
-	  function(){
-		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-		  $.ajax({
-		  url:'data.php',
-		  data:{id:906,param:param},
-		  success:function(data){
-		  $('#message').html(data);
-		  }
-		  });	
-		
-	  });
+function archiverepossession(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The repossession will be Archived!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Archive them!",
+            closeOnConfirm: true
+        },
+        function () {
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 906, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                }
+            });
+
+        });
 
 }
 
@@ -10098,30 +10097,29 @@ function archiveletter(param) {
 
 }
 
-function activaterepossession(param){
-	swal({
-		title: "Are you sure?",
-		text: "The Repossession will be activated!",
-		type: "warning",
-		showCancelButton: true,
-		confirmButtonColor: "#DD6B55",
-		confirmButtonText: "Yes, Activate Repossession!",
-		closeOnConfirm: true
-	  },
-	  function(){
-		  $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-		  $.ajax({
-		  url:'data.php',
-		  data:{id:907,param:param},
-		  success:function(data){
-		  $('#message').html(data);
-		  }
-		  });	
-		
-	  });
+function activaterepossession(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The Repossession will be activated!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Activate Repossession!",
+            closeOnConfirm: true
+        },
+        function () {
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 907, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                }
+            });
+
+        });
 
 }
-
 
 
 function activateletter(param) {
@@ -10148,15 +10146,15 @@ function activateletter(param) {
 
 }
 
-function archivedrepossession(){
-	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'bridge.php',
-	data:{id:911},
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+function archivedrepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 911},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
 }
 
 function archivedletters() {
@@ -10328,95 +10326,105 @@ function savedistress(param) {
 
 }
 
-function newauction(){
+function newauction() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'bridge.php',
-	data:{id:906},
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 906},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
 
 }
 
-function newrepossession(){
-	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'bridge.php',
-	data:{id:900},
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+function newrepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 900},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
 }
 
-function savenewrepossession(){
-	var debtor = $('#debtor').val();
-	var rdate = $('#rdate').val();
-	var i_party = $('#i_party').val();
-	var property = $('#property').val();
-	
+function savenewrepossession() {
+    var debtor = $('#debtor').val();
+    var rdate = $('#rdate').val();
+    var i_party = $('#i_party').val();
+    var property = $('#property').val();
 
-	if(debtor==''||rdate==''||i_party==''||property==''){
-		swal("Error", "Make sure you enter all the required fields!", "error");
-		return;
-	}else{
-		var data = {
-			id:900,
-			debtor:debtor,
-			rdate:rdate,
-			i_party:i_party,
-			property:property
-			
-		};
 
-		//console.log(data);
-		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-		$.ajax({
-		url:'data.php',
-		data:data,
-		success:function(data){
-		$('#message').html(data);
-		}
-		});
-	}
+    if (debtor == '' || rdate == '' || i_party == '' || property == '') {
+        swal("Error", "Make sure you enter all the required fields!", "error");
+        return;
+    } else {
+        var data = {
+            id: 900,
+            debtor: debtor,
+            rdate: rdate,
+            i_party: i_party,
+            property: property
+
+        };
+
+        //console.log(data);
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+    }
 }
 
-function savedetails(){
-    var day=$('#day').val();
-	var ntime = $('#ntime').val();
-	var  place= $('#place').val();
-	var charges = $('#charges').val();
-	
-	
+function savedetails() {
+    var day = $('#day').val();
+    var ntime = $('#ntime').val();
+    var place = $('#place').val();
+    var charges = $('#charges').val();
 
-	if(day==''||ntime==''||place==''||charges==''){
-		swal("Error", "Make sure you enter all the required fields!", "error");
-		return;
-	}else{
-		var data = {
-			id:911,
-			day:day,
-			ntime:ntime,
-			place:place,
-			charges:charges
-			
-		};
 
-		//console.log(data);
-		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-		$.ajax({
-		url:'data.php',
-		data:data,
-		success:function(data){
-		$('#message').html(data);
-		}
-		});
-	}
+    if (day == '' || ntime == '' || place == '' || charges == '') {
+        swal("Error", "Make sure you enter all the required fields!", "error");
+        return;
+    } else {
+        var data = {
+            id: 911,
+            day: day,
+            ntime: ntime,
+            place: place,
+            charges: charges
+
+        };
+
+        //console.log(data);
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+    }
 }
 
 
+<<<<<<< HEAD
+function editrepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 902},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+=======
 function savecourt(){
     var creditoradd=$('#creditoradd').val();
 	var debtoradd = $('#debtoradd').val();
@@ -10477,103 +10485,102 @@ function editrepossession(){
 	$('#mainp').html(data);
 	}
 	});
+>>>>>>> a9f8aa456747176260eba7ee27fabdf4b89c5ef5
 }
 
 
+function saverepossession(param) {
+    var uid = $('#uid').val();
+    var debtor = $('#rep_name').val();
+    var rdate = $('#rep_date').val();
+    var i_party = $('#instructing_name').val();
+    var property = $('#property').val();
 
-function saverepossession(param){
-	var uid = $('#uid').val();
-	var debtor = $('#rep_name').val();
-	var rdate = $('#rep_date').val();
-	var i_party = $('#instructing_name').val();
-	var property = $('#property').val();
-	
 
-	if(debtor==''||rdate==''||i_party==''||property==''){
-		swal("Error", "Make sure you enter all the required fields!", "error");
-		return;
-	}else{
-		var data = {
-			id:901,
-			uid:uid,
-			param:param,
-			debtor:debtor,
-			rdate:rdate,
-			i_party:i_party,
-			property:property
-			
-			
-		};
+    if (debtor == '' || rdate == '' || i_party == '' || property == '') {
+        swal("Error", "Make sure you enter all the required fields!", "error");
+        return;
+    } else {
+        var data = {
+            id: 901,
+            uid: uid,
+            param: param,
+            debtor: debtor,
+            rdate: rdate,
+            i_party: i_party,
+            property: property
 
-		//console.log(data);
-		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-		$.ajax({
-		url:'data.php',
-		data:data,
-		success:function(data){
-		$('#message').html(data);
-		}
-		});
-	}
+
+        };
+
+        //console.log(data);
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+    }
 }
 
 
-function findrepossession(){
-	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'bridge.php',
-	data:{id:901},
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+function findrepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 901},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
 }
 
 
-
-function repossessionfile(){
-	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'bridge.php',
-	data:{id:904},
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+function repossessionfile() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 904},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
 }
 
-function checkoutrepossession(){
-	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'bridge.php',
-	data:{id:910},
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+function checkoutrepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 910},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
 }
 
-function notificationdescription(param){
-	$('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-	$.ajax({
-		url:'bridge.php',
-		data:{id:908,param:param},
-		success:function(data){
-		$('#desc_table').html(data);
-		}
-	});
+function notificationdescription(param) {
+    $('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 908, param: param},
+        success: function (data) {
+            $('#desc_table').html(data);
+        }
+    });
 }
 
 
-function notificationsalefile(){
-	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'bridge.php',
-	data:{id:906},
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+function notificationsalefile() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 906},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
 }
 
 function finddocument() {
@@ -11113,6 +11120,7 @@ function savenotice(param) {
     }
 }
 
+
 function findnotice() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
@@ -11190,6 +11198,7 @@ function archivenotice(param) {
 
         });
 
+
 }
 
 function propertydescription(param){
@@ -11207,10 +11216,8 @@ function savedecreeproperty(param){
 	var description = $('#description').val();
 	var condition = $('#condition').val();
 	var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
-	var source = $('#source').val();
-	var uid = $('#uid').val();
 
-	if(description==''){
+	if(description==''||est_value==''){
 		swal("Error", "Please fill all required fields", "error");
 		return;
 	}else{
@@ -11236,13 +11243,73 @@ function savedecreeproperty(param){
 	}
 }
 
-function savenotificationproperty(param){
-	var description = $('#description').val();
-	var condition = $('#condition').val();
-    var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g,'');
+function savedecreeproperty(param) {
+    var description = $('#description').val();
+    var condition = $('#condition').val();
+    var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
     var source = $('#source').val();
     var uid = $('#uid').val();
 
+<<<<<<< HEAD
+    if (description == '') {
+        swal("Error", "Please fill all required fields", "error");
+        return;
+    } else {
+        var data = {
+            id: 608,
+            param: param,
+            description: description,
+            condition: condition,
+            est_value: est_value,
+            source: source,
+            uid: uid
+        };
+        $('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                clearpropertyform();
+                $('#property_table').html(data);
+            }
+        });
+
+    }
+}
+
+function savenotificationproperty(param) {
+    var description = $('#description').val();
+    var condition = $('#condition').val();
+    var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
+    var source = $('#source').val();
+    var uid = $('#uid').val();
+
+    if (description == '' || est_value == '') {
+        swal("Error", "Please fill all required fields", "error");
+        return;
+    } else {
+        var data = {
+            id: 950,
+            param: param,
+            description: description,
+            condition: condition,
+            est_value: est_value,
+            source: source,
+            uid: uid
+        };
+        $('#desc_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                clearnotificationform();
+                $('#desc_table').html(data);
+            }
+        });
+        ;
+    }
+}
+=======
 	if(description==''||est_value=='' ){
 		swal("Error", "Please fill all required fields", "error");
 		return;
@@ -11267,6 +11334,7 @@ function savenotificationproperty(param){
         });        ;}
         
     }
+>>>>>>> a9f8aa456747176260eba7ee27fabdf4b89c5ef5
 
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});
 
@@ -11491,7 +11559,7 @@ function getproclamationreport() {
     }
 }
 
-function saveapplication(param) {
+function savedecreeapplication(param) {
     var assistance_mode = $('#assistance_mode').val();
     var decree_holder = $('#decree_holder').val();
     var holder_address = $('#holder_address').val();
@@ -11588,11 +11656,12 @@ function caltotcharges() {
     $('#total_debt').val(tot);
 }
 
-function clearnotificationform(){
-	$('#description').val("");
-	$('#condition').val("");
-	$('#est_value').val("");
+function clearnotificationform() {
+    $('#description').val("");
+    $('#condition').val("");
+    $('#est_value').val("");
 }
+
 function propertydescription(param) {
     $('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
     $.ajax({
@@ -11773,10 +11842,9 @@ function savenotification(param) {
     var debtor = $('#debtor').val();
     var i_party = $('#i_party').val();
     var rdate = $('#rdate').val();
-    
 
 
-    if (debtor == '' || i_party == '' || rdate == '' ) {
+    if (debtor == '' || i_party == '' || rdate == '') {
         swal("Error", "Please fill all required fields", "error");
         return;
     } else {
@@ -11786,7 +11854,7 @@ function savenotification(param) {
             debtor: debtor,
             i_party: i_party,
             rdate: rdate,
-            
+
         };
 
         $('#auct_btn').html('<button class="btn btn-success control" >saving....</button>');
@@ -11875,5 +11943,8 @@ function calcfeenotetotal() {
         + parseFloat(valuation_fee, 10) + parseFloat(sale_commission, 10) + parseFloat(storage_charges, 10) + parseFloat(vat, 10) + parseFloat(others, 10) + parseFloat(mis_expenses, 10);
     tot = (tot).formatMoney(2, '.', ',');
     $('#total').val(tot);
+<<<<<<< HEAD
+=======
 
+>>>>>>> a9f8aa456747176260eba7ee27fabdf4b89c5ef5
 }
