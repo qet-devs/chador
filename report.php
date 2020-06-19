@@ -1,4 +1,7 @@
 <?php include('db_fns.php');
+include('dompdf/autoload.inc.php');
+use Dompdf\Dompdf;
+
 date_default_timezone_set('Africa/Nairobi'); 
 if(isset($_SESSION['valid_user'])){
 $username=$_SESSION['valid_user'];
@@ -450,20 +453,18 @@ switch($id){
       break;
 
       case 96:
-        header("content-type: application/vnd.ms-word");
-        header("content-Disposition: attachment; Filename=word.doc");
         $title='CHADOR APPLICATION OF EXECUTION OF DECREE';
       break;
 
       case 97:
-        // We'll be outputting a PDF
-header('Content-Type: application/pdf');
+//         // We'll be outputting a PDF
+// header('Content-Type: application/pdf');
 
-// It will be called downloaded.pdf
-header('Content-Disposition: attachment; filename="proclamation.pdf"');
+// // It will be called downloaded.pdf
+// header('Content-Disposition: attachment; filename="proclamation.pdf"');
 
-// The PDF source is in original.pdf
-readfile('original.pdf');
+// // The PDF source is in original.pdf
+// readfile('original.pdf');
         $title='CHADOR PROCLAMATION';
       break;
 
@@ -17295,92 +17296,104 @@ $aa=$i+1;
 
           $resultx = mysql_query("select * from decrees where id='".$id."'");
           $rowxx = mysql_fetch_array($resultx);
-          ?>
-          <div style=" font-family: 'Times New Roman', Times, serif; width:80%; margin: 10px auto; height:800px">
-    <div class="text-center">
-        <h4 style=" font-family: 'Times New Roman', Times, serif;"><u><b>REPUBLIC OF KENYA</b></u></h4>
-        <h4 style=" font-family: 'Times New Roman', Times, serif;"><u><b>APPLICATION OF EXECUTION OF DECREE</b></u></h4>
-        <h4 style=" font-family: 'Times New Roman', Times, serif;"><u><b>IN THE CHIEF MAGISTRATES COURT AT KIAMBU</b></u></h4>
+          $content = '
+          <div style=" font-family: \'Times New Roman\', Times, serif; width:90%;">
+    <div style="text-align:center">
+        <h4 style=" font-family: \'Times New Roman\', Times, serif;"><u><b>REPUBLIC OF KENYA</b></u></h4>
+        <h4 style=" font-family: \'Times New Roman\', Times, serif;"><u><b>APPLICATION OF EXECUTION OF DECREE</b></u></h4>
+        <h4 style=" font-family: \'Times New Roman\', Times, serif;"><u><b>IN THE CHIEF MAGISTRATES COURT AT KIAMBU</b></u></h4>
     </div>
 
-    <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?>,</b></span> Decree holder, hereby apply for execution of the decree herein below set forth.<p>
-        <table class="table" style="border:1px solid #000000">
-            <tr class="row">
-                <td class="col-md-2">1.</td>
-                <td class="col-md-4">No. of suit</td>
-                <td class="col-md-6"><span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['case_no'];?></b></span></td>
+    <p>I, <span style=" font-family: \'Times New Roman\', Times, serif;"><b>'.$rowxx['decree_holder'].',</b></span> Decree holder, hereby apply for execution of the decree herein below set forth.<p>
+        <table  style="border:1px solid #000000;border-collapse: collapse; width:90%">
+            <tr style="border:1px solid #000000;">
+                <td style="border:1px solid #000000;">1.</td>
+                <td style="border:1px solid #000000;">No. of suit</td>
+                <td style="border:1px solid #000000;"><span style=" font-family: \'Times New Roman\', Times, serif;"><b>'.$rowxx['case_no'].'</b></span></td>
             </tr>
-            <tr class="row">
-                <td class="col-md-2">2.</td>
-                <td class="col-md-4">Names of parties</td>
-                <td class="col-md-6"><span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['plaintiffs'];?> -VS- <?php echo $rowxx['defendants'];?></b></span></td>
+            <tr style="border:1px solid #000000;">
+                <td style="border:1px solid #000000;">2.</td>
+                <td style="border:1px solid #000000;">Names of parties</td>
+                <td style="border:1px solid #000000;"><span style=" font-family: \'Times New Roman\', Times, serif;"><b>'.$rowxx['plaintiffs'].' -VS- '.$rowxx['defendants'].'</b></span></td>
             </tr>
-            <tr class="row">
-                <td class="col-md-2">3.</td>
-                <td class="col-md-4">Date of decree</td>
-                <td class="col-md-6"><?php echo $rowxx['decree_date'];?></td>
+            <tr style="border:1px solid #000000;">
+                <td style="border:1px solid #000000;">3.</td>
+                <td style="border:1px solid #000000;">Date of decree</td>
+                <td style="border:1px solid #000000;">'.$rowxx['decree_date'].'</td>
             </tr>
-            <tr class="row">
-                <td class="col-md-2">4.</td>
-                <td class="col-md-4">Whether any appeal preferred form Decree</td>
-                <td class="col-md-6">Nil</td>
+            <tr style="border:1px solid #000000;">
+                <td style="border:1px solid #000000;">4.</td>
+                <td style="border:1px solid #000000;">Whether any appeal preferred form Decree</td>
+                <td style="border:1px solid #000000;">Nil</td>
             </tr>
-            <tr class="row">
-                <td class="col-md-2">5.</td>
-                <td class="col-md-4">Payment, or adjournment, if any, with date and results.</td>
-                <td class="col-md-6">Nil</td>
+            <tr style="border:1px solid #000000;">
+                <td style="border:1px solid #000000;">5.</td>
+                <td style="border:1px solid #000000;">Payment, or adjournment, if any, with date and results.</td>
+                <td style="border:1px solid #000000;">Nil</td>
             </tr>
-            <tr class="row">
-                <td class="col-md-2">6.</td>
-                <td class="col-md-4">Previous application, if any, with date and results.</td>
-                <td class="col-md-6">Nil</td>
+            <tr style="border:1px solid #000000;">
+                <td style="border:1px solid #000000;">6.</td>
+                <td style="border:1px solid #000000;">Previous application, if any, with date and results.</td>
+                <td style="border:1px solid #000000;">Nil</td>
             </tr>
-            <tr class="row">
-                <td class="col-md-2">7.</td>
-                <td class="col-md-4">Amount with interest due upon the decree or other relief granted thereby together with particulars of any cross-decree.</td>
-                <td class="col-md-6">
-                    <div>Principal Amount               <span class="float-right">Ksh <?php echo $rowxx['principal'];?></span></div>
-                    <p>Interest                       <span class="float-right">Ksh <?php echo $rowxx['interest'];?></span></p>
-                    <p>Decretal Amount                <span class="float-right">Ksh <?php echo $rowxx['decretal_amount'];?></span></p>
+            <tr style="border:1px solid #000000;">
+                <td style="border:1px solid #000000;">7.</td>
+                <td style="border:1px solid #000000;">Amount with interest due upon the decree or other relief granted thereby together with particulars of any cross-decree.</td>
+                <td style="border:1px solid #000000;">
+                    <div>Principal Amount               <span class="float-right"><u>Ksh '.$rowxx['principal'].'</u></span></div>
+                    <p>Interest                       <span class="float-right"><u>Ksh '.$rowxx['interest'].'</u></span></p>
+                    <p>Decretal Amount                <span class="float-right"><u>Ksh '.$rowxx['decretal_amount'].'</u></span></p>
                 </td>
             </tr>
-            <tr class="row">
-                <td class="col-md-2">8.</td>
-                <td class="col-md-4">Amount of costs,</td>
-                <td class="col-md-6">  
-                    <p>Cost Awarded              <span class="float-right"> Ksh <?php echo $rowxx['schedule_cost'];?></span></p>
-                    <p>Court collection fee                       <span class="float-right">Ksh <?php echo $rowxx['court_col_fee'];?></span></p>
-                    <p>Subsequent incurred               <span class="float-right"> Ksh <?php echo $rowxx['sub_incurred'];?></span></p>
-                    <p><b>TOTAL                          <span class="float-right">Ksh <?php echo $rowxx['total_costs'];?></span></b></p>
+            <tr style="border:1px solid #000000;">
+                <td style="border:1px solid #000000;">8.</td>
+                <td style="border:1px solid #000000;">Amount of costs,</td>
+                <td style="border:1px solid #000000;">  
+                    <p>Cost Awarded              <span class="float-right"><u> Ksh '.$rowxx['schedule_cost'].'</u></span></p>
+                    <p>Court collection fee                       <span class="float-right"><u>Ksh '.$rowxx['court_col_fee'].'</u></span></p>
+                    <p>Subsequent incurred               <span class="float-right"><u> Ksh '. $rowxx['sub_incurred'].'</u></span></p>
+                    <p><b>TOTAL                          <span class="float-right"><u>Ksh '.$rowxx['total_costs'].'</u></span></b></p>
                 </td>
             </tr>
-            <tr class="row">
-                <td class="col-md-2">9.</td>
-                <td class="col-md-4">Against whom to execute</td>
-                <td class="col-md-6"><span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['defendants'];?></b></span></td>
+            <tr style="border:1px solid #000000;">
+                <td style="border:1px solid #000000;">9.</td>
+                <td style="border:1px solid #000000;">Against whom to execute</td>
+                <td style="border:1px solid #000000;"><span style=" font-family: \'Times New Roman\', Times, serif;"><b>'.$rowxx['defendants'].'</b></span></td>
             </tr>
-            <tr class="row">
-                <td class="col-md-1">10.</td>
-                <td class="col-md-3">Mode in which the assistance of court is required.</td>
-                <td class="col-md-8"><?php echo $rowxx['assistance_mode'];?><span style=" font-family: 'Times New Roman', Times, serif;"><b>M/S CHADOR AUCTIONEERS</b></span></td>
+            <tr style="border:1px solid #000000;">
+                <td style="border:1px solid #000000;">10.</td>
+                <td style="border:1px solid #000000;">Mode in which the assistance of court is required.</td>
+                <td style="border:1px solid #000000;">'.$rowxx['assistance_mode'].'<span style=" font-family: \'Times New Roman\', Times, serif;"><b>M/S CHADOR AUCTIONEERS</b></span></td>
             </tr>
         </table>
-        <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?></b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief.....................Decree Holder.</p>
+        <p>I, <span style=" font-family: \'Times New Roman\', Times, serif;"><b>'.$rowxx['decree_holder'].'</b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief.....................Decree Holder.</p>
     
-        <p>I, <span style=" font-family: 'Times New Roman', Times, serif;"><b><?php echo $rowxx['decree_holder'];?></b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief, and as far I have been able to ascertain the interest of the Defendant in the property therein.
+        <p>I, <span style=" font-family: \'Times New Roman\', Times, serif;"><b>'.$rowxx['decree_holder'].'</b></span> for the Decree-holder declare that what is stated herein is true tot he best of my knowledge and belief, and as far I have been able to ascertain the interest of the Defendant in the property therein.
         <br>
         Specified.......................................Decree Holder.</p>
       
         <p><b><u>DRAWN & FILED BY:</u></b></p>
-        <p><b><?php echo $rowxx['decree_holder'];?></b></p>
-        <p><b><?php echo $rowxx['holder_address'];?></b></p>
-        <p><b><?php echo $rowxx['holder_location'];?>. </b></p>
+        <p><b>'.$rowxx['decree_holder'].'</b></p>
+        <p><b>'.$rowxx['holder_address'].'</b></p>
+        <p><b>'.$rowxx['holder_location'].' </b></p>
 
 
-</div>
+</div>';
+// instantiate and use the dompdf class
+$dompdf = new Dompdf();
+$dompdf->loadHtml($content);
 
+// (Optional) Setup the paper size and orientation
+$dompdf->setPaper('A4', 'portrait');
 
-          <?php
+// Render the HTML as PDF
+$dompdf->render();
+ob_end_clean();
+// Output the generated PDF to Browser
+$dompdf->stream('proclamation',array('Attachment'=>0));
+// 0 = preview
+// 1 = download
+//printdocument($content);
         break;  
         
         case 97:
@@ -17395,82 +17408,96 @@ $aa=$i+1;
           }else{
             $notice_days = "fourteen (14) days";
           }
-          ?>
-          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 0px auto;">
-    <div class="row">
-    <div class="col-md-12 text-center">
-    <img src="img/logos/point.jpg" alt="" class="pull-left" width="10%">
-    
-    <h5 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h5>
-    <h6 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h6>
-    </div>
-    <div class="col-md-12 ">
-        <div class="text-center" >
-            <p> Thika Business Centre, 5th floor, Suite 3
-            Opp Equity Plaza - Thika
-            Nairobi branch:Comet House,</p>
-            <p> P.O BOX 27304-00100 Nairobi
-            Tel:0720 602229 Cell: 0722 595966 </p>
-           <p> Email: chadorauctioneers06@gmail.com</p>
+          $content = '
+                <div style=" font-family: \'Times New Roman\', Times, sans-serif; width:98%; margin: 0px auto;">
+                <div style="height:100px; ">
+            <img src="img/logos/point.jpg" alt="" style="position:absolute; left:0px; width:15%">
+            <div style="width:85%;text-align:center;position:absolute; right:0px;">
+            <h1 style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
+            <p style=" font-family: \'Times New Roman\', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></p>
+            </div>
+            </div>
+            <hr>
+                <div style="text-align:center" >
+                    <p> Thika Business Centre, 5th floor, Suite 3
+                    Opp Equity Plaza - Thika
+                    Nairobi branch:Comet House,
+                    P.O BOX 27304-00100 Nairobi
+                    Tel:0720 602229 Cell: 0722 595966 
+                Email: chadorauctioneers06@gmail.com</p>
+                    
+                </div>
             
+        <hr>
+            
+            <div style="text-align:center">
+            <p style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>THE AUCTIONEERS ACT NO. 5 OF 1996</b></u></p>
+            <p style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>PROCLAMATION OF THE ATTACHMENT / REPOSSESSION/DISTRAINT OF</b></u></p>
+            <p style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>MOVABLE PROPERTY</b></u></p>
+            </div>
+                
+            <ol>
+                <li>Auctioneer\'s Name: <b style=" font-family: \'Times New Roman\', Times, sans-serif;">'.$rowx['auctioneer'].'  Tel: '.$rowx['auct_phone'].'</b> Address <b>'.$rowx['auct_address'].'</b> trading as:<b>'.$rowx['auct_trader'].'</b></li>
+                <li>Creditor\'s/Landlord\'s name and address <b>.................... '.$rowx['plaintiffs'].' </b></li>
+                <li>Debtor\'s/ Tenant\'s name and address <b>............... '.$rowx['defendants'].'</b></li>
+                <li>Decretal sum/Amount outstanding / Rent arrears as at ...................ksh. '.$rowx['decretal_amount'].' </li>
+                <li>Auctioneers charges Kshs.......kshs. '.$rowx['auct_charges'].' </li>
+                <li>Advocate fee Kshs...........Kshs. '.$rowx['adv_fee'].' <br> Total . '.$rowx['debt'].' </li>
+                <li>In court .... <b>'.$rowx['court'].'</b> </li> 
+                <li>Case Number .... <b>'.$rowx['case_no'].'</b>Date of Decree/Letter of instructions..  <b>'.$rowx['decree_date'].' </b> </li>
+                <li>Date of return to court/creditor...... <b>'.$rowx['return_date'].'</b> </li>
+                <li>Warrant or letter of instructions dated .. <b>'.$rowx['warrant_date'].'</b> was given by above mentioned court/creditor and you are hereby notified that the movable property described in the scheduled hereto is hereby
+                duly attached / repossed / distrained and left in your custody for <b>...... '.$notice_days.' </b>from today. At the expiry of <b>...... '.$notice_days.'</b>from this proclamation the same will be removed to the auctioneer\'s premises and sold by public auction 
+                (or in the case of propert under hire purchase may be sold by private treaty) unless the amount due together with costs of this attachment / repossession / distraint as specified overleaf shall be in the meantime have been paid.</li>
+            </ol>
+            <div class="text-center">
+                <p style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></p>
+            </div>
+            <table style="width:80%; border:1px solid black;border-collapse: collapse;">
+                <thead>
+                    <tr style="border:1px solid black">
+                        <th style="width:40%; border:1px solid black">Description</th>
+                        <th style="width:30%; border:1px solid black">Condition</th>
+                        <th style="width:10%; border:1px solid black">Estimated Value(Kshs)</th>
+                    </tr>
+                </thead>';
+                
+                $query = mysql_query("select * from property_description where uid='".$rowx['uid']."'");
+                $num_rows = mysql_num_rows($query);
+        for ($i = 0; $i < $num_rows; $i++) {
+            $row = mysql_fetch_array($query);
+            $content .= '<tr style="border:1px solid black">
+            <td style="width:40%; border:1px solid black">' . $row['description'] . '</td>
+            <td style="width:20%; border:1px solid black">' . $row['condition'] . '</td>
+            <td style="width:20%; border:1px solid black">' . $row['est_value'] . '</td>
+            </tr>';
+        }
+            $content .='
+            </table>
+        <b>Signature</b>: Judgement Debtor/Agent............................................................ <br>
+        Auctioneer:....................................Witness if any.......................... <br>
+        Dated:........................................................... <br>
+        <b>NB:</b><i>it is an offense to remove, alter, damage, substitute or alienate any goods compromised in the proclamation untill they are redeemed by payment in full</i><br>
+        <b>Estimated cost of this attachment / repossession / distraint Kshs..............................  </b>
+        <p>(Transport charges, insurance, storage, advertisements and other incidentals will be charged at cost as and then they rise.</p>
         </div>
-    </div>
+                ';
+// instantiate and use the dompdf class
+$dompdf = new Dompdf();
+$dompdf->loadHtml($content);
 
-    
-    <div class="clear text-center">
-    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>THE AUCTIONEERS ACT NO. 5 OF 1996</b></u></p>
-    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>PROCLAMATION OF THE ATTACHMENT / REPOSSESSION/DISTRAINT OF</b></u></p>
-    <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MOVABLE PROPERTY</b></u></p>
-    </div>
-        
-    <ol>
-        <li>Auctioneer's Name: <b style=" font-family: 'Times New Roman', Times, sans-serif;"><?php echo $rowx['auctioneer'];?>  Tel: <?php echo $rowx['auct_phone'];?></b> Address <b><?php echo $rowx['auct_address'];?></b> trading as:<b><?php echo $rowx['auct_trader'];?></b></li>
-        <li>Creditor's/Landlord's name and address <b>.................... <?php echo $rowx['plaintiffs'];?> </b></li>
-        <li>Debtor's/ Tenant's name and address <b>............... <?php echo $rowx['defendants'];?></b></li>
-        <li>Decretal sum/Amount outstanding / Rent arrears as at ...................ksh. <?php echo $rowx['decretal_amount'];?> </li>
-        <li>Auctioneers charges Kshs.......kshs. <?php echo $rowx['auct_charges'];?> </li>
-        <li>Advocate fee Kshs...........Kshs. <?php echo $rowx['adv_fee'];?> <br> Total . <?php echo $rowx['debt'];?> </li>
-        <li>In court .... <b><?php echo $rowx['court'];?></b> </li> 
-        <li>Case Number .... <b><?php echo $rowx['case_no'];?></b>Date of Decree/Letter of instructions..  <b><?php echo $rowx['decree_date'];?> </b> </li>
-        <li>Date of return to court/creditor...... <b><?php echo $rowx['return_date'];?></b> </li>
-        <li>Warrant or letter of instructions dated .. <b><?php echo $rowx['warrant_date'];?></b> was given by above mentioned court/creditor and you are hereby notified that the movable property described in the scheduled hereto is hereby
-         duly attached / repossed / distrained and left in your custody for <b>...... <?php echo $notice_days;?> </b>from today. At the expiry of <b>...... <?php echo $notice_days;?></b>from this proclamation the same will be removed to the auctioneer's premises and sold by public auction 
-         (or in the case of propert under hire purchase may be sold by private treaty) unless the amount due together with costs of this attachment / repossession / distraint as specified overleaf shall be in the meantime have been paid.</li>
-    </ol>
-    <div class="text-center">
-        <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></p>
-    </div>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Description</th>
-                <th>Condition</th>
-                <th>Estimated Value(Kshs)</th>
-            </tr>
-        </thead>
-        <?php
-        $query = mysql_query("select * from property_description where uid='".$id."'");
-        $num_rows = mysql_num_rows($query);
-  $total = 0;
-  for ($i = 0; $i < $num_rows; $i++) {
-      $row = mysql_fetch_array($query);
-      $total += $row['est_value'];
-      echo '<tr>
-      <td>' . $row['description'] . '</td>
-      <td>' . $row['condition'] . '</td>
-      <td>' . $row['est_value'] . '</td>
-      </tr>';
-  }
-        ?>
-    </table>
-<b>Signature</b>: Judgement Debtor/Agent............................................................ <br>
-Auctioneer:....................................Witness if any.......................... <br>
-Dated:........................................................... <br>
-<b>NB:</b><i>it is an offense to remove, alter, damage, substitute or alienate any goods compromised in the proclamation untill they are redeemed by payment in full</i><br>
-<b>Estimated cost of this attachment / repossession / distraint Kshs.............................. kshs <?php echo $total;?> </b>
-<p>(Transport charges, insurance, storage, advertisements and other incidentals will be charged at cost as and then they rise.</p>
-</div>
-          <?php
+// (Optional) Setup the paper size and orientation
+$dompdf->setPaper('A4', 'portrait');
+
+// Render the HTML as PDF
+$dompdf->render();
+ob_end_clean();
+// Output the generated PDF to Browser
+$dompdf->stream('proclamation',array('Attachment'=>0));
+// 0 = preview
+// 1 = download
+
+       // printdocument($content);
         break;
 
         case 98:
@@ -17575,15 +17602,15 @@ window.onfocus=function(){ window.close();}
           $rowx = mysql_fetch_array($resultx);
           $param = $rowx['id'];
 
-          ?>
-          <div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
+          $content = '
+          <div style=" font-family: \'Times New Roman\', Times, sans-serif; width:80%; margin: 10px auto;">
     <div class="row">
     <div class="col-md-3">
     <img src="img/logos/point.jpg" alt="" srcset="" width="20%">
     </div>
     <div class="col-md-6">
-    <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
+    <h1 style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
+    <h4 style=" font-family: \'Times New Roman\', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
     </div>
     <div class="col-md-3">
         <div class="text-right" >
@@ -17600,7 +17627,7 @@ window.onfocus=function(){ window.close();}
     </div>
     <hr>
     <div class="clear text-center">
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SALE CATALOGUE AUCTION DATE: <?php echo $rowx['auct_date'];?></b></u></h4>
+    <h4 style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>SALE CATALOGUE AUCTION DATE: '.$rowx['auct_date'].'</b></u></h4>
     </div>
     <table class="table table-bordered">
         <thead>
@@ -17608,11 +17635,11 @@ window.onfocus=function(){ window.close();}
                 <th>Description</th>
                 <th>Amount(Kshs)</th>
             </tr>
-        </thead>
-        <?php
+        </thead>';
+        
           $qry = mysql_query("select distinct lot as lot from property_description where uid='".$param."'");
           while ($lot = mysql_fetch_array($qry)) {
-            echo '<tr><td><h4>Lot '.$lot['lot'].'</h4></td></td></td></tr>';
+            $content .= '<tr><td><h4>Lot '.$lot['lot'].'</h4></td></td></td></tr>';
             $result = mysql_query("select * from property_description where lot='".$lot['lot']."'");
             $num_rows = mysql_num_rows($result);
   
@@ -17634,14 +17661,7 @@ window.onfocus=function(){ window.close();}
     </table>
     
 </div>
-
-<script type="text/javascript">
-window.print();
-window.onfocus=function(){ window.close();}
-</script>
-</body>
-</html>
-    <?php
+';
         break;
 
         case 100:
@@ -17656,17 +17676,17 @@ window.onfocus=function(){ window.close();}
           $resultc = mysql_query("select * from fee_note where uid='".$rowx['uid']."' limit 0,1");
             $row = mysql_fetch_array($resultc);
 
-            //echo var_dump($row);
-?>
+            $content = ' 
 
-<div style=" font-family: 'Times New Roman', Times, sans-serif; width:80%; margin: 10px auto;">
+
+<div style=" font-family: \Times New Roman\', Times, sans-serif; width:80%; margin: 10px auto;">
     <div class="row">
     <div class="col-md-3">
     <img src="img/logos/point.jpg" alt="" srcset="">
     </div>
     <div class="col-md-6">
-    <h1 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
+    <h1 style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>CHADOR AUCTIONEERS</b></u></h1>
+    <h4 style=" font-family: \'Times New Roman\', Times, sans-serif;"><b>Licensed Auctioneers & Commercial Agencies</b></h4>
     </div>
     <div class="col-md-3">
         <div class="text-right" >
@@ -17682,22 +17702,22 @@ window.onfocus=function(){ window.close();}
     </div>
 
     <div class="clear text-center">
-    <h4 style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>FEE NOTE</b></u></h4>
-    <!-- <h4 class="clear text-center" style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>IN THE MATTER OF REPOSSESSION, DISTRESS, WARRRANTS AND IN THE </b></u></h4>
-    <h4 class="clear text-center" style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MATTER OF AUCTIONEERS ACT No. 5 of 1996</b></u></h4> -->
+    <h4 style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>FEE NOTE</b></u></h4>
+    <!-- <h4 class="clear text-center" style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>IN THE MATTER OF REPOSSESSION, DISTRESS, WARRRANTS AND IN THE </b></u></h4>
+    <h4 class="clear text-center" style=" font-family: \'Times New Roman\', Times, sans-serif;"><u><b>MATTER OF AUCTIONEERS ACT No. 5 of 1996</b></u></h4> -->
     </div>
     <br/><br/>
         
     <div class="row">
           <div class="col-md-6">
-          <p>To: <b><u><?php echo $rowx['defendants'];?></u></b></p>
+          <p>To: <b><u>'.$rowx['defendants'].'</u></b></p>
           </div>
           <div class="col-md-4 col-md-offset-2">
-          <p>Date: <b><u><?php echo $row['note_date'];?></u></b></p>
+          <p>Date: <b><u>'.$row['note_date'].'</u></b></p>
           </div>
 
           <div class="col-md-12">
-              <p>Ref: <b><u><?php echo $rowx['plaintiffs']." -VS- ".$rowx['defendants'];?></u></b></p>
+              <p>Ref: <b><u>'.$rowx['plaintiffs'].' -VS- '.$rowx['defendants'].'</u></b></p>
           </div>
     </div>
          
@@ -17720,7 +17740,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Receipt of court warrant/letter of instruction
         </td>
-        <td><b><?php echo $row['receipt'];?></b></td>
+        <td><b>'.$row['receipt'].'</b></td>
         </tr>
        
 
@@ -17732,7 +17752,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Fees before attachment/Repossession
         </td>
-        <td><b><?php echo $row['before_attachment'];?></b></td>
+        <td><b>'.$row['before_attachment'].'</b></td>
         </tr>
         
 
@@ -17743,7 +17763,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Fees on attachment/Repossession/Distraint
         </td>
-        <td><b><?php echo $row['on_attachment'];?></b></td>
+        <td><b>'.$row['on_attachment'].'</b></td>
         </tr>
 
         <tr>
@@ -17753,7 +17773,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Transport
         </td>
-        <td><b><?php echo $row['transport'];?></b></td>
+        <td><b>'.$row['transport'].'</b></td>
         </tr>
 
         <tr>
@@ -17764,7 +17784,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Labour
         </td>
-        <td><b><?php echo $row['labour'];?></b></td>
+        <td><b>'.$row['labour'].'</b></td>
         </tr>
 
         <tr>
@@ -17774,7 +17794,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Hire of breakdown/Towing
         </td>
-        <td><b><?php echo $row['towing'];?></b></td>
+        <td><b>'.$row['towing'].'</b></td>
         </tr>
 
         <tr>
@@ -17784,7 +17804,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Hire of Police Assistance
         </td>
-        <td><b><?php echo $row['police_assistance'];?></b></td>
+        <td><b>'.$row['police_assistance'].'</b></td>
         </tr>
 
         <tr>
@@ -17794,7 +17814,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Investigation fee
         </td>
-        <td><b><?php echo $row['investigation_fee'];?></b></td>
+        <td><b>'.$row['investigation_fee'].'</b></td>
         </tr>
 
               <tr>
@@ -17804,7 +17824,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Advertisement charges
         </td>
-        <td><b><?php echo $row['ad_charges'];?></b></td>
+        <td><b>'.$row['ad_charges'].'</b></td>
         </tr>
 
         
@@ -17815,7 +17835,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Valuation fee
         </td>
-        <td><b><?php echo $row['valuation_fee'];?></b></td>
+        <td><b>'.$row['valuation_fee'].'</b></td>
         </tr>
 
         
@@ -17826,7 +17846,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Sales commission
         </td>
-        <td><b><?php echo $row['sale_commission'];?></b></td>
+        <td><b>'.$row['sale_commission'].'</b></td>
         </tr>
 
 
@@ -17837,7 +17857,7 @@ window.onfocus=function(){ window.close();}
         <td>
         Storage charges
         </td>
-        <td><b><?php echo $row['storage_charges'];?></b></td>
+        <td><b>'.$row['storage_charges'].'</b></td>
         </tr>
         
         <tr>
@@ -17847,7 +17867,7 @@ window.onfocus=function(){ window.close();}
         <td>
         V.A.T 16%
         </td>
-        <td><b><?php echo $row['vat'];?></b></td>
+        <td><b>'.$row['vat'].'</b></td>
         </tr>
         
         <tr>
@@ -17857,7 +17877,7 @@ window.onfocus=function(){ window.close();}
         <td>
        Others
         </td>
-        <td><b><?php echo $row['others'];?></b></td>
+        <td><b>'.$row['others'].'</b></td>
         </tr>
 
         
@@ -17868,7 +17888,7 @@ window.onfocus=function(){ window.close();}
         <td>
        Miscellaneous expenses
         </td>
-        <td><b><?php echo $row['misc_expenses'];?></b></td>
+        <td><b>'.$row['misc_expenses'].'</b></td>
         </tr>
         
         <tr>
@@ -17878,11 +17898,11 @@ window.onfocus=function(){ window.close();}
         <td>
         TOTAL
         </td>
-        <td><b><?php echo $row['total'];?></b></td>
+        <td><b>'.$row['total'].'</b></td>
         </tr>
       </tbody>
     </table>
-<b>Remarks:</b>: <b><textarea class="control"><?php echo $row['remarks'];?></textarea></b><br>
+<b>Remarks:</b>: <b><textarea class="control">'.$row['remarks'].'</textarea></b><br>
 Thank you<br>
 <b>For:Chador Auctioneers</b><i><br/>
 <b>_________________________</b><br/>
@@ -17890,13 +17910,10 @@ Signature
 
 </div>
 
-<script type="text/javascript">
-window.print();
-window.onfocus=function(){ window.close();}
-</script>
+
 </body>
-</html>
-<?php
+</html>';
+
         break;
 
 
@@ -17940,21 +17957,17 @@ window.onfocus=function(){ window.close();}
     <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>PROCLAMATION OF THE ATTACHMENT / REPOSSESSION/DISTRAINT OF</b></u></p>
     <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>MOVABLE PROPERTY</b></u></p>
     </div>
-        
-    <ol>
-        <li>Auctioneer's Name: <b style=" font-family: 'Times New Roman', Times, sans-serif;"><?php echo $rowx['auctioneer'];?>  Tel: <?php echo $rowx['auct_phone'];?></b> Address <b><?php echo $rowx['auct_address'];?></b> trading as:<b><?php echo $rowx['auct_trader'];?></b></li>
-        <li>Creditor's/Landlord's name and address <b>.................... <?php echo $rowx['plaintiffs'];?> </b></li>
-        <li>Debtor's/ Tenant's name and address <b>............... <?php echo $rowx['defendants'];?></b></li>
-        <li>Decretal sum/Amount outstanding / Rent arrears as at ...................ksh. <?php echo $rowx['decretal_amount'];?> </li>
-        <li>Auctioneers charges Kshs.......kshs. <?php echo $rowx['auct_charges'];?> </li>
-        <li>Advocate fee Kshs...........Kshs. <?php echo $rowx['adv_fee'];?> <br> Total . <?php echo $rowx['debt'];?> </li>
-        <li>In court .... <b><?php echo $rowx['court'];?></b> </li> 
-        <li>Case Number .... <b><?php echo $rowx['case_no'];?></b>Date of Decree/Letter of instructions..  <b><?php echo $rowx['decree_date'];?> </b> </li>
-        <li>Date of return to court/creditor...... <b><?php echo $rowx['return_date'];?></b> </li>
-        <li>Warrant or letter of instructions dated .. <b><?php echo $rowx['warrant_date'];?></b> was given by above mentioned court/creditor and you are hereby notified that the movable property described in the scheduled hereto is hereby
-         duly attached / repossed / distrained and left in your custody for <b>...... <?php echo $notice_days;?> </b>from today. At the expiry of <b>...... <?php echo $notice_days;?></b>from this proclamation the same will be removed to the auctioneer's premises and sold by public auction 
-         (or in the case of propert under hire purchase may be sold by private treaty) unless the amount due together with costs of this attachment / repossession / distraint as specified overleaf shall be in the meantime have been paid.</li>
-    </ol>
+
+    <p><?php echo $rowx['plaintiffs'];?><b>CREDITOR/ LANDLORD/ PLAINTIFF</b></p>
+
+    <p><b>Versus</b></p>
+    <p><?php echo $rowx['defendants'];?><b>DEBTOR/ TENANT/ DEFENDANT</b></p>
+    <p><b>TAKE NOTICE THAT </b>the goods proclaimed on the<?php echo $rowx['proclamation_date'];?> And </p>
+    <p>listed herin below have been moved to my auction room and will be sold by public auction</p>
+    <p>on<?php echo $rowx['auct_date'];?> Time<?php echo$rowx['auct_time'];?>place<?php echo $rowx['auct_location'];?></p>
+    <p>unless the amount claimed by the creditor/Landlord plus auctioneers fees and cost of</p>
+    <p>Kshs.<?php echo rowx['auct_charges'];?> Are paid to the auctioneer.</p>
+
     <div class="text-center">
         <p style=" font-family: 'Times New Roman', Times, sans-serif;"><u><b>SCHEDULE OF MOVABLE PROPERTY</b></u></p>
     </div>
@@ -17993,3 +18006,15 @@ Dated:........................................................... <br>
 
    
 }
+// instantiate and use the dompdf class
+$dompdf = new Dompdf();
+$dompdf->loadHtml($content);
+
+// (Optional) Setup the paper size and orientation
+$dompdf->setPaper('A4', 'portrait');
+
+// Render the HTML as PDF
+$dompdf->render();
+
+// Output the generated PDF to Browser
+$dompdf->stream('proclamation',array('Attachment'=>0));

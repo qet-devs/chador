@@ -33313,8 +33313,61 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                           <!-- Panel Widget -->
 
                                 </div>
-
+<<<<<<< HEAD
+=======
+                                <div role="tabpanel" class="tab-pane" id="legal">
                                 
+                                <div class="panel widget">
+                                <div class="panel-heading vd_bg-black">
+                                    <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Court Details</h3>
+                                </div>
+                                <!--                        panel heading-->
+                                <div class="panel-body">
+                                    <!--                            form content goes here-->
+                                    <div class="form-group">
+                                        <label>court <span style="color:#f00">*</span></label>
+                                        <input type="text" id="court" value="'.$row['court'].'" class="control">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label>date <span style="color:#f00">*</span></label>
+                                        <input type="text" id="court_date" value="'.$row['court_date'].'" class="control date">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label>Case Number<span style="color:#f00">*</span></label>
+                                        <input type="text" id="case_no" value="'.$row['case_no'].'" class="control">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label>Date of Decree/Letter of instruction<span style="color:#f00">*</span></label>
+                                        <input type="text" id="decree_date" value="'.$row['decree_date'].'" class="control date">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label>Date of return to court/Creditor<span style="color:#f00">*</span></label>
+                                        <input type="text" id="return_date" value="'.$row['return_date'].'" class="control date">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label>Warrant or letter of instructions date<span style="color:#f00">*</span></label>
+                                        <input type="text" id="warrant_date" value="'.$row['warrant_date'].'" class="control date">
+                                    </div>
+        
+                                    <div class="form-group">
+                                        <label>Number of Notice Days<span style="color:#f00">*</span></label>
+                                        <input type="text" id="notice_days" value="'.$row['notice_days'].'" class="control">
+                                    </div>
+                                    
+                                </div>
+                                <!-- Panel body -->
+                            </div>
+                            <!-- Panel Widget -->
+                            
+                                </div>
+>>>>>>> cd8b0881c8847ac301ca23b0aba622ec98b837b7
+
                                 <div role="tabpanel" class="tab-pane" id="property">
                                 
                                 <div class="panel widget">
@@ -36276,7 +36329,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label>Debtor Name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="rep_name" value="" class="control">
+                                      <input type="text" id="debtor" value="" class="control">
                                   </div>
                                                             
                             
@@ -36296,7 +36349,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label>Specified Timeline<span style="color:#f00">*</span></label>
-                                      <input type="text" id="rep_date" value="" class="control date">
+                                      <input type="date" id="rdate" value="" class="control date">
                                   </div>
       
                                   
@@ -36316,7 +36369,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label> Instructing Party Name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="instructing_name" value="" class="control">
+                                      <input type="text" id="i_party" value="" class="control">
                                   </div>
       
                                  
@@ -36910,12 +36963,12 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                   </div>
                 <select id="intcombo" class="text-capitalize">
                 <option value="" selected>Select One...</option>';
-                   $result =mysql_query("select * from decrees where status=1");
+                   $result =mysql_query("select * from repossession where status=1");
                     $num_results = mysql_num_rows($result);
                       for ($i=0; $i <$num_results; $i++) {
                           $row=mysql_fetch_array($result);
                           $code=stripslashes($row['id']);
-                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['plaintiffs']).'<strong> vs </strong>'.stripslashes($row['defendants']).'</option>';
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['debtor']).'<strong> vs </strong>'.stripslashes($row['i_party']).'</option>';
                         }
                    echo'</select>
                      <div class="cleaner_h10"></div>
@@ -36952,8 +37005,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
         case 907:
           $param = $_GET['param'];
-          mysql_query("insert into log values('','".$username." accesses notification of sale panel.decree id ".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
-          $resulta = mysql_query("select * from decrees where id='".$param."' limit 0,1");
+          mysql_query("insert into log values('','".$username." accesses notification of sale panel.repossession id ".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+          $resulta = mysql_query("select * from repossession where id='".$param."' limit 0,1");
           $row = mysql_fetch_array($resulta);
           echo '
           
@@ -36966,18 +37019,19 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                           <div class="panel widget">
                               <div class="panel-heading vd_bg-grey">
                                   <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                      Notification of Sale File-'.stripslashes($row['plaintiffs']).' VS '.stripslashes($row['defendants']).' </h3>
+                                      Notification of Sale File-'.stripslashes($row['debtor']).' VS '.stripslashes($row['i_party']).' </h3>
                               </div>
                               <div class="panel-body text-capitalize">
                               <div>
 
-                              <button class="btn btn-info pull-right" onclick="printnotification('.$param.')">Print Proclamation</button>
+                              <button class="btn btn-info pull-right" onclick="printnotification('.$param.')">Print Notification of Sale</button>
 
                               <!-- Nav tabs -->
                               <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#auctioneer" aria-controls="auctioneer" role="tab" data-toggle="tab">Auctioning Details</a></li>
+                                <li role="presentation"><a href="#property" aria-controls="property" role="tab" data-toggle="tab">Property</a></li>
+                                <li role="presentation"><a href="#noticedetails" aria-controls="notice" role="tab" data-toggle="tab">Notice details</a></li>
                                 
-                                <li role="presentation"><a href="#property" aria-controls="legal" role="tab" data-toggle="tab">Property</a></li>
                                
                               </ul>
                             
@@ -36995,37 +37049,19 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   <!--                            form content goes here-->
                                   <div class="form-group">
                                       <label> Creditor name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="plaintiffs" value="'.$row['plaintiffs'].'" class="control">
+                                      <input type="text" id="debtor" value="'.$row['debtor'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
                                       <label>Debtor name -:<span style="color:#f00">*</span></label>
-                                      <input type="text" id="defendants" value="'.$row['defendants'].'" class="control">
+                                      <input type="text" id="i_party" value="'.$row['i_party'].'" class="control">
                                   </div>
       
                                   <div class="form-group">
-                                      <label>Date of goods proclmation -:<span style="color:#f00"></span></label>
-                                      <input type="text" id="proclamation_date" value="'.$row['proclamation_date'].'" class="control date">
+                                      <label>Date of goods proclaimed -:<span style="color:#f00"></span></label>
+                                      <input type="text" id="rdate" value="'.$row['rdate'].'" class="control date">
                                   </div>
-
-                                  <div class="form-group">
-                                  <label>Date of auction  -:<span style="color:#f00"></span></label>
-                                  <input type="text" id="auct_date" value="'.$row['auct_date'].'" class="control date">
-                              </div>
-
-                              <div class="form-group">
-                              <label>Time of auction -:<span style="color:#f00"></span></label>
-                              <input type="text" id="auct_time" value="'.$row['auct_time'].'" class="control">
-                          </div>
-
-                          <div class="form-group">
-                          <label>Location of auction -:<span style="color:#f00"></span></label>
-                          <input type="text" id="auct_location" value="'.$row['auct_location'].'" class="control">
-                      </div>
-                      <div class="form-group">
-                      <label>Amount paid to the auctioneers -:<span style="color:#f00"></span></label>
-                      <input type="text" id="auct_charges" value="'.$row['auct_charges'].'" class="control">
-                  </div>
+                                              
 
                                   
                                   <div class="form-group" id="auct_btn">
@@ -37039,25 +37075,30 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                                 </div>
 
-                               
+
                                 <div role="tabpanel" class="tab-pane" id="property">
                                 
                                 <div class="panel widget">
                                 <div class="panel-heading vd_bg-black">
                                     <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                        Property Details</h3>
+                                        Schedule of repossessed properties</h3>
                                 </div>
                                 <!--                        panel heading-->
                                 <div class="panel-body">
                                     <!--                            form content goes here-->
                                   
+                                    <!--                            form content goes here-->
+                                  
+                                  
                                     <div class="form-group">
-                                      <label>Sales Notification Description</label>
+                                      <label>Description</label>
+                                      <input type="hidden" id="source" value="repossession">
                                       <textarea class="control" id="description"></textarea>
                                     </div>
 
                                   <div class="form-group">
-                                    <label>Condition of sales Notification</label>
+                                    <label>Condition</label>
+                                    <input type="hidden" id="uid" value="'.$row['uid'].'">
                                     <input type="text" class="control" id="condition">
                                   </div>
 
@@ -37070,13 +37111,61 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <button class="btn btn-success control" onclick="savenotificationproperty('.$param.')" >Add</button>
                                   </div>
                                 </div>
+                                  
                                 <!-- Panel body -->
                             </div>
                             <!-- Panel Widget -->
                             
-                              <div id="property_table">
+                              <div id="desc_table">
                                 
+                               </div>
+
+
+                                </div>
+
+                               
+                                <div role="tabpanel" class="tab-pane" id="noticedetails">
+                                
+                                <div class="panel widget">
+                                <div class="panel-heading vd_bg-black">
+                                    <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Notice auction details</h3>
+                                </div>
+                                <!--                        panel heading-->
+                                <div class="panel-body">
+                                <div class="form-group">
+                                <label>Auction Day</label>
+                            
+                                <input type="text" class="control date" id="day"></textarea>
                               </div>
+
+                            <div class="form-group">
+                              <label>Auction Time</label>
+                            
+                              <input type="text" class="control" id="ntime">
+                            </div>
+
+                            <div class="form-group">
+                              <label>Auction Location</label>
+                              <input type="text" class="control" id="place">
+                            </div>
+
+                            <div class="form-group">
+                            <label>Auction charges</label>
+                            <input type="text" class="control" id="charges">
+                          </div>
+                            <div class="form-group" >
+                                <button class="btn btn-success control" onclick="savedetails()" >Save</button>
+                            </div>
+                          </div>
+                                   
+                                <!-- Panel body -->
+                            </div>
+                            <!-- Panel Widget -->
+                            
+                              
+
+
                                 </div>
                               </div>
                             
@@ -37092,32 +37181,37 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
           echo '<script>notificationdescription('.$param.')</script>';
         break;
+
         case 908:
           $param = $_GET['param'];
-          $query = mysql_query("select * from property_description where uid='".$param."'");
-          $num_rows = mysql_num_rows($query);
-    $count = 1;
-    echo '<table class="table table-bordered table-hover">
-    <thead>
-          <tr>
-          <td>No.</td>
-          <td>Description</td>
-          <td>Condition</td>
-          <td>Estimated Value(Kshs)</td>
-          </tr>
-    </thead>';
-    for ($i = 0; $i < $num_rows; $i++) {
-        $row = mysql_fetch_array($query);
-        echo '<tr>
-        <td>' . $count++ . '</td>
-        <td>' . $row['description'] . '</td>
-        <td>' . $row['condition'] . '</td>
-        <td>' . $row['est_value'] . '</td>
-        </tr>';
-    }
-    echo '</table>';
+          $query = mysql_query("select * from repossession where id='".$param."'");
+          if($row = mysql_fetch_array($query)){
+            $qry = mysql_query("select * from property_description where uid='".$row['uid']."'");
+            $num_rows = mysql_num_rows($qry);
+            $count = 1;
+            echo '<table class="table table-bordered table-hover">
+            <thead>
+                  <tr>
+                  <td>No.</td>
+                  <td>Description</td>
+                  <td>Condition</td>
+                  <td>Estimated Value(Kshs)</td>
+                  </tr>
+            </thead>';
+            for ($i = 0; $i < $num_rows; $i++) {
+                $row = mysql_fetch_array($qry);
+                echo '<tr>
+                <td>' . $count++ . '</td>
+                <td>' . $row['description'] . '</td>
+                <td>' . $row['condition'] . '</td>
+                <td>' . $row['est_value'] . '</td>
+                </tr>';
+            }
+            echo '</table>';
+          }
+          
         break;
-
+        
         case 910:
           $param=0;
           if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
@@ -37160,7 +37254,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
         break;
 
-        case 911:
+             case 911:
           $param=0;
           if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
           else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
@@ -37295,7 +37389,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             } </style>';
          
         break;
-
 
 
 }

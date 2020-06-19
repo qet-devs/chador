@@ -1,5 +1,7 @@
 <?php
 date_default_timezone_set('Africa/Nairobi');
+require_once 'dompdf/autoload.inc.php';
+use Dompdf\Dompdf;
 function getcurlink($key)
 {
     return $key . '-' . $_SESSION['links'][$key];
@@ -19,9 +21,8 @@ function getpropdes($id)
         <td>' . $row['est_value'] . '</td>
         </tr>';
     }
-    
-}
 
+}
 
 
 function getdocs($id)
@@ -54,15 +55,14 @@ function getdocs($id)
 }
 
 
-
 function getdocsletter($id)
 {
     $resulta = mysql_query("select * from tendocs where  sap='letter' order by stamp desc");
     $num_resultsa = mysql_num_rows($resulta);
     for ($i = 0; $i < $num_resultsa; $i++) {
         $rowa = mysql_fetch_array($resulta);
-        
-        echo '<li><a href="'.$rowa['link'].'">'.$rowa['details'].'</a></li>';
+
+        echo '<li><a href="' . $rowa['link'] . '">' . $rowa['details'] . '</a></li>';
 
     }
 
@@ -88,7 +88,7 @@ function getdocsrepossession($id)
         // } else {
         //     $src = 'img/format.png';
         // }
-        echo '<li><a href="'.$rowa['link'].'">'.$rowa['details'].'</a></li>';
+        echo '<li><a href="' . $rowa['link'] . '">' . $rowa['details'] . '</a></li>';
 
     }
 
@@ -220,6 +220,22 @@ function postloanded($row, $username)
 
 }
 
+function printdocument($content){
+    // instantiate and use the dompdf class
+$dompdf = new Dompdf();
+$dompdf->loadHtml($content);
+echo $content;
+
+// (Optional) Setup the paper size and orientation
+$dompdf->setPaper('A4', 'portrait');
+
+// Render the HTML as PDF
+$dompdf->render();
+ob_end_clean();
+// Output the generated PDF to Browser
+$dompdf->stream('chador',array('Attachment'=>0));
+
+}
 
 function gettenantbalance($tid)
 {
@@ -242,7 +258,6 @@ function gettenantbalance($tid)
 
 
 }
-
 
 
 function checkinvoiceexists($key)
