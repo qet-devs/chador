@@ -760,6 +760,18 @@ function majoropen(a) {
             case 804:
                 activateproclamation(b);
                 break;
+               
+                    case 902:
+                    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                    $.ajax({
+                        url: 'bridge.php',
+                        data: {id: 912, param: b},
+                        success: function (data) {
+                            $('#mainp').html(data);
+                        }
+                    });
+    
+                    break;
 
 
         }
@@ -10402,6 +10414,7 @@ function savedetails() {
 }
 
 
+<<<<<<< HEAD
 function editrepossession() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
@@ -10411,6 +10424,68 @@ function editrepossession() {
             $('#mainp').html(data);
         }
     });
+=======
+function savecourt(){
+    var creditoradd=$('#creditoradd').val();
+	var debtoradd = $('#debtoradd').val();
+	var  decretal= $('#decretal').val();
+    var advocate = $('#advocate').val();
+    var cname = $('#cname').val();
+    var clocation = $('#clocation').val();
+    var caseno = $('#caseno').val();
+    var ddate = $('#ddate').val();
+    var cdate = $('#cdate').val();
+    var wdate = $('#wdate').val();
+    var custody = $('#custody').val();
+    var expiry = $('#expiry').val();
+	
+	
+
+	if(creditoradd==''||debtoradd==''||decretal==''||advocate==''||cname==''||clocation==''||caseno==''||ddate==''||cdate==''||wdate==''||custody==''||expiry==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:912,
+			creditoradd:creditoradd,
+			debtoradd:debtoradd,
+			decretal:decretal,
+            advocate:advocate,
+            cname:cname,
+            clocation:clocation,
+            caseno:caseno,
+            ddate:ddate,
+            cdate:cdate,
+            wdate:wdate,
+            custody:custody,
+            expiry:expiry
+
+		
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
+
+
+function editrepossession(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:902},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+>>>>>>> a9f8aa456747176260eba7ee27fabdf4b89c5ef5
 }
 
 
@@ -11175,6 +11250,7 @@ function savedecreeproperty(param) {
     var source = $('#source').val();
     var uid = $('#uid').val();
 
+<<<<<<< HEAD
     if (description == '') {
         swal("Error", "Please fill all required fields", "error");
         return;
@@ -11233,6 +11309,32 @@ function savenotificationproperty(param) {
         ;
     }
 }
+=======
+	if(description==''||est_value=='' ){
+		swal("Error", "Please fill all required fields", "error");
+		return;
+	}else{
+		var data = {
+			id:950,
+			param:param,
+			description:description,
+			condition:condition,
+            est_value:est_value,
+            source:source,
+            uid:uid
+		};
+		$('#desc_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+		$.ajax({
+			url:'data.php',
+			data:data,
+			success:function(data){
+				clearnotificationform();
+			$('#desc_table').html(data);
+			}
+        });        ;}
+        
+    }
+>>>>>>> a9f8aa456747176260eba7ee27fabdf4b89c5ef5
 
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});
 
@@ -11571,6 +11673,42 @@ function propertydescription(param) {
     });
 }
 
+
+function saverepproperty(param) {
+    var description = $('#description').val();
+    var condition = $('#condition').val();
+    var est_value = $('#est_value').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
+    var source = $('#source').val();
+    var uid = $('#uid').val();
+
+    if (description == '') {
+        swal("Error", "Please fill all required fields", "error");
+        return;
+    } else {
+        var data = {
+            id: 913,
+            param: param,
+            description: description,
+            condition: condition,
+            est_value: est_value,
+            source: source,
+            uid: uid
+
+        };
+        $('#property_table').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                clearpropertyform();
+                $('#property_table').html(data);
+            }
+        });
+
+    }
+}
+
+
 function savedecreeproperty(param) {
     var description = $('#description').val();
     var condition = $('#condition').val();
@@ -11665,6 +11803,39 @@ function saveproclamation(param) {
     }
 
 }
+
+function saveproclamationnotice(param) {
+    var i_party = $('#i_party').val();
+    var debtor = $('#debtor').val();
+    var charges = $('#charges').val();
+    
+
+
+    if (i_party == '' || debtor == '' || charges == '') {
+        swal("Error", "Please fill all required fields", "error");
+        return;
+    } else {
+        var data = {
+            id: 914,
+            param: param,
+            i_party: i_party,
+            debtor: debtor,
+            charges: charges,
+            
+        };
+
+        $('#auct_btn').html('<button class="btn btn-success control" >saving....</button>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#mainp').html(data);
+            }
+        });
+    }
+
+}
+
 
 
 function savenotification(param) {
@@ -11772,4 +11943,8 @@ function calcfeenotetotal() {
         + parseFloat(valuation_fee, 10) + parseFloat(sale_commission, 10) + parseFloat(storage_charges, 10) + parseFloat(vat, 10) + parseFloat(others, 10) + parseFloat(mis_expenses, 10);
     tot = (tot).formatMoney(2, '.', ',');
     $('#total').val(tot);
+<<<<<<< HEAD
+=======
+
+>>>>>>> a9f8aa456747176260eba7ee27fabdf4b89c5ef5
 }
