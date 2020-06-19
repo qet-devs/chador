@@ -32894,16 +32894,16 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         break;
 
         case 609:
-          $tid=$param=$_GET['param'];$_SESSION['housediv']=array();
-          if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-          else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+              $param=$_GET['param'];
               $result = mysql_query("insert into log values('','".$username." accesses decree edit File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
               $resultx =mysql_query("select * from decrees where id='".$param."' limit 0,1");
               $rowx=mysql_fetch_array($resultx);
 
-              if(empty($rowx[''])){
+              // if(empty()){
 
-              }
+              // }else{
+
+              // }
 
               echo '<div class="vd_container" id="container">
               <div class="vd_content clearfix" style="">
@@ -33036,7 +33036,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                           <div class="col-sm-4"></div>
                                           <div class="col-sm-7">
                                               <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                                      onclick="saveapplication('.$param.')"><i class="icon-ok"></i> Save                          </button>
+                                                      onclick="savedecreeapplication('.$param.')"><i class="icon-ok"></i> print                          </button>
                                               <button class="btn btn-danger" type="button" onclick="hidecont()">Cancel</button>
                                               <div id="message" style="width:40px;height:40px;float:right"></div>
                                           </div>

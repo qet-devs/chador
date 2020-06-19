@@ -535,6 +535,58 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
         </div>
     </li> 
 
+    <li>
+      <a href="javascript:void(0);" data-action="click-trigger">
+          <span class="menu-icon"><i class="fa fa-building"> </i></span>
+            <span class="menu-text">Immovable Properties</span>  
+            <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
+        </a>
+      <div class="child-menu"  data-action="click-target">
+            <ul>
+
+              <li style="">
+                    <?php if($rightsarr[107]=='YES'){
+          echo'<a  href="#" onclick="decree()" >
+                        <span class="menu-text">Decree</span>  
+                    </a>';} ?>
+                </li> 
+
+                
+                <li>
+                    <?php if($rightsarr[108]=='YES'){
+          echo'<a  href="#" onclick="finddecree()" >
+                        <span class="menu-text">Find decree</span>  
+                    </a>';} ?>
+                </li> 
+          
+
+            <li>
+                     <?php if($rightsarr[113]=='YES'){
+          echo'<a  href="#" onclick="decreefile()" >
+                        <span class="menu-text">File Uploads</span>  
+                        </a>';} ?>
+                </li> 
+
+                <li>
+                     <?php if($rightsarr[114]=='YES'){
+          echo'<a  href="#" onclick="checkoutdecree()" >
+                        <span class="menu-text">Archive Decree</span>  
+                        </a>';} ?>
+                </li> 
+
+               
+               <li>
+                     <?php if($rightsarr[119]=='YES'){
+              echo'<a  href="#" onclick="archiveddecree()" >
+                        <span class="menu-text">Archived Decrees</span>  
+                        </a>';} ?>
+                </li> 
+          
+            </ul>   
+        </div>
+    </li> 
+
+
 
     <!-- repossession -->
     <li>
