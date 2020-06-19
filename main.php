@@ -564,11 +564,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                         <span class="menu-text">File Repossession</span>  
                     </a>';} ?>
                 </li> 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> cd8b0881c8847ac301ca23b0aba622ec98b837b7
+                
                 <li>
                     <?php if($rightsarr[108]=='YES'){
           echo'<a  href="#" onclick="notificationsalefile()" >
@@ -589,16 +585,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
               echo'<a  href="#" onclick="archivedrepossession()" >
                         <span class="menu-text">Archived Repossession</span>  
                         </a>';} ?>
-                </li> 
-
-             
-
-           
-<<<<<<< HEAD
-
-
-=======
->>>>>>> cd8b0881c8847ac301ca23b0aba622ec98b837b7
+                </li>
                 
             </ul>   
         </div>
