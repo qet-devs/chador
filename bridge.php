@@ -33311,60 +33311,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                           <!-- Panel Widget -->
 
                                 </div>
-<<<<<<< HEAD
-=======
-                                <div role="tabpanel" class="tab-pane" id="legal">
-                                
-                                <div class="panel widget">
-                                <div class="panel-heading vd_bg-black">
-                                    <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                        Court Details</h3>
-                                </div>
-                                <!--                        panel heading-->
-                                <div class="panel-body">
-                                    <!--                            form content goes here-->
-                                    <div class="form-group">
-                                        <label>court <span style="color:#f00">*</span></label>
-                                        <input type="text" id="court" value="'.$row['court'].'" class="control">
-                                    </div>
-        
-                                    <div class="form-group">
-                                        <label>date <span style="color:#f00">*</span></label>
-                                        <input type="text" id="court_date" value="'.$row['court_date'].'" class="control date">
-                                    </div>
-        
-                                    <div class="form-group">
-                                        <label>Case Number<span style="color:#f00">*</span></label>
-                                        <input type="text" id="case_no" value="'.$row['case_no'].'" class="control">
-                                    </div>
-        
-                                    <div class="form-group">
-                                        <label>Date of Decree/Letter of instruction<span style="color:#f00">*</span></label>
-                                        <input type="text" id="decree_date" value="'.$row['decree_date'].'" class="control date">
-                                    </div>
-        
-                                    <div class="form-group">
-                                        <label>Date of return to court/Creditor<span style="color:#f00">*</span></label>
-                                        <input type="text" id="return_date" value="'.$row['return_date'].'" class="control date">
-                                    </div>
-        
-                                    <div class="form-group">
-                                        <label>Warrant or letter of instructions date<span style="color:#f00">*</span></label>
-                                        <input type="text" id="warrant_date" value="'.$row['warrant_date'].'" class="control date">
-                                    </div>
-        
-                                    <div class="form-group">
-                                        <label>Number of Notice Days<span style="color:#f00">*</span></label>
-                                        <input type="text" id="notice_days" value="'.$row['notice_days'].'" class="control">
-                                    </div>
-                                    
-                                </div>
-                                <!-- Panel body -->
-                            </div>
-                            <!-- Panel Widget -->
-                            
-                                </div>
->>>>>>> cd8b0881c8847ac301ca23b0aba622ec98b837b7
 
                                 <div role="tabpanel" class="tab-pane" id="property">
                                 

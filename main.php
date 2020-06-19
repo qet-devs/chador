@@ -432,7 +432,7 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
       <div class="child-menu"  data-action="click-target">
             <ul>
 
-              <li style="">
+            <li style="">
                     <?php if($rightsarr[107]=='YES'){
           echo'<a  href="#" onclick="decree()" >
                         <span class="menu-text">Decree</span>  
@@ -446,27 +446,14 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                         <span class="menu-text">Find decree</span>  
                     </a>';} ?>
                 </li> 
-
-                <li>
-                    <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="decreeapplication()" >
-                        <span class="menu-text">Application</span>  
-                    </a>';} ?>
-                </li> 
           
-                <li>
-                    <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="decreefeenote()" >
-                        <span class="menu-text">Fee Note</span>  
-                    </a>';} ?>
-                </li>
-            
-                <li>
-                    <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="warrantproclamation()" >
-                        <span class="menu-text">Proclamation</span>  
-                    </a>';} ?>
-                </li>
+
+            <li>
+                     <?php if($rightsarr[113]=='YES'){
+          echo'<a  href="#" onclick="decreefile()" >
+                        <span class="menu-text">File Uploads</span>  
+                        </a>';} ?>
+                </li> 
 
                 <li>
                      <?php if($rightsarr[114]=='YES'){
@@ -482,13 +469,11 @@ else{echo"<script>window.location.href = \"index.php\";</script>";}
                         <span class="menu-text">Archived Decrees</span>  
                         </a>';} ?>
                 </li> 
-
-
-
-                
+          
             </ul>   
         </div>
     </li> 
+
 
     <li>
       <a href="javascript:void(0);" data-action="click-trigger">
