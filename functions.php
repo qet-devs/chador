@@ -1,7 +1,9 @@
 <?php
 date_default_timezone_set('Africa/Nairobi');
 require_once 'dompdf/autoload.inc.php';
+
 use Dompdf\Dompdf;
+
 function getcurlink($key)
 {
     return $key . '-' . $_SESSION['links'][$key];
@@ -220,20 +222,21 @@ function postloanded($row, $username)
 
 }
 
-function printdocument($content){
+function printdocument($content)
+{
     // instantiate and use the dompdf class
-$dompdf = new Dompdf();
-$dompdf->loadHtml($content);
-echo $content;
+    $dompdf = new Dompdf();
+    $dompdf->loadHtml($content);
+    echo $content;
 
 // (Optional) Setup the paper size and orientation
-$dompdf->setPaper('A4', 'portrait');
+    $dompdf->setPaper('A4', 'portrait');
 
 // Render the HTML as PDF
-$dompdf->render();
-ob_end_clean();
+    $dompdf->render();
+    ob_end_clean();
 // Output the generated PDF to Browser
-$dompdf->stream('chador',array('Attachment'=>0));
+    $dompdf->stream('chador', array('Attachment' => 0));
 
 }
 
