@@ -643,7 +643,7 @@ function majoropen(a) {
                 $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
                 $.ajax({
                     url: 'bridge.php',
-                    data: {id: 603, param: b},
+                    data: {id: 602, param: b},
                     success: function (data) {
                         $('#mainp').html(data);
                     }
