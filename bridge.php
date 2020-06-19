@@ -36285,6 +36285,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             
                                     if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(900)">Edit Repossession</label><br/>';}
+                                   if($arr[112]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                                        onclick="majoropen(902)">Proclamation</label><br/>';}                                  
                                     if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                       onclick="majoropen(901)">Repossession Info</label><br/>';}
                                    
@@ -36899,7 +36901,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 <div class="form-group">
                                 <label>Auction Day</label>
                             
-                                <input type="text" class="control date" id="day"></textarea>
+                                <input type="date" class="control" id="day"></textarea>
                               </div>
 
                             <div class="form-group">
@@ -37152,6 +37154,204 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             } </style>';
          
         break;
+        case 912:
+          $param = $_GET['param'];
+          mysql_query("insert into log values('','".$username." accesses proclamation panel.repossession id ".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+          $resulta = mysql_query("select * from repossession where id='".$param."' limit 0,1");
+          $row = mysql_fetch_array($resulta);
+          echo '
+          
+          <div class="vd_container" id="container">
+          <div class="vd_content clearfix" style="">
+      
+              <div class="vd_content-section clearfix">
+                  <div class="row" id="form-basic">
+                      <div class="col-md-12">
+                          <div class="panel widget">
+                              <div class="panel-heading vd_bg-grey">
+                                  <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                      Proclamation File-'.stripslashes($row['debtor']).' VS '.stripslashes($row['i_party']).' </h3>
+                              </div>
+                              <div class="panel-body text-capitalize">
+                              <div>
+
+                              <button class="btn btn-success pull-right" onclick="saveproclamationnotice('.$param.')">Submit</button>
+
+                              <!-- Nav tabs -->
+                              <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#auctioneer" aria-controls="auctioneer" role="tab" data-toggle="tab">Auctioneer</a></li>
+                                
+                                <li role="presentation"><a href="#legal" aria-controls="legal" role="tab" data-toggle="tab">Legal</a></li>
+                                <li role="presentation"><a href="#property" aria-controls="property" role="tab" data-toggle="tab">Property</a></li>
+                              </ul>
+                            
+                              <!-- Tab panes -->
+                              <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="auctioneer">
+                                
+                                <div class="panel widget "  width="80%">
+                              <div class="panel-heading vd_bg-black" >
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                      Auctioneer Details</h3>
+                              </div>
+                              <!--                        panel heading-->
+                              <div class="panel-body">
+                                  <!--                            form content goes here-->
+                                  <div class="form-group">
+                                      <label>Creditor Name -:<span style="color:#f00">*</span></label>
+                                      <input type="text" id="debtor" value="'.$row['i_party'].'" class="control">
+                                  </div>
+                                  <div class="form-group">
+                                      <label>Debtor Name -:<span style="color:#f00">*</span></label>
+                                      <input type="text" id="i_party" value="'.$row['debtor'].'" class="control">
+                                  </div>
+      
+                                  <div class="form-group">
+                                      <label>Auctioneer charges -:<span style="color:#f00">*</span></label>
+                                      <input type="text" id="auct_phone" value="'.$row['charges'].'" class="control">
+                                  </div>
+      
+
+      
+                              </div>
+                              <!-- Panel body -->
+                          </div>
+                          <!-- Panel Widget -->
+
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="legal">
+
+                                <div class="panel widget">
+                              <div class="panel-heading vd_bg-black">
+                                  <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                      Court Details</h3>
+                              </div>
+                              <!--                        panel heading-->
+                              <div class="panel-body">
+                                  <!--                            form content goes here-->
+                                  <div class="form-group">
+                                      <label>Creditor Address <span style="color:#f00">*</span></label>
+                                      <input type="text" id="creditoradd"  class="control" >
+                                  </div>
+      
+                                  <div class="form-group">
+                                      <label>Debtor Address <span style="color:#f00">*</span></label>
+                                      <input type="text" id="debtoradd" class="control">
+                                  </div>
+      
+                                  <div class="form-group">
+                                      <label>Decretal Sum<span style="color:#f00">*</span></label>
+                                      <input type="text" id="decretal"  class="control" >
+                                  </div>
+      
+                                  <div class="form-group">
+                                      <label>Advocate fees<span style="color:#f00">*</span></label>
+                                      <input type="text" id="advocate"   class="control">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label>Court Name<span style="color:#f00">*</span></label>
+                                      <input type="text" id="cname"   class="control">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label>Court Location<span style="color:#f00">*</span></label>
+                                      <input type="text" id="clocation"   class="control">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label>Case No<span style="color:#f00">*</span></label>
+                                      <input type="text" id="caseno"   class="control">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label>Decree Date<span style="color:#f00">*</span></label>
+                                      <input type="text" id="ddate"   class="control date">
+                                  </div>
+                                  <div class="form-group">
+                                      <label>Creditor Date<span style="color:#f00">*</span></label>
+                                      <input type="text" id="cdate"   class="control date">
+                                  </div>
+                                  <div class="form-group">
+                                      <label>Warrant Date<span style="color:#f00">*</span></label>
+                                      <input type="text" id="wdate"   class="control date">
+                                  </div>
+                                  <div class="form-group">
+                                      <label>Custody days<span style="color:#f00">*</span></label>
+                                      <input type="text" id="custody"   class="control">
+                                  </div>
+                                  <div class="form-group">
+                                      <label>Procalmation expiry days<span style="color:#f00">*</span></label>
+                                      <input type="text" id="expiry"   class="control">
+                                  </div>
+                                  <div class="form-group" >
+                                      <button class="btn btn-success control" onclick="savecourt()" >Add</button>
+                                  </div>
+
+                              </div>
+                              <!-- Panel body -->
+                          </div>
+                          <!-- Panel Widget -->
+
+                                </div>
+                              
+                                <div role="tabpanel" class="tab-pane" id="property">
+                                
+                                <div class="panel widget">
+                                <div class="panel-heading vd_bg-black">
+                                    <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Schedule of Movable Property</h3>
+                                </div>
+                                <!--                        panel heading-->
+                                <div class="panel-body">
+                                    <!--                            form content goes here-->
+                                  
+                                    <div class="form-group">
+                                      <label>Description</label>
+                                      <input type="hidden" id="source" value="repproc">
+                                      <textarea class="control" id="description"></textarea>
+                                    </div>
+
+                                  <div class="form-group">
+                                    <label>Condition</label>
+                                    <input type="hidden" id="uid" value="'.$row['uid'].'">
+                                    <input type="text" class="control" id="condition">
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>Estimated Value</label>
+                                    <input type="text" class="control" id="est_value">
+                                  </div>
+
+                                  <div class="form-group" >
+                                      <button class="btn btn-success control" onclick="saverepproperty('.$param.')" >Add</button>
+                                  </div>
+                                </div>
+                                <!-- Panel body -->
+                            </div>
+                            <!-- Panel Widget -->
+                            
+                              <div id="property_table">
+                                
+                              </div>
+                                </div>
+                              </div>
+                            
+                            </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </div>
+          ';
+
+          echo '<script>propertydescription('.$param.')</script>';
+        break;
+
+       
 
 
 }
