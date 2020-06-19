@@ -6930,7 +6930,7 @@ WHERE
         $uid = 'REP' . sprintf("%06d", $tid);
 
 
-        $resultc = mysql_query("INSERT INTO `repossession` VALUES ('0','" . $uid . "','" . $debtor . "','" . $rdate . "','" . $i_party . "','" . $property . "','".$day."','".$ntime."','".$place."','1','" . $username . "', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+        $resultc = mysql_query("INSERT INTO `repossession` VALUES ('0','" . $uid . "','" . $debtor . "','" . $rdate . "','" . $i_party . "','" . $property . "','".$day."','".$ntime."','".$place."','".$charges."','1','" . $username . "', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
 
         if ($resultc) {
@@ -6966,7 +6966,7 @@ WHERE
                 $resulta = mysql_query("insert into log values('0','" . $username . " updates Repossession','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
                 echo "<script>setTimeout(function() {newrepossession();},500);</script>";
             } else {
-                echo '<script>swal("Error", "failed to save Proclamation info!", "error");</script>';
+                echo '<script>swal("Error", "failed to save Repossession info!", "error");</script>';
             }
             break;
 
@@ -7068,6 +7068,43 @@ WHERE
                                 echo '<script>swal("Error", "failed to save notification details!", "error");</script>';
                             }
                             break;
+                            case 911:
+                                $day = strtoupper($_GET['day']);
+                                $ntime = $_GET['ntime'];
+                                $place = strtoupper($_GET['place']);
+                                $charges = strtoupper($_GET['charges']);
+                        
+                        
+                                $resultx = mysql_query("select * from repossession where day='" . $day . "' and charges='" . $charges . "'");
+                                if (mysql_num_rows($resultx) > 0) {
+                                    echo '<script>swal("Error", "Auction details with similar information already exists. !Consult the System Admin", "error");</script>';
+                        
+                                }
+                        
+                        
+                                $resulty = mysql_query("select * from repossession order by id desc limit 0,1");
+                                $rowy = mysql_fetch_array($resulty);
+                                $tid = stripslashes($rowy['id']) + 1;
+                        
+                        
+                                $uid = 'REP' . sprintf("%06d", $tid);
+                        
+                        
+                                $resultc = mysql_query("INSERT INTO `repossession` VALUES ('0','" . $uid . "','" . $debtor . "','" . $rdate . "','" . $i_party . "','" . $property . "','".$day."','".$ntime."','".$place."','".$charges."','1','" . $username . "', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
+                        
+                        
+                                if ($resultc) {
+                                  
+                                   
+            echo '<script>swal("Success!", "Repossession information saved successfully", "success");</script>';
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " creates new Repossession','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {newauction();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to save Repossession info!", "error");</script>';
+        }
+        break;
+                        
                     
         
            

@@ -36897,7 +36897,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                 <!--                        panel heading-->
                                 <div class="panel-body">
                                 <div class="form-group">
-                                <label>Auction Date</label>
+                                <label>Auction Day</label>
                             
                                 <input type="text" class="control date" id="day"></textarea>
                               </div>

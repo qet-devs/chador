@@ -10316,7 +10316,17 @@ function savedistress(param) {
 
 }
 
+function newauction(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:906},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
 
+}
 
 function newrepossession(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
@@ -10361,6 +10371,38 @@ function savenewrepossession(){
 	}
 }
 
+function savedetails(){
+    var day=$('#day').val();
+	var ntime = $('#ntime').val();
+	var  place= $('#place').val();
+	var charges = $('#charges').val();
+	
+	
+
+	if(day==''||ntime==''||place==''||charges==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:911,
+			day:day,
+			ntime:ntime,
+			place:place,
+			charges:charges
+			
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
 
 
 function editrepossession(){
