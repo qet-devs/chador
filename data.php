@@ -6414,7 +6414,6 @@ switch ($id) {
                 '" . date('H:i') . "'
             )
         ";
-//$resultc = mysql_query("INSERT INTO `decrees`VALUES ('','".$uid."','".$case_no."','".$court."','".$plaintiff."','".$defendant."','".$court_date."','".$principal."','".$rate."','".$start_date."','".$end_date."','".$interest."','".$decretal_amount."','".$party_cost."','".$attendances."','".$court_fees."','".$witness_exp."','".$disbursements."','','".$decree_cost."','".$summons."','".$cert_costs."','".$total_cost."','".$username."','','','','".$decree_date."','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
 
         $resultc = mysql_query($sql);
         if ($resultc) {
@@ -6422,7 +6421,7 @@ switch ($id) {
             echo '<script>swal("Success!", "Decree information saved successfully", "success");</script>';
 
             $resulta = mysql_query("insert into log values('0','" . $username . " creates new decree','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo "<script>setTimeout(function() {decree();},500);</script>";
+            echo "<script>setTimeout(function() {finddecree();},500);</script>";
         } else {
             echo '<script>swal("Error", "failed to save decree info!", "error");</script>';
         }
