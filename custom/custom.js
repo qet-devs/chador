@@ -761,6 +761,17 @@ function majoropen(a) {
             case 804:
                 activateproclamation(b);
                 break;
+                case 900:
+                    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                    $.ajax({
+                        url: 'bridge.php',
+                        data: {id: 912, param: b},
+                        success: function (data) {
+                            $('#mainp').html(data);
+                        }
+                    });
+    
+                    break;
 
 
         }
@@ -10405,6 +10416,57 @@ function savedetails(){
 }
 
 
+function savecourt(){
+    var creditoradd=$('#creditoradd').val();
+	var debtoradd = $('#debtoradd').val();
+	var  decretal= $('#decretal').val();
+    var advocate = $('#advocate').val();
+    var cname = $('#cname').val();
+    var clocation = $('#clocation').val();
+    var caseno = $('#caseno').val();
+    var ddate = $('#ddate').val();
+    var cdate = $('#cdate').val();
+    var wdate = $('#wdate').val();
+    var custody = $('#custody').val();
+    var expiry = $('#expiry').val();
+	
+	
+
+	if(creditoradd==''||debtoradd==''||decretal==''||advocate==''||cname==''||clocation==''||caseno==''||ddate==''||cdate==''||wdate==''||custody==''||expiry==''){
+		swal("Error", "Make sure you enter all the required fields!", "error");
+		return;
+	}else{
+		var data = {
+			id:912,
+			creditoradd:creditoradd,
+			debtoradd:debtoradd,
+			decretal:decretal,
+            advocate:advocate,
+            cname:cname,
+            clocation:clocation,
+            caseno:caseno,
+            ddate:ddate,
+            cdate:cdate,
+            wdate:wdate,
+            custody:custody,
+            expiry:expiry
+
+		
+		};
+
+		//console.log(data);
+		$('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+		$.ajax({
+		url:'data.php',
+		data:data,
+		success:function(data){
+		$('#message').html(data);
+		}
+		});
+	}
+}
+
+
 function editrepossession(){
 	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
@@ -11201,8 +11263,9 @@ function savenotificationproperty(param){
 				clearnotificationform();
 			$('#desc_table').html(data);
 			}
-		});        ;}
-
+        });        ;}
+        
+    }
 
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});
 
@@ -11635,6 +11698,62 @@ function saveproclamation(param) {
 
 }
 
+function saveproclamationnotice(param) {
+    var auct_name = $('#auct_name').val();
+    var auct_phone = $('#auct_phone').val();
+    var auct_address = $('#auct_address').val();
+    var auct_trader = $('#auct_trader').val();
+    var decretal_amount = $('#decretal_amount').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
+    var auct_charges = $('#auct_charges').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
+    var adv_fee = $('#adv_fee').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
+    var total_debt = $('#total_debt').val().replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
+    var court = $('#court').val();
+    var case_no = $('#case_no').val();
+    var court_date = $('#court_date').val();
+    var decree_date = $('#decree_date').val();
+    var return_date = $('#return_date').val();
+    var warrant_date = $('#warrant_date').val();
+    var notice_days = $('#notice_days').val();
+
+
+    if (auct_name == '' || auct_phone == '' || auct_address == '' || court == '' || court_date == '' || decree_date == '' ||
+        notice_days == '' || auct_trader == '' || decretal_amount == '' || auct_charges == '' || total_debt == '') {
+        swal("Error", "Please fill all required fields", "error");
+        return;
+    } else {
+        var data = {
+            id: 605,
+            param: param,
+            auct_name: auct_name,
+            auct_phone: auct_phone,
+            auct_address: auct_address,
+            auct_trader: auct_trader,
+            decretal_amount: decretal_amount,
+            adv_fee: adv_fee,
+            total_debt: total_debt,
+            auct_charges: auct_charges,
+            court: court,
+            case_no: case_no,
+            court_date: court_date,
+            decree_date: decree_date,
+            return_date: return_date,
+            warrant_date: warrant_date,
+            notice_days: notice_days,
+        };
+
+        $('#auct_btn').html('<button class="btn btn-success control" >saving....</button>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#mainp').html(data);
+            }
+        });
+    }
+
+}
+
+
 
 function savenotification(param) {
     var debtor = $('#debtor').val();
@@ -11743,4 +11862,4 @@ function calcfeenotetotal() {
     tot = (tot).formatMoney(2, '.', ',');
     $('#total').val(tot);
 
-}}
+}
