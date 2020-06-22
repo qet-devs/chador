@@ -403,6 +403,62 @@ if (isset($_SESSION['valid_user'])) {
                                 } ?>
                             </li>
 
+                            <li>
+      <a href="javascript:void(0);" data-action="click-trigger">
+          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
+            <span class="menu-text">Members</span>  
+            <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
+        </a>
+      <div class="child-menu"  data-action="click-target">
+            <ul>
+
+              <li style="">
+                    <?php if($rightsarr[107]=='YES'){
+          echo'<a  href="#" onclick="newtenant()" >
+                        <span class="menu-text">New Member</span>  
+                    </a>';} ?>
+                </li> 
+
+                
+                <li>
+                    <?php if($rightsarr[108]=='YES'){
+          echo'<a  href="#" onclick="findtenant()" >
+                        <span class="menu-text">Find Member</span>  
+                    </a>';} ?>
+                </li> 
+
+                <li>
+                    <?php if($rightsarr[109]=='YES'){
+          echo'<a  href="#" onclick="edittenant()" >
+                        <span class="menu-text">Edit Member Info</span>  
+                    </a>';} ?>
+                </li> 
+             
+
+            <li>
+                     <?php if($rightsarr[113]=='YES'){
+          echo'<a  href="#" onclick="tenantfile()" >
+                        <span class="menu-text">Member File</span>  
+                        </a>';} ?>
+                </li> 
+
+                <li>
+                     <?php if($rightsarr[114]=='YES'){
+          echo'<a  href="#" onclick="checkout()" >
+                        <span class="menu-text">Archive Member</span>  
+                        </a>';} ?>
+                </li> 
+
+               
+               <li>
+                     <?php if($rightsarr[119]=='YES'){
+              echo'<a  href="#" onclick="extenants()" >
+                        <span class="menu-text">Ex-Members</span>  
+                        </a>';} ?>
+                </li>     
+            </ul>   
+        </div>
+    </li> 
 
                             <li>
                                 <a href="javascript:void(0);" data-action="click-trigger">
