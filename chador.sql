@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : kpa
-Source Server Version : 50527
+Source Server         : conn
+Source Server Version : 50525
 Source Host           : 127.0.0.1:3306
 Source Database       : chador
 
 Target Server Type    : MYSQL
-Target Server Version : 50527
+Target Server Version : 50525
 File Encoding         : 65001
 
-Date: 2020-06-18 23:28:33
+Date: 2020-06-23 16:54:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -284,7 +284,7 @@ CREATE TABLE `backup` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=387 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=391 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of backup
@@ -518,6 +518,10 @@ INSERT INTO `backup` VALUES ('383', '18/06/2020');
 INSERT INTO `backup` VALUES ('384', '18/06/2020');
 INSERT INTO `backup` VALUES ('385', '19/06/2020');
 INSERT INTO `backup` VALUES ('386', '19/06/2020');
+INSERT INTO `backup` VALUES ('387', '22/06/2020');
+INSERT INTO `backup` VALUES ('388', '22/06/2020');
+INSERT INTO `backup` VALUES ('389', '23/06/2020');
+INSERT INTO `backup` VALUES ('390', '23/06/2020');
 
 -- ----------------------------
 -- Table structure for banktbl
@@ -813,33 +817,27 @@ INSERT INTO `checklist` VALUES ('20', 'Verandah');
 DROP TABLE IF EXISTS `clients`;
 CREATE TABLE `clients` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `phone` varchar(255) NOT NULL,
-  `stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` varchar(255) NOT NULL DEFAULT '1',
-  `uid` varchar(255) NOT NULL,
+  `unique_user_id` varchar(255) DEFAULT NULL,
+  `business_name` varchar(255) DEFAULT NULL,
+  `telephone` varchar(255) DEFAULT NULL,
+  `pin_registration` varchar(255) DEFAULT NULL,
+  `vat_registration` varchar(255) DEFAULT NULL,
+  `certificate_of_incorporation` varchar(255) DEFAULT NULL,
+  `national_id` varchar(255) DEFAULT NULL,
+  `contact_person` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `date` varchar(255) DEFAULT NULL,
+  `stamp` varchar(255) DEFAULT NULL,
+  `time` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of clients
 -- ----------------------------
-INSERT INTO `clients` VALUES ('1', 'jesse mulla', 'creditor', 'juja', '2020-05-11 22:57:57', '1', 'CHADLET0001');
-INSERT INTO `clients` VALUES ('2', 'joy musyoka', 'debtor', 'katito', '2020-05-11 22:57:57', '1', 'CHADLET0001');
-INSERT INTO `clients` VALUES ('3', 'joseph mwendwa', 'creditor', 'high point', '2020-05-11 23:00:41', '1', 'CHADLET0002');
-INSERT INTO `clients` VALUES ('4', 'joel katoni', 'debtor', 'kiambaa', '2020-05-11 23:00:41', '1', 'CHADLET0002');
-INSERT INTO `clients` VALUES ('5', 'paula muhoro', 'creditor', 'jiji', '2020-05-11 23:03:11', '1', 'CHADLET0003');
-INSERT INTO `clients` VALUES ('6', 'jerry mtricky', 'debtor', 'longai', '2020-05-11 23:03:11', '1', 'CHADLET0003');
-INSERT INTO `clients` VALUES ('7', 'spiderman ', 'distress', '', '2020-05-11 23:06:48', '1', 'CHADDIS0001');
-INSERT INTO `clients` VALUES ('8', 'joseph aritha', 'distress', '', '2020-05-11 23:07:47', '1', 'CHADDIS0002');
-INSERT INTO `clients` VALUES ('9', 'joy maengi', 'distress', '', '2020-05-11 23:08:46', '1', 'CHADDIS0003');
-INSERT INTO `clients` VALUES ('10', 'jinsing enterprise company limited', 'decree', '', '2020-05-11 23:19:22', '1', 'CHADDEC0001');
-INSERT INTO `clients` VALUES ('11', 'africa merchant assurance limited', 'decree', '', '2020-05-11 23:19:22', '1', 'CHADDEC0001');
-INSERT INTO `clients` VALUES ('12', 'jesse and joy advocates ', 'Notice', '', '2020-05-11 23:26:29', '1', 'CHADNOT0001');
-INSERT INTO `clients` VALUES ('13', 'mwizi jay', 'Notice', '', '2020-05-11 23:26:29', '1', 'CHADNOT0001');
-INSERT INTO `clients` VALUES ('14', 'john doe', 'proclamation', 'doetown', '2020-05-11 23:30:56', '1', 'CHADPRO0001');
-INSERT INTO `clients` VALUES ('15', 'jane doesy', 'proclamation', 'doer', '2020-05-11 23:30:56', '1', 'CHADPRO0001');
 
 -- ----------------------------
 -- Table structure for cme
@@ -1148,10 +1146,6 @@ CREATE TABLE `decrees` (
   `sub_incurred` varchar(255) DEFAULT NULL,
   `total_costs` varchar(255) DEFAULT NULL,
   `notice_days` varchar(255) DEFAULT NULL,
-  `auctioneer` varchar(255) DEFAULT 'ELIUD C. WAMBU',
-  `auct_phone` varchar(255) DEFAULT '0720 602229, 0722 595966',
-  `auct_address` varchar(255) DEFAULT 'P.O. BOX 27304-00100 NAIROBI',
-  `auct_trader` varchar(255) DEFAULT 'CHADOR AUCTIONEERS',
   `auct_charges` varchar(255) DEFAULT NULL,
   `debt` varchar(255) DEFAULT NULL,
   `return_date` varchar(255) DEFAULT NULL,
@@ -1159,20 +1153,16 @@ CREATE TABLE `decrees` (
   `auct_date` varchar(255) DEFAULT NULL,
   `auct_time` varchar(255) DEFAULT NULL,
   `auct_location` varchar(255) DEFAULT NULL,
-  `proclamation_date` datetime DEFAULT NULL,
+  `proclamation_date` varchar(255) DEFAULT NULL,
+  `holder_location` varchar(255) DEFAULT NULL,
+  `holder_address` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of decrees
 -- ----------------------------
-INSERT INTO `decrees` VALUES ('1', 'CHADDEC0001', 'CIVIL SUIT NO 8873 OF 2016', 'CHIEF MAGISTRATE NAIROBI', 'JANE WAMBUI', 'MAXIWELL', '17000000', '08/06/2020', '2000000', '12', '17/06/2020', '25/06/2020', '1560000', '3560000.00', '500000', '25000', '950', '55500', '2000', 'Kanyi Karuchi & Co. Advocates', '3000', '20000', '250', '606700.00', 'pm001', 'By issuance of warrant of attachment and sale and allocate execution to ', '', '100000', 'Kanyi Karuchi & Co. Advocates', '09/06/2020', '1', '202006031545', null, null, '1500', '950', '4169150.00', '7', 'ELIUD CHADOR WAMBU ', '0720 602229, 0722 595966', 'P.O. BOX 27304-00100 NAIROBI', 'CHADOR AUCTIONEERS', '5000', '3665000.00', '08/06/2020', '09/06/2020', '03/06/2020', '8AM', 'MERU', '0000-00-00 00:00:00');
-INSERT INTO `decrees` VALUES ('2', 'CHADDEC0002', '7569', 'NAIROBI', '', '', '02/03/2020', 'nil', 'nil', 'nil', '05/05/2020', '', '45000000', '450000', '4800', '5000', '500', 'KERINGET', 'issuance of letter of instruction', null, null, null, 'LESINKO NJOROGE & GATHOGO ADVOCATES', null, 'pm001', null, '', '12313', null, '22/06/2020', '1', '202006031545', null, null, null, null, null, '7', 'ELIUD C. WAMBU', '0720 602229, 0722 595966', 'P.O. BOX 27304-00100 NAIROBI', 'CHADOR AUCTIONEERS', '1213323', '1675636.00', '22/06/2020', '17/06/2020', '30/06/2020', '8', 'KIMU', '0000-00-00 00:00:00');
-INSERT INTO `decrees` VALUES ('3', 'CIVIL CASE NO 10 OF 2015', 'CIVIL CASE NO 10 OF 2015', 'THE CHIEF MAGISTRATE COURT KIAMBU', 'AMAZING', 'GRACE', '15500', '01/06/2020', '1581000', '12', '04/05/2020', '11/06/2020', '188161', '1769161.00', '120000', '22000', '70000', '', '', 'Kanyi Kiruchi & Co. Advocates', '150', '3000', '100', '217330.00', '', 'issuance of sales warrant to ', '', '', 'Kanyi Kiruchi & Co. Advocates', '01/06/2020', '1', '202006060702', '06/06/2020', '07:02', '1500', '950', '1988941.00', '7', 'ELIUD C. WAMBU', '0720 602229, 0722 595966', 'P.O. BOX 27304-00100 NAIROBI', 'CHADOR AUCTIONEERS', '293601', '2062762.00', '01/06/2020', '02/06/2020', '23/06/2020', '8.00', 'LAMU', '0000-00-00 00:00:00');
-INSERT INTO `decrees` VALUES ('4', 'KJNJNJ', '2313', 'CHIEF MAGISTRATE COURT MILIMANI', 'JOSEPH LIDO', 'PINOCCCIO BUOY', '80000', '09/06/2020', '580000', '10', '01/06/2020', '01/06/2020', '182000', '762000.00', '78000', '6000', '45000', '5800', '4000', '4646546', '6445', '6000', '600', '151845.00', '', '', '', null, '', '08/06/2020', '1', '202006060718', '06/06/2020', '07:18', null, null, null, null, 'ELIUD C. WAMBU', '0720 602229, 0722 595966', 'P.O. BOX 27304-00100 NAIROBI', 'CHADOR AUCTIONEERS', null, null, null, null, null, null, null, null);
-INSERT INTO `decrees` VALUES ('5', '90', 'JO', 'JHJHJH', 'NBBVBV', '4500', '01/06/2020', '47000', '12', '01/06/2020', '22/06/2020', '245', '47245.00', '782222', '2222', '1111', '111', '1122', '', '2222', '2222', '2221', '793453.00', 'pm001', '', '', '', null, '', '01/06/2020', '1', '202006060724', '06/06/2020', '07:24', null, null, null, null, 'ELIUD C. WAMBU', '0720 602229, 0722 595966', 'P.O. BOX 27304-00100 NAIROBI', 'CHADOR AUCTIONEERS', null, null, null, null, null, null, null, null);
-INSERT INTO `decrees` VALUES ('6', 'DEC000006', '67HB', 'JHHA', 'ZCXBVBNB', 'XZXCCV', '446556', '01/06/2020', '564654654', '14', '16/06/2020', '15/06/2020', '11245', '564665899.00', '5464', '545645', '645', '54', '45', '', '554', '5', '6', '552418.00', 'pm001', '', '', null, '', '23/06/2020', '1', '202006060745', '06/06/2020', '07:45', null, null, null, null, 'ELIUD C. WAMBU', '0720 602229, 0722 595966', 'P.O. BOX 27304-00100 NAIROBI', 'CHADOR AUCTIONEERS', null, null, null, null, null, null, null, null);
-INSERT INTO `decrees` VALUES ('7', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, null, '', null, null, null, null, null, null, null, 'ELIUD C. WAMBU', '0720 602229, 0722 595966', 'P.O. BOX 27304-00100 NAIROBI', 'CHADOR AUCTIONEERS', null, null, null, null, null, null, null, null);
+INSERT INTO `decrees` VALUES ('8', 'DEC000001', 'CIVIL CASE NO 10 OF 2015', 'CHIEF MAGISTRATE COURT KIAMBU', 'JANE WAMUCII', 'LALI ABUBAKAR, ALLAN ', null, '16/06/2020', '1581000', '12', '08/06/2020', '01/06/2020', '188161', '1769161.00', '120000', '22000', '70000', '', '2080', null, '150', '3000', '100', '217330.00', 'pm001', null, '', null, null, '08/06/2020', '1', '202006191433', '19/06/2020', '14:33', null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for deductions
@@ -4699,18 +4689,18 @@ CREATE TABLE `lof` (
 -- ----------------------------
 -- Records of lof
 -- ----------------------------
-INSERT INTO `lof` VALUES ('1', 'JOHN MUGAMBI', '63', '29', '302', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '10/05/2019', '20190510', '09/05/2118', '21180509', '12000', '05th', '10/05/2019', '20', 'From 10/05/2019 to 09/05/2019-Rent Free<br/>From 10/05/2019 to 09/05/2020-KShs.12,000<br/>From 10/05/2020 to 09/05/2021-KShs.14,400<br/>From 10/05/2021 to 09/05/2022-KShs.17,280<br/>From 10/05/2022 to 09/05/2023-KShs.20,736<br/>From 10/05/2023 to 09/05/2024-KShs.24,883<br/>From 10/05/2024 to 09/05/2025-KShs.29,860<br/>From 10/05/2025 to 09/05/2026-KShs.35,832<br/>From 10/05/2026 to 09/05/2027-KShs.42,998<br/>From 10/05/2027 to 09/05/2028-KShs.51,598<br/>From 10/05/2028 to 09/05/2029-KShs.61,917<br/>From 10/05/2029 to 09/05/2030-KShs.74,301<br/>From 10/05/2030 to 09/05/2031-KShs.89,161<br/>From 10/05/2031 to 09/05/2032-KShs.106,993<br/>From 10/05/2032 to 09/05/2033-KShs.128,392<br/>From 10/05/2033 to 09/05/2034-KShs.154,070<br/>From 10/05/2034 to 09/05/2035-KShs.184,884<br/>From 10/05/2035 to 09/05/2036-KShs.221,861<br/>From 10/05/2036 to 09/05/2037-KShs.266,233<br/>From 10/05/2037 to 09/05/2038-KShs.319,480<br/>From 10/05/2038 to 09/05/2039-KShs.383,376<br/>From 10/05/2039 to 09/05/2040-KShs.460,051<br/>From 10/05/2040 to 09/05/2041-KShs.552,061<br/>From 10/05/2041 to 09/05/2042-KShs.662,474<br/>From 10/05/2042 to 09/05/2043-KShs.794,968<br/>From 10/05/2043 to 09/05/2044-KShs.953,962<br/>From 10/05/2044 to 09/05/2045-KShs.1,144,755<br/>From 10/05/2045 to 09/05/2046-KShs.1,373,705<br/>From 10/05/2046 to 09/05/2047-KShs.1,648,447<br/>From 10/05/2047 to 09/05/2048-KShs.1,978,136<br/>From 10/05/2048 to 09/05/2049-KShs.2,373,763<br/>From 10/05/2049 to 09/05/2050-KShs.2,848,516<br/>From 10/05/2050 to 09/05/2051-KShs.3,418,219<br/>From 10/05/2051 to 09/05/2052-KShs.4,101,863<br/>From 10/05/2052 to 09/05/2053-KShs.4,922,235<br/>From 10/05/2053 to 09/05/2054-KShs.5,906,682<br/>From 10/05/2054 to 09/05/2055-KShs.7,088,018<br/>From 10/05/2055 to 09/05/2056-KShs.8,505,622<br/>From 10/05/2056 to 09/05/2057-KShs.10,206,747<br/>From 10/05/2057 to 09/05/2058-KShs.12,248,096<br/>From 10/05/2058 to 09/05/2059-KShs.14,697,715<br/>From 10/05/2059 to 09/05/2060-KShs.17,637,258<br/>From 10/05/2060 to 09/05/2061-KShs.21,164,710<br/>From 10/05/2061 to 09/05/2062-KShs.25,397,652<br/>From 10/05/2062 to 09/05/2063-KShs.30,477,182<br/>From 10/05/2063 to 09/05/2064-KShs.36,572,618<br/>From 10/05/2064 to 09/05/2065-KShs.43,887,142<br/>From 10/05/2065 to 09/05/2066-KShs.52,664,571<br/>From 10/05/2066 to 09/05/2067-KShs.63,197,485<br/>From 10/05/2067 to 09/05/2068-KShs.75,836,982<br/>From 10/05/2068 to 09/05/2069-KShs.91,004,378<br/>From 10/05/2069 to 09/05/2070-KShs.109,205,253<br/>From 10/05/2070 to 09/05/2071-KShs.131,046,304<br/>From 10/05/2071 to 09/05/2072-KShs.157,255,565<br/>From 10/05/2072 to 09/05/2073-KShs.188,706,678<br/>From 10/05/2073 to 09/05/2074-KShs.226,448,013<br/>From 10/05/2074 to 09/05/2075-KShs.271,737,616<br/>From 10/05/2075 to 09/05/2076-KShs.326,085,139<br/>From 10/05/2076 to 09/05/2077-KShs.391,302,167<br/>From 10/05/2077 to 09/05/2078-KShs.469,562,601<br/>From 10/05/2078 to 09/05/2079-KShs.563,475,121<br/>From 10/05/2079 to 09/05/2080-KShs.676,170,145<br/>From 10/05/2080 to 09/05/2081-KShs.811,404,174<br/>From 10/05/2081 to 09/05/2082-KShs.973,685,009<br/>From 10/05/2082 to 09/05/2083-KShs.1,168,422,011<br/>From 10/05/2083 to 09/05/2084-KShs.1,402,106,413<br/>From 10/05/2084 to 09/05/2085-KShs.1,682,527,695<br/>From 10/05/2085 to 09/05/2086-KShs.2,019,033,235<br/>From 10/05/2086 to 09/05/2087-KShs.2,422,839,881<br/>From 10/05/2087 to 09/05/2088-KShs.2,907,407,858<br/>From 10/05/2088 to 09/05/2089-KShs.3,488,889,429<br/>From 10/05/2089 to 09/05/2090-KShs.4,186,667,315<br/>From 10/05/2090 to 09/05/2091-KShs.5,024,000,778<br/>From 10/05/2091 to 09/05/2092-KShs.6,028,800,934<br/>From 10/05/2092 to 09/05/2093-KShs.7,234,561,120<br/>From 10/05/2093 to 09/05/2094-KShs.8,681,473,345<br/>From 10/05/2094 to 09/05/2095-KShs.10,417,768,014<br/>From 10/05/2095 to 09/05/2096-KShs.12,501,321,616<br/>From 10/05/2096 to 09/05/2097-KShs.15,001,585,939<br/>From 10/05/2097 to 09/05/2098-KShs.18,001,903,127<br/>From 10/05/2098 to 09/05/2099-KShs.21,602,283,753<br/>From 10/05/2099 to 09/05/2100-KShs.25,922,740,503<br/>From 10/05/2100 to 09/05/2101-KShs.31,107,288,604<br/>From 10/05/2101 to 09/05/2102-KShs.37,328,746,325<br/>From 10/05/2102 to 09/05/2103-KShs.44,794,495,590<br/>From 10/05/2103 to 09/05/2104-KShs.53,753,394,708<br/>From 10/05/2104 to 09/05/2105-KShs.64,504,073,649<br/>From 10/05/2105 to 09/05/2106-KShs.77,404,888,379<br/>From 10/05/2106 to 09/05/2107-KShs.92,885,866,055<br/>From 10/05/2107 to 09/05/2108-KShs.111,463,039,266<br/>From 10/05/2108 to 09/05/2109-KShs.133,755,647,119<br/>From 10/05/2109 to 09/05/2110-KShs.160,506,776,543<br/>From 10/05/2110 to 09/05/2111-KShs.192,608,131,852<br/>From 10/05/2111 to 09/05/2112-KShs.231,129,758,222<br/>From 10/05/2112 to 09/05/2113-KShs.277,355,709,866<br/>From 10/05/2113 to 09/05/2114-KShs.332,826,851,840<br/>From 10/05/2114 to 09/05/2115-KShs.399,392,222,208<br/>From 10/05/2115 to 09/05/2116-KShs.479,270,666,649<br/>From 10/05/2116 to 09/05/2117-KShs.575,124,799,979<br/>From 10/05/2117 to 09/05/2118-KShs.690,149,759,975', '4000', '', '1', '1', '12000', '', '', '0', '', '', '28100', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.4,000<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.100<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.28,100', '22/05/2019', '20190522', 'pm001', '1', '20190622', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '100', '99', '0', '12000', '2000', '2000', '20286', '302111', null);
-INSERT INTO `lof` VALUES ('2', 'PRINCE MUNENE', '7685 THIKA', '31', '101,102', 'BENSON MBURU', 'GROUND FLOOR', '99 Years 0 Months', '01/06/2019', '20190601', '31/05/2118', '21180531', '28000', '05th', '01/06/2019', '0', '', 'NaN', '', '1', '1', '28000', '', '', '0', '', '', '61000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.28,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.28,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.5,000<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.61,000', '11/06/2019', '20190611', 'pm001', '1', '20190711', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '5000', '99', '0', '', '', '', '', '', null);
+INSERT INTO `lof` VALUES ('1', 'JOHN MUGAMBI', '63', '29', '302', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '10/05/2019', '20190510', '09/05/2118', '21180509', '12000', '05th', '10/05/2019', '20', 'From 10/05/2019 to 09/05/2019-Rent Free<br/>From 10/05/2019 to 09/05/2020-KShs.12,000<br/>From 10/05/2020 to 09/05/2021-KShs.14,400<br/>From 10/05/2021 to 09/05/2022-KShs.17,280<br/>From 10/05/2022 to 09/05/2023-KShs.20,736<br/>From 10/05/2023 to 09/05/2024-KShs.24,883<br/>From 10/05/2024 to 09/05/2025-KShs.29,860<br/>From 10/05/2025 to 09/05/2026-KShs.35,832<br/>From 10/05/2026 to 09/05/2027-KShs.42,998<br/>From 10/05/2027 to 09/05/2028-KShs.51,598<br/>From 10/05/2028 to 09/05/2029-KShs.61,917<br/>From 10/05/2029 to 09/05/2030-KShs.74,301<br/>From 10/05/2030 to 09/05/2031-KShs.89,161<br/>From 10/05/2031 to 09/05/2032-KShs.106,993<br/>From 10/05/2032 to 09/05/2033-KShs.128,392<br/>From 10/05/2033 to 09/05/2034-KShs.154,070<br/>From 10/05/2034 to 09/05/2035-KShs.184,884<br/>From 10/05/2035 to 09/05/2036-KShs.221,861<br/>From 10/05/2036 to 09/05/2037-KShs.266,233<br/>From 10/05/2037 to 09/05/2038-KShs.319,480<br/>From 10/05/2038 to 09/05/2039-KShs.383,376<br/>From 10/05/2039 to 09/05/2040-KShs.460,051<br/>From 10/05/2040 to 09/05/2041-KShs.552,061<br/>From 10/05/2041 to 09/05/2042-KShs.662,474<br/>From 10/05/2042 to 09/05/2043-KShs.794,968<br/>From 10/05/2043 to 09/05/2044-KShs.953,962<br/>From 10/05/2044 to 09/05/2045-KShs.1,144,755<br/>From 10/05/2045 to 09/05/2046-KShs.1,373,705<br/>From 10/05/2046 to 09/05/2047-KShs.1,648,447<br/>From 10/05/2047 to 09/05/2048-KShs.1,978,136<br/>From 10/05/2048 to 09/05/2049-KShs.2,373,763<br/>From 10/05/2049 to 09/05/2050-KShs.2,848,516<br/>From 10/05/2050 to 09/05/2051-KShs.3,418,219<br/>From 10/05/2051 to 09/05/2052-KShs.4,101,863<br/>From 10/05/2052 to 09/05/2053-KShs.4,922,235<br/>From 10/05/2053 to 09/05/2054-KShs.5,906,682<br/>From 10/05/2054 to 09/05/2055-KShs.7,088,018<br/>From 10/05/2055 to 09/05/2056-KShs.8,505,622<br/>From 10/05/2056 to 09/05/2057-KShs.10,206,747<br/>From 10/05/2057 to 09/05/2058-KShs.12,248,096<br/>From 10/05/2058 to 09/05/2059-KShs.14,697,715<br/>From 10/05/2059 to 09/05/2060-KShs.17,637,258<br/>From 10/05/2060 to 09/05/2061-KShs.21,164,710<br/>From 10/05/2061 to 09/05/2062-KShs.25,397,652<br/>From 10/05/2062 to 09/05/2063-KShs.30,477,182<br/>From 10/05/2063 to 09/05/2064-KShs.36,572,618<br/>From 10/05/2064 to 09/05/2065-KShs.43,887,142<br/>From 10/05/2065 to 09/05/2066-KShs.52,664,571<br/>From 10/05/2066 to 09/05/2067-KShs.63,197,485<br/>From 10/05/2067 to 09/05/2068-KShs.75,836,982<br/>From 10/05/2068 to 09/05/2069-KShs.91,004,378<br/>From 10/05/2069 to 09/05/2070-KShs.109,205,253<br/>From 10/05/2070 to 09/05/2071-KShs.131,046,304<br/>From 10/05/2071 to 09/05/2072-KShs.157,255,565<br/>From 10/05/2072 to 09/05/2073-KShs.188,706,678<br/>From 10/05/2073 to 09/05/2074-KShs.226,448,013<br/>From 10/05/2074 to 09/05/2075-KShs.271,737,616<br/>From 10/05/2075 to 09/05/2076-KShs.326,085,139<br/>From 10/05/2076 to 09/05/2077-KShs.391,302,167<br/>From 10/05/2077 to 09/05/2078-KShs.469,562,601<br/>From 10/05/2078 to 09/05/2079-KShs.563,475,121<br/>From 10/05/2079 to 09/05/2080-KShs.676,170,145<br/>From 10/05/2080 to 09/05/2081-KShs.811,404,174<br/>From 10/05/2081 to 09/05/2082-KShs.973,685,009<br/>From 10/05/2082 to 09/05/2083-KShs.1,168,422,011<br/>From 10/05/2083 to 09/05/2084-KShs.1,402,106,413<br/>From 10/05/2084 to 09/05/2085-KShs.1,682,527,695<br/>From 10/05/2085 to 09/05/2086-KShs.2,019,033,235<br/>From 10/05/2086 to 09/05/2087-KShs.2,422,839,881<br/>From 10/05/2087 to 09/05/2088-KShs.2,907,407,858<br/>From 10/05/2088 to 09/05/2089-KShs.3,488,889,429<br/>From 10/05/2089 to 09/05/2090-KShs.4,186,667,315<br/>From 10/05/2090 to 09/05/2091-KShs.5,024,000,778<br/>From 10/05/2091 to 09/05/2092-KShs.6,028,800,934<br/>From 10/05/2092 to 09/05/2093-KShs.7,234,561,120<br/>From 10/05/2093 to 09/05/2094-KShs.8,681,473,345<br/>From 10/05/2094 to 09/05/2095-KShs.10,417,768,014<br/>From 10/05/2095 to 09/05/2096-KShs.12,501,321,616<br/>From 10/05/2096 to 09/05/2097-KShs.15,001,585,939<br/>From 10/05/2097 to 09/05/2098-KShs.18,001,903,127<br/>From 10/05/2098 to 09/05/2099-KShs.21,602,283,753<br/>From 10/05/2099 to 09/05/2100-KShs.25,922,740,503<br/>From 10/05/2100 to 09/05/2101-KShs.31,107,288,604<br/>From 10/05/2101 to 09/05/2102-KShs.37,328,746,325<br/>From 10/05/2102 to 09/05/2103-KShs.44,794,495,590<br/>From 10/05/2103 to 09/05/2104-KShs.53,753,394,708<br/>From 10/05/2104 to 09/05/2105-KShs.64,504,073,649<br/>From 10/05/2105 to 09/05/2106-KShs.77,404,888,379<br/>From 10/05/2106 to 09/05/2107-KShs.92,885,866,055<br/>From 10/05/2107 to 09/05/2108-KShs.111,463,039,266<br/>From 10/05/2108 to 09/05/2109-KShs.133,755,647,119<br/>From 10/05/2109 to 09/05/2110-KShs.160,506,776,543<br/>From 10/05/2110 to 09/05/2111-KShs.192,608,131,852<br/>From 10/05/2111 to 09/05/2112-KShs.231,129,758,222<br/>From 10/05/2112 to 09/05/2113-KShs.277,355,709,866<br/>From 10/05/2113 to 09/05/2114-KShs.332,826,851,840<br/>From 10/05/2114 to 09/05/2115-KShs.399,392,222,208<br/>From 10/05/2115 to 09/05/2116-KShs.479,270,666,649<br/>From 10/05/2116 to 09/05/2117-KShs.575,124,799,979<br/>From 10/05/2117 to 09/05/2118-KShs.690,149,759,975', '4000', '', '1', '1', '12000', '', '', '0', '', '', '28100', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.4,000<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.100<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.28,100', '22/05/2019', '20190522', 'pm001', '1', '20190622', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '100', '99', '0', '12000', '2000', '2000', '20286', '302111', null);
+INSERT INTO `lof` VALUES ('2', 'PRINCE MUNENE', '7685 THIKA', '31', '101,102', 'BENSON MBURU', 'GROUND FLOOR', '99 Years 0 Months', '01/06/2019', '20190601', '31/05/2118', '21180531', '28000', '05th', '01/06/2019', '0', '', 'NaN', '', '1', '1', '28000', '', '', '0', '', '', '61000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.28,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.28,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.5,000<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.61,000', '11/06/2019', '20190611', 'pm001', '1', '20190711', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '5000', '99', '0', '', '', '', '', '', null);
 INSERT INTO `lof` VALUES ('3', 'ALEX MBAKA', '101 MERU', '32', '103', 'BENSON MBURU', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '14000', '05th', '01/07/2019', '0', '', '7000', '', '1', '1', '14000', '', '', '0', '', '', '35000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.14,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.14,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.7,000<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.35,000', '10/07/2019', '20190710', 'pm001', '2', '20190810', '0', '1', '20190826', '10', '10', '1', 'Residential', '0', '', '99', '0', '14000', '2000', '3000', '101', '102', '2000');
-INSERT INTO `lof` VALUES ('4', 'd3d', 'd3d', '33', '324352', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '3234', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '3234', '', '', '0', '', '', '6468', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.3,234<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.3,234<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.6,468', '23/07/2019', '20190723', 'pm001', '1', '20190823', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '', '99', '0', '15000', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('5', 'JOHN DOE', '123 4567', '34', '1098', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '15000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '15000', '', '', '0', '', '', '30000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.15,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.15,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.30,000', '23/07/2019', '20190723', 'pm001', '1', '20190823', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('6', 'JOHN DOE', '123 NAIROBI', '35', '101', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '25200', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.1,200<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.25,200', '26/07/2019', '20190726', 'pm001', '1', '20190826', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '1200', '99', '0', '12000', '2500', '12000', '', '', '');
-INSERT INTO `lof` VALUES ('7', 'PRINCE MBABU', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('8', 'PRINCE KINYUA', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('9', 'PRINCE YASHUA', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('10', 'BONIFACE CALISTRO', '123 NAIROBI', '36', 'A2', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '04th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('11', 'IRENE KINYUA', '23243', '38', '109', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '10/07/2019', '20190710', '09/07/2118', '21180709', '12000', '16th', '10/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
-INSERT INTO `lof` VALUES ('12', 'r4', 'r4', '39', '123', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '14/10/2019', '20191014', '13/10/2118', '21181013', '23000', '16th', '14/10/2019', '0', '', 'NaN', '', '1', '1', '23000', '', '', '0', '', '', '46000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.23,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.23,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.46,000', '25/10/2019', '20191025', 'pm001', '1', '20191125', '0', '1', '20200619', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('4', 'd3d', 'd3d', '33', '324352', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '3234', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '3234', '', '', '0', '', '', '6468', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.3,234<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.3,234<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.6,468', '23/07/2019', '20190723', 'pm001', '1', '20190823', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '', '99', '0', '15000', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('5', 'JOHN DOE', '123 4567', '34', '1098', 'BENARD GITHIRWA MUHORO(KARIA)', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '15000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '15000', '', '', '0', '', '', '30000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.15,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.15,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.30,000', '23/07/2019', '20190723', 'pm001', '1', '20190823', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('6', 'JOHN DOE', '123 NAIROBI', '35', '101', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '25200', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.1,200<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.25,200', '26/07/2019', '20190726', 'pm001', '1', '20190826', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '1200', '99', '0', '12000', '2500', '12000', '', '', '');
+INSERT INTO `lof` VALUES ('7', 'PRINCE MBABU', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('8', 'PRINCE KINYUA', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('9', 'PRINCE YASHUA', '232432', '37', '13', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '05th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('10', 'BONIFACE CALISTRO', '123 NAIROBI', '36', 'A2', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '01/07/2019', '20190701', '30/06/2118', '21180630', '12000', '04th', '01/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('11', 'IRENE KINYUA', '23243', '38', '109', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '10/07/2019', '20190710', '09/07/2118', '21180709', '12000', '16th', '10/07/2019', '0', '', 'NaN', '', '1', '1', '12000', '', '', '0', '', '', '24000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.12,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.12,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.24,000', '29/07/2019', '20190729', 'pm001', '1', '20190829', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
+INSERT INTO `lof` VALUES ('12', 'r4', 'r4', '39', '123', 'GRAPHICS A', 'GROUND FLOOR', '99 Years 0 Months', '14/10/2019', '20191014', '13/10/2118', '21181013', '23000', '16th', '14/10/2019', '0', '', 'NaN', '', '1', '1', '23000', '', '', '0', '', '', '46000', 'Security Deposit (1 Month(s) Rent)&nbsp;&nbsp;KSh.23,000<br/>First Month`s Rent (Including VAT)&nbsp;&nbsp;&nbsp;KSh.23,000<br/>Water and Electricity Deposit&nbsp;&nbsp;&nbsp;&nbsp;KSh.<br/>1 Months Service Charge &nbsp;&nbsp;&nbsp;KSh.0<br/>Legal Fees Deposit (Including VAT)&nbsp;&nbsp;&nbsp;TBA<br/>Stamp Duty/Registration Fees &nbsp;&nbsp;&nbsp;&nbsp;TBA<br/>TOTAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KShs.46,000', '25/10/2019', '20191025', 'pm001', '1', '20191125', '0', '1', '20200623', '10', '10', '1', 'Residential', '0', '', '99', '0', '', '', '', '', '', '');
 
 -- ----------------------------
 -- Table structure for log
@@ -4725,7 +4715,7 @@ CREATE TABLE `log` (
   `date` varchar(20) DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12431 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12372 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of log
@@ -12369,309 +12359,250 @@ INSERT INTO `log` VALUES ('12124', 'pm001 accesses repossession File Panel.Recor
 INSERT INTO `log` VALUES ('12125', 'pm001 accesses repossession File Panel.Record ID:2', 'pm001', '202006161207', '12:07', '16/06/2020', '1');
 INSERT INTO `log` VALUES ('12126', 'pm001 accesses repossession File Panel.Record ID:5', 'pm001', '202006161208', '12:08', '16/06/2020', '1');
 INSERT INTO `log` VALUES ('12127', 'pm001 accesses repossession File Panel.Record ID:5', 'pm001', '202006161209', '12:09', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12128', 'pm001 logs into system', 'pm001', '202006161237', '12:37', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12129', 'pm001 logs into system', 'pm001', '202006161240', '12:40', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12130', 'pm001 accesses new Repossession panel.', 'pm001', '202006161246', '12:46', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12131', 'pm001 accesses new Repossession panel.', 'pm001', '202006161246', '12:46', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12132', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161258', '12:58', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12133', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161259', '12:59', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12134', 'pm001 logs into system', 'pm001', '202006161328', '13:28', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12135', 'pm001 accesses proclamation panel.decree id ', 'pm001', '202006161338', '13:38', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12136', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161338', '13:38', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12137', 'pm001 accesses proclamation panel.decree id ', 'pm001', '202006161338', '13:38', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12138', 'pm001 accesses repossession File Panel.Record ID:1', 'pm001', '202006161343', '13:43', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12139', 'pm001 accesses repossession File Panel.Record ID:2', 'pm001', '202006161344', '13:44', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12140', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161344', '13:44', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12141', 'pm001 accesses proclamation panel.decree id 2', 'pm001', '202006161349', '13:49', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12142', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161350', '13:50', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12143', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161352', '13:52', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12144', 'pm001 logs into system', 'pm001', '202006161406', '14:06', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12145', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161406', '14:06', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12146', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161407', '14:07', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12147', 'pm001 accesses new Repossession panel.', 'pm001', '202006161410', '14:10', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12148', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161410', '14:10', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12149', 'pm001 logs into system', 'pm001', '202006161427', '14:27', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12150', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161427', '14:27', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12151', 'pm001 logs into system', 'pm001', '202006161453', '14:53', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12152', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161454', '14:54', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12153', 'pm001 logs into system', 'pm001', '202006161532', '15:32', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12154', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161532', '15:32', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12155', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161534', '15:34', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12156', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161539', '15:39', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12157', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161545', '15:45', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12158', 'pm001 logs into system', 'pm001', '202006161610', '16:10', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12159', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161620', '16:20', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12160', 'pm001 logs into system', 'pm001', '202006161652', '16:52', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12161', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161652', '16:52', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12162', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161654', '16:54', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12163', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161700', '17:00', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12164', 'pm001 logs into system', 'pm001', '202006161719', '17:19', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12165', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161719', '17:19', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12166', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161722', '17:22', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12167', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161736', '17:36', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12168', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161739', '17:39', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12169', 'pm001 accesses proclamation panel.decree id 2', 'pm001', '202006161743', '17:43', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12170', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006161743', '17:43', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12171', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006161743', '17:43', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12172', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161745', '17:45', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12173', 'pm001 accesses proclamation panel.decree id 2', 'pm001', '202006161751', '17:51', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12174', 'pm001 logs into system', 'pm001', '202006162024', '20:24', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12175', 'pm001 logs into system', 'pm001', '202006162024', '20:24', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12176', 'pm001 accesses proclamation panel.decree id 2', 'pm001', '202006162026', '20:26', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12177', 'pm001 accesses proclamation panel.decree id 2', 'pm001', '202006162031', '20:31', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12178', 'pm001 logs into system', 'pm001', '202006162154', '21:54', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12179', 'pm001 archives letter.id:1', 'pm001', '202006162159', '21:59', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12180', 'pm001 logs into system', 'pm001', '202006162252', '22:52', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12181', 'pm001 accesses archived repossession search Panel.', 'pm001', '202006162253', '22:53', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12182', 'pm001 accesses archived repossession search Panel.', 'pm001', '202006162255', '22:55', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12183', 'pm001 activates repossession.id:1', 'pm001', '202006162256', '22:56', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12184', 'pm001 logs into system', 'pm001', '202006162318', '23:18', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12185', 'pm001 accesses archived repossession search Panel.', 'pm001', '202006162318', '23:18', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12186', 'pm001 archives letter.id:1', 'pm001', '202006162318', '23:18', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12187', 'pm001 accesses archived repossession search Panel.', 'pm001', '202006162319', '23:19', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12188', 'pm001 accesses archived repossession search Panel.', 'pm001', '202006162319', '23:19', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12189', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006162319', '23:19', '16/06/2020', '1');
-INSERT INTO `log` VALUES ('12190', 'pm001 logs into system', 'pm001', '202006170015', '00:15', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12191', 'pm001 accesses proclamation panel.decree id 2', 'pm001', '202006170016', '00:16', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12192', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006170016', '00:16', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12193', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006170016', '00:16', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12194', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006170016', '00:16', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12195', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006170016', '00:16', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12196', 'pm001 logs into system', 'pm001', '202006170031', '00:31', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12197', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006170031', '00:31', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12198', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006170031', '00:31', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12199', 'pm001 accesses proclamation panel.decree id 3', 'pm001', '202006170035', '00:35', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12200', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006170036', '00:36', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12201', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006170038', '00:38', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12202', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006170038', '00:38', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12203', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006170040', '00:40', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12204', 'pm001 accesses proclamation panel.decree id 4', 'pm001', '202006170931', '09:31', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12205', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006170931', '09:31', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12206', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006170932', '09:32', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12207', 'pm001 accesses proclamation panel.decree id 2', 'pm001', '202006170932', '09:32', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12208', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006170941', '09:41', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12209', 'pm001 accesses letter File Panel.Record ID:3', 'pm001', '202006170945', '09:45', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12210', 'pm001 accesses proclamation panel.decree id 2', 'pm001', '202006170954', '09:54', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12211', 'pm001 accesses letter File Panel.Record ID:3', 'pm001', '202006170958', '09:58', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12212', 'pm001 accesses letters File Panel.Record ID:3', 'pm001', '202006170958', '09:58', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12213', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006170959', '09:59', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12214', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006170959', '09:59', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12215', 'pm001 accesses proclamation panel.decree id 2', 'pm001', '202006170959', '09:59', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12216', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171000', '10:00', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12217', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006171001', '10:01', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12218', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171002', '10:02', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12219', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171006', '10:06', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12220', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006171013', '10:13', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12221', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171014', '10:14', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12222', 'pm001 logs into system', 'pm001', '202006171057', '10:57', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12223', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171057', '10:57', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12224', 'pm001 accesses find notice search  Panel.', 'pm001', '202006171057', '10:57', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12225', 'pm001 accesses repossession File Panel.Record ID:3', 'pm001', '202006171058', '10:58', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12226', 'pm001 accesses repossession File Panel.Record ID:3', 'pm001', '202006171059', '10:59', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12227', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171100', '11:00', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12228', 'pm001 accesses new letter panel.', 'pm001', '202006171103', '11:03', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12229', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006171104', '11:04', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12230', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171107', '11:07', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12231', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171108', '11:08', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12232', 'pm001 accesses notification of sale panel.decree id 3', 'pm001', '202006171109', '11:09', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12233', 'pm001 accesses notification of sale panel.decree id 3', 'pm001', '202006171110', '11:10', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12234', 'pm001 accesses repossession File Panel.Record ID:5', 'pm001', '202006171111', '11:11', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12235', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171112', '11:12', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12236', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171112', '11:12', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12237', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006171113', '11:13', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12238', 'pm001 logs into system', 'pm001', '202006171150', '11:50', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12239', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171151', '11:51', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12240', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171155', '11:55', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12241', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171156', '11:56', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12242', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171200', '12:00', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12243', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171201', '12:01', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12244', 'pm001 accesses notification of sale panel.decree id 3', 'pm001', '202006171201', '12:01', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12245', 'pm001 accesses notification of sale panel.decree id 3', 'pm001', '202006171202', '12:02', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12246', 'pm001 logs into system', 'pm001', '202006171234', '12:34', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12247', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171235', '12:35', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12248', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171237', '12:37', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12249', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006171237', '12:37', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12250', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171238', '12:38', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12251', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006171239', '12:39', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12252', 'pm001 logs into system', 'pm001', '202006171305', '13:05', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12253', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171305', '13:05', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12254', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006171306', '13:06', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12255', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006171306', '13:06', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12256', 'pm001 updates proclamation charges decree id=\' ', 'pm001', '202006171307', '13:07', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12257', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171308', '13:08', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12258', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006171308', '13:08', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12259', 'pm001 logs into system', 'pm001', '202006171323', '13:23', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12260', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006171324', '13:24', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12261', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171325', '13:25', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12262', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006171325', '13:25', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12263', 'pm001 accesses notification of sale panel.decree id 4', 'pm001', '202006171326', '13:26', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12264', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171332', '13:32', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12265', 'pm001 logs into system', 'pm001', '202006171334', '13:34', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12266', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171334', '13:34', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12267', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171341', '13:41', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12268', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171346', '13:46', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12269', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171351', '13:51', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12270', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171353', '13:53', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12271', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171353', '13:53', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12272', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171354', '13:54', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12273', 'pm001 logs into system', 'pm001', '202006171501', '15:01', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12274', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171502', '15:02', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12275', 'pm001 logs into system', 'pm001', '202006171533', '15:33', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12276', 'pm001 logs into system', 'pm001', '202006171533', '15:33', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12277', 'pm001 logs into system', 'pm001', '202006171700', '17:00', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12278', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006171706', '17:06', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12279', 'pm001 archives letter.id:5', 'pm001', '202006171706', '17:06', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12280', 'pm001 archives letter.id:2', 'pm001', '202006171707', '17:07', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12281', 'pm001 accesses new Repossession panel.', 'pm001', '202006171707', '17:07', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12282', 'pm001 accesses find notice search  Panel.', 'pm001', '202006171707', '17:07', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12283', 'pm001 accesses find notice search  Panel.', 'pm001', '202006171707', '17:07', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12284', 'pm001 logs into system', 'pm001', '202006172009', '20:09', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12285', 'pm001 accesses archived repossession search Panel.', 'pm001', '202006172009', '20:09', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12286', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006172010', '20:10', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12287', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006172010', '20:10', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12288', 'pm001 logs into system', 'pm001', '202006172041', '20:41', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12289', 'pm001 logs into system', 'pm001', '202006172041', '20:41', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12290', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006172042', '20:42', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12291', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006172042', '20:42', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12292', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006172100', '21:00', '17/06/2020', '1');
-INSERT INTO `log` VALUES ('12293', 'pm001 logs into system', 'pm001', '202006180929', '09:29', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12294', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006180931', '09:31', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12295', 'pm001 accesses Reports Panel.', 'pm001', '202006181002', '10:02', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12296', 'pm001 archives letter.id:3', 'pm001', '202006181002', '10:02', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12297', 'pm001 accesses archived repossession search Panel.', 'pm001', '202006181002', '10:02', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12298', 'pm001 accesses proclamation panel.decree id 3', 'pm001', '202006181002', '10:02', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12299', 'pm001 logs into system', 'pm001', '202006181017', '10:17', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12300', 'pm001 logs into system', 'pm001', '202006181026', '10:26', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12301', 'pm001 logs into system', 'pm001', '202006181026', '10:26', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12302', 'pm001 logs into system', 'pm001', '202006181040', '10:40', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12303', 'pm001 logs into system', 'pm001', '202006181110', '11:10', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12304', 'pm001 accesses find letter Panel.', 'pm001', '202006181115', '11:15', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12305', 'pm001 accesses decree search Panel.', 'pm001', '202006181115', '11:15', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12306', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181115', '11:15', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12307', 'pm001 logs into system', 'pm001', '202006181120', '11:20', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12308', 'pm001 logs into system', 'pm001', '202006181120', '11:20', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12309', 'pm001 accesses decree search Panel.', 'pm001', '202006181121', '11:21', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12310', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181121', '11:21', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12311', 'pm001 accesses decree search Panel.', 'pm001', '202006181125', '11:25', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12312', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181125', '11:25', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12313', 'pm001 accesses decree search Panel.', 'pm001', '202006181127', '11:27', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12314', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181127', '11:27', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12315', 'pm001 accesses new Repossession panel.', 'pm001', '202006181133', '11:33', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12316', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006181156', '11:56', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12317', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006181159', '11:59', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12318', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006181203', '12:03', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12319', 'pm001 accesses decree search Panel.', 'pm001', '202006181205', '12:05', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12320', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181205', '12:05', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12321', 'pm001 accesses decree search Panel.', 'pm001', '202006181206', '12:06', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12322', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181206', '12:06', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12323', 'pm001 archives letter.id:4', 'pm001', '202006181222', '12:22', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12324', 'pm001 accesses archived repossession search Panel.', 'pm001', '202006181223', '12:23', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12325', 'pm001 accesses archived repossession search Panel.', 'pm001', '202006181227', '12:27', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12326', 'pm001 activates repossession.id:4', 'pm001', '202006181227', '12:27', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12327', 'pm001 accesses new decree panel.', 'pm001', '202006181227', '12:27', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12328', 'pm001 logs into system', 'pm001', '202006181241', '12:41', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12329', 'pm001 accesses decree search Panel.', 'pm001', '202006181242', '12:42', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12330', 'pm001 accesses decree search Panel.', 'pm001', '202006181242', '12:42', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12331', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181242', '12:42', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12332', 'pm001 accesses decree search Panel.', 'pm001', '202006181242', '12:42', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12333', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181243', '12:43', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12334', 'pm001 accesses notification of sale panel.decree id 3', 'pm001', '202006181246', '12:46', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12335', 'pm001 accesses notification of sale panel.decree id 2', 'pm001', '202006181246', '12:46', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12336', 'pm001 accesses decree search Panel.', 'pm001', '202006181248', '12:48', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12337', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181248', '12:48', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12338', 'pm001 accesses decree search Panel.', 'pm001', '202006181250', '12:50', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12339', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181251', '12:51', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12340', 'pm001 accesses new Repossession panel.', 'pm001', '202006181300', '13:00', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12341', 'pm001 accesses new Repossession panel.', 'pm001', '202006181300', '13:00', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12342', 'pm001 accesses new decree panel.', 'pm001', '202006181302', '13:02', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12343', 'pm001 logs into system', 'pm001', '202006181324', '13:24', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12344', 'pm001 accesses new Repossession panel.', 'pm001', '202006181324', '13:24', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12345', 'pm001 accesses new Repossession panel.', 'pm001', '202006181325', '13:25', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12346', 'pm001 accesses new Repossession panel.', 'pm001', '202006181331', '13:31', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12347', 'pm001 logs into system', 'pm001', '202006181356', '13:56', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12348', 'pm001 accesses new Repossession panel.', 'pm001', '202006181358', '13:58', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12349', 'pm001 accesses edit respossession File Panel.Record ID:4', 'pm001', '202006181358', '13:58', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12350', 'pm001 logs into system', 'pm001', '202006181413', '14:13', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12351', 'pm001 accesses find notice search  Panel.', 'pm001', '202006181414', '14:14', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12352', 'pm001 accesses archived repossession search Panel.', 'pm001', '202006181414', '14:14', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12353', 'pm001 activates repossession.id:1', 'pm001', '202006181414', '14:14', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12354', 'pm001 activates repossession.id:5', 'pm001', '202006181414', '14:14', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12355', 'pm001 accesses edit respossession File Panel.Record ID:5', 'pm001', '202006181415', '14:15', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12356', 'pm001 updates Repossession', 'pm001', '202006181415', '14:15', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12357', 'pm001 accesses new Repossession panel.', 'pm001', '202006181415', '14:15', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12358', 'pm001 accesses find notice search  Panel.', 'pm001', '202006181415', '14:15', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12359', 'pm001 accesses repossession File Panel.Record ID:5', 'pm001', '202006181416', '14:16', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12360', 'pm001 accesses repossession File Panel.Record ID:5', 'pm001', '202006181417', '14:17', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12361', 'pm001 accesses find notice search  Panel.', 'pm001', '202006181417', '14:17', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12362', 'pm001 accesses new Repossession panel.', 'pm001', '202006181421', '14:21', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12363', 'pm001 logs into system', 'pm001', '202006181435', '14:35', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12364', 'pm001 accesses find notice search  Panel.', 'pm001', '202006181436', '14:36', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12365', 'pm001 accesses find notice search  Panel.', 'pm001', '202006181436', '14:36', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12366', 'pm001 accesses edit respossession File Panel.Record ID:5', 'pm001', '202006181436', '14:36', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12367', 'pm001 accesses repossession File Panel.Record ID:5', 'pm001', '202006181444', '14:44', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12368', 'pm001 accesses find notice search  Panel.', 'pm001', '202006181444', '14:44', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12369', 'pm001 accesses find notice search  Panel.', 'pm001', '202006181445', '14:45', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12370', 'pm001 accesses repossession File Panel.Record ID:REP000005', 'pm001', '202006181446', '14:46', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12371', 'pm001 accesses new Repossession panel.', 'pm001', '202006181454', '14:54', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12372', 'pm001 accesses new Repossession panel.', 'pm001', '202006181505', '15:05', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12373', 'pm001 creates new Repossession', 'pm001', '202006181506', '15:06', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12374', 'pm001 accesses new Repossession panel.', 'pm001', '202006181506', '15:06', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12375', 'pm001 accesses decree File Panel.Record ID:2', 'pm001', '202006181513', '15:13', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12376', 'pm001 accesses decree File Panel.Record ID:2', 'pm001', '202006181514', '15:14', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12377', 'pm001 accesses decree File Panel.Record ID:2', 'pm001', '202006181515', '15:15', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12378', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006181518', '15:18', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12379', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006181536', '15:36', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12380', 'pm001 accesses decree File Panel.Record ID:1', 'pm001', '202006181537', '15:37', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12381', 'pm001 accesses decree search Panel.', 'pm001', '202006181537', '15:37', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12382', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181537', '15:37', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12383', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006181538', '15:38', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12384', 'pm001 accesses decree search Panel.', 'pm001', '202006181538', '15:38', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12385', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181538', '15:38', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12386', 'pm001 accesses notification of sale panel.decree id 1', 'pm001', '202006181539', '15:39', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12387', 'pm001 logs into system', 'pm001', '202006181601', '16:01', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12388', 'pm001 logs into system', 'pm001', '202006181602', '16:02', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12389', 'pm001 logs into system', 'pm001', '202006181613', '16:13', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12390', 'pm001 accesses decree search Panel.', 'pm001', '202006181615', '16:15', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12391', 'pm001 accesses decree search Panel.', 'pm001', '202006181616', '16:16', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12392', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181621', '16:21', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12393', 'pm001 logs into system', 'pm001', '202006181635', '16:35', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12394', 'pm001 accesses new Repossession panel.', 'pm001', '202006181639', '16:39', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12395', 'pm001 creates new Repossession', 'pm001', '202006181639', '16:39', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12396', 'pm001 accesses decree search Panel.', 'pm001', '202006181648', '16:48', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12397', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181648', '16:48', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12398', 'pm001 accesses find notice search  Panel.', 'pm001', '202006181648', '16:48', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12399', 'pm001 accesses edit respossession File Panel.Record ID:1', 'pm001', '202006181649', '16:49', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12400', 'pm001 accesses notification of sale panel.repossession id 4', 'pm001', '202006181655', '16:55', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12401', 'pm001 accesses notification of sale panel.repossession id 4', 'pm001', '202006181703', '17:03', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12402', 'pm001 accesses notification of sale panel.repossession id 4', 'pm001', '202006181710', '17:10', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12403', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006181710', '17:10', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12404', 'pm001 accesses decree search Panel.', 'pm001', '202006181725', '17:25', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12405', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181727', '17:27', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12406', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006181728', '17:28', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12407', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006181737', '17:37', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12408', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006181741', '17:41', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12409', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006181745', '17:45', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12410', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006181749', '17:49', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12411', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006181755', '17:55', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12412', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006181759', '17:59', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12413', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006181805', '18:05', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12414', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006181809', '18:09', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12415', 'pm001 logs into system', 'pm001', '202006182219', '22:19', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12416', 'pm001 accesses new Repossession panel.', 'pm001', '202006182239', '22:39', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12417', 'pm001 creates new Repossession', 'pm001', '202006182239', '22:39', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12418', 'pm001 accesses new Repossession panel.', 'pm001', '202006182239', '22:39', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12419', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006182240', '22:40', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12420', 'pm001 accesses notification of sale panel.repossession id 1', 'pm001', '202006182244', '22:44', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12421', 'pm001 creates new Repossession', 'pm001', '202006182244', '22:44', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12422', 'pm001 creates new Repossession', 'pm001', '202006182244', '22:44', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12423', 'pm001 accesses notification of sale panel.repossession id 5', 'pm001', '202006182248', '22:48', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12424', 'pm001 creates new Repossession', 'pm001', '202006182249', '22:49', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12425', 'pm001 creates new Repossession', 'pm001', '202006182249', '22:49', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12426', 'pm001 accesses decree search Panel.', 'pm001', '202006182255', '22:55', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12427', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006182255', '22:55', '18/06/2020', '1');
-INSERT INTO `log` VALUES ('12428', 'pm001 logs into system', 'pm001', '202006190920', '09:20', '19/06/2020', '1');
-INSERT INTO `log` VALUES ('12429', 'pm001 accesses notification of sale panel.repossession id 4', 'pm001', '202006190921', '09:21', '19/06/2020', '1');
-INSERT INTO `log` VALUES ('12430', 'pm001 accesses notification of sale panel.repossession id 4', 'pm001', '202006190924', '09:24', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12128', 'pm001 logs into system', 'pm001', '202006161241', '12:41', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12129', 'pm001 accesses new Repossession panel.', 'pm001', '202006161242', '12:42', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12130', 'pm001 accesses edit respossession File Panel.Record ID:1', 'pm001', '202006161242', '12:42', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12131', 'pm001 accesses new Repossession panel.', 'pm001', '202006161243', '12:43', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12132', 'pm001 accesses decree search Panel.', 'pm001', '202006161243', '12:43', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12133', 'pm001 accesses new decree panel.', 'pm001', '202006161244', '12:44', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12134', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006161250', '12:50', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12135', 'pm001 logs into system', 'pm001', '202006161426', '14:26', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12136', 'pm001 accesses new Repossession panel.', 'pm001', '202006161427', '14:27', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12137', 'pm001 logs into system', 'pm001', '202006161449', '14:49', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12138', 'pm001 logs into system', 'pm001', '202006161624', '16:24', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12139', 'pm001 creates new task in to do list.', 'pm001', '202006161627', '16:27', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12140', 'pm001 logs into system', 'pm001', '202006161642', '16:42', '16/06/2020', '1');
+INSERT INTO `log` VALUES ('12141', 'pm001 logs into system', 'pm001', '202006170621', '06:21', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12142', 'pm001 accesses new letter panel.', 'pm001', '202006170625', '06:25', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12143', 'pm001 logs into system', 'pm001', '202006170630', '06:30', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12144', 'pm001 accesses new distress panel.', 'pm001', '202006170634', '06:34', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12145', 'pm001 accesses find distress Panel.', 'pm001', '202006170635', '06:35', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12146', 'pm001 accesses new Repossession panel.', 'pm001', '202006170635', '06:35', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12147', 'pm001 accesses edit respossession File Panel.Record ID:1', 'pm001', '202006170636', '06:36', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12148', 'pm001 accesses find notice search  Panel.', 'pm001', '202006170636', '06:36', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12149', 'pm001 accesses repossession File Panel.Record ID:1', 'pm001', '202006170636', '06:36', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12150', 'pm001 accesses decree search Panel.', 'pm001', '202006170637', '06:37', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12151', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006170640', '06:40', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12152', 'pm001 accesses distress File Panel.Record ID:1', 'pm001', '202006170642', '06:42', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12153', 'pm001 logs into system', 'pm001', '202006170924', '09:24', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12154', 'pm001 accesses decree search Panel.', 'pm001', '202006170925', '09:25', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12155', 'pm001 accesses letter File Panel.Record ID:3', 'pm001', '202006170925', '09:25', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12156', 'pm001 accesses decree search Panel.', 'pm001', '202006170934', '09:34', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12157', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006170934', '09:34', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12158', 'pm001 accesses decree edit File Panel.Record ID:', 'pm001', '202006170938', '09:38', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12159', 'pm001 accesses decree search Panel.', 'pm001', '202006170941', '09:41', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12160', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006170941', '09:41', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12161', 'pm001 accesses decree search Panel.', 'pm001', '202006170943', '09:43', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12162', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006170943', '09:43', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12163', 'pm001 accesses decree search Panel.', 'pm001', '202006170947', '09:47', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12164', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006170947', '09:47', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12165', 'pm001 accesses decree search Panel.', 'pm001', '202006170947', '09:47', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12166', 'pm001 accesses decree edit File Panel.Record ID:5', 'pm001', '202006170947', '09:47', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12167', 'pm001 accesses decree search Panel.', 'pm001', '202006170950', '09:50', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12168', 'pm001 accesses decree edit File Panel.Record ID:6', 'pm001', '202006170951', '09:51', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12169', 'pm001 accesses decree File Panel.Record ID:1', 'pm001', '202006170957', '09:57', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12170', 'pm001 accesses find distress Panel.', 'pm001', '202006170957', '09:57', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12171', 'pm001 accesses decree search Panel.', 'pm001', '202006171002', '10:02', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12172', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006171002', '10:02', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12173', 'pm001 accesses decree File Panel.Record ID:1', 'pm001', '202006171009', '10:09', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12174', 'pm001 accesses new decree panel.', 'pm001', '202006171017', '10:17', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12175', 'pm001 accesses decree File Panel.Record ID:1', 'pm001', '202006171034', '10:34', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12176', 'pm001 accesses decree File Panel.Record ID:1', 'pm001', '202006171036', '10:36', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12177', 'pm001 logs into system', 'pm001', '202006171121', '11:21', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12178', 'pm001 accesses decree File Panel.Record ID:2', 'pm001', '202006171122', '11:22', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12179', 'pm001 accesses decree File Panel.Record ID:2', 'pm001', '202006171123', '11:23', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12180', 'pm001 archives decree.id:1', 'pm001', '202006171127', '11:27', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12181', 'pm001 accesses find distress Panel.', 'pm001', '202006171127', '11:27', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12182', 'pm001 activates decree.id:1', 'pm001', '202006171127', '11:27', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12183', 'pm001 accesses find distress Panel.', 'pm001', '202006171128', '11:28', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12184', 'pm001 accesses decree search Panel.', 'pm001', '202006171129', '11:29', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12185', 'pm001 accesses decree File Panel.Record ID:1', 'pm001', '202006171129', '11:29', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12186', 'pm001 accesses decree search Panel.', 'pm001', '202006171131', '11:31', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12187', 'pm001 accesses decree File Panel.Record ID:1', 'pm001', '202006171131', '11:31', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12188', 'pm001 accesses decree search Panel.', 'pm001', '202006171139', '11:39', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12189', 'pm001 accesses proclamation panel.decree id 3', 'pm001', '202006171139', '11:39', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12190', 'pm001 logs into system', 'pm001', '202006171201', '12:01', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12191', 'pm001 accesses decree search Panel.', 'pm001', '202006171203', '12:03', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12192', 'pm001 accesses proclamation panel.decree id 5', 'pm001', '202006171203', '12:03', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12193', 'pm001 accesses proclamation panel.decree id 5', 'pm001', '202006171205', '12:05', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12194', 'pm001 accesses proclamation panel.decree id 5', 'pm001', '202006171223', '12:23', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12195', 'pm001 accesses decree search Panel.', 'pm001', '202006171225', '12:25', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12196', 'pm001 logs into system', 'pm001', '202006171342', '13:42', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12197', 'pm001 accesses decree search Panel.', 'pm001', '202006171347', '13:47', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12198', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171348', '13:48', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12199', 'pm001 accesses decree search Panel.', 'pm001', '202006171355', '13:55', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12200', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171355', '13:55', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12201', 'pm001 accesses decree search Panel.', 'pm001', '202006171356', '13:56', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12202', 'pm001 accesses proclamation panel.decree id 4', 'pm001', '202006171356', '13:56', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12203', 'pm001 logs into system', 'pm001', '202006171408', '14:08', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12204', 'pm001 accesses decree search Panel.', 'pm001', '202006171408', '14:08', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12205', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171408', '14:08', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12206', 'pm001 accesses decree search Panel.', 'pm001', '202006171410', '14:10', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12207', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171410', '14:10', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12208', 'pm001 accesses decree search Panel.', 'pm001', '202006171413', '14:13', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12209', 'pm001 accesses decree search Panel.', 'pm001', '202006171414', '14:14', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12210', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006171414', '14:14', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12211', 'pm001 accesses decree search Panel.', 'pm001', '202006171421', '14:21', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12212', 'pm001 accesses proclamation panel.decree id 6', 'pm001', '202006171422', '14:22', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12213', 'pm001 logs into system', 'pm001', '202006171535', '15:35', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12214', 'pm001 accesses decree search Panel.', 'pm001', '202006171546', '15:46', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12215', 'pm001 accesses decree File Panel.Record ID:1', 'pm001', '202006171547', '15:47', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12216', 'pm001 accesses find distress Panel.', 'pm001', '202006171548', '15:48', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12217', 'pm001 logs into system', 'pm001', '202006171602', '16:02', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12218', 'pm001 logs into system', 'pm001', '202006171702', '17:02', '17/06/2020', '1');
+INSERT INTO `log` VALUES ('12219', 'pm001 logs into system', 'pm001', '202006180953', '09:53', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12220', 'pm001 logs into system', 'pm001', '202006181018', '10:18', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12221', 'pm001 accesses decree search Panel.', 'pm001', '202006181032', '10:32', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12222', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181032', '10:32', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12223', 'pm001 logs into system', 'pm001', '202006181250', '12:50', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12224', 'pm001 accesses decree search Panel.', 'pm001', '202006181250', '12:50', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12225', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181251', '12:51', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12226', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181252', '12:52', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12227', 'pm001 logs into system', 'pm001', '202006181308', '13:08', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12228', 'pm001 logs into system', 'pm001', '202006181337', '13:37', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12229', 'pm001 accesses decree search Panel.', 'pm001', '202006181338', '13:38', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12230', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181338', '13:38', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12231', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181339', '13:39', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12232', 'pm001 accesses decree search Panel.', 'pm001', '202006181340', '13:40', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12233', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181340', '13:40', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12234', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181340', '13:40', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12235', 'pm001 accesses decree search Panel.', 'pm001', '202006181349', '13:49', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12236', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181349', '13:49', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12237', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181349', '13:49', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12238', 'pm001 logs into system', 'pm001', '202006181413', '14:13', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12239', 'pm001 accesses decree search Panel.', 'pm001', '202006181413', '14:13', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12240', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181413', '14:13', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12241', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181413', '14:13', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12242', 'pm001 logs into system', 'pm001', '202006181718', '17:18', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12243', 'pm001 accesses decree search Panel.', 'pm001', '202006181719', '17:19', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12244', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006181720', '17:20', '18/06/2020', '1');
+INSERT INTO `log` VALUES ('12245', 'pm001 logs into system', 'pm001', '202006190910', '09:10', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12246', 'pm001 accesses notification of sale panel.repossession id 2', 'pm001', '202006190912', '09:12', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12247', 'pm001 accesses notification of sale panel.repossession id 2', 'pm001', '202006190924', '09:24', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12248', 'pm001 accesses decree search Panel.', 'pm001', '202006190926', '09:26', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12249', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006190926', '09:26', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12250', 'pm001 accesses decree search Panel.', 'pm001', '202006190931', '09:31', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12251', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006190932', '09:32', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12252', 'pm001 logs into system', 'pm001', '202006191038', '10:38', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12253', 'pm001 accesses decree search Panel.', 'pm001', '202006191100', '11:00', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12254', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006191100', '11:00', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12255', 'pm001 accesses decree search Panel.', 'pm001', '202006191103', '11:03', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12256', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006191103', '11:03', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12257', 'pm001 accesses decree search Panel.', 'pm001', '202006191108', '11:08', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12258', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006191108', '11:08', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12259', 'pm001 accesses decree search Panel.', 'pm001', '202006191115', '11:15', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12260', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006191115', '11:15', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12261', 'pm001 accesses decree search Panel.', 'pm001', '202006191120', '11:20', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12262', 'pm001 accesses decree search Panel.', 'pm001', '202006191120', '11:20', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12263', 'pm001 accesses decree File Panel.Record ID:1', 'pm001', '202006191121', '11:21', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12264', 'pm001 accesses decree search Panel.', 'pm001', '202006191121', '11:21', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12265', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006191121', '11:21', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12266', 'pm001 accesses decree search Panel.', 'pm001', '202006191122', '11:22', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12267', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006191123', '11:23', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12268', 'pm001 logs into system', 'pm001', '202006191149', '11:49', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12269', 'pm001 accesses decree search Panel.', 'pm001', '202006191150', '11:50', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12270', 'pm001 accesses decree search Panel.', 'pm001', '202006191151', '11:51', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12271', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006191151', '11:51', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12272', 'pm001 generates decree execution application ', 'pm001', '202006191151', '11:51', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12273', 'pm001 accesses decree search Panel.', 'pm001', '202006191151', '11:51', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12274', 'pm001 logs into system', 'pm001', '202006191212', '12:12', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12275', 'pm001 accesses decree search Panel.', 'pm001', '202006191214', '12:14', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12276', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006191215', '12:15', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12277', 'pm001 generates decree execution application ', 'pm001', '202006191215', '12:15', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12278', 'pm001 accesses decree search Panel.', 'pm001', '202006191215', '12:15', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12279', 'pm001 accesses decree search Panel.', 'pm001', '202006191220', '12:20', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12280', 'pm001 accesses decree search Panel.', 'pm001', '202006191220', '12:20', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12281', 'pm001 accesses decree search Panel.', 'pm001', '202006191220', '12:20', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12282', 'pm001 accesses decree search Panel.', 'pm001', '202006191223', '12:23', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12283', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006191223', '12:23', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12284', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006191224', '12:24', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12285', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006191224', '12:24', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12286', 'pm001 logs into system', 'pm001', '202006191245', '12:45', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12287', 'pm001 accesses decree search Panel.', 'pm001', '202006191245', '12:45', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12288', 'pm001 accesses decree edit File Panel.Record ID:1', 'pm001', '202006191245', '12:45', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12289', 'pm001 generates decree execution application ', 'pm001', '202006191246', '12:46', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12290', 'pm001 accesses decree search Panel.', 'pm001', '202006191246', '12:46', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12291', 'pm001 accesses proclamation panel.decree id 3', 'pm001', '202006191246', '12:46', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12292', 'pm001 logs into system', 'pm001', '202006191259', '12:59', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12293', 'pm001 accesses decree edit File Panel.Record ID:', 'pm001', '202006191301', '13:01', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12294', 'pm001 accesses decree search Panel.', 'pm001', '202006191306', '13:06', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12295', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006191306', '13:06', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12296', 'pm001 logs into system', 'pm001', '202006191351', '13:51', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12297', 'pm001 logs into system', 'pm001', '202006191355', '13:55', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12298', 'pm001 logs into system', 'pm001', '202006191356', '13:56', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12299', 'pm001 accesses new letter panel.', 'pm001', '202006191356', '13:56', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12300', 'pm001 accesses decree search Panel.', 'pm001', '202006191356', '13:56', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12301', 'pm001 accesses find notice search  Panel.', 'pm001', '202006191356', '13:56', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12302', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006191356', '13:56', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12303', 'pm001 accesses proclamation panel.repossession id 1', 'pm001', '202006191357', '13:57', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12304', 'pm001 accesses decree search Panel.', 'pm001', '202006191358', '13:58', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12305', 'pm001 accesses proclamation panel.decree id 1', 'pm001', '202006191358', '13:58', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12306', 'pm001 accesses new decree panel.', 'pm001', '202006191402', '14:02', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12307', 'pm001 creates new decree', 'pm001', '202006191404', '14:04', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12308', 'pm001 accesses new decree panel.', 'pm001', '202006191404', '14:04', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12309', 'pm001 accesses find notice search  Panel.', 'pm001', '202006191411', '14:11', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12310', 'pm001 accesses find notice search  Panel.', 'pm001', '202006191411', '14:11', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12311', 'pm001 accesses proclamation panel.repossession id 1', 'pm001', '202006191412', '14:12', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12312', 'pm001 logs into system', 'pm001', '202006191423', '14:23', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12313', 'pm001 accesses new decree panel.', 'pm001', '202006191424', '14:24', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12314', 'pm001 accesses new decree panel.', 'pm001', '202006191427', '14:27', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12315', 'pm001 accesses new decree panel.', 'pm001', '202006191430', '14:30', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12316', 'pm001 accesses new decree panel.', 'pm001', '202006191430', '14:30', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12317', 'pm001 creates new decree', 'pm001', '202006191433', '14:33', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12318', 'pm001 accesses new decree panel.', 'pm001', '202006191433', '14:33', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12319', 'pm001 accesses decree search Panel.', 'pm001', '202006191440', '14:40', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12320', 'pm001 accesses decree search Panel.', 'pm001', '202006191445', '14:45', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12321', 'pm001 accesses decree search Panel.', 'pm001', '202006191445', '14:45', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12322', 'pm001 accesses decree edit File Panel.Record ID:8', 'pm001', '202006191446', '14:46', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12323', 'pm001 updates decree info ', 'pm001', '202006191447', '14:47', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12324', 'pm001 accesses decree search Panel.', 'pm001', '202006191447', '14:47', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12325', 'pm001 accesses decree File Panel.Record ID:8', 'pm001', '202006191447', '14:47', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12326', 'pm001 accesses decree search Panel.', 'pm001', '202006191456', '14:56', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12327', 'pm001 accesses decree search Panel.', 'pm001', '202006191456', '14:56', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12328', 'pm001 accesses decree search Panel.', 'pm001', '202006191456', '14:56', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12329', 'pm001 accesses decree search Panel.', 'pm001', '202006191458', '14:58', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12330', 'pm001 accesses decree File Panel.Record ID:8', 'pm001', '202006191458', '14:58', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12331', 'pm001 accesses decree search Panel.', 'pm001', '202006191458', '14:58', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12332', 'pm001 accesses decree File Panel.Record ID:8', 'pm001', '202006191459', '14:59', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12333', 'pm001 accesses decree search Panel.', 'pm001', '202006191459', '14:59', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12334', 'pm001 accesses decree edit File Panel.Record ID:8', 'pm001', '202006191459', '14:59', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12335', 'pm001 updates decree info ', 'pm001', '202006191459', '14:59', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12336', 'pm001 accesses decree search Panel.', 'pm001', '202006191459', '14:59', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12337', 'pm001 accesses decree edit File Panel.Record ID:8', 'pm001', '202006191500', '15:00', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12338', 'pm001 logs into system', 'pm001', '202006191519', '15:19', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12339', 'pm001 logs into system', 'pm001', '202006191539', '15:39', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12340', 'pm001 accesses decree search Panel.', 'pm001', '202006191540', '15:40', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12341', 'pm001 accesses decree edit File Panel.Record ID:8', 'pm001', '202006191540', '15:40', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12342', 'pm001 logs into system', 'pm001', '202006191541', '15:41', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12343', 'pm001 accesses new letter panel.', 'pm001', '202006191547', '15:47', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12344', 'pm001 accesses new decree panel.', 'pm001', '202006191556', '15:56', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12345', 'pm001 accesses decree search Panel.', 'pm001', '202006191557', '15:57', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12346', 'pm001 accesses new decree panel.', 'pm001', '202006191558', '15:58', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12347', 'pm001 accesses decree search Panel.', 'pm001', '202006191558', '15:58', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12348', 'pm001 accesses decree edit File Panel.Record ID:8', 'pm001', '202006191559', '15:59', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12349', 'pm001 updates decree info ', 'pm001', '202006191559', '15:59', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12350', 'pm001 accesses decree search Panel.', 'pm001', '202006191559', '15:59', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12351', 'pm001 accesses new decree panel.', 'pm001', '202006191600', '16:00', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12352', 'pm001 accesses Tenant Invoicing Panel.', 'pm001', '202006191603', '16:03', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12353', 'pm001 accesses Expenses Management Panel.', 'pm001', '202006191605', '16:05', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12354', 'pm001 accesses BULK SMS COMMUNICATION Panel.Record ID:0', 'pm001', '202006191612', '16:12', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12355', 'pm001 logs into system', 'pm001', '202006191622', '16:22', '19/06/2020', '1');
+INSERT INTO `log` VALUES ('12356', 'pm001 logs into system', 'pm001', '202006221020', '10:20', '22/06/2020', '1');
+INSERT INTO `log` VALUES ('12357', 'pm001 logs into system', 'pm001', '202006221022', '10:22', '22/06/2020', '1');
+INSERT INTO `log` VALUES ('12358', 'pm001 logs into system', 'pm001', '202006221208', '12:08', '22/06/2020', '1');
+INSERT INTO `log` VALUES ('12359', 'pm001 logs into system', 'pm001', '202006221304', '13:04', '22/06/2020', '1');
+INSERT INTO `log` VALUES ('12360', 'pm001 accesses New Member File Panel', 'pm001', '202006221311', '13:11', '22/06/2020', '1');
+INSERT INTO `log` VALUES ('12361', 'pm001 accesses New Member File Panel', 'pm001', '202006221311', '13:11', '22/06/2020', '1');
+INSERT INTO `log` VALUES ('12362', 'pm001 accesses Find Members Search Panel.', 'pm001', '202006221312', '13:12', '22/06/2020', '1');
+INSERT INTO `log` VALUES ('12363', 'pm001 archives member.Name:1', 'pm001', '202006221312', '13:12', '22/06/2020', '1');
+INSERT INTO `log` VALUES ('12364', 'pm001 accesses Find Ex-Members Search Panel.', 'pm001', '202006221312', '13:12', '22/06/2020', '1');
+INSERT INTO `log` VALUES ('12365', 'pm001 logs into system', 'pm001', '202006231122', '11:22', '23/06/2020', '1');
+INSERT INTO `log` VALUES ('12366', 'pm001 accesses New Member File Panel', 'pm001', '202006231132', '11:32', '23/06/2020', '1');
+INSERT INTO `log` VALUES ('12367', 'pm001 accesses new letter panel.', 'pm001', '202006231137', '11:37', '23/06/2020', '1');
+INSERT INTO `log` VALUES ('12368', 'pm001 accesses Tenant Invoicing Panel.', 'pm001', '202006231210', '12:10', '23/06/2020', '1');
+INSERT INTO `log` VALUES ('12369', 'pm001 accesses find letter Panel.', 'pm001', '202006231212', '12:12', '23/06/2020', '1');
+INSERT INTO `log` VALUES ('12370', 'pm001 logs into system', 'pm001', '202006231519', '15:19', '23/06/2020', '1');
+INSERT INTO `log` VALUES ('12371', 'pm001 logs into system', 'pm001', '202006231552', '15:52', '23/06/2020', '1');
 
 -- ----------------------------
 -- Table structure for mainhouses
@@ -12792,7 +12723,7 @@ CREATE TABLE `messages` (
   `stamp` varchar(20) NOT NULL,
   `status` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=450 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=360 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of messages
@@ -12927,7 +12858,7 @@ INSERT INTO `messages` VALUES ('311', 'EW006', 'System', 'The lease term for ten
 INSERT INTO `messages` VALUES ('312', 'TM007', 'System', 'The lease term for tenant: KLL- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('313', 'eM008', 'System', 'The lease term for tenant: KLL- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('314', 'RK009', 'System', 'The lease term for tenant: KLL- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '0');
-INSERT INTO `messages` VALUES ('315', 'pm001', 'System', 'The lease term for tenant: KLL- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
+INSERT INTO `messages` VALUES ('315', 'pm001', 'System', 'The lease term for tenant: KLL- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '1');
 INSERT INTO `messages` VALUES ('316', 'ad002', 'System', 'The lease term for tenant: KLL- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('317', 'EN003', 'System', 'The lease term for tenant: KLL- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('318', 'MT004', 'System', 'The lease term for tenant: KLL- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
@@ -12936,7 +12867,7 @@ INSERT INTO `messages` VALUES ('320', 'EW006', 'System', 'The lease term for ten
 INSERT INTO `messages` VALUES ('321', 'TM007', 'System', 'The lease term for tenant: KLL- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('322', 'eM008', 'System', 'The lease term for tenant: KLL- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('323', 'RK009', 'System', 'The lease term for tenant: KLL- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
-INSERT INTO `messages` VALUES ('324', 'pm001', 'System', 'The lease term for tenant: DOROTYU- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '0');
+INSERT INTO `messages` VALUES ('324', 'pm001', 'System', 'The lease term for tenant: DOROTYU- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '1');
 INSERT INTO `messages` VALUES ('325', 'ad002', 'System', 'The lease term for tenant: DOROTYU- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('326', 'EN003', 'System', 'The lease term for tenant: DOROTYU- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('327', 'MT004', 'System', 'The lease term for tenant: DOROTYU- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '0');
@@ -12945,7 +12876,7 @@ INSERT INTO `messages` VALUES ('329', 'EW006', 'System', 'The lease term for ten
 INSERT INTO `messages` VALUES ('330', 'TM007', 'System', 'The lease term for tenant: DOROTYU- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('331', 'eM008', 'System', 'The lease term for tenant: DOROTYU- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('332', 'RK009', 'System', 'The lease term for tenant: DOROTYU- will expire on //. Kindly make the necessary arrangements.', '', '16/06/2020-07:33 AM', '20200616', '0');
-INSERT INTO `messages` VALUES ('333', 'pm001', 'System', 'The lease term for tenant: DOROTYU- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
+INSERT INTO `messages` VALUES ('333', 'pm001', 'System', 'The lease term for tenant: DOROTYU- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '1');
 INSERT INTO `messages` VALUES ('334', 'ad002', 'System', 'The lease term for tenant: DOROTYU- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('335', 'EN003', 'System', 'The lease term for tenant: DOROTYU- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('336', 'MT004', 'System', 'The lease term for tenant: DOROTYU- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
@@ -12954,114 +12885,24 @@ INSERT INTO `messages` VALUES ('338', 'EW006', 'System', 'The lease term for ten
 INSERT INTO `messages` VALUES ('339', 'TM007', 'System', 'The lease term for tenant: DOROTYU- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('340', 'eM008', 'System', 'The lease term for tenant: DOROTYU- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
 INSERT INTO `messages` VALUES ('341', 'RK009', 'System', 'The lease term for tenant: DOROTYU- has expired; and  record inactivated. Be aware.', '', '16/06/2020-07:33 AM', '20200616', '0');
-INSERT INTO `messages` VALUES ('342', 'pm001', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('343', 'ad002', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('344', 'EN003', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('345', 'MT004', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('346', 'CM005', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('347', 'EW006', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('348', 'TM007', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('349', 'eM008', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('350', 'RK009', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('351', 'pm001', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('352', 'ad002', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('353', 'EN003', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('354', 'MT004', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('355', 'CM005', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('356', 'EW006', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('357', 'TM007', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('358', 'eM008', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('359', 'RK009', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-12:15 AM', '20200617', '0');
-INSERT INTO `messages` VALUES ('360', 'pm001', 'System', 'The lease term for tenant: IO COMP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('361', 'ad002', 'System', 'The lease term for tenant: IO COMP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('362', 'EN003', 'System', 'The lease term for tenant: IO COMP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('363', 'MT004', 'System', 'The lease term for tenant: IO COMP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('364', 'CM005', 'System', 'The lease term for tenant: IO COMP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('365', 'EW006', 'System', 'The lease term for tenant: IO COMP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('366', 'TM007', 'System', 'The lease term for tenant: IO COMP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('367', 'eM008', 'System', 'The lease term for tenant: IO COMP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('368', 'RK009', 'System', 'The lease term for tenant: IO COMP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('369', 'pm001', 'System', 'The lease term for tenant: IO COMP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('370', 'ad002', 'System', 'The lease term for tenant: IO COMP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('371', 'EN003', 'System', 'The lease term for tenant: IO COMP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('372', 'MT004', 'System', 'The lease term for tenant: IO COMP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('373', 'CM005', 'System', 'The lease term for tenant: IO COMP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('374', 'EW006', 'System', 'The lease term for tenant: IO COMP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('375', 'TM007', 'System', 'The lease term for tenant: IO COMP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('376', 'eM008', 'System', 'The lease term for tenant: IO COMP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('377', 'RK009', 'System', 'The lease term for tenant: IO COMP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('378', 'pm001', 'System', 'The lease term for tenant: KEMA- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('379', 'ad002', 'System', 'The lease term for tenant: KEMA- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('380', 'EN003', 'System', 'The lease term for tenant: KEMA- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('381', 'MT004', 'System', 'The lease term for tenant: KEMA- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('382', 'CM005', 'System', 'The lease term for tenant: KEMA- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('383', 'EW006', 'System', 'The lease term for tenant: KEMA- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('384', 'TM007', 'System', 'The lease term for tenant: KEMA- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('385', 'eM008', 'System', 'The lease term for tenant: KEMA- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('386', 'RK009', 'System', 'The lease term for tenant: KEMA- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('387', 'pm001', 'System', 'The lease term for tenant: KEMA- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('388', 'ad002', 'System', 'The lease term for tenant: KEMA- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('389', 'EN003', 'System', 'The lease term for tenant: KEMA- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('390', 'MT004', 'System', 'The lease term for tenant: KEMA- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('391', 'CM005', 'System', 'The lease term for tenant: KEMA- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('392', 'EW006', 'System', 'The lease term for tenant: KEMA- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('393', 'TM007', 'System', 'The lease term for tenant: KEMA- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('394', 'eM008', 'System', 'The lease term for tenant: KEMA- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('395', 'RK009', 'System', 'The lease term for tenant: KEMA- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('396', 'pm001', 'System', 'The lease term for tenant: CATCHP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('397', 'ad002', 'System', 'The lease term for tenant: CATCHP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('398', 'EN003', 'System', 'The lease term for tenant: CATCHP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('399', 'MT004', 'System', 'The lease term for tenant: CATCHP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('400', 'CM005', 'System', 'The lease term for tenant: CATCHP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('401', 'EW006', 'System', 'The lease term for tenant: CATCHP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('402', 'TM007', 'System', 'The lease term for tenant: CATCHP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('403', 'eM008', 'System', 'The lease term for tenant: CATCHP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('404', 'RK009', 'System', 'The lease term for tenant: CATCHP- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('405', 'pm001', 'System', 'The lease term for tenant: CATCHP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('406', 'ad002', 'System', 'The lease term for tenant: CATCHP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('407', 'EN003', 'System', 'The lease term for tenant: CATCHP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('408', 'MT004', 'System', 'The lease term for tenant: CATCHP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('409', 'CM005', 'System', 'The lease term for tenant: CATCHP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('410', 'EW006', 'System', 'The lease term for tenant: CATCHP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('411', 'TM007', 'System', 'The lease term for tenant: CATCHP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('412', 'eM008', 'System', 'The lease term for tenant: CATCHP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('413', 'RK009', 'System', 'The lease term for tenant: CATCHP- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('414', 'pm001', 'System', 'The lease term for tenant: KIMU- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('415', 'ad002', 'System', 'The lease term for tenant: KIMU- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('416', 'EN003', 'System', 'The lease term for tenant: KIMU- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('417', 'MT004', 'System', 'The lease term for tenant: KIMU- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('418', 'CM005', 'System', 'The lease term for tenant: KIMU- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('419', 'EW006', 'System', 'The lease term for tenant: KIMU- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('420', 'TM007', 'System', 'The lease term for tenant: KIMU- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('421', 'eM008', 'System', 'The lease term for tenant: KIMU- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('422', 'RK009', 'System', 'The lease term for tenant: KIMU- will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('423', 'pm001', 'System', 'The lease term for tenant: KIMU- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('424', 'ad002', 'System', 'The lease term for tenant: KIMU- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('425', 'EN003', 'System', 'The lease term for tenant: KIMU- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('426', 'MT004', 'System', 'The lease term for tenant: KIMU- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('427', 'CM005', 'System', 'The lease term for tenant: KIMU- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('428', 'EW006', 'System', 'The lease term for tenant: KIMU- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('429', 'TM007', 'System', 'The lease term for tenant: KIMU- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('430', 'eM008', 'System', 'The lease term for tenant: KIMU- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('431', 'RK009', 'System', 'The lease term for tenant: KIMU- has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('432', 'pm001', 'System', 'The lease term for tenant: - will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('433', 'ad002', 'System', 'The lease term for tenant: - will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('434', 'EN003', 'System', 'The lease term for tenant: - will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('435', 'MT004', 'System', 'The lease term for tenant: - will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('436', 'CM005', 'System', 'The lease term for tenant: - will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('437', 'EW006', 'System', 'The lease term for tenant: - will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('438', 'TM007', 'System', 'The lease term for tenant: - will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('439', 'eM008', 'System', 'The lease term for tenant: - will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('440', 'RK009', 'System', 'The lease term for tenant: - will expire on //. Kindly make the necessary arrangements.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('441', 'pm001', 'System', 'The lease term for tenant: - has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('442', 'ad002', 'System', 'The lease term for tenant: - has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('443', 'EN003', 'System', 'The lease term for tenant: - has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('444', 'MT004', 'System', 'The lease term for tenant: - has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('445', 'CM005', 'System', 'The lease term for tenant: - has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('446', 'EW006', 'System', 'The lease term for tenant: - has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('447', 'TM007', 'System', 'The lease term for tenant: - has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('448', 'eM008', 'System', 'The lease term for tenant: - has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
-INSERT INTO `messages` VALUES ('449', 'RK009', 'System', 'The lease term for tenant: - has expired; and  record inactivated. Be aware.', '', '19/06/2020-09:20 AM', '20200619', '0');
+INSERT INTO `messages` VALUES ('342', 'pm001', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('343', 'ad002', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('344', 'EN003', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('345', 'MT004', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('346', 'CM005', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('347', 'EW006', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('348', 'TM007', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('349', 'eM008', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('350', 'RK009', 'System', 'The lease term for tenant: MANU COMPANY- will expire on //. Kindly make the necessary arrangements.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('351', 'pm001', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('352', 'ad002', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('353', 'EN003', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('354', 'MT004', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('355', 'CM005', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('356', 'EW006', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('357', 'TM007', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('358', 'eM008', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-06:21 AM', '20200617', '0');
+INSERT INTO `messages` VALUES ('359', 'RK009', 'System', 'The lease term for tenant: MANU COMPANY- has expired; and  record inactivated. Be aware.', '', '17/06/2020-06:21 AM', '20200617', '0');
 
 -- ----------------------------
 -- Table structure for metering
@@ -13210,7 +13051,7 @@ CREATE TABLE `notices` (
   `delivery_status` varchar(1) DEFAULT NULL,
   `refno` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3223 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3245 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of notices
@@ -16276,39 +16117,61 @@ INSERT INTO `notices` VALUES ('3186', 'LOF Reminder', 'Hallo PRINCE YASHUA. We n
 INSERT INTO `notices` VALUES ('3187', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '16/06/2020', '07:33 AM', '20200616', '202006160733', '1', '', '0', '0');
 INSERT INTO `notices` VALUES ('3188', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '16/06/2020', '07:33 AM', '20200616', '202006160733', '1', '', '0', '0');
 INSERT INTO `notices` VALUES ('3189', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '16/06/2020', '07:33 AM', '20200616', '202006160733', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3190', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3191', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3192', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3193', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3194', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3195', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3196', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3197', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3198', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3199', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3200', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '17/06/2020', '12:15 AM', '20200617', '202006170015', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3201', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3202', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3203', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3204', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3205', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3206', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3207', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3208', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3209', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3210', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3211', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '18/06/2020', '09:29 AM', '20200618', '202006180929', '1', '', '0', '0');
-INSERT INTO `notices` VALUES ('3212', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3213', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3214', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3215', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3216', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3217', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3218', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3219', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3220', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3221', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
-INSERT INTO `notices` VALUES ('3222', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '19/06/2020', '09:20 AM', '20200619', '202006190920', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3190', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3191', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3192', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3193', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3194', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3195', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3196', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3197', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3198', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3199', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3200', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '17/06/2020', '06:21 AM', '20200617', '202006170621', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3201', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3202', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3203', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3204', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3205', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3206', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3207', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3208', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3209', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3210', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3211', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '18/06/2020', '09:53 AM', '20200618', '202006180953', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3212', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3213', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3214', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3215', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3216', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3217', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3218', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3219', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3220', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3221', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3222', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '19/06/2020', '09:10 AM', '20200619', '202006190910', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3223', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3224', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3225', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3226', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3227', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3228', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3229', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3230', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3231', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3232', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3233', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '22/06/2020', '10:22 AM', '20200622', '202006221022', '1', '', '0', '0');
+INSERT INTO `notices` VALUES ('3234', 'LOF Reminder', 'Hallo JOHN MUGAMBI. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN MUGAMBI', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3235', 'LOF Reminder', 'Hallo PRINCE MUNENE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MUNENE', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3236', 'LOF Reminder', 'Hallo d3d. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'd3d', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3237', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3238', 'LOF Reminder', 'Hallo JOHN DOE. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'JOHN DOE', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3239', 'LOF Reminder', 'Hallo PRINCE MBABU. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE MBABU', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3240', 'LOF Reminder', 'Hallo PRINCE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE KINYUA', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3241', 'LOF Reminder', 'Hallo PRINCE YASHUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'PRINCE YASHUA', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3242', 'LOF Reminder', 'Hallo BONIFACE CALISTRO. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'BONIFACE CALISTRO', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3243', 'LOF Reminder', 'Hallo IRENE KINYUA. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'IRENE KINYUA', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
+INSERT INTO `notices` VALUES ('3244', 'LOF Reminder', 'Hallo r4. We noticed that you have not yet returned your letter of offer after signing.Kindly let us know if you are still interested in the space.', 'r4', '', '0', '23/06/2020', '11:22 AM', '20200623', '202006231122', '0', '', '0', '0');
 
 -- ----------------------------
 -- Table structure for nssf
@@ -16574,165 +16437,134 @@ CREATE TABLE `property_description` (
   `time` varchar(255) DEFAULT NULL,
   `amount` varchar(255) DEFAULT NULL,
   `lot` varchar(255) DEFAULT NULL,
-  `source` varchar(100) NOT NULL,
+  `source` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=153 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of property_description
 -- ----------------------------
-INSERT INTO `property_description` VALUES ('1', '3', 'vehicle regno kwd 123', 'running', '400000', 'pm001', '1', '202006101346', '10/06/2020', '13:46', null, null, '');
-INSERT INTO `property_description` VALUES ('2', '1', 'house hold goods', 'good', '50000', 'pm001', '1', '202006101402', '10/06/2020', '14:02', null, null, '');
-INSERT INTO `property_description` VALUES ('3', '1', 'dairy cow', 'prime', '120000', 'pm001', '1', '202006101403', '10/06/2020', '14:03', null, null, '');
-INSERT INTO `property_description` VALUES ('4', '2', 'car', 'running', null, null, null, '', null, null, null, null, '');
-INSERT INTO `property_description` VALUES ('5', null, 'plot', 'prime', '100000', null, null, '', null, null, null, null, '');
-INSERT INTO `property_description` VALUES ('6', '2', null, null, null, null, null, '', null, null, '99900', null, '');
-INSERT INTO `property_description` VALUES ('7', '1', 'Suzuki', 'Synergistic bifurcated toolset', '$6.43', null, null, '', null, null, '$5.07', '1', '');
-INSERT INTO `property_description` VALUES ('8', '2', 'Ford', 'Quality-focused value-added hierarchy', '$6.97', null, null, '', null, null, '$8.65', '1', '');
-INSERT INTO `property_description` VALUES ('9', '3', 'Mitsubishi', 'Total modular task-force', '$4.37', null, null, '', null, null, '$7.99', '1', '');
-INSERT INTO `property_description` VALUES ('10', '4', 'Suzuki', 'Mandatory attitude-oriented open system', '$9.68', null, null, '', null, null, '$8.57', '1', '');
-INSERT INTO `property_description` VALUES ('11', '5', 'Subaru', 'Organic bandwidth-monitored internet solution', '$8.12', null, null, '', null, null, '$9.46', '1', '');
-INSERT INTO `property_description` VALUES ('12', '6', 'Morgan', 'Exclusive radical ability', '$6.96', null, null, '', null, null, '$8.69', '1', '');
-INSERT INTO `property_description` VALUES ('13', '7', 'Buick', 'Object-based upward-trending product', '$3.92', null, null, '', null, null, '$4.34', '1', '');
-INSERT INTO `property_description` VALUES ('14', '8', 'Lotus', 'Managed radical implementation', '$8.83', null, null, '', null, null, '$9.47', '1', '');
-INSERT INTO `property_description` VALUES ('15', '9', 'Nissan', 'Horizontal systematic product', '$8.42', null, null, '', null, null, '$1.17', '1', '');
-INSERT INTO `property_description` VALUES ('16', '10', 'Volkswagen', 'Implemented homogeneous monitoring', '$5.09', null, null, '', null, null, '$8.07', '10', '');
-INSERT INTO `property_description` VALUES ('17', '11', 'Infiniti', 'Business-focused responsive synergy', '$7.64', null, null, '', null, null, '$9.98', '2', '');
-INSERT INTO `property_description` VALUES ('18', '12', 'Dodge', 'Proactive directional strategy', '$5.83', null, null, '', null, null, '$1.13', '2', '');
-INSERT INTO `property_description` VALUES ('19', '13', 'Ford', 'Front-line zero tolerance strategy', '$2.14', null, null, '', null, null, '$6.55', '2', '');
-INSERT INTO `property_description` VALUES ('20', '14', 'Mercury', 'Programmable hybrid secured line', '$3.39', null, null, '', null, null, '$3.75', '2', '');
-INSERT INTO `property_description` VALUES ('21', '15', 'Lincoln', 'Extended client-driven emulation', '$6.25', null, null, '', null, null, '$4.71', '2', '');
-INSERT INTO `property_description` VALUES ('22', '16', 'Pontiac', 'Profit-focused zero defect implementation', '$3.45', null, null, '', null, null, '$8.82', '2', '');
-INSERT INTO `property_description` VALUES ('23', '17', 'Oldsmobile', 'Inverse fresh-thinking system engine', '$3.34', null, null, '', null, null, '$2.57', '2', '');
-INSERT INTO `property_description` VALUES ('24', '18', 'Pontiac', 'Networked fresh-thinking support', '$7.76', null, null, '', null, null, '$7.55', '2', '');
-INSERT INTO `property_description` VALUES ('25', '19', 'Ford', 'Open-source attitude-oriented customer loyalty', '$6.33', null, null, '', null, null, '$6.55', '2', '');
-INSERT INTO `property_description` VALUES ('26', '20', 'Lexus', 'Digitized mission-critical parallelism', '$5.79', null, null, '', null, null, '$7.32', '20', '');
-INSERT INTO `property_description` VALUES ('27', '21', 'Mercedes-Benz', 'Innovative tangible productivity', '$1.08', null, null, '', null, null, '$8.72', '3', '');
-INSERT INTO `property_description` VALUES ('28', '22', 'Hummer', 'Total transitional time-frame', '$4.46', null, null, '', null, null, '$2.85', '3', '');
-INSERT INTO `property_description` VALUES ('29', '23', 'Chevrolet', 'Enterprise-wide bifurcated orchestration', '$2.90', null, null, '', null, null, '$2.33', '3', '');
-INSERT INTO `property_description` VALUES ('30', '24', 'GMC', 'Grass-roots heuristic secured line', '$6.90', null, null, '', null, null, '$2.14', '3', '');
-INSERT INTO `property_description` VALUES ('31', '25', 'Suzuki', 'Up-sized high-level collaboration', '$2.26', null, null, '', null, null, '$2.74', '3', '');
-INSERT INTO `property_description` VALUES ('32', '26', 'Lexus', 'Innovative intermediate encryption', '$6.77', null, null, '', null, null, '$0.51', '3', '');
-INSERT INTO `property_description` VALUES ('33', '27', 'Volkswagen', 'Ergonomic 24 hour hardware', '$6.48', null, null, '', null, null, '$8.60', '3', '');
-INSERT INTO `property_description` VALUES ('34', '28', 'Chevrolet', 'Intuitive local moderator', '$1.38', null, null, '', null, null, '$1.22', '3', '');
-INSERT INTO `property_description` VALUES ('35', '29', 'Mercedes-Benz', 'Synchronised value-added approach', '$2.87', null, null, '', null, null, '$5.48', '3', '');
-INSERT INTO `property_description` VALUES ('36', '30', 'Chevrolet', 'Operative explicit hierarchy', '$5.88', null, null, '', null, null, '$9.73', '30', '');
-INSERT INTO `property_description` VALUES ('37', '31', 'Chevrolet', 'Streamlined user-facing groupware', '$0.07', null, null, '', null, null, '$5.15', '3', '');
-INSERT INTO `property_description` VALUES ('38', '32', 'Mazda', 'User-friendly holistic application', '$9.04', null, null, '', null, null, '$3.43', '3', '');
-INSERT INTO `property_description` VALUES ('39', '33', 'Ford', 'Visionary regional data-warehouse', '$7.66', null, null, '', null, null, '$6.15', '3', '');
-INSERT INTO `property_description` VALUES ('40', '34', 'Buick', 'Robust homogeneous approach', '$4.92', null, null, '', null, null, '$8.22', '3', '');
-INSERT INTO `property_description` VALUES ('41', '35', 'Mazda', 'Stand-alone bottom-line product', '$9.93', null, null, '', null, null, '$8.24', '3', '');
-INSERT INTO `property_description` VALUES ('42', '36', 'Jeep', 'Focused eco-centric focus group', '$1.16', null, null, '', null, null, '$7.14', '3', '');
-INSERT INTO `property_description` VALUES ('43', '37', 'Scion', 'Re-contextualized grid-enabled architecture', '$9.94', null, null, '', null, null, '$4.65', '3', '');
-INSERT INTO `property_description` VALUES ('44', '38', 'Oldsmobile', 'Visionary static portal', '$8.99', null, null, '', null, null, '$6.14', '3', '');
-INSERT INTO `property_description` VALUES ('45', '39', 'Mercury', 'Ameliorated uniform database', '$0.98', null, null, '', null, null, '$9.07', '3', '');
-INSERT INTO `property_description` VALUES ('46', '40', 'Audi', 'Horizontal even-keeled local area network', '$1.42', null, null, '', null, null, '$2.41', '40', '');
-INSERT INTO `property_description` VALUES ('47', '41', 'GMC', 'Programmable bottom-line system engine', '$9.58', null, null, '', null, null, '$6.86', '3', '');
-INSERT INTO `property_description` VALUES ('48', '42', 'Ford', 'Managed high-level contingency', '$0.12', null, null, '', null, null, '$2.04', '3', '');
-INSERT INTO `property_description` VALUES ('49', '43', 'Ford', 'Streamlined heuristic hub', '$2.96', null, null, '', null, null, '$4.06', '3', '');
-INSERT INTO `property_description` VALUES ('50', '44', 'GMC', 'Organic hybrid orchestration', '$9.53', null, null, '', null, null, '$9.25', '3', '');
-INSERT INTO `property_description` VALUES ('51', '45', 'Chevrolet', 'Polarised even-keeled implementation', '$4.28', null, null, '', null, null, '$2.97', '3', '');
-INSERT INTO `property_description` VALUES ('52', '46', 'Chevrolet', 'Reverse-engineered fault-tolerant leverage', '$6.31', null, null, '', null, null, '$1.09', '3', '');
-INSERT INTO `property_description` VALUES ('53', '47', 'Subaru', 'Exclusive directional strategy', '$2.90', null, null, '', null, null, '$0.59', '3', '');
-INSERT INTO `property_description` VALUES ('54', '48', 'Volkswagen', 'Right-sized system-worthy groupware', '$1.42', null, null, '', null, null, '$1.81', '3', '');
-INSERT INTO `property_description` VALUES ('55', '49', 'Volvo', 'Compatible disintermediate productivity', '$3.11', null, null, '', null, null, '$9.36', '3', '');
-INSERT INTO `property_description` VALUES ('56', '50', 'Dodge', 'Re-engineered real-time solution', '$3.63', null, null, '', null, null, '$7.51', '50', '');
-INSERT INTO `property_description` VALUES ('57', '51', 'Chevrolet', 'Reverse-engineered incremental definition', '$0.00', null, null, '', null, null, '$4.90', '51', '');
-INSERT INTO `property_description` VALUES ('58', '52', 'Volvo', 'Managed radical Graphical User Interface', '$2.40', null, null, '', null, null, '$7.87', '52', '');
-INSERT INTO `property_description` VALUES ('59', '53', 'GMC', 'Organized systemic product', '$8.06', null, null, '', null, null, '$2.54', '53', '');
-INSERT INTO `property_description` VALUES ('60', '54', 'Pontiac', 'Profit-focused composite time-frame', '$4.75', null, null, '', null, null, '$5.50', '54', '');
-INSERT INTO `property_description` VALUES ('61', '55', 'Oldsmobile', 'Reduced 5th generation matrices', '$1.13', null, null, '', null, null, '$1.85', '55', '');
-INSERT INTO `property_description` VALUES ('62', '56', 'Volkswagen', 'Pre-emptive high-level function', '$7.19', null, null, '', null, null, '$9.83', '56', '');
-INSERT INTO `property_description` VALUES ('63', '57', 'Chevrolet', 'Visionary needs-based product', '$3.86', null, null, '', null, null, '$9.18', '57', '');
-INSERT INTO `property_description` VALUES ('64', '58', 'Pontiac', 'Cross-platform optimizing adapter', '$2.43', null, null, '', null, null, '$7.38', '58', '');
-INSERT INTO `property_description` VALUES ('65', '59', 'Ford', 'Advanced reciprocal installation', '$2.91', null, null, '', null, null, '$3.09', '59', '');
-INSERT INTO `property_description` VALUES ('66', '60', 'Lexus', 'User-friendly bottom-line database', '$0.15', null, null, '', null, null, '$0.69', '60', '');
-INSERT INTO `property_description` VALUES ('67', '61', 'Lexus', 'Fully-configurable fault-tolerant open system', '$1.59', null, null, '', null, null, '$0.77', '61', '');
-INSERT INTO `property_description` VALUES ('68', '62', 'Volvo', 'Front-line interactive database', '$7.15', null, null, '', null, null, '$2.20', '62', '');
-INSERT INTO `property_description` VALUES ('69', '63', 'Citroën', 'Open-source optimizing open architecture', '$0.03', null, null, '', null, null, '$6.44', '63', '');
-INSERT INTO `property_description` VALUES ('70', '64', 'Pontiac', 'Customizable encompassing local area network', '$3.00', null, null, '', null, null, '$0.05', '64', '');
-INSERT INTO `property_description` VALUES ('71', '65', 'BMW', 'Fundamental homogeneous hierarchy', '$6.86', null, null, '', null, null, '$9.69', '65', '');
-INSERT INTO `property_description` VALUES ('72', '66', 'Lincoln', 'Configurable systematic hierarchy', '$8.95', null, null, '', null, null, '$1.51', '66', '');
-INSERT INTO `property_description` VALUES ('73', '67', 'Mazda', 'Configurable global approach', '$9.92', null, null, '', null, null, '$3.46', '67', '');
-INSERT INTO `property_description` VALUES ('74', '68', 'Suzuki', 'Public-key leading edge parallelism', '$9.63', null, null, '', null, null, '$7.66', '68', '');
-INSERT INTO `property_description` VALUES ('75', '69', 'Ford', 'User-friendly cohesive attitude', '$1.71', null, null, '', null, null, '$7.32', '69', '');
-INSERT INTO `property_description` VALUES ('76', '70', 'Chevrolet', 'Operative logistical model', '$7.35', null, null, '', null, null, '$7.16', '70', '');
-INSERT INTO `property_description` VALUES ('77', '71', 'Chevrolet', 'Persevering actuating collaboration', '$0.51', null, null, '', null, null, '$9.96', '71', '');
-INSERT INTO `property_description` VALUES ('78', '72', 'Subaru', 'Focused motivating installation', '$1.65', null, null, '', null, null, '$8.07', '72', '');
-INSERT INTO `property_description` VALUES ('79', '73', 'Pontiac', 'Universal optimizing time-frame', '$9.66', null, null, '', null, null, '$4.21', '73', '');
-INSERT INTO `property_description` VALUES ('80', '74', 'Chrysler', 'Optimized bi-directional software', '$3.64', null, null, '', null, null, '$5.05', '74', '');
-INSERT INTO `property_description` VALUES ('81', '75', 'Toyota', 'Reduced system-worthy workforce', '$9.27', null, null, '', null, null, '$6.84', '75', '');
-INSERT INTO `property_description` VALUES ('82', '76', 'Ford', 'Implemented regional attitude', '$5.17', null, null, '', null, null, '$2.11', '76', '');
-INSERT INTO `property_description` VALUES ('83', '77', 'Cadillac', 'Open-architected reciprocal complexity', '$5.10', null, null, '', null, null, '$6.26', '77', '');
-INSERT INTO `property_description` VALUES ('84', '78', 'Pontiac', 'Pre-emptive solution-oriented workforce', '$2.44', null, null, '', null, null, '$5.04', '78', '');
-INSERT INTO `property_description` VALUES ('85', '79', 'Toyota', 'Optimized real-time toolset', '$3.36', null, null, '', null, null, '$2.29', '79', '');
-INSERT INTO `property_description` VALUES ('86', '80', 'Pontiac', 'Persevering content-based approach', '$3.54', null, null, '', null, null, '$8.76', '80', '');
-INSERT INTO `property_description` VALUES ('87', '81', 'Lincoln', 'Fully-configurable stable intranet', '$3.34', null, null, '', null, null, '$4.97', '81', '');
-INSERT INTO `property_description` VALUES ('88', '82', 'Jeep', 'Adaptive user-facing interface', '$1.67', null, null, '', null, null, '$3.57', '82', '');
-INSERT INTO `property_description` VALUES ('89', '83', 'Kia', 'Multi-lateral client-driven intranet', '$3.62', null, null, '', null, null, '$0.68', '83', '');
-INSERT INTO `property_description` VALUES ('90', '84', 'Dodge', 'Assimilated coherent groupware', '$0.01', null, null, '', null, null, '$5.61', '84', '');
-INSERT INTO `property_description` VALUES ('91', '85', 'Volkswagen', 'Extended incremental standardization', '$5.46', null, null, '', null, null, '$0.45', '85', '');
-INSERT INTO `property_description` VALUES ('92', '86', 'Chevrolet', 'Total actuating utilisation', '$4.15', null, null, '', null, null, '$3.15', '86', '');
-INSERT INTO `property_description` VALUES ('93', '87', 'GMC', 'Robust homogeneous array', '$8.20', null, null, '', null, null, '$5.91', '87', '');
-INSERT INTO `property_description` VALUES ('94', '88', 'Land Rover', 'User-centric coherent throughput', '$9.66', null, null, '', null, null, '$0.36', '88', '');
-INSERT INTO `property_description` VALUES ('95', '89', 'Pontiac', 'Reverse-engineered actuating monitoring', '$5.43', null, null, '', null, null, '$2.89', '89', '');
-INSERT INTO `property_description` VALUES ('96', '90', 'Mercedes-Benz', 'Advanced bandwidth-monitored database', '$3.52', null, null, '', null, null, '$1.76', '90', '');
-INSERT INTO `property_description` VALUES ('97', '91', 'Saab', 'Robust needs-based methodology', '$7.46', null, null, '', null, null, '$4.86', '91', '');
-INSERT INTO `property_description` VALUES ('98', '92', 'Oldsmobile', 'Automated background matrices', '$0.76', null, null, '', null, null, '$5.51', '92', '');
-INSERT INTO `property_description` VALUES ('99', '93', 'Ford', 'Devolved even-keeled structure', '$7.21', null, null, '', null, null, '$0.97', '93', '');
-INSERT INTO `property_description` VALUES ('100', '94', 'Acura', 'Progressive tangible middleware', '$3.75', null, null, '', null, null, '$8.36', '94', '');
-INSERT INTO `property_description` VALUES ('101', '95', 'Audi', 'Progressive stable help-desk', '$0.87', null, null, '', null, null, '$9.38', '95', '');
-INSERT INTO `property_description` VALUES ('102', '96', 'Mercury', 'Universal intermediate matrices', '$5.05', null, null, '', null, null, '$6.93', '96', '');
-INSERT INTO `property_description` VALUES ('103', '97', 'Oldsmobile', 'Progressive responsive parallelism', '$3.92', null, null, '', null, null, '$7.19', '97', '');
-INSERT INTO `property_description` VALUES ('104', '98', 'Pontiac', 'Adaptive multi-tasking approach', '$2.02', null, null, '', null, null, '$5.62', '98', '');
-INSERT INTO `property_description` VALUES ('105', '99', 'BMW', 'Stand-alone logistical superstructure', '$2.48', null, null, '', null, null, '$0.80', '99', '');
-INSERT INTO `property_description` VALUES ('106', '100', 'Hyundai', 'Seamless real-time approach', '$7.13', null, null, '', null, null, '$2.65', '100', '');
-INSERT INTO `property_description` VALUES ('107', '1', '', '', '12', 'pm001', '1', '202006161720', '16/06/2020', '17:20', null, null, '');
-INSERT INTO `property_description` VALUES ('108', '1', 'nj', 'jbj', '1215', 'pm001', '1', '202006161722', '16/06/2020', '17:22', null, null, '');
-INSERT INTO `property_description` VALUES ('109', '', 'nm,', 'bj', '1212', 'pm001', '1', '202006161743', '16/06/2020', '17:43', null, null, '');
-INSERT INTO `property_description` VALUES ('110', '', 'nm,', 'bj', '1212', 'pm001', '1', '202006161743', '16/06/2020', '17:43', null, null, '');
-INSERT INTO `property_description` VALUES ('111', '', 'vm', 'jk', '90', 'pm001', '1', '202006170016', '17/06/2020', '00:16', null, null, '');
-INSERT INTO `property_description` VALUES ('112', '', 'vm', 'jk', '90', 'pm001', '1', '202006170016', '17/06/2020', '00:16', null, null, '');
-INSERT INTO `property_description` VALUES ('113', '', 'vm', 'jk', '90', 'pm001', '1', '202006170016', '17/06/2020', '00:16', null, null, '');
-INSERT INTO `property_description` VALUES ('114', '', 'jkiji', 'jk', '90', 'pm001', '1', '202006170016', '17/06/2020', '00:16', null, null, '');
-INSERT INTO `property_description` VALUES ('115', '', 'mm,', 'm', '9999', 'pm001', '1', '202006170031', '17/06/2020', '00:31', null, null, '');
-INSERT INTO `property_description` VALUES ('116', '', 'm', 'm', '90', 'pm001', '1', '202006170036', '17/06/2020', '00:36', null, null, '');
-INSERT INTO `property_description` VALUES ('117', '', 'mmmmmm', 'mmmm', '90900', 'pm001', '1', '202006170038', '17/06/2020', '00:38', null, null, '');
-INSERT INTO `property_description` VALUES ('118', '1', 'mklmk', 'kmmk', '9000', 'pm001', '1', '202006170040', '17/06/2020', '00:40', null, null, '');
-INSERT INTO `property_description` VALUES ('119', '', 'l', 'k', 'k', 'pm001', '1', '202006170931', '17/06/2020', '09:31', null, null, '');
-INSERT INTO `property_description` VALUES ('120', '2', 'n', 'm', 'm ', 'pm001', '1', '202006170933', '17/06/2020', '09:33', null, null, '');
-INSERT INTO `property_description` VALUES ('121', '', 'kg,mlkkh', 'khkhkh', '890000000000087', 'pm001', '1', '202006171001', '17/06/2020', '10:01', null, null, '');
-INSERT INTO `property_description` VALUES ('122', '', 'GFJXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', 'COOL', '2000000000000000', 'pm001', '1', '202006171113', '17/06/2020', '11:13', null, null, '');
-INSERT INTO `property_description` VALUES ('123', '1', 'god with us', 'emmanuiel', '0000000000000000', 'pm001', '1', '202006171235', '17/06/2020', '12:35', null, null, '');
-INSERT INTO `property_description` VALUES ('124', '', 'umala', 'umene', '111111111111111', 'pm001', '1', '202006171237', '17/06/2020', '12:37', null, null, '');
-INSERT INTO `property_description` VALUES ('125', '', 'jjjjjjjjjj', 'jjjjjjjjjjjjj', '20000000', 'pm001', '1', '202006171306', '17/06/2020', '13:06', null, null, '');
-INSERT INTO `property_description` VALUES ('126', '', 'ferrarri', 'fake', '133233333', 'pm001', '1', '202006171307', '17/06/2020', '13:07', null, null, '');
-INSERT INTO `property_description` VALUES ('127', '2', 'njnjn', 'jnknm', '1212', 'pm001', '1', '202006171324', '17/06/2020', '13:24', null, null, '');
-INSERT INTO `property_description` VALUES ('128', '2', 'a,  gen', 'a gen', 'a gen', 'pm001', '1', '202006171324', '17/06/2020', '13:24', null, null, '');
-INSERT INTO `property_description` VALUES ('129', '1', 'hello', 'worf', '78787878', 'pm001', '1', '202006171325', '17/06/2020', '13:25', null, null, '');
-INSERT INTO `property_description` VALUES ('130', '4', 'good ', 'is good', '8980', 'pm001', '1', '202006171326', '17/06/2020', '13:26', null, null, '');
-INSERT INTO `property_description` VALUES ('131', '4', 'alicia', 'keys', '400000000000', 'pm001', '1', '202006171329', '17/06/2020', '13:29', null, null, '');
-INSERT INTO `property_description` VALUES ('132', '1', 'HHHHHU', 'HHHHHHHHHU', '900000000000', 'pm001', '1', '202006171352', '17/06/2020', '13:52', null, null, '');
-INSERT INTO `property_description` VALUES ('133', '1', 'MNNNNNNNNNN', 'MBBBBB', '90786', 'pm001', '1', '202006171353', '17/06/2020', '13:53', null, null, '');
-INSERT INTO `property_description` VALUES ('134', '', 'mm', 'mm', '90909', 'pm001', '1', '202006172100', '17/06/2020', '21:00', null, null, '');
-INSERT INTO `property_description` VALUES ('135', '', 'jk', 'jk', '', 'pm001', '1', '202006180931', '18/06/2020', '09:31', null, null, '');
-INSERT INTO `property_description` VALUES ('136', '', 'bvn', 'nm', '', 'pm001', '1', '202006181003', '18/06/2020', '10:03', null, null, '');
-INSERT INTO `property_description` VALUES ('137', 'CHADDEC0001', 'nm', 'nm', 'b ', 'pm001', '1', '202006181116', '18/06/2020', '11:16', null, null, '');
-INSERT INTO `property_description` VALUES ('138', 'CHADDEC0001', 'mmkmkm', 'mkmkm', '121', 'pm001', '1', '202006181126', '18/06/2020', '11:26', null, null, 'proclamation');
-INSERT INTO `property_description` VALUES ('139', '1', 'bn', 'nmn', '12', 'pm001', '1', '202006181159', '18/06/2020', '11:59', null, null, '');
-INSERT INTO `property_description` VALUES ('140', '1', 'bnbn', 'bnbnbn', '1221212', 'pm001', '1', '202006181203', '18/06/2020', '12:03', null, null, '');
-INSERT INTO `property_description` VALUES ('141', 'CHADDEC0001', 'kkkkkkkkkkkkkkkkkkkkk', 'kkkkkkkkkkkkkkkkk', '111111111111111111111', 'pm001', '1', '202006181205', '18/06/2020', '12:05', null, null, 'proclamation');
-INSERT INTO `property_description` VALUES ('142', 'CHADDEC0001', 'jkjkjk', 'jkjk', '', 'pm001', '1', '202006181242', '18/06/2020', '12:42', null, null, 'proclamation');
-INSERT INTO `property_description` VALUES ('143', 'CHADDEC0001', 'limu', 'nice', '5820', 'pm001', '1', '202006181250', '18/06/2020', '12:50', null, null, 'proclamation');
-INSERT INTO `property_description` VALUES ('144', '1', 'mmn', 'nbfdnm', '89', 'pm001', '1', '202006181519', '18/06/2020', '15:19', null, null, '');
-INSERT INTO `property_description` VALUES ('145', 'CHADDEC0001', 'EGHOFL', 'EGHOFL', '10000000000', 'pm001', '1', '202006181536', '18/06/2020', '15:36', null, null, 'proclamation');
-INSERT INTO `property_description` VALUES ('146', 'CHADDEC0001', 'BEAVCHES', 'BEACHES', '999', 'pm001', '1', '202006181539', '18/06/2020', '15:39', null, null, 'proclamation');
-INSERT INTO `property_description` VALUES ('147', 'REP000004', 'nio', 'cool', '80000000000000', 'pm001', '1', '202006181701', '18/06/2020', '17:01', null, null, 'repossession');
-INSERT INTO `property_description` VALUES ('148', 'REP001', 'macos', 'naces', '134', 'pm001', '1', '202006181711', '18/06/2020', '17:11', null, null, 'repossession');
-INSERT INTO `property_description` VALUES ('149', 'CHADDEC0001', 'jeuiui', 'kill', '9009090', 'pm001', '1', '202006181727', '18/06/2020', '17:27', null, null, 'proclamation');
-INSERT INTO `property_description` VALUES ('150', 'REP001', 'cvcvcvc', 'jui', '1250000', 'pm001', '1', '202006181746', '18/06/2020', '17:46', null, null, 'repossession');
-INSERT INTO `property_description` VALUES ('151', 'REP001', 'joan', 'jelo', '67', 'pm001', '1', '202006181809', '18/06/2020', '18:09', null, null, 'repossession');
-INSERT INTO `property_description` VALUES ('152', 'REP000005', 'hj', 'america', '909090', 'pm001', '1', '202006182248', '18/06/2020', '22:48', null, null, 'repossession');
+INSERT INTO `property_description` VALUES ('1', '3', 'vehicle regno kwd 123', 'running', '400000', 'pm001', '1', '202006101346', '10/06/2020', '13:46', null, null, null);
+INSERT INTO `property_description` VALUES ('2', '1', 'house hold goods', 'good', '50000', 'pm001', '1', '202006101402', '10/06/2020', '14:02', null, null, null);
+INSERT INTO `property_description` VALUES ('3', '1', 'dairy cow', 'prime', '120000', 'pm001', '1', '202006101403', '10/06/2020', '14:03', null, null, null);
+INSERT INTO `property_description` VALUES ('4', '2', 'car', 'running', null, null, null, '', null, null, null, null, null);
+INSERT INTO `property_description` VALUES ('5', null, 'plot', 'prime', '100000', null, null, '', null, null, null, null, null);
+INSERT INTO `property_description` VALUES ('6', '2', null, null, null, null, null, '', null, null, '99900', null, null);
+INSERT INTO `property_description` VALUES ('7', '1', 'Suzuki', 'Synergistic bifurcated toolset', '$6.43', null, null, '', null, null, '$5.07', '1', null);
+INSERT INTO `property_description` VALUES ('8', '2', 'Ford', 'Quality-focused value-added hierarchy', '$6.97', null, null, '', null, null, '$8.65', '1', null);
+INSERT INTO `property_description` VALUES ('9', '3', 'Mitsubishi', 'Total modular task-force', '$4.37', null, null, '', null, null, '$7.99', '1', null);
+INSERT INTO `property_description` VALUES ('10', '4', 'Suzuki', 'Mandatory attitude-oriented open system', '$9.68', null, null, '', null, null, '$8.57', '1', null);
+INSERT INTO `property_description` VALUES ('11', '5', 'Subaru', 'Organic bandwidth-monitored internet solution', '$8.12', null, null, '', null, null, '$9.46', '1', null);
+INSERT INTO `property_description` VALUES ('12', '6', 'Morgan', 'Exclusive radical ability', '$6.96', null, null, '', null, null, '$8.69', '1', null);
+INSERT INTO `property_description` VALUES ('13', '7', 'Buick', 'Object-based upward-trending product', '$3.92', null, null, '', null, null, '$4.34', '1', null);
+INSERT INTO `property_description` VALUES ('14', '8', 'Lotus', 'Managed radical implementation', '$8.83', null, null, '', null, null, '$9.47', '1', null);
+INSERT INTO `property_description` VALUES ('15', '9', 'Nissan', 'Horizontal systematic product', '$8.42', null, null, '', null, null, '$1.17', '1', null);
+INSERT INTO `property_description` VALUES ('16', '10', 'Volkswagen', 'Implemented homogeneous monitoring', '$5.09', null, null, '', null, null, '$8.07', '10', null);
+INSERT INTO `property_description` VALUES ('17', '11', 'Infiniti', 'Business-focused responsive synergy', '$7.64', null, null, '', null, null, '$9.98', '2', null);
+INSERT INTO `property_description` VALUES ('18', '12', 'Dodge', 'Proactive directional strategy', '$5.83', null, null, '', null, null, '$1.13', '2', null);
+INSERT INTO `property_description` VALUES ('19', '13', 'Ford', 'Front-line zero tolerance strategy', '$2.14', null, null, '', null, null, '$6.55', '2', null);
+INSERT INTO `property_description` VALUES ('20', '14', 'Mercury', 'Programmable hybrid secured line', '$3.39', null, null, '', null, null, '$3.75', '2', null);
+INSERT INTO `property_description` VALUES ('21', '15', 'Lincoln', 'Extended client-driven emulation', '$6.25', null, null, '', null, null, '$4.71', '2', null);
+INSERT INTO `property_description` VALUES ('22', '16', 'Pontiac', 'Profit-focused zero defect implementation', '$3.45', null, null, '', null, null, '$8.82', '2', null);
+INSERT INTO `property_description` VALUES ('23', '17', 'Oldsmobile', 'Inverse fresh-thinking system engine', '$3.34', null, null, '', null, null, '$2.57', '2', null);
+INSERT INTO `property_description` VALUES ('24', '18', 'Pontiac', 'Networked fresh-thinking support', '$7.76', null, null, '', null, null, '$7.55', '2', null);
+INSERT INTO `property_description` VALUES ('25', '19', 'Ford', 'Open-source attitude-oriented customer loyalty', '$6.33', null, null, '', null, null, '$6.55', '2', null);
+INSERT INTO `property_description` VALUES ('26', '20', 'Lexus', 'Digitized mission-critical parallelism', '$5.79', null, null, '', null, null, '$7.32', '20', null);
+INSERT INTO `property_description` VALUES ('27', '21', 'Mercedes-Benz', 'Innovative tangible productivity', '$1.08', null, null, '', null, null, '$8.72', '3', null);
+INSERT INTO `property_description` VALUES ('28', '22', 'Hummer', 'Total transitional time-frame', '$4.46', null, null, '', null, null, '$2.85', '3', null);
+INSERT INTO `property_description` VALUES ('29', '23', 'Chevrolet', 'Enterprise-wide bifurcated orchestration', '$2.90', null, null, '', null, null, '$2.33', '3', null);
+INSERT INTO `property_description` VALUES ('30', '24', 'GMC', 'Grass-roots heuristic secured line', '$6.90', null, null, '', null, null, '$2.14', '3', null);
+INSERT INTO `property_description` VALUES ('31', '25', 'Suzuki', 'Up-sized high-level collaboration', '$2.26', null, null, '', null, null, '$2.74', '3', null);
+INSERT INTO `property_description` VALUES ('32', '26', 'Lexus', 'Innovative intermediate encryption', '$6.77', null, null, '', null, null, '$0.51', '3', null);
+INSERT INTO `property_description` VALUES ('33', '27', 'Volkswagen', 'Ergonomic 24 hour hardware', '$6.48', null, null, '', null, null, '$8.60', '3', null);
+INSERT INTO `property_description` VALUES ('34', '28', 'Chevrolet', 'Intuitive local moderator', '$1.38', null, null, '', null, null, '$1.22', '3', null);
+INSERT INTO `property_description` VALUES ('35', '29', 'Mercedes-Benz', 'Synchronised value-added approach', '$2.87', null, null, '', null, null, '$5.48', '3', null);
+INSERT INTO `property_description` VALUES ('36', '30', 'Chevrolet', 'Operative explicit hierarchy', '$5.88', null, null, '', null, null, '$9.73', '30', null);
+INSERT INTO `property_description` VALUES ('37', '31', 'Chevrolet', 'Streamlined user-facing groupware', '$0.07', null, null, '', null, null, '$5.15', '3', null);
+INSERT INTO `property_description` VALUES ('38', '32', 'Mazda', 'User-friendly holistic application', '$9.04', null, null, '', null, null, '$3.43', '3', null);
+INSERT INTO `property_description` VALUES ('39', '33', 'Ford', 'Visionary regional data-warehouse', '$7.66', null, null, '', null, null, '$6.15', '3', null);
+INSERT INTO `property_description` VALUES ('40', '34', 'Buick', 'Robust homogeneous approach', '$4.92', null, null, '', null, null, '$8.22', '3', null);
+INSERT INTO `property_description` VALUES ('41', '35', 'Mazda', 'Stand-alone bottom-line product', '$9.93', null, null, '', null, null, '$8.24', '3', null);
+INSERT INTO `property_description` VALUES ('42', '36', 'Jeep', 'Focused eco-centric focus group', '$1.16', null, null, '', null, null, '$7.14', '3', null);
+INSERT INTO `property_description` VALUES ('43', '37', 'Scion', 'Re-contextualized grid-enabled architecture', '$9.94', null, null, '', null, null, '$4.65', '3', null);
+INSERT INTO `property_description` VALUES ('44', '38', 'Oldsmobile', 'Visionary static portal', '$8.99', null, null, '', null, null, '$6.14', '3', null);
+INSERT INTO `property_description` VALUES ('45', '39', 'Mercury', 'Ameliorated uniform database', '$0.98', null, null, '', null, null, '$9.07', '3', null);
+INSERT INTO `property_description` VALUES ('46', '40', 'Audi', 'Horizontal even-keeled local area network', '$1.42', null, null, '', null, null, '$2.41', '40', null);
+INSERT INTO `property_description` VALUES ('47', '41', 'GMC', 'Programmable bottom-line system engine', '$9.58', null, null, '', null, null, '$6.86', '3', null);
+INSERT INTO `property_description` VALUES ('48', '42', 'Ford', 'Managed high-level contingency', '$0.12', null, null, '', null, null, '$2.04', '3', null);
+INSERT INTO `property_description` VALUES ('49', '43', 'Ford', 'Streamlined heuristic hub', '$2.96', null, null, '', null, null, '$4.06', '3', null);
+INSERT INTO `property_description` VALUES ('50', '44', 'GMC', 'Organic hybrid orchestration', '$9.53', null, null, '', null, null, '$9.25', '3', null);
+INSERT INTO `property_description` VALUES ('51', '45', 'Chevrolet', 'Polarised even-keeled implementation', '$4.28', null, null, '', null, null, '$2.97', '3', null);
+INSERT INTO `property_description` VALUES ('52', '46', 'Chevrolet', 'Reverse-engineered fault-tolerant leverage', '$6.31', null, null, '', null, null, '$1.09', '3', null);
+INSERT INTO `property_description` VALUES ('53', '47', 'Subaru', 'Exclusive directional strategy', '$2.90', null, null, '', null, null, '$0.59', '3', null);
+INSERT INTO `property_description` VALUES ('54', '48', 'Volkswagen', 'Right-sized system-worthy groupware', '$1.42', null, null, '', null, null, '$1.81', '3', null);
+INSERT INTO `property_description` VALUES ('55', '49', 'Volvo', 'Compatible disintermediate productivity', '$3.11', null, null, '', null, null, '$9.36', '3', null);
+INSERT INTO `property_description` VALUES ('56', '50', 'Dodge', 'Re-engineered real-time solution', '$3.63', null, null, '', null, null, '$7.51', '50', null);
+INSERT INTO `property_description` VALUES ('57', '51', 'Chevrolet', 'Reverse-engineered incremental definition', '$0.00', null, null, '', null, null, '$4.90', '51', null);
+INSERT INTO `property_description` VALUES ('58', '52', 'Volvo', 'Managed radical Graphical User Interface', '$2.40', null, null, '', null, null, '$7.87', '52', null);
+INSERT INTO `property_description` VALUES ('59', '53', 'GMC', 'Organized systemic product', '$8.06', null, null, '', null, null, '$2.54', '53', null);
+INSERT INTO `property_description` VALUES ('60', '54', 'Pontiac', 'Profit-focused composite time-frame', '$4.75', null, null, '', null, null, '$5.50', '54', null);
+INSERT INTO `property_description` VALUES ('61', '55', 'Oldsmobile', 'Reduced 5th generation matrices', '$1.13', null, null, '', null, null, '$1.85', '55', null);
+INSERT INTO `property_description` VALUES ('62', '56', 'Volkswagen', 'Pre-emptive high-level function', '$7.19', null, null, '', null, null, '$9.83', '56', null);
+INSERT INTO `property_description` VALUES ('63', '57', 'Chevrolet', 'Visionary needs-based product', '$3.86', null, null, '', null, null, '$9.18', '57', null);
+INSERT INTO `property_description` VALUES ('64', '58', 'Pontiac', 'Cross-platform optimizing adapter', '$2.43', null, null, '', null, null, '$7.38', '58', null);
+INSERT INTO `property_description` VALUES ('65', '59', 'Ford', 'Advanced reciprocal installation', '$2.91', null, null, '', null, null, '$3.09', '59', null);
+INSERT INTO `property_description` VALUES ('66', '60', 'Lexus', 'User-friendly bottom-line database', '$0.15', null, null, '', null, null, '$0.69', '60', null);
+INSERT INTO `property_description` VALUES ('67', '61', 'Lexus', 'Fully-configurable fault-tolerant open system', '$1.59', null, null, '', null, null, '$0.77', '61', null);
+INSERT INTO `property_description` VALUES ('68', '62', 'Volvo', 'Front-line interactive database', '$7.15', null, null, '', null, null, '$2.20', '62', null);
+INSERT INTO `property_description` VALUES ('69', '63', 'Citroën', 'Open-source optimizing open architecture', '$0.03', null, null, '', null, null, '$6.44', '63', null);
+INSERT INTO `property_description` VALUES ('70', '64', 'Pontiac', 'Customizable encompassing local area network', '$3.00', null, null, '', null, null, '$0.05', '64', null);
+INSERT INTO `property_description` VALUES ('71', '65', 'BMW', 'Fundamental homogeneous hierarchy', '$6.86', null, null, '', null, null, '$9.69', '65', null);
+INSERT INTO `property_description` VALUES ('72', '66', 'Lincoln', 'Configurable systematic hierarchy', '$8.95', null, null, '', null, null, '$1.51', '66', null);
+INSERT INTO `property_description` VALUES ('73', '67', 'Mazda', 'Configurable global approach', '$9.92', null, null, '', null, null, '$3.46', '67', null);
+INSERT INTO `property_description` VALUES ('74', '68', 'Suzuki', 'Public-key leading edge parallelism', '$9.63', null, null, '', null, null, '$7.66', '68', null);
+INSERT INTO `property_description` VALUES ('75', '69', 'Ford', 'User-friendly cohesive attitude', '$1.71', null, null, '', null, null, '$7.32', '69', null);
+INSERT INTO `property_description` VALUES ('76', '70', 'Chevrolet', 'Operative logistical model', '$7.35', null, null, '', null, null, '$7.16', '70', null);
+INSERT INTO `property_description` VALUES ('77', '71', 'Chevrolet', 'Persevering actuating collaboration', '$0.51', null, null, '', null, null, '$9.96', '71', null);
+INSERT INTO `property_description` VALUES ('78', '72', 'Subaru', 'Focused motivating installation', '$1.65', null, null, '', null, null, '$8.07', '72', null);
+INSERT INTO `property_description` VALUES ('79', '73', 'Pontiac', 'Universal optimizing time-frame', '$9.66', null, null, '', null, null, '$4.21', '73', null);
+INSERT INTO `property_description` VALUES ('80', '74', 'Chrysler', 'Optimized bi-directional software', '$3.64', null, null, '', null, null, '$5.05', '74', null);
+INSERT INTO `property_description` VALUES ('81', '75', 'Toyota', 'Reduced system-worthy workforce', '$9.27', null, null, '', null, null, '$6.84', '75', null);
+INSERT INTO `property_description` VALUES ('82', '76', 'Ford', 'Implemented regional attitude', '$5.17', null, null, '', null, null, '$2.11', '76', null);
+INSERT INTO `property_description` VALUES ('83', '77', 'Cadillac', 'Open-architected reciprocal complexity', '$5.10', null, null, '', null, null, '$6.26', '77', null);
+INSERT INTO `property_description` VALUES ('84', '78', 'Pontiac', 'Pre-emptive solution-oriented workforce', '$2.44', null, null, '', null, null, '$5.04', '78', null);
+INSERT INTO `property_description` VALUES ('85', '79', 'Toyota', 'Optimized real-time toolset', '$3.36', null, null, '', null, null, '$2.29', '79', null);
+INSERT INTO `property_description` VALUES ('86', '80', 'Pontiac', 'Persevering content-based approach', '$3.54', null, null, '', null, null, '$8.76', '80', null);
+INSERT INTO `property_description` VALUES ('87', '81', 'Lincoln', 'Fully-configurable stable intranet', '$3.34', null, null, '', null, null, '$4.97', '81', null);
+INSERT INTO `property_description` VALUES ('88', '82', 'Jeep', 'Adaptive user-facing interface', '$1.67', null, null, '', null, null, '$3.57', '82', null);
+INSERT INTO `property_description` VALUES ('89', '83', 'Kia', 'Multi-lateral client-driven intranet', '$3.62', null, null, '', null, null, '$0.68', '83', null);
+INSERT INTO `property_description` VALUES ('90', '84', 'Dodge', 'Assimilated coherent groupware', '$0.01', null, null, '', null, null, '$5.61', '84', null);
+INSERT INTO `property_description` VALUES ('91', '85', 'Volkswagen', 'Extended incremental standardization', '$5.46', null, null, '', null, null, '$0.45', '85', null);
+INSERT INTO `property_description` VALUES ('92', '86', 'Chevrolet', 'Total actuating utilisation', '$4.15', null, null, '', null, null, '$3.15', '86', null);
+INSERT INTO `property_description` VALUES ('93', '87', 'GMC', 'Robust homogeneous array', '$8.20', null, null, '', null, null, '$5.91', '87', null);
+INSERT INTO `property_description` VALUES ('94', '88', 'Land Rover', 'User-centric coherent throughput', '$9.66', null, null, '', null, null, '$0.36', '88', null);
+INSERT INTO `property_description` VALUES ('95', '89', 'Pontiac', 'Reverse-engineered actuating monitoring', '$5.43', null, null, '', null, null, '$2.89', '89', null);
+INSERT INTO `property_description` VALUES ('96', '90', 'Mercedes-Benz', 'Advanced bandwidth-monitored database', '$3.52', null, null, '', null, null, '$1.76', '90', null);
+INSERT INTO `property_description` VALUES ('97', '91', 'Saab', 'Robust needs-based methodology', '$7.46', null, null, '', null, null, '$4.86', '91', null);
+INSERT INTO `property_description` VALUES ('98', '92', 'Oldsmobile', 'Automated background matrices', '$0.76', null, null, '', null, null, '$5.51', '92', null);
+INSERT INTO `property_description` VALUES ('99', '93', 'Ford', 'Devolved even-keeled structure', '$7.21', null, null, '', null, null, '$0.97', '93', null);
+INSERT INTO `property_description` VALUES ('100', '94', 'Acura', 'Progressive tangible middleware', '$3.75', null, null, '', null, null, '$8.36', '94', null);
+INSERT INTO `property_description` VALUES ('101', '95', 'Audi', 'Progressive stable help-desk', '$0.87', null, null, '', null, null, '$9.38', '95', null);
+INSERT INTO `property_description` VALUES ('102', '96', 'Mercury', 'Universal intermediate matrices', '$5.05', null, null, '', null, null, '$6.93', '96', null);
+INSERT INTO `property_description` VALUES ('103', '97', 'Oldsmobile', 'Progressive responsive parallelism', '$3.92', null, null, '', null, null, '$7.19', '97', null);
+INSERT INTO `property_description` VALUES ('104', '98', 'Pontiac', 'Adaptive multi-tasking approach', '$2.02', null, null, '', null, null, '$5.62', '98', null);
+INSERT INTO `property_description` VALUES ('105', '99', 'BMW', 'Stand-alone logistical superstructure', '$2.48', null, null, '', null, null, '$0.80', '99', null);
+INSERT INTO `property_description` VALUES ('106', '100', 'Hyundai', 'Seamless real-time approach', '$7.13', null, null, '', null, null, '$2.65', '100', null);
+INSERT INTO `property_description` VALUES ('107', '1', 'jhjfhj', 'jhdkjhj', '1220', 'pm001', '1', '202006171348', '17/06/2020', '13:48', null, null, null);
+INSERT INTO `property_description` VALUES ('108', '1', 'dodmkkjnvjn ', '', '', 'pm001', '1', '202006171356', '17/06/2020', '13:56', null, null, null);
+INSERT INTO `property_description` VALUES ('109', 'CHADDEC0001', 'fikifiki', 'running', '15000', 'pm001', '1', '202006171409', '17/06/2020', '14:09', null, null, 'proclamation');
+INSERT INTO `property_description` VALUES ('110', 'CHADDEC0001', 'solar panels', '', '', 'pm001', '1', '202006171410', '17/06/2020', '14:10', null, null, 'proclamation');
+INSERT INTO `property_description` VALUES ('111', 'CHADDEC0001', 'jhgjhg', '', '', 'pm001', '1', '202006171412', '17/06/2020', '14:12', null, null, 'proclamation');
+INSERT INTO `property_description` VALUES ('112', 'CHADDEC0001', 'hujhu', '', '', 'pm001', '1', '202006171414', '17/06/2020', '14:14', null, null, 'proclamation');
+INSERT INTO `property_description` VALUES ('113', 'DEC000006', 'jhj', '', '', 'pm001', '1', '202006171422', '17/06/2020', '14:22', null, null, 'proclamation');
+INSERT INTO `property_description` VALUES ('114', 'DEC000006', 'lhljlj;ok;pk', '', '', 'pm001', '1', '202006171422', '17/06/2020', '14:22', null, null, 'proclamation');
+INSERT INTO `property_description` VALUES ('115', 'CHADDEC0001', 'kjhk', '', '', 'pm001', '1', '202006181033', '18/06/2020', '10:33', null, null, 'proclamation');
+INSERT INTO `property_description` VALUES ('116', 'CHADDEC0001', 'nmmmm', 'fair', '83333333333333', 'pm001', '1', '202006181251', '18/06/2020', '12:51', null, null, 'proclamation');
+INSERT INTO `property_description` VALUES ('117', '1', 'hhkj', 'ljk', '100', 'pm001', '1', '202006190912', '19/06/2020', '09:12', null, null, 'repossession');
+INSERT INTO `property_description` VALUES ('118', '1', 'gujhkujh', 'oooooooooooo', '444', 'pm001', '1', '202006190925', '19/06/2020', '09:25', null, null, 'repossession');
+INSERT INTO `property_description` VALUES ('119', 'REP001', 'nmmmmmmmmm', 'mono', '9090', 'pm001', '1', '202006191400', '19/06/2020', '14:00', null, null, 'repproc');
+INSERT INTO `property_description` VALUES ('120', 'REP001', 'nmmmmmmmmm', 'mono', '9090', 'pm001', '1', '202006191400', '19/06/2020', '14:00', null, null, 'repproc');
+INSERT INTO `property_description` VALUES ('121', 'REP001', 'bn', 'hj', '12', 'pm001', '1', '202006191414', '19/06/2020', '14:14', null, null, 'repproc');
 
 -- ----------------------------
 -- Table structure for purchases
@@ -19235,33 +19067,22 @@ CREATE TABLE `repossession` (
   `rdate` varchar(255) NOT NULL,
   `i_party` varchar(255) NOT NULL,
   `property` varchar(255) NOT NULL,
-  `day` varchar(100) NOT NULL,
-  `ntime` varchar(100) NOT NULL,
-  `place` varchar(255) NOT NULL,
-  `charges` varchar(100) NOT NULL,
   `status` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `stamp` varchar(100) NOT NULL,
   `date` varchar(255) NOT NULL,
   `time` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of repossession
 -- ----------------------------
-INSERT INTO `repossession` VALUES ('1', 'REP001', 'UIUIIII', '2020-06-03', 'NACKOS TUNIS', 'PAMBELE', '', '', '', '', '1', 'pm001', '2020-06-21 10:18:11', '2020-06-16', 'NULL');
-INSERT INTO `repossession` VALUES ('2', '1', 'TEGANUS', '2020-06-03', 'NACKOS TUNIS', 'PAMBELE', '', '', '', '', '0', 'pm001', '2020-06-21 10:18:11', '2020-06-16', 'NULL');
-INSERT INTO `repossession` VALUES ('3', 'REP000003', 'KLL', '2020-06-16', 'K', 'MMK', '', '', '', '', '0', 'pm001', '202006152236', '15/06/2020', '22:36');
-INSERT INTO `repossession` VALUES ('4', 'REP000004', 'DOROTYU', '2020-06-10', 'JFKJK', 'JKJK', '', '', '', '', '1', 'pm001', '202006152238', '15/06/2020', '22:38');
-INSERT INTO `repossession` VALUES ('5', 'REP000005', 'IO COMP', '2020-06-09', 'MBAKALI CHUMI HARDWARES', 'LAMI', '', '', '', '', '1', 'pm001', '202006161142', '16/06/2020', '11:42');
-INSERT INTO `repossession` VALUES ('6', 'REP000006', 'KEMA', '2020-06-19', 'JULIUS', 'EMMACULATE', '', '', '', '', '1', 'pm001', '202006181506', '18/06/2020', '15:06');
-INSERT INTO `repossession` VALUES ('7', 'REP000007', 'CATCHP', '2020-06-04', 'FENDOZA', 'COMPANIES', '', '', '', '', '1', 'pm001', '202006181639', '18/06/2020', '16:39');
-INSERT INTO `repossession` VALUES ('8', 'REP000008', 'KIMU', '2020-06-09', 'AMERICA', 'PORL', '', '', '', '', '1', 'pm001', '202006182239', '18/06/2020', '22:39');
-INSERT INTO `repossession` VALUES ('9', 'REP000009', '', '', '', '', '2020-06-24', '8pm', 'KISUMU', 'KS2000000', '1', 'pm001', '202006182244', '18/06/2020', '22:44');
-INSERT INTO `repossession` VALUES ('10', 'REP000010', '', '', '', '', '2020-06-24', '8pm', 'KISUMU', 'KS2000000', '1', 'pm001', '202006182244', '18/06/2020', '22:44');
-INSERT INTO `repossession` VALUES ('11', 'REP000011', '', '', '', '', '2020-06-02', '9', 'KIMU', '90909', '1', 'pm001', '202006182249', '18/06/2020', '22:49');
-INSERT INTO `repossession` VALUES ('12', 'REP000012', '', '', '', '', '2020-06-02', '9', 'KIMU', '90909', '1', 'pm001', '202006182249', '18/06/2020', '22:49');
+INSERT INTO `repossession` VALUES ('1', 'REP001', 'UIUIIII', '2020-06-03', 'NACKOS TUNIS', 'PAMBELE', '1', 'pm001', '2020-06-21 10:18:11', '2020-06-16', 'NULL');
+INSERT INTO `repossession` VALUES ('2', '1', 'TEGANUS', '2020-06-03', 'NACKOS TUNIS', 'PAMBELE', '1', 'pm001', '2020-06-21 10:18:11', '2020-06-16', 'NULL');
+INSERT INTO `repossession` VALUES ('3', 'REP000003', 'KLL', '2020-06-16', 'K', 'MMK', '1', 'pm001', '202006152236', '15/06/2020', '22:36');
+INSERT INTO `repossession` VALUES ('4', 'REP000004', 'DOROTYU', '2020-06-10', 'JFKJK', 'JKJK', '1', 'pm001', '202006152238', '15/06/2020', '22:38');
+INSERT INTO `repossession` VALUES ('5', 'REP000005', 'MANU COMPANY', '2020-06-09', 'MBAKALI CHUMI HARDWARES', 'LAMI', '1', 'pm001', '202006161142', '16/06/2020', '11:42');
 
 -- ----------------------------
 -- Table structure for requests
@@ -19500,679 +19321,679 @@ CREATE TABLE `sheet1` (
 -- ----------------------------
 -- Records of sheet1
 -- ----------------------------
-INSERT INTO `sheet1` VALUES ('373.                       ', ' KANGETHE', '0721 835715', '27919181', '6349', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('1.       ', 'ABEL KIMANI KARIUKI', '0724 987689', '22845379', '1938', 'NYERI');
-INSERT INTO `sheet1` VALUES ('2.       ', 'ABIGAIL MBINYA MUOKA', '0724 072312', '24770641', '4009', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('3.       ', 'ABSOLOM NJOROGE MAINA', '0727 426190', '23551759', '5568', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('4.       ', 'AGNES MOLLY WAMBURA', '0723 237713', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('5.       ', 'AGNES MWENDE  MATITI', '0725 996779', '22378093', '5890', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('6.       ', 'AGNES NJERI KINYANJUI', '0713 200290', '22405861', '2457', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('7.       ', 'AGNES WAIRIMU MAINA', '0726 066127', '23271408', '3327', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('8.       ', 'AGNES WANJIKU KIMANI', '0722 629847', '', '', 'EMBU');
-INSERT INTO `sheet1` VALUES ('9.       ', 'ALEX KAMAU IRUNGU', '0715 290890', '21877363', '7429', 'NYERI');
-INSERT INTO `sheet1` VALUES ('10.   ', 'ALEX KARIUKI WAIROBI', '0725 889432', '21888513', '2458', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('11.   ', 'ALEX WANJAU KABUTHU', '0721 617722', '27326712', '4242', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('12.   ', 'ALEXANDER KALAINE THURANIRA', '0723 017607', '25383529', '8160', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('13.   ', 'ALEXANDER WARUI WANJOHI', '0726 488397', '27607364', '6339', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('14.   ', 'ALFRED KABURU KANGETHE', '0727 922439', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('15.   ', 'ALICE CAROLINE NYAMBURA KUNGU', '0720 692405', '22514011', '3244', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('16.   ', 'ALICE MUMBI GATANGI', '0721 223442', '13779131', '3307', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('17.   ', 'ALICE NYAMBURA MACHARIA', '0721 879692', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('18.   ', 'ALICE WANGITHI KIMWE', '0722 537309', '1210910', '57', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('19.   ', 'ALLAN  KANYI WACHIRA', '0727 043504', '24762383', '7501', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('20.   ', 'ALLAN MUCHEMI TAITI', '0716 347681', '27778185', '6428', 'NYERI');
-INSERT INTO `sheet1` VALUES ('21.   ', 'AMOS GICHANE KABUCHU', '0716 617474', '27894206', '5832', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('22.   ', 'AMOS KIMEU MWANGANGI', '0723 304481', '21909676', '1806', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('23.   ', 'ANDREW KARIUKI ', '0721 941770', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('24.   ', 'ANDREW MAINA KAIRU', '0720 561422', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('25.   ', 'ANDREW MUTUGI KARIMI', '0723 963496', '24505243', '3870', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('26.   ', 'ANDREW THEURI KIRIUNGI', '0725 151117', '23046911', '2173', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('27.   ', 'ANGELENE MWENDE', '0711 587325', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('28.   ', 'ANN KARIMI NJERU', '0729 228440', '23701769', '5401', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('29.   ', 'ANN MUTHONI KIMANI', '0724 709501', '23591054', '3152', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('30.   ', 'ANN WANGARE WANJUGU', '0723 770824', '23220036', '3250', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('31.   ', 'ANN WANGUI NGUNJIRI', '0740 593998', '30459275', '6736', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('32.   ', 'ANN WANJIKU KABEU', '0723 934066', '23311580', '4690', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('33.   ', 'ANNE KASYOKA MUMALA', '0715 872794', '28100484', '7491', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('34.   ', 'ANNE NGENDO GICHUHI', '0707 723137', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('35.   ', 'ANNE WAITHIRA NGETHE', '0722 606415', '4878083', '391', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('36.   ', 'ANNETE MARIGU NDWIGA', '0720 041092', '24961253', '6603', 'NYERI');
-INSERT INTO `sheet1` VALUES ('37.   ', 'ANTHONY MAINA KARIUKI', '0725 707321', '23748021', '2429', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('38.   ', 'ANTHONY MURITHI NJIRU', '0725 503647', '23344888', '4635', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('39.   ', 'ANTHONY MWANGI KIBUNJA', '0726 105429', '21227557', '8293', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('40.   ', 'ANTHONY MWANGI MURIUKI', '0723 533327', '23844231', '3257', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('41.   ', 'ANTHONY NDIANG’UI NDEGWA', '0723 622011', '22674054', '4676', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('42.   ', 'ANTHONY NGUGI MACHARIA', '0711 198458', '26901019', '7037', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('43.   ', 'ANTONY GITONGA RIUNGU', '0701 268262', '22288828', '7337', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('44.   ', 'ARNOLD KIPKEMOI AYABEI', '0727 550204', '24864873', '5216', 'NAKURU');
-INSERT INTO `sheet1` VALUES ('45.   ', 'ASAPH MAINA KARICHU', '0725 160594', '16001780', '215', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('46.   ', 'ASENATH MORAA OBWONI', '0710 350262', '', '', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('47.   ', 'ATHANAS MUSOMBA NGEI', '0726 432083', '27006155', '6434', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('48.   ', 'BEATRICE NYAMBURA GIKONYO', '0714 082532', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('49.   ', 'BEATRICE WAMBUI NJUGUNA', '0726 779915', '23057565', '5360', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('50.   ', 'BEATRICE WAMUYU GIKONYO', '0724 003127', '24422125', '5078', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('51.   ', 'BEATRICE WANGECHI GITAHI', '0726 646030', '23396170', '1965', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('52.   ', 'BEATRICE WANGUI MWAURA', '0721 276018', '8485080', '620', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('53.   ', 'BEATRICE WANJIKU MBUTHIA ', '0721 208904 ', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('54.   ', 'BELONCE WANJIKU NDUNGU', '0723 791043', '29004141', '7739', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('55.   ', 'BENARD IRAYA NYATHIRA', '0724 001423', '23990114', '2760', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('56.   ', 'BENARD NJUKI KARIITHI', '0712 397262', '26288393', '8035', 'NYERI');
-INSERT INTO `sheet1` VALUES ('57.   ', 'BENEDICTOR WANGUI NJOROGE', '0723 005350', '23409380', '1700', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('58.   ', 'BENJAMIN MBUGUA MUHORO', '0723 455552', '4835809', '2', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('59.   ', 'BENJAMIN MUNYAO NTHUMO', '0721 682120', '7364030', '529', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('60.   ', 'BENJAMIN TAITI NDIRITU', '0722 899819', '20322141', '1049', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('61.   ', 'BENSON MWANGI MUTHEE', '0713 915605', '', '', 'SAGANA');
-INSERT INTO `sheet1` VALUES ('62.   ', 'BENSON NJAU', '0720 929222', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('63.   ', 'BENSON THONDU', '0720 981186', '', '', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('64.   ', 'BERNADETTE WANJIKU NJOROGE', '0796 216764', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('65.   ', 'BESSY WANJIRU MWONGERA', '0710 996559', '27220658', '4208', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('66.   ', 'BETH NYAMBURA MAINA', '0715 863362', '33213507', '9714', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('67.   ', 'BETH WANJERI KAMWERU', '0720 579876', '22843948', '3846', 'NYERI');
-INSERT INTO `sheet1` VALUES ('68.   ', 'BILIA MUTHONI NGARE', '0725 701423', '22048252', '7076', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('69.   ', 'BONIFACE KABURU', '0726 502870', '', '', 'MERU');
-INSERT INTO `sheet1` VALUES ('70.   ', 'BONIFACE KIMATHI GATHAI', '0720 494296', '23304510', '5303', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('71.   ', 'BONIFACE M KIVAYA', '0722 840642', '23630305', '2221', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('72.   ', 'BONIFACE MUCHIRI KINUTHIA', '0722 803523', '22533902', '2118', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('73.   ', 'CAROLINE NJERI KAMAU', '0721 760205', '20145121', '5738', 'THIKA');
-INSERT INTO `sheet1` VALUES ('74.   ', 'CAROLINE WAITHIRA WAWERU', '0723 072197', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('75.   ', 'CAROLINE WAMBUI NJAGI', '0725 308542', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('76.   ', 'CAROLINE WANGECHI  CHAGARII ', '0720 998440', '25314655', '4321', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('77.   ', 'CAROLINE WANJIKU RIMI', '0724 307578', '24125703', '5463', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('78.   ', 'CAROLINE WANJIRU NYAGA', '0724 261904', '23532277', '2681', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('79.   ', 'CAROLYNE MUSIMBI ALUSE', '0723 521185', '23081412', '5374', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('80.   ', 'CATE WANJA MUNDIA', '0797 693429', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('81.   ', 'CATHERINE WAITHERA KARIMI', '0716 820433', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('82.   ', 'CATHERINE WAMBUI GICHIMU', '0726 728552', '24058717', '4766', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('83.   ', 'CATHERINE WANGU MIRIGA', '0722 301517', '999308', '52', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('84.   ', 'CATHERINE WANGUI KANOGO', '0717 766675', '27787132', '6141', 'NYERI');
-INSERT INTO `sheet1` VALUES ('85.   ', 'CATHERINE WANGUI THUMBI', '0727 346493', '24651071', '4769', 'NYERI');
-INSERT INTO `sheet1` VALUES ('86.   ', 'CECELIA WAKARIMI MUHIRI', '0732 457184', '994847', '455', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('87.   ', 'CHARLES KAMANDE WAINAINA', '0722 594922', '4879692', '172', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('88.   ', 'CHARLES MACHARIA MUIRURI', '0720 914415', '28443864', '7254', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('89.   ', 'CHARLES MBURE MUGI', '0712 275059', '23226354', '3155', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('90.   ', 'DAMARIS WAMBUI MUNGAI', '0720 461784', '22245246', '3855', 'NYERI');
-INSERT INTO `sheet1` VALUES ('91.   ', 'DAN PAUL KABIRU', '0728 159500', '22703967', '1639', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('92.   ', 'DANCUN MUTUGI', '0720 825884', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('93.   ', 'DANCUN NGUGI MUIRU', '0741 288490', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('94.   ', 'DANCUN WAMENYA KIMANI', '0712 056083', '23541699', '3635', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('95.   ', 'DANIEL GICHUHI KAREITHI', '0725 153910', '24097388', '3697', 'NYERI');
-INSERT INTO `sheet1` VALUES ('96.   ', 'DANIEL IRUNGU NGURE', '0727 069914', '22972075', '3902', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('97.   ', 'DANIEL KIBUIKA MUKORA', '0721 835415', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('98.   ', 'DANIEL KIIRU MWANGI', '0711 595254', '27285487', '4575', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('99.   ', 'DANIEL KINYUA GIKONYO', '0726 228590', '23832114', '4073', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('100.                       ', 'DANIEL MURIITHI GICHIRA', '0727 865529', '23429537', '5787', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('101.                       ', 'DANIEL MURIITHI NDUNG’U', '0721 809251', '3098286', '442', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('102.                       ', 'DANIEL MWONGERA MWEBIA', '721487645', '23891205', '5030', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('103.                       ', 'DANIEL NJAGI MITHAMO', '0712 513489', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('104.                       ', 'DANIEL WAINAINA KABUI', '0724 986422', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('105.                       ', 'DANIEL WAWERU KIIRU', '0725 363689', '22938467', '3125', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('106.                       ', 'DAVID GITAU MUHIA', '0701 001729', '28750269', '6973', 'NYERI');
-INSERT INTO `sheet1` VALUES ('107.                       ', 'DAVID KARANJA GICHINA', '0725 847453', '22151508', '3277', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('108.                       ', 'DAVID KIMANI NJOROGE', '0718 281135', '29290189', '8757', 'EMBU');
-INSERT INTO `sheet1` VALUES ('109.                       ', 'DAVID KITHEKA MULWA', '0723 054937', '27815021', '5108', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('110.                       ', 'DAVID MACHARIA GICHOBI', '0724 005488', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('111.                       ', 'DAVID MACHARIA KIMEMIA', '0723 321449', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('112.                       ', 'DAVID MURETHI MACHARIA ', '0721 176387', '27341158', '6458', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('113.                       ', 'DAVID MUTHURI KAJECHE', '0713 044162', '27589849', '5991', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('114.                       ', 'DAVID MWANGI KIMEMIA', '0723 270123', '22881888', '1622', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('115.                       ', 'DAVID MWANGI MARANGA', '0722 348877', '621494', '107', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('116.                       ', 'DAVID NDUNGU MWENJA', '0735 189249', '24990050', '3682', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('673.                       ', 'DAVID NGURU MBUGUA', '0713 362020', '28132225', '7807', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('117.                       ', 'DAVID NYAGA IRERI', '0727 962428', '', '', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('118.                       ', 'DAVID OUMA NJIKA', '0726 633680', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('119.                       ', 'DAVID WANJOHI MUGO', '0712 454421', '31845500', '9000', 'THIKA');
-INSERT INTO `sheet1` VALUES ('120.                       ', 'DENNIS KAGERA NGUNJIRI', '0723 736592', '32305768', '9160', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('121.                       ', 'DENNIS MAINA KIRUBI', '0725 808339', '', '', 'THIKA');
-INSERT INTO `sheet1` VALUES ('122.                       ', 'DENNIS MUTUGI  MWANIKI', '0719 647576', '23931812', '4100', 'EMBU');
-INSERT INTO `sheet1` VALUES ('123.                       ', 'DENNIS PARSEEN KENANA', '0722 402500', '22809556', '1365', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('124.                       ', 'DENNIS WACHIRA MWANGI', '0725 307375', '', '', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('125.                       ', 'DIANA ATIENO OCHIENG', '0721 680583', '2862934', '7875', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('126.                       ', 'DICKSON KIBET KELWON', '0722 934231', '21259384', '1161', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('127.                       ', 'DICKSON MUTHIANI MUTHINI', '0719 768825', '23970620', '5555', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('128.                       ', 'DISHON MUTHUI KIMATHI', '0721 275560', '22548856', '3321', 'NYERI');
-INSERT INTO `sheet1` VALUES ('129.                       ', 'DOMINIC WAINAINA WAGOKI', '0729 087183', '28310096', '6816', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('130.                       ', 'DOMITILLAH WANJIKU WAHOME', '0736 738042', '24439565', '4136', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('131.                       ', 'DOUGLAS GITAHI NYAKWEYA', '0723 316701', '23420672', '5885', 'NYERI');
-INSERT INTO `sheet1` VALUES ('132.                       ', 'DOUGLAS KAMAU MWANGI', '0717 455849', '27827542', '6969', 'NYERI');
-INSERT INTO `sheet1` VALUES ('133.                       ', 'DOUGLAS NDIRANGU NDUNG’U', '0726 267691', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('134.                       ', 'DUNCAN  MIANO', '0715 270443', '29036865', '7440', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('135.                       ', 'DUNCAN NGUGI MUIRU', '0734 911259', '2930919', '141', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('136.                       ', 'EDITH NJOKI MBUTHIA', '0712 742105', '24152676', '7329', 'NYERI');
-INSERT INTO `sheet1` VALUES ('137.                       ', 'EDWARD GATHUKIA KAMAU', '0720 985891', '22573193', '3171', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('138.                       ', 'EDWIN KARANJA NDINWA', '0724 412576', '27766959', '8361', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('139.                       ', 'ELI MAITHYA  MBEVI', '0712 268146', '7258983', '670', 'JUJA');
-INSERT INTO `sheet1` VALUES ('140.                       ', 'ELIAS NDUNGU MURUNDU', '0723 033137', '28766660', '10107', 'THIKA');
-INSERT INTO `sheet1` VALUES ('141.                       ', 'ELIJAH CHEGE MBUGUA', '0725 518258', '24248964', '4125', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('142.                       ', 'ELIJAH MAINA MURINGO', '720951207', '29301521', '6764', 'KARATINA');
-INSERT INTO `sheet1` VALUES ('143.                       ', 'ELIJAH MUKUNA NAMUNGU', '0710 924753', '25433392', '6405', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('144.                       ', 'ELIJAH WACHIRA MUNENE', '0725 384091', '22989702', '4995', 'NYERI');
-INSERT INTO `sheet1` VALUES ('145.                       ', 'ELISAPHAN MWANGI NJERI', '0700 899263', '29343878', '7198', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('146.                       ', 'ELIZABETH NDUUME WAMBUA', '0718 764397', '31349769', '8431', 'NYERI');
-INSERT INTO `sheet1` VALUES ('147.                       ', 'ELIZABETH ONGWAYA ORINDA', '0728 564002', '25003858', '6696', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('148.                       ', 'ELIZABETH WAIRIMU NGIGE', '0725 279577', '24644723', '4260', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('149.                       ', 'ELIZABETH WAMBUI WAITHERA', '0727 376726', '23917153', '2505', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('150.                       ', 'ELIZABETH WANGECHI MURIITHI', '0723 404043', '22941926', '1411', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('151.                       ', 'ELIZABETH WANGUI MAINA', '0729 780377', '28796525', '6064', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('152.                       ', 'ELIZABETH WANJIKU MBURU', '0720 784628', '25331431', '4459', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('153.                       ', 'ELLY NJOROGE MAINA', '0722 134713', '24600149', '4042', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('154.                       ', 'EMILY CHEROTICH BABU', '0703 868055', '', '', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('155.                       ', 'EMILY NYAMBURA KAGOCHI', '0720 983737', '', '', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('156.                       ', 'EMMA NJERI GATHOGO', '0723 531155', '23591473', '8770', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('157.                       ', 'ERASTUS MUCHIRI THUKU', '0727 394838', '26366435', '2968', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('158.                       ', 'ERASTUS MUTHOMI MAGIRI', '0725 212888', '22254815', '3716', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('159.                       ', 'ERIC MUTEMBEI NJUE', '0720 017844', '25130487', '3611', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('160.                       ', 'ERISIANA MKANDAWIRO MSINGA', '0723 101582', '23678659', '4982', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('161.                       ', 'ERNEST KIMANI MWANGI', '0729 790452', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('162.                       ', 'ESTHER KARIMI RUNJI', '0720 444898', '22754838', '1454', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('163.                       ', 'ESTHER MUTHONI MBURU', '0720 781512', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('164.                       ', 'ESTHER NJOKI MIRINGU', '0720 317736', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('165.                       ', 'ESTHER SOIYAN SADERA', '0727 889382', '', '', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('166.                       ', 'ESTHER WAMBUI MURUGI', '0715 744864', '27818841', '6657', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('167.                       ', 'ESTHER WANGARI K', '0721 904211', '22227485', '1439', 'NYERI');
-INSERT INTO `sheet1` VALUES ('168.                       ', 'ESTHER WANGUI WANGARU', '0711 487034', '30165278', '8589', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('169.                       ', 'EUNICE MUTHONI WAITHAKA', '0775 550982', '29346597', '9159', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('170.                       ', 'EUNICE NJERI MWANGI', '0720 819694', '8726759', '514', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('171.                       ', 'EVAH  MUTHONI GITHENYA', '0720 945798', '22796601', '2442', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('172.                       ', 'EVALYNE RUTH MURUGI KIHUMBA', '0715 309332', '27964124', '5122', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('173.                       ', 'EVALYNE WANGU NDERITU', '0727 885408', '22372462', '2723', 'NYERI');
-INSERT INTO `sheet1` VALUES ('174.                       ', 'EVANGELINE KAGENDO NJIRU', '0725 210753', '22937727', '1609', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('175.                       ', 'EVANS MUTUKU', '0710 283828', '32680131', '9195', 'NYERI');
-INSERT INTO `sheet1` VALUES ('176.                       ', 'EVANS WAWERU MWANGI', '0725 491576', '23745510', '1994', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('177.                       ', 'EVANSON GICHARU WANJIKU', '0720 562917', '23195568', '6338', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('178.                       ', 'EVE JEBET KEMBOI', '0712 456900', '28906184', '9294', 'THIKA');
-INSERT INTO `sheet1` VALUES ('179.                       ', 'EVERLYNE NG’ENDO MWAURA', '0723 799006', '23722249', '3540', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('180.                       ', 'EVERLYNE WAMBUI KINYUA', '0724 676250', '24732503', '4336', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('181.                       ', 'EZEKIEL KIARIE KAMAU', '0724 428447', '24426124', '4549', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('182.                       ', 'FAITH CHEPKURUI BII', '0720 961124', '28808859', '8168', 'NYERI');
-INSERT INTO `sheet1` VALUES ('183.                       ', 'FAITH ELIZABETH WAMBUI NJOROGE', '0722 877267', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('184.                       ', 'FAITH JANET WAWIRA NJERU', '0723 734527', '23019390', '6457', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('185.                       ', 'FAITH MBINYA NGELESA', '0729 171124', '23194092', '9427', 'THIKA');
-INSERT INTO `sheet1` VALUES ('186.                       ', 'FAITH N MUCHAI', '0722 870642', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('187.                       ', 'FAITH NJOKI KIGO', '0720 691546', '23274923', '9646', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('188.                       ', 'FAITH NYOKABI NDUNGU', '0711 536346', '22614949', '6731', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('189.                       ', 'FAITH WAMBUI MWANGI', '0714 222207 ', '28651654', '8164', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('190.                       ', 'FAITH WANGARI KIBIRA', '0726 533608', '22122362', '6475', 'NYERI');
-INSERT INTO `sheet1` VALUES ('191.                       ', 'FELIX GITAU WAINAINA', '0725 369804', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('192.                       ', 'FELIX MUCHEMI MUIGA', '0720 678101', '24010366', '5729', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('193.                       ', 'FLORENCE GATHONI IRERI', '0721 663262', '23073267', '3145', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('194.                       ', 'FLORENCE MUTHONI KIMANI', '0701 663794', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('195.                       ', 'FRACIAH NJOROGE', '0723 674198', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('196.                       ', 'FRANCIS KARIUKI WAIRIMU', '0729 072275', '28131145', '9431', 'GATUNYU');
-INSERT INTO `sheet1` VALUES ('197.                       ', 'FRANCIS LEWIS MUREITHI', '0723 168443', '27209456', '6566', 'EMBU');
-INSERT INTO `sheet1` VALUES ('198.                       ', 'FRANCIS MUCHIRI NJOROGE', '0718 945941', '28725325', '8187', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('199.                       ', 'FRANCIS MURIUKI CHIURI', '721766963', '317641', '435', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('200.                       ', 'FRANCIS MUTURI MBURIA', '0710 712278', '23939127', '5267', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('201.                       ', 'FRANCIS MWANGI WANEKE', '0720 859019', '22575695', '4917', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('202.                       ', 'FRANCIS NJOROGE MWAURA', '0728 372418', '25392075', '5061', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('203.                       ', 'FRANCIS NJUGUNA KABURI', '0705 826095', '29477949', '8693', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('204.                       ', 'FRANCIS WAWERU KIMONDO', '0721 895457', '22568836', '1442', 'NYERI');
-INSERT INTO `sheet1` VALUES ('205.                       ', 'FREDRICK KAMAU WARUI', '0720 575 448', '10774914', '1190', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('206.                       ', 'FREDRICK KITUYAN MARIPET', '0721 485085', '11406508', '745', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('207.                       ', 'FREDRICK M GITAU', '0723 748771', '24011700', '4158', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('208.                       ', 'FREDRICK TITI KAROKI', '0721 444938', '22228645', '3918', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('209.                       ', 'FRIDAH KENDI', '0727 334238', '25144561', '8338', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('210.                       ', 'GEORGE JOHN KINYUA MURIUKI', '0724 456871', '24415762', '6201', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('211.                       ', 'GEORGE KAMAU KIMANI', '0726 724812', '21981200', '2052', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('212.                       ', 'GEORGE MACHARIA MURIUKI', '0722 210994', '1130542', '242', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('213.                       ', 'GEORGE MAINA WANGUI', '0727 700950', '27094985', '7487', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('214.                       ', 'GEORGE MURIITHI KINYUA', '0727 149334', '23266305', '3365', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('215.                       ', 'GEORGE NDEGWA NDUNGU', '0720 908808', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('216.                       ', 'GEORGE STEPHEN NGURE NG’ANG’A', '0720 905334', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('217.                       ', 'GERALD KING’ORI KARIUKI', '0725 484630', '23704498', '4059', 'NYERI');
-INSERT INTO `sheet1` VALUES ('218.                       ', 'GIBSON NJIMU KABUGI', '0721 286523', '351556', '150', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('219.                       ', 'GLADWELL WANJIKU MUTHIKE', '0727 898410', '24955600', '6053', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('220.                       ', 'GLADYS NYAMBURA GICHUHI', '0720 864162', '22944891', '3534', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('221.                       ', 'GLADYS WAMBUI MURIUKI', '0720 095836', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('222.                       ', 'GLADYS WANGUI MWANGI', '0727 103289', '26659978', '6303', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('223.                       ', 'GODFREY MWANGI NJIHIA', '0710 366357', '23796817', '4542', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('224.                       ', 'GORET MWANZIU FRANCIS', '0716 127306', '28224863', '9645', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('225.                       ', 'GRACE MUTETHYA MULYUNGI', '0714 918996', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('226.                       ', 'GRACE WAMBUI MBUGUA', '0723 333702', '24727618', '3671', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('227.                       ', 'GRACE WANJIKU MIRINGU', '0721 813141', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('228.                       ', 'GRACE WANJIRU  KIARIE', '0721 584159', '25828422', '4901', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('229.                       ', 'GRACE WAWIRA MURIUKI', '0728 136297', '24688033', '4967', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('230.                       ', 'HADIN MULIRO SHITESWA', '0723 978412', '23644570', '5565', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('231.                       ', 'HANNAH NYAMBURA KARANGU', '0728 549542', '25132137', '5818', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('232.                       ', 'HANNAH NYAMBURA NDUCU', '0723 631117', '13533559', '706', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('233.                       ', 'HANNAH WANGUI MUIRURI', '0721 821586', '24212983', '5301', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('234.                       ', 'HARRIS NG’ANG’A NJUGUNA', '0715 623695', '28466948', '6168', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('235.                       ', 'HARUN MUCHIRI WAHOME', '0722 258786', '14703280', '1048', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('236.                       ', 'HEKIRA WANGUI KABUGA', '0726 688357', '24189595', '4470', 'NAKURU');
-INSERT INTO `sheet1` VALUES ('237.                       ', 'HELLEN GATWIRI', '0725 128177', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('238.                       ', 'HENRY MWANGI NGAHU', '0726 870751', '24561028', '5520', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('239.                       ', 'HENRY NJOROGE MURAGE', '0723 811770', '23557152', '3815', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('240.                       ', 'HEZEKIAH KIGERA NDUNG’U', '0720 560426', '22596860', '5025', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('241.                       ', 'HILARY KINGA  KABOGO', '0725 496591', '22975783', '3969', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('242.                       ', 'INNOCENTIA NDINDI WASOI', '0729 636413', '25436081', '5087', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('243.                       ', 'IRENE KAGENDO NJUE', '0722 851972', '22790208', '5529', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('244.                       ', 'IRENE MUMBI WANGWARE', '0722 868589', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('245.                       ', 'IRENE NJAMBI NDUGO', '0713 373937', '27687528', '8150', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('246.                       ', 'ISAAC CHEGE MUGANE', '0715 867021', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('247.                       ', 'ISAAC GITHUKU GITAU', '0725 461100', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('248.                       ', 'ISAAC KAREGA MURAYA', '0724 672906', '22933602', '2093', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('249.                       ', 'ISAAC KIGUTA MURIITHI', '0723 449219', '22192842', '2660', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('250.                       ', 'ISAAC KIMATHI GICENGI', '0728 329854', '21710913', '1616', 'NYERI');
-INSERT INTO `sheet1` VALUES ('251.                       ', 'ISAAC MURAGE GITONGA', '0725 013437', '22534999', '5853', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('252.                       ', 'ISAAC NDARWA WAMANGU', '0728 832634', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('253.                       ', 'ISAAC NDIRITU KARIUKI', '0723 751239', '22291430', '3533', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('254.                       ', 'ISAAC NDUNG’U KIGURU', '0721 626232', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('255.                       ', 'ISAACK GICHUHI NDUNG’U', '0718 356510', '28501774', '6853', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('256.                       ', 'ISAACK GUANDARU KIRIRA ', '0716 034001', '28456436', '6902', 'NYERI');
-INSERT INTO `sheet1` VALUES ('257.                       ', 'ISABELLAH KERUBO ISENA', '0727 422644', '23088049', '3709', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('258.                       ', 'ISAIAH NGUGI KARANJA', '0707 209601', '31897113', '9190', 'NYERI');
-INSERT INTO `sheet1` VALUES ('259.                       ', 'JACINTA NJERI KAGUO', '0727 527095', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('260.                       ', 'JACKLINE ATEYO AMUHOYI', '0727 274392', '22899073', '5245', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('261.                       ', 'JACKLINE NKATHA', '0713 417506', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('266.                       ', 'JACKLINE WAMGECHI KINYA', '0727 052082', '29250184', '6991', 'NYERI');
-INSERT INTO `sheet1` VALUES ('263.                       ', 'JACKLINE WANJIRU WANYOIKE', '0725 914636', '24378237', '5440', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('262.                       ', 'JACKLINE WANJUKI NTHIGA', '0725 041851', '26755427', '5610', 'EMBU');
-INSERT INTO `sheet1` VALUES ('264.                       ', 'JACKSON MUHORO KAGWI', '0722 598469', '', '', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('265.                       ', 'JACKSON WAITETE MAINA', '0723 774483', '24807077', '4530', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('267.                       ', 'JAMES CHARAGU MICHIRE', '0792 535322', '31382556', '8663', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('268.                       ', 'JAMES GAKUNGU MAGU', '0728 046629', '25243732', '5062', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('269.                       ', 'JAMES GITHUA MWANGI', '0727 296895', '29021639', '6768', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('270.                       ', 'JAMES GITONGA GITARI', '0722 123296', '24551417', '2962', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('271.                       ', 'JAMES K KIMANI', '0721 243244', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('272.                       ', 'JAMES KAMAU THUITA', '0723 212766', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('273.                       ', 'JAMES KARANJA KARIUKI', '0725 608927', '25848681', '5940', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('274.                       ', 'JAMES KARAU KAMAU', '0717 970898', '316 25025', '8586', 'RUAKA');
-INSERT INTO `sheet1` VALUES ('275.                       ', 'JAMES KIMANI GATIBA', '0722 705847', '25209985', '5841', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('276.                       ', 'JAMES KINYUA WAMAE', '0723 768211', '22499633', '4904', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('277.                       ', 'JAMES MAINA GITHINJI', '0722 747985', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('278.                       ', 'JAMES MAINA KIMEMIA', '0721 981092', '22477031', '2633', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('279.                       ', 'JAMES MAINA WANGUI', '0726 171983', '29624758', '7182', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('280.                       ', 'JAMES MATU NJARI', '0708 806340', '28112649', '7381', 'GATUNDU');
-INSERT INTO `sheet1` VALUES ('281.                       ', 'JAMES MOSE KIOKO', '0703 141947', '29133245', '8378', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('282.                       ', 'JAMES MWANGI MWARIRI', '0735 230997', '0999368', '269', 'NAROK');
-INSERT INTO `sheet1` VALUES ('283.                       ', 'JAMES MWANGI WAWERU', '0723 592512', '25136340', '3286', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('284.                       ', 'JAMES NJENGA NJOROGE', '0724 813654', '23486811', '3054', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('285.                       ', 'JAMES NJUGUNA MWANGI', '0711 636625', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('286.                       ', 'JAMES ODUOR AJUANG OKANGA', '0736 809203', '22288685', '7430', 'KASARANI');
-INSERT INTO `sheet1` VALUES ('287.                       ', 'JAMES WACIRA KIAGO', '0721 231189', '6829595', '673', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('288.                       ', 'JAMES WAWERU GACHAU', '0724 591243', '25321226', '6190', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('289.                       ', 'JANE IKIARA NGUTA', '0725 319924', '24734069', '2257', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('290.                       ', 'JANE MUKUHI KINYUA', '0723 142065', '24763133', '5490', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('291.                       ', 'JANE W GITUMBI', '0715 670749', '21973788', '2200', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('292.                       ', 'JANE WAIRIMU MWANGI', '0721 607770', '', '', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('293.                       ', 'JANE WAIRIMU NJOROGE', '0722 220079', '23177408', '5398', 'NYERI');
-INSERT INTO `sheet1` VALUES ('294.                       ', 'JANE WAMAITHA MURAYA', '0725 958726', '25264645', '4879', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('295.                       ', 'JANE WANJIRU MUKUHA', '0723 501999', '24438686', '4712', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('296.                       ', 'JANEFFER WANGECHI MAINA', '0700 076689', '24135436', '4927', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('297.                       ', 'JANET KAMUNYA MUTUA', '0722 823204', '29411617', '7898', 'THIKA');
-INSERT INTO `sheet1` VALUES ('298.                       ', 'JANET MUMBI KIGWERU', '0712 862169', '25922776', '7971', 'NYERI');
-INSERT INTO `sheet1` VALUES ('299.                       ', 'JANET WANGECHI MUTHONI', '0724 792875', '24104479', '8367', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('300.                       ', 'JANICE KARENDI NYAGA', '0725 499148', '21943215', '2128', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('301.                       ', 'JANIFFER NJERI MUCHIRI', '0716 080585', '24769836', '5276', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('302.                       ', 'JEFF GITONGA NJERU', '0708 227076', '30060587', '8192', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('303.                       ', 'JEFFIN KIMATHI NYAGA', '0725 826966', '', '', 'NAKURU');
-INSERT INTO `sheet1` VALUES ('304.                       ', 'JEMIMA WACHERA NDERITU', '0706 762250', '29281235', '8034', 'RUIRU');
-INSERT INTO `sheet1` VALUES ('305.                       ', 'JEMIMAH MUTHONI KAMAU', '0725 395777', '23350585', '3580', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('306.                       ', 'JENES MWENDIA MBAKA', '0723 257153', '22931109', '2144', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('307.                       ', 'JENNIFER NJERI KING’ORI', '0722 309001', '5101277', '515', 'NYERI');
-INSERT INTO `sheet1` VALUES ('308.                       ', 'JEREMIAH MBARIA', '0726 786138', '23461337', '2447', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('309.                       ', 'JEREMIAH WANGIGI', '0721 295424', '3647293', '392', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('310.                       ', 'JERIOTH WANJIKU MURIITHI', '0721 147233', '6105846', '600', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('311.                       ', 'JIM KAMUNGU MBURU', '0721 573954', '998307', '251', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('312.                       ', 'JOAN IYANJI JUMA', '0704 020082', '22225999', '7489', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('313.                       ', 'JOEL MURIU GATHU', '0723 179835', '23306161', '3527', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('314.                       ', 'JOEL MWANGI KAGERA', '0710 655234', '27280056', '5987', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('315.                       ', 'JOEL MWANGI WAINAINA', '0722 425982', '24175089', '5581', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('316.                       ', 'JOEL NYUMU CHEGE', '0724 709963', '24011122', '4839', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('317.                       ', 'JOEL SAMUEL KAGUTHI WANJUKI', '0725 604809', '24709895', '5660', 'NYERI');
-INSERT INTO `sheet1` VALUES ('318.                       ', 'JOHN GACHAGO NJOROGE', '0713 045889', '', '', 'MANGU');
-INSERT INTO `sheet1` VALUES ('319.                       ', 'JOHN KINYUA GACIANI', '0724 102726', '', '', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('320.                       ', 'JOHN KIRIMI PHINEHAS', '0728 977796', '13355124', '3707', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('321.                       ', 'JOHN KITAVI KIMATU', '0723 880457', '22766356', '1395', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('322.                       ', 'JOHN KUNG’U KIMANI', '0721 975358', '21980815', '3036', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('323.                       ', 'JOHN MBUGUA MWANGI', '0727 340993', '9209436', '710', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('324.                       ', 'JOHN MIRINGA MWANGI', '0727 749295', '24074502', '6241', 'NYERI');
-INSERT INTO `sheet1` VALUES ('325.                       ', 'JOHN MUCHIRI MUGOYA', '0722 455899', '21835339', '2484', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('326.                       ', 'JOHN MUEMA MUSYOKA', '0719 791907', '29565191', '8952', 'THIKA');
-INSERT INTO `sheet1` VALUES ('327.                       ', 'JOHN MUGENDA MWANGI', '0729 427926', '2566272', '8163', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('328.                       ', 'JOHN MUNIU NDUNG’U', '0725 705010', '2007208', '876', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('329.                       ', 'JOHN MUYA KINYANJUI', '0722 145383', '22871184', '2711', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('330.                       ', 'JOHN MWANGI KAMAU', '0725 514606', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('331.                       ', 'JOHN NDING’URI MUCHIRI', '0726 747135', '22784758', '3928', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('332.                       ', 'JOHN NDUNGU KABUE', '0725 449806', '29133245', '2516', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('333.                       ', 'JOHN NGUGI MUCHOKI', '0710 587178', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('334.                       ', 'JOHN WAITARA MWANGI', '721101923', '23901520', '2360', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('335.                       ', 'JOHN WANJOHI WANGARE', '0712 682954', '29596954', '7170', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('336.                       ', 'JOHNBOSCO NJOGU WANDI', '0728 473312', '22792038', '3736', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('337.                       ', 'JOHNSON NJOGU NJERI', '0701 775902', '29073650', '8226', 'NYERI');
-INSERT INTO `sheet1` VALUES ('338.                       ', 'JONNA NG’ANG’A THUO', '0724 648196', '14489936', '1723', 'GITHUMU');
-INSERT INTO `sheet1` VALUES ('339.                       ', 'JORAM KINYUA MUCHIRA', '0737 246910', '23973852', '6570', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('340.                       ', 'JOSEPH GAKEMBU', '0712 788631', '26925504', '5790', 'NYERI');
-INSERT INTO `sheet1` VALUES ('341.                       ', 'JOSEPH GITAU WAMBUI', '0729 349929', '27187534', '7416', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('342.                       ', 'JOSEPH KANGETHE MAINA', '0726 691888', '22192711', '6668', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('343.                       ', 'JOSEPH KARANJA KARIUKI', '0726 018516', '434996', '137', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('344.                       ', 'JOSEPH MBURU MACHARIA', '0722 809184', '995307', '201', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('345.                       ', 'JOSEPH MULILI KIMEU', '0723 213449', '23727469', '3521', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('346.                       ', 'JOSEPH MUNYAO KIMOLYA', '0726 752465', '25286917', '6223', 'EMBU');
-INSERT INTO `sheet1` VALUES ('347.                       ', 'JOSEPH NDEGWA WANJAU', '0720 419394', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('348.                       ', 'JOSEPH R KIHARA', '0722 782580', '7034597', '604', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('349.                       ', 'JOSEPH TUNGU MAITHYA', '0728 959380', '26768683', '5950', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('350.                       ', 'JOSEPH WAINAINA WAITHERA', '0729 604686', '24764943', '6385', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('351.                       ', 'JOSEPHINE NYAKIO MURIUKI', '0719 399464', '29798906', '9469', 'NYERI');
-INSERT INTO `sheet1` VALUES ('352.                       ', 'JOSHUA MUCHEKE', '0726 909687', '27381777', '6485', 'THIKA');
-INSERT INTO `sheet1` VALUES ('353.                       ', 'JOSHUA MUCHIRI WAHOME', '0720 909687', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('354.                       ', 'JOSHUA NJERU KAGEMA', '0724 336435', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('355.                       ', 'JOSHUA NTHIGA MUCHEKE', '0726 909687', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('356.                       ', 'JOSPHAT MBUTHIA MUCHIRI', '0725 578229', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('357.                       ', 'JOSPHAT NDERITU WANGUI', '0714 599920', '27778105', '6038', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('358.                       ', 'JOSPHAT WARUINGI MWANGI', '0720 034208', '23874465', '1743', 'THIKA');
-INSERT INTO `sheet1` VALUES ('359.                       ', 'JOY REHEMA IRUNGU', '0728 853732', '', '', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('360.                       ', 'JOYCE GATHONI HINGA', '0724 031337', '23243007', '7492', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('361.                       ', 'JOYWIN CATE MUMBI NGIGI', '0727 443030', '30170163', '8918', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('362.                       ', 'JUDITH WAGIO MBURU', '0723 730472', '', '', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('363.                       ', 'JUDY KERUBO NYANCHOKA', '0724 688970', '28070250', '7490', 'THIKA');
-INSERT INTO `sheet1` VALUES ('364.                       ', 'JUDY NYINGI', '0726 980202', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('365.                       ', 'JUDYMERCY MUMBI GICHUHI', '0725 355575', '22796723', '2682', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('366.                       ', 'JULIAH WANJIKU WANJOHI', '0712 140432', '25535886', '8036', 'NYERI');
-INSERT INTO `sheet1` VALUES ('367.                       ', 'JULIUS GICHOBI NGURE', '0725 307923', '6449563', '582', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('368.                       ', 'JULIUS GIKONYO WANJOHI', '0725 642325', '24934289', '4992', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('369.                       ', 'JULIUS MUIGAI NGARARI', '0729 385754', '25680242', '6726', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('370.                       ', 'JULIUS MURAGE GITARI', '0713 624417', '435096', '108', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('371.                       ', 'JUSTIN GITONGA KARIUKI', '0710 682661', '25030147', '4693', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('372.                       ', 'JUSTINE WAMBUGU WANJOHI', '0722 883205', '9671113', '713', 'NYERI');
-INSERT INTO `sheet1` VALUES ('374.                       ', 'KAREN WANGUI MURUGI', '0712 190613', '27246351', '7484', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('375.                       ', 'KARIBA NJUNG’E', '0727 904941', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('376.                       ', 'KELLEN WANJERI MWANGI', '0722 395072', '999401', '279', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('377.                       ', 'KELVIN KING’ORI GACHUIRI', '0792 080559', '32959385', '8408', 'NYERI');
-INSERT INTO `sheet1` VALUES ('378.                       ', 'KELVIN MUEMA', '0726 317982', '23693818', '3153', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('379.                       ', 'KENNEDY CHEGE MAINA', '0726 156072', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('380.                       ', 'KENNEDY GICHIRA MAINGI', '0707 666983', '30446028', '7546', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('381.                       ', 'KENNEDY KOIGI', '0720 593567', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('382.                       ', 'KENNEDY WARUTHIRU NJIRAINI', '0724 824080', '24216827', '3236', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('383.                       ', 'KENNETH NDUATI NJOROGE', '0724 629092', '28219984', '6471', 'NYERI');
-INSERT INTO `sheet1` VALUES ('384.                       ', 'KESIAH WANJIKU WANGARI', '0704 020970', '29603443', '8162', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('385.                       ', 'KEVIN MUTHEE MUIRURI', '0701 634661', '28348492', '7432', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('386.                       ', 'KEVIN OTIENO ORAMBO', '0726 118180', '25334747', '4919', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('387.                       ', 'KIRIOFA MACHARIA NJAGI', '0701 004785', '250877522', '7227', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('388.                       ', 'LABAN MWANGI MAIYO', '0725 812535', '23257940', '4081', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('389.                       ', 'LAWRENCE MUCHANGI GICHURE', '0721 567572', '24052486', '3702', 'NYERI');
-INSERT INTO `sheet1` VALUES ('390.                       ', 'LEAH WANGARE KAMAU', '0724 797141', '23058369', '2738', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('391.                       ', 'LEAH WANJIKU KANYARA', '0727 281698', '25280314', '5008', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('392.                       ', 'LEWIS MACHARIA KURIA', '0715  867023', '28360932', '6235', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('393.                       ', 'LILIAN AWINO OKWAYO', '0721 158043', '23854910', '7003', 'NYERI');
-INSERT INTO `sheet1` VALUES ('394.                       ', 'LILIAN MUTHONI KIMARU', '0700 922409', '20825712', '', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('395.                       ', 'LILIAN MUTINDI KALI', '0724 363508', '24781888', '3687', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('396.                       ', 'LILIAN WAMBUI KIMANI', '0721 235576', '24179948', '3958', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('397.                       ', 'LILIAN WANJIKU NDUMIA', '0725 105953', '24651037', '2255', 'NYERI');
-INSERT INTO `sheet1` VALUES ('398.                       ', 'LILIAN WARWE RUKENYA', '0723 279750', '21843421', '3494', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('399.                       ', 'LIZABETH NKATHA KALUMA', '0723 442072', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('400.                       ', 'LOISE WANJIRA NGATIA', '0723 079142', '23204345', '6432', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('401.                       ', 'LOISE WAWERU', '0728 418292', '25191768', '3612', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('402.                       ', 'LOXROY KARANI KIRIMI', '0727 373916', '24416140', '5468', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('403.                       ', 'LUCY M GATAMA', '0720 670353', '22141081', '5298', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('404.                       ', 'LUCY MURINGI MWANGI', '0726 877873', '23645840', '5700', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('405.                       ', 'LUCY MUTHONI MUNDIA', '0722 879457', '5924414', '55', 'NYERI');
-INSERT INTO `sheet1` VALUES ('406.                       ', 'LUCY MUTHONI NDERITU', '0723 945238', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('407.                       ', 'LUCY NDUTA KAMAU', '0725 736399', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('408.                       ', 'LUCY NJERI MUTURI', '0723 399996', '22290477', '5630', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('409.                       ', 'LUCY WAIRIMU KARUMBA', '0727 799102', '24080792', '4817', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('410.                       ', 'LUCY WAITHIRA WAINAINA', '0701 214850', '25393155', '5937', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('411.                       ', 'LUCY WAMBUI WAWERU', '0726 086309', '25204122', '6503', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('412.                       ', 'LUCY WANGUI  KIAMA', '0715 369589', '28550887', '6082', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('413.                       ', 'LYDIA KAGWIRIA MBURUGU', '0720 763514', '22130407', '4574', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('414.                       ', 'LYDIA MURUGI KABIRU', '0712 823497', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('415.                       ', 'LYDIA NYARUAI MWANGI', '0724 628752', '22308768', '2206', 'NYERI');
-INSERT INTO `sheet1` VALUES ('416.                       ', 'LYDIA WACERA KIMARI', '0725 109207', '', '', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('417.                       ', 'LYDIA WANGARE MWANGI', '0797 209146', '22093126', '1635', 'THIKA');
-INSERT INTO `sheet1` VALUES ('418.                       ', 'LYDIAH WAHU NJUGUNA', '0702 168520', '23637015', '4965', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('419.                       ', 'LYDIAH WAITHERERO MACHARIA', '0721 965160', '22586491', '7279', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('420.                       ', 'MAGDALENE WAMBUI MUTHEE', '0726 827687', '23653057', '7079', 'NYERI');
-INSERT INTO `sheet1` VALUES ('421.                       ', 'MAGDELENE WAITHERA KARANJA', '0726 306735', '23362657', '3216', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('422.                       ', 'MAINA NJOROGE GITHUI', '0722 577976', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('423.                       ', 'MARGARET NJERI MUTEMI', '0710 572793', '24167730', '8794', 'EMBU');
-INSERT INTO `sheet1` VALUES ('424.                       ', 'MARIAM WANJIKU MUNUHE', '0729 956005', '28532486', '7821', 'WAJIR/NYERI');
-INSERT INTO `sheet1` VALUES ('425.                       ', 'MARJORIE NYAGUTHIE GACHARA', '0720 504596', '26236872', '8699', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('426.                       ', 'MARTHA NJOKI MAINA', '0707 193226', '32637718', '9095', 'NYERI');
-INSERT INTO `sheet1` VALUES ('427.                       ', 'MARTIN KAMAU MWANIKI', '0720 603267', '24464191', '3413', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('428.                       ', 'MARTIN KARIUKI GIKUNJU', '0723 622966', '22824322', '3285', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('429.                       ', 'MARTIN KINUTHIA MAINGI', '0714 099448', '27582042', '6123', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('430.                       ', 'MARTIN MAINA WANGWARE', '0714 057557', '25008268', '4998', 'NYERI');
-INSERT INTO `sheet1` VALUES ('431.                       ', 'MARTIN THURANIRA MACHOKI', '0714 987738', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('432.                       ', 'MARY MURINGI MUREITHI', '0723 290604', '23725591', '3043', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('433.                       ', 'MARY NYAMBURA NJUGI', '0707 489714', '29733719', '9231', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('434.                       ', 'MARY WACHEKE GITAHI', '0727 953897', '22798306', '7034', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('435.                       ', 'MARY WACHUKA NDOME', '0723 099012', '24730416', '4378', 'NYERI');
-INSERT INTO `sheet1` VALUES ('436.                       ', 'MARY WAITHERERO KARANJA', '0713 182290', '20254287', '8862', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('437.                       ', 'MARY WAMAITHA MWANGI', '0728 110347', '24732317', '5975', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('438.                       ', 'MARY WANGARI NDICHO', '0727 356327', '31780993', '8630', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('439.                       ', 'MARY WANGECHI GITHAIGA', '0726 041899', '22880379', '5544', 'NYERI');
-INSERT INTO `sheet1` VALUES ('440.                       ', 'MARY WANGECHI MAINA', '0723 114402', '', '', 'NAKURU');
-INSERT INTO `sheet1` VALUES ('441.                       ', 'MARY WANGITHI KABIRU', '0724 232402', '22512664', '4875', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('442.                       ', 'MARY WANJIRU KIMOTHO', '0726 141293', '22882856', '4448', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('443.                       ', 'MATHEW MWANGI KAIRU', '0721 674717', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('444.                       ', 'MATHEW WAMUIGA GATURUKU', '0725 433152', '22850077', '2451', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('445.                       ', 'MEDRINE NJERI KAMAU', '0727 125110', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('446.                       ', 'MERCY MAKENA M’MAGAMBO', '724760904', '22438258', '2700', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('447.                       ', 'MERCY WAMBUI KARANJA', '0723 495291', '24038394', '6586', 'THIKA');
-INSERT INTO `sheet1` VALUES ('448.                       ', 'MERCY WANGECHI MUGO', '0721 348652', '25141127', '3983', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('449.                       ', 'MERCY WANJIKU NDERI', '0725 708602', '25811688', '3007', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('450.                       ', 'MERCY WANJIRU WAIGURU', '0727 781507', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('451.                       ', 'METRINE NYAWANJAYA NAKITARE', '0724 105281', '24677214', '7994', 'NYERI');
-INSERT INTO `sheet1` VALUES ('452.                       ', 'MICHAEL KIMEMIA NDARWA', '0726 247989', '22683571', '3138', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('453.                       ', 'MICHAEL MUMO', '0710 350295', '25811319', '6396', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('454.                       ', 'MILCAH WARUGURU MATHENGE', '0722 636814', '7038854', '492', 'NAKURU');
-INSERT INTO `sheet1` VALUES ('455.                       ', 'MILKAH WAMBUI WACHIRA', '0724 458012', '23643230', '6665', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('456.                       ', 'MILKAH WANJIRU NDUNGU', '0726 354964', '24860137', '6354', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('457.                       ', 'MIRIAM MUTHONI MAINA', '0708 244781', '22497189', '1441', 'NYERI');
-INSERT INTO `sheet1` VALUES ('458.                       ', 'MIRIAM WANGARI KIBE', '0726 939147', '24630887', '3301', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('459.                       ', 'MIRIAM WANGUTHII KARIUKI', '0724 721833', '24606575', '5338', 'NYERI');
-INSERT INTO `sheet1` VALUES ('460.                       ', 'MONICAH NJERI WAINAINA', '0729 858425', '24083625', '3026', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('461.                       ', 'MONICAH SYOMITI MUTUA', '0725 235352', '22862152', '2759', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('462.                       ', 'MONICAH WAMBUI WANJIRU', '0728 008738', '241338842', '4807', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('463.                       ', 'MONICAH WANGARI WANYOIKE', '0727 428279', '22246618', '5456', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('464.                       ', 'MONICAH WANGUI GITAU', '0712 324074', '25115885', '8079', 'NYERI');
-INSERT INTO `sheet1` VALUES ('465.                       ', 'MONICAH WANJIKU KIAGO', '0707 564634', '31973379', '7630', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('466.                       ', 'MOSES K GITHINJI', '0724 543446', '22697792', '1557', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('467.                       ', 'MOSES KAMOCHE MWANGI', '0720 172044', '22237920', '4379', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('468.                       ', 'MOSES KIPTALAM KIMUGE', '0725 790321', '22424656', '8249', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('469.                       ', 'MOSES MAINA WARUIRU', '0724 885119', '23912027', '3891', 'NYERI');
-INSERT INTO `sheet1` VALUES ('470.                       ', 'MOSES MUNDIA MUCIBI', '0725 316529', '22262327', '3744', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('471.                       ', 'MOSES NDUNG’U KAMUNYA', '0720 068418', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('472.                       ', 'MOSES NGAHU KIMENJU', '0725 398292', '', '', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('473.                       ', 'MOURINE NYAMUGU NGUGI', '0711 638397', '27310252', '4250', 'NYERI');
-INSERT INTO `sheet1` VALUES ('474.                       ', 'MWENDA JOEL ARAIGUA', '0721 945931', '22722291', '6462', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('475.                       ', 'NAHASHON MWANGI NJOROGE', '0721 928564', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('476.                       ', 'NANCY NJOKI MUSEE', '0721 453838', '21901184', '3685', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('477.                       ', 'NANCY NYAKINYUA WACHIRA', '0724 831756', '22549475', '4427', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('478.                       ', 'NANCY OKUNE', '0729 294572', '26004020', '7210', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('479.                       ', 'NANCY WANGARI GACHAU', '0721 541275', '22511225', '2146', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('480.                       ', 'NANCY WANJA MURIUKI', '0725 813369', '23721751', '3224', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('481.                       ', 'NANCY WANJERU MBOGO', '0724 552118', '23961289', '6715', 'EMBU');
-INSERT INTO `sheet1` VALUES ('482.                       ', 'NANCY WANJIRU KIURU', '0720 049316', '25255778', '4401', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('483.                       ', 'NAOMI GESORA KEMUNTO', '0722 776565', '29313308', '6741', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('484.                       ', 'NAOMI WAMBUI KIBUTHI', '0721 727794', '24229601', '3607', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('485.                       ', 'NELSON MWANGI KIMANI', '0717 172510', '25122542', '3188', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('486.                       ', 'NICHOLAS G NKONGE', '0720 603330', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('487.                       ', 'NICHOLAS KOECH KIPKEMOI', '0720 047007', '23061082', '4789', 'NYERI');
-INSERT INTO `sheet1` VALUES ('488.                       ', 'NICHOLAS NGATIA', '0713 350158', '28444361', '7320', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('489.                       ', 'NICKSON GICHOYA MUGO', '0720 272411', '22900346', '2788', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('490.                       ', 'NICODEMUS KAMANGU NDIRITU', '0720 460987', '', '', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('491.                       ', 'PAMSICILY WANJIRU NYAGA', '0721 514737', '23718935', '4924', 'EMBU');
-INSERT INTO `sheet1` VALUES ('492.                       ', 'PASSILIA WANJIRU KIHUNGI', '0714 003614', '28149252', '8323', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('493.                       ', 'PATRICK BWIRE OKUMU', '0725 286979', '22538101', '4713', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('494.                       ', 'PATRICK KAMAU GAKUNU', '0721 530972', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('495.                       ', 'PATRICK MACHARIA KARIUKI', '0729 492797', '26199988', '6172', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('496.                       ', 'PATRICK MWANGI NDUNG’U', '0720 087604', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('497.                       ', 'PATRICK MWANIKI GATUNE', '0720 808553', '23619780', '1714', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('498.                       ', 'PATRICK NDIRANGU WANGUI', '0727 270780', '24391238', '2243', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('499.                       ', 'PATRICK NG’ANG’A WANDU', '0723 764489', '23460662', '2168', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('500.                       ', 'PATRICK WAMAHIU KAGWANJA', '0726 867623', '23071040', '3245', 'NYERI');
-INSERT INTO `sheet1` VALUES ('501.                       ', 'PAUL KAARA GATIMU', '0704 498510', '22965071', '4435', 'NAKURU');
-INSERT INTO `sheet1` VALUES ('502.                       ', 'PAUL KAMAU NDUNG’U', '0722 830771', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('503.                       ', 'PAUL KANJA MWARIRI', '0724 967355', '21898243', '2446', 'NYERI');
-INSERT INTO `sheet1` VALUES ('504.                       ', 'PAUL KIMANI NJERI', '0722363698', '22963485', '5751', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('505.                       ', 'PAUL MBURU WAITHAKA', '0722 659386', '13675925', '961', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('506.                       ', 'PAUL MWANGI NDIRANGU', '0723 257560', '25872271', '8900', 'NANYUKI');
-INSERT INTO `sheet1` VALUES ('507.                       ', 'PAUL MWEU', '725760603', '20473203', '1990', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('508.                       ', 'PAUL NG’ANG’A GITAU', '0725 261185', '23355101', '2823', 'NAROK');
-INSERT INTO `sheet1` VALUES ('509.                       ', 'PAUL NJOROGE KAMAU', '0729 719095', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('510.                       ', 'PAUL WAWERU NG’ANG’A', '0722 467195', '21352851', '1581', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('511.                       ', 'PAULINE NDUTA GATHUKU', '0723 917329', '24710927', '4916', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('512.                       ', 'PAULINE NYAMBURA MACHARIA', '0721 690223', '23231946', '5387', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('513.                       ', 'PEARSON KEMBOI BARKOTON', '0718 743272', '30483360', '7750', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('514.                       ', 'PENINA WANGARI', '0733 515239', '22661861', '2061', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('515.                       ', 'PENINAH GATUMI NYAGA', '0727 638633', '', '', 'EMBU');
-INSERT INTO `sheet1` VALUES ('516.                       ', 'PENINAH MUGURE MWORIA', '0722 512162', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('517.                       ', 'PENINAH WAIRIMU KABUGI', '0720 422179', '23038742', '3730', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('518.                       ', 'PENINAH WANGECHI RUNO', '0729 573209', '', '', 'THIKA');
-INSERT INTO `sheet1` VALUES ('519.                       ', 'PERIS MUTHONI GICHUHI', '0702  971757', '25163669', '5094', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('520.                       ', 'PERIS NYAMBURA IRUNGU', '0704 440042', '30595854', '8227', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('521.                       ', 'PERIS WANJIRU MUTHONI', '0718 617866', '28076910', '5796', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('522.                       ', 'PERPETUA W GACHIGUA', '0727 696256', '8652598', '616', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('523.                       ', 'PETER GATHURA MBOGO', '0723 798479', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('524.                       ', 'PETER GATIMU MUCHIRI', '0720 498730', '22989442', '3489', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('525.                       ', 'PETER GITHINJI MWENDIA', '0711 407468', '27804998', '7556', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('526.                       ', 'PETER GITU MUCHIRI', '0706 797293', '30408240', '9043', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('527.                       ', 'PETER KARIUKI MWANGI', '0703 216968', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('528.                       ', 'PETER KIHARA MURUGA', '0726 884007', '22865369', '3131', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('529.                       ', 'PETER MBUTHIA MUYA', '0721 958882', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('530.                       ', 'PETER MUTUA MUTUKU', '0710 984073', '26238332', '6994', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('531.                       ', 'PETER MWANGI NGUNJIRI', '0729 782084', '28713762', '6984', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('532.                       ', 'PETER NYOIKE MUTHONI', '0721 844492', '21716427', '2189', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('533.                       ', 'PETER WACIRA KAMARU', '0710 245633', '28590382', '7004', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('534.                       ', 'PETER WAITHAKA GITONGA', '0726 844189', '25096828', '5043', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('535.                       ', 'PETER WAITITU GATOTO', '0720 293799', '11613519', '3417', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('536.                       ', 'PETERSON KARIMI GATURU', '0706 768001', '23283939', '1832', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('537.                       ', 'PHARES GICHEHA THUO', '0700 495162', '27858223', '7188', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('538.                       ', 'PHYLLIS NYAMBURA NYATHOGORA', '0723 405198', '24758302', '5976', 'NYERI');
-INSERT INTO `sheet1` VALUES ('539.                       ', 'PRISCA MBINYA NZIVO', '0722 501406', '20866797', '4486', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('540.                       ', 'PRISCILLA WACHU CHEGE', '0724 293333', '25525399', '4110', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('541.                       ', 'PRISCILLA WAMBUI MACHARIA', '0723 517024', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('542.                       ', 'PURITY NJAMBI MUTERU', '0717 387528', '29398019', '6863', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('543.                       ', 'PURITY NJERI WARUI', '0725 767858', '23271736', '6544', 'NYERI');
-INSERT INTO `sheet1` VALUES ('544.                       ', 'PURITY WAMUYU GITONGA', '0725 933331', '24110432', '4540', 'NYERI');
-INSERT INTO `sheet1` VALUES ('545.                       ', 'PURITY WANGARI NDERITU', '0702 630153', '25083121', '3889', 'NAKURU');
-INSERT INTO `sheet1` VALUES ('546.                       ', 'PURITY WANGU MUGARIO', '0727 294080', '23129497', '2754', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('547.                       ', 'PURITY WANJIKU KINYUNGU', '0729 794607', '23196891', '8123', 'THIKA');
-INSERT INTO `sheet1` VALUES ('548.                       ', 'PURITY WANJRA NGURICHA', '0725 157048', '23243367', '6599', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('549.                       ', 'PURITY WAYUA NGEI', '0721 123393', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('550.                       ', 'RACHEL WANGARI KINYUA', '0711 764114', '30156924', '7855', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('551.                       ', 'RAHAB MBAIRE NJUGUNA', '0721 225163', '717209', '355', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('552.                       ', 'RAHAB WANGECHI KAMIRU', '0715 760942', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('553.                       ', 'RAHAB WANJIKU KURIA', '0728 142456', '25379645', '5273', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('554.                       ', 'RAPHAEL NDIRANGU MUCHEMI', '0722 751346', '999020', '295', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('555.                       ', 'RAPHAEL W MATHENGE', '0724 378565', '22155735', '2489', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('556.                       ', 'REBECCA YEGO', '0711 768351', '28616546', '6066', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('557.                       ', 'RHODA WARUGURU MACHARIA', '0724 029152', '20361409', '2174', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('558.                       ', 'RICHARD GATHIOMI MUTAHI', '0727 160215', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('559.                       ', 'RICHARD GITAHI WAITHANJI', '0712 192264', '25889156', '4828', 'NAKURU');
-INSERT INTO `sheet1` VALUES ('560.                       ', 'RICHARD KAGEMA WACHANIA', '0715 486404', '29335611', '7614', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('561.                       ', 'RICHARD WACHIRA', '0725 974410', '25093615', '7324', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('562.                       ', 'ROBERT KIHARA NDIRITU', '0723 336766', '22671071', '3610', 'NYERI');
-INSERT INTO `sheet1` VALUES ('563.                       ', 'ROBERT NGETICH KIBET', '0722 597790', '21270595', '1112', 'NYERI');
-INSERT INTO `sheet1` VALUES ('564.                       ', 'ROBERT WAMBAKI MWANGI', '0714 547224', '31539235', '9518', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('565.                       ', 'ROBINSON NJOGU MURIUKI', '0729 536076', '26279310', '4701', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('566.                       ', 'ROSE GOIRI CHEGE', '0703 418531', '31673236', '8938', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('567.                       ', 'ROSEBERT WARIU NJIBU', '0721 840611', '23242792', '6565', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('568.                       ', 'ROSEMARY AKINYI OLOO', '0727 865270', '27521080', '6018', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('569.                       ', 'ROSEMARY NDUNGE  GITHIGE', '0723 921420', '24118161', '6587', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('570.                       ', 'RUTH EMMACULATE WANJIKU', '0713 167812', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('571.                       ', 'RUTH MUTHONI MWANGI', '0725 420055', '23012307', '5784', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('572.                       ', 'RUTH NJERI METHU', '0710 517427', '28568553', '9557', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('573.                       ', 'RUTH WAIRIMU RATIA', '0715 230596', '29136687', '7500', 'NYERI');
-INSERT INTO `sheet1` VALUES ('574.                       ', 'RUTH WANGAHU MBURU', '0711 113573', '20123313', '10000', 'THIKA');
-INSERT INTO `sheet1` VALUES ('575.                       ', 'RUTH WANGU KANYUA', '0723 047404', '25972396', '4623', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('576.                       ', 'RUTH WANJIKU KAMAU', '0720 497623', '22161440', '2746', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('577.                       ', 'RUTH WANJIKU MBUTHIA', '0723 539147', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('578.                       ', 'RUTH WANJIRU MUIRURI', '0725 819247', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('579.                       ', 'SADALINAH WANGUI MWANGI', '0723876724', '24532157', '3820', 'NYERI');
-INSERT INTO `sheet1` VALUES ('580.                       ', 'SALESIO NGARI NYAGA', '0728 547092', '22957957', '3798', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('581.                       ', 'SALOME WANGARI MUTURI', '0716 484608', '30859190', '7789', 'THIKA');
-INSERT INTO `sheet1` VALUES ('582.                       ', 'SAMMY KARURI WAMBUI', '0715 146570', '29338679', '7808', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('583.                       ', 'SAMUEL GITHIJI KINYUA', '0710 470630', '14518433', '5007', 'NYERI');
-INSERT INTO `sheet1` VALUES ('584.                       ', 'SAMUEL KAGIA CHEGE', '0727 695846', '25479791', '5573', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('585.                       ', 'SAMUEL KARIUKI KAMAU', '0728 923235', '25894132', '5056', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('586.                       ', 'SAMUEL KIAMA MUREITHI', '0720 626266', '28149887', '7159', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('587.                       ', 'SAMUEL KIBERENGE MWANGI', '0708 201249', '22982014', '6254', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('588.                       ', 'SAMUEL KIHARA NDIRANGU', '0720 817512', '22211660', '2091', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('589.                       ', 'SAMUEL KIHU GITAU', '0720 954628', '27653326', '5868', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('590.                       ', 'SAMUEL KIMANI MUNUHE', '0721 390964', '24286028', '6399', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('591.                       ', 'SAMUEL KIRAGU MAINA', '0726 552932', '22844962', '5006', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('592.                       ', 'SAMUEL MURAGE MWANGI', '0724 296540', '22439459', '2085', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('593.                       ', 'SAMUEL MURIGI WANJIKU', '0720 339703', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('594.                       ', 'SAMUEL MUTHIGANI MUCHIRI', '0726 918614', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('595.                       ', 'SAMUEL MWANGI WANJOHI', '0723 728536', '22371115', '3198', 'NYERI');
-INSERT INTO `sheet1` VALUES ('596.                       ', 'SAMUEL MWANIKI KAMONJO', '0723 532352', '23542379', '3247', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('597.                       ', 'SAMUEL NDUNGU MUGO', '0726 476914', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('598.                       ', 'SAMUEL NG’ANG’A NYAMBURA', '0714 046833', '28477401', '8181', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('599.                       ', 'SAMUEL THUO NJUGUNA', '0720 929484', '22452344', '3758', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('600.                       ', 'SAMUEL WACHIRA KIBE', '0723 382528', '24547381', '3843', 'NYERI');
-INSERT INTO `sheet1` VALUES ('601.                       ', 'SAMUEL WAWERU GATATI', '0725 146060', '999360', '281', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('602.                       ', 'SARAH WANJIRU NGARI', '0729 661845', '25349516', '2998', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('603.                       ', 'SERAH NJERI NDUNG’U', '0720 033521', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('604.                       ', 'SHADRACK KIRWA', '0721 389300', '22443365', '3049', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('605.                       ', 'SHALON WAITHIRA NG’ANG’A', '0708 602916', '30507511', '7585', 'NYERI');
-INSERT INTO `sheet1` VALUES ('606.                       ', 'SHELMITH NJERI MIRICHO', '0729 770083', '24132115', '8368', 'NYERI');
-INSERT INTO `sheet1` VALUES ('607.                       ', 'SIMEON AWUOR ORIKO', '0707 375996', '28450136', '8098', 'THIKA');
-INSERT INTO `sheet1` VALUES ('608.                       ', 'SIMON MUTWOTA MACHARIA', '0720 301633', '23184451', '1686', 'NYERI');
-INSERT INTO `sheet1` VALUES ('609.                       ', 'SIMON MWANGI NJUGUNA', '0725 430060', '23953395', '7262', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('610.                       ', 'SIMON NDEGWA KIHARA', '0722 952457', '10876159', '725', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('611.                       ', 'SIMON NGUGI WAMBUI', '0702 508898', '30871188', '8668', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('612.                       ', 'SISTO MUHORO GICHUKI', '0723 413879', '24278909', '2856', 'NYERI');
-INSERT INTO `sheet1` VALUES ('613.                       ', 'SOFIA WANJIRU MURIUKI', '0725 902701', '22601831', '4430', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('614.                       ', 'SOPHIA MURUGA THOMAS', '0714 411566', '22426834', '4662', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('615.                       ', 'STANLEY MURIITHI NDEGWA', '0726 706242', '25990801', '5869', 'NYERI');
-INSERT INTO `sheet1` VALUES ('616.                       ', 'STANLEY OCHIENG MUCHEMI', '0729 098064', '26969955', '5072', 'NAKURU');
-INSERT INTO `sheet1` VALUES ('617.                       ', 'STELLAMARIS MBITHE KYALO', '0721 917242', '24632146', '5534', 'NYERI');
-INSERT INTO `sheet1` VALUES ('618.                       ', 'STEPHEN GAKUMO GICHEHA', '0720 707333', '23017735', '6622', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('619.                       ', 'STEPHEN GATHIRU MUTHEE', '0727 398582', '28499990', '7532', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('620.                       ', 'STEPHEN KARIMI MURIITHI', '0726 070140', '27652585', '6228', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('621.                       ', 'STEPHEN KIMANI RUTERE', '0724 509328', '', '', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('622.                       ', 'STEPHEN KIRUTHI MWIHIA', '0722 253911', '22535528', '2381', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('623.                       ', 'STEPHEN MAINA KAGICHA', '0723 984837', '22796476', '3217', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('624.                       ', 'STEPHEN MUNENE WAHINYA', '0724 771710', '23439786', '3561', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('625.                       ', 'STEPHEN MURIITHI KARIMI', '0726 670140', '', '', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('626.                       ', 'STEPHEN N MURIAMA', '0723 749954', '27318649', '5963', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('627.                       ', 'STEPHEN NDEGWA MAINA', '0725 537418', '25605630', '8931', 'NYAHURURU');
-INSERT INTO `sheet1` VALUES ('628.                       ', 'STEPHEN NDIRANGU', '0721 924641', '21690914', '3662', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('629.                       ', 'STEPHEN WACHIRA MWANIKI', '0715 666065', '27654302', '6056', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('630.                       ', 'SUSAN MUTHONI MWANGI', '0727 248013', '23953170', '8001', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('631.                       ', 'SUSAN NJERI KARANJA', '0727 072752', '22710117', '7048', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('632.                       ', 'SUSAN NJERI MBUCHI', '0727 704091', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('633.                       ', 'SUSAN NJERI MWANGI', '0724 763244', '22759710', '2499', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('634.                       ', 'SUSAN WANJIKU MUCHIRA', '0726 206851', '', '', 'MERU');
-INSERT INTO `sheet1` VALUES ('635.                       ', 'SUSY MWANGALA', '0726 630437', '24157316', '5921', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('636.                       ', 'TABITHA NYAMBURA MURAGE', '0720 996378', '23384194', '3542', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('637.                       ', 'TABITHA WANDIA NYAMU', '0725 765652', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('638.                       ', 'TABITHA WANJIRU', '0713 587245', '25665307', '9580', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('639.                       ', 'TEREGINA GATAKAA KABURU', '0723 509127', '28540221', '9115', 'NERI');
-INSERT INTO `sheet1` VALUES ('640.                       ', 'TERESA NGIMA WERU', '0700 386397', '28085814', '6037', 'LAIKIPIA');
-INSERT INTO `sheet1` VALUES ('641.                       ', 'TERESA WAMBURA WAHOME', '0710 428466', '25169415', '5799', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('642.                       ', 'TERESIA NJOKI NJURU', '0723 163184', '24141983', '6452', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('643.                       ', 'TERESIA WAITHERERO GACHEKE', '0721 444826', '22167342', '7388', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('644.                       ', 'TERESIAH KABURA IRUNGU', '0725 543191', '26331326', '4592', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('645.                       ', 'TERESIAH WAMBUI MWANGI', '0720 043687', '23822171', '6302', 'NYERI');
-INSERT INTO `sheet1` VALUES ('646.                       ', 'THOMAS NZUKI NGILA', '0726 944 104', '25858650', '4894', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('647.                       ', 'TIMOTHY IRERIH', '0771 787405', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('373.                       ', ' KANGETHE', '0721 835715', '27919181', '6349', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('1.       ', 'ABEL KIMANI KARIUKI', '0724 987689', '22845379', '1938', 'NYERI');
+INSERT INTO `sheet1` VALUES ('2.       ', 'ABIGAIL MBINYA MUOKA', '0724 072312', '24770641', '4009', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('3.       ', 'ABSOLOM NJOROGE MAINA', '0727 426190', '23551759', '5568', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('4.       ', 'AGNES MOLLY WAMBURA', '0723 237713', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('5.       ', 'AGNES MWENDE  MATITI', '0725 996779', '22378093', '5890', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('6.       ', 'AGNES NJERI KINYANJUI', '0713 200290', '22405861', '2457', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('7.       ', 'AGNES WAIRIMU MAINA', '0726 066127', '23271408', '3327', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('8.       ', 'AGNES WANJIKU KIMANI', '0722 629847', '', '', 'EMBU');
+INSERT INTO `sheet1` VALUES ('9.       ', 'ALEX KAMAU IRUNGU', '0715 290890', '21877363', '7429', 'NYERI');
+INSERT INTO `sheet1` VALUES ('10.   ', 'ALEX KARIUKI WAIROBI', '0725 889432', '21888513', '2458', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('11.   ', 'ALEX WANJAU KABUTHU', '0721 617722', '27326712', '4242', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('12.   ', 'ALEXANDER KALAINE THURANIRA', '0723 017607', '25383529', '8160', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('13.   ', 'ALEXANDER WARUI WANJOHI', '0726 488397', '27607364', '6339', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('14.   ', 'ALFRED KABURU KANGETHE', '0727 922439', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('15.   ', 'ALICE CAROLINE NYAMBURA KUNGU', '0720 692405', '22514011', '3244', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('16.   ', 'ALICE MUMBI GATANGI', '0721 223442', '13779131', '3307', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('17.   ', 'ALICE NYAMBURA MACHARIA', '0721 879692', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('18.   ', 'ALICE WANGITHI KIMWE', '0722 537309', '1210910', '57', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('19.   ', 'ALLAN  KANYI WACHIRA', '0727 043504', '24762383', '7501', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('20.   ', 'ALLAN MUCHEMI TAITI', '0716 347681', '27778185', '6428', 'NYERI');
+INSERT INTO `sheet1` VALUES ('21.   ', 'AMOS GICHANE KABUCHU', '0716 617474', '27894206', '5832', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('22.   ', 'AMOS KIMEU MWANGANGI', '0723 304481', '21909676', '1806', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('23.   ', 'ANDREW KARIUKI ', '0721 941770', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('24.   ', 'ANDREW MAINA KAIRU', '0720 561422', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('25.   ', 'ANDREW MUTUGI KARIMI', '0723 963496', '24505243', '3870', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('26.   ', 'ANDREW THEURI KIRIUNGI', '0725 151117', '23046911', '2173', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('27.   ', 'ANGELENE MWENDE', '0711 587325', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('28.   ', 'ANN KARIMI NJERU', '0729 228440', '23701769', '5401', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('29.   ', 'ANN MUTHONI KIMANI', '0724 709501', '23591054', '3152', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('30.   ', 'ANN WANGARE WANJUGU', '0723 770824', '23220036', '3250', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('31.   ', 'ANN WANGUI NGUNJIRI', '0740 593998', '30459275', '6736', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('32.   ', 'ANN WANJIKU KABEU', '0723 934066', '23311580', '4690', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('33.   ', 'ANNE KASYOKA MUMALA', '0715 872794', '28100484', '7491', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('34.   ', 'ANNE NGENDO GICHUHI', '0707 723137', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('35.   ', 'ANNE WAITHIRA NGETHE', '0722 606415', '4878083', '391', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('36.   ', 'ANNETE MARIGU NDWIGA', '0720 041092', '24961253', '6603', 'NYERI');
+INSERT INTO `sheet1` VALUES ('37.   ', 'ANTHONY MAINA KARIUKI', '0725 707321', '23748021', '2429', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('38.   ', 'ANTHONY MURITHI NJIRU', '0725 503647', '23344888', '4635', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('39.   ', 'ANTHONY MWANGI KIBUNJA', '0726 105429', '21227557', '8293', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('40.   ', 'ANTHONY MWANGI MURIUKI', '0723 533327', '23844231', '3257', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('41.   ', 'ANTHONY NDIANG’UI NDEGWA', '0723 622011', '22674054', '4676', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('42.   ', 'ANTHONY NGUGI MACHARIA', '0711 198458', '26901019', '7037', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('43.   ', 'ANTONY GITONGA RIUNGU', '0701 268262', '22288828', '7337', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('44.   ', 'ARNOLD KIPKEMOI AYABEI', '0727 550204', '24864873', '5216', 'NAKURU');
+INSERT INTO `sheet1` VALUES ('45.   ', 'ASAPH MAINA KARICHU', '0725 160594', '16001780', '215', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('46.   ', 'ASENATH MORAA OBWONI', '0710 350262', '', '', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('47.   ', 'ATHANAS MUSOMBA NGEI', '0726 432083', '27006155', '6434', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('48.   ', 'BEATRICE NYAMBURA GIKONYO', '0714 082532', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('49.   ', 'BEATRICE WAMBUI NJUGUNA', '0726 779915', '23057565', '5360', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('50.   ', 'BEATRICE WAMUYU GIKONYO', '0724 003127', '24422125', '5078', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('51.   ', 'BEATRICE WANGECHI GITAHI', '0726 646030', '23396170', '1965', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('52.   ', 'BEATRICE WANGUI MWAURA', '0721 276018', '8485080', '620', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('53.   ', 'BEATRICE WANJIKU MBUTHIA ', '0721 208904 ', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('54.   ', 'BELONCE WANJIKU NDUNGU', '0723 791043', '29004141', '7739', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('55.   ', 'BENARD IRAYA NYATHIRA', '0724 001423', '23990114', '2760', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('56.   ', 'BENARD NJUKI KARIITHI', '0712 397262', '26288393', '8035', 'NYERI');
+INSERT INTO `sheet1` VALUES ('57.   ', 'BENEDICTOR WANGUI NJOROGE', '0723 005350', '23409380', '1700', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('58.   ', 'BENJAMIN MBUGUA MUHORO', '0723 455552', '4835809', '2', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('59.   ', 'BENJAMIN MUNYAO NTHUMO', '0721 682120', '7364030', '529', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('60.   ', 'BENJAMIN TAITI NDIRITU', '0722 899819', '20322141', '1049', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('61.   ', 'BENSON MWANGI MUTHEE', '0713 915605', '', '', 'SAGANA');
+INSERT INTO `sheet1` VALUES ('62.   ', 'BENSON NJAU', '0720 929222', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('63.   ', 'BENSON THONDU', '0720 981186', '', '', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('64.   ', 'BERNADETTE WANJIKU NJOROGE', '0796 216764', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('65.   ', 'BESSY WANJIRU MWONGERA', '0710 996559', '27220658', '4208', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('66.   ', 'BETH NYAMBURA MAINA', '0715 863362', '33213507', '9714', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('67.   ', 'BETH WANJERI KAMWERU', '0720 579876', '22843948', '3846', 'NYERI');
+INSERT INTO `sheet1` VALUES ('68.   ', 'BILIA MUTHONI NGARE', '0725 701423', '22048252', '7076', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('69.   ', 'BONIFACE KABURU', '0726 502870', '', '', 'MERU');
+INSERT INTO `sheet1` VALUES ('70.   ', 'BONIFACE KIMATHI GATHAI', '0720 494296', '23304510', '5303', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('71.   ', 'BONIFACE M KIVAYA', '0722 840642', '23630305', '2221', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('72.   ', 'BONIFACE MUCHIRI KINUTHIA', '0722 803523', '22533902', '2118', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('73.   ', 'CAROLINE NJERI KAMAU', '0721 760205', '20145121', '5738', 'THIKA');
+INSERT INTO `sheet1` VALUES ('74.   ', 'CAROLINE WAITHIRA WAWERU', '0723 072197', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('75.   ', 'CAROLINE WAMBUI NJAGI', '0725 308542', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('76.   ', 'CAROLINE WANGECHI  CHAGARII ', '0720 998440', '25314655', '4321', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('77.   ', 'CAROLINE WANJIKU RIMI', '0724 307578', '24125703', '5463', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('78.   ', 'CAROLINE WANJIRU NYAGA', '0724 261904', '23532277', '2681', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('79.   ', 'CAROLYNE MUSIMBI ALUSE', '0723 521185', '23081412', '5374', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('80.   ', 'CATE WANJA MUNDIA', '0797 693429', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('81.   ', 'CATHERINE WAITHERA KARIMI', '0716 820433', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('82.   ', 'CATHERINE WAMBUI GICHIMU', '0726 728552', '24058717', '4766', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('83.   ', 'CATHERINE WANGU MIRIGA', '0722 301517', '999308', '52', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('84.   ', 'CATHERINE WANGUI KANOGO', '0717 766675', '27787132', '6141', 'NYERI');
+INSERT INTO `sheet1` VALUES ('85.   ', 'CATHERINE WANGUI THUMBI', '0727 346493', '24651071', '4769', 'NYERI');
+INSERT INTO `sheet1` VALUES ('86.   ', 'CECELIA WAKARIMI MUHIRI', '0732 457184', '994847', '455', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('87.   ', 'CHARLES KAMANDE WAINAINA', '0722 594922', '4879692', '172', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('88.   ', 'CHARLES MACHARIA MUIRURI', '0720 914415', '28443864', '7254', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('89.   ', 'CHARLES MBURE MUGI', '0712 275059', '23226354', '3155', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('90.   ', 'DAMARIS WAMBUI MUNGAI', '0720 461784', '22245246', '3855', 'NYERI');
+INSERT INTO `sheet1` VALUES ('91.   ', 'DAN PAUL KABIRU', '0728 159500', '22703967', '1639', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('92.   ', 'DANCUN MUTUGI', '0720 825884', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('93.   ', 'DANCUN NGUGI MUIRU', '0741 288490', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('94.   ', 'DANCUN WAMENYA KIMANI', '0712 056083', '23541699', '3635', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('95.   ', 'DANIEL GICHUHI KAREITHI', '0725 153910', '24097388', '3697', 'NYERI');
+INSERT INTO `sheet1` VALUES ('96.   ', 'DANIEL IRUNGU NGURE', '0727 069914', '22972075', '3902', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('97.   ', 'DANIEL KIBUIKA MUKORA', '0721 835415', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('98.   ', 'DANIEL KIIRU MWANGI', '0711 595254', '27285487', '4575', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('99.   ', 'DANIEL KINYUA GIKONYO', '0726 228590', '23832114', '4073', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('100.                       ', 'DANIEL MURIITHI GICHIRA', '0727 865529', '23429537', '5787', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('101.                       ', 'DANIEL MURIITHI NDUNG’U', '0721 809251', '3098286', '442', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('102.                       ', 'DANIEL MWONGERA MWEBIA', '721487645', '23891205', '5030', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('103.                       ', 'DANIEL NJAGI MITHAMO', '0712 513489', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('104.                       ', 'DANIEL WAINAINA KABUI', '0724 986422', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('105.                       ', 'DANIEL WAWERU KIIRU', '0725 363689', '22938467', '3125', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('106.                       ', 'DAVID GITAU MUHIA', '0701 001729', '28750269', '6973', 'NYERI');
+INSERT INTO `sheet1` VALUES ('107.                       ', 'DAVID KARANJA GICHINA', '0725 847453', '22151508', '3277', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('108.                       ', 'DAVID KIMANI NJOROGE', '0718 281135', '29290189', '8757', 'EMBU');
+INSERT INTO `sheet1` VALUES ('109.                       ', 'DAVID KITHEKA MULWA', '0723 054937', '27815021', '5108', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('110.                       ', 'DAVID MACHARIA GICHOBI', '0724 005488', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('111.                       ', 'DAVID MACHARIA KIMEMIA', '0723 321449', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('112.                       ', 'DAVID MURETHI MACHARIA ', '0721 176387', '27341158', '6458', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('113.                       ', 'DAVID MUTHURI KAJECHE', '0713 044162', '27589849', '5991', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('114.                       ', 'DAVID MWANGI KIMEMIA', '0723 270123', '22881888', '1622', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('115.                       ', 'DAVID MWANGI MARANGA', '0722 348877', '621494', '107', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('116.                       ', 'DAVID NDUNGU MWENJA', '0735 189249', '24990050', '3682', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('673.                       ', 'DAVID NGURU MBUGUA', '0713 362020', '28132225', '7807', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('117.                       ', 'DAVID NYAGA IRERI', '0727 962428', '', '', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('118.                       ', 'DAVID OUMA NJIKA', '0726 633680', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('119.                       ', 'DAVID WANJOHI MUGO', '0712 454421', '31845500', '9000', 'THIKA');
+INSERT INTO `sheet1` VALUES ('120.                       ', 'DENNIS KAGERA NGUNJIRI', '0723 736592', '32305768', '9160', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('121.                       ', 'DENNIS MAINA KIRUBI', '0725 808339', '', '', 'THIKA');
+INSERT INTO `sheet1` VALUES ('122.                       ', 'DENNIS MUTUGI  MWANIKI', '0719 647576', '23931812', '4100', 'EMBU');
+INSERT INTO `sheet1` VALUES ('123.                       ', 'DENNIS PARSEEN KENANA', '0722 402500', '22809556', '1365', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('124.                       ', 'DENNIS WACHIRA MWANGI', '0725 307375', '', '', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('125.                       ', 'DIANA ATIENO OCHIENG', '0721 680583', '2862934', '7875', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('126.                       ', 'DICKSON KIBET KELWON', '0722 934231', '21259384', '1161', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('127.                       ', 'DICKSON MUTHIANI MUTHINI', '0719 768825', '23970620', '5555', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('128.                       ', 'DISHON MUTHUI KIMATHI', '0721 275560', '22548856', '3321', 'NYERI');
+INSERT INTO `sheet1` VALUES ('129.                       ', 'DOMINIC WAINAINA WAGOKI', '0729 087183', '28310096', '6816', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('130.                       ', 'DOMITILLAH WANJIKU WAHOME', '0736 738042', '24439565', '4136', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('131.                       ', 'DOUGLAS GITAHI NYAKWEYA', '0723 316701', '23420672', '5885', 'NYERI');
+INSERT INTO `sheet1` VALUES ('132.                       ', 'DOUGLAS KAMAU MWANGI', '0717 455849', '27827542', '6969', 'NYERI');
+INSERT INTO `sheet1` VALUES ('133.                       ', 'DOUGLAS NDIRANGU NDUNG’U', '0726 267691', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('134.                       ', 'DUNCAN  MIANO', '0715 270443', '29036865', '7440', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('135.                       ', 'DUNCAN NGUGI MUIRU', '0734 911259', '2930919', '141', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('136.                       ', 'EDITH NJOKI MBUTHIA', '0712 742105', '24152676', '7329', 'NYERI');
+INSERT INTO `sheet1` VALUES ('137.                       ', 'EDWARD GATHUKIA KAMAU', '0720 985891', '22573193', '3171', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('138.                       ', 'EDWIN KARANJA NDINWA', '0724 412576', '27766959', '8361', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('139.                       ', 'ELI MAITHYA  MBEVI', '0712 268146', '7258983', '670', 'JUJA');
+INSERT INTO `sheet1` VALUES ('140.                       ', 'ELIAS NDUNGU MURUNDU', '0723 033137', '28766660', '10107', 'THIKA');
+INSERT INTO `sheet1` VALUES ('141.                       ', 'ELIJAH CHEGE MBUGUA', '0725 518258', '24248964', '4125', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('142.                       ', 'ELIJAH MAINA MURINGO', '720951207', '29301521', '6764', 'KARATINA');
+INSERT INTO `sheet1` VALUES ('143.                       ', 'ELIJAH MUKUNA NAMUNGU', '0710 924753', '25433392', '6405', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('144.                       ', 'ELIJAH WACHIRA MUNENE', '0725 384091', '22989702', '4995', 'NYERI');
+INSERT INTO `sheet1` VALUES ('145.                       ', 'ELISAPHAN MWANGI NJERI', '0700 899263', '29343878', '7198', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('146.                       ', 'ELIZABETH NDUUME WAMBUA', '0718 764397', '31349769', '8431', 'NYERI');
+INSERT INTO `sheet1` VALUES ('147.                       ', 'ELIZABETH ONGWAYA ORINDA', '0728 564002', '25003858', '6696', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('148.                       ', 'ELIZABETH WAIRIMU NGIGE', '0725 279577', '24644723', '4260', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('149.                       ', 'ELIZABETH WAMBUI WAITHERA', '0727 376726', '23917153', '2505', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('150.                       ', 'ELIZABETH WANGECHI MURIITHI', '0723 404043', '22941926', '1411', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('151.                       ', 'ELIZABETH WANGUI MAINA', '0729 780377', '28796525', '6064', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('152.                       ', 'ELIZABETH WANJIKU MBURU', '0720 784628', '25331431', '4459', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('153.                       ', 'ELLY NJOROGE MAINA', '0722 134713', '24600149', '4042', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('154.                       ', 'EMILY CHEROTICH BABU', '0703 868055', '', '', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('155.                       ', 'EMILY NYAMBURA KAGOCHI', '0720 983737', '', '', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('156.                       ', 'EMMA NJERI GATHOGO', '0723 531155', '23591473', '8770', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('157.                       ', 'ERASTUS MUCHIRI THUKU', '0727 394838', '26366435', '2968', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('158.                       ', 'ERASTUS MUTHOMI MAGIRI', '0725 212888', '22254815', '3716', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('159.                       ', 'ERIC MUTEMBEI NJUE', '0720 017844', '25130487', '3611', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('160.                       ', 'ERISIANA MKANDAWIRO MSINGA', '0723 101582', '23678659', '4982', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('161.                       ', 'ERNEST KIMANI MWANGI', '0729 790452', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('162.                       ', 'ESTHER KARIMI RUNJI', '0720 444898', '22754838', '1454', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('163.                       ', 'ESTHER MUTHONI MBURU', '0720 781512', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('164.                       ', 'ESTHER NJOKI MIRINGU', '0720 317736', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('165.                       ', 'ESTHER SOIYAN SADERA', '0727 889382', '', '', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('166.                       ', 'ESTHER WAMBUI MURUGI', '0715 744864', '27818841', '6657', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('167.                       ', 'ESTHER WANGARI K', '0721 904211', '22227485', '1439', 'NYERI');
+INSERT INTO `sheet1` VALUES ('168.                       ', 'ESTHER WANGUI WANGARU', '0711 487034', '30165278', '8589', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('169.                       ', 'EUNICE MUTHONI WAITHAKA', '0775 550982', '29346597', '9159', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('170.                       ', 'EUNICE NJERI MWANGI', '0720 819694', '8726759', '514', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('171.                       ', 'EVAH  MUTHONI GITHENYA', '0720 945798', '22796601', '2442', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('172.                       ', 'EVALYNE RUTH MURUGI KIHUMBA', '0715 309332', '27964124', '5122', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('173.                       ', 'EVALYNE WANGU NDERITU', '0727 885408', '22372462', '2723', 'NYERI');
+INSERT INTO `sheet1` VALUES ('174.                       ', 'EVANGELINE KAGENDO NJIRU', '0725 210753', '22937727', '1609', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('175.                       ', 'EVANS MUTUKU', '0710 283828', '32680131', '9195', 'NYERI');
+INSERT INTO `sheet1` VALUES ('176.                       ', 'EVANS WAWERU MWANGI', '0725 491576', '23745510', '1994', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('177.                       ', 'EVANSON GICHARU WANJIKU', '0720 562917', '23195568', '6338', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('178.                       ', 'EVE JEBET KEMBOI', '0712 456900', '28906184', '9294', 'THIKA');
+INSERT INTO `sheet1` VALUES ('179.                       ', 'EVERLYNE NG’ENDO MWAURA', '0723 799006', '23722249', '3540', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('180.                       ', 'EVERLYNE WAMBUI KINYUA', '0724 676250', '24732503', '4336', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('181.                       ', 'EZEKIEL KIARIE KAMAU', '0724 428447', '24426124', '4549', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('182.                       ', 'FAITH CHEPKURUI BII', '0720 961124', '28808859', '8168', 'NYERI');
+INSERT INTO `sheet1` VALUES ('183.                       ', 'FAITH ELIZABETH WAMBUI NJOROGE', '0722 877267', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('184.                       ', 'FAITH JANET WAWIRA NJERU', '0723 734527', '23019390', '6457', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('185.                       ', 'FAITH MBINYA NGELESA', '0729 171124', '23194092', '9427', 'THIKA');
+INSERT INTO `sheet1` VALUES ('186.                       ', 'FAITH N MUCHAI', '0722 870642', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('187.                       ', 'FAITH NJOKI KIGO', '0720 691546', '23274923', '9646', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('188.                       ', 'FAITH NYOKABI NDUNGU', '0711 536346', '22614949', '6731', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('189.                       ', 'FAITH WAMBUI MWANGI', '0714 222207 ', '28651654', '8164', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('190.                       ', 'FAITH WANGARI KIBIRA', '0726 533608', '22122362', '6475', 'NYERI');
+INSERT INTO `sheet1` VALUES ('191.                       ', 'FELIX GITAU WAINAINA', '0725 369804', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('192.                       ', 'FELIX MUCHEMI MUIGA', '0720 678101', '24010366', '5729', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('193.                       ', 'FLORENCE GATHONI IRERI', '0721 663262', '23073267', '3145', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('194.                       ', 'FLORENCE MUTHONI KIMANI', '0701 663794', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('195.                       ', 'FRACIAH NJOROGE', '0723 674198', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('196.                       ', 'FRANCIS KARIUKI WAIRIMU', '0729 072275', '28131145', '9431', 'GATUNYU');
+INSERT INTO `sheet1` VALUES ('197.                       ', 'FRANCIS LEWIS MUREITHI', '0723 168443', '27209456', '6566', 'EMBU');
+INSERT INTO `sheet1` VALUES ('198.                       ', 'FRANCIS MUCHIRI NJOROGE', '0718 945941', '28725325', '8187', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('199.                       ', 'FRANCIS MURIUKI CHIURI', '721766963', '317641', '435', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('200.                       ', 'FRANCIS MUTURI MBURIA', '0710 712278', '23939127', '5267', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('201.                       ', 'FRANCIS MWANGI WANEKE', '0720 859019', '22575695', '4917', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('202.                       ', 'FRANCIS NJOROGE MWAURA', '0728 372418', '25392075', '5061', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('203.                       ', 'FRANCIS NJUGUNA KABURI', '0705 826095', '29477949', '8693', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('204.                       ', 'FRANCIS WAWERU KIMONDO', '0721 895457', '22568836', '1442', 'NYERI');
+INSERT INTO `sheet1` VALUES ('205.                       ', 'FREDRICK KAMAU WARUI', '0720 575 448', '10774914', '1190', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('206.                       ', 'FREDRICK KITUYAN MARIPET', '0721 485085', '11406508', '745', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('207.                       ', 'FREDRICK M GITAU', '0723 748771', '24011700', '4158', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('208.                       ', 'FREDRICK TITI KAROKI', '0721 444938', '22228645', '3918', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('209.                       ', 'FRIDAH KENDI', '0727 334238', '25144561', '8338', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('210.                       ', 'GEORGE JOHN KINYUA MURIUKI', '0724 456871', '24415762', '6201', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('211.                       ', 'GEORGE KAMAU KIMANI', '0726 724812', '21981200', '2052', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('212.                       ', 'GEORGE MACHARIA MURIUKI', '0722 210994', '1130542', '242', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('213.                       ', 'GEORGE MAINA WANGUI', '0727 700950', '27094985', '7487', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('214.                       ', 'GEORGE MURIITHI KINYUA', '0727 149334', '23266305', '3365', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('215.                       ', 'GEORGE NDEGWA NDUNGU', '0720 908808', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('216.                       ', 'GEORGE STEPHEN NGURE NG’ANG’A', '0720 905334', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('217.                       ', 'GERALD KING’ORI KARIUKI', '0725 484630', '23704498', '4059', 'NYERI');
+INSERT INTO `sheet1` VALUES ('218.                       ', 'GIBSON NJIMU KABUGI', '0721 286523', '351556', '150', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('219.                       ', 'GLADWELL WANJIKU MUTHIKE', '0727 898410', '24955600', '6053', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('220.                       ', 'GLADYS NYAMBURA GICHUHI', '0720 864162', '22944891', '3534', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('221.                       ', 'GLADYS WAMBUI MURIUKI', '0720 095836', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('222.                       ', 'GLADYS WANGUI MWANGI', '0727 103289', '26659978', '6303', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('223.                       ', 'GODFREY MWANGI NJIHIA', '0710 366357', '23796817', '4542', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('224.                       ', 'GORET MWANZIU FRANCIS', '0716 127306', '28224863', '9645', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('225.                       ', 'GRACE MUTETHYA MULYUNGI', '0714 918996', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('226.                       ', 'GRACE WAMBUI MBUGUA', '0723 333702', '24727618', '3671', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('227.                       ', 'GRACE WANJIKU MIRINGU', '0721 813141', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('228.                       ', 'GRACE WANJIRU  KIARIE', '0721 584159', '25828422', '4901', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('229.                       ', 'GRACE WAWIRA MURIUKI', '0728 136297', '24688033', '4967', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('230.                       ', 'HADIN MULIRO SHITESWA', '0723 978412', '23644570', '5565', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('231.                       ', 'HANNAH NYAMBURA KARANGU', '0728 549542', '25132137', '5818', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('232.                       ', 'HANNAH NYAMBURA NDUCU', '0723 631117', '13533559', '706', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('233.                       ', 'HANNAH WANGUI MUIRURI', '0721 821586', '24212983', '5301', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('234.                       ', 'HARRIS NG’ANG’A NJUGUNA', '0715 623695', '28466948', '6168', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('235.                       ', 'HARUN MUCHIRI WAHOME', '0722 258786', '14703280', '1048', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('236.                       ', 'HEKIRA WANGUI KABUGA', '0726 688357', '24189595', '4470', 'NAKURU');
+INSERT INTO `sheet1` VALUES ('237.                       ', 'HELLEN GATWIRI', '0725 128177', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('238.                       ', 'HENRY MWANGI NGAHU', '0726 870751', '24561028', '5520', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('239.                       ', 'HENRY NJOROGE MURAGE', '0723 811770', '23557152', '3815', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('240.                       ', 'HEZEKIAH KIGERA NDUNG’U', '0720 560426', '22596860', '5025', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('241.                       ', 'HILARY KINGA  KABOGO', '0725 496591', '22975783', '3969', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('242.                       ', 'INNOCENTIA NDINDI WASOI', '0729 636413', '25436081', '5087', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('243.                       ', 'IRENE KAGENDO NJUE', '0722 851972', '22790208', '5529', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('244.                       ', 'IRENE MUMBI WANGWARE', '0722 868589', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('245.                       ', 'IRENE NJAMBI NDUGO', '0713 373937', '27687528', '8150', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('246.                       ', 'ISAAC CHEGE MUGANE', '0715 867021', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('247.                       ', 'ISAAC GITHUKU GITAU', '0725 461100', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('248.                       ', 'ISAAC KAREGA MURAYA', '0724 672906', '22933602', '2093', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('249.                       ', 'ISAAC KIGUTA MURIITHI', '0723 449219', '22192842', '2660', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('250.                       ', 'ISAAC KIMATHI GICENGI', '0728 329854', '21710913', '1616', 'NYERI');
+INSERT INTO `sheet1` VALUES ('251.                       ', 'ISAAC MURAGE GITONGA', '0725 013437', '22534999', '5853', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('252.                       ', 'ISAAC NDARWA WAMANGU', '0728 832634', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('253.                       ', 'ISAAC NDIRITU KARIUKI', '0723 751239', '22291430', '3533', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('254.                       ', 'ISAAC NDUNG’U KIGURU', '0721 626232', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('255.                       ', 'ISAACK GICHUHI NDUNG’U', '0718 356510', '28501774', '6853', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('256.                       ', 'ISAACK GUANDARU KIRIRA ', '0716 034001', '28456436', '6902', 'NYERI');
+INSERT INTO `sheet1` VALUES ('257.                       ', 'ISABELLAH KERUBO ISENA', '0727 422644', '23088049', '3709', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('258.                       ', 'ISAIAH NGUGI KARANJA', '0707 209601', '31897113', '9190', 'NYERI');
+INSERT INTO `sheet1` VALUES ('259.                       ', 'JACINTA NJERI KAGUO', '0727 527095', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('260.                       ', 'JACKLINE ATEYO AMUHOYI', '0727 274392', '22899073', '5245', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('261.                       ', 'JACKLINE NKATHA', '0713 417506', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('266.                       ', 'JACKLINE WAMGECHI KINYA', '0727 052082', '29250184', '6991', 'NYERI');
+INSERT INTO `sheet1` VALUES ('263.                       ', 'JACKLINE WANJIRU WANYOIKE', '0725 914636', '24378237', '5440', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('262.                       ', 'JACKLINE WANJUKI NTHIGA', '0725 041851', '26755427', '5610', 'EMBU');
+INSERT INTO `sheet1` VALUES ('264.                       ', 'JACKSON MUHORO KAGWI', '0722 598469', '', '', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('265.                       ', 'JACKSON WAITETE MAINA', '0723 774483', '24807077', '4530', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('267.                       ', 'JAMES CHARAGU MICHIRE', '0792 535322', '31382556', '8663', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('268.                       ', 'JAMES GAKUNGU MAGU', '0728 046629', '25243732', '5062', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('269.                       ', 'JAMES GITHUA MWANGI', '0727 296895', '29021639', '6768', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('270.                       ', 'JAMES GITONGA GITARI', '0722 123296', '24551417', '2962', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('271.                       ', 'JAMES K KIMANI', '0721 243244', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('272.                       ', 'JAMES KAMAU THUITA', '0723 212766', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('273.                       ', 'JAMES KARANJA KARIUKI', '0725 608927', '25848681', '5940', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('274.                       ', 'JAMES KARAU KAMAU', '0717 970898', '316 25025', '8586', 'RUAKA');
+INSERT INTO `sheet1` VALUES ('275.                       ', 'JAMES KIMANI GATIBA', '0722 705847', '25209985', '5841', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('276.                       ', 'JAMES KINYUA WAMAE', '0723 768211', '22499633', '4904', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('277.                       ', 'JAMES MAINA GITHINJI', '0722 747985', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('278.                       ', 'JAMES MAINA KIMEMIA', '0721 981092', '22477031', '2633', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('279.                       ', 'JAMES MAINA WANGUI', '0726 171983', '29624758', '7182', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('280.                       ', 'JAMES MATU NJARI', '0708 806340', '28112649', '7381', 'GATUNDU');
+INSERT INTO `sheet1` VALUES ('281.                       ', 'JAMES MOSE KIOKO', '0703 141947', '29133245', '8378', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('282.                       ', 'JAMES MWANGI MWARIRI', '0735 230997', '0999368', '269', 'NAROK');
+INSERT INTO `sheet1` VALUES ('283.                       ', 'JAMES MWANGI WAWERU', '0723 592512', '25136340', '3286', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('284.                       ', 'JAMES NJENGA NJOROGE', '0724 813654', '23486811', '3054', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('285.                       ', 'JAMES NJUGUNA MWANGI', '0711 636625', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('286.                       ', 'JAMES ODUOR AJUANG OKANGA', '0736 809203', '22288685', '7430', 'KASARANI');
+INSERT INTO `sheet1` VALUES ('287.                       ', 'JAMES WACIRA KIAGO', '0721 231189', '6829595', '673', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('288.                       ', 'JAMES WAWERU GACHAU', '0724 591243', '25321226', '6190', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('289.                       ', 'JANE IKIARA NGUTA', '0725 319924', '24734069', '2257', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('290.                       ', 'JANE MUKUHI KINYUA', '0723 142065', '24763133', '5490', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('291.                       ', 'JANE W GITUMBI', '0715 670749', '21973788', '2200', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('292.                       ', 'JANE WAIRIMU MWANGI', '0721 607770', '', '', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('293.                       ', 'JANE WAIRIMU NJOROGE', '0722 220079', '23177408', '5398', 'NYERI');
+INSERT INTO `sheet1` VALUES ('294.                       ', 'JANE WAMAITHA MURAYA', '0725 958726', '25264645', '4879', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('295.                       ', 'JANE WANJIRU MUKUHA', '0723 501999', '24438686', '4712', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('296.                       ', 'JANEFFER WANGECHI MAINA', '0700 076689', '24135436', '4927', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('297.                       ', 'JANET KAMUNYA MUTUA', '0722 823204', '29411617', '7898', 'THIKA');
+INSERT INTO `sheet1` VALUES ('298.                       ', 'JANET MUMBI KIGWERU', '0712 862169', '25922776', '7971', 'NYERI');
+INSERT INTO `sheet1` VALUES ('299.                       ', 'JANET WANGECHI MUTHONI', '0724 792875', '24104479', '8367', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('300.                       ', 'JANICE KARENDI NYAGA', '0725 499148', '21943215', '2128', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('301.                       ', 'JANIFFER NJERI MUCHIRI', '0716 080585', '24769836', '5276', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('302.                       ', 'JEFF GITONGA NJERU', '0708 227076', '30060587', '8192', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('303.                       ', 'JEFFIN KIMATHI NYAGA', '0725 826966', '', '', 'NAKURU');
+INSERT INTO `sheet1` VALUES ('304.                       ', 'JEMIMA WACHERA NDERITU', '0706 762250', '29281235', '8034', 'RUIRU');
+INSERT INTO `sheet1` VALUES ('305.                       ', 'JEMIMAH MUTHONI KAMAU', '0725 395777', '23350585', '3580', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('306.                       ', 'JENES MWENDIA MBAKA', '0723 257153', '22931109', '2144', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('307.                       ', 'JENNIFER NJERI KING’ORI', '0722 309001', '5101277', '515', 'NYERI');
+INSERT INTO `sheet1` VALUES ('308.                       ', 'JEREMIAH MBARIA', '0726 786138', '23461337', '2447', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('309.                       ', 'JEREMIAH WANGIGI', '0721 295424', '3647293', '392', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('310.                       ', 'JERIOTH WANJIKU MURIITHI', '0721 147233', '6105846', '600', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('311.                       ', 'JIM KAMUNGU MBURU', '0721 573954', '998307', '251', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('312.                       ', 'JOAN IYANJI JUMA', '0704 020082', '22225999', '7489', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('313.                       ', 'JOEL MURIU GATHU', '0723 179835', '23306161', '3527', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('314.                       ', 'JOEL MWANGI KAGERA', '0710 655234', '27280056', '5987', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('315.                       ', 'JOEL MWANGI WAINAINA', '0722 425982', '24175089', '5581', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('316.                       ', 'JOEL NYUMU CHEGE', '0724 709963', '24011122', '4839', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('317.                       ', 'JOEL SAMUEL KAGUTHI WANJUKI', '0725 604809', '24709895', '5660', 'NYERI');
+INSERT INTO `sheet1` VALUES ('318.                       ', 'JOHN GACHAGO NJOROGE', '0713 045889', '', '', 'MANGU');
+INSERT INTO `sheet1` VALUES ('319.                       ', 'JOHN KINYUA GACIANI', '0724 102726', '', '', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('320.                       ', 'JOHN KIRIMI PHINEHAS', '0728 977796', '13355124', '3707', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('321.                       ', 'JOHN KITAVI KIMATU', '0723 880457', '22766356', '1395', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('322.                       ', 'JOHN KUNG’U KIMANI', '0721 975358', '21980815', '3036', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('323.                       ', 'JOHN MBUGUA MWANGI', '0727 340993', '9209436', '710', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('324.                       ', 'JOHN MIRINGA MWANGI', '0727 749295', '24074502', '6241', 'NYERI');
+INSERT INTO `sheet1` VALUES ('325.                       ', 'JOHN MUCHIRI MUGOYA', '0722 455899', '21835339', '2484', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('326.                       ', 'JOHN MUEMA MUSYOKA', '0719 791907', '29565191', '8952', 'THIKA');
+INSERT INTO `sheet1` VALUES ('327.                       ', 'JOHN MUGENDA MWANGI', '0729 427926', '2566272', '8163', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('328.                       ', 'JOHN MUNIU NDUNG’U', '0725 705010', '2007208', '876', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('329.                       ', 'JOHN MUYA KINYANJUI', '0722 145383', '22871184', '2711', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('330.                       ', 'JOHN MWANGI KAMAU', '0725 514606', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('331.                       ', 'JOHN NDING’URI MUCHIRI', '0726 747135', '22784758', '3928', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('332.                       ', 'JOHN NDUNGU KABUE', '0725 449806', '29133245', '2516', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('333.                       ', 'JOHN NGUGI MUCHOKI', '0710 587178', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('334.                       ', 'JOHN WAITARA MWANGI', '721101923', '23901520', '2360', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('335.                       ', 'JOHN WANJOHI WANGARE', '0712 682954', '29596954', '7170', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('336.                       ', 'JOHNBOSCO NJOGU WANDI', '0728 473312', '22792038', '3736', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('337.                       ', 'JOHNSON NJOGU NJERI', '0701 775902', '29073650', '8226', 'NYERI');
+INSERT INTO `sheet1` VALUES ('338.                       ', 'JONNA NG’ANG’A THUO', '0724 648196', '14489936', '1723', 'GITHUMU');
+INSERT INTO `sheet1` VALUES ('339.                       ', 'JORAM KINYUA MUCHIRA', '0737 246910', '23973852', '6570', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('340.                       ', 'JOSEPH GAKEMBU', '0712 788631', '26925504', '5790', 'NYERI');
+INSERT INTO `sheet1` VALUES ('341.                       ', 'JOSEPH GITAU WAMBUI', '0729 349929', '27187534', '7416', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('342.                       ', 'JOSEPH KANGETHE MAINA', '0726 691888', '22192711', '6668', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('343.                       ', 'JOSEPH KARANJA KARIUKI', '0726 018516', '434996', '137', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('344.                       ', 'JOSEPH MBURU MACHARIA', '0722 809184', '995307', '201', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('345.                       ', 'JOSEPH MULILI KIMEU', '0723 213449', '23727469', '3521', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('346.                       ', 'JOSEPH MUNYAO KIMOLYA', '0726 752465', '25286917', '6223', 'EMBU');
+INSERT INTO `sheet1` VALUES ('347.                       ', 'JOSEPH NDEGWA WANJAU', '0720 419394', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('348.                       ', 'JOSEPH R KIHARA', '0722 782580', '7034597', '604', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('349.                       ', 'JOSEPH TUNGU MAITHYA', '0728 959380', '26768683', '5950', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('350.                       ', 'JOSEPH WAINAINA WAITHERA', '0729 604686', '24764943', '6385', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('351.                       ', 'JOSEPHINE NYAKIO MURIUKI', '0719 399464', '29798906', '9469', 'NYERI');
+INSERT INTO `sheet1` VALUES ('352.                       ', 'JOSHUA MUCHEKE', '0726 909687', '27381777', '6485', 'THIKA');
+INSERT INTO `sheet1` VALUES ('353.                       ', 'JOSHUA MUCHIRI WAHOME', '0720 909687', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('354.                       ', 'JOSHUA NJERU KAGEMA', '0724 336435', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('355.                       ', 'JOSHUA NTHIGA MUCHEKE', '0726 909687', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('356.                       ', 'JOSPHAT MBUTHIA MUCHIRI', '0725 578229', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('357.                       ', 'JOSPHAT NDERITU WANGUI', '0714 599920', '27778105', '6038', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('358.                       ', 'JOSPHAT WARUINGI MWANGI', '0720 034208', '23874465', '1743', 'THIKA');
+INSERT INTO `sheet1` VALUES ('359.                       ', 'JOY REHEMA IRUNGU', '0728 853732', '', '', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('360.                       ', 'JOYCE GATHONI HINGA', '0724 031337', '23243007', '7492', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('361.                       ', 'JOYWIN CATE MUMBI NGIGI', '0727 443030', '30170163', '8918', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('362.                       ', 'JUDITH WAGIO MBURU', '0723 730472', '', '', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('363.                       ', 'JUDY KERUBO NYANCHOKA', '0724 688970', '28070250', '7490', 'THIKA');
+INSERT INTO `sheet1` VALUES ('364.                       ', 'JUDY NYINGI', '0726 980202', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('365.                       ', 'JUDYMERCY MUMBI GICHUHI', '0725 355575', '22796723', '2682', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('366.                       ', 'JULIAH WANJIKU WANJOHI', '0712 140432', '25535886', '8036', 'NYERI');
+INSERT INTO `sheet1` VALUES ('367.                       ', 'JULIUS GICHOBI NGURE', '0725 307923', '6449563', '582', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('368.                       ', 'JULIUS GIKONYO WANJOHI', '0725 642325', '24934289', '4992', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('369.                       ', 'JULIUS MUIGAI NGARARI', '0729 385754', '25680242', '6726', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('370.                       ', 'JULIUS MURAGE GITARI', '0713 624417', '435096', '108', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('371.                       ', 'JUSTIN GITONGA KARIUKI', '0710 682661', '25030147', '4693', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('372.                       ', 'JUSTINE WAMBUGU WANJOHI', '0722 883205', '9671113', '713', 'NYERI');
+INSERT INTO `sheet1` VALUES ('374.                       ', 'KAREN WANGUI MURUGI', '0712 190613', '27246351', '7484', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('375.                       ', 'KARIBA NJUNG’E', '0727 904941', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('376.                       ', 'KELLEN WANJERI MWANGI', '0722 395072', '999401', '279', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('377.                       ', 'KELVIN KING’ORI GACHUIRI', '0792 080559', '32959385', '8408', 'NYERI');
+INSERT INTO `sheet1` VALUES ('378.                       ', 'KELVIN MUEMA', '0726 317982', '23693818', '3153', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('379.                       ', 'KENNEDY CHEGE MAINA', '0726 156072', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('380.                       ', 'KENNEDY GICHIRA MAINGI', '0707 666983', '30446028', '7546', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('381.                       ', 'KENNEDY KOIGI', '0720 593567', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('382.                       ', 'KENNEDY WARUTHIRU NJIRAINI', '0724 824080', '24216827', '3236', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('383.                       ', 'KENNETH NDUATI NJOROGE', '0724 629092', '28219984', '6471', 'NYERI');
+INSERT INTO `sheet1` VALUES ('384.                       ', 'KESIAH WANJIKU WANGARI', '0704 020970', '29603443', '8162', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('385.                       ', 'KEVIN MUTHEE MUIRURI', '0701 634661', '28348492', '7432', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('386.                       ', 'KEVIN OTIENO ORAMBO', '0726 118180', '25334747', '4919', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('387.                       ', 'KIRIOFA MACHARIA NJAGI', '0701 004785', '250877522', '7227', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('388.                       ', 'LABAN MWANGI MAIYO', '0725 812535', '23257940', '4081', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('389.                       ', 'LAWRENCE MUCHANGI GICHURE', '0721 567572', '24052486', '3702', 'NYERI');
+INSERT INTO `sheet1` VALUES ('390.                       ', 'LEAH WANGARE KAMAU', '0724 797141', '23058369', '2738', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('391.                       ', 'LEAH WANJIKU KANYARA', '0727 281698', '25280314', '5008', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('392.                       ', 'LEWIS MACHARIA KURIA', '0715  867023', '28360932', '6235', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('393.                       ', 'LILIAN AWINO OKWAYO', '0721 158043', '23854910', '7003', 'NYERI');
+INSERT INTO `sheet1` VALUES ('394.                       ', 'LILIAN MUTHONI KIMARU', '0700 922409', '20825712', '', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('395.                       ', 'LILIAN MUTINDI KALI', '0724 363508', '24781888', '3687', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('396.                       ', 'LILIAN WAMBUI KIMANI', '0721 235576', '24179948', '3958', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('397.                       ', 'LILIAN WANJIKU NDUMIA', '0725 105953', '24651037', '2255', 'NYERI');
+INSERT INTO `sheet1` VALUES ('398.                       ', 'LILIAN WARWE RUKENYA', '0723 279750', '21843421', '3494', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('399.                       ', 'LIZABETH NKATHA KALUMA', '0723 442072', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('400.                       ', 'LOISE WANJIRA NGATIA', '0723 079142', '23204345', '6432', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('401.                       ', 'LOISE WAWERU', '0728 418292', '25191768', '3612', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('402.                       ', 'LOXROY KARANI KIRIMI', '0727 373916', '24416140', '5468', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('403.                       ', 'LUCY M GATAMA', '0720 670353', '22141081', '5298', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('404.                       ', 'LUCY MURINGI MWANGI', '0726 877873', '23645840', '5700', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('405.                       ', 'LUCY MUTHONI MUNDIA', '0722 879457', '5924414', '55', 'NYERI');
+INSERT INTO `sheet1` VALUES ('406.                       ', 'LUCY MUTHONI NDERITU', '0723 945238', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('407.                       ', 'LUCY NDUTA KAMAU', '0725 736399', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('408.                       ', 'LUCY NJERI MUTURI', '0723 399996', '22290477', '5630', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('409.                       ', 'LUCY WAIRIMU KARUMBA', '0727 799102', '24080792', '4817', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('410.                       ', 'LUCY WAITHIRA WAINAINA', '0701 214850', '25393155', '5937', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('411.                       ', 'LUCY WAMBUI WAWERU', '0726 086309', '25204122', '6503', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('412.                       ', 'LUCY WANGUI  KIAMA', '0715 369589', '28550887', '6082', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('413.                       ', 'LYDIA KAGWIRIA MBURUGU', '0720 763514', '22130407', '4574', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('414.                       ', 'LYDIA MURUGI KABIRU', '0712 823497', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('415.                       ', 'LYDIA NYARUAI MWANGI', '0724 628752', '22308768', '2206', 'NYERI');
+INSERT INTO `sheet1` VALUES ('416.                       ', 'LYDIA WACERA KIMARI', '0725 109207', '', '', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('417.                       ', 'LYDIA WANGARE MWANGI', '0797 209146', '22093126', '1635', 'THIKA');
+INSERT INTO `sheet1` VALUES ('418.                       ', 'LYDIAH WAHU NJUGUNA', '0702 168520', '23637015', '4965', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('419.                       ', 'LYDIAH WAITHERERO MACHARIA', '0721 965160', '22586491', '7279', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('420.                       ', 'MAGDALENE WAMBUI MUTHEE', '0726 827687', '23653057', '7079', 'NYERI');
+INSERT INTO `sheet1` VALUES ('421.                       ', 'MAGDELENE WAITHERA KARANJA', '0726 306735', '23362657', '3216', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('422.                       ', 'MAINA NJOROGE GITHUI', '0722 577976', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('423.                       ', 'MARGARET NJERI MUTEMI', '0710 572793', '24167730', '8794', 'EMBU');
+INSERT INTO `sheet1` VALUES ('424.                       ', 'MARIAM WANJIKU MUNUHE', '0729 956005', '28532486', '7821', 'WAJIR/NYERI');
+INSERT INTO `sheet1` VALUES ('425.                       ', 'MARJORIE NYAGUTHIE GACHARA', '0720 504596', '26236872', '8699', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('426.                       ', 'MARTHA NJOKI MAINA', '0707 193226', '32637718', '9095', 'NYERI');
+INSERT INTO `sheet1` VALUES ('427.                       ', 'MARTIN KAMAU MWANIKI', '0720 603267', '24464191', '3413', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('428.                       ', 'MARTIN KARIUKI GIKUNJU', '0723 622966', '22824322', '3285', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('429.                       ', 'MARTIN KINUTHIA MAINGI', '0714 099448', '27582042', '6123', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('430.                       ', 'MARTIN MAINA WANGWARE', '0714 057557', '25008268', '4998', 'NYERI');
+INSERT INTO `sheet1` VALUES ('431.                       ', 'MARTIN THURANIRA MACHOKI', '0714 987738', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('432.                       ', 'MARY MURINGI MUREITHI', '0723 290604', '23725591', '3043', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('433.                       ', 'MARY NYAMBURA NJUGI', '0707 489714', '29733719', '9231', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('434.                       ', 'MARY WACHEKE GITAHI', '0727 953897', '22798306', '7034', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('435.                       ', 'MARY WACHUKA NDOME', '0723 099012', '24730416', '4378', 'NYERI');
+INSERT INTO `sheet1` VALUES ('436.                       ', 'MARY WAITHERERO KARANJA', '0713 182290', '20254287', '8862', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('437.                       ', 'MARY WAMAITHA MWANGI', '0728 110347', '24732317', '5975', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('438.                       ', 'MARY WANGARI NDICHO', '0727 356327', '31780993', '8630', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('439.                       ', 'MARY WANGECHI GITHAIGA', '0726 041899', '22880379', '5544', 'NYERI');
+INSERT INTO `sheet1` VALUES ('440.                       ', 'MARY WANGECHI MAINA', '0723 114402', '', '', 'NAKURU');
+INSERT INTO `sheet1` VALUES ('441.                       ', 'MARY WANGITHI KABIRU', '0724 232402', '22512664', '4875', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('442.                       ', 'MARY WANJIRU KIMOTHO', '0726 141293', '22882856', '4448', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('443.                       ', 'MATHEW MWANGI KAIRU', '0721 674717', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('444.                       ', 'MATHEW WAMUIGA GATURUKU', '0725 433152', '22850077', '2451', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('445.                       ', 'MEDRINE NJERI KAMAU', '0727 125110', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('446.                       ', 'MERCY MAKENA M’MAGAMBO', '724760904', '22438258', '2700', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('447.                       ', 'MERCY WAMBUI KARANJA', '0723 495291', '24038394', '6586', 'THIKA');
+INSERT INTO `sheet1` VALUES ('448.                       ', 'MERCY WANGECHI MUGO', '0721 348652', '25141127', '3983', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('449.                       ', 'MERCY WANJIKU NDERI', '0725 708602', '25811688', '3007', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('450.                       ', 'MERCY WANJIRU WAIGURU', '0727 781507', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('451.                       ', 'METRINE NYAWANJAYA NAKITARE', '0724 105281', '24677214', '7994', 'NYERI');
+INSERT INTO `sheet1` VALUES ('452.                       ', 'MICHAEL KIMEMIA NDARWA', '0726 247989', '22683571', '3138', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('453.                       ', 'MICHAEL MUMO', '0710 350295', '25811319', '6396', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('454.                       ', 'MILCAH WARUGURU MATHENGE', '0722 636814', '7038854', '492', 'NAKURU');
+INSERT INTO `sheet1` VALUES ('455.                       ', 'MILKAH WAMBUI WACHIRA', '0724 458012', '23643230', '6665', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('456.                       ', 'MILKAH WANJIRU NDUNGU', '0726 354964', '24860137', '6354', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('457.                       ', 'MIRIAM MUTHONI MAINA', '0708 244781', '22497189', '1441', 'NYERI');
+INSERT INTO `sheet1` VALUES ('458.                       ', 'MIRIAM WANGARI KIBE', '0726 939147', '24630887', '3301', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('459.                       ', 'MIRIAM WANGUTHII KARIUKI', '0724 721833', '24606575', '5338', 'NYERI');
+INSERT INTO `sheet1` VALUES ('460.                       ', 'MONICAH NJERI WAINAINA', '0729 858425', '24083625', '3026', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('461.                       ', 'MONICAH SYOMITI MUTUA', '0725 235352', '22862152', '2759', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('462.                       ', 'MONICAH WAMBUI WANJIRU', '0728 008738', '241338842', '4807', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('463.                       ', 'MONICAH WANGARI WANYOIKE', '0727 428279', '22246618', '5456', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('464.                       ', 'MONICAH WANGUI GITAU', '0712 324074', '25115885', '8079', 'NYERI');
+INSERT INTO `sheet1` VALUES ('465.                       ', 'MONICAH WANJIKU KIAGO', '0707 564634', '31973379', '7630', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('466.                       ', 'MOSES K GITHINJI', '0724 543446', '22697792', '1557', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('467.                       ', 'MOSES KAMOCHE MWANGI', '0720 172044', '22237920', '4379', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('468.                       ', 'MOSES KIPTALAM KIMUGE', '0725 790321', '22424656', '8249', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('469.                       ', 'MOSES MAINA WARUIRU', '0724 885119', '23912027', '3891', 'NYERI');
+INSERT INTO `sheet1` VALUES ('470.                       ', 'MOSES MUNDIA MUCIBI', '0725 316529', '22262327', '3744', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('471.                       ', 'MOSES NDUNG’U KAMUNYA', '0720 068418', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('472.                       ', 'MOSES NGAHU KIMENJU', '0725 398292', '', '', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('473.                       ', 'MOURINE NYAMUGU NGUGI', '0711 638397', '27310252', '4250', 'NYERI');
+INSERT INTO `sheet1` VALUES ('474.                       ', 'MWENDA JOEL ARAIGUA', '0721 945931', '22722291', '6462', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('475.                       ', 'NAHASHON MWANGI NJOROGE', '0721 928564', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('476.                       ', 'NANCY NJOKI MUSEE', '0721 453838', '21901184', '3685', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('477.                       ', 'NANCY NYAKINYUA WACHIRA', '0724 831756', '22549475', '4427', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('478.                       ', 'NANCY OKUNE', '0729 294572', '26004020', '7210', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('479.                       ', 'NANCY WANGARI GACHAU', '0721 541275', '22511225', '2146', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('480.                       ', 'NANCY WANJA MURIUKI', '0725 813369', '23721751', '3224', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('481.                       ', 'NANCY WANJERU MBOGO', '0724 552118', '23961289', '6715', 'EMBU');
+INSERT INTO `sheet1` VALUES ('482.                       ', 'NANCY WANJIRU KIURU', '0720 049316', '25255778', '4401', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('483.                       ', 'NAOMI GESORA KEMUNTO', '0722 776565', '29313308', '6741', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('484.                       ', 'NAOMI WAMBUI KIBUTHI', '0721 727794', '24229601', '3607', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('485.                       ', 'NELSON MWANGI KIMANI', '0717 172510', '25122542', '3188', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('486.                       ', 'NICHOLAS G NKONGE', '0720 603330', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('487.                       ', 'NICHOLAS KOECH KIPKEMOI', '0720 047007', '23061082', '4789', 'NYERI');
+INSERT INTO `sheet1` VALUES ('488.                       ', 'NICHOLAS NGATIA', '0713 350158', '28444361', '7320', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('489.                       ', 'NICKSON GICHOYA MUGO', '0720 272411', '22900346', '2788', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('490.                       ', 'NICODEMUS KAMANGU NDIRITU', '0720 460987', '', '', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('491.                       ', 'PAMSICILY WANJIRU NYAGA', '0721 514737', '23718935', '4924', 'EMBU');
+INSERT INTO `sheet1` VALUES ('492.                       ', 'PASSILIA WANJIRU KIHUNGI', '0714 003614', '28149252', '8323', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('493.                       ', 'PATRICK BWIRE OKUMU', '0725 286979', '22538101', '4713', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('494.                       ', 'PATRICK KAMAU GAKUNU', '0721 530972', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('495.                       ', 'PATRICK MACHARIA KARIUKI', '0729 492797', '26199988', '6172', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('496.                       ', 'PATRICK MWANGI NDUNG’U', '0720 087604', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('497.                       ', 'PATRICK MWANIKI GATUNE', '0720 808553', '23619780', '1714', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('498.                       ', 'PATRICK NDIRANGU WANGUI', '0727 270780', '24391238', '2243', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('499.                       ', 'PATRICK NG’ANG’A WANDU', '0723 764489', '23460662', '2168', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('500.                       ', 'PATRICK WAMAHIU KAGWANJA', '0726 867623', '23071040', '3245', 'NYERI');
+INSERT INTO `sheet1` VALUES ('501.                       ', 'PAUL KAARA GATIMU', '0704 498510', '22965071', '4435', 'NAKURU');
+INSERT INTO `sheet1` VALUES ('502.                       ', 'PAUL KAMAU NDUNG’U', '0722 830771', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('503.                       ', 'PAUL KANJA MWARIRI', '0724 967355', '21898243', '2446', 'NYERI');
+INSERT INTO `sheet1` VALUES ('504.                       ', 'PAUL KIMANI NJERI', '0722363698', '22963485', '5751', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('505.                       ', 'PAUL MBURU WAITHAKA', '0722 659386', '13675925', '961', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('506.                       ', 'PAUL MWANGI NDIRANGU', '0723 257560', '25872271', '8900', 'NANYUKI');
+INSERT INTO `sheet1` VALUES ('507.                       ', 'PAUL MWEU', '725760603', '20473203', '1990', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('508.                       ', 'PAUL NG’ANG’A GITAU', '0725 261185', '23355101', '2823', 'NAROK');
+INSERT INTO `sheet1` VALUES ('509.                       ', 'PAUL NJOROGE KAMAU', '0729 719095', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('510.                       ', 'PAUL WAWERU NG’ANG’A', '0722 467195', '21352851', '1581', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('511.                       ', 'PAULINE NDUTA GATHUKU', '0723 917329', '24710927', '4916', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('512.                       ', 'PAULINE NYAMBURA MACHARIA', '0721 690223', '23231946', '5387', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('513.                       ', 'PEARSON KEMBOI BARKOTON', '0718 743272', '30483360', '7750', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('514.                       ', 'PENINA WANGARI', '0733 515239', '22661861', '2061', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('515.                       ', 'PENINAH GATUMI NYAGA', '0727 638633', '', '', 'EMBU');
+INSERT INTO `sheet1` VALUES ('516.                       ', 'PENINAH MUGURE MWORIA', '0722 512162', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('517.                       ', 'PENINAH WAIRIMU KABUGI', '0720 422179', '23038742', '3730', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('518.                       ', 'PENINAH WANGECHI RUNO', '0729 573209', '', '', 'THIKA');
+INSERT INTO `sheet1` VALUES ('519.                       ', 'PERIS MUTHONI GICHUHI', '0702  971757', '25163669', '5094', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('520.                       ', 'PERIS NYAMBURA IRUNGU', '0704 440042', '30595854', '8227', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('521.                       ', 'PERIS WANJIRU MUTHONI', '0718 617866', '28076910', '5796', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('522.                       ', 'PERPETUA W GACHIGUA', '0727 696256', '8652598', '616', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('523.                       ', 'PETER GATHURA MBOGO', '0723 798479', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('524.                       ', 'PETER GATIMU MUCHIRI', '0720 498730', '22989442', '3489', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('525.                       ', 'PETER GITHINJI MWENDIA', '0711 407468', '27804998', '7556', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('526.                       ', 'PETER GITU MUCHIRI', '0706 797293', '30408240', '9043', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('527.                       ', 'PETER KARIUKI MWANGI', '0703 216968', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('528.                       ', 'PETER KIHARA MURUGA', '0726 884007', '22865369', '3131', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('529.                       ', 'PETER MBUTHIA MUYA', '0721 958882', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('530.                       ', 'PETER MUTUA MUTUKU', '0710 984073', '26238332', '6994', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('531.                       ', 'PETER MWANGI NGUNJIRI', '0729 782084', '28713762', '6984', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('532.                       ', 'PETER NYOIKE MUTHONI', '0721 844492', '21716427', '2189', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('533.                       ', 'PETER WACIRA KAMARU', '0710 245633', '28590382', '7004', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('534.                       ', 'PETER WAITHAKA GITONGA', '0726 844189', '25096828', '5043', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('535.                       ', 'PETER WAITITU GATOTO', '0720 293799', '11613519', '3417', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('536.                       ', 'PETERSON KARIMI GATURU', '0706 768001', '23283939', '1832', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('537.                       ', 'PHARES GICHEHA THUO', '0700 495162', '27858223', '7188', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('538.                       ', 'PHYLLIS NYAMBURA NYATHOGORA', '0723 405198', '24758302', '5976', 'NYERI');
+INSERT INTO `sheet1` VALUES ('539.                       ', 'PRISCA MBINYA NZIVO', '0722 501406', '20866797', '4486', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('540.                       ', 'PRISCILLA WACHU CHEGE', '0724 293333', '25525399', '4110', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('541.                       ', 'PRISCILLA WAMBUI MACHARIA', '0723 517024', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('542.                       ', 'PURITY NJAMBI MUTERU', '0717 387528', '29398019', '6863', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('543.                       ', 'PURITY NJERI WARUI', '0725 767858', '23271736', '6544', 'NYERI');
+INSERT INTO `sheet1` VALUES ('544.                       ', 'PURITY WAMUYU GITONGA', '0725 933331', '24110432', '4540', 'NYERI');
+INSERT INTO `sheet1` VALUES ('545.                       ', 'PURITY WANGARI NDERITU', '0702 630153', '25083121', '3889', 'NAKURU');
+INSERT INTO `sheet1` VALUES ('546.                       ', 'PURITY WANGU MUGARIO', '0727 294080', '23129497', '2754', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('547.                       ', 'PURITY WANJIKU KINYUNGU', '0729 794607', '23196891', '8123', 'THIKA');
+INSERT INTO `sheet1` VALUES ('548.                       ', 'PURITY WANJRA NGURICHA', '0725 157048', '23243367', '6599', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('549.                       ', 'PURITY WAYUA NGEI', '0721 123393', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('550.                       ', 'RACHEL WANGARI KINYUA', '0711 764114', '30156924', '7855', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('551.                       ', 'RAHAB MBAIRE NJUGUNA', '0721 225163', '717209', '355', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('552.                       ', 'RAHAB WANGECHI KAMIRU', '0715 760942', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('553.                       ', 'RAHAB WANJIKU KURIA', '0728 142456', '25379645', '5273', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('554.                       ', 'RAPHAEL NDIRANGU MUCHEMI', '0722 751346', '999020', '295', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('555.                       ', 'RAPHAEL W MATHENGE', '0724 378565', '22155735', '2489', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('556.                       ', 'REBECCA YEGO', '0711 768351', '28616546', '6066', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('557.                       ', 'RHODA WARUGURU MACHARIA', '0724 029152', '20361409', '2174', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('558.                       ', 'RICHARD GATHIOMI MUTAHI', '0727 160215', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('559.                       ', 'RICHARD GITAHI WAITHANJI', '0712 192264', '25889156', '4828', 'NAKURU');
+INSERT INTO `sheet1` VALUES ('560.                       ', 'RICHARD KAGEMA WACHANIA', '0715 486404', '29335611', '7614', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('561.                       ', 'RICHARD WACHIRA', '0725 974410', '25093615', '7324', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('562.                       ', 'ROBERT KIHARA NDIRITU', '0723 336766', '22671071', '3610', 'NYERI');
+INSERT INTO `sheet1` VALUES ('563.                       ', 'ROBERT NGETICH KIBET', '0722 597790', '21270595', '1112', 'NYERI');
+INSERT INTO `sheet1` VALUES ('564.                       ', 'ROBERT WAMBAKI MWANGI', '0714 547224', '31539235', '9518', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('565.                       ', 'ROBINSON NJOGU MURIUKI', '0729 536076', '26279310', '4701', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('566.                       ', 'ROSE GOIRI CHEGE', '0703 418531', '31673236', '8938', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('567.                       ', 'ROSEBERT WARIU NJIBU', '0721 840611', '23242792', '6565', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('568.                       ', 'ROSEMARY AKINYI OLOO', '0727 865270', '27521080', '6018', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('569.                       ', 'ROSEMARY NDUNGE  GITHIGE', '0723 921420', '24118161', '6587', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('570.                       ', 'RUTH EMMACULATE WANJIKU', '0713 167812', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('571.                       ', 'RUTH MUTHONI MWANGI', '0725 420055', '23012307', '5784', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('572.                       ', 'RUTH NJERI METHU', '0710 517427', '28568553', '9557', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('573.                       ', 'RUTH WAIRIMU RATIA', '0715 230596', '29136687', '7500', 'NYERI');
+INSERT INTO `sheet1` VALUES ('574.                       ', 'RUTH WANGAHU MBURU', '0711 113573', '20123313', '10000', 'THIKA');
+INSERT INTO `sheet1` VALUES ('575.                       ', 'RUTH WANGU KANYUA', '0723 047404', '25972396', '4623', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('576.                       ', 'RUTH WANJIKU KAMAU', '0720 497623', '22161440', '2746', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('577.                       ', 'RUTH WANJIKU MBUTHIA', '0723 539147', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('578.                       ', 'RUTH WANJIRU MUIRURI', '0725 819247', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('579.                       ', 'SADALINAH WANGUI MWANGI', '0723876724', '24532157', '3820', 'NYERI');
+INSERT INTO `sheet1` VALUES ('580.                       ', 'SALESIO NGARI NYAGA', '0728 547092', '22957957', '3798', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('581.                       ', 'SALOME WANGARI MUTURI', '0716 484608', '30859190', '7789', 'THIKA');
+INSERT INTO `sheet1` VALUES ('582.                       ', 'SAMMY KARURI WAMBUI', '0715 146570', '29338679', '7808', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('583.                       ', 'SAMUEL GITHIJI KINYUA', '0710 470630', '14518433', '5007', 'NYERI');
+INSERT INTO `sheet1` VALUES ('584.                       ', 'SAMUEL KAGIA CHEGE', '0727 695846', '25479791', '5573', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('585.                       ', 'SAMUEL KARIUKI KAMAU', '0728 923235', '25894132', '5056', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('586.                       ', 'SAMUEL KIAMA MUREITHI', '0720 626266', '28149887', '7159', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('587.                       ', 'SAMUEL KIBERENGE MWANGI', '0708 201249', '22982014', '6254', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('588.                       ', 'SAMUEL KIHARA NDIRANGU', '0720 817512', '22211660', '2091', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('589.                       ', 'SAMUEL KIHU GITAU', '0720 954628', '27653326', '5868', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('590.                       ', 'SAMUEL KIMANI MUNUHE', '0721 390964', '24286028', '6399', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('591.                       ', 'SAMUEL KIRAGU MAINA', '0726 552932', '22844962', '5006', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('592.                       ', 'SAMUEL MURAGE MWANGI', '0724 296540', '22439459', '2085', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('593.                       ', 'SAMUEL MURIGI WANJIKU', '0720 339703', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('594.                       ', 'SAMUEL MUTHIGANI MUCHIRI', '0726 918614', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('595.                       ', 'SAMUEL MWANGI WANJOHI', '0723 728536', '22371115', '3198', 'NYERI');
+INSERT INTO `sheet1` VALUES ('596.                       ', 'SAMUEL MWANIKI KAMONJO', '0723 532352', '23542379', '3247', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('597.                       ', 'SAMUEL NDUNGU MUGO', '0726 476914', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('598.                       ', 'SAMUEL NG’ANG’A NYAMBURA', '0714 046833', '28477401', '8181', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('599.                       ', 'SAMUEL THUO NJUGUNA', '0720 929484', '22452344', '3758', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('600.                       ', 'SAMUEL WACHIRA KIBE', '0723 382528', '24547381', '3843', 'NYERI');
+INSERT INTO `sheet1` VALUES ('601.                       ', 'SAMUEL WAWERU GATATI', '0725 146060', '999360', '281', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('602.                       ', 'SARAH WANJIRU NGARI', '0729 661845', '25349516', '2998', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('603.                       ', 'SERAH NJERI NDUNG’U', '0720 033521', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('604.                       ', 'SHADRACK KIRWA', '0721 389300', '22443365', '3049', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('605.                       ', 'SHALON WAITHIRA NG’ANG’A', '0708 602916', '30507511', '7585', 'NYERI');
+INSERT INTO `sheet1` VALUES ('606.                       ', 'SHELMITH NJERI MIRICHO', '0729 770083', '24132115', '8368', 'NYERI');
+INSERT INTO `sheet1` VALUES ('607.                       ', 'SIMEON AWUOR ORIKO', '0707 375996', '28450136', '8098', 'THIKA');
+INSERT INTO `sheet1` VALUES ('608.                       ', 'SIMON MUTWOTA MACHARIA', '0720 301633', '23184451', '1686', 'NYERI');
+INSERT INTO `sheet1` VALUES ('609.                       ', 'SIMON MWANGI NJUGUNA', '0725 430060', '23953395', '7262', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('610.                       ', 'SIMON NDEGWA KIHARA', '0722 952457', '10876159', '725', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('611.                       ', 'SIMON NGUGI WAMBUI', '0702 508898', '30871188', '8668', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('612.                       ', 'SISTO MUHORO GICHUKI', '0723 413879', '24278909', '2856', 'NYERI');
+INSERT INTO `sheet1` VALUES ('613.                       ', 'SOFIA WANJIRU MURIUKI', '0725 902701', '22601831', '4430', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('614.                       ', 'SOPHIA MURUGA THOMAS', '0714 411566', '22426834', '4662', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('615.                       ', 'STANLEY MURIITHI NDEGWA', '0726 706242', '25990801', '5869', 'NYERI');
+INSERT INTO `sheet1` VALUES ('616.                       ', 'STANLEY OCHIENG MUCHEMI', '0729 098064', '26969955', '5072', 'NAKURU');
+INSERT INTO `sheet1` VALUES ('617.                       ', 'STELLAMARIS MBITHE KYALO', '0721 917242', '24632146', '5534', 'NYERI');
+INSERT INTO `sheet1` VALUES ('618.                       ', 'STEPHEN GAKUMO GICHEHA', '0720 707333', '23017735', '6622', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('619.                       ', 'STEPHEN GATHIRU MUTHEE', '0727 398582', '28499990', '7532', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('620.                       ', 'STEPHEN KARIMI MURIITHI', '0726 070140', '27652585', '6228', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('621.                       ', 'STEPHEN KIMANI RUTERE', '0724 509328', '', '', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('622.                       ', 'STEPHEN KIRUTHI MWIHIA', '0722 253911', '22535528', '2381', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('623.                       ', 'STEPHEN MAINA KAGICHA', '0723 984837', '22796476', '3217', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('624.                       ', 'STEPHEN MUNENE WAHINYA', '0724 771710', '23439786', '3561', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('625.                       ', 'STEPHEN MURIITHI KARIMI', '0726 670140', '', '', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('626.                       ', 'STEPHEN N MURIAMA', '0723 749954', '27318649', '5963', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('627.                       ', 'STEPHEN NDEGWA MAINA', '0725 537418', '25605630', '8931', 'NYAHURURU');
+INSERT INTO `sheet1` VALUES ('628.                       ', 'STEPHEN NDIRANGU', '0721 924641', '21690914', '3662', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('629.                       ', 'STEPHEN WACHIRA MWANIKI', '0715 666065', '27654302', '6056', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('630.                       ', 'SUSAN MUTHONI MWANGI', '0727 248013', '23953170', '8001', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('631.                       ', 'SUSAN NJERI KARANJA', '0727 072752', '22710117', '7048', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('632.                       ', 'SUSAN NJERI MBUCHI', '0727 704091', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('633.                       ', 'SUSAN NJERI MWANGI', '0724 763244', '22759710', '2499', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('634.                       ', 'SUSAN WANJIKU MUCHIRA', '0726 206851', '', '', 'MERU');
+INSERT INTO `sheet1` VALUES ('635.                       ', 'SUSY MWANGALA', '0726 630437', '24157316', '5921', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('636.                       ', 'TABITHA NYAMBURA MURAGE', '0720 996378', '23384194', '3542', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('637.                       ', 'TABITHA WANDIA NYAMU', '0725 765652', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('638.                       ', 'TABITHA WANJIRU', '0713 587245', '25665307', '9580', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('639.                       ', 'TEREGINA GATAKAA KABURU', '0723 509127', '28540221', '9115', 'NERI');
+INSERT INTO `sheet1` VALUES ('640.                       ', 'TERESA NGIMA WERU', '0700 386397', '28085814', '6037', 'LAIKIPIA');
+INSERT INTO `sheet1` VALUES ('641.                       ', 'TERESA WAMBURA WAHOME', '0710 428466', '25169415', '5799', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('642.                       ', 'TERESIA NJOKI NJURU', '0723 163184', '24141983', '6452', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('643.                       ', 'TERESIA WAITHERERO GACHEKE', '0721 444826', '22167342', '7388', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('644.                       ', 'TERESIAH KABURA IRUNGU', '0725 543191', '26331326', '4592', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('645.                       ', 'TERESIAH WAMBUI MWANGI', '0720 043687', '23822171', '6302', 'NYERI');
+INSERT INTO `sheet1` VALUES ('646.                       ', 'THOMAS NZUKI NGILA', '0726 944 104', '25858650', '4894', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('647.                       ', 'TIMOTHY IRERIH', '0771 787405', '', '', 'NYERI');
 INSERT INTO `sheet1` VALUES ('672', 'TIMOTHY KAGIRI MWANGI', '0712 314843', '11054853', '7970', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('648.                       ', 'TIMOTHY MAINA WAWERU', '0720 566745', '24081255', '1709', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('649.                       ', 'TITUS NJUGUNA WAITARA', '0720 982956', '22211814', '4335', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('650.                       ', 'TITUS T KARIUKI', '0722 872204', '24772361', '4798', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('651.                       ', 'VALENTINE MUTHONI KINYUA', '0723 776405', '25752515', '5736', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('652.                       ', 'VALILIAN KARIMI NJUE', '0720 893548', '23867629', '3666', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('653.                       ', 'VERONICA WANJIKU KARANJA', '0724 881970', '14561912', '2014', 'NAKURU');
-INSERT INTO `sheet1` VALUES ('654.                       ', 'VERONICAH GIKURE NJUGUNA', '0707 444700', '22867891', '5280', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('655.                       ', 'VICTOR MUCHOMBA KARIUKI', '0707 499433', '', '', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('656.                       ', 'VICTOR MUNGAI M NJUGUINI', '0725 700302', '24063521', '5512', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('657.                       ', 'VICTOR NJOGU GACHOHI', '0720 317953', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('658.                       ', 'VINCENT KINYANJUI MUTURI', '0727 660206', '25246442', '3003', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('659.                       ', 'VINCENT PAUL MUCHIRI GICHOBI', '0726 395302', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('660.                       ', 'WAIRIMU NJUGUNA', '0724 543550', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('661.                       ', 'WALTER MAGUKE GUNGE', '0712 143800', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('662.                       ', 'WILFRED KIENJEKU WANJIRU', '0722 811901', '', '', 'MURANGA');
-INSERT INTO `sheet1` VALUES ('663.                       ', 'WILLIAM NDERITU WACHIRA', '0722 394229', '', '', 'NYERI');
-INSERT INTO `sheet1` VALUES ('664.                       ', 'WILSON KOGI GICHIRI', '0720 463002', '24112943', '4354', 'NAIROBI');
-INSERT INTO `sheet1` VALUES ('665.                       ', 'WILSON NJOROGE MIRINGU', '0721 746533', '21961121', '1968', 'KIRINYAGA');
-INSERT INTO `sheet1` VALUES ('666.                       ', 'WINFRED  WAIRIMU MUNYUA', '0714 849142', '23528475', '3177', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('648.                       ', 'TIMOTHY MAINA WAWERU', '0720 566745', '24081255', '1709', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('649.                       ', 'TITUS NJUGUNA WAITARA', '0720 982956', '22211814', '4335', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('650.                       ', 'TITUS T KARIUKI', '0722 872204', '24772361', '4798', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('651.                       ', 'VALENTINE MUTHONI KINYUA', '0723 776405', '25752515', '5736', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('652.                       ', 'VALILIAN KARIMI NJUE', '0720 893548', '23867629', '3666', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('653.                       ', 'VERONICA WANJIKU KARANJA', '0724 881970', '14561912', '2014', 'NAKURU');
+INSERT INTO `sheet1` VALUES ('654.                       ', 'VERONICAH GIKURE NJUGUNA', '0707 444700', '22867891', '5280', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('655.                       ', 'VICTOR MUCHOMBA KARIUKI', '0707 499433', '', '', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('656.                       ', 'VICTOR MUNGAI M NJUGUINI', '0725 700302', '24063521', '5512', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('657.                       ', 'VICTOR NJOGU GACHOHI', '0720 317953', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('658.                       ', 'VINCENT KINYANJUI MUTURI', '0727 660206', '25246442', '3003', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('659.                       ', 'VINCENT PAUL MUCHIRI GICHOBI', '0726 395302', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('660.                       ', 'WAIRIMU NJUGUNA', '0724 543550', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('661.                       ', 'WALTER MAGUKE GUNGE', '0712 143800', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('662.                       ', 'WILFRED KIENJEKU WANJIRU', '0722 811901', '', '', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('663.                       ', 'WILLIAM NDERITU WACHIRA', '0722 394229', '', '', 'NYERI');
+INSERT INTO `sheet1` VALUES ('664.                       ', 'WILSON KOGI GICHIRI', '0720 463002', '24112943', '4354', 'NAIROBI');
+INSERT INTO `sheet1` VALUES ('665.                       ', 'WILSON NJOROGE MIRINGU', '0721 746533', '21961121', '1968', 'KIRINYAGA');
+INSERT INTO `sheet1` VALUES ('666.                       ', 'WINFRED  WAIRIMU MUNYUA', '0714 849142', '23528475', '3177', 'KIAMBU');
 INSERT INTO `sheet1` VALUES ('667', 'WINFRED NKATHA KIMATHI', '0715 656160', '28588808', '7313', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('668.                       ', 'WINFRED WAMBUI WANGUI', '0702 338934', '25921313', '4891', 'NYANDARUA');
-INSERT INTO `sheet1` VALUES ('669.                       ', 'WINNIE WAIRIMU KAMAU', '0729 660205', '22734389', '3187', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('670.                       ', 'WINNIEFRED WANGUI MWANGI', '0726 882289', '', '', 'KIAMBU');
-INSERT INTO `sheet1` VALUES ('671.                       ', 'ZACHARY NDERITU MAINA', '0726 965578', '27845261', '7249', 'MURANGA');
+INSERT INTO `sheet1` VALUES ('668.                       ', 'WINFRED WAMBUI WANGUI', '0702 338934', '25921313', '4891', 'NYANDARUA');
+INSERT INTO `sheet1` VALUES ('669.                       ', 'WINNIE WAIRIMU KAMAU', '0729 660205', '22734389', '3187', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('670.                       ', 'WINNIEFRED WANGUI MWANGI', '0726 882289', '', '', 'KIAMBU');
+INSERT INTO `sheet1` VALUES ('671.                       ', 'ZACHARY NDERITU MAINA', '0726 965578', '27845261', '7249', 'MURANGA');
 
 -- ----------------------------
 -- Table structure for shopapps
@@ -20437,12 +20258,12 @@ CREATE TABLE `tenants` (
   `profile` text,
   `pointsbal` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1277 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1274 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tenants
 -- ----------------------------
-INSERT INTO `tenants` VALUES ('1', '1', null, ' KANGETHE MICHAEL MURIMI', '4', '0726691888', 'joekangethe17@gmail.com', '', '', '', '01/02/2020', '20200201', '1', null, null, null, null, null, null, '500', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210501', '05_2020', '', null, null, null, null, null, '0', null, null, '28127269', '1', '2', 'Uncle', null, null, null, null, null, null, '6349', '1995', 'MURANGA', '', '', 'MKPACENT-0007', null, null, 'group 1', 'fca7e0ed3f0a5aaa47c0aae13da342ef6bb76783', 'img/users/narok.jpg', null);
+INSERT INTO `tenants` VALUES ('1', '1', null, ' KANGETHE MICHAEL MURIMI', '4', '0726691888', 'joekangethe17@gmail.com', '', '', '', '01/02/2020', '20200201', '0', null, null, null, null, null, null, '500', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210501', '05_2020', '', null, null, null, null, null, '0', null, null, '28127269', '1', '2', 'Uncle', null, null, null, null, null, null, '6349', '1995', 'MURANGA', '', '', 'MKPACENT-0007', null, null, 'group 1', 'fca7e0ed3f0a5aaa47c0aae13da342ef6bb76783', 'img/users/narok.jpg', null);
 INSERT INTO `tenants` VALUES ('2', '2', null, 'ABEL KIMANI KARIUKI', '', '0724 987689', '', '', '', '', '01/02/2020', '20200201', '1', null, null, null, null, null, null, '0', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210501', '05_2020', '', null, null, null, null, null, '0', null, null, '22845379', '', '', '', null, null, null, null, null, null, '1938', '', 'NYERI', '', '', 'MKPACENT-0008', null, null, 'group 1', '77ec5ef4baeb6821a2f43cee05d9d1c2f626dc78', null, null);
 INSERT INTO `tenants` VALUES ('3', '3', null, 'ABIGAIL MBINYA MUOKA', '', '0724 072312', '', '', '', '', '01/02/2020', '20200201', '0', null, null, null, null, null, null, '450', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210501', '05_2020', '', null, null, null, null, null, '0', null, null, '24770641', '', '', '', null, null, null, null, null, null, '4009', '', 'KIRINYAGA', '', '', 'MKPACENT-0009', null, null, 'group 1', '5481854ee9a0f993106bf0685844ade698dcadfb', null, null);
 INSERT INTO `tenants` VALUES ('4', '4', null, 'ABSOLOM NJOROGE MAINA', '', '0727 426190', '', '', '', '', '01/02/2020', '20200201', '0', null, null, null, null, null, null, '0', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210501', '05_2020', '', null, null, null, null, null, '0', null, null, '23551759', '', '', '', null, null, null, null, null, null, '5568', '', 'KIAMBU', '', '', 'MKPACENT-0010', null, null, 'group 1', '07f60b956fa8620dcc25e922310e2aca9b1ed429', null, null);
@@ -21116,7 +20937,7 @@ INSERT INTO `tenants` VALUES ('671', '671', null, 'WINNIE WAIRIMU KAMAU', '', '0
 INSERT INTO `tenants` VALUES ('672', '672', null, 'WINNIEFRED WANGUI MWANGI', '', '0726 882289', '', '', '', '', '01/02/2020', '20200201', '1', null, null, null, null, null, null, '0', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210301', '03_2020', '', null, null, null, null, null, '0', null, null, '', '', '', '', null, null, null, null, null, null, '', '', 'KIAMBU', '', '', 'MKPACENT-0672', null, null, 'group 1', 'bf98f45ab875c031921e134e8498960d880c97a3', null, null);
 INSERT INTO `tenants` VALUES ('673', '673', null, 'ZACHARY NDERITU MAINA', '', '0726 965578', '', '', '', '', '01/02/2020', '20200201', '1', null, null, null, null, null, null, '0', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210301', '03_2020', '', null, null, null, null, null, '0', null, null, '27845261', '', '', '', null, null, null, null, null, null, '7249', '', 'MURANGA', '', '', 'MKPACENT-0673', null, null, 'group 1', 'e0a616a8e2e974a92fce79e8d4dd2636b522aa86', null, null);
 INSERT INTO `tenants` VALUES ('674', '674', null, 'hjhjh', 'm,m,,,.', '144521255', 'mmm@sdd.bnm', '', '', '', '11/03/2020', '20200311', '1', null, null, null, null, null, null, '5000', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20201231', '1', '', null, null, null, null, null, '0', null, null, '46546545', '', '', '', null, null, null, null, null, null, '4555555', '4564', '', '', '', 'MKPACENT-0674', null, null, 'group 1', 'e6be223b8aa0724ba17408cf59832378abab2a05', null, null);
-INSERT INTO `tenants` VALUES ('675', '1', null, ' KANGETHE', '', '0721 835715', '', '', '', '', '21/04/2020', '20200421', '1', null, null, null, null, null, null, '500', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210501', '05_2020', '', null, null, null, null, null, '0', null, null, '27919181', '', '', '', null, null, null, null, null, null, '6349', '', 'MURANGA', '', '', 'MKPACENT-0001', null, null, 'group 1', '73537cbf7cb6727facb11119ed0bbe5e0b083fda', null, null);
+INSERT INTO `tenants` VALUES ('675', '1', null, ' KANGETHE', '', '0721 835715', '', '', '', '', '21/04/2020', '20200421', '0', null, null, null, null, null, null, '500', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210501', '05_2020', '', null, null, null, null, null, '0', null, null, '27919181', '', '', '', null, null, null, null, null, null, '6349', '', 'MURANGA', '', '', 'MKPACENT-0001', null, null, 'group 1', '73537cbf7cb6727facb11119ed0bbe5e0b083fda', null, null);
 INSERT INTO `tenants` VALUES ('676', '2', null, 'ABEL KIMANI KARIUKI', '', '0724 987689', '', '', '', '', '21/04/2020', '20200421', '1', null, null, null, null, null, null, '0', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210501', '05_2020', '', null, null, null, null, null, '0', null, null, '22845379', '', '', '', null, null, null, null, null, null, '1938', '', 'NYERI', '', '', 'MKPACENT-0002', null, null, 'group 1', 'cd4a7101390ea448159d344cf653061fdfe49825', null, null);
 INSERT INTO `tenants` VALUES ('677', '3', null, 'ABIGAIL MBINYA MUOKA', '', '0724 072312', '', '', '', '', '21/04/2020', '20200421', '1', null, null, null, null, null, null, '450', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210501', '05_2020', '', null, null, null, null, null, '0', null, null, '24770641', '', '', '', null, null, null, null, null, null, '4009', '', 'KIRINYAGA', '', '', 'MKPACENT-0003', null, null, 'group 1', '04aeade7f5eaa6015e5c62a9952813e5140c69e6', null, null);
 INSERT INTO `tenants` VALUES ('678', '4', null, 'ABSOLOM NJOROGE MAINA', '', '0727 426190', '', '', '', '', '21/04/2020', '20200421', '1', null, null, null, null, null, null, '0', null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, 'Yearly', null, '20210501', '05_2020', '', null, null, null, null, null, '0', null, null, '23551759', '', '', '', null, null, null, null, null, null, '5568', '', 'KIAMBU', '', '', 'MKPACENT-0004', null, null, 'group 1', '04cc57adcca852a9dbaf883fc7c1b7e1a5a8a609', null, null);
@@ -21711,12 +21532,9 @@ INSERT INTO `tenants` VALUES ('1267', 'DEC000005', 'decree', 'JHJHJH', '', '', '
 INSERT INTO `tenants` VALUES ('1268', 'DEC000006', 'decree', 'ZCXBVBNB', '', '', '', 'XZXCCV', '', '', '06/06/2020', '20200606', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `tenants` VALUES ('1269', 'REP000003', 'Repossession', 'KLL', '', '', '', 'MMK', '', '', '15/06/2020', '20200615', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 INSERT INTO `tenants` VALUES ('1270', 'REP000004', 'Repossession', 'DOROTYU', '', '', '', 'JKJK', '', '', '15/06/2020', '20200615', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `tenants` VALUES ('1271', 'REP000005', 'Repossession', 'IO COMP', '', '', '', 'LAMI', '', '', '16/06/2020', '20200616', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `tenants` VALUES ('1272', 'REP000006', 'Repossession', 'KEMA', '', '', '', 'EMMACULATE', '', '', '18/06/2020', '20200618', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `tenants` VALUES ('1273', 'REP000007', 'Repossession', 'CATCHP', '', '', '', 'COMPANIES', '', '', '18/06/2020', '20200618', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `tenants` VALUES ('1274', 'REP000008', 'Repossession', 'KIMU', '', '', '', 'PORL', '', '', '18/06/2020', '20200618', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `tenants` VALUES ('1275', 'REP000009', 'Repossession', '', '', '', '', '', '', '', '18/06/2020', '20200618', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-INSERT INTO `tenants` VALUES ('1276', 'REP000010', 'Repossession', '', '', '', '', '', '', '', '18/06/2020', '20200618', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `tenants` VALUES ('1271', 'REP000005', 'Repossession', 'MANU COMPANY', '', '', '', 'LAMI', '', '', '16/06/2020', '20200616', '1', '', '', '', '', '', '', null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, '', '', '', '', '1', null, '', '', '', '0', '0', '0', '', '', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `tenants` VALUES ('1272', 'DEC000007', 'decree', 'VBN', '', '', '', 'VN B', '', '', '19/06/2020', '20200619', '1', null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, null, null, null, '0', null, null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+INSERT INTO `tenants` VALUES ('1273', 'DEC000001', 'decree', 'JANE WAMUCII', '', '', '', 'LALI ABUBAKAR, ALLAN ', '', '', '19/06/2020', '20200619', '1', null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '', null, null, null, null, null, '0', null, null, null, null, null, null, '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for tendocs
@@ -21735,7 +21553,7 @@ CREATE TABLE `tendocs` (
   `stamp` varchar(20) DEFAULT NULL,
   `status` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tendocs
@@ -21764,7 +21582,332 @@ INSERT INTO `tendocs` VALUES ('23', 'Certificate of Incorporation', '', 'letter'
 INSERT INTO `tendocs` VALUES ('24', 'ID_Card_Copies', '', 'repossession', '', 'chador_jncw_01 - Disclaimer.pdf', 'uploads/tenants/chador_jncw_01 - Disclaimer.pdf', 'ARIMII PRODUCTIONS PROFILE', '16/06/2020', '20200616', '1');
 INSERT INTO `tendocs` VALUES ('25', 'Certificate of Incorporation', '', 'repossession', '1', 'chador_hebc_01 - Disclaimer.pdf', 'uploads/tenants/chador_hebc_01 - Disclaimer.pdf', 'makuni networks', '16/06/2020', '20200616', '1');
 INSERT INTO `tendocs` VALUES ('26', 'Certificate of Incorporation', '', 'repossession', 'REP000005', 'chador_hqrj_01 - Disclaimer.pdf', 'uploads/tenants/chador_hqrj_01 - Disclaimer.pdf', 'makuni networks', '16/06/2020', '20200616', '1');
-INSERT INTO `tendocs` VALUES ('27', 'Certificate of Incorporation', '', 'repossession', 'REP000003', 'chador_syic_03 - The reality of trading - What most traders will never find out.pdf', 'uploads/tenants/chador_syic_03 - The reality of trading - What most traders will never find out.pdf', 'mui', '17/06/2020', '20200617', '1');
-INSERT INTO `tendocs` VALUES ('28', 'Checkout Documents', '', 'repossession', 'REP000005', 'chador_zgyl_04 - The Engulfing pattern - A twin brother of the Pinbar.pdf', 'uploads/tenants/chador_zgyl_04 - The Engulfing pattern - A twin brother of the Pinbar.pdf', 'engulfing design', '18/06/2020', '20200618', '1');
-INSERT INTO `tendocs` VALUES ('29', 'Certificate of Incorporation', 'Decrees', '1', 'CHADDEC0002', 'chador_bnuu_Trading Videos.pdf', 'uploads/tenants/chador_bnuu_Trading Videos.pdf', 'ambassador offices', '18/06/2020', '20200618', '1');
-INSERT INTO `tendocs` VALUES ('30', 'Checkout Documents', 'Decrees', '1', 'CHADDEC0002', 'chador_assd_Recommended Books.pdf', 'uploads/tenants/chador_assd_Recommended Books.pdf', 'ameobligin agreement', '18/06/2020', '20200618', '1');
+INSERT INTO `tendocs` VALUES ('27', 'Other Documents', 'Decrees', '1', 'CHADDEC0001', 'chador_mlyn_decre.pdf', 'uploads/tenants/chador_mlyn_decre.pdf', 'decree', '17/06/2020', '20200617', '1');
+INSERT INTO `tendocs` VALUES ('28', 'Other Documents', 'Decrees', '1', 'CHADDEC0001', 'chador_cwdt_decre.pdf', 'uploads/tenants/chador_cwdt_decre.pdf', 'decree', '17/06/2020', '20200617', '1');
+INSERT INTO `tendocs` VALUES ('29', 'Other Documents', 'Decrees', '1', 'CHADDEC0002', 'chador_tihx_decre.pdf', 'uploads/tenants/chador_tihx_decre.pdf', 'decreeee', '17/06/2020', '20200617', '1');
+INSERT INTO `tendocs` VALUES ('30', 'Other Documents', 'Decrees', '1', 'CHADDEC0001', 'chador_nhjq_APPLICATION - Wairimu Kiongera & co Advocates 272.doc', 'uploads/tenants/chador_nhjq_APPLICATION - Wairimu Kiongera & co Advocates 272.doc', 'hj', '17/06/2020', '20200617', '1');
+INSERT INTO `tendocs` VALUES ('31', 'Other Documents', 'Decrees', '1', 'CHADDEC0001', 'chador_dpha_letter head.docx', 'uploads/tenants/chador_dpha_letter head.docx', 'plai', '17/06/2020', '20200617', '1');
+
+-- ----------------------------
+-- Table structure for todo
+-- ----------------------------
+DROP TABLE IF EXISTS `todo`;
+CREATE TABLE `todo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  `date` varchar(20) DEFAULT NULL,
+  `stamp` varchar(20) DEFAULT NULL,
+  `time` varchar(20) DEFAULT NULL,
+  `timestamp` varchar(20) DEFAULT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  `status` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of todo
+-- ----------------------------
+INSERT INTO `todo` VALUES ('2', 'Go for Lunch', '08/08/2016', '20160808', '21:14', '201608082114', 'pm001', '1');
+INSERT INTO `todo` VALUES ('3', 'Cycle to Landless', '08/08/2016', '20160808', '21:15', '201608082115', 'pm001', '1');
+INSERT INTO `todo` VALUES ('4', 'Program User Access Rights', '08/08/2016', '20160808', '21:16', '201608082116', 'pm001', '1');
+INSERT INTO `todo` VALUES ('5', 'Finalize Matters on Office Rent', '08/08/2016', '20160808', '21:35', '201608082135', 'pm001', '1');
+INSERT INTO `todo` VALUES ('6', 'Finish Programming', '09/08/2016', '20160809', '09:56', '201608090956', 'PM001', '1');
+INSERT INTO `todo` VALUES ('7', 'Fence', '26/09/2016', '20160926', '06:10 PM', '201609261810', 'PK006', '1');
+INSERT INTO `todo` VALUES ('8', 'You think so?', '19/12/2016', '20161219', '10:03 AM', '201612191003', 'pm001', '1');
+INSERT INTO `todo` VALUES ('9', 'sEND EMAIL', '15/02/2018', '20180215', '10:51 AM', '201802151051', 'pm001', '1');
+INSERT INTO `todo` VALUES ('10', 'GO TO TOWN', '15/02/2018', '20180215', '10:51 AM', '201802151051', 'pm001', '1');
+INSERT INTO `todo` VALUES ('11', 'anthunf', '14/03/2018', '20180314', '09:37 AM', '201803140937', 'pm001', '1');
+INSERT INTO `todo` VALUES ('12', 'rfr rfjr', '20/01/2020', '20200120', '05:56 PM', '202001201756', 'mkpacent-0092', '0');
+INSERT INTO `todo` VALUES ('13', 'dede', '21/01/2020', '20200121', '01:32 PM', '202001211332', 'MKPACENT-0090', '1');
+INSERT INTO `todo` VALUES ('14', 'KPAEVENT', '01/02/2020', '20200201', '01:47 PM', '202002011347', 'MKPACENT-0112', '0');
+INSERT INTO `todo` VALUES ('15', 'Online event', '04/02/2020', '20200204', '11:44 AM', '202002041144', 'MKPACENT-0037', '1');
+INSERT INTO `todo` VALUES ('16', 'Balance', '05/02/2020', '20200205', '10:39 AM', '202002051039', 'MKPACENT-0061', '0');
+INSERT INTO `todo` VALUES ('17', '21ST FEB EXECUTIVE MEETING', '17/02/2020', '20200217', '06:48 AM', '202002170648', 'MKPACENT-0003', '0');
+INSERT INTO `todo` VALUES ('18', '21ST FEB 2020 EXECUTIVE MEETING', '17/02/2020', '20200217', '06:49 AM', '202002170649', 'MKPACENT-0003', '0');
+INSERT INTO `todo` VALUES ('19', 'receipt', '28/02/2020', '20200228', '03:39 PM', '202002281539', 'MKPACENT-0600', '0');
+INSERT INTO `todo` VALUES ('20', 'ghhj', '19/03/2020', '20200319', '09:22 AM', '202003190922', 'pm001', '1');
+INSERT INTO `todo` VALUES ('21', 'kkllk', '13/05/2020', '20200513', '06:53 PM', '202005131853', 'pm001', '1');
+INSERT INTO `todo` VALUES ('22', 'hhh', '16/06/2020', '20200616', '04:27 PM', '202006161627', 'pm001', '0');
+
+-- ----------------------------
+-- Table structure for transactions
+-- ----------------------------
+DROP TABLE IF EXISTS `transactions`;
+CREATE TABLE `transactions` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `rcptno` varchar(20) DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL,
+  `category` varchar(30) DEFAULT NULL,
+  `dcno` varchar(20) DEFAULT NULL,
+  `acno` varchar(30) DEFAULT NULL,
+  `acname` varchar(100) DEFAULT NULL,
+  `amount` varchar(20) DEFAULT NULL,
+  `refno` varchar(100) DEFAULT NULL,
+  `odetail` varchar(200) DEFAULT NULL,
+  `cusbal` varchar(20) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  `time` varchar(20) DEFAULT NULL,
+  `stamp` varchar(20) DEFAULT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of transactions
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for units
+-- ----------------------------
+DROP TABLE IF EXISTS `units`;
+CREATE TABLE `units` (
+  `unitid` varchar(255) DEFAULT NULL,
+  `property` varchar(255) DEFAULT NULL,
+  `unit` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL,
+  `water` varchar(255) DEFAULT NULL,
+  `elec` varchar(255) DEFAULT NULL,
+  `rent` varchar(255) DEFAULT NULL,
+  `propid` int(255) DEFAULT NULL,
+  `rescom` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of units
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `userid` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `position` varchar(50) DEFAULT NULL,
+  `photo` varchar(50) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
+  `dept` varchar(50) DEFAULT NULL,
+  `fullname` varchar(100) DEFAULT NULL,
+  `branch` varchar(20) DEFAULT NULL,
+  `fid` varchar(20) DEFAULT NULL,
+  `status` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES ('1', 'pm001', 'Admin', 'img/users/1.jpg', '145394f8d6fd241a9d82e035c7c43018764b368c', 'ADMINISTRATION', 'SYSTEM ADMIN', 'NAIROBI', null, '1');
+INSERT INTO `users` VALUES ('2', 'ad002', 'Admin', '', 'cd257771133242a1cca7e20a959f45cc73142130', 'ADMINISTRATION', 'ADMIN', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('3', 'EN003', 'Accounts', '', '9122e2ae9e6c742b7a0d0d8babc11082e78d65b9', 'ACCOUNTING', 'ESTHER NDICHO', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('4', 'MT004', 'Manager', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'ADMINISTRATION', 'MARTHA THOGORI', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('5', 'CM005', 'Sales', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'SALES', 'CAROLINE MUTHEE', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('6', 'EW006', 'Director', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'ADMINISTRATION', 'ELIUD WAMBU', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('7', 'TM007', 'Sales', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'SALES', 'TOBIAS MARAO', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('8', 'eM008', 'Sales', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'SALES', 'ELIAS MACHIRI', 'THIKA', '', '1');
+INSERT INTO `users` VALUES ('9', 'RK009', 'Sales', '', '5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8', 'SALES', 'RUFUS KIMANI', 'THIKA', '', '1');
+
+-- ----------------------------
+-- Table structure for utilities
+-- ----------------------------
+DROP TABLE IF EXISTS `utilities`;
+CREATE TABLE `utilities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lid` varchar(20) DEFAULT NULL,
+  `lname` varchar(200) DEFAULT NULL,
+  `pid` varchar(20) DEFAULT NULL,
+  `pname` varchar(200) DEFAULT NULL,
+  `hid` varchar(20) DEFAULT NULL,
+  `hname` varchar(200) DEFAULT NULL,
+  `billno` varchar(50) DEFAULT NULL,
+  `month` varchar(20) DEFAULT NULL,
+  `amount` varchar(20) DEFAULT NULL,
+  `refno` varchar(20) DEFAULT NULL,
+  `remarks` text,
+  `date` varchar(20) DEFAULT NULL,
+  `stamp` varchar(20) DEFAULT NULL,
+  `status` varchar(1) DEFAULT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of utilities
+-- ----------------------------
+INSERT INTO `utilities` VALUES ('1', '635', 'Rent', '625', 'Cash', '7', 'BENARD GITHIRWA MUHORO(KARIA)', '485', '05_2019', '5500', '6519', 'ik,ik', '22/05/2019', '20190522', '1', 'pm001');
+
+-- ----------------------------
+-- Table structure for vacate
+-- ----------------------------
+DROP TABLE IF EXISTS `vacate`;
+CREATE TABLE `vacate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rid` varchar(20) DEFAULT NULL,
+  `tid` varchar(20) DEFAULT NULL,
+  `tname` varchar(100) DEFAULT NULL,
+  `hname` varchar(100) DEFAULT NULL,
+  `rno` varchar(20) DEFAULT NULL,
+  `vacatedate` varchar(20) DEFAULT NULL,
+  `details` text,
+  `date` varchar(20) DEFAULT NULL,
+  `stamp` varchar(20) DEFAULT NULL,
+  `status` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of vacate
+-- ----------------------------
+INSERT INTO `vacate` VALUES ('1', '1907', '1000477', 'JOHN JOMO', 'JOSEPH MATHINJI STADIUM', '2', '08/05/2019', 'unpaid dues', '22/05/2019', '20190522', '1');
+INSERT INTO `vacate` VALUES ('2', '9100', '1000438', 'DAVID NJAU', 'JOHN KARIUKI MWANGI', 'GND', '29/05/2019', 'gfhkkjhkjhjhh', '28/05/2019', '20190528', '1');
+INSERT INTO `vacate` VALUES ('3', '1906', '1000476', 'JOHN KAMAU', 'JOSEPH MATHINJI STADIUM', '1', '06/11/2019', 'tjtj', '22/11/2019', '20191122', '1');
+
+-- ----------------------------
+-- Table structure for variables
+-- ----------------------------
+DROP TABLE IF EXISTS `variables`;
+CREATE TABLE `variables` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) DEFAULT NULL,
+  `value` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of variables
+-- ----------------------------
+INSERT INTO `variables` VALUES ('1', 'Monthly Rent Posting Date', '01');
+INSERT INTO `variables` VALUES ('2', 'Penalty Posting Date', '05');
+
+-- ----------------------------
+-- Table structure for waterinvoices
+-- ----------------------------
+DROP TABLE IF EXISTS `waterinvoices`;
+CREATE TABLE `waterinvoices` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rcptno` varchar(20) DEFAULT NULL,
+  `hid` varchar(10) DEFAULT NULL,
+  `hname` varchar(50) DEFAULT NULL,
+  `rid` varchar(10) DEFAULT NULL,
+  `rno` varchar(10) DEFAULT NULL,
+  `tid` varchar(10) DEFAULT NULL,
+  `tname` varchar(50) DEFAULT NULL,
+  `mon` varchar(20) DEFAULT NULL,
+  `dateofread` varchar(20) DEFAULT NULL,
+  `meterno` varchar(20) DEFAULT NULL,
+  `wp` varchar(20) DEFAULT NULL,
+  `wc` varchar(20) DEFAULT NULL,
+  `wd` varchar(20) DEFAULT NULL,
+  `water` varchar(20) DEFAULT NULL,
+  `sewer` varchar(20) DEFAULT NULL,
+  `service` varchar(20) DEFAULT NULL,
+  `meter` varchar(20) DEFAULT NULL,
+  `conservancy` varchar(20) DEFAULT NULL,
+  `toilet` varchar(20) DEFAULT NULL,
+  `total` varchar(20) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  `stamp` varchar(20) DEFAULT NULL,
+  `status` int(1) DEFAULT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of waterinvoices
+-- ----------------------------
+INSERT INTO `waterinvoices` VALUES ('1', '2', '7', 'BENARD GITHIRWA MUHORO(KARIA)', '28', '309', '1001165', 'MICHAEL MWANGI', '05_2019', '07/05/2019', '098754334', '25', '30', '5', '300.00', '0.00', '0.00', '0', '50.00', '0', '300', '20/05/2019', '20190520', '1', 'admin');
+INSERT INTO `waterinvoices` VALUES ('2', '47', '7', 'BENARD GITHIRWA MUHORO(KARIA)', '27', '101', '1001165', 'MICHAEL MWANGI', '02_2019', '28/02/2019', '', '', '5', '5', '300', '0', '0', '0', '0', '', '300', '10/07/2019', '20190710', '1', 'pm001');
+INSERT INTO `waterinvoices` VALUES ('3', '48', '7', 'BENARD GITHIRWA MUHORO(KARIA)', '29', '302', '1001166', 'JOHN MUGAMBI', '02_2019', '28/02/2019', '', '', '6', '6', '360', '0', '0', '0', '0', '', '360', '10/07/2019', '20190710', '1', 'pm001');
+INSERT INTO `waterinvoices` VALUES ('4', '49', '7', 'BENARD GITHIRWA MUHORO(KARIA)', '28', '309', '1001165', 'MICHAEL MWANGI', '02_2019', '28/02/2019', '', '30', '32', '2', '120', '0', '0', '0', '0', '', '120', '10/07/2019', '20190710', '1', 'pm001');
+INSERT INTO `waterinvoices` VALUES ('5', '51', '48', 'BENSON MBURU', '32', '103', '1001168', 'ALEX MBAKA', '06_2019', '30/06/2019', '0987654', '103', '105', '2', '200.00', '0.00', '0.00', '0', '50.00', '0', '200', '10/07/2019', '20190710', '1', 'pm001');
+INSERT INTO `waterinvoices` VALUES ('6', '95', '48', 'BENSON MBURU', '32', '103', '1001168', 'ALEX MBAKA', '07_2019', '09/07/2019', '0987654', '103', '120', '17', '1700.00', '0.00', '0.00', '0', '50.00', '0', '1700', '31/07/2019', '20190731', '1', 'pm001');
+INSERT INTO `waterinvoices` VALUES ('7', '99', '48', 'BENSON MBURU', '32', '103', '1001177', 'ALEX MBAKA', '07_2019', '01/08/2019', '0987654', '103', '120', '17', '1700.00', '0.00', '0.00', '0', '50.00', '0', '1700', '15/08/2019', '20190815', '1', 'pm001');
+
+-- ----------------------------
+-- Table structure for waterrates
+-- ----------------------------
+DROP TABLE IF EXISTS `waterrates`;
+CREATE TABLE `waterrates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sewer` varchar(20) DEFAULT NULL,
+  `water` varchar(20) DEFAULT NULL,
+  `fixed` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of waterrates
+-- ----------------------------
+INSERT INTO `waterrates` VALUES ('1', '69.17', '82.52', '250');
+
+-- ----------------------------
+-- Table structure for weather
+-- ----------------------------
+DROP TABLE IF EXISTS `weather`;
+CREATE TABLE `weather` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `city` varchar(50) DEFAULT NULL,
+  `temp` varchar(20) DEFAULT NULL,
+  `temp_min` varchar(20) DEFAULT NULL,
+  `temp_max` varchar(20) DEFAULT NULL,
+  `humidity` varchar(20) DEFAULT NULL,
+  `speed` varchar(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of weather
+-- ----------------------------
+INSERT INTO `weather` VALUES ('1', 'Nairobi', '23.4', '23', '24', '49', '4.6', 'broken clouds');
+
+-- ----------------------------
+-- Table structure for workshopregister
+-- ----------------------------
+DROP TABLE IF EXISTS `workshopregister`;
+CREATE TABLE `workshopregister` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `workshopid` varchar(20) DEFAULT NULL,
+  `memberid` varchar(20) DEFAULT NULL,
+  `memberno` varchar(20) DEFAULT NULL,
+  `membername` varchar(200) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  `stamp` varchar(20) DEFAULT NULL,
+  `status` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of workshopregister
+-- ----------------------------
+INSERT INTO `workshopregister` VALUES ('1', '3', '11', '1000001', 'EARNEST MUREITHI', '15/01/2020', '20200115', '1');
+INSERT INTO `workshopregister` VALUES ('2', '4', '21', 'MKPACENT-0006', 'DAVID NDUNGU MWENJA', '01/02/2020', '20200201', '1');
+INSERT INTO `workshopregister` VALUES ('3', '4', '21', 'MKPACENT-0006', 'DAVID NDUNGU MWENJA', '01/02/2020', '20200201', '1');
+
+-- ----------------------------
+-- Table structure for workshops
+-- ----------------------------
+DROP TABLE IF EXISTS `workshops`;
+CREATE TABLE `workshops` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(200) DEFAULT NULL,
+  `location` varchar(200) DEFAULT NULL,
+  `startdate` varchar(20) DEFAULT NULL,
+  `enddate` varchar(20) DEFAULT NULL,
+  `startstamp` varchar(20) DEFAULT NULL,
+  `endstamp` varchar(20) DEFAULT NULL,
+  `date` varchar(20) DEFAULT NULL,
+  `stamp` varchar(20) DEFAULT NULL,
+  `remarks` text,
+  `status` varchar(1) DEFAULT NULL,
+  `username` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of workshops
+-- ----------------------------
+INSERT INTO `workshops` VALUES ('3', 'Annual Conference for Pharmaceutical Technologists', 'Mombasa Beach Hotel,Mombasa', '24/01/2020', '30/01/2020', '20200124', '20200130', '15/01/2020', '20200115', 'Promoting Health for betterness', '0', 'pm001');
+INSERT INTO `workshops` VALUES ('4', 'LAUNCH OF KPA CENTRAL BRANCH WEBSITE AND PORTAL', 'CRAVERS,THIKA,KENYA', '01/02/2020', '01/02/2020', '20200201', '20200201', '01/02/2020', '20200201', 'TOPIC:DYSLIPIDEMIA', '0', 'pm001');
