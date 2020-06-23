@@ -7185,11 +7185,14 @@ WHERE
 
         $resultc = mysql_query($sql);
         if ($resultc) {
-            echo '<script>swal("Success!", "proclamation details saved successfully", "success");</script>';
+           
+            echo '<script>swal("Success!", "proclamation saved successfully", "success");</script>';
+            echo "<script>window.open('report.php?id=96&param=" . $param . "');</script>";
+
 
             $resulta = mysql_query("insert into log values('0','" . $username . " updates proclamation details repossess id='" . $param . "' ','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {notificationtabs(" . $param . ");},500);</script>";
-            echo '<script>window.open("report.php?id=150&param=" + ' . $param . ');</script>';
+            // echo '<script>window.open("report.php?id=150&param=" + ' . $param . ');</script>';
         } else {
             echo '<script>swal("Error", "failed to save proclamation details!", "error");</script>';
         }
