@@ -414,7 +414,7 @@ if (isset($_SESSION['valid_user'])) {
 
               <li style="">
                     <?php if($rightsarr[107]=='YES'){
-          echo'<a  href="#" onclick="" >
+          echo'<a  href="#" onclick="newClient()" >
                         <span class="menu-text">New Client</span>  
                     </a>';} ?>
                 </li> 
@@ -422,14 +422,14 @@ if (isset($_SESSION['valid_user'])) {
                 
                 <li>
                     <?php if($rightsarr[108]=='YES'){
-          echo'<a  href="#" onclick="" >
+          echo'<a  href="#" onclick="findClient()" >
                         <span class="menu-text">Find Client</span>  
                     </a>';} ?>
                 </li> 
 
                 <li>
                     <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="" >
+          echo'<a  href="#" onclick="editClient()" >
                         <span class="menu-text">Edit Client Info</span>  
                     </a>';} ?>
                 </li> 
@@ -437,21 +437,21 @@ if (isset($_SESSION['valid_user'])) {
 
             <li>
                      <?php if($rightsarr[113]=='YES'){
-          echo'<a  href="#" onclick="" >
+          echo'<a  href="#" onclick="clientFile()" >
                         <span class="menu-text">Client File</span>  
                         </a>';} ?>
                 </li> 
                 
                 <li>
                      <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="" >
+          echo'<a  href="#" onclick="clientFileUpload()" >
                         <span class="menu-text">Client File Upload</span>  
                         </a>';} ?>
                 </li> 
 
                 <li>
                      <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="" >
+          echo'<a  href="#" onclick="archiveClient()" >
                         <span class="menu-text">Archive Client</span>  
                         </a>';} ?>
                 </li> 
@@ -459,7 +459,7 @@ if (isset($_SESSION['valid_user'])) {
                
                <li>
                      <?php if($rightsarr[119]=='YES'){
-              echo'<a  href="#" onclick="" >
+              echo'<a  href="#" onclick="archivedClients()" >
                         <span class="menu-text">Archived Clients</span>  
                         </a>';} ?>
                 </li>     
