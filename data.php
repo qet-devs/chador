@@ -6107,7 +6107,143 @@ switch ($id) {
         // all client data manipulation
 
 
+        case 200:
 
+            $business_name = $_GET['business_name'];
+            $telephone = $_GET['telephone'];
+            $pin_registration = $_GET['pin_registration'];
+            $vat_registration = $_GET['vat_registration'];
+            $certificate_of_incorporation = $_GET['certificate_of_incorporation'];
+            $national_id = $_GET['national_id'];
+            $contact_person = $_GET['contact_person'];
+            $email = $_GET['email'];
+    
+            $phone = $_GET['phone'];
+           
+    
+            //check if phone number exists
+    
+            $resultx = mysql_query("select * from clients where phone='" . $phone . "' or email='" . $email . "'");
+            if (mysql_num_rows($resultx) > 0) {
+                $rowx = mysql_fetch_array($resultx);
+                $tenantname = stripslashes($rowx['bname']);
+                echo '<script>swal("Error", "Email Address/Phone number already registered under ' . $business_name . '!Consult the System Admin", "error");</script>';
+    
+            }
+    
+    
+            //escalations
+            $next = date('Y-m-d', strtotime('+1 month'));
+            $next = preg_replace('~-~', '', $next);
+    
+            $invoice_expiry_stamp = date('Y') . '1231';
+    
+    
+            $resulty = mysql_query("select * from clients order by id desc limit 0,1");
+            $rowy = mysql_fetch_array($resulty);
+            $unique_user_id = stripslashes($rowy['unique_user_id']) + 1;
+    
+            $kpano = 'MKPACENT-' . sprintf("%04d", $tid);
+    
+    
+            $pass = $string = generateRandomString();
+            $password = sha1($kpano);
+    
+            $message = 'Hi ' . $bname . ',Welcome to the KPA Central Management Information System Member Web Portal. Click this link to redirect to the portal.http://197.248.117.186:24/kpa/portal/index.php .These are your login credentials:-Username: ' . $kpano . ' Password: ' . $string;
+    
+    
+            $resultc = mysql_query("INSERT INTO tenants (id, tid, bname, address, phone, email, idno, pin, date, stamp, status, eno, eyear,billing_type, invoice_status, invoice_expiry_stamp,  gname, grship, gphone, currfacility, county, subcounty,kpano,mgroup,password) VALUES ('0','" . $tid . "','" . $bname . "','" . $address . "','" . $phone . "','" . $email . "','" . $idno . "','" . $pin . "','" . date('d/m/Y') . "','" . date('Ymd') . "',1,'" . $eno . "','" . $eyear . "','" . $btype . "','1','" . $invoice_expiry_stamp . "','" . $gname . "','" . $grship . "','" . $gphone . "','" . $currfacility . "','" . $county . "','" . $subcounty . "','" . $kpano . "','" . $mgroup . "','" . $password . "')") or die (mysql_error());
+            $resultg = mysql_query("update tendocs set tid='" . $tid . "' where soi='" . $soi . "'");
+    
+            sendsms($message, $phone);
+    
+    
+            //post membership invoice
+    
+            $actid = 1;//membership
+            $invtot = 0;
+            $str = '';
+            $resultb = mysql_query("select * from activities where id='" . $actid . "' limit 0,1");
+            $rowb = mysql_fetch_array($resultb);
+            $actname = stripslashes($rowb['name']);
+            $actlid = stripslashes($rowb['lid']);
+            $actlname = stripslashes($rowb['lname']);
+            $vatper = stripslashes($rowb['vat']) / 100;
+            $total = $amount = stripslashes($rowb['amount']);
+            $vat = 0;
+            $str .= $actname . ',';
+    
+    
+            $result = mysql_query("select * from tenants where  tid='" . $tid . "' limit 0,1");
+            $row = mysql_fetch_array($result);
+            $tid = stripslashes($row['tid']);
+            $hid = stripslashes($row['hid']);
+            $hname = stripslashes($row['hname']);
+            $rid = stripslashes($row['rid']);
+            $roomno = $rno = stripslashes($row['roomno']);
+            $tname = $bname = stripslashes($row['bname']);
+            $bal = stripslashes($row['bal']);
+            $vatstatus = stripslashes($row['vat']);
+    
+            //get receipt number
+            $resultc = mysql_query("select * from receipts where drcr='dr' order by serial desc limit 0,1");
+            $rowc = mysql_fetch_array($resultc);
+            $invno = stripslashes($rowc['invno']) + 1;
+    
+            $month = $year = date('Y');
+    
+    
+            //insert invoice
+            $desc = 'INVOICE FOR ANNUAL MEMBERSHIP FOR THE YEAR' . date('Y');
+            //$vat=0;
+            $resultf = mysql_query("insert into invoices values('0','" . $invno . "','" . $hid . "','" . $hname . "','" . $rid . "','" . $rno . "','" . $tid . "','" . $bname . "','" . $month . "','" . $actid . "','" . $actname . "','" . $total . "','0','" . $total . "','1','" . $desc . "','" . date('d/m/Y') . "','" . date('Ymd') . "',1,'" . $username . "','" . $vat . "')");
+    
+    
+            //post journal entries
+            //income
+            $amount = $total - $vat;
+            $journalno = 0;
+            $cid = $actlid;
+            $did = 628;
+            $refno = $kpano;
+            $date = date('Y/m/d');
+            $description = $actname . ' Income-' . $tname . '-' . $kpano;
+            postjournal($journalno, $cid, 'Credit', 'Add', $did, 'Debit', 'Add', $amount, $description, $refno, $date, $username, $hid);
+    
+    
+            $nbal = $bal + $amount;
+            $resulte = mysql_query("insert into receipts values('0','','" . $invno . "','','','" . date('d/m/Y') . "','" . $month . "','" . $tid . "','" . $bname . "','" . $hid . "','" . $hname . "','" . $rid . "','" . $rno . "','" . $amount . "','','" . $desc . "','','" . $nbal . "','" . date('Ymd') . "','dr',1,2,'" . $username . "','" . date('Ymd') . "')");
+            $resultg = mysql_query("update tenants set bal='" . $nbal . "' where tid='" . $tid . "'");
+    
+    
+            //end invoice member
+    
+            $message = 'Hello ' . $bname . '. Welcome to KPA Central Branch. Your KPA Membership no is: ' . $kpano . '. Your account has been debited KShs. ' . number_format(floatval($amount)) . ' being the Annual Mmbership Fee.Your new balance is: ' . number_format(floatval($nbal)) . '. Thank you for your partnership.';
+    
+            $resulte = mysql_query("insert into notices values('0','Invoice','" . $message . "','" . $bname . "','" . $phone . "','" . $tid . "','" . date('d/m/Y') . "','" . date('h:i A') . "','" . date('Ymd') . "','" . date('YmdHi') . "','1','','0','" . $invno . "')");
+            sendsms($message, $phone);
+    
+    
+            //register log
+            $resulta = mysql_query("insert into log values('0','" . $username . " creates new member.Member name:" . $bname . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+    
+            if ($resultc) {
+                echo '<script>swal("Success!", "Member created and Invoiced!Member No:' . $kpano . '", "success");</script>';
+    
+                updatetenants();
+    
+                echo "<script>window.open('report.php?id=89&rcptno=" . $tid . "');</script>";
+    
+    
+                echo "<script>setTimeout(function() {newtenant();},500);</script>";
+            } else {
+                echo '<script>swal("Error", "Member not created!", "error");</script>';
+            }
+    
+    
+            break;
+    
+    
 
 
         /*****CLIENT END*****/

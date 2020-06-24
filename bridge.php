@@ -29590,7 +29590,224 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
 
 case 212:
+  
+    $param=0;$_SESSION['housediv']=array();
+    if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+    else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+      $result = mysql_query("insert into log values('','".$username." accesses New Member File Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+  
+      $prescid=date('YmdHi').RAND(10,99);
+  
+  
+      echo '<div class="vd_container" id="container">
+          <div class="vd_content clearfix" style="">
+  
+                  <div class="vd_content-section clearfix">
+              <div class="row" id="form-basic">
+                <div class="col-md-6">
+                  <div class="panel widget">
+                    <div class="panel-heading vd_bg-grey">
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> New Member Information</h3>
+                    </div>
+                    <div class="panel-body">
+                      <form class="form-horizontal" action="#" role="form">
+                        <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="business_name" value="">
+                          </div>
+                        </div>
+  
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Telephone No<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="telephone" value="">
+                          </div>
+                        </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Pin Registration<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="pin_registration" value="">
+                          </div>
+                        </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">VAT registration<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="vat_registration" value="">
+                          </div>
+                        </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Certificate of incorporation<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="certificate_of_incorporation" value="">
+                          </div>
+                        </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">National id<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="national_id" value="">
+                          </div>
+                        </div>
+  
+  
+                        <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Contact person<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="contact_person" value="">
+                          </div>
+                        </div>
+  
+  
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Email</label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="email" value="">
+                          </div>
+                        </div>
 
+                        <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Phone</label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="phone" value="">
+                          </div>
+                        </div>
+
+                       
+                         
+  
+  
+  
+                        
+                      
+                      
+                  </form>
+                    </div>
+                  </div>
+                  <!-- Panel Widget --> 
+                </div>
+                <!-- col-md-6 --> 
+  
+               <div class="col-md-6">
+                   <div class="panel widget">
+                    <div class="panel-heading vd_bg-grey">
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Documents Upload</h3>
+                    </div>
+                    <div class="panel-body">
+                       <div class="row">
+                        <div class="col-sm-4" style="border-right:1px solid #ccc">
+                        <ul class="nav nav-pills nav-stacked">
+  
+                        <li class="active"><a href="#tab7" style="border:1px solid #ccc;border-radius:4px" onclick="setype(\'Passport_Photo\')" data-toggle="tab">Passport Photo</a></li>
+  
+  
+                        <li  style="border:1px solid #ccc;border-radius:4px" onclick="setype(\'Certificate_of_Enrollment\')"><a href="#tab6" data-toggle="tab">Cert of Enrollment</a></li>
+                        
+                        
+                         <li><a href="#tab10"  style="border:1px solid #ccc;border-radius:4px" onclick="setype(\'ID_Card_Copies\')" data-toggle="tab">ID Card Copies</a></li>
+                        <li><a href="#tab11" style="border:1px solid #ccc;border-radius:4px"  onclick="setype(\'Pin_Copies\')"data-toggle="tab">Pin Copies</a></li>
+                        </ul>     
+                    </div>                      
+                      <div class="col-sm-8">            
+                      <div class="tab-content mgbt-xs-20">
+                        <div class="tab-pane active" id="tab6">
+  
+                          <form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
+                          <div class="cleaner"></div> 
+                          <div class="form-group">
+                          <label style="float:left" class="col-sm-3">Name:<span style="color:#f00">*</span></label>
+                          <div class="col-sm-9 controls">
+                            <input type="text" id="fname"  name="fname"  required>
+                          </div>
+                          </div>
+                          <div class="cleaner_h5"></div>
+                          <dd class="custuploadblock_js">
+                          <input style="opacity:0; float:left;" name="image" id="photoupload"  
+                          class="transfileform_js" type="file">
+                          </dd>
+                          <iframe name="leiframe" id="leiframe" class="leiframe">
+                          </iframe>
+                          <input type="hidden" id="type" name="type" value="Document"/>
+                          <input type="hidden" id="soi"  name="soi" value="'.$param.'"/>
+                          <input type="hidden"  name="sap" value=""/>
+                          <input type="hidden"  name="tid" value=""/>
+                          <input type="hidden"  name="type"   id="doctype" value="Certificate_of_Incorporation"/>
+                          <input type="hidden" id="id" name="id"  value="1"/>
+                          <div class="cleaner_h5"></div>
+                          <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:30%" type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload</button>
+                          </form>
+                          <div class="cleaner_h5"></div>  
+                          <div id="certdiv" style="width:100%;min-height:30px;"></div>
+                          <div class="cleaner_h5"></div>                
+       
+  
+                        </div><!-- end tab --> 
+                      </div><!-- end sm-9 -->  
+                      </div><!-- end row -->  
+                       
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <!-- Panel Widget --> 
+   
+                </div>
+                <!-- col-md-12 -->
+  
+  
+                   <div class="col-md-6">
+                  <div class="panel widget">
+                    <div class="panel-heading vd_bg-grey">
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Actions</h3>
+                    </div>
+                    <div class="panel-body">
+                    
+  
+                   <div class="form-group form-actions">
+                      <div class="col-sm-4"> </div>
+                      <div class="col-sm-7">
+                        <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="savenewclient()"><i class="icon-ok"></i> Save</button>
+                        <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
+                        <div id="message" style="width:40px;height:40px;float:right"></div>
+                      </div>
+                    </div>
+  
+  
+                    </div>
+                  </div>
+                  <!-- Panel Widget --> 
+                </div>
+                <!-- col-md-12 -->
+  
+  
+  
+  
+  
+              </div>
+              <!-- row --> 
+                </div>
+              
+  
+  
+              
+            </div>
+            <!-- .vd_content-section --> 
+            
+          </div>
+          <!-- .vd_content --> 
+        </div>
+        <!-- .vd_container --> ';
+  
+        echo "<script>  $( '#datepicker-normal' ).datepicker({ dateFormat: 'dd/mm/yy'}); $( '#datepicker-date' ).datepicker({ dateFormat: 'dd'});$( '#pendate' ).datepicker({ dateFormat: 'dd'});$( '#waivermonth' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
+  
+       
+      
 break;
 
 
