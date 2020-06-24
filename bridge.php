@@ -29802,6 +29802,48 @@ case 212:
       
 break;
 
+case 220:
+  $param=0;
+if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+  echo '<div class="vd_container" id="container">
+      <div class="vd_content clearfix" style="">
+    
+              <div style="width:100%;padding:20px">
+              <div class="panel-heading vd_bg-grey">
+                  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Clients Archive</h3>
+                </div>
+              <select id="intcombo"><option value="" selected>Select One...</option> ';
+                 $result =mysql_query("select * from clients where status=1");
+                  $num_results = mysql_num_rows($result);
+                    for ($i=0; $i <$num_results; $i++) {
+                        $row=mysql_fetch_array($result);
+                        $code=stripslashes($row['id']);
+                        echo '<option value="'.stripslashes($row['unique_user_id']).'">'.stripslashes($row['unique_user_id']).'-'.stripslashes($row['business_name']).'</option>';
+                      }
+                 echo'</select>
+                   <div class="cleaner_h10" id="message"></div>
+                   <div class="col-sm-7">
+                    <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                  </div>
+                  </div>
+      <!-- .vd_content --> 
+    </div>
+    <!-- .vd_container -->';
+    echo "<script>
+          $('#intcombo').select2();
+          $('#intcombo').on('select2:select', function (e) {
+        var param = $('#intcombo').val();
+        var str = $('#item5').val();
+        var parts=param.split('-',3);
+        param=parts[0];
+       archiveclient(param);
+
+        });
+         </script>";
+
+  break;
+
 
 
         /*****CLIENT END*****/

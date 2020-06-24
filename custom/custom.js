@@ -1745,8 +1745,20 @@ function savenewclient() {
 
 }
 
+/**archive client function */
 
+function checkoutclient() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 220},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
 
+/**end archive */
 /**end of client functions */
 
 function vacate() {
@@ -9677,7 +9689,46 @@ function newClient(){
 	});
 }
 
+function archiveClient(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 220},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
 
+/**archiveclient */
+function archiveclient(b) {
+
+
+    swal({
+            title: "Are you sure?",
+            text: "The Client will be Archived!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Archive them!",
+            closeOnConfirm: true
+        },
+        function () {
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 205, b: b},
+                success: function (data) {
+                    $('#message').html(data);
+                }
+            });
+
+        });
+
+
+}
+
+/**end archive */
 
 /**end of client module */
 /**beginning of deb collection module */
