@@ -6143,19 +6143,19 @@ switch ($id) {
             $rowy = mysql_fetch_array($resulty);
             $unique_user_id = stripslashes($rowy['unique_user_id']) + 1;
     
-            $kpano = 'MKPACENT-' . sprintf("%04d", $tid);
+            // $kpano = 'MKPACENT-' . sprintf("%04d", $tid);
     
     
-            $pass = $string = generateRandomString();
-            $password = sha1($kpano);
+            // $pass = $string = generateRandomString();
+            // $password = sha1($kpano);
     
-            $message = 'Hi ' . $bname . ',Welcome to the KPA Central Management Information System Member Web Portal. Click this link to redirect to the portal.http://197.248.117.186:24/kpa/portal/index.php .These are your login credentials:-Username: ' . $kpano . ' Password: ' . $string;
+
     
     
-            $resultc = mysql_query("INSERT INTO tenants (id, tid, bname, address, phone, email, idno, pin, date, stamp, status, eno, eyear,billing_type, invoice_status, invoice_expiry_stamp,  gname, grship, gphone, currfacility, county, subcounty,kpano,mgroup,password) VALUES ('0','" . $tid . "','" . $bname . "','" . $address . "','" . $phone . "','" . $email . "','" . $idno . "','" . $pin . "','" . date('d/m/Y') . "','" . date('Ymd') . "',1,'" . $eno . "','" . $eyear . "','" . $btype . "','1','" . $invoice_expiry_stamp . "','" . $gname . "','" . $grship . "','" . $gphone . "','" . $currfacility . "','" . $county . "','" . $subcounty . "','" . $kpano . "','" . $mgroup . "','" . $password . "')") or die (mysql_error());
+            $resultc = mysql_query("INSERT INTO clients (id, unique_user_id, business_name, telephone, pin_registration, vat_registration, certificate_of_incorporation, national_id, contact_person, email, phone, status, username, date, stamp, time) VALUES ('".$id."', '".$unique_user_id."', '".$business_name."', '".$telephone."', '".$pin_registration."', '".$vat_registration."', '".$certificate_of_incorporation."', '".$national_id."', '".$contact_person."', '".$email."', '".$phone."','1','".$username."''" . date('d/m/Y') . "','" . date('Ymd') . "','" . date('H:i') . "')") or die (mysql_error());
             $resultg = mysql_query("update tendocs set tid='" . $tid . "' where soi='" . $soi . "'");
     
-            sendsms($message, $phone);
+            // sendsms($message, $phone);
     
     
             //post membership invoice
