@@ -29803,6 +29803,199 @@ case 212:
 break;
 
 /**end new client */
+/**edit client */
+
+case 213:
+  $param=0;
+  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+  echo '<div class="vd_container" id="container">
+<div class="vd_content clearfix" style="">
+
+        <div style="width:100%;padding:20px">
+        <div class="panel-heading vd_bg-grey">
+            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit client Info</h3>
+          </div>
+        <select id="intcombo" class="text-capitalize">
+        <option value="" selected>Select One...</option>';
+           $result =mysql_query("select * from clients where status=1");
+            $num_results = mysql_num_rows($result);
+              for ($i=0; $i <$num_results; $i++) {
+                  $row=mysql_fetch_array($result);
+                  $code=stripslashes($row['id']);
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['business_name']).'-'.stripslashes($row['email']).'</option>';
+                }
+           echo'</select>
+             <div class="cleaner_h10"></div>
+             <div class="col-sm-7">
+              <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+            </div>
+            </div>
+<!-- .vd_content --> 
+</div>
+<!-- .vd_container -->';
+echo "<script>
+    $('#intcombo').select2();
+    $('#intcombo').on('select2:select', function (e) {
+     var param = $('#intcombo').val();
+    var str = $('#item5').val();
+    var parts=param.split('-',3);
+    param=parts[0];
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+    url:'bridge.php',
+    data:{id:218,param:param},
+    success:function(data){
+    $('#mainp').html(data);
+    }
+    });
+
+
+  });
+   </script>";
+
+break;
+
+case 218:
+  $tid=$param=$_GET['param'];$_SESSION['housediv']=array();
+  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+      $result = mysql_query("insert into log values('','".$username." accesses clients File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+      $resultx =mysql_query("select * from clients where id='".$param."' limit 0,1");
+      $rowx=mysql_fetch_array($resultx);
+
+      echo '
+        <div class="vd_container" id="container">
+            <div class="vd_content clearfix" style="">
+
+                <div class="vd_content-section clearfix">
+                    <div class="row" id="form-basic">
+
+                        <div class="col-md-6 text-capitalize">
+                            <div class="panel widget">
+
+                                <div class="panel-heading vd_bg-grey">
+                                    <h3 class="panel-title"><span class="menu-icon"> <i
+                                                    class="fa fa-th-list"></i> </span>
+                                        Client Details</h3>
+                                </div>
+
+
+                                <div class="panel-body">
+                                <h4><label>Instructing Party </label></h4>
+                                <div class="form-group">
+                                    <label>Business Name<span style="color:#f00">*</span></label>
+                                    <input type="text" id="partyname" value="'.$rowx['businesss_name'].'" class="control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Telephone<span style="color:#f00">*</span></label>
+                                    <input type="text" id="telephone" class="control" value="'.$rowx['telephone'].'">
+                                </div>
+        
+                                <h4><label>Registration of:</label></h4>
+                                <div class="form-group">
+                                    <label>PIN<span style="color:#f00">*</span></label>
+                                    <input type="text" id="pin_registration" class="control" value="'.$rowx['pin_registration'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>VAT<span style="color:#f00">*</span></label>
+                                    <input type="text" id="vat_registration" class="control" value="'.$rowx['vat_registration'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Certificate of Incorporation<span style="color:#f00">*</span></label>
+                                    <input type="text" id="certificate_of_incorporation" class="control" value="'.$rowx['certificate_of_incorporation'].'">
+                                </div>
+        
+                                <h4><label></label></h4>
+                                <div class="form-group">
+                                    <label>National id<span style="color:#f00">*</span></label>
+                                    <input type="text" id="national_id" class="control" value="'.$rowx['national_id'].'">
+                                </div>
+                                
+                                <h4><label></label></h4>
+                                <div class="form-group">
+                                    <label>Contact Person<span style="color:#f00">*</span></label>
+                                    <input type="text" id="contact_person" class="control" value="'.$rowx['contact_person'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email<span style="color:#f00">*</span></label>
+                                    <input type="text" id="email" class="control" value="'.$rowx['email'].'">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone<span style="color:#f00">*</span></label>
+                                    <input type="text" id="phone" class="control" value="'.$rowx['phone'].'">
+                                </div>
+                            </div>
+                            <!-- Panel body -->
+        
+                              
+
+                            </div>
+                            <!-- Panel Widget -->
+
+
+
+                           
+
+                           
+                            <!-- Panel Widget -->
+                        </div>
+                        <!-- col-md-6 -->
+
+                        <div class="col-md-6 text-capitalize">
+                           
+                            <!-- Panel Widget -->
+
+                           
+                            <!-- Panel Widget -->
+
+                            
+                            <!-- Panel Widget -->
+
+                            <div class="panel widget">
+                                <div class="panel-heading vd_bg-grey">
+                                    <h3 class="panel-title"><span class="menu-icon"> <i
+                                                    class="fa fa-th-list"></i> </span>
+                                        Letter Actions
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    <div class="form-group form-actions">
+                                        <div class="col-sm-4"></div>
+                                        <div class="col-sm-7">
+                                            <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                    onclick="saveClient('.$param.')"><i class="icon-ok"></i>
+                                                update
+                                            </button>
+                                            <button class="btn btn-danger" type="button" onclick="hidecont()">
+                                                Cancel
+                                            </button>
+                                            <div id="message" style="width:40px;height:40px;float:right"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- Panel Widget -->
+                            </div>
+                            <!-- col-md-12 -->
+
+                        </div>
+                        <!-- col-md-12 -->
+
+
+                    </div>
+                    <!-- row -->
+                </div>
+                <!--vd_content-section-->
+            </div>
+            <!--vd_content-->
+        </div>
+        <!-- .vd_container -->';
+break;
+
+
+/**end edit */
 
 /**start client file */
 
@@ -29893,6 +30086,7 @@ case 215:
                     <br/>
                     <div class="tab-content mgbt-xs-20">
                         <div class="tab-pane active" id="tab1">
+
                         <div class="panel-body">
                         <h4><label>Instructing Party </label></h4>
                         <div class="form-group">

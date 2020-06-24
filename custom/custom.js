@@ -9744,6 +9744,86 @@ function newClient(){
 }
 // end new client
 
+//edit client
+function editClient() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 403},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+function saveClient(param) {
+    var party_name = $('#partyname').val();
+    var uid = $('#uid').val();
+    var party_address = $('#partyaddress').val();
+    var advocate_name = $('#advocatename').val();
+    var advocate_address = $('#advocateaddress').val();
+    var owner_name = $('#ownername').val();
+    var owner_address = $('#owneraddress').val();
+    var debtor_name = $('#debtorname').val();
+    var debtor_address = $('#debtoraddress').val();
+    var property_location = $('#propertylocation').val();
+    var property_person = $('#propertyperson').val();
+    var property_description = $('#propertydescription').val();
+    var ad_instructions = $('#adinstructions').val();
+    var expenditure = $('#expenditure').val();
+    var datepicker = $('#datepicker').val();
+    var recovery_amount = $('#recoveryamount').val();
+    var daily_rates = $('#dailyrates').val();
+    var est_legal_cost = $('#estlegalcost').val();
+    var est_auctioneers_fees = $('#estauctioneersfees').val();
+    var reserve_price = $('#reserveprice').val();
+    var reason = $('#reason').val();
+
+    if (party_name == '' || advocate_name == '' || owner_name == '' || debtor_name == '' || property_description == '' || property_location == '' || recovery_amount == '') {
+        swal("Error", "Make sure you enter all the required fields!", "error");
+        return;
+    } else {
+        var data = {
+            id: 401,
+            param: param,
+            uid: uid,
+            partyname: party_name,
+            partyaddress: party_address,
+            advocatename: advocate_name,
+            advocateaddress: advocate_address,
+            ownername: owner_name,
+            owneraddress: owner_address,
+            debtorname: debtor_name,
+            debtoraddress: debtor_address,
+            propertylocation: property_location,
+            propertyperson: property_person,
+            propertydescription: property_description,
+            adinstructions: ad_instructions,
+            expenditure: expenditure,
+            datepicker: datepicker,
+            recoveryamount: recovery_amount,
+            dailyrates: daily_rates,
+            estlegalcost: est_legal_cost,
+            estauctioneersfees: est_auctioneers_fees,
+            reserveprice: reserve_price,
+            reason: reason
+        };
+
+        //console.log(data);
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+//end edit
+
+
 //client file
 function clientFile() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
