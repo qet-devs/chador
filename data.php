@@ -6256,6 +6256,16 @@ switch ($id) {
     /**end archive */
 
 
+/**archiveclient */
+    case 206:
+        $param = $tid = $_GET['param'];
+        $result = mysql_query("update clients set status=1 where id='" . $param . "'") or die (mysql_error());
+        $resulta = mysql_query("insert into log values('','" . $username . " activates letter.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo '<script>archivedclients();</script>	';
+
+        break;
+
+/**end of activate client */
         /*****CLIENT END*****/
 
         /********************************************* */

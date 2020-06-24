@@ -513,6 +513,22 @@ function majoropen(a) {
                     });
                 break;
 
+                case 205:
+                    activateclient(b);
+                    break;
+    
+                case 405:
+                    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                    $.ajax({
+                        url: 'bridge.php',
+                        data: {id: 409, param: b},
+                        success: function (data) {
+                            $('#mainp').html(data);
+                        }
+                    });
+    
+                    break;
+
         }
 
     }, 500);
@@ -1759,6 +1775,44 @@ function checkoutclient() {
 }
 
 /**end archive */
+/**activate client */
+function activateclient(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The Client will be activated!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Activate client!",
+            closeOnConfirm: true
+        },
+        function () {
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 206, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                }
+            });
+
+        });
+
+}
+/**end of activate */
+/**start of archived clients */
+function archivedclients() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 221},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
 /**end of client functions */
 
 function vacate() {
@@ -9688,7 +9742,9 @@ function newClient(){
 	}
 	});
 }
+// end new client
 
+//start archive client
 function archiveClient(){
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
@@ -9729,6 +9785,20 @@ function archiveclient(b) {
 }
 
 /**end archive */
+
+/**start archived client */
+
+//end archived client
+function archivedClients(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 221},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
 
 /**end of client module */
 /**beginning of deb collection module */
