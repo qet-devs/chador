@@ -29578,6 +29578,98 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
       <style>td{cursor:pointer} </style>';
         break;
-       
+       /****************************************** */
+        /******** CLIENT MODULE INTERFACE **********/
+        /***************************************** */
 
+        // this is the part of the code responsible for displaying the various interfaces of the client module and pupulating it with date
+
+        /***** CLIENT START*****/
+        // all client presentation logic goes here
+
+
+
+case 212:
+
+break;
+
+
+        /*****CLIENT END*****/
+
+        /********************************************* */
+        /****** DEBT COLLECTION MODULE INTERFACE *******/
+        /******************************************** */
+
+        // this is the part of the code responsible for displaying the various interfaces of the DEBT COLLECTION module and pupulating it with date
+
+        /*****DEBT COLLECTION START*****/
+        // all DEBT COLLECTION presentation logic goes here
+
+
+
+
+
+        /*****DEBT COLLECTION END*****/
+
+        /************************************* */
+        /****** WARRANTS MODULE INTERFACE ******/
+        /************************************ */
+
+        // this is the part of the code responsible for displaying the various interfaces of the WARRANTS module and pupulating it with date
+
+        /*****WARRANTS START*****/
+        // all WARRANTS presentation logic goes here
+
+
+
+
+
+        /*****WARRANTS END*****/
+
+        /************************************** */
+        /******* DISTRESS MODULE INTERFACE ******/
+        /************************************** */
+
+        // this is the part of the code responsible for displaying the various interfaces of the DISTRESS module and pupulating it with date
+
+        /*****DISTRESS START*****/
+        // all DISTRESS presentation logic goes here
+
+
+
+
+
+        /*****DISTRESS END*****/
+
+
+        // IMMOVABLE PROPERTY MODULE INTERFACE 
+
+        // this is the part of the code responsible for displaying the various interfaces of the IMMOVABLE PROPERTY module and pupulating it with date
+
+        /*****IMMOVABLE PROPERTY START*****/
+        // all IMMOVABLE PROPERTY presentation logic goes here
+
+
+
+
+
+        /*****IMMOVABLE PROPERTY END*****/
+
+
+
+
+        /********************************************* */
+        /****** REPOSSESSION MODULE INTERFACE *********/
+        /*********************************************/
+
+        // this is the part of the code responsible for displaying the various interfaces of the REPOSSESSION module and pupulating it with date
+
+        /*****REPOSSESSION START*****/
+        // all REPOSSESSION presentation logic goes here
+
+
+
+
+
+        /*****REPOSSESSION END*****/
 }

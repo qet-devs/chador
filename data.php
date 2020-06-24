@@ -6096,6 +6096,99 @@ switch ($id) {
             echo '<script>swal("Error", "Comment not  Posted!", "error");</script>';
         }
         break;
-   
+
+        /****************************************** */
+        /******** CLIENT MODULE DATA LAYER **********/
+        /***************************************** */
+
+        // this is the part of the code responsible for CLIENT MODULE data manipulation
+
+        /***** CLIENT START*****/
+        // all client data manipulation
+
+
+
+
+
+        /*****CLIENT END*****/
+
+        /********************************************* */
+        /****** DEBT COLLECTION MODULE INTERFACE *******/
+        /******************************************** */
+
+        // this is the part of the code responsible for DEBT COLLECTION module data manipulation
+
+        /*****DEBT COLLECTION START*****/
+        // all DEBT COLLECTION data logic goes here
+
+
+
+
+
+        /*****DEBT COLLECTION END*****/
+
+        /************************************* */
+        /****** WARRANTS MODULE INTERFACE ******/
+        /************************************ */
+
+        // this is the part of the code responsible for displaying the various interfaces of the WARRANTS module and pupulating it with date
+
+        /*****WARRANTS START*****/
+        // all WARRANTS presentation logic goes here
+
+
+
+
+
+        /*****WARRANTS END*****/
+
+        /************************************** */
+        /******* DISTRESS MODULE INTERFACE ******/
+        /************************************** */
+
+        // this is the part of the code responsible for displaying the various interfaces of the DISTRESS module and pupulating it with date
+
+        /*****DISTRESS START*****/
+        // all DISTRESS presentation logic goes here
+
+
+
+
+
+        /*****DISTRESS END*****/
+
+
+        // IMMOVABLE PROPERTY MODULE INTERFACE 
+
+        // this is the part of the code responsible for displaying the various interfaces of the IMMOVABLE PROPERTY module and pupulating it with date
+
+        /*****IMMOVABLE PROPERTY START*****/
+        // all IMMOVABLE PROPERTY presentation logic goes here
+
+
+
+
+
+        /*****IMMOVABLE PROPERTY END*****/
+
+
+
+
+        /********************************************* */
+        /****** REPOSSESSION MODULE INTERFACE *********/
+        /*********************************************/
+
+        // this is the part of the code responsible for displaying the various interfaces of the REPOSSESSION module and pupulating it with date
+
+        /*****REPOSSESSION START*****/
+        // all REPOSSESSION presentation logic goes here
+
+
+
+
+
+        /*****REPOSSESSION END*****/
+
+
 
 }

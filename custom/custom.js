@@ -9613,6 +9613,18 @@ function savecomment(forumid) {
 }
 
 
-
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});
 
+// CLIENTS MODULE CODE
+
+//load new client form
+function newClient(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:134},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}

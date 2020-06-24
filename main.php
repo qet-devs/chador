@@ -404,68 +404,76 @@ if (isset($_SESSION['valid_user'])) {
                             </li>
 
                             <li>
-      <a href="javascript:void(0);" data-action="click-trigger">
-          <span class="menu-icon"><i class="fa fa-users"> </i></span> 
-            <span class="menu-text">Clients</span>  
-            <span class="menu-badge"><span class="badge vd_bg-black-30"><i class="fa fa-angle-down"></i></span></span>
-        </a>
-      <div class="child-menu"  data-action="click-target">
-            <ul>
+                                <a href="javascript:void(0);" data-action="click-trigger">
+                                    <span class="menu-icon"><i class="fa fa-users"> </i></span>
+                                    <span class="menu-text">Clients</span>
+                                    <span class="menu-badge"><span class="badge vd_bg-black-30"><i
+                                                    class="fa fa-angle-down"></i></span></span>
+                                </a>
+                                <div class="child-menu" data-action="click-target">
+                                    <ul>
 
-              <li style="">
-                    <?php if($rightsarr[107]=='YES'){
-          echo'<a  href="#" onclick="newClient()" >
+                                        <li style="">
+                                            <?php if ($rightsarr[107] == 'YES') {
+                                                echo '<a  href="#" onclick="newClient()" >
                         <span class="menu-text">New Client</span>  
-                    </a>';} ?>
-                </li> 
+                    </a>';
+                                            } ?>
+                                        </li>
 
-                
-                <li>
-                    <?php if($rightsarr[108]=='YES'){
-          echo'<a  href="#" onclick="findClient()" >
+
+                                        <li>
+                                            <?php if ($rightsarr[108] == 'YES') {
+                                                echo '<a  href="#" onclick="findClient()" >
                         <span class="menu-text">Find Client</span>  
-                    </a>';} ?>
-                </li> 
+                    </a>';
+                                            } ?>
+                                        </li>
 
-                <li>
-                    <?php if($rightsarr[109]=='YES'){
-          echo'<a  href="#" onclick="editClient()" >
+                                        <li>
+                                            <?php if ($rightsarr[109] == 'YES') {
+                                                echo '<a  href="#" onclick="editClient()" >
                         <span class="menu-text">Edit Client Info</span>  
-                    </a>';} ?>
-                </li> 
-             
+                    </a>';
+                                            } ?>
+                                        </li>
 
-            <li>
-                     <?php if($rightsarr[113]=='YES'){
-          echo'<a  href="#" onclick="clientFile()" >
+
+                                        <li>
+                                            <?php if ($rightsarr[113] == 'YES') {
+                                                echo '<a  href="#" onclick="clientFile()" >
                         <span class="menu-text">Client File</span>  
-                        </a>';} ?>
-                </li> 
-                
-                <li>
-                     <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="clientFileUpload()" >
+                        </a>';
+                                            } ?>
+                                        </li>
+
+                                        <li>
+                                            <?php if ($rightsarr[114] == 'YES') {
+                                                echo '<a  href="#" onclick="clientFileUpload()" >
                         <span class="menu-text">Client File Upload</span>  
-                        </a>';} ?>
-                </li> 
+                        </a>';
+                                            } ?>
+                                        </li>
 
-                <li>
-                     <?php if($rightsarr[114]=='YES'){
-          echo'<a  href="#" onclick="archiveClient()" >
+                                        <li>
+                                            <?php if ($rightsarr[114] == 'YES') {
+                                                echo '<a  href="#" onclick="archiveClient()" >
                         <span class="menu-text">Archive Client</span>  
-                        </a>';} ?>
-                </li> 
+                        </a>';
+                                            } ?>
+                                        </li>
 
-               
-               <li>
-                     <?php if($rightsarr[119]=='YES'){
-              echo'<a  href="#" onclick="archivedClients()" >
+
+                                        <li>
+                                            <?php if ($rightsarr[119] == 'YES') {
+                                                echo '<a  href="#" onclick="archivedClients()" >
                         <span class="menu-text">Archived Clients</span>  
-                        </a>';} ?>
-                </li>     
-            </ul>   
-        </div>
-    </li> 
+                        </a>';
+                                            } ?>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
 
                             <li>
                                 <a href="javascript:void(0);" data-action="click-trigger">
@@ -594,7 +602,7 @@ if (isset($_SESSION['valid_user'])) {
 
                             <li>
                                 <a href="javascript:void(0);" data-action="click-trigger">
-                                    <span class="menu-icon"><i class="fa fa-gavel"> </i></span>
+                                    <span class="menu-icon"><i class="fa fa-briefcase"> </i></span>
                                     <span class="menu-text">Distress</span>
                                     <span class="menu-badge"><span class="badge vd_bg-black-30"><i
                                                     class="fa fa-angle-down"></i></span></span>
