@@ -10,7 +10,7 @@ $server='localhost';
      function connectlocal(){
 	     	if(isset($_SESSION['database'])){
 		 	 $database=$_SESSION['database'];
-		 	  $db = mysql_connect('localhost', 'root', '') or die(mysql_error());
+		 	  $db = mysql_connect('localhost', 'root', 'admin@123+') or die(mysql_error());
 	    	  mysql_select_db($database,$db);
 
 			 }else{

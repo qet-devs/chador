@@ -9676,3 +9676,19 @@ function newClient(){
 	}
 	});
 }
+
+
+
+/**end of client module */
+/**beginning of deb collection module */
+
+function newDebtCollection(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:300},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}

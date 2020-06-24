@@ -488,7 +488,7 @@ if (isset($_SESSION['valid_user'])) {
                                         <li style="">
 
                                             <?php if ($rightsarr[107] == 'YES') {
-                                                echo '<a  href="#" onclick="newletter()" >
+                                                echo '<a  href="#" onclick="newDebtCollection()" >
                         <span class="menu-text">New Debt</span>  
                     </a>';
                                             } ?>
