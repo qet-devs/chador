@@ -1700,6 +1700,54 @@ function savenewtenant() {
 
 }
 
+/**client functions */
+
+function savenewclient() {
+    var business_name = $('#business_name').val();
+    var telephone = $('#telephone').val();
+    var pin_registration= $('#pin_registration').val();
+    var vat_registration = $('#vat_registration').val();
+
+    var certificate_of_incorporation = $('#certificate_of_incorporation').val();
+    var national_id = $('#national_id').val();
+
+    var contact_person = $('#contact_person').val();
+    var email = $('#email').val();
+    var phone = $('#phone').val();
+
+    
+
+    if (business_name == '' || telephone == '' || pin_registration == '' || vat_registration == '' || certificate_of_incorporation == '' || national_id == '' || contact_person == '' || email == ''|| phone == '') {
+        swal("Error", "Make sure you enter all the required fields!", "error");
+        return;
+    } else {
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: {
+                id: 200,
+                business_name: business_name,
+                telephone: telephone,
+                pin_registration: pin_registration,
+                vat_registration: vat_registration,
+                certificate_of_incorporation: certificate_of_incorporation,
+                national_id: national_id,
+                contact_person: contact_person,
+                email: email,
+                phone: phone,
+              
+            },
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+    }
+
+}
+
+
+
+/**end of client functions */
 
 function vacate() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
@@ -9622,7 +9670,7 @@ function newClient(){
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
-	data:{id:134},
+	data:{id:212},
 	success:function(data){
 	$('#mainp').html(data);
 	}
