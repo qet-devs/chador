@@ -9744,6 +9744,33 @@ function newClient(){
 }
 // end new client
 
+//client file
+function clientFile() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 214},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+//end client file
+
+//client upload
+function clientFileUpload(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 216},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+//end of client upload
+
 //start archive client
 function archiveClient(){
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
