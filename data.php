@@ -6243,6 +6243,52 @@ switch ($id) {
     
             break;
 
+            //end new client
+
+            //edit client
+            case 201:
+                $id = $_GET['param'];
+                $uid = $_GET['uid'];
+                $partyname = strtoupper($_GET['partyname']);
+                $partyaddress = ucwords($_GET['partyaddress']);
+                $advocatename = strtoupper($_GET['advocatename']);
+                $advocataddress = ucwords($_GET['advocateaddress']);
+                $ownername = strtoupper($_GET['ownername']);
+                $owneraddress = ucwords($_GET['owneraddress']);
+                $debtorname = strtoupper($_GET['debtorname']);
+                $debtoraddress = ucwords($_GET['debtoraddress']);
+                $propertylocation = ucwords($_GET['propertylocation']);
+                $propertyperson = strtoupper($_GET['propertyperson']);
+                $propertydescription = $_GET['propertydescription'];
+                $adinstructions = $_GET['adinstructions'];
+                $expenditure = $_GET['expenditure'];
+                $datepicker = $_GET['datepicker'];
+                $amount = $_GET['recoveryamount'];
+                $dailyrates = $_GET['dailyrates'];
+                $estlegalcost = $_GET['estlegalcost'];
+                $estauctioneersfees = $_GET['estauctioneersfees'];
+                $reserveprice = $_GET['reserveprice'];
+                $reason = $_GET['reason'];
+        
+                $resultg = mysql_query("UPDATE `clients` SET `partyname`='" . $partyname . "',`partyaddress`='" . $partyaddress . "',`advocatename`='" . $advocatename . "',`advocateaddress`='" . $advocataddress . "',`ownername`='" . $ownername . "',`owneraddress`='" . $owneraddress . "',`debtorname`='" . $debtorname . "',`debtoraddress`='" . $debtoraddress . "',`propaddress`='" . $propertylocation . "',`propperson`='" . $propertyperson . "',`propdescription`='" . $propertydescription . "',`adinstructions`='" . $adinstructions . "',`expenditure`='" . $expenditure . "',`date`='" . $datepicker . "',`amount`='" . $amount . "',`dailyrates`='" . $dailyrates . "',`estlegalcost`='" . $estlegalcost . "',`estauctioneersfees`='" . $estauctioneersfees . "',`reserveprice`='" . $reserveprice . "',`reason`='" . $reason . "' WHERE `id`='" . $id . "'") or die (mysql_error());
+        
+                $update_tenant_table = mysql_query("update tenants set bname='" . $ownername . "', address='" . $owneraddress . "', dname='" . $debtorname . "' WHERE `tid`='" . $uid . "'");
+                //register log
+                $resulta = mysql_query("insert into log values('0','" . $username . " updates  letter info where letter id:" . $id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        
+                if ($resultg) {
+                    echo '<script>swal("Success!", "letter Info updated!", "success");</script>';
+                    updateletters();
+                    //echo"<script>window.open('report.php?id=89&rcptno=".$tid."');</script>";
+        
+                    echo "<script>setTimeout(function() {editletter();},500);</script>";
+                } else {
+                    echo '<script>swal("Error", "Member Info not Saved!", "error");</script>';
+                }
+                break;
+        
+            //end edit client
+
             /**archive client */
             case 205:
                 $param = $tid = $_GET['b'];
