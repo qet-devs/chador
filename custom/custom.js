@@ -1718,7 +1718,34 @@ function savenewtenant() {
 
 /**client functions */
 
-function savenewclient() {
+/**new client */
+
+
+function newBusiness() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 212},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+function newClients() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 212},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+
+function saveNewBusiness() {
     var business_name = $('#business_name').val();
     var telephone = $('#telephone').val();
     var pin_registration= $('#pin_registration').val();
@@ -1733,7 +1760,7 @@ function savenewclient() {
 
     
 
-    if (business_name == '' || telephone == '' || pin_registration == '' || vat_registration == '' || certificate_of_incorporation == '' || national_id == '' || contact_person == '' || email == ''|| phone == '') {
+    if (business_name == '' || telephone == '' || national_id == '' || contact_person == '' || email == ''|| phone == '') {
         swal("Error", "Make sure you enter all the required fields!", "error");
         return;
     } else {
@@ -1760,6 +1787,61 @@ function savenewclient() {
     }
 
 }
+
+function saveNewClient() {
+    var business_name = $('#business_name').val();
+    var telephone = $('#telephone').val();
+   
+    var national_id = $('#national_id').val();
+
+    var contact_person = $('#contact_person').val();
+    var email = $('#email').val();
+    var phone = $('#phone').val();
+
+    
+
+    if (business_name == '' || telephone == '' || national_id == '' || contact_person == '' || email == ''|| phone == '') {
+        swal("Error", "Make sure you enter all the required fields!", "error");
+        return;
+    } else {
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: {
+                id: 200.1,
+                business_name: business_name,
+                telephone: telephone,
+               
+                national_id: national_id,
+                contact_person: contact_person,
+                email: email,
+                phone: phone,
+              
+            },
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+    }
+
+}
+
+
+/**end of new client */
+
+/**EDIT CLIENT */
+
+function editClient() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 213},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+/**END OF EDIT */
 
 /**archive client function */
 
@@ -9744,17 +9826,7 @@ function newClient(){
 }
 // end new client
 
-//edit client
-function editClient() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 403},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
+
 
 function saveClient(param) {
     var business_name = $('#business_name').val();
@@ -9769,7 +9841,7 @@ function saveClient(param) {
     var email = $('#email').val();
     var phone = $('#phone').val();
 
-    if (business_name == '' || telephone == '' || pin_registration == '' || vat_registration == '' || certificate_of_incorporation == '' || national_id == '' || contact_person == '' || email == ''|| phone == '') {
+    if (business_name == '' || telephone == '' || national_id == '' || contact_person == '' || email == ''|| phone == '') {
         swal("Error", "Make sure you enter all the required fields!", "error");
         return;
     } else {
@@ -9800,7 +9872,18 @@ function saveClient(param) {
     }
 }
 //end edit
-
+//find client
+function findClient() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 219},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+//end find client
 
 //client file
 function clientFile() {
