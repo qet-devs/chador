@@ -513,21 +513,42 @@ function majoropen(a) {
                     });
                 break;
 
-                case 205:
-                    activateclient(b);
-                    break;
-    
-                case 405:
-                    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                case 200:
+                    //edit letter
+                    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
                     $.ajax({
                         url: 'bridge.php',
-                        data: {id: 409, param: b},
+                        data: {id: 215, param: b},
                         success: function (data) {
                             $('#mainp').html(data);
                         }
                     });
     
                     break;
+                    case 201:
+                $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                $.ajax({
+                    url: 'bridge.php',
+                    data: {id: 219, param: b},
+                    success: function (data) {
+                        $('#mainp').html(data);
+                    }
+                });
+
+                break;
+
+                case 202:
+                    archiveclient(b);
+                    break;
+                
+
+
+                case 205:
+                    activateclient(b);
+                    break;
+    
+                   
+        
 
         }
 
