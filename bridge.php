@@ -29627,21 +29627,21 @@ case 212:
                         </div>
   
                          <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Pin Registration<span style="color:#f00">*</span></label>
+                          <label style="float:left" class="col-sm-4">Pin Registration<span style="color:#f00"></span></label>
                           <div class="col-sm-8 controls">
                             <input type="text" id="pin_registration" value="">
                           </div>
                         </div>
   
                          <div class="form-group">
-                          <label style="float:left" class="col-sm-4">VAT registration<span style="color:#f00">*</span></label>
+                          <label style="float:left" class="col-sm-4">VAT registration<span style="color:#f00"></span></label>
                           <div class="col-sm-8 controls">
                             <input type="text" id="vat_registration" value="">
                           </div>
                         </div>
   
                          <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Certificate of incorporation<span style="color:#f00">*</span></label>
+                          <label style="float:left" class="col-sm-4">Certificate of incorporation<span style="color:#f00"></span></label>
                           <div class="col-sm-8 controls">
                             <input type="text" id="certificate_of_incorporation" value="">
                           </div>
@@ -30025,7 +30025,7 @@ case 215:
                 </div>
                 <div class="panel-body">
                     <ul class="nav nav-tabs text-capitalize">
-                        <li class="active"><a href="#tab1" data-toggle="tab">Client Information</a></li>
+                        <li class="active"><a href="#tab1" data-toggle="tab">Client Information Panel</a></li>
                       
                     </ul>
                     <br/>
@@ -30033,7 +30033,7 @@ case 215:
                         <div class="tab-pane active" id="tab1">
 
                         <div class="panel-body">
-                        <h4><label>Instructing Party </label></h4>
+                        <h4><label>Client details </label></h4>
                         <div class="form-group">
                             <label>Business Name<span style="color:#f00">*</span></label>
                             <input type="text" id="business_name" class="control" value="'.$rowx['business_name'].'">
@@ -30058,13 +30058,13 @@ case 215:
                             <input type="text" id="certificate_of_incorporation" class="control" value="'.$rowx['certificate_of_incorporation'].'">
                         </div>
 
-                        <h4><label></label></h4>
+                        <h4><label>Contact Information</label></h4>
                         <div class="form-group">
                             <label>National id<span style="color:#f00">*</span></label>
                             <input type="text" id="national_id" class="control" value="'.$rowx['national_id'].'">
                         </div>
                         
-                        <h4><label></label></h4>
+                        
                         <div class="form-group">
                             <label>Contact Person<span style="color:#f00">*</span></label>
                             <input type="text" id="contact_person" class="control" value="'.$rowx['contact_person'].'">
@@ -30217,7 +30217,14 @@ case 217:
                      
                         <div class="panel-body" style="font-size:20px;font-family:baskerville">
                                   <ul>';
-                                  getdocsclients();
+                                  $resulta = mysql_query("select * from tendocs where  soi='Clients' order by stamp desc");
+                                  $num_resultsa = mysql_num_rows($resulta);
+                                  for ($i = 0; $i < $num_resultsa; $i++) {
+                                      $rowa = mysql_fetch_array($resulta);
+                              
+                                      echo '<li><a href="' . $rowa['link'] . '">' . $rowa['details'] . '</a></li>';
+                              
+                                  }
                                   echo '</ul>             
                     
                         <!-- block -->
@@ -30377,15 +30384,15 @@ case 219:
                             }
     
                             if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(400)">Edit Client</label><br/>';}
+                                                              onclick="majoropen(200)">Edit Client</label><br/>';}
                             if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(405)">Client Info</label><br/>';}
+                                                              onclick="majoropen(201)">Client Info</label><br/>';}
                             // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                             //                                   onclick="majoropen(401)">Property Description</label><br/>';}
                             if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                               onclick="majoropen(406)">Invoice</label><br/>';}
                             if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(403)">Archive Client</label><br/>';}
+                                                              onclick="majoropen(202)">Archive Client</label><br/>';}
                             echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
                         </div>
     
