@@ -30216,6 +30216,7 @@ case 217:
                     </div>
                      
                         <div class="panel-body" style="font-size:20px;font-family:baskerville">
+                        <form>
                                   <ul>';
                                   $resulta = mysql_query("select * from tendocs where  soi='Clients' order by stamp desc");
                                   $num_resultsa = mysql_num_rows($resulta);
@@ -30225,7 +30226,8 @@ case 217:
                                       echo '<li><a href="' . $rowa['link'] . '">' . $rowa['details'] . '</a></li>';
                               
                                   }
-                                  echo '</ul>             
+                                  echo '</ul>   
+                                  </form>          
                     
                         <!-- block -->
                        
