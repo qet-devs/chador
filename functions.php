@@ -70,7 +70,24 @@ function getdocsletter($id)
 
 }
 
+/**clients uploaded documents*/
 
+
+function getdocsclients($id)
+{
+    $resulta = mysql_query("select * from tendocs where  soi='Clients' order by stamp desc");
+    $num_resultsa = mysql_num_rows($resulta);
+    for ($i = 0; $i < $num_resultsa; $i++) {
+        $rowa = mysql_fetch_array($resulta);
+
+        echo '<li><a href="' . $rowa['link'] . '">' . $rowa['details'] . '</a></li>';
+
+    }
+
+}
+
+
+/**end of client documents */
 function getdocsrepossession($id)
 {
     $resulta = mysql_query("select * from tendocs where  sap='repossession' order by stamp desc");

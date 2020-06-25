@@ -408,9 +408,9 @@ $where = "";
         break;
         /**end of client */
 
-    case 400:
+    case 200:
         // DB table to use
-        $table = 'letters';
+        $table = 'clients';
          
         // Table's primary key
         $primaryKey = 'id';
@@ -422,12 +422,12 @@ $where = "";
         // indexes
             $columns = array(
                 array( 'db' => 'id', 'dt' => 0 ),
-                array( 'db' => 'partyname', 'dt' => 1 ),
-                array( 'db' => 'advocatename', 'dt' => 2 ),
-                array( 'db' => 'debtorname', 'dt' => 3 ),
-                array( 'db' => 'amount',  'dt' => 4 ),
-                array( 'db' => 'dailyrates',   'dt' => 5 ),
-                array( 'db' => 'date',    'dt' => 6 )
+                array( 'db' => 'business_name', 'dt' => 1 ),
+                array( 'db' => 'telephone', 'dt' => 2 ),
+                array( 'db' => 'pin_registration', 'dt' => 3 ),
+                array( 'db' => 'vat_registration',  'dt' => 4 ),
+                array( 'db' => 'contact_person',   'dt' => 5 ),
+                array( 'db' => 'email',    'dt' => 6 )
             );
     
         break;

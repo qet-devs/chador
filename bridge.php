@@ -29607,7 +29607,7 @@ case 212:
                 <div class="col-md-6">
                   <div class="panel widget">
                     <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> New Business Information</h3>
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> New Clients Information</h3>
                     </div>
                     <div class="panel-body">
                       <form class="form-horizontal" action="#" role="form">
@@ -29678,6 +29678,8 @@ case 212:
                           </div>
                         </div>
 
+                      
+
                        
                       
                       
@@ -29686,77 +29688,20 @@ case 212:
                   </div>
                   <!-- Panel Widget --> 
                 </div>
+                
+               
+
+
+
                 <!-- col-md-6 --> 
   
-               <div class="col-md-6">
-               <div class="panel widget">
-               <div class="panel-heading vd_bg-grey">
-                 <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> New Individual Information</h3>
-               </div>
-               <div class="panel-body">
-                 <form class="form-horizontal" action="#" role="form">
-                   <div class="form-group">
-                     <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
-                     <div class="col-sm-8 controls">
-                       <input type="text" id="business_name" value="">
-                     </div>
-                   </div>
-
-
-                    <div class="form-group">
-                     <label style="float:left" class="col-sm-4">Telephone No<span style="color:#f00">*</span></label>
-                     <div class="col-sm-8 controls">
-                       <input type="text" id="telephone" value="">
-                     </div>
-                   </div>
-
-
-                    <div class="form-group">
-                     <label style="float:left" class="col-sm-4">National id<span style="color:#f00">*</span></label>
-                     <div class="col-sm-8 controls">
-                       <input type="text" id="national_id" value="">
-                     </div>
-                   </div>
-
-
-                   <div class="form-group">
-                     <label style="float:left" class="col-sm-4">Contact person<span style="color:#f00">*</span></label>
-                     <div class="col-sm-8 controls">
-                       <input type="text" id="contact_person" value="">
-                     </div>
-                   </div>
-
-
-
-                    <div class="form-group">
-                     <label style="float:left" class="col-sm-4">Email</label>
-                     <div class="col-sm-8 controls">
-                       <input type="text" id="email" value="">
-                     </div>
-                   </div>
-
-                   <div class="form-group">
-                     <label style="float:left" class="col-sm-4">Phone</label>
-                     <div class="col-sm-8 controls">
-                       <input type="text" id="phone" value="">
-                     </div>
-                   </div>
-
-                  
-                 
-                 
-             </form>
-               </div>
-             </div>
-             <!-- Panel Widget --> 
-                </div>
-                <!-- col-md-12 -->
+              
   
   
                    <div class="col-md-6">
                   <div class="panel widget">
                     <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Actions</h3>
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Clients Actions</h3>
                     </div>
                     <div class="panel-body">
                     
@@ -29764,7 +29709,7 @@ case 212:
                    <div class="form-group form-actions">
                       <div class="col-sm-4"> </div>
                       <div class="col-sm-7">
-                        <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="saveNewClient()"><i class="icon-ok"></i> Save</button>
+                        <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="saveNewBusiness()"><i class="icon-ok"></i> Save</button>
                         <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
                         <div id="message" style="width:40px;height:40px;float:right"></div>
                       </div>
@@ -29882,10 +29827,11 @@ case 218:
 
 
                                 <div class="panel-body">
-                                <h4><label>Instructing Party </label></h4>
+                                <h4><label> Business Client Details</label></h4>
                                 <div class="form-group">
                                     <label>Business Name<span style="color:#f00">*</span></label>
-                                    <input type="text" id="partyname" value="'.$rowx['businesss_name'].'" class="control">
+                                    <input type="text" id="business_name" class="control" value="'.$rowx['business_name'].'">
+                                    
                                 </div>
                                 <div class="form-group">
                                     <label>Telephone<span style="color:#f00">*</span></label>
@@ -29906,13 +29852,13 @@ case 218:
                                     <input type="text" id="certificate_of_incorporation" class="control" value="'.$rowx['certificate_of_incorporation'].'">
                                 </div>
         
-                                <h4><label></label></h4>
+                                <h4><label>National id <label><span style="color:#f00">*</span></label></label></h4>
                                 <div class="form-group">
-                                    <label>National id<span style="color:#f00">*</span></label>
+                                   
                                     <input type="text" id="national_id" class="control" value="'.$rowx['national_id'].'">
                                 </div>
                                 
-                                <h4><label></label></h4>
+                                <h4><label>Contact Details</label></h4>
                                 <div class="form-group">
                                     <label>Contact Person<span style="color:#f00">*</span></label>
                                     <input type="text" id="contact_person" class="control" value="'.$rowx['contact_person'].'">
@@ -29956,7 +29902,7 @@ case 218:
                                 <div class="panel-heading vd_bg-grey">
                                     <h3 class="panel-title"><span class="menu-icon"> <i
                                                     class="fa fa-th-list"></i> </span>
-                                        Letter Actions
+                                        Clients Actions
                                     </h3>
                                 </div>
                                 <div class="panel-body">
@@ -30080,7 +30026,6 @@ case 215:
                 <div class="panel-body">
                     <ul class="nav nav-tabs text-capitalize">
                         <li class="active"><a href="#tab1" data-toggle="tab">Client Information</a></li>
-                        <li><a href="#tab2" data-toggle="tab">Client Description</a></li>
                       
                     </ul>
                     <br/>
@@ -30091,7 +30036,8 @@ case 215:
                         <h4><label>Instructing Party </label></h4>
                         <div class="form-group">
                             <label>Business Name<span style="color:#f00">*</span></label>
-                            <input type="text" id="partyname" value="'.$rowx['businesss_name'].'" class="control">
+                            <input type="text" id="business_name" class="control" value="'.$rowx['business_name'].'">
+                            
                         </div>
                         <div class="form-group">
                             <label>Telephone<span style="color:#f00">*</span></label>
@@ -30271,7 +30217,7 @@ case 217:
                      
                         <div class="panel-body" style="font-size:20px;font-family:baskerville">
                                   <ul>';
-                                  getdocsletter();
+                                  getdocsclients();
                                   echo '</ul>             
                     
                         <!-- block -->
@@ -30352,6 +30298,152 @@ break;
 
 
 /**end uploads */
+
+/**find client */
+case 219:
+  $param=0;
+  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+        $result = mysql_query("insert into log values('','".$username." accesses find client Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+
+        echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix">
+            <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger" data-toggle="modal"
+                    data-target="#myModal"><a></a></button>
+    
+            <div class="vd_content-section clearfix">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Clients-Search
+                                    Panel</h3>
+                            </div>
+                            <!-- panel heading -->
+                            <div class="panel-body table-responsive ">
+                                <table class="table table-striped text-capitalize" id="data-tables">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Business Name</th>
+                                        <th>Telephone</th>
+                                        <th>Pin Registration</th>
+                                        <th>VAT Registration</th>
+                                        <th>Contact Person</th>
+                                        <th>Email</th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <!-- panel body -->
+                        </div>
+                        <!-- Panel Widget -->
+                    </div>
+                    <!-- col-md-12 -->
+                </div>
+                <!-- row -->
+    
+            </div>
+            <!-- .vd_content-section -->
+    
+        </div>
+        <!-- .vd_content -->
+    </div>
+    <!-- .vd_container -->
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header vd_bg-green vd_white">
+                    <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i
+                            class="fa fa-times"></i></button>
+                    <h4 class="modal-title" id="myModalLabel">Function List</h4>
+                </div>
+                <!-- /.modal-header -->
+                <div class="modal-body">
+                    <form class="form-horizontal" action="#" role="form">
+    
+                        <div class="form-group">';
+                            $arr=array();
+                            $resulta =mysql_query("select * from accesstbl");
+                            $num_resultsa = mysql_num_rows($resulta);
+                            for ($v=0; $v <$num_resultsa; $v++) {
+                            $rowa=mysql_fetch_array($resulta);
+                            $var=stripslashes($rowa[$usertype]);
+                            $code=stripslashes($rowa['AccessCode']);
+                            $arr[$code]=$var;
+                            }
+    
+                            if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                              onclick="majoropen(400)">Edit Client</label><br/>';}
+                            if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                              onclick="majoropen(405)">Client Info</label><br/>';}
+                            // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                            //                                   onclick="majoropen(401)">Property Description</label><br/>';}
+                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                              onclick="majoropen(406)">Invoice</label><br/>';}
+                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                              onclick="majoropen(403)">Archive Client</label><br/>';}
+                            echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
+                        </div>
+    
+    
+                    </form>
+                </div>
+                <!-- /.modal-body -->
+            </div>
+            <!-- /.modal-contet -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            "use strict";
+    
+            var eventFired = function (type) {
+                console.log(type)
+    
+                setTimeout(function () {
+                    $("#data-tables tbody tr").off("click").on("click", function (event) {
+                        $("#tenparam").val($(this).find("td").eq(0).html());
+                        openoptmodal($(this).find("td").eq(0).html())
+                    });
+                }, 500);
+            }
+    
+    
+            $("#data-tables")
+                .on("order.dt", function () {
+                    eventFired("Order");
+                })
+                .on("search.dt", function () {
+                    eventFired("Search");
+                })
+                .on("draw.dt", function () {
+                    eventFired("Page");
+                })
+                .DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": "json.php?id=200"
+                });
+    
+    
+        });
+    </script>
+    <style>td {
+        cursor: pointer
+    } </style>';
+       
+break;
+
+
+/**end find client */
 
 /**archive client */
 case 220:
