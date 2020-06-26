@@ -1767,7 +1767,10 @@ function newClients() {
 
 
 function saveNewBusiness() {
-    var business_name = $('#business_name').val();
+    var client_name = $('#client_name').val();
+    var client_address = $('#client_address').val();
+    var location = $('#location').val();
+
     var telephone = $('#telephone').val();
     var pin_registration= $('#pin_registration').val();
     var vat_registration = $('#vat_registration').val();
@@ -1780,17 +1783,34 @@ function saveNewBusiness() {
     var phone = $('#phone').val();
 
     
+    var business_name = $('#business_name').val();
+    var business_address = $('#business_address').val();
+    var business_email = $('#email').val();
+    var phone = $('#phone').val();
 
-    if (business_name == '' || telephone == '' || national_id == '' || contact_person == '' || email == ''|| phone == '') {
+    var business_location = $('#business_location').val();
+if(business_name!='')
+{
+
+    if (client_name == '' || client_address == '' || telephone == '' ) {
         swal("Error", "Make sure you enter all the required fields!", "error");
         return;
-    } else {
+    }
+}elseif(client_name != ''){
+
+    if (client_name == '' || client_address == '' || telephone == '' ) {
+        swal("Error", "Make sure you enter all the required fields!", "error");
+        return;
+    }
+} else {
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
         $.ajax({
             url: 'data.php',
             data: {
                 id: 200,
-                business_name: business_name,
+                client_name: client_name,
+                client_address: client_address,
+                location:location,
                 telephone: telephone,
                 pin_registration: pin_registration,
                 vat_registration: vat_registration,
@@ -1799,6 +1819,7 @@ function saveNewBusiness() {
                 contact_person: contact_person,
                 email: email,
                 phone: phone,
+                
               
             },
             success: function (data) {
@@ -9832,6 +9853,21 @@ function savecomment(forumid) {
 
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});
 
+/**beginning of deb collection module */
+
+function newDebtCollection(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:300},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+	});
+}
+
+
+
 // CLIENTS MODULE CODE
 
 //load new client form
@@ -9990,15 +10026,3 @@ function archivedClients(){
 }
 
 /**end of client module */
-/**beginning of deb collection module */
-
-function newDebtCollection(){
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'bridge.php',
-	data:{id:300},
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
-}
