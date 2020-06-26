@@ -513,19 +513,19 @@ function majoropen(a) {
                     });
                 break;
 
-                case 200:
-                    //edit letter
-                    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-                    $.ajax({
-                        url: 'bridge.php',
-                        data: {id: 215, param: b},
-                        success: function (data) {
-                            $('#mainp').html(data);
-                        }
-                    });
-    
-                    break;
-                    case 201:
+            case 200:
+                //edit letter
+                $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+                $.ajax({
+                    url: 'bridge.php',
+                    data: {id: 215, param: b},
+                    success: function (data) {
+                        $('#mainp').html(data);
+                    }
+                });
+
+                break;
+            case 201:
                 $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
                 $.ajax({
                     url: 'bridge.php',
@@ -537,18 +537,15 @@ function majoropen(a) {
 
                 break;
 
-                case 202:
-                    archiveclient(b);
-                    break;
-                
+            case 202:
+                archiveclient(b);
+                break;
 
 
-                case 205:
-                    activateclient(b);
-                    break;
-    
-                   
-        
+            case 205:
+                activateclient(b);
+                break;
+
 
         }
 
@@ -1765,101 +1762,52 @@ function newClients() {
 }
 
 
-
-function saveNewBusiness() {
+function saveNewClient() {
+    // INDIVIDUAL CLIENTS INPUTS
     var client_name = $('#client_name').val();
-    var client_address = $('#client_address').val();
-    var location = $('#location').val();
+    var client_location = $('#client_location').val();
+    var client_email = $('#client_email').val();
+    var client_phone = $('#client_phone').val();
+    var client_id = $('#national_id').val();
 
-    var telephone = $('#telephone').val();
-    var pin_registration= $('#pin_registration').val();
-    var vat_registration = $('#vat_registration').val();
-
-    var certificate_of_incorporation = $('#certificate_of_incorporation').val();
-    var national_id = $('#national_id').val();
-
-    var contact_person = $('#contact_person').val();
-    var email = $('#email').val();
-    var phone = $('#phone').val();
-
-    
+    // BUSINESS CLIENT FORM INPUT
     var business_name = $('#business_name').val();
     var business_address = $('#business_address').val();
-    var business_email = $('#email').val();
-    var phone = $('#phone').val();
-
     var business_location = $('#business_location').val();
-if(business_name!='')
-{
-
-    if (client_name == '' || client_address == '' || telephone == '' ) {
-        swal("Error", "Make sure you enter all the required fields!", "error");
-        return;
-    }
-}elseif(client_name != ''){
-
-    if (client_name == '' || client_address == '' || telephone == '' ) {
-        swal("Error", "Make sure you enter all the required fields!", "error");
-        return;
-    }
-} else {
-        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-        $.ajax({
-            url: 'data.php',
-            data: {
-                id: 200,
-                client_name: client_name,
-                client_address: client_address,
-                location:location,
-                telephone: telephone,
-                pin_registration: pin_registration,
-                vat_registration: vat_registration,
-                certificate_of_incorporation: certificate_of_incorporation,
-                national_id: national_id,
-                contact_person: contact_person,
-                email: email,
-                phone: phone,
-                
-              
-            },
-            success: function (data) {
-                $('#message').html(data);
-            }
-        });
-    }
-
-}
-
-function saveNewClient() {
-    var business_name = $('#business_name').val();
     var telephone = $('#telephone').val();
-   
-    var national_id = $('#national_id').val();
-
+    var pin_registration = $('#pin_registration').val();
+    var vat_registration = $('#vat_registration').val();
+    var certificate_of_incorporation = $('#certificate_of_incorporation').val();
     var contact_person = $('#contact_person').val();
-    var email = $('#email').val();
-    var phone = $('#phone').val();
+    var business_email = $('#business_email').val();
+    var contact_phone = $('#contact_phone').val();
 
-    
-
-    if (business_name == '' || telephone == '' || national_id == '' || contact_person == '' || email == ''|| phone == '') {
+    if (business_name == '' && client_name == '') {
         swal("Error", "Make sure you enter all the required fields!", "error");
         return;
     } else {
+        var data = {
+            id: 200,
+            client_name: client_name,
+            client_phone: client_phone,
+            client_email: client_email,
+            client_id: client_id,
+            client_location: client_location,
+            business_name: business_name,
+            business_address: business_address,
+            business_location: business_location,
+            telephone: telephone,
+            pin_registration: pin_registration,
+            vat_registration: vat_registration,
+            certificate_of_incorporation: certificate_of_incorporation,
+            contact_person: contact_person,
+            business_email: business_email,
+            contact_phone: contact_phone,
+        };
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
         $.ajax({
             url: 'data.php',
-            data: {
-                id: 200.1,
-                business_name: business_name,
-                telephone: telephone,
-               
-                national_id: national_id,
-                contact_person: contact_person,
-                email: email,
-                phone: phone,
-              
-            },
+            data: data,
             success: function (data) {
                 $('#message').html(data);
             }
@@ -1883,6 +1831,7 @@ function editClient() {
         }
     });
 }
+
 /**END OF EDIT */
 
 /**archive client function */
@@ -1923,6 +1872,7 @@ function activateclient(param) {
         });
 
 }
+
 /**end of activate */
 /**start of archived clients */
 function archivedclients() {
@@ -9855,40 +9805,39 @@ $('.date').datepicker({dateFormat: 'dd/mm/yy'});
 
 /**beginning of deb collection module */
 
-function newDebtCollection(){
+function newDebtCollection() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'bridge.php',
-	data:{id:300},
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 300},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
 }
-
 
 
 // CLIENTS MODULE CODE
 
 //load new client form
-function newClient(){
+function newClient() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-	$.ajax({
-	url:'bridge.php',
-	data:{id:212},
-	success:function(data){
-	$('#mainp').html(data);
-	}
-	});
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 212},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
 }
-// end new client
 
+// end new client
 
 
 function saveClient(param) {
     var business_name = $('#business_name').val();
     var telephone = $('#telephone').val();
-    var pin_registration= $('#pin_registration').val();
+    var pin_registration = $('#pin_registration').val();
     var vat_registration = $('#vat_registration').val();
 
     var certificate_of_incorporation = $('#certificate_of_incorporation').val();
@@ -9898,7 +9847,7 @@ function saveClient(param) {
     var email = $('#email').val();
     var phone = $('#phone').val();
 
-    if (business_name == '' || telephone == '' || national_id == '' || contact_person == '' || email == ''|| phone == '') {
+    if (business_name == '' || telephone == '' || national_id == '' || contact_person == '' || email == '' || phone == '') {
         swal("Error", "Make sure you enter all the required fields!", "error");
         return;
     } else {
@@ -9906,14 +9855,14 @@ function saveClient(param) {
             id: 201,
             param: param,
             business_name: business_name,
-                telephone: telephone,
-                pin_registration: pin_registration,
-                vat_registration: vat_registration,
-                certificate_of_incorporation: certificate_of_incorporation,
-                national_id: national_id,
-                contact_person: contact_person,
-                email: email,
-                phone: phone,
+            telephone: telephone,
+            pin_registration: pin_registration,
+            vat_registration: vat_registration,
+            certificate_of_incorporation: certificate_of_incorporation,
+            national_id: national_id,
+            contact_person: contact_person,
+            email: email,
+            phone: phone,
         };
 
         //console.log(data);
@@ -9928,6 +9877,7 @@ function saveClient(param) {
 
     }
 }
+
 //end edit
 //find client
 function findClient() {
@@ -9940,6 +9890,7 @@ function findClient() {
         }
     });
 }
+
 //end find client
 
 //client file
@@ -9957,7 +9908,7 @@ function clientFile() {
 //end client file
 
 //client upload
-function clientFileUpload(){
+function clientFileUpload() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -9967,10 +9918,11 @@ function clientFileUpload(){
         }
     });
 }
+
 //end of client upload
 
 //start archive client
-function archiveClient(){
+function archiveClient() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10014,7 +9966,7 @@ function archiveclient(b) {
 /**start archived client */
 
 //end archived client
-function archivedClients(){
+function archivedClients() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
