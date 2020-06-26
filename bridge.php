@@ -29607,16 +29607,30 @@ case 212:
                 <div class="col-md-6">
                   <div class="panel widget">
                     <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> New Clients Information</h3>
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Corporate Client</h3>
                     </div>
                     <div class="panel-body">
                       <form class="form-horizontal" action="#" role="form">
                         <div class="form-group">
                           <label style="float:left" class="col-sm-4">Business Name<span style="color:#f00">*</span></label>
                           <div class="col-sm-8 controls">
-                            <input type="text" id="business_name" value="">
+                            <input type="text" id="client_name" value="">
                           </div>
                         </div>
+
+                        <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Business Address<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="client_address" value="">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                      <label style="float:left" class="col-sm-4"> Business Location<span style="color:#f00"></span></label>
+                      <div class="col-sm-8 controls">
+                        <input type="text" id="location" value="">
+                      </div>
+                    </div>
   
   
                          <div class="form-group">
@@ -29634,7 +29648,7 @@ case 212:
                         </div>
   
                          <div class="form-group">
-                          <label style="float:left" class="col-sm-4">VAT registration<span style="color:#f00"></span></label>
+                          <label style="float:left" class="col-sm-4">VAT Registration<span style="color:#f00"></span></label>
                           <div class="col-sm-8 controls">
                             <input type="text" id="vat_registration" value="">
                           </div>
@@ -29646,13 +29660,9 @@ case 212:
                             <input type="text" id="certificate_of_incorporation" value="">
                           </div>
                         </div>
+                       
   
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">National id<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="national_id" value="">
-                          </div>
-                        </div>
+                         
   
   
                         <div class="form-group">
@@ -29672,7 +29682,7 @@ case 212:
                         </div>
 
                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Phone</label>
+                          <label style="float:left" class="col-sm-4">Phone<span style="color:#f00">*</span></label>
                           <div class="col-sm-8 controls">
                             <input type="text" id="phone" value="">
                           </div>
@@ -29695,7 +29705,71 @@ case 212:
 
                 <!-- col-md-6 --> 
   
-              
+                <div class="col-md-6">
+                  <div class="panel widget">
+                    <div class="panel-heading vd_bg-grey">
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Individual Client</h3>
+                    </div>
+                    <div class="panel-body">
+                      <form class="form-horizontal" action="#" role="form">
+                        <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="client_name" value="">
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Client Address<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="client_address" value="">
+                        </div>
+                      </div>
+
+                      
+                      <div class="form-group">
+                      <label style="float:left" class="col-sm-4"> Client Location</label>
+                      <div class="col-sm-8 controls">
+                        <input type="text" id="location" value="">
+                      </div>
+                    </div>
+  
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Phone No<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="telephone" value="">
+                          </div>
+                        </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">National id<span style="color:#f00"></span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="national_id" value="">
+                          </div>
+                        </div>
+  
+  
+  
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Email</label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="email" value="">
+                          </div>
+                        </div>
+
+
+                      
+
+                       
+                      
+                      
+                  </form>
+                    </div>
+                  </div>
+                  <!-- Panel Widget --> 
+                </div>
   
   
                    <div class="col-md-6">

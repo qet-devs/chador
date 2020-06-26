@@ -6110,7 +6110,10 @@ switch ($id) {
     case 200:
        
         
-        $business_name = strtoupper($_GET['business_name']);
+        $client_name = strtoupper($_GET['client_name']);
+        $client_address = strtoupper($_GET['client_address']);
+        $location = $_GET['location'];
+
         $telephone = $_GET['telephone'];
         $pin_registration = $_GET['pin_registration'];
         $vat_registration = $_GET['vat_registration'];
@@ -6122,7 +6125,7 @@ switch ($id) {
         $phone = $_GET['phone'];
 
 
-        $resultx = mysql_query("select * from clients where business_name='" . $business_name. "' and email='" . $email. "'");
+        $resultx = mysql_query("select * from clients where client_name='" . $client_name. "' and email='" . $email. "'");
         if (mysql_num_rows($resultx) > 0) {
             echo '<script>swal("Error", "Clients with similar information already exists. !Consult the System Admin", "error");</script>';
 
@@ -6135,7 +6138,7 @@ switch ($id) {
 
 
         $unique_user_id = 'CLIENT' . sprintf("%06d", $tid);
-        $resultc = mysql_query("INSERT INTO `clients`  VALUES ('0', '".$unique_user_id."', '".$business_name."', '".$telephone."', '".$pin_registration."', '".$vat_registration."', '".$certificate_of_incorporation."', '".$national_id."', '".$contact_person."', '".$email."', '".$phone."','1','".$username."','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `clients`  VALUES ('0', '".$unique_user_id."', '".$client_name."', '".$client_address."', '".$location."', '".$telephone."', '".$pin_registration."', '".$vat_registration."', '".$certificate_of_incorporation."', '".$national_id."', '".$contact_person."', '".$email."', '".$phone."','1','".$username."','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')") or die (mysql_error());
 
 
         // $resultc = mysql_query("INSERT INTO `repossession` VALUES ('0','" . $uid . "','" . $debtor . "','" . $rdate . "','" . $i_party . "','" . $property . "','" . $day . "','" . $ntime . "','" . $place . "','" . $charges . "','" . $creditoradd . "','" . $debtoradd . "','" . $decretal . "','" . $advocate . "','" . $cname . "','" . $clocation . "','" . $caseno . "','" . $ddate . "','" . $cdate . "','" . $wdate . "','" . $custody . "','" . $expiry . "','1','" . $username . "', '" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')");
@@ -6179,7 +6182,7 @@ switch ($id) {
     
     
             $unique_user_id = 'CLIENT' . sprintf("%06d", $tid);
-            $resultc = mysql_query("INSERT INTO `clients`  VALUES ('0', '".$unique_user_id."', '".$business_name."', '".$telephone."', '".$national_id."', '".$contact_person."', '".$email."', '".$phone."','1','".$username."','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')") or die (mysql_error());
+            $resultc = mysql_query("INSERT INTO `clients`  VALUES ('0', '".$unique_user_id."', '".$client_name."', '".$client_address."', '".$location."', '".$telephone."', '".$national_id."', '".$contact_person."', '".$email."', '".$phone."','1','".$username."','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')") or die (mysql_error());
     
     
            
@@ -6254,7 +6257,7 @@ switch ($id) {
     case 206:
         $param = $tid = $_GET['param'];
         $result = mysql_query("update clients set status=1 where id='" . $param . "'") or die (mysql_error());
-        $resulta = mysql_query("insert into log values('','" . $username . " activates letter.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        $resulta = mysql_query("insert into log values('','" . $username . " activates clients.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
         echo '<script>archivedclients();</script>	';
 
         break;
