@@ -29614,25 +29614,25 @@ case 212:
                         <div class="form-group">
                           <label style="float:left" class="col-sm-4">Business Name<span style="color:#f00">*</span></label>
                           <div class="col-sm-8 controls">
-                            <input type="text" id="client_name" value="">
+                            <input type="text" id="business_name" value="">
                           </div>
                         </div>
 
                         <div class="form-group">
                         <label style="float:left" class="col-sm-4">Business Address<span style="color:#f00">*</span></label>
                         <div class="col-sm-8 controls">
-                          <input type="text" id="client_address" value="">
+                          <input type="text" id="business_address" value="">
                         </div>
                       </div>
 
                       <div class="form-group">
                       <label style="float:left" class="col-sm-4"> Business Location<span style="color:#f00"></span></label>
                       <div class="col-sm-8 controls">
-                        <input type="text" id="location" value="">
+                        <input type="text" id="business_location" value="">
                       </div>
                     </div>
   
-  
+
                          <div class="form-group">
                           <label style="float:left" class="col-sm-4">Telephone No<span style="color:#f00">*</span></label>
                           <div class="col-sm-8 controls">
@@ -29663,6 +29663,12 @@ case 212:
                        
   
                          
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Business Email</label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="business_email" value="">
+                          </div>
+                        </div>
   
   
                         <div class="form-group">
@@ -29671,38 +29677,20 @@ case 212:
                             <input type="text" id="contact_person" value="">
                           </div>
                         </div>
-  
-  
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Email</label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="email" value="">
-                          </div>
-                        </div>
-
+ 
                         <div class="form-group">
                           <label style="float:left" class="col-sm-4">Phone<span style="color:#f00">*</span></label>
                           <div class="col-sm-8 controls">
-                            <input type="text" id="phone" value="">
+                            <input type="text" id="contact_phone" value="">
                           </div>
                         </div>
-
-                      
-
-                       
-                      
-                      
                   </form>
                     </div>
                   </div>
                   <!-- Panel Widget --> 
                 </div>
                 
-               
-
-
-
+             
                 <!-- col-md-6 --> 
   
                 <div class="col-md-6">
@@ -29719,26 +29707,17 @@ case 212:
                           </div>
                         </div>
 
-                        <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Client Address<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="client_address" value="">
-                        </div>
-                      </div>
-
-                      
                       <div class="form-group">
                       <label style="float:left" class="col-sm-4"> Client Location</label>
                       <div class="col-sm-8 controls">
-                        <input type="text" id="location" value="">
+                        <input type="text" id="client_location" value="">
                       </div>
                     </div>
-  
   
                          <div class="form-group">
                           <label style="float:left" class="col-sm-4">Phone No<span style="color:#f00">*</span></label>
                           <div class="col-sm-8 controls">
-                            <input type="text" id="telephone" value="">
+                            <input type="text" id="client_phone" value="">
                           </div>
                         </div>
   
@@ -29749,22 +29728,13 @@ case 212:
                           </div>
                         </div>
   
-  
-  
-  
                          <div class="form-group">
                           <label style="float:left" class="col-sm-4">Email</label>
                           <div class="col-sm-8 controls">
-                            <input type="text" id="email" value="">
+                            <input type="text" id="client_email" value="">
                           </div>
                         </div>
-
-
-                      
-
-                       
-                      
-                      
+    
                   </form>
                     </div>
                   </div>
@@ -29783,7 +29753,7 @@ case 212:
                    <div class="form-group form-actions">
                       <div class="col-sm-4"> </div>
                       <div class="col-sm-7">
-                        <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="saveNewBusiness()"><i class="icon-ok"></i> Save</button>
+                        <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="saveNewClient()"><i class="icon-ok"></i> Save</button>
                         <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
                         <div id="message" style="width:40px;height:40px;float:right"></div>
                       </div>
@@ -29796,16 +29766,9 @@ case 212:
                 </div>
                 <!-- col-md-12 -->
   
-  
-  
-  
-  
               </div>
               <!-- row --> 
                 </div>
-              
-  
-  
               
             </div>
             <!-- .vd_content-section --> 
