@@ -6130,7 +6130,7 @@ switch ($id) {
         $contact_phone = $_GET['contact_phone'];
 
 
-        $resultx = mysql_query("select * from clients where client_name='" . $client_name . "' and client_email='" . $client_email . "' or business_name='".$business_name."'");
+        $resultx = mysql_query("select * from clients where client_name='" . $client_name . "' and client_email='" . $client_email . "' or business_name='" . $business_name . "'");
         if (mysql_num_rows($resultx) > 0) {
             echo '<script>swal("Error", "Clients with similar information already exists. !Consult the System Admin", "error");</script>';
 
@@ -6171,33 +6171,33 @@ switch ($id) {
 VALUES
 	(
 		'0',
-		'".$unique_user_id."',
-		'".$business_name."',
-		'".$business_address."',
-		'".$business_location."',
-		'".$telephone."',
-		'".$pin_registration."',
-		'".$vat_registration."',
-		'".$certificate_of_incorporation."',
-		'".$business_email."',
-		'".$client_name."',
-		'".$client_id."',
-		'".$contact_phone."',
-		'".$contact_person."',
-		'".$client_email."',
-		'".$client_phone."',
-		'".$client_location."',
+		'" . $unique_user_id . "',
+		'" . $business_name . "',
+		'" . $business_address . "',
+		'" . $business_location . "',
+		'" . $telephone . "',
+		'" . $pin_registration . "',
+		'" . $vat_registration . "',
+		'" . $certificate_of_incorporation . "',
+		'" . $business_email . "',
+		'" . $client_name . "',
+		'" . $client_id . "',
+		'" . $contact_phone . "',
+		'" . $contact_person . "',
+		'" . $client_email . "',
+		'" . $client_phone . "',
+		'" . $client_location . "',
 		'1',
-		'".$username."',
-		'".date('d/m/Y')."',
-		'".date('YmdHi')."',
-		'".date('H:i')."' 
+		'" . $username . "',
+		'" . date('d/m/Y') . "',
+		'" . date('YmdHi') . "',
+		'" . date('H:i') . "' 
 	)
         ";
 
         //  $resultc = mysql_query("INSERT INTO `clients`  VALUES ('0', '" . $unique_user_id . "', '" . $client_name . "', '" . $client_address . "', '" . $location . "', '" . $telephone . "', '" . $pin_registration . "', '" . $vat_registration . "', '" . $certificate_of_incorporation . "', '" . $national_id . "', '" . $contact_person . "', '" . $email . "', '" . $phone . "','1','" . $username . "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')") or die (mysql_error());
 
-$resultc = mysql_query($sql);
+        $resultc = mysql_query($sql);
 
 
         if ($resultc) {
@@ -6326,7 +6326,37 @@ $resultc = mysql_query($sql);
 
     /*****DEBT COLLECTION START*****/
     // all DEBT COLLECTION data logic goes here
+//save new debt collection
+    case 300:
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $referring_client_uid = $_GET['referring_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $notification_message = $_GET['notification_message'];
 
+
+
+
+        $resultx = mysql_query('SELECT * FROM `debt_collections` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
+        if (mysql_num_rows($resultx) > 0) {
+            echo '<script>swal("Error", "Debt collection file with similar info already exists. !Consult the System Admin", "error");</script>';
+
+        }
+
+        $resultc = mysql_query("INSERT INTO `debt_collections`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')") or die (mysql_error());
+
+
+        if ($resultc) {
+            echo '<script>swal("Success!", "Debt collection file created successfully", "success");</script>';
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " created debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {newDebtCollection();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to create a new debt collection record!", "error");</script>';
+        }
+        break;
 
     /*****DEBT COLLECTION END*****/
 
