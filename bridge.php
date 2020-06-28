@@ -30690,6 +30690,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         // all DEBT COLLECTION presentation logic goes here
 
 
+//NEW DEBT COLLECTION FORM
         case 300:
           $result = mysql_query("insert into log values('','".$username." accesses create new debt collection File Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
@@ -30856,7 +30857,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                                 <input type="hidden" id="type" name="type"
                                                                        value="Document"/>
                                                                 <input type="hidden" id="soi" name="soi"
-                                                                       value="'.$param.'"/>
+                                                                       value=""/>
                                                                 <input type="hidden" name="sap" value=""/>
                                                                 <input type="hidden" name="tid" value=""/>
                                                                 <input type="hidden" name="type" id="doctype"
@@ -30935,6 +30936,149 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
       
            
           
+    break;
+
+//    FIND DEBT COLLECTION PANEL
+case 301:
+     $result = mysql_query("insert into log values('','".$username." accesses find debt collection Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+
+    echo ' <div class="vd_container" id="container">
+                    <div class="vd_content clearfix">
+                        <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger"
+                                data-toggle="modal"
+                                data-target="#myModal"><a></a></button>
+
+                        <div class="vd_content-section clearfix">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title"><span class="menu-icon"> <i
+                                                            class="fa fa-dot-circle-o"></i> </span>Debt
+                                                Collections-Search
+                                                Panel</h3>
+                                        </div>
+                                        <!-- panel heading -->
+                                        <div class="panel-body table-responsive ">
+                                            <table class="table table-striped text-capitalize" id="data-tables">
+                                                <thead>
+                                                <tr>
+                                                    <th>File ID</th>
+                                                    <th>Description</th>
+                                                    <th>Status</th>
+                                                    <th>Assignee</th>
+                                                    <th>Entry Date</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <!-- panel body -->
+                                    </div>
+                                    <!-- Panel Widget -->
+                                </div>
+                                <!-- col-md-12 -->
+                            </div>
+                            <!-- row -->
+
+                        </div>
+                        <!-- .vd_content-section -->
+
+                    </div>
+                    <!-- .vd_content -->
+                </div>
+                <!-- .vd_container -->
+                
+                 <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header vd_bg-green vd_white">
+                    <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i
+                            class="fa fa-times"></i></button>
+                    <h4 class="modal-title" id="myModalLabel">Function List</h4>
+                </div>
+                <!-- /.modal-header -->
+                <div class="modal-body">
+                    <form class="form-horizontal" action="#" role="form">
+    
+                        <div class="form-group">';
+
+                            $arr=array();
+                            $resulta =mysql_query("select * from accesstbl");
+                            $num_resultsa = mysql_num_rows($resulta);
+                            for ($v=0; $v <$num_resultsa; $v++) {
+                            $rowa=mysql_fetch_array($resulta);
+                            $var=stripslashes($rowa[$usertype]);
+                            $code=stripslashes($rowa['AccessCode']);
+                            $arr[$code]=$var;
+                            }
+
+                            if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                              onclick="majoropen(200)">Edit Client</label><br/>';}
+                            if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                              onclick="majoropen(201)">Client Info</label><br/>';}
+                            // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                            //                                   onclick="majoropen(401)">Property Description</label><br/>';}
+                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                              onclick="majoropen(406)">Invoice</label><br/>';}
+                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                              onclick="majoropen(202)">Archive Client</label><br/>';}
+
+                            echo '
+                            <input class="input-border-btm" type="hidden" id="tenparam" required>
+                        </div>
+    
+    
+                    </form>
+                </div>
+                <!-- /.modal-body -->
+            </div>
+            <!-- /.modal-contet -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- .modal -->';
+
+                            echo '  
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            "use strict";
+    
+            var eventFired = function (type) {
+                console.log(type)
+    
+                setTimeout(function () {
+                    $("#data-tables tbody tr").off("click").on("click", function (event) {
+                        $("#tenparam").val($(this).find("td").eq(0).html());
+                        openoptmodal($(this).find("td").eq(0).html())
+                    });
+                }, 500);
+            }
+    
+    
+            $("#data-tables")
+                .on("order.dt", function () {
+                    eventFired("Order");
+                })
+                .on("search.dt", function () {
+                    eventFired("Search");
+                })
+                .on("draw.dt", function () {
+                    eventFired("Page");
+                })
+                .DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": "json.php?id=300"
+                });
+    
+    
+        });
+    </script>
+    <style>td {
+        cursor: pointer
+    } </style>';
     break;
 
 
