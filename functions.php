@@ -2338,5 +2338,32 @@ function cartbill($max)
 
 
 }
+//Debt collection helper functions
+function displayClients()
+{
+    $result = mysql_query("select * from clients where status=1");
+    $num_results = mysql_num_rows($result);
+    for ($i = 0; $i < $num_results; $i++) {
+        $row = mysql_fetch_array($result);
+        echo '<option value="' . stripslashes($row['unique_user_id']) . '">';
+        if (!empty($row['business_name'])) {
+            echo stripslashes($row['business_name']);
+        } else {
+            echo stripslashes($row['client_name']);
+        }
+        echo '</option>';
+    }
+}
+
+function displayUsers()
+{
+    $result = mysql_query("select * from users where status=1");
+    $num_results = mysql_num_rows($result);
+    for ($i = 0; $i < $num_results; $i++) {
+        $row = mysql_fetch_array($result);
+        echo '<option value="' . stripslashes($row['name']) . '">' . stripslashes($row['fullname']) . '</option>';
+    }
+}
+
 
 ?>

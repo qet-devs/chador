@@ -431,260 +431,32 @@ $where = "";
             );
     
         break;
-    
-        case 401:
-            // DB table to use
-            $table = 'letters';
-             
-            // Table's primary key
-            $primaryKey = 'id';
-            $where = "status!=1";
-             
-            // Array of database columns which should be read and sent back to DataTables.
-            // The `db` parameter represents the column name in the database, while the `dt`
-            // parameter represents the DataTables column identifier. In this case simple
-            // indexes
-                $columns = array(
-                    array( 'db' => 'id', 'dt' => 0 ),
-                    array( 'db' => 'partyname', 'dt' => 1 ),
-                    array( 'db' => 'advocatename', 'dt' => 2 ),
-                    array( 'db' => 'debtorname', 'dt' => 3 ),
-                    array( 'db' => 'amount',  'dt' => 4 ),
-                    array( 'db' => 'dailyrates',   'dt' => 5 ),
-                    array( 'db' => 'date',    'dt' => 6 )
-                );
-        
-            break;
 
-        case 500:
-            // DB table to use
-            $table = 'distress';
-             
-            // Table's primary key
-            $primaryKey = 'id';
-            $where = "status=1";
-             
-            // Array of database columns which should be read and sent back to DataTables.
-            // The `db` parameter represents the column name in the database, while the `dt`
-            // parameter represents the DataTables column identifier. In this case simple
-            // indexes
-                $columns = array(
-                    array( 'db' => 'id', 'dt' => 0 ),
-                    array( 'db' => 'landlord', 'dt' => 1 ),
-                    array( 'db' => 'tenant', 'dt' => 2 ),
-                    array( 'db' => 'amount',  'dt' => 3 ),
-                    array( 'db' => 'at',    'dt' => 4 )
-                );
-        
-            break;
+//        DEBT COLLECTION
+     case 300:
+         // DB table to use
+         $table = 'debt_collections';
 
-            case 501:
-                // DB table to use
-                $table = 'distress';
-                 
-                // Table's primary key
-                $primaryKey = 'id';
-                $where = "status!=1";
-                 
-                // Array of database columns which should be read and sent back to DataTables.
-                // The `db` parameter represents the column name in the database, while the `dt`
-                // parameter represents the DataTables column identifier. In this case simple
-                // indexes
-                    $columns = array(
-                        array( 'db' => 'id', 'dt' => 0 ),
-                        array( 'db' => 'landlord', 'dt' => 1 ),
-                        array( 'db' => 'tenant', 'dt' => 2 ),
-                        array( 'db' => 'amount',  'dt' => 3 ),
-                        array( 'db' => 'at',    'dt' => 4 )
-                    );
-            
-                break;
-    
+         // Table's primary key
+         $primaryKey = 'id';
+         $where = "status=1";
 
-            case 600:
-                // DB table to use
-                $table = 'decrees';
-                 
-                // Table's primary key
-                $primaryKey = 'id';
-                $where = "status=1";
-                 
-                // Array of database columns which should be read and sent back to DataTables.
-                // The `db` parameter represents the column name in the database, while the `dt`
-                // parameter represents the DataTables column identifier. In this case simple
-                // indexes
-                    $columns = array(
-                        array( 'db' => 'id', 'dt' => 0 ),
-                        array( 'db' => 'plaintiffs', 'dt' => 1 ),
-                        array( 'db' => 'defendants',  'dt' => 2 ),
-                        array('db'=>'decretal_amount', 'dt'=>3),
-                        array('db'=>'schedule_cost','dt'=>4),
-                        array( 'db' => 'decree_date',    'dt' => 5 )
-                    );
-            
-                break;
-        
-                case 601:
-                    // DB table to use
-                    $table = 'decrees';
-                     
-                    // Table's primary key
-                    $primaryKey = 'id';
-                    $where = "status!=1";
-                     
-                    // Array of database columns which should be read and sent back to DataTables.
-                    // The `db` parameter represents the column name in the database, while the `dt`
-                    // parameter represents the DataTables column identifier. In this case simple
-                    // indexes
-                        $columns = array(
-                            array( 'db' => 'id', 'dt' => 0 ),
-                            array( 'db' => 'plaintiffs', 'dt' => 1 ),
-                            array( 'db' => 'defendants',  'dt' => 2 ),
-                            array('db'=>'decretal_amount', 'dt'=>3),
-                            array('db'=>'schedule_cost','dt'=>4),
-                            array( 'db' => 'decree_date',    'dt' => 5 )
-                        );
-                
-                    break;
-            
+         // Array of database columns which should be read and sent back to DataTables.
+         // The `db` parameter represents the column name in the database, while the `dt`
+         // parameter represents the DataTables column identifier. In this case simple
+         // indexes
+         $columns = array(
+             array( 'db' => 'unique_file_number', 'dt' => 0 ),
+             array( 'db' => 'description', 'dt' => 1 ),
+             array( 'db' => 'file_status', 'dt' => 2 ),
+             array( 'db' => 'assignee_id', 'dt' => 3 ),
+             array( 'db' => 'date',  'dt' => 4 ),
+         );
 
-                case 700:
-                    // DB table to use
-                    $table = 'court_notices';
-                     
-                    // Table's primary key
-                    $primaryKey = 'id';
-                    $where = "status=1";
-                     
-                    // Array of database columns which should be read and sent back to DataTables.
-                    // The `db` parameter represents the column name in the database, while the `dt`
-                    // parameter represents the DataTables column identifier. In this case simple
-                    // indexes
-                        $columns = array(
-                            array( 'db' => 'id', 'dt' => 0 ),
-                            array( 'db' => 'instructing_party', 'dt' => 1 ),
-                            array( 'db' => 'debtor_name', 'dt' => 2 ),
-                            array( 'db' => 'amount',  'dt' => 3 ),
-                            array( 'db' => 'notice_date',    'dt' => 4 )
-                        );
-                
-                    break;
+         break;
 
-                    
-                case 701:
-                    // DB table to use
-                    $table = 'court_notices';
-                     
-                    // Table's primary key
-                    $primaryKey = 'id';
-                    $where = "status!=1";
-                     
-                    // Array of database columns which should be read and sent back to DataTables.
-                    // The `db` parameter represents the column name in the database, while the `dt`
-                    // parameter represents the DataTables column identifier. In this case simple
-                    // indexes
-                        $columns = array(
-                            array( 'db' => 'id', 'dt' => 0 ),
-                            array( 'db' => 'instructing_party', 'dt' => 1 ),
-                            array( 'db' => 'debtor_name', 'dt' => 2 ),
-                            array( 'db' => 'amount',  'dt' => 3 ),
-                            array( 'db' => 'notice_date',    'dt' => 4 )
-                        );
-                
-                    break;
-            
-                    case 800:
-                        // DB table to use
-                        $table = 'proclamations';
-                         
-                        // Table's primary key
-                        $primaryKey = 'id';
-                        $where = "status=1";
-                         
-                        // Array of database columns which should be read and sent back to DataTables.
-                        // The `db` parameter represents the column name in the database, while the `dt`
-                        // parameter represents the DataTables column identifier. In this case simple
-                        // indexes
-                            $columns = array(
-                                array( 'db' => 'id', 'dt' => 0 ),
-                                array( 'db' => 'creditorname', 'dt' => 1 ),
-                                array( 'db' => 'debtorname', 'dt' => 2 ),
-                                array( 'db' => 'amount',  'dt' => 3 ),
-                                array( 'db' => 'decreedate',    'dt' => 4 )
-                            );
-                    
-                        break;
-                
-    
-                        case 801:
-                            // DB table to use
-                            $table = 'proclamations';
-                             
-                            // Table's primary key
-                            $primaryKey = 'id';
-                            $where = "status!=1";
-                             
-                            // Array of database columns which should be read and sent back to DataTables.
-                            // The `db` parameter represents the column name in the database, while the `dt`
-                            // parameter represents the DataTables column identifier. In this case simple
-                            // indexes
-                                $columns = array(
-                                    array( 'db' => 'id', 'dt' => 0 ),
-                                    array( 'db' => 'creditorname', 'dt' => 1 ),
-                                    array( 'db' => 'debtorname', 'dt' => 2 ),
-                                    array( 'db' => 'amount',  'dt' => 3 ),
-                                    array( 'db' => 'decreedate',    'dt' => 4 )
-                                );
-                        
-                            break;
 
-                            case 900:
-                                // DB table to use
-                                $table = 'repossession';
-                                 
-                                // Table's primary key
-                                $primaryKey = 'id';
-                                $where = "status=1";
-                                 
-                                // Array of database columns which should be read and sent back to DataTables.
-                                // The `db` parameter represents the column name in the database, while the `dt`
-                                // parameter represents the DataTables column identifier. In this case simple
-                                // indexes
-                                    $columns = array(
-                                        array( 'db' => 'uid', 'dt' => 0 ),
-                                        array( 'db' => 'debtor', 'dt' => 1 ),
-                                        array( 'db' => 'rdate', 'dt' => 2 ),
-                                        array( 'db' => 'i_party',  'dt' => 3 ),
-                                        array( 'db' => 'property',    'dt' => 4 )
-                                    );
-                            
-                                break;
-                                case 901:
-                                    // DB table to use
-                                    $table = 'repossession';
-                                     
-                                    // Table's primary key
-                                    $primaryKey = 'id';
-                                    $where = "status!=1";
-                                     
-                                    // Array of database columns which should be read and sent back to DataTables.
-                                    // The `db` parameter represents the column name in the database, while the `dt`
-                                    // parameter represents the DataTables column identifier. In this case simple
-                                    // indexes
-                                        $columns = array(
-                                            array( 'db' => 'id', 'dt' => 0 ),
-                                            array( 'db' => 'debtor', 'dt' => 1 ),
-                                            array( 'db' => 'rdate', 'dt' => 2 ),
-                                            array( 'db' => 'i_party', 'dt' => 3 ),
-                                            array( 'db' => 'property',  'dt' => 4 )
-                                            
-                                        );
-                                
-                                    break;
-                        
-    
-
-                                case 950:
+     case 950:
                                     // DB table to use
                                     $table = 'tendocs';
                                      

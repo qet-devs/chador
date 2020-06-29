@@ -9978,3 +9978,60 @@ function archivedClients() {
 }
 
 /**end of client module */
+//
+// DEBT COLLECTION MODEULE
+// START OF DEBT COLLECTION
+
+
+// save new debt collect
+function saveNewDebtCollection() {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 300,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+// Find Debt collection
+
+function findDebtCollection(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 301},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+// END OF DEBT COLLECTION
