@@ -6306,7 +6306,7 @@ VALUES
     /**end archive */
 
 
-    /**archiveclient */
+    /**activateclient */
     case 206:
         $param = $tid = $_GET['param'];
         $result = mysql_query("update clients set status=1 where id='" . $param . "'") or die (mysql_error());
@@ -6368,8 +6368,95 @@ VALUES
 
     /*****WARRANTS START*****/
     // all WARRANTS presentation logic goes here
+    /**new warrant */
+    case 400:
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $referring_client_uid = $_GET['referring_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $notification_message = $_GET['notification_message'];
 
 
+
+
+        $resultx = mysql_query('SELECT * FROM `warrants` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
+        if (mysql_num_rows($resultx) > 0) {
+            echo '<script>swal("Error", "Warrants file with similar info already exists. !Consult the System Admin", "error");</script>';
+
+        }
+
+        $resultc = mysql_query("INSERT INTO `warrants`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_id . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')") or die (mysql_error());
+
+
+        if ($resultc) {
+            echo '<script>swal("Success!", "Warrant file created successfully", "success");</script>';
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " created warrant file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {newWarrant();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to create a new warrant record!", "error");</script>';
+        }
+        break;
+
+        /**edit Warrant */
+        //edit warrant
+    case 401:
+        $id = $_GET['param'];
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $referring_client_uid = $_GET['referring_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $notification_message = $_GET['notification_message'];
+
+      
+
+        $resultg = mysql_query("UPDATE `warrants` SET `client_uid`='" . $client_uid . "',`referring_client_uid`='" . $referring_client_uid . "',`assignee_id`='" . $assignee_id . "', `notification_date`='".$notification_date."', `description`='" . $description . "', `notification_message`='" . $notification_message . "' WHERE `id`='" . $id . "'") or die (mysql_error());
+
+        $update_tenant_table = mysql_query("update tenants set bname='" . $client_uid . "', dname='" . $referring_client . "' WHERE `tid`='" . $unique_file_number . "'");
+        //register log
+        $resulta = mysql_query("insert into log values('0','" . $username . " updates  warrant info where warrant id:" . $id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+
+        if ($resultg) {
+            echo '<script>swal("Success!", "Warrant Info updated!", "success");</script>';
+            updateletters();
+            //echo"<script>window.open('report.php?id=89&rcptno=".$tid."');</script>";
+
+            echo "<script>setTimeout(function() {editWarrant();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "Warrant Info not Saved!", "error");</script>';
+        }
+        break;
+
+    //end edit warrant
+
+    /***Edit warrant */
+
+    /**archive warrant */
+    case 405:
+        $param = $tid = $_GET['b'];
+        $result = mysql_query("update warrants set status=0 ") or die (mysql_error());
+        $resulta = mysql_query("insert into log values('','" . $username . " archives warrants.Name:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo '<script>setTimeout(function() {checkoutwarrant();},500);</script>	';
+
+
+        break;
+
+    /**end archive */
+
+    /**activatewarrant */
+    case 406:
+        $param = $tid = $_GET['param'];
+        $result = mysql_query("update warrants set status=1 where id='" . $param . "'") or die (mysql_error());
+        $resulta = mysql_query("insert into log values('','" . $username . " activates warrant.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo '<script>archivedwarrant();</script>	';
+
+        break;
+
+    /**end of activate client */
     /*****WARRANTS END*****/
 
     /************************************** */
