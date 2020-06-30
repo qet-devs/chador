@@ -29856,59 +29856,144 @@ case 218:
                         <div class="col-md-6 text-capitalize">
                             <div class="panel widget">
 
-                                <div class="panel-heading vd_bg-grey">
-                                    <h3 class="panel-title"><span class="menu-icon"> <i
-                                                    class="fa fa-th-list"></i> </span>
-                                        Client Details</h3>
-                                </div>
+                            <div class="panel-heading vd_bg-grey">
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Corporate Client</h3>
+                    </div>
+
 
 
                                 <div class="panel-body">
-                                <h4><label> Business Client Details</label></h4>
-                                <div class="form-group">
-                                    <label>Business Name<span style="color:#f00">*</span></label>
-                                    <input type="text" id="business_name" class="control" value="'.$rowx['business_name'].'">
-                                    
-                                </div>
-                                <div class="form-group">
-                                    <label>Telephone<span style="color:#f00">*</span></label>
-                                    <input type="text" id="telephone" class="control" value="'.$rowx['telephone'].'">
-                                </div>
-        
-                                <h4><label>Registration of:</label></h4>
-                                <div class="form-group">
-                                    <label>PIN<span style="color:#f00">*</span></label>
-                                    <input type="text" id="pin_registration" class="control" value="'.$rowx['pin_registration'].'">
-                                </div>
-                                <div class="form-group">
-                                    <label>VAT<span style="color:#f00">*</span></label>
-                                    <input type="text" id="vat_registration" class="control" value="'.$rowx['vat_registration'].'">
-                                </div>
-                                <div class="form-group">
-                                    <label>Certificate of Incorporation<span style="color:#f00">*</span></label>
-                                    <input type="text" id="certificate_of_incorporation" class="control" value="'.$rowx['certificate_of_incorporation'].'">
-                                </div>
-        
-                                <h4><label>National id <label><span style="color:#f00">*</span></label></label></h4>
-                                <div class="form-group">
-                                   
-                                    <input type="text" id="national_id" class="control" value="'.$rowx['national_id'].'">
-                                </div>
-                                
-                                <h4><label>Contact Details</label></h4>
-                                <div class="form-group">
-                                    <label>Contact Person<span style="color:#f00">*</span></label>
-                                    <input type="text" id="contact_person" class="control" value="'.$rowx['contact_person'].'">
-                                </div>
-                                <div class="form-group">
-                                    <label>Email<span style="color:#f00">*</span></label>
-                                    <input type="text" id="email" class="control" value="'.$rowx['email'].'">
-                                </div>
-                                <div class="form-group">
-                                    <label>Phone<span style="color:#f00">*</span></label>
-                                    <input type="text" id="phone" class="control" value="'.$rowx['phone'].'">
-                                </div>
-                            </div>
+                      <form class="form-horizontal" action="#" role="form">
+                        <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Business Name<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="business_name" value="'.$rowx['business_name'].'">
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Business Address<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="business_address" value="'.$rowx['business_address'].'">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                      <label style="float:left" class="col-sm-4"> Business Location<span style="color:#f00"></span></label>
+                      <div class="col-sm-8 controls">
+                        <input type="text" id="business_location" value="'.$rowx['business_location'].'">
+                      </div>
+                    </div>
+  
+
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Telephone No<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="telephone" value="'.$rowx['telephone'].'">
+                          </div>
+                        </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Pin Registration<span style="color:#f00"></span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="pin_registration" value="'.$rowx['pin_registration'].'">
+                          </div>
+                        </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">VAT Registration<span style="color:#f00"></span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="vat_registration" value="'.$rowx['vat_registration'].'">
+                          </div>
+                        </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Certificate of incorporation<span style="color:#f00"></span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="certificate_of_incorporation" value="'.$rowx['certificate_of_incorporation'].'">
+                          </div>
+                        </div>
+                       
+  
+                         
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Business Email</label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="business_email" value="'.$rowx['business_email'].'">
+                          </div>
+                        </div>
+  
+  
+                        <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Contact person<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="contact_person" value="'.$rowx['contact_person'].'">
+                          </div>
+                        </div>
+ 
+                        <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Phone<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="contact_phone" value="'.$rowx['contact_phone'].'">
+                          </div>
+                        </div>
+                  </form>
+                    </div>
+                  </div>
+                  <!-- Panel Widget --> 
+                </div>
+                
+             
+                <!-- col-md-6 --> 
+  
+                <div class="col-md-6">
+                  <div class="panel widget">
+                    <div class="panel-heading vd_bg-grey">
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Individual Client</h3>
+                    </div>
+                    <div class="panel-body">
+                      <form class="form-horizontal" action="#" role="form">
+                        <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="client_name" value="'.$rowx['client_name'].'">
+                          </div>
+                        </div>
+
+                      <div class="form-group">
+                      <label style="float:left" class="col-sm-4"> Client Location</label>
+                      <div class="col-sm-8 controls">
+                        <input type="text" id="client_location" value="'.$rowx['client_location'].'">
+                      </div>
+                    </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Phone No<span style="color:#f00">*</span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="client_phone" value="'.$rowx['client_phone'].'">
+                          </div>
+                        </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">National id<span style="color:#f00"></span></label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="national_id" value="'.$rowx['national_id'].'">
+                          </div>
+                        </div>
+  
+                         <div class="form-group">
+                          <label style="float:left" class="col-sm-4">Email</label>
+                          <div class="col-sm-8 controls">
+                            <input type="text" id="client_email" value="'.$rowx['client_email'].'">
+                          </div>
+                        </div>
+    
+                  </form>
+                    </div>
+                  </div>
+                  <!-- Panel Widget --> 
+                </div>
+  
                             <!-- Panel body -->
         
                               
@@ -30373,11 +30458,13 @@ case 219:
                                     <tr>
                                         <th>ID</th>
                                         <th>Business Name</th>
+                                        <th>Business Email</th>
                                         <th>Telephone</th>
                                         <th>Pin Registration</th>
                                         <th>VAT Registration</th>
+                                        <th>Client Email</th>
                                         <th>Contact Person</th>
-                                        <th>Email</th>
+                                        <th>Client Email</th>
                                     </tr>
                                     </thead>
                                 </table>
@@ -30563,12 +30650,14 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <thead>
                                       <tr>
                                           <th>ID</th>
+                                          <th>User ID</th>
                                           <th>Business Name</th>
+                                          <th>Business Address</th>
                                           <th>Telephone</th>
-                                          <th>Email</th>
-                                          <th>Phone</th>
+                                          <th>Client Name</th>                                          
+                                          <th>Client Contacts</th>                                      
                                           <th>Contact Person</th>
-                                          <th>Date</th>
+                                          
                                       </tr>
                                       </thead>
                                   </table>
@@ -31772,10 +31861,7 @@ case 402:
                                     File ID<span
                                             style="color:#f00">*</span></label>
                                 <div class="col-sm-8 controls">
-                                    <input type="text" id="unique_file_id"
-
-                                   
-                                           value="'.$rowx['unique_file_number'].'" disabled>
+                                    <input type="text" id="unique_file_id" value="'.$rowx['unique_file_number'].'" >
                                 </div>
                             </div>
 
