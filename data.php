@@ -6111,7 +6111,7 @@ switch ($id) {
 
 //        INDIVIDUAL CLIENT DETAILS
         $client_name = strtoupper($_GET['client_name']);
-        $client_address = strtoupper($_GET['client_address']);
+        // $client_address = strtoupper($_GET['client_address']);
         $client_location = $_GET['client_location'];
         $client_phone = $_GET['client_phone'];
         $client_email = $_GET['client_email'];
@@ -6212,69 +6212,35 @@ VALUES
         }
         break;
 
-    case 200.1:
-
-
-        $business_name = strtoupper($_GET['business_name']);
-        $telephone = $_GET['telephone'];
-
-        $national_id = $_GET['national_id'];
-        $contact_person = $_GET['contact_person'];
-        $email = $_GET['email'];
-
-        $phone = $_GET['phone'];
-
-
-        $resultx = mysql_query("select * from clients where business_name='" . $business_name . "' and email='" . $email . "'");
-        if (mysql_num_rows($resultx) > 0) {
-            echo '<script>swal("Error", "Clients with similar information already exists. !Consult the System Admin", "error");</script>';
-
-        }
-
-
-        $resulty = mysql_query("select * from clients order by id desc limit 0,1");
-        $rowy = mysql_fetch_array($resulty);
-        $tid = stripslashes($rowy['id']) + 1;
-
-
-        $unique_user_id = 'CLIENT' . sprintf("%06d", $tid);
-        $resultc = mysql_query("INSERT INTO `clients`  VALUES ('0', '" . $unique_user_id . "', '" . $client_name . "', '" . $client_address . "', '" . $location . "', '" . $telephone . "', '" . $national_id . "', '" . $contact_person . "', '" . $email . "', '" . $phone . "','1','" . $username . "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')") or die (mysql_error());
-
-
-        if ($resultc) {
-            $client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
-                                            VALUES ('0','" . $uid . "','Clients','" . $business_name . "','','','','" . $email . "','','" . date('d/m/Y') . "','" . date('Ymd') . "',1,'','','','','','','','','',1,'','','','',0,0,'','')");
-            echo '<script>swal("Success!", "Client information saved successfully", "success");</script>';
-
-            $resulta = mysql_query("insert into log values('0','" . $username . " creates new Clients','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo "<script>setTimeout(function() {newClients();},500);</script>";
-        } else {
-            echo '<script>swal("Error", "failed to save Clients info!", "error");</script>';
-        }
-        break;
-
-
-
-
-    //end new client
+    
 
     //edit client
     case 201:
         $id = $_GET['param'];
-        $unique_user_id = $_GET['unique_user_id'];
-        $business_name = strtoupper($_GET['business_name']);
-        $telephone = $_GET['telephone'];
-        $pin_registration = $_GET['pin_registration'];
-        $vat_registration = $_GET['vat_registration'];
-        $certificate_of_incorporation = strtoupper($_GET['certificate_of_incorporation']);
-        $national_id = $_GET['national_id'];
-        $contact_person = $_GET['contact_person'];
-        $email = $_GET['email'];
+       //        INDIVIDUAL CLIENT DETAILS
+       $client_name = strtoupper($_GET['client_name']);
+       
+       $client_location = strtoupper ($_GET['client_location']);
+       $client_phone = $_GET['client_phone'];
+       $client_email = $_GET['client_email'];
+       $national_id = $_GET['national_id'];
 
-        $phone = $_GET['phone'];
+//BUSINESS CLIENT
+       $business_name = strtoupper($_GET['business_name']);
+       $business_address = $_GET['business_address'];
+       $business_location = $_GET['business_location'];
+       $telephone = $_GET['telephone'];
+       $pin_registration = $_GET['pin_registration'];
+       $vat_registration = $_GET['vat_registration'];
+       $certificate_of_incorporation = $_GET['certificate_of_incorporation'];
+       $contact_person = strtoupper($_GET['contact_person']);
+       $business_email = $_GET['business_email'];
+       $contact_phone = $_GET['contact_phone'];
 
 
-        $resultg = mysql_query("UPDATE `clients` SET `business_name`='" . $business_name . "',`telephone`='" . $telephone . "',`pin_registration`='" . $pin_registration . "',`vat_registration`='" . $vat_registration . "',`certificate_of_incorporation`='" . $certificate_of_incorporation . "',`national_id`='" . $national_id . "',`contact_person`='" . $contact_person . "',`email`='" . $email . "',`phone`='" . $phone . "' WHERE `id`='" . $id . "'") or die (mysql_error());
+    //    $resultc = mysql_query("INSERT INTO `clients`  VALUES ('0', '" . $unique_user_id . "', '" . $client_name . "', '" . $client_address . "', '" . $location . "', '" . $telephone . "', '" . $national_id . "', '" . $contact_person . "', '" . $email . "', '" . $phone . "','1','" . $username . "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')") or die (mysql_error());
+
+        $resultg = mysql_query("UPDATE `clients` SET `business_name`='" . $business_name . "',`business_address`='" . $business_address . "',`business_location`='" . $business_location . "',`telephone`='" . $telephone . "',`pin_registration`='" . $pin_registration . "',`vat_registration`='" . $vat_registration . "',`certificate_of_incorporation`='".$certificate_of_incorporation."',`business_email`='" . $business_email . "', `client_name` = '".$client_name."', `client_email`='" . $client_email . "',`national_id`='" . $national_id . "',`contact_phone`='" . $contact_phone . "', `contact_person`='" . $contact_person . "',  `client_email`='" . $client_email . "', `client_phone`='" . $client_phone . "', `client_location`='" . $client_location . "' WHERE `id`='" . $id . "'") or die (mysql_error());
 
         $update_tenant_table = mysql_query("update tenants set bname='" . $business_name . "', address='" . $contact_person . "', dname='" . $email . "' WHERE `tid`='" . $unique_user_id . "'");
         //register log
@@ -6306,7 +6272,7 @@ VALUES
     /**end archive */
 
 
-    /**archiveclient */
+    /**activateclient */
     case 206:
         $param = $tid = $_GET['param'];
         $result = mysql_query("update clients set status=1 where id='" . $param . "'") or die (mysql_error());
@@ -6368,8 +6334,95 @@ VALUES
 
     /*****WARRANTS START*****/
     // all WARRANTS presentation logic goes here
+    /**new warrant */
+    case 400:
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $referring_client_uid = $_GET['referring_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $notification_message = $_GET['notification_message'];
 
 
+
+
+        $resultx = mysql_query('SELECT * FROM `warrants` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
+        if (mysql_num_rows($resultx) > 0) {
+            echo '<script>swal("Error", "Warrants file with similar info already exists. !Consult the System Admin", "error");</script>';
+
+        }
+
+        $resultc = mysql_query("INSERT INTO `warrants`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_id . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')") or die (mysql_error());
+
+
+        if ($resultc) {
+            echo '<script>swal("Success!", "Warrant file created successfully", "success");</script>';
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " created warrant file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {newWarrant();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to create a new warrant record!", "error");</script>';
+        }
+        break;
+
+        /**edit Warrant */
+        //edit warrant
+    case 401:
+        $id = $_GET['param'];
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $referring_client_uid = $_GET['referring_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $notification_message = $_GET['notification_message'];
+
+      
+
+        $resultg = mysql_query("UPDATE `warrants` SET `client_uid`='" . $client_uid . "',`referring_client_uid`='" . $referring_client_uid . "',`assignee_id`='" . $assignee_id . "', `notification_date`='".$notification_date."', `description`='" . $description . "', `notification_message`='" . $notification_message . "' WHERE `id`='" . $id . "'") or die (mysql_error());
+
+        $update_tenant_table = mysql_query("update tenants set bname='" . $client_uid . "', dname='" . $referring_client . "' WHERE `tid`='" . $unique_file_number . "'");
+        //register log
+        $resulta = mysql_query("insert into log values('0','" . $username . " updates  warrant info where warrant id:" . $id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+
+        if ($resultg) {
+            echo '<script>swal("Success!", "Warrant Info updated!", "success");</script>';
+            updateletters();
+            //echo"<script>window.open('report.php?id=89&rcptno=".$tid."');</script>";
+
+            echo "<script>setTimeout(function() {editWarrant();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "Warrant Info not Saved!", "error");</script>';
+        }
+        break;
+
+    //end edit warrant
+
+    /***Edit warrant */
+
+    /**archive warrant */
+    case 405:
+        $param = $tid = $_GET['b'];
+        $result = mysql_query("update warrants set status=0 ") or die (mysql_error());
+        $resulta = mysql_query("insert into log values('','" . $username . " archives warrants.Name:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo '<script>setTimeout(function() {checkoutwarrant();},500);</script>	';
+
+
+        break;
+
+    /**end archive */
+
+    /**activatewarrant */
+    case 406:
+        $param = $tid = $_GET['param'];
+        $result = mysql_query("update warrants set status=1 where id='" . $param . "'") or die (mysql_error());
+        $resulta = mysql_query("insert into log values('','" . $username . " activates warrant.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo '<script>archivedwarrant();</script>	';
+
+        break;
+
+    /**end of activate client */
     /*****WARRANTS END*****/
 
     /************************************** */
