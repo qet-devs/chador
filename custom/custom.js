@@ -10022,7 +10022,7 @@ function saveNewDebtCollection() {
 
 // Find Debt collection
 
-function findDebtCollection(){
+function findDebtCollection() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10033,5 +10033,105 @@ function findDebtCollection(){
     });
 }
 
+// EDIT DEBT COLLECTION PANEL
+
+function editDebtCollection() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 302},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// UPDATE DEBT COLLECTION INFO
+
+function saveDebtCollection(param){
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 301,
+            param:param,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+// DEBT COLLECTION FILE ENTRY
+function debtCollectionFile(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 304},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// DEBT COLLECTION FILE UPLOAD ENTRY
+function debtCollectionUploads() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 306},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// DEBT COLLECTION ARCHIVE ENTRY
+function archiveDebtCollection(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 308},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+//DEBT COLLECTION ARCHIVED FILE ENTRY
+function debtCollectionArchived(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 309},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
 
 // END OF DEBT COLLECTION

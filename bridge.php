@@ -30775,16 +30775,14 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label style="float:left" class="col-sm-4">Notification Date<span
-                                                                style="color:#f00">*</span></label>
+                                                    <label style="float:left" class="col-sm-4">Notification Date</label>
                                                     <div class="col-sm-8 controls">
                                                         <input type="text" id="notification_date" value="" class="date">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label style="float:left" class="col-sm-4">Notification Message<span
-                                                                style="color:#f00">*</span></label>
+                                                    <label style="float:left" class="col-sm-4">Notification Message</label>
                                                     <div class="col-sm-8 controls">
                                                         <textarea id="notification_message"> </textarea>
                                                     </div>
@@ -31081,10 +31079,527 @@ case 301:
     } </style>';
     break;
     
-
+// EDIT DEBT COLLECTION PANEL
     case 302:
 
+  echo '
+<div class="vd_container" id="container">
+<div class="vd_content clearfix" style="">
+        <div style="width:100%;padding:20px">
+        <div class="panel-heading vd_bg-grey">
+            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit Debt Collection File</h3>
+          </div>
+        <select id="intcombo" class="text-capitalize">
+        <option value="" selected>Select One...</option>';
+           $result =mysql_query("select * from debt_collections where status=1");
+            $num_results = mysql_num_rows($result);
+              for ($i=0; $i <$num_results; $i++) {
+                  $row=mysql_fetch_array($result);
+                  $resulta = mysql_query("select * from clients where unique_user_id = '".$row['client_uid']."' or unique_user_id='".$row['referring_client_uid']."'");
+                    $rowa = mysql_fetch_array($resulta);
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+                }
+           echo'</select>
+             <div class="cleaner_h10"></div>
+             <div class="col-sm-7">
+              <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+            </div>
+            </div>
+<!-- .vd_content --> 
+</div>
+<!-- .vd_container -->
+';
+echo "
+<script>
+    $('#intcombo').select2();
+    $('#intcombo').on('select2:select', function (e) {
+     var param = $('#intcombo').val();
+    var str = $('#item5').val();
+    var parts=param.split('-',3);
+    param=parts[0];
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+    url:'bridge.php',
+    data:{id:303,param:param},
+    success:function(data){
+    $('#mainp').html(data);
+    }
+    });
+
+
+  });
+   </script>
+   ";
+
         break;
+
+//        EDIT DEBT COLLECTION FORM
+        case 303:
+  $param=$_GET['param'];
+      mysql_query("insert into log values('','".$username." accesses Edit Debt Collection form.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+      $result = mysql_query('select * from debt_collections where id="' . $param . '" limit 0,1');
+
+                $row = mysql_fetch_array($result);
+                $resulta = mysql_query('select * from clients where unique_user_id = "' . $row['client_uid'] . '"');
+                $rowa = mysql_fetch_array($resulta);
+
+                empty($rowa['business_name'])? $client_name=$rowa['client_name']:$client_name=$rowa['business_name'];
+
+
+                $resultc = mysql_query('select * from clients where unique_user_id = "' . $row['referring_client_uid'] . '"');
+                $rowc = mysql_fetch_array($resultc);
+
+                empty($rowc['business_name'])? $referring_client=$rowc['client_name']:$referring_client=$rowc['business_name'];
+
+                $resultu = mysql_query('select * from users where name = "'.$row['assignee_id'].'"');
+                $rowu = mysql_fetch_array($resultu);
+
+                echo '
+                <div class="vd_container" id="container">
+                    <div class="vd_content clearfix" style="">
+
+                        <div class="vd_content-section clearfix">
+                            <div class="row" id="form-basic">
+                                <div class="col-md-6">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title"><span class="menu-icon"> <i
+                                                            class="fa fa-th-list"></i> </span> Edit Debt Collection
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <form class="form-horizontal" action="#" role="form">
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Debt Collection Unique
+                                                        File ID<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <input type="text" id="unique_file_id"
+                                                               value="' . $row['unique_file_number'] . '" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Client Name<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <select id="client_uid" class="text-capitalize">
+                                                            <option value="'.$rowa['unique_user_id'].'" selected>'.$client_name.'</option>
+                                                            ';
+                displayClients();
+                echo '
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Referring Client<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <select id="referring_client_uid" class="text-capitalize">
+                                                            <option value="'.$rowc['unique_user_id'].'" selected>'.$referring_client.'</option>
+                                                            ';
+                displayClients();
+                echo '
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Assignee<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <select id="assignee_username" class="text-capitalize">
+                                                            <option value="'.$rowu['name'].'" selected>'.$rowu['fullname'].'</option>
+                                                            ';
+                displayUsers();
+                echo '
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Description<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <textarea id="description">'.$row['description'].'</textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Notification Date</label>
+                                                    <div class="col-sm-8 controls">
+                                                        <input type="text" id="notification_date" value="'.$row['notification_date'].'" class="date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Notification Message</label>
+                                                    <div class="col-sm-8 controls">
+                                                        <textarea id="notification_message">'.$row['notification_message'].' </textarea>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Panel Widget -->
+                                </div>
+                                <!-- col-md-6 -->
+                                
+                                <div class="col-md-6">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title"><span class="menu-icon"> <i
+                                                            class="fa fa-th-list"></i> </span> Actions</h3>
+                                        </div>
+                                        <div class="panel-body">
+
+
+                                            <div class="form-group form-actions">
+                                                <div class="col-sm-4"></div>
+                                                <div class="col-sm-7">
+                                                    <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                            onclick="saveDebtCollection('.$param.')"><i class="icon-ok"></i> Update
+                                                    </button>
+                                                    <button class="btn vd_btn" type="button" onclick="hidecont()">
+                                                        Cancel
+                                                    </button>
+                                                    <div id="message" style="width:40px;height:40px;float:right"></div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <!-- Panel Widget -->
+                                </div>
+                                <!-- col-md-12 -->
+                                
+                                ';
+            break;
+
+            //        debt collection file entry
+            case 304:
+                mysql_query("insert into log values('','".$username." accesses debt collection file info Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+
+             echo '
+<div class="vd_container" id="container">
+<div class="vd_content clearfix" style="">
+        <div style="width:100%;padding:20px">
+        <div class="panel-heading vd_bg-grey">
+            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Debt Collection File</h3>
+          </div>
+        <select id="intcombo" class="text-capitalize">
+        <option value="" selected>Select One...</option>';
+           $result =mysql_query("select * from debt_collections where status=1");
+            $num_results = mysql_num_rows($result);
+              for ($i=0; $i <$num_results; $i++) {
+                  $row=mysql_fetch_array($result);
+                  $resulta = mysql_query("select * from clients where unique_user_id = '".$row['client_uid']."' or unique_user_id='".$row['referring_client_uid']."'");
+                    $rowa = mysql_fetch_array($resulta);
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+                }
+           echo'</select>
+             <div class="cleaner_h10"></div>
+             <div class="col-sm-7">
+              <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+            </div>
+            </div>
+<!-- .vd_content --> 
+</div>
+<!-- .vd_container -->
+';
+echo "
+<script>
+    $('#intcombo').select2();
+    $('#intcombo').on('select2:select', function (e) {
+     var param = $('#intcombo').val();
+    var str = $('#item5').val();
+    var parts=param.split('-',3);
+    param=parts[0];
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+    url:'bridge.php',
+    data:{id:305,param:param},
+    success:function(data){
+    $('#mainp').html(data);
+    }
+    });
+
+
+  });
+   </script>
+   ";
+
+ break;
+
+//debt collection file info
+case 305:
+$param = $_GET['param'];
+//todo: file info
+
+    break;
+
+//    debt collection file uploads entry
+case 306:
+    mysql_query("insert into log values('','".$username." accesses debt collection file upload Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+
+            echo '
+<div class="vd_container" id="container">
+<div class="vd_content clearfix" style="">
+        <div style="width:100%;padding:20px">
+        <div class="panel-heading vd_bg-grey">
+            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Debt Collection Upload File</h3>
+          </div>
+        <select id="intcombo" class="text-capitalize">
+        <option value="" selected>Select One...</option>';
+           $result =mysql_query("select * from debt_collections where status=1");
+            $num_results = mysql_num_rows($result);
+              for ($i=0; $i <$num_results; $i++) {
+                  $row=mysql_fetch_array($result);
+                  $resulta = mysql_query("select * from clients where unique_user_id = '".$row['client_uid']."' or unique_user_id='".$row['referring_client_uid']."'");
+                    $rowa = mysql_fetch_array($resulta);
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+                }
+           echo'</select>
+             <div class="cleaner_h10"></div>
+             <div class="col-sm-7">
+              <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+            </div>
+            </div>
+<!-- .vd_content --> 
+</div>
+<!-- .vd_container -->
+';
+echo "
+<script>
+    $('#intcombo').select2();
+    $('#intcombo').on('select2:select', function (e) {
+     var param = $('#intcombo').val();
+    var str = $('#item5').val();
+    var parts=param.split('-',3);
+    param=parts[0];
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+    url:'bridge.php',
+    data:{id:305,param:param},
+    success:function(data){
+    $('#mainp').html(data);
+    }
+    });
+
+
+  });
+   </script>
+   ";
+    break;
+
+//    debt collection file uploads
+case 307:
+//    todo: file collection uploads
+    break;
+
+//    debt collection archive file
+case 308:
+mysql_query("insert into log values('','".$username." accesses archive debt collection Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+
+echo '
+<div class="vd_container" id="container">
+<div class="vd_content clearfix" style="">
+        <div style="width:100%;padding:20px">
+        <div class="panel-heading vd_bg-grey">
+            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Archive Debt Collection File</h3>
+          </div>
+        <select id="intcombo" class="text-capitalize">
+        <option value="" selected>Select One...</option>';
+           $result =mysql_query("select * from debt_collections where status=1");
+            $num_results = mysql_num_rows($result);
+              for ($i=0; $i <$num_results; $i++) {
+                  $row=mysql_fetch_array($result);
+                  $resulta = mysql_query("select * from clients where unique_user_id = '".$row['client_uid']."' or unique_user_id='".$row['referring_client_uid']."'");
+                    $rowa = mysql_fetch_array($resulta);
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+                }
+           echo'</select>
+             <div class="cleaner_h10"></div>
+             <div class="col-sm-7">
+              <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+            </div>
+            </div>
+<!-- .vd_content --> 
+</div>
+<!-- .vd_container -->
+';
+echo "
+<script>
+    $('#intcombo').select2();
+    $('#intcombo').on('select2:select', function (e) {
+     var param = $('#intcombo').val();
+    var str = $('#item5').val();
+    var parts=param.split('-',3);
+    param=parts[0];
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+    url:'bridge.php',
+    data:{id:305,param:param},
+    success:function(data){
+    $('#mainp').html(data);
+    }
+    });
+
+
+  });
+   </script>
+   ";
+
+    break;
+
+//    debt collection archived files
+case 309:
+
+     mysql_query("insert into log values('','".$username." accesses archived debt collection files Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+
+    echo ' <div class="vd_container" id="container">
+                    <div class="vd_content clearfix">
+                        <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger"
+                                data-toggle="modal"
+                                data-target="#myModal"><a></a></button>
+
+                        <div class="vd_content-section clearfix">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title"><span class="menu-icon"> <i
+                                                            class="fa fa-dot-circle-o"></i> </span>Archived Debt
+                                                Collections-Search
+                                                Panel</h3>
+                                        </div>
+                                        <!-- panel heading -->
+                                        <div class="panel-body table-responsive ">
+                                            <table class="table table-striped text-capitalize" id="data-tables">
+                                                <thead>
+                                                <tr>
+                                                    <th>File ID</th>
+                                                    <th>Description</th>
+                                                    <th>Status</th>
+                                                    <th>Assignee</th>
+                                                    <th>Entry Date</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <!-- panel body -->
+                                    </div>
+                                    <!-- Panel Widget -->
+                                </div>
+                                <!-- col-md-12 -->
+                            </div>
+                            <!-- row -->
+
+                        </div>
+                        <!-- .vd_content-section -->
+
+                    </div>
+                    <!-- .vd_content -->
+                </div>
+                <!-- .vd_container -->
+                
+                 <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header vd_bg-green vd_white">
+                    <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i
+                            class="fa fa-times"></i></button>
+                    <h4 class="modal-title" id="myModalLabel">Function List</h4>
+                </div>
+                <!-- /.modal-header -->
+                <div class="modal-body">
+                    <form class="form-horizontal" action="#" role="form">
+    
+                        <div class="form-group">';
+
+                            $arr=array();
+                            $resulta =mysql_query("select * from accesstbl");
+                            $num_resultsa = mysql_num_rows($resulta);
+                            for ($v=0; $v <$num_resultsa; $v++) {
+                            $rowa=mysql_fetch_array($resulta);
+                            $var=stripslashes($rowa[$usertype]);
+                            $code=stripslashes($rowa['AccessCode']);
+                            $arr[$code]=$var;
+                            }
+
+                            if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                              onclick="majoropen(200)">Edit Client</label><br/>';}
+                            if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                              onclick="majoropen(201)">Client Info</label><br/>';}
+                            // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                            //                                   onclick="majoropen(401)">Property Description</label><br/>';}
+                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                              onclick="majoropen(406)">Invoice</label><br/>';}
+                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                              onclick="majoropen(202)">Archive Client</label><br/>';}
+
+                            echo '
+                            <input class="input-border-btm" type="hidden" id="tenparam" required>
+                        </div>
+    
+    
+                    </form>
+                </div>
+                <!-- /.modal-body -->
+            </div>
+            <!-- /.modal-contet -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- .modal -->';
+
+                            echo '  
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            "use strict";
+    
+            var eventFired = function (type) {
+                console.log(type)
+    
+                setTimeout(function () {
+                    $("#data-tables tbody tr").off("click").on("click", function (event) {
+                        $("#tenparam").val($(this).find("td").eq(0).html());
+                        openoptmodal($(this).find("td").eq(0).html())
+                    });
+                }, 500);
+            }
+    
+    
+            $("#data-tables")
+                .on("order.dt", function () {
+                    eventFired("Order");
+                })
+                .on("search.dt", function () {
+                    eventFired("Search");
+                })
+                .on("draw.dt", function () {
+                    eventFired("Page");
+                })
+                .DataTable({
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": "json.php?id=301"
+                });
+    
+    
+        });
+    </script>
+    <style>td {
+        cursor: pointer
+    } </style>';
+    break;
 
 
 

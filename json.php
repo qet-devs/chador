@@ -432,7 +432,7 @@ $where = "";
     
         break;
 
-//        DEBT COLLECTION
+//        DEBT COLLECTION ACTIVE
      case 300:
          // DB table to use
          $table = 'debt_collections';
@@ -455,8 +455,31 @@ $where = "";
 
          break;
 
+//        DEBT COLLECTION ARCHIVED
+    case 301:
+        // DB table to use
+        $table = 'debt_collections';
 
-     case 950:
+        // Table's primary key
+        $primaryKey = 'id';
+        $where = "status!=1";
+
+        // Array of database columns which should be read and sent back to DataTables.
+        // The `db` parameter represents the column name in the database, while the `dt`
+        // parameter represents the DataTables column identifier. In this case simple
+        // indexes
+        $columns = array(
+            array( 'db' => 'unique_file_number', 'dt' => 0 ),
+            array( 'db' => 'description', 'dt' => 1 ),
+            array( 'db' => 'file_status', 'dt' => 2 ),
+            array( 'db' => 'assignee_id', 'dt' => 3 ),
+            array( 'db' => 'date',  'dt' => 4 ),
+        );
+
+        break;
+
+
+    case 950:
                                     // DB table to use
                                     $table = 'tendocs';
                                      
