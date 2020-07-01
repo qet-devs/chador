@@ -31338,8 +31338,169 @@ echo "
 
 //debt collection file info
 case 305:
-$param = $_GET['param'];
-//todo: file info
+
+
+                $param = $_GET['param'];
+                mysql_query("insert into log values('','" . $username . " accesses Debt Collection file.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+                $result = mysql_query('select * from debt_collections where id="' . $param . '" limit 0,1');
+                $row = mysql_fetch_array($result);
+                $resulta = mysql_query('select * from clients where unique_user_id = "' . $row['client_uid'] . '"');
+                $rowa = mysql_fetch_array($resulta);
+
+                empty($rowa['business_name']) ? $client_name = $rowa['client_name'] : $client_name = $rowa['business_name'];
+
+
+                $resultc = mysql_query('select * from clients where unique_user_id = "' . $row['referring_client_uid'] . '"');
+                $rowc = mysql_fetch_array($resultc);
+
+                empty($rowc['business_name']) ? $referring_client = $rowc['client_name'] : $referring_client = $rowc['business_name'];
+
+                $resultu = mysql_query('select * from users where name = "' . $row['assignee_id'] . '"');
+                $rowu = mysql_fetch_array($resultu);
+
+                echo '
+                 <div class="vd_container" id="container">
+                    <div class="vd_content clearfix" style="">
+                        <div class="vd_content-section clearfix">
+
+                            <div class="panel widget">
+                                <div class="panel-heading vd_bg-grey">
+                                    <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Debt Collection File </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#details">File Details</a></li>
+                                        <li><a data-toggle="tab" href="#uploads">Uploaded Files</a></li>
+                                        <li><a data-toggle="tab" href="#invoices">Invoices</a></li>
+                                        <li><a data-toggle="tab" href="#notifications">Notifications</a></li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div id="details" class="tab-pane fade in active">
+                                            <h3>File Details</h3>
+                                            
+                                            <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title"><span class="menu-icon"> <i
+                                                            class="fa fa-th-list"></i> </span> Edit Debt Collection
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <form class="form-horizontal" action="#" role="form">
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Debt Collection Unique
+                                                        File ID<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <input type="text" id="unique_file_id"
+                                                               value="' . $row['unique_file_number'] . '" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Client Name<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <select id="client_uid" class="text-capitalize">
+                                                            <option value="' . $rowa['unique_user_id'] . '" selected>' . $client_name . '</option>
+                                                            ';
+                displayClients();
+                echo '
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Referring Client<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <select id="referring_client_uid" class="text-capitalize">
+                                                            <option value="' . $rowc['unique_user_id'] . '" selected>' . $referring_client . '</option>
+                                                            ';
+                displayClients();
+                echo '
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Assignee<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <select id="assignee_username" class="text-capitalize">
+                                                            <option value="' . $rowu['name'] . '" selected>' . $rowu['fullname'] . '</option>
+                                                            ';
+                displayUsers();
+                echo '
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Description<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <textarea id="description">' . $row['description'] . '</textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Notification Date</label>
+                                                    <div class="col-sm-8 controls">
+                                                        <input type="text" id="notification_date" value="' . $row['notification_date'] . '" class="date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Notification Message</label>
+                                                    <div class="col-sm-8 controls">
+                                                        <textarea id="notification_message">' . $row['notification_message'] . ' </textarea>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Panel Widget -->
+                                            
+                                        </div>
+                                        <div id="uploads" class="tab-pane fade">
+                                            <h3>Uploaded Documents</h3>
+                                            <table class="table table-striped">
+                                                <thead>
+                                                  <tr>
+                                                    <th>Name</th>
+                                                    <th>Details</th>
+                                                    <th>Download</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>';
+displayUploadedFiles($row['unique_file_number']);
+
+                                              echo '</tbody>
+                                              </table>
+                                        </div>
+                                        <div id="invoices" class="tab-pane fade">
+                                            <h3>Invoices</h3>
+                                            <p>Some content in menu 2.</p>
+                                        </div>
+                                        <div id="notifications" class="tab-pane fade">
+                                            <h3>Notifications</h3>
+                                            <p>Some content in menu 2.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                ';
+
 
     break;
 
@@ -31385,7 +31546,7 @@ echo "
     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
     $.ajax({
     url:'bridge.php',
-    data:{id:305,param:param},
+    data:{id:307,param:param},
     success:function(data){
     $('#mainp').html(data);
     }
@@ -31399,61 +31560,162 @@ echo "
 
 //    debt collection file uploads
 case 307:
-//    todo: file collection uploads
+    $param = $_GET['param'];
+    mysql_query("insert into log values('','" . $username . " accesses letter File Panel.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+    $result = mysql_query("select * from debt_collections where id='" . $param . "' limit 0,1");
+    $row = mysql_fetch_array($result);
+
+    echo '
+     <div class="vd_container" id="container">
+                    <div class="vd_content clearfix" style="">
+
+                        <div class="vd_content-section clearfix">
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i
+                                                            class="fa fa-th-list"></i> </span>
+                                              File Upload Form </h3>
+                                        </div>
+                                        <div class="panel-body">
+
+                                            <form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
+                                                <div class="cleaner"></div>
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-3">Name:<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-9 controls">
+                                                        <input type="text" id="fname" name="fname" required>
+                                                    </div>
+                                                </div>
+                                                <div class="cleaner_h5"></div>
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-3">Type:<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-9 controls">
+                                                        <select style="padding:5px" name="type" id="doctype">
+                                                            <option value="" selected>Select One...</option>
+                                                            <option value="Certificate of Incorporation">Certificate of Incorporation
+                                                            </option>
+                                                            <option value="Checkout Documents">Checkout Documents</option>
+                                                            <option value="ID_Card_Copies">ID_Card_Copies</option>
+                                                            <option value="Lease Document">Lease Document</option>
+                                                            <option value="Memorandum/Articles_of_Association">
+                                                                Memorandum/Articles_of_Association
+                                                            </option>
+                                                            <option value="Pin/Vat_Certificate">Pin/Vat_Certificate</option>
+                                                            <option value="Unit Handover Photos">Unit Handover Photos</option>
+                                                            <option value="Pin_Copies">Pin_Copies</option>
+                                                            <option value="Other Documents">Other Documents</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="cleaner_h5"></div>
+                                                <dd class="custuploadblock_js">
+                                                    <input style="opacity:0; float:left;" name="image" id="photoupload"
+                                                           class="transfileform_js" type="file">
+                                                </dd>
+                                                <iframe name="leiframe" id="leiframe" class="leiframe">
+                                                </iframe>
+                                                <input type="hidden" name="soi" value="' . $username . '"/>
+                                                <input type="hidden" name="sap" value="Debt Collection"/>
+                                                <input type="hidden" name="tid" value="' . $row['unique_file_number'] . '"/>
+                                                <input type="hidden" id="id" name="id" value="1"/>
+                                                <div class="cleaner_h5"></div>
+                                                <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%"
+                                                        type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i
+                                                            class="fa fa-th-list"></i> </span>
+                                                Uploaded Files </h3>
+                                        </div>
+                                        <div class="panel-body">
+
+                                            <h3>Uploaded Documents</h3>
+                                            <button class="btn btn-info btn-sm" onclick="refreshDCUploads('.$param.')">Refresh</button>
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Details</th>
+                                                    <th>Download</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>';
+                                                displayUploadedFiles($row['unique_file_number']);
+
+                                                echo '</tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+    ';
     break;
 
 //    debt collection archive file
 case 308:
 mysql_query("insert into log values('','".$username." accesses archive debt collection Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
-echo '
-<div class="vd_container" id="container">
-<div class="vd_content clearfix" style="">
-        <div style="width:100%;padding:20px">
-        <div class="panel-heading vd_bg-grey">
-            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Archive Debt Collection File</h3>
-          </div>
-        <select id="intcombo" class="text-capitalize">
-        <option value="" selected>Select One...</option>';
-           $result =mysql_query("select * from debt_collections where status=1");
-            $num_results = mysql_num_rows($result);
-              for ($i=0; $i <$num_results; $i++) {
-                  $row=mysql_fetch_array($result);
-                  $resulta = mysql_query("select * from clients where unique_user_id = '".$row['client_uid']."' or unique_user_id='".$row['referring_client_uid']."'");
-                    $rowa = mysql_fetch_array($resulta);
-                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
-                }
-           echo'</select>
-             <div class="cleaner_h10"></div>
-             <div class="col-sm-7">
-              <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
-            </div>
-            </div>
-<!-- .vd_content --> 
-</div>
-<!-- .vd_container -->
-';
-echo "
-<script>
-    $('#intcombo').select2();
-    $('#intcombo').on('select2:select', function (e) {
-     var param = $('#intcombo').val();
-    var str = $('#item5').val();
-    var parts=param.split('-',3);
-    param=parts[0];
-    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-    $.ajax({
-    url:'bridge.php',
-    data:{id:305,param:param},
-    success:function(data){
-    $('#mainp').html(data);
-    }
-    });
+$param=0;
+if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+  echo '<div class="vd_container" id="container">
+      <div class="vd_content clearfix" style="">
+    
+              <div style="width:100%;padding:20px">
+              <div class="panel-heading vd_bg-grey">
+                  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Clients Archive</h3>
+                </div>
+              <select id="intcombo"><option value="" selected>Select One...</option> ';
+                 $result =mysql_query("select * from debt_collections where status=1");
+                  $num_results = mysql_num_rows($result);
+                    for ($i=0; $i <$num_results; $i++) {
+                        $row=mysql_fetch_array($result);
+                        $code=stripslashes($row['id']);
+                        echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['client_uid']).'</option>';
+                      }
+                 echo'</select>
+                   <div class="cleaner_h10" id="message"></div>
+                   <div class="col-sm-7">
+                    <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                  </div>
+                  </div>
+      <!-- .vd_content --> 
+    </div>
+    <!-- .vd_container -->';
+    echo "<script>
+          $('#intcombo').select2();
+          $('#intcombo').on('select2:select', function (e) {
+        var param = $('#intcombo').val();
+        var str = $('#item5').val();
+        var parts=param.split('-',3);
+        param=parts[0];
+       archiveDebtCollection(param);
 
+        });
+         </script>";
 
-  });
-   </script>
-   ";
 
     break;
 

@@ -9907,7 +9907,7 @@ function clientFile() {
 
 //end client file
 
-//client upload
+// client upload
 function clientFileUpload() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
@@ -9932,6 +9932,8 @@ function archiveClient() {
         }
     });
 }
+
+
 
 /**archiveclient */
 function archiveclient(b) {
@@ -10048,7 +10050,7 @@ function editDebtCollection() {
 
 // UPDATE DEBT COLLECTION INFO
 
-function saveDebtCollection(param){
+function saveDebtCollection(param) {
     var unique_file_id = $('#unique_file_id').val();
     var client_uid = $('#client_uid').val();
     var referring_client_uid = $('#referring_client_uid').val();
@@ -10063,7 +10065,7 @@ function saveDebtCollection(param){
     } else {
         var data = {
             id: 301,
-            param:param,
+            param: param,
             unique_file_id: unique_file_id,
             client_uid: client_uid,
             referring_client_uid: referring_client_uid,
@@ -10086,7 +10088,7 @@ function saveDebtCollection(param){
 }
 
 // DEBT COLLECTION FILE ENTRY
-function debtCollectionFile(){
+function debtCollectionFile() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10109,8 +10111,20 @@ function debtCollectionUploads() {
     });
 }
 
+// DEBT COLLECTION REFRESH UPLOADED FILES
+function refreshDCUploads(param) {
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 307, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
 // DEBT COLLECTION ARCHIVE ENTRY
-function archiveDebtCollection(){
+function archiveDebtCollection() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10121,9 +10135,13 @@ function archiveDebtCollection(){
     });
 }
 
+// archive debt collection
+function archiveDebtCollection(param) {
+    console.log(param);
+}
 
 //DEBT COLLECTION ARCHIVED FILE ENTRY
-function debtCollectionArchived(){
+function debtCollectionArchived() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
