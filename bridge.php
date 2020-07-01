@@ -30144,63 +30144,172 @@ case 215:
             <div class="panel widget">
                 <div class="panel-heading vd_bg-grey">
                     <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                        Client File-'.stripslashes($rowx['business_name']).' VS '.stripslashes($rowx['email']).' </h3>
+                        Client File-'.stripslashes($rowx['business_name']).' &'.stripslashes($rowx['unique_user_id']).' </h3>
                 </div>
+
+                
+              
                 <div class="panel-body">
-                    <ul class="nav nav-tabs text-capitalize">
-                        <li class="active"><a href="#tab1" data-toggle="tab">Client Information Panel</a></li>
-                      
-                    </ul>
-                    <br/>
-                    <div class="tab-content mgbt-xs-20">
-                        <div class="tab-pane active" id="tab1">
+                <ul class="nav nav-tabs text-capitalize">
+                    <li class="active"><a href="#tab1" data-toggle="tab">Business Information</a></li>
+                    <li><a href="#tab6" data-toggle="tab">Client Details</a></li>
+                    
+                </ul>
+                <br/>
+                <div class="tab-content mgbt-xs-20 text-capitalize" >
+                    <div class="tab-pane active" id="tab1">
+                    <div class="row" id="form-basic">
 
-                        <div class="panel-body">
-                        <h4><label>Client details </label></h4>
-                        <div class="form-group">
-                            <label>Business Name<span style="color:#f00">*</span></label>
-                            <input type="text" id="business_name" class="control" value="'.$rowx['business_name'].'">
-                            
-                        </div>
-                        <div class="form-group">
-                            <label>Telephone<span style="color:#f00">*</span></label>
-                            <input type="text" id="telephone" class="control" value="'.$rowx['telephone'].'">
-                        </div>
+              <div class="col-md-6">
+                  <div class="panel widget">
+                      <div class="panel-heading vd_bg-grey">
+                          <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                            Business Details</h3>
+                      </div>
 
-                        <h4><label>Registration of:</label></h4>
-                        <div class="form-group">
-                            <label>PIN<span style="color:#f00">*</span></label>
-                            <input type="text" id="pin_registration" class="control" value="'.$rowx['pin_registration'].'">
-                        </div>
-                        <div class="form-group">
-                            <label>VAT<span style="color:#f00">*</span></label>
-                            <input type="text" id="vat_registration" class="control" value="'.$rowx['vat_registration'].'">
-                        </div>
-                        <div class="form-group">
-                            <label>Certificate of Incorporation<span style="color:#f00">*</span></label>
-                            <input type="text" id="certificate_of_incorporation" class="control" value="'.$rowx['certificate_of_incorporation'].'">
-                        </div>
 
-                        <h4><label>Contact Information</label></h4>
-                        <div class="form-group">
-                            <label>National id<span style="color:#f00">*</span></label>
-                            <input type="text" id="national_id" class="control" value="'.$rowx['national_id'].'">
-                        </div>
-                        
-                        
-                        <div class="form-group">
-                            <label>Contact Person<span style="color:#f00">*</span></label>
-                            <input type="text" id="contact_person" class="control" value="'.$rowx['contact_person'].'">
-                        </div>
-                        <div class="form-group">
-                            <label>Email<span style="color:#f00">*</span></label>
-                            <input type="text" id="email" class="control" value="'.$rowx['email'].'">
-                        </div>
-                        <div class="form-group">
-                            <label>Phone<span style="color:#f00">*</span></label>
-                            <input type="text" id="phone" class="control" value="'.$rowx['phone'].'">
-                        </div>
+                      <!-- panel heading-->
+                      <div class="panel-body">
+<form class="form-horizontal" action="#" role="form">
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Business Name<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="business_name" value="'.$rowx['business_name'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Business Address<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="business_address" value="'.$rowx['business_address'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4"> Business Location<span style="color:#f00"></span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="business_location" value="'.$rowx['business_location'].'">
+</div>
+</div>
+
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Telephone No<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="telephone" value="'.$rowx['telephone'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Pin Registration<span style="color:#f00"></span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="pin_registration" value="'.$rowx['pin_registration'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">VAT Registration<span style="color:#f00"></span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="vat_registration" value="'.$rowx['vat_registration'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Certificate of incorporation<span style="color:#f00"></span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="certificate_of_incorporation" value="'.$rowx['certificate_of_incorporation'].'">
+</div>
+</div>
+
+
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Business Email</label>
+<div class="col-sm-8 controls">
+<input type="text" id="business_email" value="'.$rowx['business_email'].'">
+</div>
+</div>
+
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Contact person<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="contact_person" value="'.$rowx['contact_person'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Phone<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="contact_phone" value="'.$rowx['contact_phone'].'">
+</div>
+</div>
+</form>
+</div>
+
+<!-- end of panel body -->
                     </div>
+                    <!-- Panel Widget --> 
+                  </div>
+
+                  </div>
+                  </div>
+                  <div class="tab-pane " id="tab6">
+
+                  <div class="panel widget">
+                    <div class="panel-heading vd_bg-grey">
+                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                          Client Details</h3>
+                    </div>
+
+                    <div class="panel-body">
+                    <form class="form-horizontal" action="#" role="form">
+                      <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="client_name" value="'.$rowx['client_name'].'">
+                        </div>
+                      </div>
+
+                    <div class="form-group">
+                    <label style="float:left" class="col-sm-4"> Client Location</label>
+                    <div class="col-sm-8 controls">
+                      <input type="text" id="client_location" value="'.$rowx['client_location'].'">
+                    </div>
+                  </div>
+
+                       <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Phone No<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="client_phone" value="'.$rowx['client_phone'].'">
+                        </div>
+                      </div>
+
+                       <div class="form-group">
+                        <label style="float:left" class="col-sm-4">National id<span style="color:#f00"></span></label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="national_id" value="'.$rowx['national_id'].'">
+                        </div>
+                      </div>
+
+                       <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Email</label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="client_email" value="'.$rowx['client_email'].'">
+                        </div>
+                      </div>
+  
+                </form>
+                  </div>      
+<!-- end of panel body -->
+
+                    </div>
+                    <!-- Panel Widget --> 
+                  </div>
+<!-- end of tabpane -->
+                  </div>
+                  </div>
+    
                     <!-- Panel body -->
                         </div>
                         
@@ -31676,8 +31785,8 @@ case 414:
                                         <label style="float:left" class="col-sm-4">Client Name<span
                                                     style="color:#f00">*</span></label>
                                         <div class="col-sm-8 controls">
-                                            <select id="client_uid" class="text-capitalize">
-                                                <option value="'.$rowx['client_uid'].'" selected>Select One...</option>
+                                            <select id="client_uid" class="text-capitalize">'.$rowx['client_uid'].'
+                                                <option value="" selected>Select One...</option>
                                                 ';
                                                  displayClients();
 echo '
@@ -31818,7 +31927,7 @@ case 402:
   if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
   else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
     $result = mysql_query("insert into log values('','".$username." accesses warrant File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
-    $resultx =mysql_query("select * from warrants where id='".$param."' limit 0,1");
+    $resultx =mysql_query("select * from warrants  ");
     $rowx=mysql_fetch_array($resultx);
     $lof="Warrants";
     $stat=stripslashes($rowx['status']);
@@ -31839,22 +31948,27 @@ case 402:
             <div class="panel widget">
                 <div class="panel-heading vd_bg-grey">
                     <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                        Warrant File-'.stripslashes($rowx['file_status']).' VS '.stripslashes($rowx['unique_file_number']).' </h3>
+                        Warrant File-'.stripslashes($rowx['client_uid']).' VS '.stripslashes($rowx['unique_file_number']).' </h3>
                 </div>
+                
+                   
 
 
                 <div class="panel-body">
                     <ul class="nav nav-tabs text-capitalize">
                         <li class="active"><a href="#tab1" data-toggle="tab">Warrant Information Panel</a></li>
-                      
+                       
                     </ul>
                     <br/>
                     <div class="tab-content mgbt-xs-20">
-                        <div class="tab-pane active" id="tab1">
+                    <div class="tab-pane active" id="tab1">
+                    <div class="row" id="form-basic">
+
+  
 
 
-                                        
-                        <div class="panel-body">
+                      <!-- panel heading-->
+                      <div class="panel-body">
                         <form class="form-horizontal" action="#" role="form">
                             <div class="form-group">
                                 <label style="float:left" class="col-sm-4">Warrant Unique
@@ -31870,8 +31984,9 @@ case 402:
                                             style="color:#f00">*</span></label>
                                 <div class="col-sm-8 controls">
                                     <select id="client_uid" class="text-capitalize">
-                                        <option value="" selected>Select One...</option>
+                                        <option value="'.$rowx['client_name'].'" selected>Select One...</option>
                                         ';
+                                        
 displayClients();
 echo '
                                     </select>
@@ -31933,22 +32048,28 @@ echo '
 
                         </form>
                     </div>
-                </div>                            </div>
+<!-- end of panel body -->
+
+
+                    </div>
+                    <!-- Panel Widget --> 
+                  </div>
+                      </div>
+
+
                     <!-- Panel Widget -->
 
 
-
-                   
+           
 
                    
             <!-- Panel body -->
                         </div>
                         
-                       
+                       </div>
 
 
-
-
+                     
                         
 
 
@@ -31956,8 +32077,7 @@ echo '
 
 
 
-                        </div>
-                    </div>
+                      
                 </div>
             </div>
         </div>
@@ -31968,7 +32088,7 @@ echo '
 
 break;
 
-/**start client file */
+/**start warrant file */
 
 case 403:
   $param=0;
@@ -31979,7 +32099,8 @@ case 403:
        
                   <div style="width:100%;padding:20px">
                   <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Warrant File</h3>
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Warant
+                       File</h3>
                     </div>
                   <select id="intcombo" class="text-capitalize"><option value="" selected>Select One...</option> ';
                      $result =mysql_query("select * from warrants where status=1");
@@ -31987,7 +32108,7 @@ case 403:
                         for ($i=0; $i <$num_results; $i++) {
                             $row=mysql_fetch_array($result);
                             $code=stripslashes($row['id']);
-                            echo '<option value="'.stripslashes($row['file_status']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($row['client_uid']).'-'.stripslashes($row['referring_client_uid']).'</option>';
+                            echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['client_uid']).'-'.stripslashes($row['referring_client_uid']).'-'.stripslashes($row['date']).'</option>';
                           }
                      echo'</select>
                        <div class="cleaner_h10"></div>
@@ -32017,7 +32138,6 @@ case 403:
   
             });
              </script>";
-  
 break;
 
 
