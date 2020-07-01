@@ -412,7 +412,6 @@ $where = "";
     
         break;
 
-<<<<<<< HEAD
         /**start archive client */
         case 201:
             // DB table to use
@@ -444,9 +443,6 @@ $where = "";
             /**client archived */
 
 //        DEBT COLLECTION
-=======
-//        DEBT COLLECTION ACTIVE
->>>>>>> debt_collection
      case 300:
          // DB table to use
          $table = 'debt_collections';
