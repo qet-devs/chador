@@ -2338,6 +2338,7 @@ function cartbill($max)
 
 
 }
+
 //Debt collection helper functions
 function displayClients()
 {
@@ -2365,5 +2366,21 @@ function displayUsers()
     }
 }
 
+function displayUploadedFiles($param)
+{
+//echo $param;
+    $result = mysql_query("select * from tendocs where tid='" . $param . "' and status='1'");
+    $num_results = mysql_num_rows($result);
+    for ($i = 0; $i < $num_results; $i++) {
+        $row = mysql_fetch_array($result);
+        echo '
+          <tr>
+            <td>'.$row['name'].'</td>
+            <td>'.$row['details'].'</td>
+            <td> <a href="'.$row['link'].'" ><i class="fa fa-download" aria-hidden="true"></i></a></td>
+          </tr>
+        ';
+    }
+}
 
 ?>
