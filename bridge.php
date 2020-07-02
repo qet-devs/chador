@@ -30701,7 +30701,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         $unique_file_id = 'DC' . sprintf("%08d", $tid);
 
           echo '
-          <div class="vd_container" id="container">
+           <div class="vd_container" id="container">
                     <div class="vd_content clearfix" style="">
 
                         <div class="vd_content-section clearfix">
@@ -30732,8 +30732,8 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                         <select id="client_uid" class="text-capitalize">
                                                             <option value="" selected>Select One...</option>
                                                             ';
-          displayClients();
-          echo '
+                                                            displayClients();
+                                                            echo '
                                                         </select>
                                                     </div>
                                                 </div>
@@ -30745,9 +30745,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                     <div class="col-sm-8 controls">
                                                         <select id="referring_client_uid" class="text-capitalize">
                                                             <option value="" selected>Select One...</option>
-                                                                                                 ';
-          displayClients();
-          echo '
+                                                            ';
+                                                            displayClients();
+                                                            echo '
                                                         </select>
                                                     </div>
                                                 </div>
@@ -30802,33 +30802,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                             class="fa fa-th-list"></i> </span>Documents Upload</h3>
                                         </div>
                                         <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-sm-4" style="border-right:1px solid #ccc">
-                                                    <ul class="nav nav-pills nav-stacked">
-
-                                                        <li class="active"><a href="#tab7"
-                                                                              style="border:1px solid #ccc;border-radius:4px"
-                                                                              onclick="setype(\'Passport_Photo\')"
-                                                                              data-toggle="tab">Passport Photo</a></li>
-
-
-                                                        <li style="border:1px solid #ccc;border-radius:4px"
-                                                            onclick="setype(\'Certificate_of_Enrollment\')"><a
-                                                                    href="#tab6" data-toggle="tab">Cert of
-                                                                Enrollment</a></li>
-
-
-                                                        <li><a href="#tab10"
-                                                               style="border:1px solid #ccc;border-radius:4px"
-                                                               onclick="setype(\'ID_Card_Copies\')" data-toggle="tab">ID
-                                                                Card Copies</a></li>
-                                                        <li><a href="#tab11"
-                                                               style="border:1px solid #ccc;border-radius:4px"
-                                                               onclick="setype(\'Pin_Copies\')" data-toggle="tab">Pin
-                                                                Copies</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-sm-8">
                                                     <div class="tab-content mgbt-xs-20">
                                                         <div class="tab-pane active" id="tab6">
 
@@ -30856,10 +30829,10 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                                                        value="Document"/>
                                                                 <input type="hidden" id="soi" name="soi"
                                                                        value=""/>
-                                                                <input type="hidden" name="sap" value=""/>
-                                                                <input type="hidden" name="tid" value=""/>
+                                                                <input type="hidden" name="sap" value="'.$username.'"/>
+                                                                <input type="hidden" name="tid" value="'.$unique_file_id.'"/>
                                                                 <input type="hidden" name="type" id="doctype"
-                                                                       value="Certificate_of_Incorporation"/>
+                                                                       value="Debt Collection"/>
                                                                 <input type="hidden" id="id" name="id" value="1"/>
                                                                 <div class="cleaner_h5"></div>
                                                                 <button class="btn vd_btn vd_bg-green vd_white"
@@ -30874,9 +30847,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
 
                                                         </div><!-- end tab -->
-                                                    </div><!-- end sm-9 -->
-                                                </div><!-- end row -->
-
+                                                    
                                             </div>
 
 
@@ -30928,7 +30899,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                 </div>
                 <!-- .vd_content -->
-            ';
+  ';
       
             echo "<script>  $( '#datepicker-normal' ).datepicker({ dateFormat: 'dd/mm/yy'}); $( '#datepicker-date' ).datepicker({ dateFormat: 'dd'});$( '#pendate' ).datepicker({ dateFormat: 'dd'});$( '#waivermonth' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
       
@@ -31037,8 +31008,7 @@ case 301:
     </div>
     <!-- .modal -->';
 
-                            echo '  
-    
+                            echo ' 
     <script type="text/javascript">
         $(document).ready(function () {
             "use strict";
@@ -31125,8 +31095,6 @@ echo "
     $('#mainp').html(data);
     }
     });
-
-
   });
    </script>
    ";
@@ -31241,6 +31209,26 @@ echo "
                                                         <textarea id="notification_message">'.$row['notification_message'].' </textarea>
                                                     </div>
                                                 </div>
+                                                
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">File Status</label>
+                                                    <div class="col-sm-8 controls">
+                                                    <select id="file_status" class="text-capitalize">
+                                                            <option value="'.$row['file_status'].'" selected>'.$row['file_status'].'</option>
+                                                            <option value="open">Open</option>
+                                                            <option value="pending">Pending</option>
+                                                            <option value="closed">Closed</option>
+                                                         </select>
+                                                     
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Remarks</label>
+                                                    <div class="col-sm-8 controls">
+                                                        <textarea id="remarks">'.$row['remarks'].' </textarea>
+                                                    </div>
+                                                </div>
 
                                             </form>
                                         </div>
@@ -31248,6 +31236,71 @@ echo "
                                     <!-- Panel Widget -->
                                 </div>
                                 <!-- col-md-6 -->
+                                
+                                <div class="col-md-6">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title"><span class="menu-icon"> <i
+                                                            class="fa fa-th-list"></i> </span>Documents Upload</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                                    <div class="tab-content mgbt-xs-20">
+                                                        <div class="tab-pane active" id="tab6">
+
+                                                            <form method="post" action="upload.php"
+                                                                  enctype="multipart/form-data" target="leiframe">
+                                                                <div class="cleaner"></div>
+                                                                <div class="form-group">
+                                                                    <label style="float:left"
+                                                                           class="col-sm-3">Name:<span
+                                                                                style="color:#f00">*</span></label>
+                                                                    <div class="col-sm-9 controls">
+                                                                        <input type="text" id="fname" name="fname"
+                                                                               required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="cleaner_h5"></div>
+                                                                <dd class="custuploadblock_js">
+                                                                    <input style="opacity:0; float:left;" name="image"
+                                                                           id="photoupload"
+                                                                           class="transfileform_js" type="file">
+                                                                </dd>
+                                                                <iframe name="leiframe" id="leiframe" class="leiframe">
+                                                                </iframe>
+                                                                <input type="hidden" id="type" name="type"
+                                                                       value="Document"/>
+                                                                <input type="hidden" id="soi" name="soi"
+                                                                       value=""/>
+                                                                <input type="hidden" name="sap" value="'.$username.'"/>
+                                                                <input type="hidden" name="tid" value="'.$row['unique_file_number'] .'"/>
+                                                                <input type="hidden" name="type" id="doctype"
+                                                                       value="Debt Collection"/>
+                                                                <input type="hidden" id="id" name="id" value="1"/>
+                                                                <div class="cleaner_h5"></div>
+                                                                <button class="btn vd_btn vd_bg-green vd_white"
+                                                                        style="float:right;margin-right:30%"
+                                                                        type="submit" onclick="uphoto()"><i
+                                                                            class="icon-ok"></i>Upload
+                                                                </button>
+                                                            </form>
+                                                            <div class="cleaner_h5"></div>
+                                                            <div id="certdiv" style="width:100%;min-height:30px;"></div>
+                                                            <div class="cleaner_h5"></div>
+
+
+                                                        </div><!-- end tab -->
+                                                    
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <!-- Panel Widget -->
+
+                                </div>
+                                <!-- col-md-12 -->
+
+
                                 
                                 <div class="col-md-6">
                                     <div class="panel widget">

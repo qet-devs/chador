@@ -9803,7 +9803,7 @@ function savecomment(forumid) {
 
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});
 
-/**beginning of deb collection module */
+/**beginning of debt collection module */
 
 function newDebtCollection() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
@@ -9995,7 +9995,7 @@ function saveNewDebtCollection() {
     var notification_date = $('#notification_date').val();
     var notification_message = $('#notification_message').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' ) {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -10058,6 +10058,8 @@ function saveDebtCollection(param) {
     var description = $('#description').val();
     var notification_date = $('#notification_date').val();
     var notification_message = $('#notification_message').val();
+    var file_status = $('#file_status').val();
+    var remarks = $('#remarks').val();
 
     if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
         swal('Error', 'Please fill all required fields', 'error');
@@ -10073,6 +10075,8 @@ function saveDebtCollection(param) {
             description: description,
             notification_date: notification_date,
             notification_message: notification_message,
+            file_status:file_status,
+            remarks:remarks,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');

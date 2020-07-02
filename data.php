@@ -6337,8 +6337,6 @@ VALUES
         $notification_message = $_GET['notification_message'];
 
 
-
-
         $resultx = mysql_query('SELECT * FROM `debt_collections` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
         if (mysql_num_rows($resultx) > 0) {
             echo '<script>swal("Error", "Debt collection file with similar info already exists. !Consult the System Admin", "error");</script>';
@@ -6368,9 +6366,11 @@ VALUES
         $description = $_GET['description'];
         $notification_date = $_GET['notification_date'];
         $notification_message = $_GET['notification_message'];
+        $file_status = $_GET['file_status'];
+        $remarks = $_GET['remarks'];
 
 
-        $resultc = mysql_query("update  `debt_collections` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "' where `id` = '".$param."'");
+        $resultc = mysql_query("update  `debt_collections` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
 
 
         if ($resultc) {
