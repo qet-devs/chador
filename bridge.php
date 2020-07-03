@@ -31843,7 +31843,7 @@ case 307:
                                         <div class="panel-body">
 
                                             <h3>Uploaded Documents</h3>
-                                            <button class="btn btn-info btn-sm" onclick="refreshDCUploads('.$param.')">Refresh</button>
+                                            <button class="btn btn-info btn-sm" onclick="refreshCWUploads('.$param.')">Refresh</button>
                                             <table class="table table-striped">
                                                 <thead>
                                                 <tr>
@@ -32949,9 +32949,11 @@ case 404:
                 <div class="panel-body">
                     <ul class="nav nav-tabs text-capitalize">
                         <li class="active"><a href="#tab1" data-toggle="tab">Warrant Information Panel</a></li>
+                        <li class="active"><a href="#tab2" data-toggle="tab">Uploaded files</a></li>
                       
                     </ul>
                     <br/>
+
                     <div class="tab-content mgbt-xs-20">
                         <div class="tab-pane active" id="tab1">
 
@@ -33003,20 +33005,89 @@ case 404:
                     </div>
                     <!-- Panel body -->
                         </div>
-                        
-                       
-
-
-
-
-                        
-
-
-                      
-
+                                      
 
 
                         </div>
+
+
+
+                        <div class="tab-content mgbt-xs-20">
+                        <div class="tab-pane " id="tab2">
+
+                        <div class="panel-body">
+                        
+                        <div class="col-md-4">
+                        <div class="panel widget">
+                        
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span>
+                                  File Upload Form </h3>
+                            </div>
+
+                            <div class="panel-body">
+
+                                <form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
+                                    <div class="cleaner"></div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-3">Name:<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-9 controls">
+                                            <input type="text" id="fname" name="fname" required>
+                                        </div>
+                                    </div>
+                                    <div class="cleaner_h5"></div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-3">Type:<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-9 controls">
+                                            <select style="padding:5px" name="type" id="doctype">
+                                                <option value="" selected>Select One...</option>
+                                                <option value="Certificate of Incorporation">Certificate of Incorporation
+                                                </option>
+                                                <option value="Checkout Documents">Checkout Documents</option>
+                                                <option value="ID_Card_Copies">ID_Card_Copies</option>
+                                                <option value="Lease Document">Lease Document</option>
+                                                <option value="Memorandum/Articles_of_Association">
+                                                    Memorandum/Articles_of_Association
+                                                </option>
+                                                <option value="Pin/Vat_Certificate">Pin/Vat_Certificate</option>
+                                                <option value="Unit Handover Photos">Unit Handover Photos</option>
+                                                <option value="Pin_Copies">Pin_Copies</option>
+                                                <option value="Other Documents">Other Documents</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="cleaner_h5"></div>
+                                    <dd class="custuploadblock_js">
+                                        <input style="opacity:0; float:left;" name="image" id="photoupload"
+                                               class="transfileform_js" type="file">
+                                    </dd>
+                                    <iframe name="leiframe" id="leiframe" class="leiframe">
+                                    </iframe>
+                                    <input type="hidden" name="soi" value="' . $username . '"/>
+                                    <input type="hidden" name="sap" value="Debt Collection"/>
+                                    <input type="hidden" name="tid" value="' . $row['unique_file_number'] . '"/>
+                                    <input type="hidden" id="id" name="id" value="1"/>
+                                    <div class="cleaner_h5"></div>
+                                    <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%"
+                                            type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    </div>
+                    </div>
+                    </div>
+            
+
+
                     </div>
                 </div>
             </div>
@@ -33215,6 +33286,62 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
   //end archived warraant
 
+//   warrant file uploads
+case 407:
+  $param = $_GET['param'];
+  mysql_query("insert into log values('','" . $username . " accesses letter File Panel.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+  $result = mysql_query("select * from warrants where id='" . $param . "' limit 0,1");
+  $row = mysql_fetch_array($result);
+
+  echo '
+   <div class="vd_container" id="container">
+                  <div class="vd_content clearfix" style="">
+
+                      <div class="vd_content-section clearfix">
+
+                          <div class="row">
+
+
+                              <div class="col-md-12">
+                                  <div class="panel widget">
+                                      <div class="panel-heading vd_bg-grey">
+                                          <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i
+                                                          class="fa fa-th-list"></i> </span>
+                                              Uploaded Files </h3>
+                                      </div>
+                                      <div class="panel-body">
+
+                                          <h3>Uploaded Documents</h3>
+                                          <button class="btn btn-info btn-sm" onclick="refreshDCUploads('.$param.')">Refresh</button>
+                                          <table class="table table-striped">
+                                              <thead>
+                                              <tr>
+                                                  <th>Name</th>
+                                                  <th>Details</th>
+                                                  <th>Download</th>
+                                              </tr>
+                                              </thead>
+                                              <tbody>';
+                                              displayUploadedFiles($row['unique_file_number']);
+
+                                              echo '</tbody>
+                                          </table>
+
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                      </div>
+
+                  </div>
+              </div>
+
+  ';
+  break;
+
+//    debt collection archive file
 
 
 
@@ -33261,8 +33388,616 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         // this is the part of the code responsible for displaying the various interfaces of the REPOSSESSION module and pupulating it with date
 
         /*****REPOSSESSION START*****/
+        
         // all REPOSSESSION presentation logic goes here
 
+
+        case 700:
+          $result = mysql_query("insert into log values('','".$username." accesses create new repossession File Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+
+
+        $resulty = mysql_query("select * from repossession order by id desc limit 0,1");
+        $rowy = mysql_fetch_array($resulty);
+        $tid = stripslashes($rowy['id']) + 1;
+        $unique_file_id = 'RP' . sprintf("%08d", $tid);
+
+          echo '
+          <div class="vd_container" id="container">
+                    <div class="vd_content clearfix" style="">
+
+                        <div class="vd_content-section clearfix">
+                            <div class="row" id="form-basic">
+                                <div class="col-md-6">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title"><span class="menu-icon"> <i
+                                                            class="fa fa-th-list"></i> </span> New Repossession
+                                            </h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <form class="form-horizontal" action="#" role="form">
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Repossession Unique
+                                                        File ID<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <input type="text" id="unique_file_id"
+                                                               value="'.$unique_file_id.'" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Client Name<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <select id="client_uid" class="text-capitalize">
+                                                            <option value="" selected>Select One...</option>
+                                                            ';
+          displayRepossession();
+          echo '
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Referring Client<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <select id="referring_client_uid" class="text-capitalize">
+                                                            <option value="" selected>Select One...</option>
+                                                                                                 ';
+          displayClients();
+          echo '
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Assignee<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <select id="assignee_username" class="text-capitalize">
+                                                            <option value="" selected>Select One...</option>
+                                                            ';
+                                                            displayUsers();
+                                                            echo '
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Description<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <textarea id="description"> </textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Notification Date</label>
+                                                    <div class="col-sm-8 controls">
+                                                        <input type="text" id="notification_date" value="" class="date">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Notification Message</label>
+                                                    <div class="col-sm-8 controls">
+                                                        <textarea id="notification_message"> </textarea>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Panel Widget -->
+                                </div>
+                                <!-- col-md-6 -->
+
+                                <div class="col-md-6">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title"><span class="menu-icon"> <i
+                                                            class="fa fa-th-list"></i> </span>Documents Upload</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-sm-4" style="border-right:1px solid #ccc">
+                                                    <ul class="nav nav-pills nav-stacked">
+
+                                                        <li class="active"><a href="#tab7"
+                                                                              style="border:1px solid #ccc;border-radius:4px"
+                                                                              onclick="setype(\'Passport_Photo\')"
+                                                                              data-toggle="tab">Passport Photo</a></li>
+
+
+                                                        <li style="border:1px solid #ccc;border-radius:4px"
+                                                            onclick="setype(\'Certificate_of_Enrollment\')"><a
+                                                                    href="#tab6" data-toggle="tab">Cert of
+                                                                Enrollment</a></li>
+
+
+                                                        <li><a href="#tab10"
+                                                               style="border:1px solid #ccc;border-radius:4px"
+                                                               onclick="setype(\'ID_Card_Copies\')" data-toggle="tab">ID
+                                                                Card Copies</a></li>
+                                                        <li><a href="#tab11"
+                                                               style="border:1px solid #ccc;border-radius:4px"
+                                                               onclick="setype(\'Pin_Copies\')" data-toggle="tab">Pin
+                                                                Copies</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-8">
+                                                    <div class="tab-content mgbt-xs-20">
+                                                        <div class="tab-pane active" id="tab6">
+
+                                                            <form method="post" action="upload.php"
+                                                                  enctype="multipart/form-data" target="leiframe">
+                                                                <div class="cleaner"></div>
+                                                                <div class="form-group">
+                                                                    <label style="float:left"
+                                                                           class="col-sm-3">Name:<span
+                                                                                style="color:#f00">*</span></label>
+                                                                    <div class="col-sm-9 controls">
+                                                                        <input type="text" id="fname" name="fname"
+                                                                               required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="cleaner_h5"></div>
+                                                                <dd class="custuploadblock_js">
+                                                                    <input style="opacity:0; float:left;" name="image"
+                                                                           id="photoupload"
+                                                                           class="transfileform_js" type="file">
+                                                                </dd>
+                                                                <iframe name="leiframe" id="leiframe" class="leiframe">
+                                                                </iframe>
+                                                                <input type="hidden" id="type" name="type"
+                                                                       value="Document"/>
+                                                                <input type="hidden" id="soi" name="soi"
+                                                                       value=""/>
+                                                                <input type="hidden" name="sap" value=""/>
+                                                                <input type="hidden" name="tid" value=""/>
+                                                                <input type="hidden" name="type" id="doctype"
+                                                                       value="Certificate_of_Incorporation"/>
+                                                                <input type="hidden" id="id" name="id" value="1"/>
+                                                                <div class="cleaner_h5"></div>
+                                                                <button class="btn vd_btn vd_bg-green vd_white"
+                                                                        style="float:right;margin-right:30%"
+                                                                        type="submit" onclick="uphoto()"><i
+                                                                            class="icon-ok"></i>Upload
+                                                                </button>
+                                                            </form>
+                                                            <div class="cleaner_h5"></div>
+                                                            <div id="certdiv" style="width:100%;min-height:30px;"></div>
+                                                            <div class="cleaner_h5"></div>
+
+
+                                                        </div><!-- end tab -->
+                                                    </div><!-- end sm-9 -->
+                                                </div><!-- end row -->
+
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <!-- Panel Widget -->
+
+                                </div>
+                                <!-- col-md-12 -->
+
+
+                                <div class="col-md-6">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title"><span class="menu-icon"> <i
+                                                            class="fa fa-th-list"></i> </span> Actions</h3>
+                                        </div>
+                                        <div class="panel-body">
+
+
+                                            <div class="form-group form-actions">
+                                                <div class="col-sm-4"></div>
+                                                <div class="col-sm-7">
+                                                    <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                            onclick="saveNewRepossession()"><i class="icon-ok"></i> Save
+                                                    </button>
+                                                    <button class="btn vd_btn" type="button" onclick="hidecont()">
+                                                        Cancel
+                                                    </button>
+                                                    <div id="message" style="width:40px;height:40px;float:right"></div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    <!-- Panel Widget -->
+                                </div>
+                                <!-- col-md-12 -->
+
+
+                            </div>
+                            <!-- row -->
+                        </div>
+
+
+                    </div>
+                    <!-- .vd_content-section -->
+
+                </div>
+                <!-- .vd_content -->
+            ';
+      
+            echo "<script>  $( '#datepicker-normal' ).datepicker({ dateFormat: 'dd/mm/yy'}); $( '#datepicker-date' ).datepicker({ dateFormat: 'dd'});$( '#pendate' ).datepicker({ dateFormat: 'dd'});$( '#waivermonth' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
+      
+           
+          
+    break;
+
+    //    FIND REPOSSESSION PANEL
+case 701:
+  $result = mysql_query("insert into log values('','".$username." accesses find repossession Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+
+ echo ' <div class="vd_container" id="container">
+                 <div class="vd_content clearfix">
+                     <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger"
+                             data-toggle="modal"
+                             data-target="#myModal"><a></a></button>
+
+                     <div class="vd_content-section clearfix">
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <div class="panel widget">
+                                     <div class="panel-heading vd_bg-grey">
+                                         <h3 class="panel-title"><span class="menu-icon"> <i
+                                                         class="fa fa-dot-circle-o"></i> </span>Repossession-Search
+                                             Panel</h3>
+                                     </div>
+                                     <!-- panel heading -->
+                                     <div class="panel-body table-responsive ">
+                                         <table class="table table-striped text-capitalize" id="data-tables">
+                                             <thead>
+                                             <tr>
+                                                 <th>File ID</th>
+                                                 <th>Description</th>
+                                                 <th>Status</th>
+                                                 <th>Assignee</th>
+                                                 <th>Entry Date</th>
+                                             </tr>
+                                             </thead>
+                                         </table>
+                                     </div>
+                                     <!-- panel body -->
+                                 </div>
+                                 <!-- Panel Widget -->
+                             </div>
+                             <!-- col-md-12 -->
+                         </div>
+                         <!-- row -->
+
+                     </div>
+                     <!-- .vd_content-section -->
+
+                 </div>
+                 <!-- .vd_content -->
+             </div>
+             <!-- .vd_container -->
+             
+              <!-- Modal -->
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header vd_bg-green vd_white">
+                 <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i
+                         class="fa fa-times"></i></button>
+                 <h4 class="modal-title" id="myModalLabel">Function List</h4>
+             </div>
+             <!-- /.modal-header -->
+             <div class="modal-body">
+                 <form class="form-horizontal" action="#" role="form">
+ 
+                     <div class="form-group">';
+
+                         $arr=array();
+                         $resulta =mysql_query("select * from accesstbl");
+                         $num_resultsa = mysql_num_rows($resulta);
+                         for ($v=0; $v <$num_resultsa; $v++) {
+                         $rowa=mysql_fetch_array($resulta);
+                         $var=stripslashes($rowa[$usertype]);
+                         $code=stripslashes($rowa['AccessCode']);
+                         $arr[$code]=$var;
+                         }
+
+                         if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                           onclick="majoropen(700)">Edit repossession</label><br/>';}
+                         if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                           onclick="majoropen(201)">Client Info</label><br/>';}
+                         // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                         //                                   onclick="majoropen(401)">Property Description</label><br/>';}
+                         if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                           onclick="majoropen(406)">Invoice</label><br/>';}
+                         if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                           onclick="majoropen(202)">Archive Client</label><br/>';}
+
+                         echo '
+                         <input class="input-border-btm" type="hidden" id="tenparam" required>
+                     </div>
+ 
+ 
+                 </form>
+             </div>
+             <!-- /.modal-body -->
+         </div>
+         <!-- /.modal-contet -->
+     </div>
+     <!-- /.modal-dialog -->
+ </div>
+ <!-- .modal -->';
+
+                         echo '  
+ 
+ <script type="text/javascript">
+     $(document).ready(function () {
+         "use strict";
+ 
+         var eventFired = function (type) {
+             console.log(type)
+ 
+             setTimeout(function () {
+                 $("#data-tables tbody tr").off("click").on("click", function (event) {
+                     $("#tenparam").val($(this).find("td").eq(0).html());
+                     openoptmodal($(this).find("td").eq(0).html())
+                 });
+             }, 500);
+         }
+ 
+ 
+         $("#data-tables")
+             .on("order.dt", function () {
+                 eventFired("Order");
+             })
+             .on("search.dt", function () {
+                 eventFired("Search");
+             })
+             .on("draw.dt", function () {
+                 eventFired("Page");
+             })
+             .DataTable({
+                 "processing": true,
+                 "serverSide": true,
+                 "ajax": "json.php?id=700"
+             });
+ 
+ 
+     });
+ </script>
+ <style>td {
+     cursor: pointer
+ } </style>';
+ break;
+
+
+ case 715:
+  $tid= $param=$_GET['param'];
+  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+    $result = mysql_query("insert into log values('','".$username." accesses letter File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+    $resultx =mysql_query("select * from clients where id='".$param."' limit 0,1");
+    $rowx=mysql_fetch_array($resultx);
+    $lof="Clients";
+    $stat=stripslashes($rowx['status']);
+    $tid=stripslashes($rowx['unique_user_id']);
+    
+  
+  
+    if($stat==1){$status='Active';$col='#1fae66';}else if($stat==0){$status='Archived';$col='#f85d2c';}else{$status='Contract Expired';$col='#f89c2c';}
+
+    echo '
+    <div class="vd_container" id="container">
+<div class="vd_content clearfix" style="">
+
+<div class="vd_content-section clearfix">
+    <div class="row" id="form-basic">
+
+        <div class="col-md-12">
+            <div class="panel widget">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                        Client File-'.stripslashes($rowx['business_name']).' &'.stripslashes($rowx['unique_user_id']).' </h3>
+                </div>
+
+                
+              
+                <div class="panel-body">
+                <ul class="nav nav-tabs text-capitalize">
+                    <li class="active"><a href="#tab1" data-toggle="tab">Business Information</a></li>
+                    <li><a href="#tab6" data-toggle="tab">Client Details</a></li>
+                    
+                </ul>
+                <br/>
+                <div class="tab-content mgbt-xs-20 text-capitalize" >
+                    <div class="tab-pane active" id="tab1">
+                    <div class="row" id="form-basic">
+
+              <div class="col-md-6">
+                  <div class="panel widget">
+                      <div class="panel-heading vd_bg-grey">
+                          <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                            Business Details</h3>
+                      </div>
+
+
+                      <!-- panel heading-->
+                      <div class="panel-body">
+<form class="form-horizontal" action="#" role="form">
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Business Name<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="business_name" value="'.$rowx['business_name'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Business Address<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="business_address" value="'.$rowx['business_address'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4"> Business Location<span style="color:#f00"></span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="business_location" value="'.$rowx['business_location'].'">
+</div>
+</div>
+
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Telephone No<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="telephone" value="'.$rowx['telephone'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Pin Registration<span style="color:#f00"></span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="pin_registration" value="'.$rowx['pin_registration'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">VAT Registration<span style="color:#f00"></span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="vat_registration" value="'.$rowx['vat_registration'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Certificate of incorporation<span style="color:#f00"></span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="certificate_of_incorporation" value="'.$rowx['certificate_of_incorporation'].'">
+</div>
+</div>
+
+
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Business Email</label>
+<div class="col-sm-8 controls">
+<input type="text" id="business_email" value="'.$rowx['business_email'].'">
+</div>
+</div>
+
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Contact person<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="contact_person" value="'.$rowx['contact_person'].'">
+</div>
+</div>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Phone<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="contact_phone" value="'.$rowx['contact_phone'].'">
+</div>
+</div>
+</form>
+</div>
+
+<!-- end of panel body -->
+                    </div>
+                    <!-- Panel Widget --> 
+                  </div>
+
+                  </div>
+                  </div>
+                  <div class="tab-pane " id="tab6">
+
+                  <div class="panel widget">
+                    <div class="panel-heading vd_bg-grey">
+                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                          Client Details</h3>
+                    </div>
+
+                    <div class="panel-body">
+                    <form class="form-horizontal" action="#" role="form">
+                      <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="client_name" value="'.$rowx['client_name'].'">
+                        </div>
+                      </div>
+
+                    <div class="form-group">
+                    <label style="float:left" class="col-sm-4"> Client Location</label>
+                    <div class="col-sm-8 controls">
+                      <input type="text" id="client_location" value="'.$rowx['client_location'].'">
+                    </div>
+                  </div>
+
+                       <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Phone No<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="client_phone" value="'.$rowx['client_phone'].'">
+                        </div>
+                      </div>
+
+                       <div class="form-group">
+                        <label style="float:left" class="col-sm-4">National id<span style="color:#f00"></span></label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="national_id" value="'.$rowx['national_id'].'">
+                        </div>
+                      </div>
+
+                       <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Email</label>
+                        <div class="col-sm-8 controls">
+                          <input type="text" id="client_email" value="'.$rowx['client_email'].'">
+                        </div>
+                      </div>
+  
+                </form>
+                  </div>      
+<!-- end of panel body -->
+
+                    </div>
+                    <!-- Panel Widget --> 
+                  </div>
+<!-- end of tabpane -->
+                  </div>
+                  </div>
+    
+                    <!-- Panel body -->
+                        </div>
+                        
+                       
+
+
+
+
+                        
+
+
+                      
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    ';
+
+break;
 
 
 

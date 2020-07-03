@@ -575,6 +575,20 @@ function majoropen(a) {
                     activatewarrant(b);
                     break;
 
+                    //repossession
+                    case 700:
+                        //edit letter
+                        $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+                        $.ajax({
+                            url: 'bridge.php',
+                            data: {id: 715, param: b},
+                            success: function (data) {
+                                $('#mainp').html(data);
+                            }
+                        });
+        
+                        break;
+
     
 
 
@@ -10340,9 +10354,33 @@ function warrantFile() {
     });
 }
 
+//warrant file uploads
+function refreshCWUploads(param) {
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 407, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
 
 /** end warrant file */
 
+/***file upload */
+function warrantUploads() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 306},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+/**end file upload */
 /**archivewarrant */
 function archiveWarrant(b) {
 
@@ -10442,3 +10480,87 @@ function archivedwarrant() {
 /**end of client functions */
 
 /**end of warrant */
+
+/***repossession */
+//ALL CODES OF REPOSSESSION WILL LIE HERE
+//new repossession
+function newRepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 700},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+function saveNewRepossession() {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 700,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+//end new repossession
+
+
+// Find Debt collection
+
+function findDebtCollection() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 701},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+//edit repossession
+function editDebtCollection() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 302},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+//end edit
+
+
+
+//END OF REPOSSESSION
