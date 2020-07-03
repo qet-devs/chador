@@ -745,7 +745,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li style="">
                                             <?php if ($rightsarr[107] == 'YES') {
-                                                echo '<a  href="#" onclick="newrepossession()" >
+                                                echo '<a  href="#" onclick="newRepossession()" >
                         <span class="menu-text">New Repossession</span>  
                     </a>';
                                             } ?>
@@ -753,7 +753,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[108] == 'YES') {
-                                                echo '<a  href="#" onclick="findrepossession()" >
+                                                echo '<a  href="#" onclick="findRepossession()" >
                         <span class="menu-text">Find Repossession</span>  
                     </a>';
                                             } ?>
@@ -761,7 +761,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[109] == 'YES') {
-                                                echo '<a  href="#" onclick="editrepossession()" >
+                                                echo '<a  href="#" onclick="editRepossession()" >
                         <span class="menu-text">Edit Repossession Info</span>  
                     </a>';
                                             } ?>

@@ -587,6 +587,28 @@ function majoropen(a) {
                 activatewarrant(b);
                 break;
 
+                
+                    //repossession
+                    case 700:
+                        //edit letter
+                        $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+                        $.ajax({
+                            url: 'bridge.php',
+                            data: {id: 715, param: b},
+                            success: function (data) {
+                                $('#mainp').html(data);
+                            }
+                        });
+        
+                        break;
+                        
+
+                        case 700:
+                            editRepossession(b);
+                            break;
+    
+
+
 
         }
 
@@ -10517,3 +10539,134 @@ function archivedwarrant() {
 /**end of client functions */
 
 /**end of warrant */
+
+/***repossession */
+//ALL CODES OF REPOSSESSION WILL LIE HERE
+//new repossession
+function newRepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 700},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+function saveNewRepossession() {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 700,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+
+//end new repossession
+
+
+// Find Repossession
+
+function findRepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 701},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// EDIT REPOSSESSION PANEL ENTRY
+
+function editRepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 702},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+//update repossession
+
+// UPDATE DEBT COLLECTION INFO
+
+function saveRepossession(param) {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+    var file_status = $('#file_status').val();
+    var remarks = $('#remarks').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 701,
+            param: param,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+            file_status: file_status,
+            remarks: remarks,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+
+
+
+
