@@ -6303,8 +6303,6 @@ VALUES
         $notification_message = $_GET['notification_message'];
 
 
-
-
         $resultx = mysql_query('SELECT * FROM `debt_collections` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
         if (mysql_num_rows($resultx) > 0) {
             echo '<script>swal("Error", "Debt collection file with similar info already exists. !Consult the System Admin", "error");</script>';
@@ -6334,9 +6332,11 @@ VALUES
         $description = $_GET['description'];
         $notification_date = $_GET['notification_date'];
         $notification_message = $_GET['notification_message'];
+        $file_status = $_GET['file_status'];
+        $remarks = $_GET['remarks'];
 
 
-        $resultc = mysql_query("update  `debt_collections` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "' where `id` = '".$param."'");
+        $resultc = mysql_query("update  `debt_collections` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
 
 
         if ($resultc) {
@@ -6349,6 +6349,29 @@ VALUES
         }
         break;
 
+    /**archive debt collection file */
+    case 302:
+        $param = $_GET['param'];
+        if(mysql_query("UPDATE `debt_collections` SET `status`='0' WHERE `id`='".$param."'")){
+          mysql_query("insert into log values('','" . $username . " archived debt Collection.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo '<script>swal("Success!", "Debt collection file archived", "success");</script>';
+        } else {
+            echo '<script>swal("Error", "failed to archive debt collection record!", "error");</script>';
+        }
+
+               break;
+
+    /**activate debt collection file */
+    case 303:
+        $param = $_GET['param'];
+        if(mysql_query("UPDATE `debt_collections` SET `status`='1' WHERE `id`='".$param."'")){
+            mysql_query("insert into log values('','" . $username . " activated debt Collection.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "Debt collection file activated", "success");</script>	';
+        } else {
+            echo '<script>swal("Error", "failed to activate debt collection record!", "error");</script>';
+        }
+
+        break;
 
 
     /*****DEBT COLLECTION END*****/
