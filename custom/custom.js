@@ -550,29 +550,29 @@ function majoropen(a) {
                 editDebtCollection(b);
                 break;
             case 301:
-debtCollectionFile(b);
+                debtCollectionFile(b);
                 break;
             case 302:
                 debtCollectionArchive(b);
                 break;
             case 303:
-debtCollectionActivate(b);
+                debtCollectionActivate(b);
                 break;
-                case 400:
-                    //edit warrant
-                    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-                    $.ajax({
-                        url: 'bridge.php',
-                        data: {id: 402, param: b},
-                        success: function (data) {
-                            $('#mainp').html(data);
-                        }
-                    });
+            case 400:
+                //edit warrant
+                $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+                $.ajax({
+                    url: 'bridge.php',
+                    data: {id: 402, param: b},
+                    success: function (data) {
+                        $('#mainp').html(data);
+                    }
+                });
 
-                    case 402:
+            case 402:
                 archiveWarrant(b);
                 break;
-                case 401:
+            case 401:
                 $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
                 $.ajax({
                     url: 'bridge.php',
@@ -583,11 +583,9 @@ debtCollectionActivate(b);
                 });
 
                 break;
-                case 405:
-                    activatewarrant(b);
-                    break;
-
-    
+            case 405:
+                activatewarrant(b);
+                break;
 
 
         }
@@ -9847,8 +9845,6 @@ function savecomment(forumid) {
 $('.date').datepicker({dateFormat: 'dd/mm/yy'});
 
 
-
-
 // CLIENTS MODULE CODE
 
 //load new client form
@@ -9979,7 +9975,6 @@ function archiveClient() {
 }
 
 
-
 /**archiveclient */
 function archiveclient(b) {
 
@@ -10052,7 +10047,7 @@ function saveNewDebtCollection() {
     var notification_date = $('#notification_date').val();
     var notification_message = $('#notification_message').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' ) {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -10111,9 +10106,9 @@ function editDebtCollection(param) {
     console.log('DC edit', param);
     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
     $.ajax({
-        url:'bridge.php',
-        data:{id:303,param:param},
-        success:function(data){
+        url: 'bridge.php',
+        data: {id: 303, param: param},
+        success: function (data) {
             $('#mainp').html(data);
         }
     });
@@ -10146,8 +10141,8 @@ function saveDebtCollection(param) {
             description: description,
             notification_date: notification_date,
             notification_message: notification_message,
-            file_status:file_status,
-            remarks:remarks,
+            file_status: file_status,
+            remarks: remarks,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
@@ -10177,12 +10172,12 @@ function debtCollectionFileEntry() {
 // DEBT COLL FILE
 function debtCollectionFile(param) {
     // todo: remove logger
-    console.log('DC file', param );
+    console.log('DC file', param);
     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
     $.ajax({
-        url:'bridge.php',
-        data:{id:305,param:param},
-        success:function(data){
+        url: 'bridge.php',
+        data: {id: 305, param: param},
+        success: function (data) {
             $('#mainp').html(data);
         }
     });
@@ -10225,7 +10220,7 @@ function debtCollectionArchive(param) {
             closeOnConfirm: true
         },
         function () {
-        // todo: remove logger
+            // todo: remove logger
             console.log('DC archive', param);
             $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
             $.ajax({
@@ -10266,8 +10261,8 @@ function debtCollectionActivate(param) {
             closeOnConfirm: true
         },
         function () {
-        // todo: remove logger
-        console.log('DC activate',param);
+            // todo: remove logger
+            console.log('DC activate', param);
             $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
             $.ajax({
                 url: 'data.php',
@@ -10275,6 +10270,12 @@ function debtCollectionActivate(param) {
                 success: function (data) {
                     $('#message').html(data);
                     findArchivedDebtCollection();
+                }
+            });
+        });
+}
+
+
 // END OF DEBT COLLECTION
 
 /** start of warrant */
@@ -10325,8 +10326,9 @@ function saveNewWarrant() {
 
     }
 }
+
 /**find warrant */
-function findWarrant(){
+function findWarrant() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10401,9 +10403,6 @@ function saveWarrant(param) {
 }
 
 
-
-
-
 /** */
 
 /** warrant file*/
@@ -10424,8 +10423,6 @@ function warrantFile() {
 
 /**archivewarrant */
 function archiveWarrant(b) {
-
-
     swal({
             title: "Are you sure?",
             text: "The Warrant will be Archived!",
@@ -10449,6 +10446,7 @@ function archiveWarrant(b) {
 
 
 }
+
 /**archive client function */
 /**start of archived clients */
 function archivedclients() {
@@ -10484,9 +10482,7 @@ function activatewarrant(param) {
                     $('#message').html(data);
                 }
             });
-
         });
-
 }
 
 /**end of activate */
