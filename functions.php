@@ -2375,12 +2375,26 @@ function displayUploadedFiles($param)
         $row = mysql_fetch_array($result);
         echo '
           <tr>
-            <td>'.$row['name'].'</td>
-            <td>'.$row['details'].'</td>
-            <td> <a href="'.$row['link'].'" ><i class="fa fa-download" aria-hidden="true"></i></a></td>
+            <td>' . $row['name'] . '</td>
+            <td>' . $row['details'] . '</td>
+            <td> <a href="' . $row['link'] . '" ><i class="fa fa-download" aria-hidden="true"></i></a></td>
           </tr>
         ';
     }
+}
+
+// display client name
+
+function displayClientName($param)
+{
+    $result = mysql_query('select * from clients where `unique_user_id`="' . $param . '"');
+    $row = mysql_fetch_array($result);
+    if (empty($row['business_name'])) {
+        $client_name = $row['client_name'];
+    } else {
+        $client_name = $row['business_name'];
+    }
+    return stripslashes($client_name);
 }
 
 ?>

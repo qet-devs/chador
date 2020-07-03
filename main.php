@@ -505,7 +505,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[109] == 'YES') {
-                                                echo '<a  href="#" onclick="editDebtCollection()" >
+                                                echo '<a  href="#" onclick="editDebtCollectionEntry()" >
                         <span class="menu-text">Edit Debt Info</span>  
                     </a>';
                                             } ?>
@@ -514,7 +514,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[113] == 'YES') {
-                                                echo '<a  href="#" onclick="debtCollectionFile()" >
+                                                echo '<a  href="#" onclick="debtCollectionFileEntry()" >
                         <span class="menu-text">Debt File</span>  
                         </a>';
                                             } ?>
@@ -523,7 +523,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[113] == 'YES') {
-                                                echo '<a  href="#" onclick="debtCollectionUploads()" >
+                                                echo '<a  href="#" onclick="debtCollectionUploadsEntry()" >
                         <span class="menu-text">Debt Files Upload</span>  
                         </a>';
                                             } ?>
@@ -531,7 +531,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[114] == 'YES') {
-                                                echo '<a  href="#" onclick="archiveDebtCollection()" >
+                                                echo '<a  href="#" onclick="archiveDebtCollectionEntry()" >
                         <span class="menu-text">Archive Debt</span>  
                         </a>';
                                             } ?>
@@ -540,7 +540,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[119] == 'YES') {
-                                                echo '<a  href="#" onclick="debtCollectionArchived()" >
+                                                echo '<a  href="#" onclick="findArchivedDebtCollection()" >
                         <span class="menu-text">Archived Debts</span>  
                         </a>';
                                             } ?>

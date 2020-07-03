@@ -6383,6 +6383,29 @@ VALUES
         }
         break;
 
+    /**archive debt collection file */
+    case 302:
+        $param = $_GET['param'];
+        if(mysql_query("UPDATE `debt_collections` SET `status`='0' WHERE `id`='".$param."'")){
+          mysql_query("insert into log values('','" . $username . " archived debt Collection.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo '<script>swal("Success!", "Debt collection file archived", "success");</script>';
+        } else {
+            echo '<script>swal("Error", "failed to archive debt collection record!", "error");</script>';
+        }
+
+               break;
+
+    /**activate debt collection file */
+    case 303:
+        $param = $_GET['param'];
+        if(mysql_query("UPDATE `debt_collections` SET `status`='1' WHERE `id`='".$param."'")){
+            mysql_query("insert into log values('','" . $username . " activated debt Collection.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "Debt collection file activated", "success");</script>	';
+        } else {
+            echo '<script>swal("Error", "failed to activate debt collection record!", "error");</script>';
+        }
+
+        break;
 
 
     /*****DEBT COLLECTION END*****/

@@ -30932,7 +30932,8 @@ case 301:
                                             <table class="table table-striped text-capitalize" id="data-tables">
                                                 <thead>
                                                 <tr>
-                                                    <th>File ID</th>
+                                                    <th>ID</th>
+                                                    <th>Unique File ID</th>
                                                     <th>Description</th>
                                                     <th>Status</th>
                                                     <th>Assignee</th>
@@ -30983,15 +30984,14 @@ case 301:
                             }
 
                             if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(200)">Edit Client</label><br/>';}
+                                                              onclick="majoropen(300)">Edit Debt File</label><br/>';}
                             if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(201)">Client Info</label><br/>';}
+                                                              onclick="majoropen(301)">Debt File Info</label><br/>';}
                             // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                             //                                   onclick="majoropen(401)">Property Description</label><br/>';}
+                           ////////////////////
                             if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                              onclick="majoropen(406)">Invoice</label><br/>';}
-                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(202)">Archive Client</label><br/>';}
+                                                              onclick="majoropen(302)">Archive Debt File</label><br/>';}
 
                             echo '
                             <input class="input-border-btm" type="hidden" id="tenparam" required>
@@ -31087,13 +31087,13 @@ echo "
     var str = $('#item5').val();
     var parts=param.split('-',3);
     param=parts[0];
-    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
     $.ajax({
-    url:'bridge.php',
-    data:{id:303,param:param},
-    success:function(data){
-    $('#mainp').html(data);
-    }
+        url:'bridge.php',
+        data:{id:303,param:param},
+        success:function(data){
+            $('#mainp').html(data);
+        }
     });
   });
    </script>
@@ -31373,16 +31373,7 @@ echo "
     var str = $('#item5').val();
     var parts=param.split('-',3);
     param=parts[0];
-    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-    $.ajax({
-    url:'bridge.php',
-    data:{id:305,param:param},
-    success:function(data){
-    $('#mainp').html(data);
-    }
-    });
-
-
+    debtCollectionFile(param);
   });
    </script>
    ";
@@ -31625,69 +31616,8 @@ case 307:
                         <div class="vd_content-section clearfix">
 
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="panel widget">
-                                        <div class="panel-heading vd_bg-grey">
-                                            <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i
-                                                            class="fa fa-th-list"></i> </span>
-                                              File Upload Form </h3>
-                                        </div>
-                                        <div class="panel-body">
-
-                                            <form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
-                                                <div class="cleaner"></div>
-                                                <div class="form-group">
-                                                    <label style="float:left" class="col-sm-3">Name:<span
-                                                                style="color:#f00">*</span></label>
-                                                    <div class="col-sm-9 controls">
-                                                        <input type="text" id="fname" name="fname" required>
-                                                    </div>
-                                                </div>
-                                                <div class="cleaner_h5"></div>
-                                                <div class="form-group">
-                                                    <label style="float:left" class="col-sm-3">Type:<span
-                                                                style="color:#f00">*</span></label>
-                                                    <div class="col-sm-9 controls">
-                                                        <select style="padding:5px" name="type" id="doctype">
-                                                            <option value="" selected>Select One...</option>
-                                                            <option value="Certificate of Incorporation">Certificate of Incorporation
-                                                            </option>
-                                                            <option value="Checkout Documents">Checkout Documents</option>
-                                                            <option value="ID_Card_Copies">ID_Card_Copies</option>
-                                                            <option value="Lease Document">Lease Document</option>
-                                                            <option value="Memorandum/Articles_of_Association">
-                                                                Memorandum/Articles_of_Association
-                                                            </option>
-                                                            <option value="Pin/Vat_Certificate">Pin/Vat_Certificate</option>
-                                                            <option value="Unit Handover Photos">Unit Handover Photos</option>
-                                                            <option value="Pin_Copies">Pin_Copies</option>
-                                                            <option value="Other Documents">Other Documents</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="cleaner_h5"></div>
-                                                <dd class="custuploadblock_js">
-                                                    <input style="opacity:0; float:left;" name="image" id="photoupload"
-                                                           class="transfileform_js" type="file">
-                                                </dd>
-                                                <iframe name="leiframe" id="leiframe" class="leiframe">
-                                                </iframe>
-                                                <input type="hidden" name="soi" value="' . $username . '"/>
-                                                <input type="hidden" name="sap" value="Debt Collection"/>
-                                                <input type="hidden" name="tid" value="' . $row['unique_file_number'] . '"/>
-                                                <input type="hidden" id="id" name="id" value="1"/>
-                                                <div class="cleaner_h5"></div>
-                                                <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%"
-                                                        type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload
-                                                </button>
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-8">
+                                
+                                <div class="col-md-12">
                                     <div class="panel widget">
                                         <div class="panel-heading vd_bg-grey">
                                             <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i
@@ -31697,7 +31627,6 @@ case 307:
                                         <div class="panel-body">
 
                                             <h3>Uploaded Documents</h3>
-                                            <button class="btn btn-info btn-sm" onclick="refreshDCUploads('.$param.')">Refresh</button>
                                             <table class="table table-striped">
                                                 <thead>
                                                 <tr>
@@ -31730,45 +31659,42 @@ case 307:
 case 308:
 mysql_query("insert into log values('','".$username." accesses archive debt collection Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
-$param=0;
-if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-  echo '<div class="vd_container" id="container">
-      <div class="vd_content clearfix" style="">
-    
-              <div style="width:100%;padding:20px">
-              <div class="panel-heading vd_bg-grey">
-                  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Clients Archive</h3>
-                </div>
-              <select id="intcombo"><option value="" selected>Select One...</option> ';
-                 $result =mysql_query("select * from debt_collections where status=1");
-                  $num_results = mysql_num_rows($result);
-                    for ($i=0; $i <$num_results; $i++) {
-                        $row=mysql_fetch_array($result);
-                        $code=stripslashes($row['id']);
-                        echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['client_uid']).'</option>';
-                      }
-                 echo'</select>
-                   <div class="cleaner_h10" id="message"></div>
-                   <div class="col-sm-7">
-                    <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
-                  </div>
-                  </div>
-      <!-- .vd_content --> 
-    </div>
-    <!-- .vd_container -->';
-    echo "<script>
-          $('#intcombo').select2();
-          $('#intcombo').on('select2:select', function (e) {
-        var param = $('#intcombo').val();
-        var str = $('#item5').val();
-        var parts=param.split('-',3);
-        param=parts[0];
-       archiveDebtCollection(param);
 
-        });
-         </script>";
+   echo '<div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+      
+                <div style="width:100%;padding:20px">
+                <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Debt Collection Archive</h3>
+                  </div>
+                <select id="intcombo"><option value="" selected>Select One...</option> ';
+                   $result =mysql_query("select * from debt_collections where status=1");
+                    $num_results = mysql_num_rows($result);
+                      for ($i=0; $i <$num_results; $i++) {
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['id']);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
+                        }
+                   echo'</select>
+                     <div class="cleaner_h10" id="message"></div>
+                     <div class="col-sm-7">
+                      <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                    </div>
+                    </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->';
+      echo "<script>
+            $('#intcombo').select2();
+            $('#intcombo').on('select2:select', function (e) {
+          var param = $('#intcombo').val();
+          var str = $('#item5').val();
+          var parts=param.split('-',3);
+          param=parts[0];
+         debtCollectionArchive(param);
 
+          });
+           </script>";
 
     break;
 
@@ -31798,7 +31724,8 @@ case 309:
                                             <table class="table table-striped text-capitalize" id="data-tables">
                                                 <thead>
                                                 <tr>
-                                                    <th>File ID</th>
+                                                    <th>ID</th>
+                                                    <th>Unique File ID</th>
                                                     <th>Description</th>
                                                     <th>Status</th>
                                                     <th>Assignee</th>
@@ -31847,17 +31774,17 @@ case 309:
                             $code=stripslashes($rowa['AccessCode']);
                             $arr[$code]=$var;
                             }
-
-                            if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(200)">Edit Client</label><br/>';}
+//
+//                            if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+//                                                              onclick="majoropen(300)">Edit Client</label><br/>';}
                             if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(201)">Client Info</label><br/>';}
+                                                              onclick="majoropen(301)">Debt File Info</label><br/>';}
                             // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                             //                                   onclick="majoropen(401)">Property Description</label><br/>';}
+//                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+//                              onclick="majoropen(406)">Invoice</label><br/>';}
                             if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                              onclick="majoropen(406)">Invoice</label><br/>';}
-                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(202)">Archive Client</label><br/>';}
+                                                              onclick="majoropen(303)">Activate Debt File</label><br/>';}
 
                             echo '
                             <input class="input-border-btm" type="hidden" id="tenparam" required>
