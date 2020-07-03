@@ -563,7 +563,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li style="">
                                             <?php if ($rightsarr[107] == 'YES') {
-                                                echo '<a  href="#" onclick="decree()" >
+                                                echo '<a  href="#" onclick="newWarrant()" >
                         <span class="menu-text">New Warrant</span>  
                     </a>';
                                             } ?>
@@ -572,8 +572,16 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[108] == 'YES') {
-                                                echo '<a  href="#" onclick="finddecree()" >
+                                                echo '<a  href="#" onclick="findWarrant()" >
                         <span class="menu-text">Find Warrant</span>  
+                    </a>';
+                                            } ?>
+                                        </li>
+
+                                        <li>
+                                            <?php if ($rightsarr[108] == 'YES') {
+                                                echo '<a  href="#" onclick="editWarrant()" >
+                        <span class="menu-text">Edit Warrant</span>  
                     </a>';
                                             } ?>
                                         </li>
@@ -581,15 +589,15 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[113] == 'YES') {
-                                                echo '<a  href="#" onclick="decreefile()" >
-                        <span class="menu-text">Warrant File Uploads</span>  
+                                                echo '<a  href="#" onclick="warrantFile()" >
+                        <span class="menu-text">Warrant File </span>  
                         </a>';
                                             } ?>
                                         </li>
 
                                         <li>
                                             <?php if ($rightsarr[114] == 'YES') {
-                                                echo '<a  href="#" onclick="checkoutdecree()" >
+                                                echo '<a  href="#" onclick="checkoutwarrant()" >
                         <span class="menu-text">Archive Warrant</span>  
                         </a>';
                                             } ?>
@@ -598,7 +606,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[119] == 'YES') {
-                                                echo '<a  href="#" onclick="archiveddecree()" >
+                                                echo '<a  href="#" onclick="archivedwarrant()" >
                         <span class="menu-text">Archived Warrants</span>  
                         </a>';
                                             } ?>

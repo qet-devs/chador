@@ -558,6 +558,36 @@ debtCollectionFile(b);
             case 303:
 debtCollectionActivate(b);
                 break;
+                case 400:
+                    //edit warrant
+                    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+                    $.ajax({
+                        url: 'bridge.php',
+                        data: {id: 402, param: b},
+                        success: function (data) {
+                            $('#mainp').html(data);
+                        }
+                    });
+
+                    case 402:
+                archiveWarrant(b);
+                break;
+                case 401:
+                $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                $.ajax({
+                    url: 'bridge.php',
+                    data: {id: 401, param: b},
+                    success: function (data) {
+                        $('#mainp').html(data);
+                    }
+                });
+
+                break;
+                case 405:
+                    activatewarrant(b);
+                    break;
+
+    
 
 
         }
@@ -9837,34 +9867,47 @@ function newClient() {
 
 
 function saveClient(param) {
+    // INDIVIDUAL CLIENTS INPUTS
+    var client_name = $('#client_name').val();
+    var client_location = $('#client_location').val();
+    var client_email = $('#client_email').val();
+    var client_phone = $('#client_phone').val();
+    var national_id = $('#national_id').val();
+
+    // BUSINESS CLIENT FORM INPUT
     var business_name = $('#business_name').val();
+    var business_address = $('#business_address').val();
+    var business_location = $('#business_location').val();
     var telephone = $('#telephone').val();
     var pin_registration = $('#pin_registration').val();
     var vat_registration = $('#vat_registration').val();
-
     var certificate_of_incorporation = $('#certificate_of_incorporation').val();
-    var national_id = $('#national_id').val();
-
     var contact_person = $('#contact_person').val();
-    var email = $('#email').val();
-    var phone = $('#phone').val();
+    var business_email = $('#business_email').val();
+    var contact_phone = $('#contact_phone').val();
 
-    if (business_name == '' || telephone == '' || national_id == '' || contact_person == '' || email == '' || phone == '') {
+    if (business_name == '' && client_name == '') {
         swal("Error", "Make sure you enter all the required fields!", "error");
         return;
     } else {
         var data = {
             id: 201,
             param: param,
+            client_name: client_name,
+            client_phone: client_phone,
+            client_email: client_email,
+            national_id: national_id,
+            client_location: client_location,
             business_name: business_name,
+            business_address: business_address,
+            business_location: business_location,
             telephone: telephone,
             pin_registration: pin_registration,
             vat_registration: vat_registration,
             certificate_of_incorporation: certificate_of_incorporation,
-            national_id: national_id,
             contact_person: contact_person,
-            email: email,
-            phone: phone,
+            business_email: business_email,
+            contact_phone: contact_phone,
         };
 
         //console.log(data);
@@ -9982,7 +10025,8 @@ function archivedClients() {
 }
 
 /**end of client module */
-//
+
+
 // DEBT COLLECTION MODEULE
 // START OF DEBT COLLECTION
 /**beginning of debt collection module */
@@ -10231,6 +10275,213 @@ function debtCollectionActivate(param) {
                 success: function (data) {
                     $('#message').html(data);
                     findArchivedDebtCollection();
+// END OF DEBT COLLECTION
+
+/** start of warrant */
+
+function newWarrant() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 400},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+function saveNewWarrant() {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 400,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+/**find warrant */
+function findWarrant(){
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 401},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+function archiveWarrant() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 405},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+/**edit warrant */
+
+
+function editWarrant() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 413},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+function saveWarrant(param) {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 401,
+            param: param,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+        };
+
+        //console.log(data);
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+
+
+
+
+/** */
+
+/** warrant file*/
+
+function warrantFile() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 403},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+/** end warrant file */
+
+/**archivewarrant */
+function archiveWarrant(b) {
+
+
+    swal({
+            title: "Are you sure?",
+            text: "The Warrant will be Archived!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Archive them!",
+            closeOnConfirm: true
+        },
+        function () {
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 405, b: b},
+                success: function (data) {
+                    $('#message').html(data);
+                }
+            });
+
+        });
+
+
+}
+/**archive client function */
+/**start of archived clients */
+function archivedclients() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 406},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+//archived
+/**activate warrant */
+function activatewarrant(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The Warrant will be activated!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Activate warrant!",
+            closeOnConfirm: true
+        },
+        function () {
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 406, param: param},
+                success: function (data) {
+                    $('#message').html(data);
                 }
             });
 
@@ -10238,5 +10489,35 @@ function debtCollectionActivate(param) {
 
 }
 
+/**end of activate */
 
-// END OF DEBT COLLECTION
+
+function checkoutwarrant() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 405},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+/**end archive */
+
+/**start of archived warrants */
+function archivedwarrant() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 406},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+/**end of client functions */
+
+/**end of warrant */

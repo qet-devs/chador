@@ -383,29 +383,7 @@ $where = "";
 
     break;
 /**start of client */
-    case 201:
-        // DB table to use
-        $table = 'clients';
-         
-        // Table's primary key
-        $primaryKey = 'id';
-        $where = "status!=1";
-         
-        // Array of database columns which should be read and sent back to DataTables.
-        // The `db` parameter represents the column name in the database, while the `dt`
-        // parameter represents the DataTables column identifier. In this case simple
-        // indexes
-            $columns = array(
-                array( 'db' => 'id', 'dt' => 0 ),
-                array( 'db' => 'business_name', 'dt' => 1 ),
-                array( 'db' => 'telephone', 'dt' => 2 ),
-                array( 'db' => 'email', 'dt' => 3 ),
-                array( 'db' => 'phone',  'dt' => 4 ),
-                array( 'db' => 'contact_person',   'dt' => 5 ),
-                array( 'db' => 'date',    'dt' => 6 )
-            );
-    
-        break;
+  
         /**end of client */
 
     case 200:
@@ -423,16 +401,48 @@ $where = "";
             $columns = array(
                 array( 'db' => 'id', 'dt' => 0 ),
                 array( 'db' => 'business_name', 'dt' => 1 ),
-                array( 'db' => 'telephone', 'dt' => 2 ),
-                array( 'db' => 'pin_registration', 'dt' => 3 ),
-                array( 'db' => 'vat_registration',  'dt' => 4 ),
-                array( 'db' => 'contact_person',   'dt' => 5 ),
-                array( 'db' => 'email',    'dt' => 6 )
+                array( 'db' => 'business_email', 'dt' => 2 ),
+                array( 'db' => 'telephone', 'dt' => 3 ),
+                array( 'db' => 'pin_registration', 'dt' => 4 ),
+                array( 'db' => 'vat_registration',  'dt' => 5 ),
+                array( 'db' => 'client_name', 'dt' => 6 ),
+                array( 'db' => 'contact_person',   'dt' => 7 ),
+                array( 'db' => 'client_email',    'dt' => 8 )
             );
     
         break;
 
-//        DEBT COLLECTION ACTIVE
+        /**start archive client */
+        case 201:
+            // DB table to use
+            $table = 'clients';
+             
+            // Table's primary key
+            $primaryKey = 'id';
+            $where = "status!=1";
+             
+            // Array of database columns which should be read and sent back to DataTables.
+            // The `db` parameter represents the column name in the database, while the `dt`
+            // parameter represents the DataTables column identifier. In this case simple
+            // indexes
+                $columns = array(
+                    array( 'db' => 'id', 'dt' => 0 ),
+                    array('db' => 'unique_user_id', 'dt' => 1),
+                    array( 'db' => 'business_name', 'dt' => 2 ),
+                    array('db' => 'business_address', 'dt' => 3),
+                    array('db' => 'telephone', 'dt' => 4),
+                    array( 'db' => 'client_name', 'dt' => 5 ),
+                   
+                    array( 'db' => 'client_phone', 'dt' => 6 ),
+                   
+                    array( 'db' => 'contact_person',   'dt' => 7 )
+                    
+                );
+        
+            break;
+            /**client archived */
+
+//        DEBT COLLECTION
      case 300:
          // DB table to use
          $table = 'debt_collections';
@@ -455,6 +465,53 @@ $where = "";
          );
 
          break;
+//WARRANT
+case 400:
+    // DB table to use
+    $table = 'warrants';
+
+    // Table's primary key
+    $primaryKey = 'id';
+    $where = "status=1";
+
+    // Array of database columns which should be read and sent back to DataTables.
+    // The `db` parameter represents the column name in the database, while the `dt`
+    // parameter represents the DataTables column identifier. In this case simple
+    // indexes
+    $columns = array(
+        array( 'db' => 'unique_file_number', 'dt' => 0 ),
+        array( 'db' => 'description', 'dt' => 1 ),
+        array( 'db' => 'file_status', 'dt' => 2 ),
+        array( 'db' => 'assignee_id', 'dt' => 3 ),
+        array( 'db' => 'date',  'dt' => 4 ),
+    );
+
+    break;
+/**start of warrant */
+case 401:
+    // DB table to use
+    $table = 'warrants';
+     
+    // Table's primary key
+    $primaryKey = 'id';
+    $where = "status!=1";
+     
+    // Array of database columns which should be read and sent back to DataTables.
+    // The `db` parameter represents the column name in the database, while the `dt`
+    // parameter represents the DataTables column identifier. In this case simple
+    // indexes
+    $columns = array(
+        array( 'db' => 'unique_file_number', 'dt' => 0 ),
+        array( 'db' => 'description', 'dt' => 1 ),
+        array( 'db' => 'file_status', 'dt' => 2 ),
+        array( 'db' => 'assignee_id', 'dt' => 3 ),
+        array( 'db' => 'date',  'dt' => 4 ),
+        );
+
+    break;
+    /**end of warrant archived */
+
+
 
 //        DEBT COLLECTION ARCHIVED
     case 301:
