@@ -10422,8 +10422,6 @@ function warrantFile() {
 
 /**archivewarrant */
 function archiveWarrant(b) {
-
-
     swal({
             title: "Are you sure?",
             text: "The Warrant will be Archived!",
@@ -10483,9 +10481,7 @@ function activatewarrant(param) {
                     $('#message').html(data);
                 }
             });
-
         });
-
 }
 
 /**end of activate */
