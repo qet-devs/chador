@@ -10516,3 +10516,260 @@ function archivedwarrant() {
 /**end of client functions */
 
 /**end of warrant */
+
+
+// DISTRESS MODULE
+// START OF DISTRESS
+/**beginning of Distress module */
+
+function newDistress() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 500},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// save new distress
+function saveNewDistress() {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 500,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+// Find Distress
+
+function findDistress() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 501},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// EDIT Distress PANEL ENTRY
+
+function editDistressEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 502},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// EDIT Distress FILE
+function editDistress(param) {
+    // todo: remove logger
+    console.log('Distress edit', param);
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 503, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// UPDATE Distress INFO
+
+function saveDistress(param) {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+    var file_status = $('#file_status').val();
+    var remarks = $('#remarks').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 501,
+            param: param,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+            file_status: file_status,
+            remarks: remarks,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+// Distress FILE ENTRY
+function distressFileEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 504},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// Distress FILE
+function distressFile(param) {
+    // todo: remove logger
+    console.log('Distress file', param);
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 505, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// Distress FILE UPLOAD ENTRY
+function distressUploadsEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 506},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+// Distress ARCHIVE ENTRY
+function archiveDistressEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 508},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// archive Distress
+function distressArchive(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The Distress File will be Archived!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Archive them!",
+            closeOnConfirm: true
+        },
+        function () {
+            // todo: remove logger
+            console.log('DC archive', param);
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 502, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                    findArchivedDistress();
+                }
+            });
+
+        });
+
+}
+
+//Distress ARCHIVED FILE ENTRY
+function findArchivedDistress() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 509},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+// activate Distress
+function distressActivate(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The Distress File will be Activated!",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Activate!",
+            closeOnConfirm: true
+        },
+        function () {
+            // todo: remove logger
+            console.log('Dis activate', param);
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 503, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                    findArchivedDistress();
+                }
+            });
+        });
+}
+
+// END OF Distress
+
