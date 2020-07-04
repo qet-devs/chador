@@ -6484,6 +6484,36 @@ VALUES
     /*****DISTRESS START*****/
     // all DISTRESS presentation logic goes here
 
+//    save new distress file details
+    case 500:
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $billable_client_uid = $_GET['billable_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $location = $_GET['location'];
+
+
+        $resultx = mysql_query('SELECT * FROM `distress` WHERE `client_uid`="' . $client_uid . '" and `billable_client_uid`="' . $billable_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
+        if (mysql_num_rows($resultx) > 0) {
+            echo '<script>swal("Error", "Distress file with similar info already exists. !Consult the System Admin", "error");</script>';
+
+        }
+
+        $resultc = mysql_query("INSERT INTO `distress`( `client_uid`, `billable_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `stamp`, `date`, `time`) VALUES ('" . $client_uid . "', '" . $billable_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')") or die (mysql_error());
+
+
+        if ($resultc) {
+            echo '<script>swal("Success!", "Distress file created successfully", "success");</script>';
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " created distress file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {newDistress();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to create a new distress file record!", "error");</script>';
+        }
+        break;
+
 
     /*****DISTRESS END*****/
 

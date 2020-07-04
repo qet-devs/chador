@@ -10537,11 +10537,11 @@ function newDistress() {
 function saveNewDistress() {
     var unique_file_id = $('#unique_file_id').val();
     var client_uid = $('#client_uid').val();
-    var referring_client_uid = $('#referring_client_uid').val();
+    var billable_client_uid = $('#billable_client_uid').val();
     var assignee_username = $('#assignee_username').val();
     var description = $('#description').val();
     var notification_date = $('#notification_date').val();
-    var notification_message = $('#notification_message').val();
+    var location = $('#location').val();
 
     if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '') {
         swal('Error', 'Please fill all required fields', 'error');
@@ -10551,11 +10551,11 @@ function saveNewDistress() {
             id: 500,
             unique_file_id: unique_file_id,
             client_uid: client_uid,
-            referring_client_uid: referring_client_uid,
+            billable_client_uid: billable_client_uid,
             assignee_username: assignee_username,
             description: description,
             notification_date: notification_date,
-            notification_message: notification_message,
+            location: location,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
