@@ -586,8 +586,20 @@ function majoropen(a) {
             case 405:
                 activatewarrant(b);
                 break;
-
-
+// DISTRESS START
+            case 500:
+                editDistress(b);
+                break;
+            case 501:
+                distressFile(b);
+                break;
+            case 502:
+                distressArchive(b);
+                break;
+            case 503:
+                distressActivate(b);
+                break;
+// DISTRESS END
         }
 
     }, 500);
