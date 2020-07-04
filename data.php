@@ -6514,6 +6514,33 @@ VALUES
         }
         break;
 
+//  save edit distress file details
+    case 501:
+        $param = $_GET['param'];
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $billable_client_uid = $_GET['billable_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $location = $_GET['location'];
+        $file_status = $_GET['file_status'];
+        $remarks = $_GET['remarks'];
+
+
+        $resultc = mysql_query("update  `distress` set `client_uid` ='" . $client_uid . "' , `billable_client_uid` ='" . $billable_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `location`='" . $location . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
+
+
+        if ($resultc) {
+            echo '<script>swal("Success!", "Distress file updated successfully", "success");</script>';
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " updated distress file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {findDistress();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to update distress record!", "error");</script>';
+        }
+        break;
+
 
     /*****DISTRESS END*****/
 
