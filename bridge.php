@@ -33537,13 +33537,13 @@ case 701:
                          if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                            onclick="majoropen(700)">Edit repossession</label><br/>';}
                          if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                           onclick="majoropen(201)">Client Info</label><br/>';}
+                                                           onclick="majoropen(701)">Repossession Info</label><br/>';}
                          // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                          //                                   onclick="majoropen(401)">Property Description</label><br/>';}
+                        //  if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                        //    onclick="majoropen(406)">Invoice</label><br/>';}
                          if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                           onclick="majoropen(406)">Invoice</label><br/>';}
-                         if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                           onclick="majoropen(202)">Archive Client</label><br/>';}
+                                                           onclick="majoropen(702)">Archive Repossession</label><br/>';}
 
                          echo '
                          <input class="input-border-btm" type="hidden" id="tenparam" required>
@@ -33888,227 +33888,515 @@ case 703:
                                 ';
             break;
 
+ //        Repossession file entry
+ case 704:
+  mysql_query("insert into log values('','".$username." accesses repossession file info Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
-
- 
- case 715:
-  $tid= $param=$_GET['param'];
-  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-    $result = mysql_query("insert into log values('','".$username." accesses letter File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
-    $resultx =mysql_query("select * from clients where id='".$param."' limit 0,1");
-    $rowx=mysql_fetch_array($resultx);
-    $lof="Clients";
-    $stat=stripslashes($rowx['status']);
-    $tid=stripslashes($rowx['unique_user_id']);
-    
-  
-  
-    if($stat==1){$status='Active';$col='#1fae66';}else if($stat==0){$status='Archived';$col='#f85d2c';}else{$status='Contract Expired';$col='#f89c2c';}
-
-    echo '
-    <div class="vd_container" id="container">
+echo '
+<div class="vd_container" id="container">
 <div class="vd_content clearfix" style="">
-
-<div class="vd_content-section clearfix">
-    <div class="row" id="form-basic">
-
-        <div class="col-md-12">
-            <div class="panel widget">
-                <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                        Client File-'.stripslashes($rowx['business_name']).' &'.stripslashes($rowx['unique_user_id']).' </h3>
-                </div>
-
-                
-              
-                <div class="panel-body">
-                <ul class="nav nav-tabs text-capitalize">
-                    <li class="active"><a href="#tab1" data-toggle="tab">Business Information</a></li>
-                    <li><a href="#tab6" data-toggle="tab">Client Details</a></li>
-                    
-                </ul>
-                <br/>
-                <div class="tab-content mgbt-xs-20 text-capitalize" >
-                    <div class="tab-pane active" id="tab1">
-                    <div class="row" id="form-basic">
-
-              <div class="col-md-6">
-                  <div class="panel widget">
-                      <div class="panel-heading vd_bg-grey">
-                          <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                            Business Details</h3>
-                      </div>
-
-
-                      <!-- panel heading-->
-                      <div class="panel-body">
-<form class="form-horizontal" action="#" role="form">
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Business Name<span style="color:#f00">*</span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="business_name" value="'.$rowx['business_name'].'">
+<div style="width:100%;padding:20px">
+<div class="panel-heading vd_bg-grey">
+<h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Repossession File</h3>
+</div>
+<select id="intcombo" class="text-capitalize">
+<option value="" selected>Select One...</option>';
+$result =mysql_query("select * from repossession where status=1");
+$num_results = mysql_num_rows($result);
+for ($i=0; $i <$num_results; $i++) {
+    $row=mysql_fetch_array($result);
+    $resulta = mysql_query("select * from clients where unique_user_id = '".$row['client_uid']."' or unique_user_id='".$row['referring_client_uid']."'");
+      $rowa = mysql_fetch_array($resulta);
+    echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+  }
+echo'</select>
+<div class="cleaner_h10"></div>
+<div class="col-sm-7">
+<button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
 </div>
 </div>
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Business Address<span style="color:#f00">*</span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="business_address" value="'.$rowx['business_address'].'">
+<!-- .vd_content --> 
 </div>
-</div>
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4"> Business Location<span style="color:#f00"></span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="business_location" value="'.$rowx['business_location'].'">
-</div>
-</div>
-
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Telephone No<span style="color:#f00">*</span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="telephone" value="'.$rowx['telephone'].'">
-</div>
-</div>
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Pin Registration<span style="color:#f00"></span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="pin_registration" value="'.$rowx['pin_registration'].'">
-</div>
-</div>
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">VAT Registration<span style="color:#f00"></span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="vat_registration" value="'.$rowx['vat_registration'].'">
-</div>
-</div>
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Certificate of incorporation<span style="color:#f00"></span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="certificate_of_incorporation" value="'.$rowx['certificate_of_incorporation'].'">
-</div>
-</div>
-
-
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Business Email</label>
-<div class="col-sm-8 controls">
-<input type="text" id="business_email" value="'.$rowx['business_email'].'">
-</div>
-</div>
-
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Contact person<span style="color:#f00">*</span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="contact_person" value="'.$rowx['contact_person'].'">
-</div>
-</div>
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Phone<span style="color:#f00">*</span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="contact_phone" value="'.$rowx['contact_phone'].'">
-</div>
-</div>
-</form>
-</div>
-
-<!-- end of panel body -->
-                    </div>
-                    <!-- Panel Widget --> 
-                  </div>
-
-                  </div>
-                  </div>
-                  <div class="tab-pane " id="tab6">
-
-                  <div class="panel widget">
-                    <div class="panel-heading vd_bg-grey">
-                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                          Client Details</h3>
-                    </div>
-
-                    <div class="panel-body">
-                    <form class="form-horizontal" action="#" role="form">
-                      <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="client_name" value="'.$rowx['client_name'].'">
-                        </div>
-                      </div>
-
-                    <div class="form-group">
-                    <label style="float:left" class="col-sm-4"> Client Location</label>
-                    <div class="col-sm-8 controls">
-                      <input type="text" id="client_location" value="'.$rowx['client_location'].'">
-                    </div>
-                  </div>
-
-                       <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Phone No<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="client_phone" value="'.$rowx['client_phone'].'">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label style="float:left" class="col-sm-4">National id<span style="color:#f00"></span></label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="national_id" value="'.$rowx['national_id'].'">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Email</label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="client_email" value="'.$rowx['client_email'].'">
-                        </div>
-                      </div>
-  
-                </form>
-                  </div>      
-<!-- end of panel body -->
-
-                    </div>
-                    <!-- Panel Widget --> 
-                  </div>
-<!-- end of tabpane -->
-                  </div>
-                  </div>
-    
-                    <!-- Panel body -->
-                        </div>
-                        
-                       
-
-
-
-
-                        
-
-
-                      
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-    ';
+<!-- .vd_container -->
+';
+echo "
+<script>
+$('#intcombo').select2();
+$('#intcombo').on('select2:select', function (e) {
+var param = $('#intcombo').val();
+var str = $('#item5').val();
+var parts=param.split('-',3);
+param=parts[0];
+repossessionFile(param);
+});
+</script>
+";
 
 break;
+
+
+//repossession file info
+case 705:
+
+
+  $param = $_GET['param'];
+  mysql_query("insert into log values('','" . $username . " accesses Debt Collection file.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+  $result = mysql_query('select * from repossession where id="' . $param . '" limit 0,1');
+  $row = mysql_fetch_array($result);
+  $resulta = mysql_query('select * from clients where unique_user_id = "' . $row['client_uid'] . '"');
+  $rowa = mysql_fetch_array($resulta);
+
+  empty($rowa['business_name']) ? $client_name = $rowa['client_name'] : $client_name = $rowa['business_name'];
+
+
+  $resultc = mysql_query('select * from clients where unique_user_id = "' . $row['referring_client_uid'] . '"');
+  $rowc = mysql_fetch_array($resultc);
+
+  empty($rowc['business_name']) ? $referring_client = $rowc['client_name'] : $referring_client = $rowc['business_name'];
+
+  $resultu = mysql_query('select * from users where name = "' . $row['assignee_id'] . '"');
+  $rowu = mysql_fetch_array($resultu);
+
+  echo '
+   <div class="vd_container" id="container">
+      <div class="vd_content clearfix" style="">
+          <div class="vd_content-section clearfix">
+
+              <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                      <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                         Repossession File </h3>
+                  </div>
+                  <div class="panel-body">
+                      <ul class="nav nav-tabs">
+                          <li class="active"><a data-toggle="tab" href="#details">File Details</a></li>
+                          <li><a data-toggle="tab" href="#uploads">Uploaded Files</a></li>
+                          <li><a data-toggle="tab" href="#invoices">Invoices</a></li>
+                          <li><a data-toggle="tab" href="#notifications">Notifications</a></li>
+                      </ul>
+
+                      <div class="tab-content">
+                          <div id="details" class="tab-pane fade in active">
+                              <h3>File Details</h3>
+                              
+                              <div class="panel widget">
+                          <div class="panel-heading vd_bg-grey">
+                              <h3 class="panel-title"><span class="menu-icon"> <i
+                                              class="fa fa-th-list"></i> </span> Edit Repossession
+                              </h3>
+                          </div>
+                          <div class="panel-body">
+                              <form class="form-horizontal" action="#" role="form">
+                                  <div class="form-group">
+                                      <label style="float:left" class="col-sm-4">Repossession Unique
+                                          File ID<span
+                                                  style="color:#f00">*</span></label>
+                                      <div class="col-sm-8 controls">
+                                          <input type="text" id="unique_file_id"
+                                                 value="' . $row['unique_file_number'] . '" disabled>
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label style="float:left" class="col-sm-4">Client Name<span
+                                                  style="color:#f00">*</span></label>
+                                      <div class="col-sm-8 controls">
+                                          <select id="client_uid" class="text-capitalize">
+                                              <option value="' . $rowa['unique_user_id'] . '" selected>' . $client_name . '</option>
+                                              ';
+  displayClients();
+  echo '
+                                          </select>
+                                      </div>
+                                  </div>
+
+
+                                  <div class="form-group">
+                                      <label style="float:left" class="col-sm-4">Referring Client<span
+                                                  style="color:#f00">*</span></label>
+                                      <div class="col-sm-8 controls">
+                                          <select id="referring_client_uid" class="text-capitalize">
+                                              <option value="' . $rowc['unique_user_id'] . '" selected>' . $referring_client . '</option>
+                                              ';
+  displayClients();
+  echo '
+                                          </select>
+                                      </div>
+                                  </div>
+
+
+                                  <div class="form-group">
+                                      <label style="float:left" class="col-sm-4">Assignee<span
+                                                  style="color:#f00">*</span></label>
+                                      <div class="col-sm-8 controls">
+                                          <select id="assignee_username" class="text-capitalize">
+                                              <option value="' . $rowu['name'] . '" selected>' . $rowu['fullname'] . '</option>
+                                              ';
+  displayUsers();
+  echo '
+                                          </select>
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label style="float:left" class="col-sm-4">Description<span
+                                                  style="color:#f00">*</span></label>
+                                      <div class="col-sm-8 controls">
+                                          <textarea id="description">' . $row['description'] . '</textarea>
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label style="float:left" class="col-sm-4">Notification Date</label>
+                                      <div class="col-sm-8 controls">
+                                          <input type="text" id="notification_date" value="' . $row['notification_date'] . '" class="date">
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label style="float:left" class="col-sm-4">Notification Message</label>
+                                      <div class="col-sm-8 controls">
+                                          <textarea id="notification_message">' . $row['notification_message'] . ' </textarea>
+                                      </div>
+                                  </div>
+
+                              </form>
+                          </div>
+                      </div>
+                      <!-- Panel Widget -->
+                              
+                          </div>
+                          <div id="uploads" class="tab-pane fade">
+                              <h3>Uploaded Documents</h3>
+                              <table class="table table-striped">
+                                  <thead>
+                                    <tr>
+                                      <th>Name</th>
+                                      <th>Details</th>
+                                      <th>Download</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>';
+displayUploadedFiles($row['unique_file_number']);
+
+                                echo '</tbody>
+                                </table>
+                          </div>
+                          <div id="invoices" class="tab-pane fade">
+                              <h3>Invoices</h3>
+                              <p>Some content in menu 2.</p>
+                          </div>
+                          <div id="notifications" class="tab-pane fade">
+                              <h3>Notifications</h3>
+                              <p>Some content in menu 2.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </div>
+
+  ';
+
+
+break;
+
+ //   repossession file uploads entry
+case 706:
+  mysql_query("insert into log values('','".$username." accesses repossession file upload Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+
+          echo '
+<div class="vd_container" id="container">
+<div class="vd_content clearfix" style="">
+      <div style="width:100%;padding:20px">
+      <div class="panel-heading vd_bg-grey">
+          <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Repossession Upload File</h3>
+        </div>
+      <select id="intcombo" class="text-capitalize">
+      <option value="" selected>Select One...</option>';
+         $result =mysql_query("select * from repossession where status=1");
+          $num_results = mysql_num_rows($result);
+            for ($i=0; $i <$num_results; $i++) {
+                $row=mysql_fetch_array($result);
+                $resulta = mysql_query("select * from clients where unique_user_id = '".$row['client_uid']."' or unique_user_id='".$row['referring_client_uid']."'");
+                  $rowa = mysql_fetch_array($resulta);
+                echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+              }
+         echo'</select>
+           <div class="cleaner_h10"></div>
+           <div class="col-sm-7">
+            <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+          </div>
+          </div>
+<!-- .vd_content --> 
+</div>
+<!-- .vd_container -->
+';
+echo "
+<script>
+  $('#intcombo').select2();
+  $('#intcombo').on('select2:select', function (e) {
+   var param = $('#intcombo').val();
+  var str = $('#item5').val();
+  var parts=param.split('-',3);
+  param=parts[0];
+  $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+  $.ajax({
+  url:'bridge.php',
+  data:{id:707,param:param},
+  success:function(data){
+  $('#mainp').html(data);
+  }
+  });
+
+
+});
+ </script>
+ ";
+  break;
+
+//    repossession file uploads
+case 707:
+  $param = $_GET['param'];
+  mysql_query("insert into log values('','" . $username . " accesses letter File Panel.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+  $result = mysql_query("select * from repossession where id='" . $param . "' limit 0,1");
+  $row = mysql_fetch_array($result);
+
+  echo '
+   <div class="vd_container" id="container">
+                  <div class="vd_content clearfix" style="">
+
+                      <div class="vd_content-section clearfix">
+
+                          <div class="row">
+                              
+                              <div class="col-md-12">
+                                  <div class="panel widget">
+                                      <div class="panel-heading vd_bg-grey">
+                                          <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i
+                                                          class="fa fa-th-list"></i> </span>
+                                              Uploaded Files </h3>
+                                      </div>
+                                      <div class="panel-body">
+
+                                          <h3>Uploaded Documents</h3>
+                                          <table class="table table-striped">
+                                              <thead>
+                                              <tr>
+                                                  <th>Name</th>
+                                                  <th>Details</th>
+                                                  <th>Download</th>
+                                              </tr>
+                                              </thead>
+                                              <tbody>';
+                                              displayUploadedFiles($row['unique_file_number']);
+
+                                              echo '</tbody>
+                                          </table>
+
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                      </div>
+
+                  </div>
+              </div>
+
+  ';
+  break;
+//    repossession archive file
+case 708:
+  mysql_query("insert into log values('','".$username." accesses archive repossession Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+  
+  
+     echo '<div class="vd_container" id="container">
+          <div class="vd_content clearfix" style="">
+        
+                  <div style="width:100%;padding:20px">
+                  <div class="panel-heading vd_bg-grey">
+                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Repossession Archive</h3>
+                    </div>
+                  <select id="intcombo"><option value="" selected>Select One...</option> ';
+                     $result =mysql_query("select * from repossession where status=1");
+                      $num_results = mysql_num_rows($result);
+                        for ($i=0; $i <$num_results; $i++) {
+                            $row=mysql_fetch_array($result);
+                            $code=stripslashes($row['id']);
+                            echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
+                          }
+                     echo'</select>
+                       <div class="cleaner_h10" id="message"></div>
+                       <div class="col-sm-7">
+                        <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+                      </div>
+                      </div>
+          <!-- .vd_content --> 
+        </div>
+        <!-- .vd_container -->';
+        echo "<script>
+              $('#intcombo').select2();
+              $('#intcombo').on('select2:select', function (e) {
+            var param = $('#intcombo').val();
+            var str = $('#item5').val();
+            var parts=param.split('-',3);
+            param=parts[0];
+          repossessionArchive(param);
+  
+            });
+             </script>";
+  
+      break;
+  
+
+//   repossession archived files
+case 709:
+
+  mysql_query("insert into log values('','".$username." accesses archived repossession files Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+
+ echo ' <div class="vd_container" id="container">
+                 <div class="vd_content clearfix">
+                     <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger"
+                             data-toggle="modal"
+                             data-target="#myModal"><a></a></button>
+
+                     <div class="vd_content-section clearfix">
+                         <div class="row">
+                             <div class="col-md-12">
+                                 <div class="panel widget">
+                                     <div class="panel-heading vd_bg-grey">
+                                         <h3 class="panel-title"><span class="menu-icon"> <i
+                                                         class="fa fa-dot-circle-o"></i> </span>Archived repossession-Search
+                                             Panel</h3>
+                                     </div>
+                                     <!-- panel heading -->
+                                     <div class="panel-body table-responsive ">
+                                         <table class="table table-striped text-capitalize" id="data-tables">
+                                             <thead>
+                                             <tr>
+                                                 <th>ID</th>
+                                                 <th>Unique File ID</th>
+                                                 <th>Description</th>
+                                                 <th>Status</th>
+                                                 <th>Assignee</th>
+                                                 <th>Entry Date</th>
+                                             </tr>
+                                             </thead>
+                                         </table>
+                                     </div>
+                                     <!-- panel body -->
+                                 </div>
+                                 <!-- Panel Widget -->
+                             </div>
+                             <!-- col-md-12 -->
+                         </div>
+                         <!-- row -->
+
+                     </div>
+                     <!-- .vd_content-section -->
+
+                 </div>
+                 <!-- .vd_content -->
+             </div>
+             <!-- .vd_container -->
+             
+              <!-- Modal -->
+ <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header vd_bg-green vd_white">
+                 <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i
+                         class="fa fa-times"></i></button>
+                 <h4 class="modal-title" id="myModalLabel">Function List</h4>
+             </div>
+             <!-- /.modal-header -->
+             <div class="modal-body">
+                 <form class="form-horizontal" action="#" role="form">
+ 
+                     <div class="form-group">';
+
+                         $arr=array();
+                         $resulta =mysql_query("select * from accesstbl");
+                         $num_resultsa = mysql_num_rows($resulta);
+                         for ($v=0; $v <$num_resultsa; $v++) {
+                         $rowa=mysql_fetch_array($resulta);
+                         $var=stripslashes($rowa[$usertype]);
+                         $code=stripslashes($rowa['AccessCode']);
+                         $arr[$code]=$var;
+                         }
+//
+//                            if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+//                                                              onclick="majoropen(300)">Edit Client</label><br/>';}
+                         if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                           onclick="majoropen(701)">Repossession File Info</label><br/>';}
+                         // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                         //                                   onclick="majoropen(401)">Property Description</label><br/>';}
+//                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+//                              onclick="majoropen(406)">Invoice</label><br/>';}
+                         if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
+                                                           onclick="majoropen(703)">Activate Repossession</label><br/>';}
+
+                         echo '
+                         <input class="input-border-btm" type="hidden" id="tenparam" required>
+                     </div>
+ 
+ 
+                 </form>
+             </div>
+             <!-- /.modal-body -->
+         </div>
+         <!-- /.modal-contet -->
+     </div>
+     <!-- /.modal-dialog -->
+ </div>
+ <!-- .modal -->';
+
+                         echo '  
+ 
+ <script type="text/javascript">
+     $(document).ready(function () {
+         "use strict";
+ 
+         var eventFired = function (type) {
+             console.log(type)
+ 
+             setTimeout(function () {
+                 $("#data-tables tbody tr").off("click").on("click", function (event) {
+                     $("#tenparam").val($(this).find("td").eq(0).html());
+                     openoptmodal($(this).find("td").eq(0).html())
+                 });
+             }, 500);
+         }
+ 
+ 
+         $("#data-tables")
+             .on("order.dt", function () {
+                 eventFired("Order");
+             })
+             .on("search.dt", function () {
+                 eventFired("Search");
+             })
+             .on("draw.dt", function () {
+                 eventFired("Page");
+             })
+             .DataTable({
+                 "processing": true,
+                 "serverSide": true,
+                 "ajax": "json.php?id=701"
+             });
+ 
+ 
+     });
+ </script>
+ <style>td {
+     cursor: pointer
+ } </style>';
+ break;
+
 
 
 

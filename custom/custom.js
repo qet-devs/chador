@@ -589,23 +589,24 @@ function majoropen(a) {
 
                 
                     //repossession
-                    case 700:
-                        //edit letter
-                        $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-                        $.ajax({
-                            url: 'bridge.php',
-                            data: {id: 715, param: b},
-                            success: function (data) {
-                                $('#mainp').html(data);
-                            }
-                        });
-        
-                        break;
+                   
                         
 
                         case 700:
                             editRepossession(b);
                             break;
+
+                            case 701:
+                                repossessionFile(b);
+                                break;  
+                                case 702:
+                                    repossessionArchive(b);
+                                    break;
+
+
+            case 703:
+                repossessionActivate(b);
+                break;
     
 
 
@@ -10623,7 +10624,7 @@ function editRepossession() {
 
 //update repossession
 
-// UPDATE DEBT COLLECTION INFO
+// UPDATE REPOSSESSION INFO
 
 function saveRepossession(param) {
     var unique_file_id = $('#unique_file_id').val();
@@ -10669,4 +10670,122 @@ function saveRepossession(param) {
 
 
 
+/// REPOSSESSION FILE ENTRY
+function repossessionFileEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 704},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
 
+// REPOSSESSION FILE
+function repossessionFile(param) {
+    // todo: remove logger
+    console.log('RP file', param);
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 705, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+// REPOSSESSION FILE UPLOAD ENTRY
+function repossessionUploadsEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 706},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+
+// Repossession ARCHIVE ENTRY
+function archiveRepossessionEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 708},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// archive repossession
+function repossessionArchive(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The repossession File will be Archived!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Archive them!",
+            closeOnConfirm: true
+        },
+        function () {
+            // todo: remove logger
+            console.log('RP archive', param);
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 702, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                    findArchivedRepossession();
+                }
+            });
+
+        });
+
+}
+
+//Repossession ARCHIVED FILE ENTRY
+function findArchivedRepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 709},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+// activate Repossession
+function repossessionActivate(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The Repossession File will be Activated!",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Activate!",
+            closeOnConfirm: true
+        },
+        function () {
+            // todo: remove logger
+            console.log('RP activate', param);
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 703, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                    findArchivedRepossession();
+                }
+            });
+        });
+}
