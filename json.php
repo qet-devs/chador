@@ -488,27 +488,31 @@ case 400:
 
     break;
 /**start of warrant */
+ 
+//        warrant ARCHIVED
 case 401:
     // DB table to use
     $table = 'warrants';
-     
+
     // Table's primary key
     $primaryKey = 'id';
     $where = "status!=1";
-     
+
     // Array of database columns which should be read and sent back to DataTables.
     // The `db` parameter represents the column name in the database, while the `dt`
     // parameter represents the DataTables column identifier. In this case simple
     // indexes
     $columns = array(
-        array( 'db' => 'unique_file_number', 'dt' => 0 ),
-        array( 'db' => 'description', 'dt' => 1 ),
-        array( 'db' => 'file_status', 'dt' => 2 ),
-        array( 'db' => 'assignee_id', 'dt' => 3 ),
-        array( 'db' => 'date',  'dt' => 4 ),
-        );
+        array('db'=>'id', 'dt'=>0),
+        array( 'db' => 'unique_file_number', 'dt' => 1 ),
+        array( 'db' => 'description', 'dt' => 2 ),
+        array( 'db' => 'file_status', 'dt' => 3 ),
+        array( 'db' => 'assignee_id', 'dt' => 4 ),
+        array( 'db' => 'date',  'dt' => 5 ),
+    );
 
     break;
+
     /**end of warrant archived */
 
 

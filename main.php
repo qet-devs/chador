@@ -588,16 +588,24 @@ if (isset($_SESSION['valid_user'])) {
 
 
                                         <li>
+                                            <?php if ($rightsarr[108] == 'YES') {
+                                                echo '<a  href="#" onclick="warrantFileEntry()" >
+                        <span class="menu-text"> Warrant File</span>  
+                    </a>';
+                                            } ?>
+                                        </li>
+
+                                        <li>
                                             <?php if ($rightsarr[113] == 'YES') {
-                                                echo '<a  href="#" onclick="warrantFile()" >
-                        <span class="menu-text">Warrant File </span>  
+                                                echo '<a  href="#" onclick="warrantUploadsEntry()" >
+                        <span class="menu-text">Warrant Files Upload</span>  
                         </a>';
                                             } ?>
                                         </li>
 
                                         <li>
                                             <?php if ($rightsarr[114] == 'YES') {
-                                                echo '<a  href="#" onclick="checkoutwarrant()" >
+                                                echo '<a  href="#" onclick="archiveWarrantEntry()" >
                         <span class="menu-text">Archive Warrant</span>  
                         </a>';
                                             } ?>
@@ -606,8 +614,8 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[119] == 'YES') {
-                                                echo '<a  href="#" onclick="archivedwarrant()" >
-                        <span class="menu-text">Archived Warrants</span>  
+                                                echo '<a  href="#" onclick="findArchivedWarrant()" >
+                        <span class="menu-text">Archived Warrant</span>  
                         </a>';
                                             } ?>
                                         </li>
