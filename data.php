@@ -6568,6 +6568,31 @@ case 701:
     }
     break;
 
+    
+    /**archive repossession file */
+    case 702:
+        $param = $_GET['param'];
+        if(mysql_query("UPDATE `repossession` SET `status`='0' WHERE `id`='".$param."'")){
+          mysql_query("insert into log values('','" . $username . " archived repossession.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo '<script>swal("Success!", "Repossession file archived", "success");</script>';
+        } else {
+            echo '<script>swal("Error", "failed to archive repossession record!", "error");</script>';
+        }
+
+               break;
+
+
+  /**activate REPOSSESSION file */
+  case 703:
+    $param = $_GET['param'];
+    if(mysql_query("UPDATE `repossession` SET `status`='1' WHERE `id`='".$param."'")){
+        mysql_query("insert into log values('','" . $username . " activated repossession.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        echo '<script>swal("Success!", "repossession file activated", "success");</script>	';
+    } else {
+        echo '<script>swal("Error", "failed to activate repossession record!", "error");</script>';
+    }
+
+    break;
 
 
 

@@ -768,23 +768,23 @@ if (isset($_SESSION['valid_user'])) {
                                         </li>
                                         <li>
                                             <?php if ($rightsarr[108] == 'YES') {
-                                                echo '<a  href="#" onclick="repossessionfile()" >
+                                                echo '<a  href="#" onclick="repossessionFileEntry()" >
                         <span class="menu-text"> Repossession File</span>  
                     </a>';
                                             } ?>
                                         </li>
 
                                         <li>
-                                            <?php if ($rightsarr[108] == 'YES') {
-                                                echo '<a  href="#" onclick="notificationsalefile()" >
-                        <span class="menu-text">Repossession File Upload</span>  
-                    </a>';
+                                            <?php if ($rightsarr[113] == 'YES') {
+                                                echo '<a  href="#" onclick="repossessionUploadsEntry()" >
+                        <span class="menu-text">Repossession Files Upload</span>  
+                        </a>';
                                             } ?>
                                         </li>
 
                                         <li>
                                             <?php if ($rightsarr[114] == 'YES') {
-                                                echo '<a  href="#" onclick="checkoutrepossession()" >
+                                                echo '<a  href="#" onclick="archiveRepossessionEntry()" >
                         <span class="menu-text">Archive Repossession</span>  
                         </a>';
                                             } ?>
@@ -793,7 +793,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[119] == 'YES') {
-                                                echo '<a  href="#" onclick="archivedrepossession()" >
+                                                echo '<a  href="#" onclick="findArchivedRepossession()" >
                         <span class="menu-text">Archived Repossession</span>  
                         </a>';
                                             } ?>
