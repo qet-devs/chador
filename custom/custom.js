@@ -626,6 +626,22 @@ function majoropen(a) {
                 distressActivate(b);
                 break;
 // DISTRESS END
+
+
+// IMMOVABLE PROPERTY START
+            case 600:
+                editImmovableProperty(b);
+                break;
+            case 601:
+                immovablePropertyFile(b);
+                break;
+            case 602:
+                immovablePropertyArchive(b);
+                break;
+            case 603:
+                immovablePropertyActivate(b);
+                break;
+// IMMOVABLE PROPERTY END
         }
 
     }, 500);
