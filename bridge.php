@@ -34670,220 +34670,221 @@ echo "
 
   // todo: coppy this
   // new distress form
-  case 500:
-    $result = mysql_query("insert into log values('','" . $username . " accesses create new distress File Panel','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
 
-  <div class="vd_content-section clearfix">
-  $resulty = mysql_query("select * from distress order by id desc limit 0,1");
-  $rowy = mysql_fetch_array($resulty);
-  $tid = stripslashes($rowy['id']) + 1;
-  $unique_file_id = 'PD' . sprintf("%08d", $tid);
+ case 500:
+            $result = mysql_query("insert into log values('','" . $username . " accesses create new distress File Panel','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
 
-  echo '
+
+            $resulty = mysql_query("select * from distress order by id desc limit 0,1");
+            $rowy = mysql_fetch_array($resulty);
+            $tid = stripslashes($rowy['id']) + 1;
+            $unique_file_id = 'PD' . sprintf("%08d", $tid);
+
+            echo '
 <div class="vd_container" id="container">
-<div class="vd_content clearfix" style="">
+        <div class="vd_content clearfix" style="">
 
-  <div class="vd_content-section clearfix">
-      <div class="row" id="form-basic">
-          <div class="col-md-6">
-              <div class="panel widget">
-                  <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"><span class="menu-icon"> <i
-                                      class="fa fa-th-list"></i> </span> New Distress
-                      </h3>
-                  </div>
-                  <div class="panel-body">
-                      <form class="form-horizontal" action="#" role="form">
-                          <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Distress Unique
-                                  File ID<span
-                                          style="color:#f00">*</span></label>
-                              <div class="col-sm-8 controls">
-                                  <input type="text" id="unique_file_id"
-                                         value="' . $unique_file_id . '" disabled>
-                              </div>
-                          </div>
+            <div class="vd_content-section clearfix">
+                <div class="row" id="form-basic">
+                    <div class="col-md-6">
+                        <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span> New Distress
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" action="#" role="form">
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Distress Unique
+                                            File ID<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="unique_file_id"
+                                                   value="' . $unique_file_id . '" disabled>
+                                        </div>
+                                    </div>
 
-                          <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Client Name<span
-                                          style="color:#f00">*</span></label>
-                              <div class="col-sm-8 controls">
-                                  <select id="client_uid" class="text-capitalize">
-                                      <option value="" selected>Select One...</option>
-                                      ';
-  displayClients();
-  echo '
-                                  </select>
-                              </div>
-                          </div>
-
-
-                          <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Billable Client<span
-                                          style="color:#f00">*</span></label>
-                              <div class="col-sm-8 controls">
-                                  <select id="billable_client_uid" class="text-capitalize">
-                                      <option value="" selected>Select One...</option>
-                                      ';
-  displayClients();
-  echo '
-                                  </select>
-                              </div>
-                          </div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Client Name<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <select id="client_uid" class="text-capitalize">
+                                                <option value="" selected>Select One...</option>
+                                                ';
+            displayClients();
+            echo '
+                                            </select>
+                                        </div>
+                                    </div>
 
 
-                          <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Assignee<span
-                                          style="color:#f00">*</span></label>
-                              <div class="col-sm-8 controls">
-                                  <select id="assignee_username" class="text-capitalize">
-                                      <option value="" selected>Select One...</option>
-                                      ';
-  displayUsers();
-  echo '
-                                  </select>
-                              </div>
-                          </div>
-
-                          <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Description<span
-                                          style="color:#f00">*</span></label>
-                              <div class="col-sm-8 controls">
-                                  <textarea id="description"> </textarea>
-                              </div>
-                          </div>
-
-                          <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Notification Date</label>
-                              <div class="col-sm-8 controls">
-                                  <input type="text" id="notification_date" value="" class="date">
-                              </div>
-                          </div>
-
-                          <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Location</label>
-                              <div class="col-sm-8 controls">
-                                  <input type="text" id="location" value=""/>
-                              </div>
-                          </div>
-
-                      </form>
-                  </div>
-              </div>
-              <!-- Panel Widget -->
-          </div>
-          <!-- col-md-6 -->
-
-          <div class="col-md-6">
-              <div class="panel widget">
-                  <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"><span class="menu-icon"> <i
-                                      class="fa fa-th-list"></i> </span>Documents Upload</h3>
-                  </div>
-                  <div class="panel-body">
-                              <div class="tab-content mgbt-xs-20">
-                                  <div class="tab-pane active" id="tab6">
-
-                                      <form method="post" action="upload.php"
-                                            enctype="multipart/form-data" target="leiframe">
-                                          <div class="cleaner"></div>
-                                          <div class="form-group">
-                                              <label style="float:left"
-                                                     class="col-sm-3">Name:<span
-                                                          style="color:#f00">*</span></label>
-                                              <div class="col-sm-9 controls">
-                                                  <input type="text" id="fname" name="fname"
-                                                         required>
-                                              </div>
-                                          </div>
-                                          <div class="cleaner_h5"></div>
-                                          <dd class="custuploadblock_js">
-                                              <input style="opacity:0; float:left;" name="image"
-                                                     id="photoupload"
-                                                     class="transfileform_js" type="file">
-                                          </dd>
-                                          <iframe name="leiframe" id="leiframe" class="leiframe">
-                                          </iframe>
-                                          <input type="hidden" id="type" name="type"
-                                                 value="Document"/>
-                                          <input type="hidden" id="soi" name="soi"
-                                                 value=""/>
-                                          <input type="hidden" name="sap" value="' . $username . '"/>
-                                          <input type="hidden" name="tid" value="' . $unique_file_id . '"/>
-                                          <input type="hidden" name="type" id="doctype"
-                                                 value="Distress"/>
-                                          <input type="hidden" id="id" name="id" value="1"/>
-                                          <div class="cleaner_h5"></div>
-                                          <button class="btn vd_btn vd_bg-green vd_white"
-                                                  style="float:right;margin-right:30%"
-                                                  type="submit" onclick="uphoto()"><i
-                                                      class="icon-ok"></i>Upload
-                                          </button>
-                                      </form>
-                                      <div class="cleaner_h5"></div>
-                                      <div id="certdiv" style="width:100%;min-height:30px;"></div>
-                                      <div class="cleaner_h5"></div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Billable Client<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <select id="billable_client_uid" class="text-capitalize">
+                                                <option value="" selected>Select One...</option>
+                                                ';
+            displayClients();
+            echo '
+                                            </select>
+                                        </div>
+                                    </div>
 
 
-                                  </div><!-- end tab -->
-                              
-                      </div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Assignee<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <select id="assignee_username" class="text-capitalize">
+                                                <option value="" selected>Select One...</option>
+                                                ';
+            displayUsers();
+            echo '
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Description<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <textarea id="description"> </textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Notification Date</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="notification_date" value="" class="date">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Location</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="location" value=""/>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Panel Widget -->
+                    </div>
+                    <!-- col-md-6 -->
+
+                    <div class="col-md-6">
+                        <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span>Documents Upload</h3>
+                            </div>
+                            <div class="panel-body">
+                                        <div class="tab-content mgbt-xs-20">
+                                            <div class="tab-pane active" id="tab6">
+
+                                                <form method="post" action="upload.php"
+                                                      enctype="multipart/form-data" target="leiframe">
+                                                    <div class="cleaner"></div>
+                                                    <div class="form-group">
+                                                        <label style="float:left"
+                                                               class="col-sm-3">Name:<span
+                                                                    style="color:#f00">*</span></label>
+                                                        <div class="col-sm-9 controls">
+                                                            <input type="text" id="fname" name="fname"
+                                                                   required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cleaner_h5"></div>
+                                                    <dd class="custuploadblock_js">
+                                                        <input style="opacity:0; float:left;" name="image"
+                                                               id="photoupload"
+                                                               class="transfileform_js" type="file">
+                                                    </dd>
+                                                    <iframe name="leiframe" id="leiframe" class="leiframe">
+                                                    </iframe>
+                                                    <input type="hidden" id="type" name="type"
+                                                           value="Document"/>
+                                                    <input type="hidden" id="soi" name="soi"
+                                                           value=""/>
+                                                    <input type="hidden" name="sap" value="' . $username . '"/>
+                                                    <input type="hidden" name="tid" value="' . $unique_file_id . '"/>
+                                                    <input type="hidden" name="type" id="doctype"
+                                                           value="Distress"/>
+                                                    <input type="hidden" id="id" name="id" value="1"/>
+                                                    <div class="cleaner_h5"></div>
+                                                    <button class="btn vd_btn vd_bg-green vd_white"
+                                                            style="float:right;margin-right:30%"
+                                                            type="submit" onclick="uphoto()"><i
+                                                                class="icon-ok"></i>Upload
+                                                    </button>
+                                                </form>
+                                                <div class="cleaner_h5"></div>
+                                                <div id="certdiv" style="width:100%;min-height:30px;"></div>
+                                                <div class="cleaner_h5"></div>
 
 
-                  </div>
-              </div>
-              <!-- Panel Widget -->
-
-          </div>
-          <!-- col-md-12 -->
+                                            </div><!-- end tab -->
+                                        
+                                </div>
 
 
-          <div class="col-md-6">
-              <div class="panel widget">
-                  <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"><span class="menu-icon"> <i
-                                      class="fa fa-th-list"></i> </span> Actions</h3>
-                  </div>
-                  <div class="panel-body">
+                            </div>
+                        </div>
+                        <!-- Panel Widget -->
+
+                    </div>
+                    <!-- col-md-12 -->
 
 
-                      <div class="form-group form-actions">
-                          <div class="col-sm-4"></div>
-                          <div class="col-sm-7">
-                              <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                      onclick="saveNewDistress()"><i class="icon-ok"></i> Save
-                              </button>
-                              <button class="btn vd_btn" type="button" onclick="hidecont()">
-                                  Cancel
-                              </button>
-                              <div id="message" style="width:40px;height:40px;float:right"></div>
-                          </div>
-                      </div>
+                    <div class="col-md-6">
+                        <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span> Actions</h3>
+                            </div>
+                            <div class="panel-body">
 
 
-                  </div>
-              </div>
-              <!-- Panel Widget -->
-          </div>
-          <!-- col-md-12 -->
+                                <div class="form-group form-actions">
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-7">
+                                        <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                onclick="saveNewDistress()"><i class="icon-ok"></i> Save
+                                        </button>
+                                        <button class="btn vd_btn" type="button" onclick="hidecont()">
+                                            Cancel
+                                        </button>
+                                        <div id="message" style="width:40px;height:40px;float:right"></div>
+                                    </div>
+                                </div>
 
 
-      </div>
-      <!-- row -->
-  </div>
+                            </div>
+                        </div>
+                        <!-- Panel Widget -->
+                    </div>
+                    <!-- col-md-12 -->
 
 
-</div>
-<!-- .vd_content-section -->
+                </div>
+                <!-- row -->
+            </div>
 
-</div>
-<!-- .vd_content -->
+
+        </div>
+        <!-- .vd_content-section -->
+
+    </div>
+    <!-- .vd_content -->
 ';
 
-  echo "<script>  $( '#datepicker-normal' ).datepicker({ dateFormat: 'dd/mm/yy'}); $( '#datepicker-date' ).datepicker({ dateFormat: 'dd'});$( '#pendate' ).datepicker({ dateFormat: 'dd'});$( '#waivermonth' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
+            echo "<script>  $( '#datepicker-normal' ).datepicker({ dateFormat: 'dd/mm/yy'}); $( '#datepicker-date' ).datepicker({ dateFormat: 'dd'});$( '#pendate' ).datepicker({ dateFormat: 'dd'});$( '#waivermonth' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
 
 
-  break;
+            break;
 // find distress
 case 501:
 $result = mysql_query("insert into log values('','".$username." accesses find distress Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
