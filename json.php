@@ -679,6 +679,55 @@ case 701:
 
         break;
 
+        // IMMOVABLE PROPERTY
+    case 600:
+        // DB table to use
+        $table = 'immovable_property';
+
+        // Table's primary key
+        $primaryKey = 'id';
+        $where = "status=1";
+
+        // Array of database columns which should be read and sent back to DataTables.
+        // The `db` parameter represents the column name in the database, while the `dt`
+        // parameter represents the DataTables column identifier. In this case simple
+        // indexes
+        $columns = array(
+            array('db'=>'id', 'dt'=>0),
+            array( 'db' => 'unique_file_number', 'dt' => 1 ),
+            array( 'db' => 'description', 'dt' => 2 ),
+            array( 'db' => 'file_status', 'dt' => 3 ),
+            array( 'db' => 'assignee_id', 'dt' => 4 ),
+            array( 'db' => 'date',  'dt' => 5 ),
+        );
+
+        break;
+
+
+//        IMMOVABLE PROPERTY ARCHIVED
+    case 601:
+        // DB table to use
+        $table = 'immovable_property';
+
+        // Table's primary key
+        $primaryKey = 'id';
+        $where = "status!=1";
+
+        // Array of database columns which should be read and sent back to DataTables.
+        // The `db` parameter represents the column name in the database, while the `dt`
+        // parameter represents the DataTables column identifier. In this case simple
+        // indexes
+        $columns = array(
+            array('db'=>'id', 'dt'=>0),
+            array( 'db' => 'unique_file_number', 'dt' => 1 ),
+            array( 'db' => 'description', 'dt' => 2 ),
+            array( 'db' => 'file_status', 'dt' => 3 ),
+            array( 'db' => 'assignee_id', 'dt' => 4 ),
+            array( 'db' => 'date',  'dt' => 5 ),
+        );
+
+        break;
+
 
 }
 

@@ -711,8 +711,9 @@ if (isset($_SESSION['valid_user'])) {
                                     <ul>
 
                                         <li style="">
+
                                             <?php if ($rightsarr[107] == 'YES') {
-                                                echo '<a  href="#" onclick="decree()" >
+                                                echo '<a  href="#" onclick="newImmovableProperty()" >
                         <span class="menu-text">New Immovable</span>  
                     </a>';
                                             } ?>
@@ -721,8 +722,16 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[108] == 'YES') {
-                                                echo '<a  href="#" onclick="finddecree()" >
+                                                echo '<a  href="#" onclick="findImmovableProperty()" >
                         <span class="menu-text">Find Immovable</span>  
+                    </a>';
+                                            } ?>
+                                        </li>
+
+                                        <li>
+                                            <?php if ($rightsarr[109] == 'YES') {
+                                                echo '<a  href="#" onclick="editImmovablePropertyEntry()" >
+                        <span class="menu-text">Edit Immovable</span>  
                     </a>';
                                             } ?>
                                         </li>
@@ -730,7 +739,16 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[113] == 'YES') {
-                                                echo '<a  href="#" onclick="decreefile()" >
+                                                echo '<a  href="#" onclick="immovablePropertyFileEntry()" >
+                        <span class="menu-text">Immovable File</span>  
+                        </a>';
+                                            } ?>
+                                        </li>
+
+
+                                        <li>
+                                            <?php if ($rightsarr[113] == 'YES') {
+                                                echo '<a  href="#" onclick="immovablePropertyUploadsEntry()" >
                         <span class="menu-text">Immovable File Uploads</span>  
                         </a>';
                                             } ?>
@@ -738,7 +756,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[114] == 'YES') {
-                                                echo '<a  href="#" onclick="checkoutdecree()" >
+                                                echo '<a  href="#" onclick="archiveImmovablePropertyEntry()" >
                         <span class="menu-text">Archive Immovable</span>  
                         </a>';
                                             } ?>
@@ -747,8 +765,8 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[119] == 'YES') {
-                                                echo '<a  href="#" onclick="archiveddecree()" >
-                        <span class="menu-text">Archived Immovables</span>  
+                                                echo '<a  href="#" onclick="findArchivedImmovableProperty()" >
+                        <span class="menu-text">Archived Immovable</span>  
                         </a>';
                                             } ?>
                                         </li>

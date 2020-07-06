@@ -6595,6 +6595,87 @@ VALUES
     // all IMMOVABLE PROPERTY presentation logic goes here
 
 
+//    save new immovable property file details
+    case 600:
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $referring_client_uid = $_GET['referring_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $location = $_GET['location'];
+
+
+        $resultx = mysql_query('SELECT * FROM `immovable_property` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
+        if (mysql_num_rows($resultx) > 0) {
+            echo '<script>swal("Error", "Immovable Property file with similar info already exists. !Consult the System Admin", "error");</script>';
+
+        }
+
+        $resultc = mysql_query("INSERT INTO `immovable_property`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `stamp`, `date`, `time`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')") or die (mysql_error());
+
+
+        if ($resultc) {
+            echo '<script>swal("Success!", "Immovable Property file created successfully", "success");</script>';
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " created distress file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {newImmovableProperty();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to create a new immovable property file record!", "error");</script>';
+        }
+        break;
+
+//  save edit immovable property file details
+    case 601:
+        $param = $_GET['param'];
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $referring_client_uid = $_GET['referring_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $location = $_GET['location'];
+        $file_status = $_GET['file_status'];
+        $remarks = $_GET['remarks'];
+
+
+        $resultc = mysql_query("update  `immovable_property` set `client_uid` ='" . $client_uid . "' , `billable_client_uid` ='" . $billable_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `location`='" . $location . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
+
+
+        if ($resultc) {
+            echo '<script>swal("Success!", "Immovable Property file updated successfully", "success");</script>';
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " updated immovable_property file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {findImmovableProperty();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to update immovale property record!", "error");</script>';
+        }
+        break;
+
+    /**archive immovable property file */
+    case 602:
+        $param = $_GET['param'];
+        if(mysql_query("UPDATE `immovable_property` SET `status`='0' WHERE `id`='".$param."'")){
+            mysql_query("insert into log values('','" . $username . " archived immovable property.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "Immovable Property file archived", "success");</script>';
+        } else {
+            echo '<script>swal("Error", "failed to archive immovable property file record!", "error");</script>';
+        }
+
+        break;
+
+    /**activate immovable property file */
+    case 603:
+        $param = $_GET['param'];
+        if(mysql_query("UPDATE `immovable_property` SET `status`='1' WHERE `id`='".$param."'")){
+            mysql_query("insert into log values('','" . $username . " activated immovable property.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "Immovable property file activated", "success");</script>	';
+        } else {
+            echo '<script>swal("Error", "failed to activate immovable property record!", "error");</script>';
+        }
+
+        break;
+
     /*****IMMOVABLE PROPERTY END*****/
 
 
