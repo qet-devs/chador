@@ -10913,3 +10913,258 @@ function distressActivate(param) {
 
 // END OF Distress
 
+// Immovable  Property MODEULE
+// START OF Immovable  Property
+/**beginning of Immovable  Property module */
+
+function newImmovableProperty() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 600},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// save new debt collect
+function saveNewImmovableProperty() {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var location = $('#location').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 600,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            location: location,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+// Find Immovable  Property
+
+function findImmovableProperty() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 601},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// EDIT Immovable  Property PANEL ENTRY
+
+function editImmovablePropertyEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 602},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// EDIT DEBT COLL FILE
+function editImmovableProperty(param) {
+    // todo: remove logger
+    console.log('IM edit', param);
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 603, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// UPDATE Immovable  Property INFO
+
+function saveImmovableProperty(param) {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+    var file_status = $('#file_status').val();
+    var remarks = $('#remarks').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 601,
+            param: param,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+            file_status: file_status,
+            remarks: remarks,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+// Immovable  Property FILE ENTRY
+function immovablePropertyFileEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 604},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// DEBT COLL FILE
+function immovablePropertyFile(param) {
+    // todo: remove logger
+    console.log('IM file', param);
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 605, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// Immovable  Property FILE UPLOAD ENTRY
+function immovablePropertyUploadsEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 606},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+// Immovable  Property ARCHIVE ENTRY
+function archiveImmovablePropertyEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 608},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// archive Immovable  Property
+function immovablePropertyArchive(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The Immovable  Property File will be Archived!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Archive them!",
+            closeOnConfirm: true
+        },
+        function () {
+            // todo: remove logger
+            console.log('IM archive', param);
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 602, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                    findArchivedImmovableProperty();
+                }
+            });
+
+        });
+
+}
+
+//Immovable  Property ARCHIVED FILE ENTRY
+function findArchivedImmovableProperty() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 609},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+// activate Immovable  Property
+function immovablePropertyActivate(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The Immovable  Property File will be Activated!",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Activate!",
+            closeOnConfirm: true
+        },
+        function () {
+            // todo: remove logger
+            console.log('IM activate', param);
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 603, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                    findArchivedImmovableProperty();
+                }
+            });
+        });
+}
+
+// END OF Immovable  Property
+
