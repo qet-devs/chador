@@ -636,8 +636,9 @@ if (isset($_SESSION['valid_user'])) {
                                     <ul>
 
                                         <li style="">
+
                                             <?php if ($rightsarr[107] == 'YES') {
-                                                echo '<a  href="#" onclick="decree()" >
+                                                echo '<a  href="#" onclick="newDistress()" >
                         <span class="menu-text">New Distress</span>  
                     </a>';
                                             } ?>
@@ -646,8 +647,16 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[108] == 'YES') {
-                                                echo '<a  href="#" onclick="finddecree()" >
+                                                echo '<a  href="#" onclick="findDistress()" >
                         <span class="menu-text">Find Distress</span>  
+                    </a>';
+                                            } ?>
+                                        </li>
+
+                                        <li>
+                                            <?php if ($rightsarr[109] == 'YES') {
+                                                echo '<a  href="#" onclick="editDistressEntry()" >
+                        <span class="menu-text">Edit Distress</span>  
                     </a>';
                                             } ?>
                                         </li>
@@ -655,7 +664,16 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[113] == 'YES') {
-                                                echo '<a  href="#" onclick="decreefile()" >
+                                                echo '<a  href="#" onclick="distressFileEntry()" >
+                        <span class="menu-text">Distress File</span>  
+                        </a>';
+                                            } ?>
+                                        </li>
+
+
+                                        <li>
+                                            <?php if ($rightsarr[113] == 'YES') {
+                                                echo '<a  href="#" onclick="distressUploadsEntry()" >
                         <span class="menu-text">Distress File Uploads</span>  
                         </a>';
                                             } ?>
@@ -663,7 +681,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[114] == 'YES') {
-                                                echo '<a  href="#" onclick="checkoutdecree()" >
+                                                echo '<a  href="#" onclick="archiveDistressEntry()" >
                         <span class="menu-text">Archive Distress</span>  
                         </a>';
                                             } ?>
@@ -672,7 +690,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[119] == 'YES') {
-                                                echo '<a  href="#" onclick="archiveddecree()" >
+                                                echo '<a  href="#" onclick="findArchivedDistress()" >
                         <span class="menu-text">Archived Distress</span>  
                         </a>';
                                             } ?>
