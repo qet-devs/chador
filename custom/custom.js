@@ -558,19 +558,21 @@ function majoropen(a) {
             case 303:
                 debtCollectionActivate(b);
                 break;
-            case 400:
-                //edit warrant
-                $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-                $.ajax({
-                    url: 'bridge.php',
-                    data: {id: 402, param: b},
-                    success: function (data) {
-                        $('#mainp').html(data);
-                    }
-                });
+                case 400:
+                    editWarrant(b);
+                    break;
+
+            case 401:
+                warrantFile(b);
+                break;
 
             case 402:
                 archiveWarrant(b);
+                break;
+
+
+            case 403:
+                warrantActivate(b);
                 break;
             case 401:
                 $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
@@ -586,6 +588,29 @@ function majoropen(a) {
             case 405:
                 activatewarrant(b);
                 break;
+
+                
+                    //repossession
+                   
+                        
+
+                        case 700:
+                            editRepossession(b);
+                            break;
+
+                            case 701:
+                                repossessionFile(b);
+                                break;  
+                                case 702:
+                                    repossessionArchive(b);
+                                    break;
+
+
+            case 703:
+                repossessionActivate(b);
+                break;
+    
+
 
 
         }
@@ -10290,6 +10315,7 @@ function newWarrant() {
     });
 }
 
+
 function saveNewWarrant() {
     var unique_file_id = $('#unique_file_id').val();
     var client_uid = $('#client_uid').val();
@@ -10338,17 +10364,6 @@ function findWarrant() {
     });
 }
 
-function archiveWarrant() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 405},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
 /**edit warrant */
 
 
@@ -10371,6 +10386,8 @@ function saveWarrant(param) {
     var description = $('#description').val();
     var notification_date = $('#notification_date').val();
     var notification_message = $('#notification_message').val();
+    var file_status = $('#file_status').val();
+    var remarks = $('#remarks').val();
 
     if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
         swal('Error', 'Please fill all required fields', 'error');
@@ -10386,9 +10403,190 @@ function saveWarrant(param) {
             description: description,
             notification_date: notification_date,
             notification_message: notification_message,
+            file_status: file_status,
+            remarks: remarks,
         };
 
-        //console.log(data);
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+/** */
+
+function warrantFileEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 404},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// WARRANT FILE
+function warrantFile(param) {
+    // todo: remove logger
+    console.log('cw file', param);
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 405, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+/** warrant file*/
+
+
+/** end warrant file */
+
+// WARRANT FILE UPLOAD ENTRY
+function warrantUploadsEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 406},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+// Warrant ARCHIVE ENTRY
+function archiveWarrantEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 408},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+
+
+// archive repossession
+function warrantArchive(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The warrant File will be Archived!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Archive them!",
+            closeOnConfirm: true
+        },
+        function () {
+            // todo: remove logger
+            console.log('CW archive', param);
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 402, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                    findArchivedWarrant();
+                }
+            });
+
+        });
+
+}
+
+//Warrant ARCHIVED FILE ENTRY
+function findArchivedWarrant() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 409},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+// activate Warrant
+function warrantActivate(param) {
+    swal({
+            title: "Are you sure?",
+            text: "The Warrant File will be Activated!",
+            type: "info",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, Activate!",
+            closeOnConfirm: true
+        },
+        function () {
+            // todo: remove logger
+            console.log('RP activate', param);
+            $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+            $.ajax({
+                url: 'data.php',
+                data: {id: 403, param: param},
+                success: function (data) {
+                    $('#message').html(data);
+                    findArchivedWarrant();
+                }
+            });
+        });
+}
+
+
+/**end of warrant */
+
+/***repossession */
+//ALL CODES OF REPOSSESSION WILL LIE HERE
+//new repossession
+function newRepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 700},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+function saveNewRepossession() {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 700,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+        };
+
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
         $.ajax({
             url: 'data.php',
@@ -10402,15 +10600,29 @@ function saveWarrant(param) {
 }
 
 
-/** */
+//end new repossession
 
-/** warrant file*/
 
-function warrantFile() {
+// Find Repossession
+
+function findRepossession() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
-        data: {id: 403},
+        data: {id: 701},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// EDIT REPOSSESSION PANEL ENTRY
+
+function editRepossession() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 702},
         success: function (data) {
             $('#mainp').html(data);
         }
@@ -10418,13 +10630,112 @@ function warrantFile() {
 }
 
 
-/** end warrant file */
+//update repossession
 
-/**archivewarrant */
-function archiveWarrant(b) {
+// UPDATE REPOSSESSION INFO
+
+function saveRepossession(param) {
+    var unique_file_id = $('#unique_file_id').val();
+    var client_uid = $('#client_uid').val();
+    var referring_client_uid = $('#referring_client_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var description = $('#description').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+    var file_status = $('#file_status').val();
+    var remarks = $('#remarks').val();
+
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 701,
+            param: param,
+            unique_file_id: unique_file_id,
+            client_uid: client_uid,
+            referring_client_uid: referring_client_uid,
+            assignee_username: assignee_username,
+            description: description,
+            notification_date: notification_date,
+            notification_message: notification_message,
+            file_status: file_status,
+            remarks: remarks,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+
+
+
+/// REPOSSESSION FILE ENTRY
+function repossessionFileEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 704},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// REPOSSESSION FILE
+function repossessionFile(param) {
+    // todo: remove logger
+    console.log('RP file', param);
+    $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 705, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+// REPOSSESSION FILE UPLOAD ENTRY
+function repossessionUploadsEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 706},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+
+// Repossession ARCHIVE ENTRY
+function archiveRepossessionEntry() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 708},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+// archive repossession
+function repossessionArchive(param) {
     swal({
             title: "Are you sure?",
-            text: "The Warrant will be Archived!",
+            text: "The repossession File will be Archived!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -10432,27 +10743,28 @@ function archiveWarrant(b) {
             closeOnConfirm: true
         },
         function () {
+            // todo: remove logger
+            console.log('RP archive', param);
             $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
             $.ajax({
                 url: 'data.php',
-                data: {id: 405, b: b},
+                data: {id: 702, param: param},
                 success: function (data) {
                     $('#message').html(data);
+                    findArchivedRepossession();
                 }
             });
 
         });
 
-
 }
 
-/**archive client function */
-/**start of archived clients */
-function archivedclients() {
+//Repossession ARCHIVED FILE ENTRY
+function findArchivedRepossession() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
-        data: {id: 406},
+        data: {id: 709},
         success: function (data) {
             $('#mainp').html(data);
         }
@@ -10460,59 +10772,28 @@ function archivedclients() {
 }
 
 
-//archived
-/**activate warrant */
-function activatewarrant(param) {
+// activate Repossession
+function repossessionActivate(param) {
     swal({
             title: "Are you sure?",
-            text: "The Warrant will be activated!",
-            type: "warning",
+            text: "The Repossession File will be Activated!",
+            type: "info",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Yes, Activate warrant!",
+            confirmButtonText: "Yes, Activate!",
             closeOnConfirm: true
         },
         function () {
+            // todo: remove logger
+            console.log('RP activate', param);
             $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
             $.ajax({
                 url: 'data.php',
-                data: {id: 406, param: param},
+                data: {id: 703, param: param},
                 success: function (data) {
                     $('#message').html(data);
+                    findArchivedRepossession();
                 }
             });
         });
 }
-
-/**end of activate */
-
-
-function checkoutwarrant() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 405},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-/**end archive */
-
-/**start of archived warrants */
-function archivedwarrant() {
-    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
-    $.ajax({
-        url: 'bridge.php',
-        data: {id: 406},
-        success: function (data) {
-            $('#mainp').html(data);
-        }
-    });
-}
-
-
-/**end of client functions */
-
-/**end of warrant */

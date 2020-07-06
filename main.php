@@ -588,16 +588,24 @@ if (isset($_SESSION['valid_user'])) {
 
 
                                         <li>
+                                            <?php if ($rightsarr[108] == 'YES') {
+                                                echo '<a  href="#" onclick="warrantFileEntry()" >
+                        <span class="menu-text"> Warrant File</span>  
+                    </a>';
+                                            } ?>
+                                        </li>
+
+                                        <li>
                                             <?php if ($rightsarr[113] == 'YES') {
-                                                echo '<a  href="#" onclick="warrantFile()" >
-                        <span class="menu-text">Warrant File </span>  
+                                                echo '<a  href="#" onclick="warrantUploadsEntry()" >
+                        <span class="menu-text">Warrant Files Upload</span>  
                         </a>';
                                             } ?>
                                         </li>
 
                                         <li>
                                             <?php if ($rightsarr[114] == 'YES') {
-                                                echo '<a  href="#" onclick="checkoutwarrant()" >
+                                                echo '<a  href="#" onclick="archiveWarrantEntry()" >
                         <span class="menu-text">Archive Warrant</span>  
                         </a>';
                                             } ?>
@@ -606,8 +614,8 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[119] == 'YES') {
-                                                echo '<a  href="#" onclick="archivedwarrant()" >
-                        <span class="menu-text">Archived Warrants</span>  
+                                                echo '<a  href="#" onclick="findArchivedWarrant()" >
+                        <span class="menu-text">Archived Warrant</span>  
                         </a>';
                                             } ?>
                                         </li>
@@ -745,7 +753,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li style="">
                                             <?php if ($rightsarr[107] == 'YES') {
-                                                echo '<a  href="#" onclick="newrepossession()" >
+                                                echo '<a  href="#" onclick="newRepossession()" >
                         <span class="menu-text">New Repossession</span>  
                     </a>';
                                             } ?>
@@ -753,7 +761,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[108] == 'YES') {
-                                                echo '<a  href="#" onclick="findrepossession()" >
+                                                echo '<a  href="#" onclick="findRepossession()" >
                         <span class="menu-text">Find Repossession</span>  
                     </a>';
                                             } ?>
@@ -761,30 +769,30 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[109] == 'YES') {
-                                                echo '<a  href="#" onclick="editrepossession()" >
+                                                echo '<a  href="#" onclick="editRepossession()" >
                         <span class="menu-text">Edit Repossession Info</span>  
                     </a>';
                                             } ?>
                                         </li>
                                         <li>
                                             <?php if ($rightsarr[108] == 'YES') {
-                                                echo '<a  href="#" onclick="repossessionfile()" >
+                                                echo '<a  href="#" onclick="repossessionFileEntry()" >
                         <span class="menu-text"> Repossession File</span>  
                     </a>';
                                             } ?>
                                         </li>
 
                                         <li>
-                                            <?php if ($rightsarr[108] == 'YES') {
-                                                echo '<a  href="#" onclick="notificationsalefile()" >
-                        <span class="menu-text">Repossession File Upload</span>  
-                    </a>';
+                                            <?php if ($rightsarr[113] == 'YES') {
+                                                echo '<a  href="#" onclick="repossessionUploadsEntry()" >
+                        <span class="menu-text">Repossession Files Upload</span>  
+                        </a>';
                                             } ?>
                                         </li>
 
                                         <li>
                                             <?php if ($rightsarr[114] == 'YES') {
-                                                echo '<a  href="#" onclick="checkoutrepossession()" >
+                                                echo '<a  href="#" onclick="archiveRepossessionEntry()" >
                         <span class="menu-text">Archive Repossession</span>  
                         </a>';
                                             } ?>
@@ -793,7 +801,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[119] == 'YES') {
-                                                echo '<a  href="#" onclick="archivedrepossession()" >
+                                                echo '<a  href="#" onclick="findArchivedRepossession()" >
                         <span class="menu-text">Archived Repossession</span>  
                         </a>';
                                             } ?>
