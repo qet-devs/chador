@@ -29586,211 +29586,242 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
         /***** CLIENT START*****/
         // all client presentation logic goes here
-
-
-
+// new client
 case 212:
-  
-    $param=0;$_SESSION['housediv']=array();
-    if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-    else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-      $result = mysql_query("insert into log values('','".$username." accesses New Member File Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
-  
-      $prescid=date('YmdHi').RAND(10,99);
-  
-  
-      echo '<div class="vd_container" id="container">
-          <div class="vd_content clearfix" style="">
-  
-                  <div class="vd_content-section clearfix">
-              <div class="row" id="form-basic">
-                <div class="col-md-6">
-                  <div class="panel widget">
-                    <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Corporate Client</h3>
-                    </div>
-                    <div class="panel-body">
-                      <form class="form-horizontal" action="#" role="form">
-                        <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Business Name<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="business_name" value="">
-                          </div>
-                        </div>
 
-                        <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Business Address<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="business_address" value="">
-                        </div>
-                      </div>
+    $result = mysql_query("insert into log values('','" . $username . " accesses create new client Panel','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
 
-                      <div class="form-group">
-                      <label style="float:left" class="col-sm-4"> Business Location<span style="color:#f00"></span></label>
-                      <div class="col-sm-8 controls">
-                        <input type="text" id="business_location" value="">
-                      </div>
-                    </div>
-  
 
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Telephone No<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="telephone" value="">
-                          </div>
-                        </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Pin Registration<span style="color:#f00"></span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="pin_registration" value="">
-                          </div>
-                        </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">VAT Registration<span style="color:#f00"></span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="vat_registration" value="">
-                          </div>
-                        </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Certificate of incorporation<span style="color:#f00"></span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="certificate_of_incorporation" value="">
-                          </div>
-                        </div>
-                       
-  
-                         
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Business Email</label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="business_email" value="">
-                          </div>
-                        </div>
-  
-  
-                        <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Contact person<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="contact_person" value="">
-                          </div>
-                        </div>
- 
-                        <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Phone<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="contact_phone" value="">
-                          </div>
-                        </div>
-                  </form>
-                    </div>
-                  </div>
-                  <!-- Panel Widget --> 
-                </div>
-                
-             
-                <!-- col-md-6 --> 
-  
-                <div class="col-md-6">
-                  <div class="panel widget">
-                    <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Individual Client</h3>
-                    </div>
-                    <div class="panel-body">
-                      <form class="form-horizontal" action="#" role="form">
-                        <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="client_name" value="">
-                          </div>
-                        </div>
+    $resulty = mysql_query("select * from clients order by id desc limit 0,1");
+    $rowy = mysql_fetch_array($resulty);
+    $tid = stripslashes($rowy['id']) + 1;
+    $unique_client_id = 'UCID' . sprintf("%08d", $tid);
 
-                      <div class="form-group">
-                      <label style="float:left" class="col-sm-4"> Client Location</label>
-                      <div class="col-sm-8 controls">
-                        <input type="text" id="client_location" value="">
-                      </div>
-                    </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Phone No<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="client_phone" value="">
-                          </div>
+    echo '
+    <div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+
+            <div class="vd_content-section clearfix">
+                <div class="row" id="form-basic">
+                    <div class="col-md-6">
+                        <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span> New Client Details
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" action="#" role="form">
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4"> Unique
+                                            Client ID<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="unique_client_id"
+                                                   value="' . $unique_client_id . '" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Client Name<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="client_name" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Phone No<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="phone" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Email</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="email" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Address</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="address" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Location</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="location" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">National ID</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="national_id" value="">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Pin Registration</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="pin_registration" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">VAT Registration</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="vat_registration" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Certificate of
+                                            incorporation</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="certificate_of_incorporation" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Contact person</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="contact_person" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Contacts Phone</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="contact_phone" value="">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">National id<span style="color:#f00"></span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="national_id" value="">
-                          </div>
+                        <!-- Panel Widget -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span>Documents Upload</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="tab-content mgbt-xs-20">
+                                    <div class="tab-pane active" id="tab6">
+
+                                        <form method="post" action="upload.php"
+                                              enctype="multipart/form-data" target="leiframe">
+                                            <div class="cleaner"></div>
+                                            <div class="form-group">
+                                                <label style="float:left"
+                                                       class="col-sm-3">Name:<span
+                                                            style="color:#f00">*</span></label>
+                                                <div class="col-sm-9 controls">
+                                                    <input type="text" id="fname" name="fname"
+                                                           required>
+                                                </div>
+                                            </div>
+                                            <div class="cleaner_h5"></div>
+                                            <dd class="custuploadblock_js">
+                                                <input style="opacity:0; float:left;" name="image"
+                                                       id="photoupload"
+                                                       class="transfileform_js" type="file">
+                                            </dd>
+                                            <iframe name="leiframe" id="leiframe" class="leiframe">
+                                            </iframe>
+                                            <input type="hidden" id="type" name="type"
+                                                   value="Document"/>
+                                            <input type="hidden" id="soi" name="soi"
+                                                   value=""/>
+                                            <input type="hidden" name="sap" value="' . $username . '"/>
+                                            <input type="hidden" name="tid"
+                                                   value="' . $unique_client_id . '"/>
+                                            <input type="hidden" name="type" id="doctype"
+                                                   value="client_details"/>
+                                            <input type="hidden" id="id" name="id" value="1"/>
+                                            <div class="cleaner_h5"></div>
+                                            <button class="btn vd_btn vd_bg-green vd_white"
+                                                    style="float:right;margin-right:30%"
+                                                    type="submit" onclick="uphoto()"><i
+                                                        class="icon-ok"></i>Upload
+                                            </button>
+                                        </form>
+                                        <div class="cleaner_h5"></div>
+                                        <div id="certdiv" style="width:100%;min-height:30px;"></div>
+                                        <div class="cleaner_h5"></div>
+
+
+                                    </div><!-- end tab -->
+
+                                </div>
+
+
+                            </div>
                         </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Email</label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="client_email" value="">
-                          </div>
+                        <!-- Panel Widget -->
+
+                    </div>
+                    <!-- col-md-12 -->
+
+
+                    <div class="col-md-6">
+                        <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span> Actions</h3>
+                            </div>
+                            <div class="panel-body">
+
+
+                                <div class="form-group form-actions">
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-7">
+                                        <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                onclick="saveNewClient()"><i class="icon-ok"></i> Save
+                                        </button>
+                                        <button class="btn vd_btn" type="button" onclick="hidecont()">
+                                            Cancel
+                                        </button>
+                                        <div id="message" style="width:40px;height:40px;float:right"></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </div>
-    
-                  </form>
+                        <!-- Panel Widget -->
                     </div>
-                  </div>
-                  <!-- Panel Widget --> 
+                    <!-- col-md-12 -->
+
+
                 </div>
-  
-  
-                   <div class="col-md-6">
-                  <div class="panel widget">
-                    <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Clients Actions</h3>
-                    </div>
-                    <div class="panel-body">
-                    
-  
-                   <div class="form-group form-actions">
-                      <div class="col-sm-4"> </div>
-                      <div class="col-sm-7">
-                        <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="saveNewClient()"><i class="icon-ok"></i> Save</button>
-                        <button class="btn vd_btn" type="button" onclick="hidecont()">Cancel</button>
-                        <div id="message" style="width:40px;height:40px;float:right"></div>
-                      </div>
-                    </div>
-  
-  
-                    </div>
-                  </div>
-                  <!-- Panel Widget --> 
-                </div>
-                <!-- col-md-12 -->
-  
-              </div>
-              <!-- row --> 
-                </div>
-              
+                <!-- row -->
             </div>
-            <!-- .vd_content-section --> 
-            
-          </div>
-          <!-- .vd_content --> 
+
+
         </div>
-        <!-- .vd_container --> ';
-  
-        echo "<script>  $( '#datepicker-normal' ).datepicker({ dateFormat: 'dd/mm/yy'}); $( '#datepicker-date' ).datepicker({ dateFormat: 'dd'});$( '#pendate' ).datepicker({ dateFormat: 'dd'});$( '#waivermonth' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
-  
-       
-      
-break;
+        <!-- .vd_content-section -->
+
+    </div>
+    <!-- .vd_content -->
+';
+
+    break;
 
 /**end new client */
 /**edit client */
 
 case 213:
-  $param=0;
-  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+    mysql_query("insert into log values('','".$username." accesses edit clients  File entry Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
   echo '<div class="vd_container" id="container">
 <div class="vd_content clearfix" style="">
 
@@ -29805,7 +29836,7 @@ case 213:
               for ($i=0; $i <$num_results; $i++) {
                   $row=mysql_fetch_array($result);
                   $code=stripslashes($row['id']);
-                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['business_name']).'-'.stripslashes($row['email']).'</option>';
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['client_name']).'-'.stripslashes($row['phone']).'</option>';
                 }
            echo'</select>
              <div class="cleaner_h10"></div>
@@ -29839,227 +29870,229 @@ echo "<script>
 break;
 
 case 218:
-  $tid=$param=$_GET['param'];$_SESSION['housediv']=array();
-  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-      $result = mysql_query("insert into log values('','".$username." accesses clients File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
-      $resultx =mysql_query("select * from clients where id='".$param."' limit 0,1");
-      $rowx=mysql_fetch_array($resultx);
+  $param=$_GET['param'];
+  mysql_query("insert into log values('','".$username." accesses edit clients File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+  $result =mysql_query("select * from clients where id='".$param."' limit 0,1");
+  $row=mysql_fetch_array($result);
 
-      echo '
-        <div class="vd_container" id="container">
-            <div class="vd_content clearfix" style="">
+echo '
+    <div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
 
-                <div class="vd_content-section clearfix">
-                    <div class="row" id="form-basic">
-
-                        <div class="col-md-6 text-capitalize">
-                            <div class="panel widget">
-
+            <div class="vd_content-section clearfix">
+                <div class="row" id="form-basic">
+                    <div class="col-md-6">
+                        <div class="panel widget">
                             <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Corporate Client</h3>
-                    </div>
-
-
-
-                                <div class="panel-body">
-                      <form class="form-horizontal" action="#" role="form">
-                        <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Business Name<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="business_name" value="'.$rowx['business_name'].'">
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Business Address<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="business_address" value="'.$rowx['business_address'].'">
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                      <label style="float:left" class="col-sm-4"> Business Location<span style="color:#f00"></span></label>
-                      <div class="col-sm-8 controls">
-                        <input type="text" id="business_location" value="'.$rowx['business_location'].'">
-                      </div>
-                    </div>
-  
-
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Telephone No<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="telephone" value="'.$rowx['telephone'].'">
-                          </div>
-                        </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Pin Registration<span style="color:#f00"></span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="pin_registration" value="'.$rowx['pin_registration'].'">
-                          </div>
-                        </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">VAT Registration<span style="color:#f00"></span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="vat_registration" value="'.$rowx['vat_registration'].'">
-                          </div>
-                        </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Certificate of incorporation<span style="color:#f00"></span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="certificate_of_incorporation" value="'.$rowx['certificate_of_incorporation'].'">
-                          </div>
-                        </div>
-                       
-  
-                         
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Business Email</label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="business_email" value="'.$rowx['business_email'].'">
-                          </div>
-                        </div>
-  
-  
-                        <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Contact person<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="contact_person" value="'.$rowx['contact_person'].'">
-                          </div>
-                        </div>
- 
-                        <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Phone<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="contact_phone" value="'.$rowx['contact_phone'].'">
-                          </div>
-                        </div>
-                  </form>
-                    </div>
-                  </div>
-                  <!-- Panel Widget --> 
-                </div>
-                
-             
-                <!-- col-md-6 --> 
-  
-                <div class="col-md-6">
-                  <div class="panel widget">
-                    <div class="panel-heading vd_bg-grey">
-                      <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Individual Client</h3>
-                    </div>
-                    <div class="panel-body">
-                      <form class="form-horizontal" action="#" role="form">
-                        <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="client_name" value="'.$rowx['client_name'].'">
-                          </div>
-                        </div>
-
-                      <div class="form-group">
-                      <label style="float:left" class="col-sm-4"> Client Location</label>
-                      <div class="col-sm-8 controls">
-                        <input type="text" id="client_location" value="'.$rowx['client_location'].'">
-                      </div>
-                    </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Phone No<span style="color:#f00">*</span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="client_phone" value="'.$rowx['client_phone'].'">
-                          </div>
-                        </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">National id<span style="color:#f00"></span></label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="national_id" value="'.$rowx['national_id'].'">
-                          </div>
-                        </div>
-  
-                         <div class="form-group">
-                          <label style="float:left" class="col-sm-4">Email</label>
-                          <div class="col-sm-8 controls">
-                            <input type="text" id="client_email" value="'.$rowx['client_email'].'">
-                          </div>
-                        </div>
-    
-                  </form>
-                    </div>
-                  </div>
-                  <!-- Panel Widget --> 
-                </div>
-  
-                            <!-- Panel body -->
-        
-                              
-
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span> New Client Details
+                                </h3>
                             </div>
-                            <!-- Panel Widget -->
-
-
-
-                           
-
-                           
-                            <!-- Panel Widget -->
-                        </div>
-                        <!-- col-md-6 -->
-
-                        <div class="col-md-6 text-capitalize">
-                           
-                            <!-- Panel Widget -->
-
-                           
-                            <!-- Panel Widget -->
-
-                            
-                            <!-- Panel Widget -->
-
-                            <div class="panel widget">
-                                <div class="panel-heading vd_bg-grey">
-                                    <h3 class="panel-title"><span class="menu-icon"> <i
-                                                    class="fa fa-th-list"></i> </span>
-                                        Clients Actions
-                                    </h3>
-                                </div>
-                                <div class="panel-body">
-
-                                    <div class="form-group form-actions">
-                                        <div class="col-sm-4"></div>
-                                        <div class="col-sm-7">
-                                            <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                                    onclick="saveClient('.$param.')"><i class="icon-ok"></i>
-                                                update
-                                            </button>
-                                            <button class="btn btn-danger" type="button" onclick="hidecont()">
-                                                Cancel
-                                            </button>
-                                            <div id="message" style="width:40px;height:40px;float:right"></div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" action="#" role="form">
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4"> Unique
+                                            Client ID<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="unique_client_id"
+                                                   value="' . $row['unique_client_id'] . '" disabled>
                                         </div>
                                     </div>
 
-                                </div>
-                                <!-- Panel Widget -->
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Client Name<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="client_name" value="'.$row['client_name'].'">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Phone No<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="phone" value="'.$row['phone'].'">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Email</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="email" value="'.$row['email'].'">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Address</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="address" value="'.$row['address'].'">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Location</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="location" value="'.$row['location'].'">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">National ID</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="national_id" value="'.$row['national_id'].'">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Pin Registration</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="pin_registration" value="'.$row['pin_registration'].'">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">VAT Registration</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="vat_registration" value="'.$row['vat_registration'].'">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Certificate of
+                                            incorporation</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="certificate_of_incorporation" value="'.$row['certificate_of_incorporation'].'">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Contact person</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="contact_person" value="'.$row['contact_person'].'">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Contacts Phone</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="contact_phone" value="'.$row['contact_phone'].'">
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <!-- col-md-12 -->
-
                         </div>
-                        <!-- col-md-12 -->
+                        <!-- Panel Widget -->
+                    </div>
 
+                    <div class="col-md-6">
+                        <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span>Documents Upload</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="tab-content mgbt-xs-20">
+                                    <div class="tab-pane active" id="tab6">
+
+                                        <form method="post" action="upload.php"
+                                              enctype="multipart/form-data" target="leiframe">
+                                            <div class="cleaner"></div>
+                                            <div class="form-group">
+                                                <label style="float:left"
+                                                       class="col-sm-3">Name:<span
+                                                            style="color:#f00">*</span></label>
+                                                <div class="col-sm-9 controls">
+                                                    <input type="text" id="fname" name="fname"
+                                                           required>
+                                                </div>
+                                            </div>
+                                            <div class="cleaner_h5"></div>
+                                            <dd class="custuploadblock_js">
+                                                <input style="opacity:0; float:left;" name="image"
+                                                       id="photoupload"
+                                                       class="transfileform_js" type="file">
+                                            </dd>
+                                            <iframe name="leiframe" id="leiframe" class="leiframe">
+                                            </iframe>
+                                            <input type="hidden" id="type" name="type"
+                                                   value="Document"/>
+                                            <input type="hidden" id="soi" name="soi"
+                                                   value=""/>
+                                            <input type="hidden" name="sap" value="' . $username . '"/>
+                                            <input type="hidden" name="tid"
+                                                   value="' . $row['unique_client_id'] . '"/>
+                                            <input type="hidden" name="type" id="doctype"
+                                                   value="client_details"/>
+                                            <input type="hidden" id="id" name="id" value="1"/>
+                                            <div class="cleaner_h5"></div>
+                                            <button class="btn vd_btn vd_bg-green vd_white"
+                                                    style="float:right;margin-right:30%"
+                                                    type="submit" onclick="uphoto()"><i
+                                                        class="icon-ok"></i>Upload
+                                            </button>
+                                        </form>
+                                        <div class="cleaner_h5"></div>
+                                        <div id="certdiv" style="width:100%;min-height:30px;"></div>
+                                        <div class="cleaner_h5"></div>
+
+
+                                    </div><!-- end tab -->
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- Panel Widget -->
 
                     </div>
-                    <!-- row -->
+                    <!-- col-md-12 -->
+
+
+                    <div class="col-md-6">
+                        <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span> Actions</h3>
+                            </div>
+                            <div class="panel-body">
+
+
+                                <div class="form-group form-actions">
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-7">
+                                        <button class="btn vd_btn vd_bg-green vd_white" type="button"
+                                                onclick="saveClient('.$row['id'].')"><i class="icon-ok"></i> Save
+                                        </button>
+                                        <button class="btn vd_btn" type="button" onclick="hidecont()">
+                                            Cancel
+                                        </button>
+                                        <div id="message" style="width:40px;height:40px;float:right"></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- Panel Widget -->
+                    </div>
+                    <!-- col-md-12 -->
+
+
                 </div>
-                <!--vd_content-section-->
+                <!-- row -->
             </div>
-            <!--vd_content-->
+
+
         </div>
-        <!-- .vd_container -->';
+        <!-- .vd_content-section -->
+
+    </div>
+    <!-- .vd_content -->
+';
+
 break;
 
 
@@ -30069,8 +30102,6 @@ break;
 
 case 214:
   $param=0;
-  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
       echo '<div class="vd_container" id="container">
           <div class="vd_content clearfix" style="">
        
@@ -30084,7 +30115,7 @@ case 214:
                         for ($i=0; $i <$num_results; $i++) {
                             $row=mysql_fetch_array($result);
                             $code=stripslashes($row['id']);
-                            echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['business_name']).'-'.stripslashes($row['email']).'</option>';
+                            echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['client_name']).'-'.stripslashes($row['phone']).'</option>';
                           }
                      echo'</select>
                        <div class="cleaner_h10"></div>
@@ -30117,225 +30148,174 @@ case 214:
   
 break;
 
-
 case 215:
-  $tid= $param=$_GET['param'];
-  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-    $result = mysql_query("insert into log values('','".$username." accesses letter File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
-    $resultx =mysql_query("select * from clients where id='".$param."' limit 0,1");
-    $rowx=mysql_fetch_array($resultx);
-    $lof="Clients";
-    $stat=stripslashes($rowx['status']);
-    $tid=stripslashes($rowx['unique_user_id']);
-    
-  
-  
-    if($stat==1){$status='Active';$col='#1fae66';}else if($stat==0){$status='Archived';$col='#f85d2c';}else{$status='Contract Expired';$col='#f89c2c';}
+    $param = $_GET['param'];
+    mysql_query("insert into log values('','" . $username . " accesses client file.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+    $result = mysql_query('select * from clients where id="' . $param . '" limit 0,1');
+    $row = mysql_fetch_array($result);
 
     echo '
-    <div class="vd_container" id="container">
-<div class="vd_content clearfix" style="">
+                 <div class="vd_container" id="container">
+                    <div class="vd_content clearfix" style="">
+                        <div class="vd_content-section clearfix">
 
-<div class="vd_content-section clearfix">
-    <div class="row" id="form-basic">
+                            <div class="panel widget">
+                                <div class="panel-heading vd_bg-grey">
+                                    <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Client File </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#details">File Details</a></li>
+                                        <li><a data-toggle="tab" href="#uploads">Uploaded Files</a></li>
+                                        <li><a data-toggle="tab" href="#invoices">Invoices</a></li>
+                                        <li><a data-toggle="tab" href="#notifications">Notifications</a></li>
+                                    </ul>
 
-        <div class="col-md-12">
-            <div class="panel widget">
-                <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                        Client File-'.stripslashes($rowx['business_name']).' &'.stripslashes($rowx['unique_user_id']).' </h3>
-                </div>
+                                    <div class="tab-content">
+                                        <div id="details" class="tab-pane fade in active">
+                                            <h3>File Details</h3>
+                                            
+                                            <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span> Client Details
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" action="#" role="form">
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4"> Unique
+                                            Client ID<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="unique_client_id"
+                                                   value="' . $row['unique_client_id'] . '" disabled>
+                                        </div>
+                                    </div>
 
-                
-              
-                <div class="panel-body">
-                <ul class="nav nav-tabs text-capitalize">
-                    <li class="active"><a href="#tab1" data-toggle="tab">Business Information</a></li>
-                    <li><a href="#tab6" data-toggle="tab">Client Details</a></li>
-                    
-                </ul>
-                <br/>
-                <div class="tab-content mgbt-xs-20 text-capitalize" >
-                    <div class="tab-pane active" id="tab1">
-                    <div class="row" id="form-basic">
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Client Name<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="client_name" value="' . $row['client_name'] . '">
+                                        </div>
+                                    </div>
 
-              <div class="col-md-6">
-                  <div class="panel widget">
-                      <div class="panel-heading vd_bg-grey">
-                          <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                            Business Details</h3>
-                      </div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Phone No<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="phone" value="' . $row['phone'] . '">
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Email</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="email" value="' . $row['email'] . '">
+                                        </div>
+                                    </div>
 
-                      <!-- panel heading-->
-                      <div class="panel-body">
-<form class="form-horizontal" action="#" role="form">
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Business Name<span style="color:#f00">*</span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="business_name" value="'.$rowx['business_name'].'">
-</div>
-</div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Address</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="address" value="' . $row['address'] . '">
+                                        </div>
+                                    </div>
 
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Business Address<span style="color:#f00">*</span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="business_address" value="'.$rowx['business_address'].'">
-</div>
-</div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Location</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="location" value="' . $row['location'] . '">
+                                        </div>
+                                    </div>
 
-<div class="form-group">
-<label style="float:left" class="col-sm-4"> Business Location<span style="color:#f00"></span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="business_location" value="'.$rowx['business_location'].'">
-</div>
-</div>
-
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Telephone No<span style="color:#f00">*</span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="telephone" value="'.$rowx['telephone'].'">
-</div>
-</div>
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Pin Registration<span style="color:#f00"></span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="pin_registration" value="'.$rowx['pin_registration'].'">
-</div>
-</div>
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">VAT Registration<span style="color:#f00"></span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="vat_registration" value="'.$rowx['vat_registration'].'">
-</div>
-</div>
-
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Certificate of incorporation<span style="color:#f00"></span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="certificate_of_incorporation" value="'.$rowx['certificate_of_incorporation'].'">
-</div>
-</div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">National ID</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="national_id" value="' . $row['national_id'] . '">
+                                        </div>
+                                    </div>
 
 
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Pin Registration</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="pin_registration" value="' . $row['pin_registration'] . '">
+                                        </div>
+                                    </div>
 
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Business Email</label>
-<div class="col-sm-8 controls">
-<input type="text" id="business_email" value="'.$rowx['business_email'].'">
-</div>
-</div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">VAT Registration</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="vat_registration" value="' . $row['vat_registration'] . '">
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Certificate of
+                                            incorporation</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="certificate_of_incorporation" value="' . $row['certificate_of_incorporation'] . '">
+                                        </div>
+                                    </div>
 
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Contact person<span style="color:#f00">*</span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="contact_person" value="'.$rowx['contact_person'].'">
-</div>
-</div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Contact person</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="contact_person" value="' . $row['contact_person'] . '">
+                                        </div>
+                                    </div>
 
-<div class="form-group">
-<label style="float:left" class="col-sm-4">Phone<span style="color:#f00">*</span></label>
-<div class="col-sm-8 controls">
-<input type="text" id="contact_phone" value="'.$rowx['contact_phone'].'">
-</div>
-</div>
-</form>
-</div>
-
-<!-- end of panel body -->
-                    </div>
-                    <!-- Panel Widget --> 
-                  </div>
-
-                  </div>
-                  </div>
-                  <div class="tab-pane " id="tab6">
-
-                  <div class="panel widget">
-                    <div class="panel-heading vd_bg-grey">
-                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                          Client Details</h3>
-                    </div>
-
-                    <div class="panel-body">
-                    <form class="form-horizontal" action="#" role="form">
-                      <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Client Name<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="client_name" value="'.$rowx['client_name'].'">
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Contacts Phone</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="contact_phone" value="' . $row['contact_phone'] . '">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                      </div>
+                        <!-- Panel Widget -->
+                                            
+                                        </div>
+                                        <div id="uploads" class="tab-pane fade">
+                                            <h3>Uploaded Documents</h3>
+                                            <table class="table table-striped">
+                                                <thead>
+                                                  <tr>
+                                                    <th>Name</th>
+                                                    <th>Details</th>
+                                                    <th>Download</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>';
+                displayUploadedFiles($row['unique_client_id']);
 
-                    <div class="form-group">
-                    <label style="float:left" class="col-sm-4"> Client Location</label>
-                    <div class="col-sm-8 controls">
-                      <input type="text" id="client_location" value="'.$rowx['client_location'].'">
-                    </div>
-                  </div>
-
-                       <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Phone No<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="client_phone" value="'.$rowx['client_phone'].'">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label style="float:left" class="col-sm-4">National id<span style="color:#f00"></span></label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="national_id" value="'.$rowx['national_id'].'">
-                        </div>
-                      </div>
-
-                       <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Email</label>
-                        <div class="col-sm-8 controls">
-                          <input type="text" id="client_email" value="'.$rowx['client_email'].'">
-                        </div>
-                      </div>
-  
-                </form>
-                  </div>      
-<!-- end of panel body -->
-
-                    </div>
-                    <!-- Panel Widget --> 
-                  </div>
-<!-- end of tabpane -->
-                  </div>
-                  </div>
-    
-                    <!-- Panel body -->
-                        </div>
-                        
-                       
-
-
-
-
-                        
-
-
-                      
-
-
+                echo '</tbody>
+                                              </table>
+                                        </div>
+                                        <div id="invoices" class="tab-pane fade">
+                                            <h3>Invoices</h3>
+                                            <p>Some content in menu 2.</p>
+                                        </div>
+                                        <div id="notifications" class="tab-pane fade">
+                                            <h3>Notifications</h3>
+                                            <p>Some content in menu 2.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-    ';
 
-break;
+                ';
+
+    break;
+
 
 
 
@@ -30344,9 +30324,7 @@ break;
 /**clients upload */
 
 case 216:
-  $param=0;
-  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+    
       echo '<div class="vd_container" id="container">
           <div class="vd_content clearfix" style="">
        
@@ -30360,7 +30338,7 @@ case 216:
                         for ($i=0; $i <$num_results; $i++) {
                             $row=mysql_fetch_array($result);
                             $code=stripslashes($row['id']);
-                            echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['business_name']).'-'.stripslashes($row['email']).'</option>';
+                            echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['client_name']).'-'.stripslashes($row['phone']).'</option>';
                           }
                      echo'</select>
                        <div class="cleaner_h10"></div>
@@ -30395,145 +30373,170 @@ break;
 
 
 case 217:
-  $tid= $param=$_GET['param'];
-  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-    $result = mysql_query("insert into log values('','".$username." accesses letter File Panel.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
-    $resultx =mysql_query("select * from clients where id='".$param."' limit 0,1");
-    $rowx=mysql_fetch_array($resultx);
-    $lof="Clients";
-    $stat=stripslashes($rowx['status']);
-    $tid=stripslashes($rowx['unique_user_id']);
-    
-  
-  
-    if($stat==1){$status='Active';$col='#1fae66';}else if($stat==0){$status='Archived';$col='#f85d2c';}else{$status='Contract Expired';$col='#f89c2c';}
+    $param = $_GET['param'];
+    mysql_query("insert into log values('','" . $username . " accesses client file.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+    $result = mysql_query('select * from clients where id="' . $param . '" limit 0,1');
+    $row = mysql_fetch_array($result);
 
     echo '
-    <div class="vd_container" id="container">
-<div class="vd_content clearfix" style="">
+                 <div class="vd_container" id="container">
+                    <div class="vd_content clearfix" style="">
+                        <div class="vd_content-section clearfix">
 
-<div class="vd_content-section clearfix">
-    <div class="row" id="form-basic">
+                            <div class="panel widget">
+                                <div class="panel-heading vd_bg-grey">
+                                    <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+                                        Client File </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a data-toggle="tab" href="#details">File Details</a></li>
+                                        <li><a data-toggle="tab" href="#uploads">Uploaded Files</a></li>
+                                        <li><a data-toggle="tab" href="#invoices">Invoices</a></li>
+                                        <li><a data-toggle="tab" href="#notifications">Notifications</a></li>
+                                    </ul>
 
-        <div class="col-md-12">
-            <div class="panel widget">
-                <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                        Client File-'.stripslashes($rowx['business_name']).' VS '.stripslashes($rowx['email']).' </h3>
-                </div>
-                <div class="panel-body">
-                    <ul class="nav nav-tabs text-capitalize">
-                               
-                        
-                  
-                        <li class="active"><a href="#tab1" data-toggle="tab">Upload Documents</a></li>
-                        <li><a href="#tab2" data-toggle="tab">Documents</a></li>
-                    </ul>
-                    <br/>
-                    <div class="tab-content mgbt-xs-20">
-
+                                    <div class="tab-content">
+                                        <div id="details" class="tab-pane fade in active">
+                                            <h3>File Details</h3>
                                             
-                        
+                                            <div class="panel widget">
+                            <div class="panel-heading vd_bg-grey">
+                                <h3 class="panel-title"><span class="menu-icon"> <i
+                                                class="fa fa-th-list"></i> </span> Client Details
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" action="#" role="form">
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4"> Unique
+                                            Client ID<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="unique_client_id"
+                                                   value="' . $row['unique_client_id'] . '" disabled>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Client Name<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="client_name" value="' . $row['client_name'] . '">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Phone No<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="phone" value="' . $row['phone'] . '">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Email</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="email" value="' . $row['email'] . '">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Address</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="address" value="' . $row['address'] . '">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Location</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="location" value="' . $row['location'] . '">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">National ID</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="national_id" value="' . $row['national_id'] . '">
+                                        </div>
+                                    </div>
 
 
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Pin Registration</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="pin_registration" value="' . $row['pin_registration'] . '">
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">VAT Registration</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="vat_registration" value="' . $row['vat_registration'] . '">
+                                        </div>
+                                    </div>
 
-                        <div class="tab-pane " id="tab2">
-                        <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
-                        <div class="panel-heading vd_bg-grey">
-                        <h3 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                           Uploaded documents
-                        </h3>
-                    </div>
-                     
-                        <div class="panel-body" style="font-size:20px;font-family:baskerville">
-                        <form>
-                                  <ul>';
-                                  $resulta = mysql_query("select * from tendocs where  soi='Clients' order by stamp desc");
-                                  $num_resultsa = mysql_num_rows($resulta);
-                                  for ($i = 0; $i < $num_resultsa; $i++) {
-                                      $rowa = mysql_fetch_array($resulta);
-                              
-                                      echo '<li><a href="' . $rowa['link'] . '">' . $rowa['details'] . '</a></li>';
-                              
-                                  }
-                                  echo '</ul>   
-                                  </form>          
-                    
-                        <!-- block -->
-                       
-              
-              
-                                               
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Certificate of
+                                            incorporation</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="certificate_of_incorporation" value="' . $row['certificate_of_incorporation'] . '">
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Contact person</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="contact_person" value="' . $row['contact_person'] . '">
+                                        </div>
+                                    </div>
 
-                        
-
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Contacts Phone</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="contact_phone" value="' . $row['contact_phone'] . '">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        </div>
-                        </div>
+                        <!-- Panel Widget -->
+                                            
+                                        </div>
+                                        <div id="uploads" class="tab-pane fade">
+                                            <h3>Uploaded Documents</h3>
+                                            <table class="table table-striped">
+                                                <thead>
+                                                  <tr>
+                                                    <th>Name</th>
+                                                    <th>Details</th>
+                                                    <th>Download</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>';
+                displayUploadedFiles($row['unique_client_id']);
 
+                echo '</tbody>
+                                              </table>
+                                        </div>
+                                        <div id="invoices" class="tab-pane fade">
+                                            <h3>Invoices</h3>
+                                            <p>Some content in menu 2.</p>
+                                        </div>
+                                        <div id="notifications" class="tab-pane fade">
+                                            <h3>Notifications</h3>
+                                            <p>Some content in menu 2.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                       
-
-
-                        <div class="tab-pane active" id="tab1">
-
-                        <div class="col-md-6">
-                        <form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
-                        <div class="cleaner"></div> 
-                        <div class="form-group">
-                        <label style="float:left" class="col-sm-3">Name:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-9 controls">
-                          <input type="text" id="fname"  name="fname"  required>
-                        </div>
-                        </div>
-                         <div class="cleaner_h5"></div>
-                        <div class="form-group">
-                        <label style="float:left" class="col-sm-3">Type:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-9 controls">
-                          <select style="padding:5px" name="type" id="doctype">
-                            <option value="" selected>Select One...</option>
-                             <option value="Certificate of Incorporation">Certificate of Incorporation</option>
-                              <option value="Checkout Documents">Checkout Documents</option>
-                           <option value="ID_Card_Copies">ID_Card_Copies</option>
-                            <option value="Lease Document">Lease Document</option>
-                            <option value="Memorandum/Articles_of_Association">Memorandum/Articles_of_Association</option>
-                           <option value="Pin/Vat_Certificate">Pin/Vat_Certificate</option>
-                            <option value="Unit Handover Photos">Unit Handover Photos</option>
-                            <option value="Pin_Copies">Pin_Copies</option>
-                            <option value="Other Documents">Other Documents</option>
-                            </select>
-                        </div>
-                        </div>
-
-                        <div class="cleaner_h5"></div>
-                        <dd class="custuploadblock_js">
-                        <input style="opacity:0; float:left;" name="image" id="photoupload"  
-                        class="transfileform_js" type="file">
-                        </dd>
-                        <iframe name="leiframe" id="leiframe" class="leiframe">
-                        </iframe>
-                        <input type="hidden"  name="soi" value="'.$lof.'"/>
-                        <input type="hidden"  name="sap" value="'.$stat.'"/>
-                        <input type="hidden"  name="tid" value="'.$tid.'"/>
-                        <input type="hidden" id="id" name="id"  value="1"/>
-                        <div class="cleaner_h5"></div>
-                        <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%" type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload</button>
-                        </form>
-
-                        </div>
-                       </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-    ';
+
+                ';
 
 break;
 
@@ -30542,9 +30545,7 @@ break;
 
 /**find client */
 case 219:
-  $param=0;
-  if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-  else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+
         $result = mysql_query("insert into log values('','".$username." accesses find client Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
 
         echo '<div class="vd_container" id="container">
@@ -30566,14 +30567,10 @@ case 219:
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Business Name</th>
-                                        <th>Business Email</th>
-                                        <th>Telephone</th>
-                                        <th>Pin Registration</th>
-                                        <th>VAT Registration</th>
-                                        <th>Client Email</th>
-                                        <th>Contact Person</th>
-                                        <th>Client Email</th>
+                                        <th>Client Name</th>
+                                        <th>Unique Client ID</th>
+                                        <th>phone</th>
+                                        <th>Entry Date</th>
                                     </tr>
                                     </thead>
                                 </table>
@@ -30690,9 +30687,7 @@ break;
 
 /**archive client */
 case 220:
-  $param=0;
-if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+
   echo '<div class="vd_container" id="container">
       <div class="vd_content clearfix" style="">
     
@@ -30706,7 +30701,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                     for ($i=0; $i <$num_results; $i++) {
                         $row=mysql_fetch_array($result);
                         $code=stripslashes($row['id']);
-                        echo '<option value="'.stripslashes($row['unique_user_id']).'">'.stripslashes($row['unique_user_id']).'-'.stripslashes($row['business_name']).'</option>';
+                        echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['client_name']).'-'.stripslashes($row['phone']).'</option>';
                       }
                  echo'</select>
                    <div class="cleaner_h10" id="message"></div>
@@ -30735,9 +30730,6 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
   //start archivedClient
   case 221:
-    $param=0;
-    if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-    else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
           $result = mysql_query("insert into log values('','".$username." accesses archived client search Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
 
           echo '<div class="vd_container" id="container">
@@ -30759,14 +30751,10 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                       <thead>
                                       <tr>
                                           <th>ID</th>
-                                          <th>User ID</th>
-                                          <th>Business Name</th>
-                                          <th>Business Address</th>
-                                          <th>Telephone</th>
-                                          <th>Client Name</th>                                          
-                                          <th>Client Contacts</th>                                      
-                                          <th>Contact Person</th>
-                                          
+                                          <th>Client Name</th>
+                                          <th>Unique Client ID</th>
+                                          <th>Phone</th>
+                                          <th>Entry Date</th>                                          
                                       </tr>
                                       </thead>
                                   </table>
@@ -31590,13 +31578,13 @@ case 305:
                 $resulta = mysql_query('select * from clients where unique_user_id = "' . $row['client_uid'] . '"');
                 $rowa = mysql_fetch_array($resulta);
 
-                empty($rowa['business_name']) ? $client_name = $rowa['client_name'] : $client_name = $rowa['business_name'];
+                 $client_name = $rowa['client_name'];
 
 
                 $resultc = mysql_query('select * from clients where unique_user_id = "' . $row['referring_client_uid'] . '"');
                 $rowc = mysql_fetch_array($resultc);
 
-                empty($rowc['business_name']) ? $referring_client = $rowc['client_name'] : $referring_client = $rowc['business_name'];
+                $referring_client = $rowc['client_name'] ;
 
                 $resultu = mysql_query('select * from users where name = "' . $row['assignee_id'] . '"');
                 $rowu = mysql_fetch_array($resultu);

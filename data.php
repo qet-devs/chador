@@ -6108,150 +6108,61 @@ switch ($id) {
 
 
     case 200:
-
-//        INDIVIDUAL CLIENT DETAILS
+        $unique_client_id = $_GET['unique_client_id'];
         $client_name = strtoupper($_GET['client_name']);
-        // $client_address = strtoupper($_GET['client_address']);
-        $client_location = $_GET['client_location'];
-        $client_phone = $_GET['client_phone'];
-        $client_email = $_GET['client_email'];
-        $client_id = $_GET['client_id'];
-
-//BUSINESS CLIENT
-        $business_name = strtoupper($_GET['business_name']);
-        $business_address = $_GET['business_address'];
-        $business_location = $_GET['business_location'];
-        $telephone = $_GET['telephone'];
+        $location = strtoupper($_GET['location']);
+        $phone = $_GET['phone'];
+        $email = $_GET['email'];
+        $address = strtoupper($_GET['address']);
+        $national_id = $_GET['national_id'];
         $pin_registration = $_GET['pin_registration'];
         $vat_registration = $_GET['vat_registration'];
         $certificate_of_incorporation = $_GET['certificate_of_incorporation'];
         $contact_person = strtoupper($_GET['contact_person']);
-        $business_email = $_GET['business_email'];
         $contact_phone = $_GET['contact_phone'];
 
 
-        $resultx = mysql_query("select * from clients where client_name='" . $client_name . "' and client_email='" . $client_email . "' or business_name='" . $business_name . "'");
+        $resultx = mysql_query("select * from clients where client_name='" . $client_name . "' and phone='" . $phone . "' ");
         if (mysql_num_rows($resultx) > 0) {
             echo '<script>swal("Error", "Clients with similar information already exists. !Consult the System Admin", "error");</script>';
-
         }
 
-
-        $resulty = mysql_query("select * from clients order by id desc limit 0,1");
-        $rowy = mysql_fetch_array($resulty);
-        $tid = stripslashes($rowy['id']) + 1;
-
-
-        $unique_user_id = 'CLIENT' . sprintf("%06d", $tid);
-        $sql = "
-        INSERT INTO `clients` (
-	`id`,
-	`unique_user_id`,
-	`business_name`,
-	`business_address`,
-	`business_location`,
-	`telephone`,
-	`pin_registration`,
-	`vat_registration`,
-	`certificate_of_incorporation`,
-	`business_email`,
-	`client_name`,
-	`national_id`,
-	`contact_phone`,
-	`contact_person`,
-	`client_email`,
-	`client_phone`,
-	`client_location`,
-	`status`,
-	`username`,
-	`date`,
-	`stamp`,
-	`time`
-)
-VALUES
-	(
-		'0',
-		'" . $unique_user_id . "',
-		'" . $business_name . "',
-		'" . $business_address . "',
-		'" . $business_location . "',
-		'" . $telephone . "',
-		'" . $pin_registration . "',
-		'" . $vat_registration . "',
-		'" . $certificate_of_incorporation . "',
-		'" . $business_email . "',
-		'" . $client_name . "',
-		'" . $client_id . "',
-		'" . $contact_phone . "',
-		'" . $contact_person . "',
-		'" . $client_email . "',
-		'" . $client_phone . "',
-		'" . $client_location . "',
-		'1',
-		'" . $username . "',
-		'" . date('d/m/Y') . "',
-		'" . date('YmdHi') . "',
-		'" . date('H:i') . "' 
-	)
-        ";
-
-        //  $resultc = mysql_query("INSERT INTO `clients`  VALUES ('0', '" . $unique_user_id . "', '" . $client_name . "', '" . $client_address . "', '" . $location . "', '" . $telephone . "', '" . $pin_registration . "', '" . $vat_registration . "', '" . $certificate_of_incorporation . "', '" . $national_id . "', '" . $contact_person . "', '" . $email . "', '" . $phone . "','1','" . $username . "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')") or die (mysql_error());
-
-        $resultc = mysql_query($sql);
+        $resultc = mysql_query("INSERT INTO `clients`( `unique_client_id`, `client_name`, `address`, `location`, `phone`, `pin_registration`, `vat_registration`, `certificate_of_incorporation`, `email`, `national_id`, `contact_phone`, `contact_person`, `status`, `username`, `date`, `stamp`, `time`) VALUES ('".$unique_client_id."','".$client_name."','".$address."','".$location."','".$phone."','".$pin_registration."','".$vat_registration."','".$certificate_of_incorporation."','".$email."','".$national_id."','" . $contact_phone . "','" .$contact_person. "','1','" . $username. "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')");
 
 
         if ($resultc) {
-            $client = mysql_query("INSERT INTO tenants (id, tid, lof, bname, address, phone, email, dname, dphone, date, stamp, status, rid, roomno, hid, hname, monrent, payable_expiry, contract_expiry_stamp, billing_type, escalation_type, invoice_status, invoice_expiry_stamp, penpercent, pendate, penstatus, penmonth, penwaivermonth,rescom, vat)
-                                        VALUES ('0','" . $uid . "','Clients','" . $business_name . "','','','','" . $email . "','','" . date('d/m/Y') . "','" . date('Ymd') . "',1,'','','','','','','','','',1,'','','','',0,0,'','')");
-            echo '<script>swal("Success!", "Client information saved successfully", "success");</script>';
+             echo '<script>swal("Success!", "Client information saved successfully", "success");</script>';
 
             $resulta = mysql_query("insert into log values('0','" . $username . " creates new Clients','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo "<script>setTimeout(function() {newBusiness();},500);</script>";
+            echo "<script>setTimeout(function() {newClient();},500);</script>";
         } else {
             echo '<script>swal("Error", "failed to save Clients info!", "error");</script>';
         }
         break;
 
-    
-
     //edit client
     case 201:
         $id = $_GET['param'];
-       //        INDIVIDUAL CLIENT DETAILS
-       $client_name = strtoupper($_GET['client_name']);
-       
-       $client_location = strtoupper ($_GET['client_location']);
-       $client_phone = $_GET['client_phone'];
-       $client_email = $_GET['client_email'];
-       $national_id = $_GET['national_id'];
+        $client_name = strtoupper($_GET['client_name']);
+        $location = strtoupper($_GET['location']);
+        $phone = $_GET['phone'];
+        $email = $_GET['email'];
+        $address = strtoupper($_GET['address']);
+        $national_id = $_GET['national_id'];
+        $pin_registration = $_GET['pin_registration'];
+        $vat_registration = $_GET['vat_registration'];
+        $certificate_of_incorporation = $_GET['certificate_of_incorporation'];
+        $contact_person = strtoupper($_GET['contact_person']);
+        $contact_phone = $_GET['contact_phone'];
 
-//BUSINESS CLIENT
-       $business_name = strtoupper($_GET['business_name']);
-       $business_address = $_GET['business_address'];
-       $business_location = $_GET['business_location'];
-       $telephone = $_GET['telephone'];
-       $pin_registration = $_GET['pin_registration'];
-       $vat_registration = $_GET['vat_registration'];
-       $certificate_of_incorporation = $_GET['certificate_of_incorporation'];
-       $contact_person = strtoupper($_GET['contact_person']);
-       $business_email = $_GET['business_email'];
-       $contact_phone = $_GET['contact_phone'];
-
-
-    //    $resultc = mysql_query("INSERT INTO `clients`  VALUES ('0', '" . $unique_user_id . "', '" . $client_name . "', '" . $client_address . "', '" . $location . "', '" . $telephone . "', '" . $national_id . "', '" . $contact_person . "', '" . $email . "', '" . $phone . "','1','" . $username . "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')") or die (mysql_error());
-
-        $resultg = mysql_query("UPDATE `clients` SET `business_name`='" . $business_name . "',`business_address`='" . $business_address . "',`business_location`='" . $business_location . "',`telephone`='" . $telephone . "',`pin_registration`='" . $pin_registration . "',`vat_registration`='" . $vat_registration . "',`certificate_of_incorporation`='".$certificate_of_incorporation."',`business_email`='" . $business_email . "', `client_name` = '".$client_name."', `client_email`='" . $client_email . "',`national_id`='" . $national_id . "',`contact_phone`='" . $contact_phone . "', `contact_person`='" . $contact_person . "',  `client_email`='" . $client_email . "', `client_phone`='" . $client_phone . "', `client_location`='" . $client_location . "' WHERE `id`='" . $id . "'") or die (mysql_error());
-
-        $update_tenant_table = mysql_query("update tenants set bname='" . $business_name . "', address='" . $contact_person . "', dname='" . $email . "' WHERE `tid`='" . $unique_user_id . "'");
-        //register log
-        $resulta = mysql_query("insert into log values('0','" . $username . " updates  client info where client id:" . $id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        $resultg = mysql_query("UPDATE `clients` SET `client_name`='".$client_name."',`address`='".$address."',`location`='".$location."',`phone`='".$phone."',`pin_registration`='".$pin_registration."',`vat_registration`='".$vat_registration."',`certificate_of_incorporation`='".$certificate_of_incorporation."',`email`='".$email."',`national_id`='".$national_id."',`contact_phone`='".$contact_phone."',`contact_person`='".$contact_person."',`username`='".$username."' WHERE `id`='".$id."'") or die (mysql_error());
 
         if ($resultg) {
-            echo '<script>swal("Success!", "client Info updated!", "success");</script>';
-            updateletters();
-            //echo"<script>window.open('report.php?id=89&rcptno=".$tid."');</script>";
+            $resulta = mysql_query("insert into log values('0','" . $username . " updates  client info where client id:" . $id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
 
-            echo "<script>setTimeout(function() {editClient();},500);</script>";
+            echo '<script>swal("Success!", "client Info updated!", "success");</script>';
+
+            echo "<script>setTimeout(function() {findClient();},500);</script>";
         } else {
             echo '<script>swal("Error", "Client Info not Saved!", "error");</script>';
         }
