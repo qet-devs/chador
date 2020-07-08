@@ -432,14 +432,10 @@ switch ($id) {
         // indexes
         $columns = array(
             array('db' => 'id', 'dt' => 0),
-            array('db' => 'business_name', 'dt' => 1),
-            array('db' => 'business_email', 'dt' => 2),
-            array('db' => 'telephone', 'dt' => 3),
-            array('db' => 'pin_registration', 'dt' => 4),
-            array('db' => 'vat_registration', 'dt' => 5),
-            array('db' => 'client_name', 'dt' => 6),
-            array('db' => 'contact_person', 'dt' => 7),
-            array('db' => 'client_email', 'dt' => 8)
+            array('db' => 'client_name', 'dt' => 1),
+            array('db' => 'unique_client_id', 'dt' => 2),
+            array('db' => 'phone', 'dt' => 3),
+            array('db' => 'date', 'dt' => 4)
         );
 
         break;
@@ -459,16 +455,10 @@ switch ($id) {
         // indexes
         $columns = array(
             array('db' => 'id', 'dt' => 0),
-            array('db' => 'unique_user_id', 'dt' => 1),
-            array('db' => 'business_name', 'dt' => 2),
-            array('db' => 'business_address', 'dt' => 3),
-            array('db' => 'telephone', 'dt' => 4),
-            array('db' => 'client_name', 'dt' => 5),
-
-            array('db' => 'client_phone', 'dt' => 6),
-
-            array('db' => 'contact_person', 'dt' => 7)
-
+            array('db' => 'client_name', 'dt' => 1),
+            array('db' => 'unique_client_id', 'dt' => 2),
+            array('db' => 'phone', 'dt' => 3),
+            array('db' => 'date', 'dt' => 4)
         );
 
         break;
