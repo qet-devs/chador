@@ -6173,7 +6173,7 @@ switch ($id) {
     /**archive client */
     case 205:
         $param = $tid = $_GET['b'];
-        $result = mysql_query("update clients set status=0 ") or die (mysql_error());
+        $result = mysql_query("update clients set status='0' where id='" . $param . "'") or die (mysql_error());
         $resulta = mysql_query("insert into log values('','" . $username . " archives clients.Name:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
         echo '<script>setTimeout(function() {checkoutclient();},500);</script>	';
 
@@ -6186,7 +6186,7 @@ switch ($id) {
     /**activateclient */
     case 206:
         $param = $tid = $_GET['param'];
-        $result = mysql_query("update clients set status=1 where id='" . $param . "'") or die (mysql_error());
+        $result = mysql_query("update clients set status='1' where id='" . $param . "'") or die (mysql_error());
         $resulta = mysql_query("insert into log values('','" . $username . " activates clients.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
         echo '<script>archivedclients();</script>	';
 

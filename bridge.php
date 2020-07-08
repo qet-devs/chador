@@ -30374,169 +30374,54 @@ break;
 
 case 217:
     $param = $_GET['param'];
-    mysql_query("insert into log values('','" . $username . " accesses client file.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-    $result = mysql_query('select * from clients where id="' . $param . '" limit 0,1');
+    mysql_query("insert into log values('','" . $username . " accesses client File upload Panel.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+    $result = mysql_query("select * from clients where id='" . $param . "' limit 0,1");
     $row = mysql_fetch_array($result);
 
     echo '
-                 <div class="vd_container" id="container">
+     <div class="vd_container" id="container">
                     <div class="vd_content clearfix" style="">
+
                         <div class="vd_content-section clearfix">
 
-                            <div class="panel widget">
-                                <div class="panel-heading vd_bg-grey">
-                                    <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                        Client File </h3>
-                                </div>
-                                <div class="panel-body">
-                                    <ul class="nav nav-tabs">
-                                        <li class="active"><a data-toggle="tab" href="#details">File Details</a></li>
-                                        <li><a data-toggle="tab" href="#uploads">Uploaded Files</a></li>
-                                        <li><a data-toggle="tab" href="#invoices">Invoices</a></li>
-                                        <li><a data-toggle="tab" href="#notifications">Notifications</a></li>
-                                    </ul>
-
-                                    <div class="tab-content">
-                                        <div id="details" class="tab-pane fade in active">
-                                            <h3>File Details</h3>
-                                            
-                                            <div class="panel widget">
-                            <div class="panel-heading vd_bg-grey">
-                                <h3 class="panel-title"><span class="menu-icon"> <i
-                                                class="fa fa-th-list"></i> </span> Client Details
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <form class="form-horizontal" action="#" role="form">
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4"> Unique
-                                            Client ID<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="unique_client_id"
-                                                   value="' . $row['unique_client_id'] . '" disabled>
+                            <div class="row">
+                                
+                                <div class="col-md-12">
+                                    <div class="panel widget">
+                                        <div class="panel-heading vd_bg-grey">
+                                            <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i
+                                                            class="fa fa-th-list"></i> </span>
+                                                Uploaded Files </h3>
                                         </div>
-                                    </div>
+                                        <div class="panel-body">
 
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Client Name<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="client_name" value="' . $row['client_name'] . '">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Phone No<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="phone" value="' . $row['phone'] . '">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Email</label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="email" value="' . $row['email'] . '">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Address</label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="address" value="' . $row['address'] . '">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Location</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="location" value="' . $row['location'] . '">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">National ID</label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="national_id" value="' . $row['national_id'] . '">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Pin Registration</label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="pin_registration" value="' . $row['pin_registration'] . '">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">VAT Registration</label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="vat_registration" value="' . $row['vat_registration'] . '">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Certificate of
-                                            incorporation</label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="certificate_of_incorporation" value="' . $row['certificate_of_incorporation'] . '">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Contact person</label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="contact_person" value="' . $row['contact_person'] . '">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Contacts Phone</label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="contact_phone" value="' . $row['contact_phone'] . '">
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- Panel Widget -->
-                                            
-                                        </div>
-                                        <div id="uploads" class="tab-pane fade">
                                             <h3>Uploaded Documents</h3>
                                             <table class="table table-striped">
                                                 <thead>
-                                                  <tr>
+                                                <tr>
                                                     <th>Name</th>
                                                     <th>Details</th>
                                                     <th>Download</th>
-                                                  </tr>
+                                                </tr>
                                                 </thead>
                                                 <tbody>';
-                displayUploadedFiles($row['unique_client_id']);
+                                                displayUploadedFiles($row['unique_client_id']);
 
-                echo '</tbody>
-                                              </table>
-                                        </div>
-                                        <div id="invoices" class="tab-pane fade">
-                                            <h3>Invoices</h3>
-                                            <p>Some content in menu 2.</p>
-                                        </div>
-                                        <div id="notifications" class="tab-pane fade">
-                                            <h3>Notifications</h3>
-                                            <p>Some content in menu 2.</p>
+                                                echo '</tbody>
+                                            </table>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
+
                         </div>
+
                     </div>
                 </div>
 
-                ';
+    ';
 
 break;
 
@@ -30620,10 +30505,6 @@ case 219:
                                                               onclick="majoropen(200)">Edit Client</label><br/>';}
                             if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                               onclick="majoropen(201)">Client Info</label><br/>';}
-                            // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                            //                                   onclick="majoropen(401)">Property Description</label><br/>';}
-                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                              onclick="majoropen(406)">Invoice</label><br/>';}
                             if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                               onclick="majoropen(202)">Archive Client</label><br/>';}
                             echo'<input class="input-border-btm" type="hidden" id="tenparam" required>
@@ -30801,7 +30682,7 @@ case 220:
                               }
       
                               if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                                onclick="majoropen(405)">Client Info</label><br/>';}
+                                                                onclick="majoropen(201)">Client Info</label><br/>';}
                               if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                                                                 onclick="majoropen(205)">Activate Client</label><br/>';}
       
@@ -31792,7 +31673,7 @@ echo "
 //    debt collection file uploads
 case 307:
     $param = $_GET['param'];
-    mysql_query("insert into log values('','" . $username . " accesses letter File Panel.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+    mysql_query("insert into log values('','" . $username . " accesses debt collection File uploads Panel.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
     $result = mysql_query("select * from debt_collections where id='" . $param . "' limit 0,1");
     $row = mysql_fetch_array($result);
 

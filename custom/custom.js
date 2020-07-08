@@ -518,7 +518,7 @@ function majoropen(a) {
                 $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
                 $.ajax({
                     url: 'bridge.php',
-                    data: {id: 215, param: b},
+                    data: {id: 218, param: b},
                     success: function (data) {
                         $('#mainp').html(data);
                     }
@@ -529,7 +529,7 @@ function majoropen(a) {
                 $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
                 $.ajax({
                     url: 'bridge.php',
-                    data: {id: 219, param: b},
+                    data: {id: 215, param: b},
                     success: function (data) {
                         $('#mainp').html(data);
                     }
@@ -9861,6 +9861,7 @@ function activateclient(param) {
                 data: {id: 206, param: param},
                 success: function (data) {
                     $('#message').html(data);
+                    findClient();
                 }
             });
 
@@ -10005,6 +10006,7 @@ function archiveclient(b) {
                 data: {id: 205, b: b},
                 success: function (data) {
                     $('#message').html(data);
+                    archivedClients();
                 }
             });
 
