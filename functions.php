@@ -2346,12 +2346,8 @@ function displayClients()
     $num_results = mysql_num_rows($result);
     for ($i = 0; $i < $num_results; $i++) {
         $row = mysql_fetch_array($result);
-        echo '<option value="' . stripslashes($row['unique_user_id']) . '">';
-        if (!empty($row['business_name'])) {
-            echo stripslashes($row['business_name']);
-        } else {
-            echo stripslashes($row['client_name']);
-        }
+        echo '<option value="' . stripslashes($row['unique_client_id']) . '">';
+        echo stripslashes($row['client_name']);
         echo '</option>';
     }
 }
@@ -2387,14 +2383,10 @@ function displayUploadedFiles($param)
 
 function displayClientName($param)
 {
-    $result = mysql_query('select * from clients where `unique_user_id`="' . $param . '"');
+    $result = mysql_query('select * from clients where `unique_client_id`="' . $param . '"');
     $row = mysql_fetch_array($result);
-    if (empty($row['business_name'])) {
-        $client_name = $row['client_name'];
-    } else {
-        $client_name = $row['business_name'];
-    }
-    return stripslashes($client_name);
+
+    return stripslashes($row['client_name']);
 }
 
 ?>

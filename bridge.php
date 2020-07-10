@@ -30789,7 +30789,7 @@ case 220:
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
                                                         <input type="text" id="unique_file_id"
-                                                               value="'.$unique_file_id.'" disabled>
+                                                               value="'.$unique_file_id.'" readonly>
                                                     </div>
                                                 </div>
 

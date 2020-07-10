@@ -9780,7 +9780,7 @@ function saveNewClient() {
     var contact_person = $('#contact_person').val();
     var contact_phone = $('#contact_phone').val();
 
-    if (client_name == '' || phone == '' || unique_client_id=='') {
+    if (client_name == '' || phone == '' || unique_client_id == '') {
         swal("Error", "Make sure you enter all the required fields!", "error");
         return;
     } else {
@@ -9790,9 +9790,9 @@ function saveNewClient() {
             client_name: client_name,
             phone: phone,
             email: email,
-            address:address,
+            address: address,
             location: location,
-            national_id:national_id,
+            national_id: national_id,
             pin_registration: pin_registration,
             vat_registration: vat_registration,
             certificate_of_incorporation: certificate_of_incorporation,
@@ -9899,19 +9899,19 @@ function saveClient(param) {
     var contact_person = $('#contact_person').val();
     var contact_phone = $('#contact_phone').val();
 
-    if (client_name == '' || phone == '' || unique_client_id=='') {
+    if (client_name == '' || phone == '' || unique_client_id == '') {
         swal("Error", "Make sure you enter all the required fields!", "error");
         return;
     } else {
         var data = {
             id: 201,
-            param:param,
+            param: param,
             client_name: client_name,
             phone: phone,
             email: email,
-            address:address,
+            address: address,
             location: location,
-            national_id:national_id,
+            national_id: national_id,
             pin_registration: pin_registration,
             vat_registration: vat_registration,
             certificate_of_incorporation: certificate_of_incorporation,
@@ -10059,7 +10059,9 @@ function saveNewDebtCollection() {
     var notification_date = $('#notification_date').val();
     var notification_message = $('#notification_message').val();
 
+
     if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '') {
+        console.log(unique_file_id, client_uid, assignee_username, description);
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -10660,8 +10662,6 @@ function saveRepossession(param) {
 }
 
 
-
-
 /// REPOSSESSION FILE ENTRY
 function repossessionFileEntry() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
@@ -10700,7 +10700,6 @@ function repossessionUploadsEntry() {
         }
     });
 }
-
 
 
 // Repossession ARCHIVE ENTRY
