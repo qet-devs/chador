@@ -2389,4 +2389,12 @@ function displayClientName($param)
     return stripslashes($row['client_name']);
 }
 
+
+function displayUserName($param)
+{
+    $result = mysql_query('select * from users where name = "'.$param.'"');
+    $row = mysql_fetch_array($result);
+
+    return stripslashes($row['fullname']);
+}
 ?>
