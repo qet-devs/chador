@@ -805,7 +805,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[109] == 'YES') {
-                                                echo '<a  href="#" onclick="editRepossession()" >
+                                                echo '<a  href="#" onclick="editRepossessionEntry()" >
                         <span class="menu-text">Edit Repossession Info</span>  
                     </a>';
                                             } ?>

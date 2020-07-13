@@ -10480,7 +10480,7 @@ function archiveWarrantEntry() {
 }
 
 
-// archive repossession
+// archive warrant
 function warrantArchive(param) {
     swal({
             title: "Are you sure?",
@@ -10619,7 +10619,8 @@ function findRepossession() {
 
 // EDIT REPOSSESSION PANEL ENTRY
 
-function editRepossession() {
+
+function editRepossessionEntry() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10629,6 +10630,8 @@ function editRepossession() {
         }
     });
 }
+
+
 
 
 function editRepossession(param) {

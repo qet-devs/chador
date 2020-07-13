@@ -35430,7 +35430,7 @@ echo '
       <div class="panel widget">
           <div class="panel-heading vd_bg-grey">
               <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                  Debt Collection File </h3>
+                  Distress File </h3>
           </div>
           <div class="panel-body">
               <ul class="nav nav-tabs">
