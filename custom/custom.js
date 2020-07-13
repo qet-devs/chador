@@ -574,15 +574,15 @@ function majoropen(a) {
             case 403:
                 warrantActivate(b);
                 break;
-            case 401:
-                $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-                $.ajax({
-                    url: 'bridge.php',
-                    data: {id: 401, param: b},
-                    success: function (data) {
-                        $('#mainp').html(data);
-                    }
-                });
+            // case 401:
+            //     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+            //     $.ajax({
+            //         url: 'bridge.php',
+            //         data: {id: 401, param: b},
+            //         success: function (data) {
+            //             $('#mainp').html(data);
+            //         }
+            //     });
 
                 break;
             case 405:
@@ -10624,6 +10624,20 @@ function editRepossession() {
     $.ajax({
         url: 'bridge.php',
         data: {id: 702},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
+
+function editRepossession(param) {
+    // todo : remove logger
+    console.log('param.edit', param);
+    $('#mainp').html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 703, param: param},
         success: function (data) {
             $('#mainp').html(data);
         }
