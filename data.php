@@ -6127,11 +6127,11 @@ switch ($id) {
             echo '<script>swal("Error", "Clients with similar information already exists. !Consult the System Admin", "error");</script>';
         }
 
-        $resultc = mysql_query("INSERT INTO `clients`( `unique_client_id`, `client_name`, `address`, `location`, `phone`, `pin_registration`, `vat_registration`, `certificate_of_incorporation`, `email`, `national_id`, `contact_phone`, `contact_person`, `status`, `username`, `date`, `stamp`, `time`) VALUES ('".$unique_client_id."','".$client_name."','".$address."','".$location."','".$phone."','".$pin_registration."','".$vat_registration."','".$certificate_of_incorporation."','".$email."','".$national_id."','" . $contact_phone . "','" .$contact_person. "','1','" . $username. "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')");
+        $resultc = mysql_query("INSERT INTO `clients`( `unique_client_id`, `client_name`, `address`, `location`, `phone`, `pin_registration`, `vat_registration`, `certificate_of_incorporation`, `email`, `national_id`, `contact_phone`, `contact_person`, `status`, `username`, `date`, `stamp`, `time`) VALUES ('" . $unique_client_id . "','" . $client_name . "','" . $address . "','" . $location . "','" . $phone . "','" . $pin_registration . "','" . $vat_registration . "','" . $certificate_of_incorporation . "','" . $email . "','" . $national_id . "','" . $contact_phone . "','" . $contact_person . "','1','" . $username . "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')");
 
 
         if ($resultc) {
-             echo '<script>swal("Success!", "Client information saved successfully", "success");</script>';
+            echo '<script>swal("Success!", "Client information saved successfully", "success");</script>';
 
             $resulta = mysql_query("insert into log values('0','" . $username . " creates new Clients','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newClient();},500);</script>";
@@ -6155,7 +6155,7 @@ switch ($id) {
         $contact_person = strtoupper($_GET['contact_person']);
         $contact_phone = $_GET['contact_phone'];
 
-        $resultg = mysql_query("UPDATE `clients` SET `client_name`='".$client_name."',`address`='".$address."',`location`='".$location."',`phone`='".$phone."',`pin_registration`='".$pin_registration."',`vat_registration`='".$vat_registration."',`certificate_of_incorporation`='".$certificate_of_incorporation."',`email`='".$email."',`national_id`='".$national_id."',`contact_phone`='".$contact_phone."',`contact_person`='".$contact_person."',`username`='".$username."' WHERE `id`='".$id."'") or die (mysql_error());
+        $resultg = mysql_query("UPDATE `clients` SET `client_name`='" . $client_name . "',`address`='" . $address . "',`location`='" . $location . "',`phone`='" . $phone . "',`pin_registration`='" . $pin_registration . "',`vat_registration`='" . $vat_registration . "',`certificate_of_incorporation`='" . $certificate_of_incorporation . "',`email`='" . $email . "',`national_id`='" . $national_id . "',`contact_phone`='" . $contact_phone . "',`contact_person`='" . $contact_person . "',`username`='" . $username . "' WHERE `id`='" . $id . "'") or die (mysql_error());
 
         if ($resultg) {
             $resulta = mysql_query("insert into log values('0','" . $username . " updates  client info where client id:" . $id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
@@ -6263,19 +6263,19 @@ switch ($id) {
     /**archive debt collection file */
     case 302:
         $param = $_GET['param'];
-        if(mysql_query("UPDATE `debt_collections` SET `status`='0' WHERE `id`='".$param."'")){
-          mysql_query("insert into log values('','" . $username . " archived debt Collection.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-        echo '<script>swal("Success!", "Debt collection file archived", "success");</script>';
+        if (mysql_query("UPDATE `debt_collections` SET `status`='0' WHERE `id`='" . $param . "'")) {
+            mysql_query("insert into log values('','" . $username . " archived debt Collection.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "Debt collection file archived", "success");</script>';
         } else {
             echo '<script>swal("Error", "failed to archive debt collection record!", "error");</script>';
         }
 
-               break;
+        break;
 
     /**activate debt collection file */
     case 303:
         $param = $_GET['param'];
-        if(mysql_query("UPDATE `debt_collections` SET `status`='1' WHERE `id`='".$param."'")){
+        if (mysql_query("UPDATE `debt_collections` SET `status`='1' WHERE `id`='" . $param . "'")) {
             mysql_query("insert into log values('','" . $username . " activated debt Collection.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo '<script>swal("Success!", "Debt collection file activated", "success");</script>	';
         } else {
@@ -6325,8 +6325,8 @@ switch ($id) {
         }
         break;
 
-        /**edit Warrant */
-        //edit warrant
+    /**edit Warrant */
+    //edit warrant
     case 401:
         $param = $_GET['param'];
         $unique_file_id = $_GET['unique_file_id'];
@@ -6357,27 +6357,27 @@ switch ($id) {
     /**archive WARRANT file */
     case 402:
         $param = $_GET['param'];
-        if(mysql_query("UPDATE `warrants` SET `status`='0' WHERE `id`='".$param."'")){
-          mysql_query("insert into log values('','" . $username . " archived warrant.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-        echo '<script>swal("Success!", "warrants file archived", "success");</script>';
+        if (mysql_query("UPDATE `warrants` SET `status`='0' WHERE `id`='" . $param . "'")) {
+            mysql_query("insert into log values('','" . $username . " archived warrant.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "warrants file archived", "success");</script>';
         } else {
             echo '<script>swal("Error", "failed to archive warrants record!", "error");</script>';
         }
 
-               break;
+        break;
 
 
-  /**activate warrant file */
-  case 403:
-    $param = $_GET['param'];
-    if(mysql_query("UPDATE `warrants` SET `status`='1' WHERE `id`='".$param."'")){
-        mysql_query("insert into log values('','" . $username . " activated warrants.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-        echo '<script>swal("Success!", "warrant file activated", "success");</script>	';
-    } else {
-        echo '<script>swal("Error", "failed to activate warrant record!", "error");</script>';
-    }
+    /**activate warrant file */
+    case 403:
+        $param = $_GET['param'];
+        if (mysql_query("UPDATE `warrants` SET `status`='1' WHERE `id`='" . $param . "'")) {
+            mysql_query("insert into log values('','" . $username . " activated warrants.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "warrant file activated", "success");</script>	';
+        } else {
+            echo '<script>swal("Error", "failed to activate warrant record!", "error");</script>';
+        }
 
-    break;
+        break;
 
     /***Edit warrant */
 
@@ -6474,7 +6474,7 @@ switch ($id) {
     /**archive distress file */
     case 502:
         $param = $_GET['param'];
-        if(mysql_query("UPDATE `distress` SET `status`='0' WHERE `id`='".$param."'")){
+        if (mysql_query("UPDATE `distress` SET `status`='0' WHERE `id`='" . $param . "'")) {
             mysql_query("insert into log values('','" . $username . " archived distress.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo '<script>swal("Success!", "Distress file archived", "success");</script>';
         } else {
@@ -6486,7 +6486,7 @@ switch ($id) {
     /**activate distress file */
     case 503:
         $param = $_GET['param'];
-        if(mysql_query("UPDATE `distress` SET `status`='1' WHERE `id`='".$param."'")){
+        if (mysql_query("UPDATE `distress` SET `status`='1' WHERE `id`='" . $param . "'")) {
             mysql_query("insert into log values('','" . $username . " activated distress.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo '<script>swal("Success!", "Distress file activated", "success");</script>	';
         } else {
@@ -6559,14 +6559,14 @@ switch ($id) {
             $resulta = mysql_query("insert into log values('0','" . $username . " updated immovable_property file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {findImmovableProperty();},500);</script>";
         } else {
-            echo '<script>swal("Error", "failed to update immovale property record!", "error");</script>';
+            echo '<script>swal("Error", "failed to update immoveable property record!", "error");</script>';
         }
         break;
 
     /**archive immovable property file */
     case 602:
         $param = $_GET['param'];
-        if(mysql_query("UPDATE `immovable_property` SET `status`='0' WHERE `id`='".$param."'")){
+        if (mysql_query("UPDATE `immovable_property` SET `status`='0' WHERE `id`='" . $param . "'")) {
             mysql_query("insert into log values('','" . $username . " archived immovable property.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo '<script>swal("Success!", "Immovable Property file archived", "success");</script>';
         } else {
@@ -6578,7 +6578,7 @@ switch ($id) {
     /**activate immovable property file */
     case 603:
         $param = $_GET['param'];
-        if(mysql_query("UPDATE `immovable_property` SET `status`='1' WHERE `id`='".$param."'")){
+        if (mysql_query("UPDATE `immovable_property` SET `status`='1' WHERE `id`='" . $param . "'")) {
             mysql_query("insert into log values('','" . $username . " activated immovable property.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo '<script>swal("Success!", "Immovable property file activated", "success");</script>	';
         } else {
@@ -6600,90 +6600,88 @@ switch ($id) {
     // all REPOSSESSION presentation logic goes here
 
 //save new repossession
-case 700:
-    $unique_file_id = $_GET['unique_file_id'];
-    $client_uid = $_GET['client_uid'];
-    $referring_client_uid = $_GET['referring_client_uid'];
-    $assignee_username = $_GET['assignee_username'];
-    $description = $_GET['description'];
-    $notification_date = $_GET['notification_date'];
-    $notification_message = $_GET['notification_message'];
+    case 700:
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $referring_client_uid = $_GET['referring_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $notification_message = $_GET['notification_message'];
 
 
+        $resultx = mysql_query('SELECT * FROM `repossession` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
+        if (mysql_num_rows($resultx) > 0) {
+            echo '<script>swal("Error", "Repossession file with similar info already exists. !Consult the System Admin", "error");</script>';
+
+        }
+
+        $resultc = mysql_query("INSERT INTO `repossession`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`, `file_status`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', 'open')");
 
 
-    $resultx = mysql_query('SELECT * FROM `repossession` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
-    if (mysql_num_rows($resultx) > 0) {
-        echo '<script>swal("Error", "Repossession file with similar info already exists. !Consult the System Admin", "error");</script>';
+        if ($resultc) {
+            echo '<script>swal("Success!", "Repossession file created successfully", "success");</script>';
 
-    }
+            $resulta = mysql_query("insert into log values('0','" . $username . " created debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {newRepossession();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to create a new debt collection record!", "error");</script>';
+        }
+        break;
 
-    $resultc = mysql_query("INSERT INTO `repossession`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')") or die (mysql_error());
 
-
-    if ($resultc) {
-        echo '<script>swal("Success!", "Repossession file created successfully", "success");</script>';
-
-        $resulta = mysql_query("insert into log values('0','" . $username . " created debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-        echo "<script>setTimeout(function() {newRepossession();},500);</script>";
-    } else {
-        echo '<script>swal("Error", "failed to create a new debt collection record!", "error");</script>';
-    }
-    break;
-
-    
 //        update debt collection info
-case 701:
-    $param = $_GET['param'];
-    $unique_file_id = $_GET['unique_file_id'];
-    $client_uid = $_GET['client_uid'];
-    $referring_client_uid = $_GET['referring_client_uid'];
-    $assignee_username = $_GET['assignee_username'];
-    $description = $_GET['description'];
-    $notification_date = $_GET['notification_date'];
-    $notification_message = $_GET['notification_message'];
-    $file_status = $_GET['file_status'];
-    $remarks = $_GET['remarks'];
+    case 701:
+        $param = $_GET['param'];
+        $unique_file_id = $_GET['unique_file_id'];
+        $client_uid = $_GET['client_uid'];
+        $referring_client_uid = $_GET['referring_client_uid'];
+        $assignee_username = $_GET['assignee_username'];
+        $description = $_GET['description'];
+        $notification_date = $_GET['notification_date'];
+        $notification_message = $_GET['notification_message'];
+        $file_status = $_GET['file_status'];
+        $remarks = $_GET['remarks'];
 
 
-    $resultc = mysql_query("update  `repossession` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
+        $resultc = mysql_query("update  `repossession` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
 
 
-    if ($resultc) {
-        echo '<script>swal("Success!", "Repossession file updated successfully", "success");</script>';
+        if ($resultc) {
+            echo '<script>swal("Success!", "Repossession file updated successfully", "success");</script>';
 
-        $resulta = mysql_query("insert into log values('0','" . $username . " updated debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-        echo "<script>setTimeout(function() {findRepossession();},500);</script>";
-    } else {
-        echo '<script>swal("Error", "failed to update repossession record!", "error");</script>';
-    }
-    break;
+            $resulta = mysql_query("insert into log values('0','" . $username . " updated debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {findRepossession();},500);</script>";
+        } else {
+            echo '<script>swal("Error", "failed to update repossession record!", "error");</script>';
+        }
+        break;
 
-    
+
     /**archive repossession file */
     case 702:
         $param = $_GET['param'];
-        if(mysql_query("UPDATE `repossession` SET `status`='0' WHERE `id`='".$param."'")){
-          mysql_query("insert into log values('','" . $username . " archived repossession.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-        echo '<script>swal("Success!", "Repossession file archived", "success");</script>';
+        if (mysql_query("UPDATE `repossession` SET `status`='0' WHERE `id`='" . $param . "'")) {
+            mysql_query("insert into log values('','" . $username . " archived repossession.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "Repossession file archived", "success");</script>';
         } else {
             echo '<script>swal("Error", "failed to archive repossession record!", "error");</script>';
         }
 
-               break;
+        break;
 
 
-  /**activate REPOSSESSION file */
-  case 703:
-    $param = $_GET['param'];
-    if(mysql_query("UPDATE `repossession` SET `status`='1' WHERE `id`='".$param."'")){
-        mysql_query("insert into log values('','" . $username . " activated repossession.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-        echo '<script>swal("Success!", "repossession file activated", "success");</script>	';
-    } else {
-        echo '<script>swal("Error", "failed to activate repossession record!", "error");</script>';
-    }
+    /**activate REPOSSESSION file */
+    case 703:
+        $param = $_GET['param'];
+        if (mysql_query("UPDATE `repossession` SET `status`='1' WHERE `id`='" . $param . "'")) {
+            mysql_query("insert into log values('','" . $username . " activated repossession.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "repossession file activated", "success");</script>	';
+        } else {
+            echo '<script>swal("Error", "failed to activate repossession record!", "error");</script>';
+        }
 
-    break;
+        break;
 
 
 

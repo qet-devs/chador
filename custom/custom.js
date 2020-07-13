@@ -11155,7 +11155,7 @@ function saveImmovableProperty(param) {
     var file_status = $('#file_status').val();
     var remarks = $('#remarks').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' ) {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
