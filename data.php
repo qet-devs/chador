@@ -6431,7 +6431,7 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `distress`( `client_uid`, `billable_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `stamp`, `date`, `time`) VALUES ('" . $client_uid . "', '" . $billable_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `distress`( `client_uid`, `billable_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `stamp`, `date`, `time`,`file_status`) VALUES ('" . $client_uid . "', '" . $billable_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', 'open')") or die (mysql_error());
 
 
         if ($resultc) {

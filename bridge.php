@@ -35153,9 +35153,7 @@ $result =mysql_query("select * from distress where status=1");
 $num_results = mysql_num_rows($result);
 for ($i=0; $i <$num_results; $i++) {
 $row=mysql_fetch_array($result);
-$resulta = mysql_query("select * from clients where unique_client_id = '".$row['client_uid']."' or unique_client_id='".$row['billable_client_uid']."'");
-$rowa = mysql_fetch_array($resulta);
-echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['billable_client_uid']).'</option>';
 }
 echo'</select>
 <div class="cleaner_h10"></div>
@@ -35196,19 +35194,6 @@ mysql_query("insert into log values('','".$username." accesses Edit Distress for
 $result = mysql_query('select * from distress where id="' . $param . '" limit 0,1');
 
 $row = mysql_fetch_array($result);
-$resulta = mysql_query('select * from clients where unique_client_id = "' . $row['client_uid'] . '"');
-$rowa = mysql_fetch_array($resulta);
-
-empty($rowa['business_name'])? $client_name=$rowa['client_name']:$client_name=$rowa['business_name'];
-
-
-$resultc = mysql_query('select * from clients where unique_client_id = "' . $row['billable_client_uid'] . '"');
-$rowc = mysql_fetch_array($resultc);
-
-empty($rowc['business_name'])? $billable_client=$rowc['client_name']:$billable_client=$rowc['business_name'];
-
-$resultu = mysql_query('select * from users where name = "'.$row['assignee_id'].'"');
-$rowu = mysql_fetch_array($resultu);
 
 echo '
 <div class="vd_container" id="container">
@@ -35240,7 +35225,7 @@ echo '
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
                                   <select id="client_uid" class="text-capitalize">
-                                      <option value="'.$rowa['unique_client_id'].'" selected>'.$client_name.'</option>
+                                      <option value="'.$row['client_uid'].'" selected>'.displayClientName($row['client_uid']).'</option>
                                       ';
 displayClients();
 echo '
@@ -35254,7 +35239,7 @@ echo '
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
                                   <select id="billable_client_uid" class="text-capitalize">
-                                      <option value="'.$rowc['unique_client_id'].'" selected>'.$billable_client.'</option>
+                                      <option value="'.$row['billable_client_uid'].'" selected>'.displayClientName($row['billable_client_uid']).'</option>
                                       ';
 displayClients();
 echo '
@@ -35268,7 +35253,7 @@ echo '
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
                                   <select id="assignee_username" class="text-capitalize">
-                                      <option value="'.$rowu['name'].'" selected>'.$rowu['fullname'].'</option>
+                                      <option value="'.$row['assignee_id'].'" selected>'.displayUserName($row['assignee_id']).'</option>
                                       ';
 displayUsers();
 echo '
@@ -35439,9 +35424,7 @@ $result =mysql_query("select * from distress where status=1");
 $num_results = mysql_num_rows($result);
 for ($i=0; $i <$num_results; $i++) {
 $row=mysql_fetch_array($result);
-$resulta = mysql_query("select * from clients where unique_client_id = '".$row['client_uid']."' or unique_client_id='".$row['billable_client_uid']."'");
-$rowa = mysql_fetch_array($resulta);
-echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['billable_client_uid']).'</option>';
 }
 echo'</select>
 <div class="cleaner_h10"></div>
@@ -35476,19 +35459,6 @@ $param = $_GET['param'];
 mysql_query("insert into log values('','" . $username . " accesses Distress file.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
 $result = mysql_query('select * from distress where id="' . $param . '" limit 0,1');
 $row = mysql_fetch_array($result);
-$resulta = mysql_query('select * from clients where unique_client_id = "' . $row['client_uid'] . '"');
-$rowa = mysql_fetch_array($resulta);
-
-empty($rowa['business_name']) ? $client_name = $rowa['client_name'] : $client_name = $rowa['business_name'];
-
-
-$resultc = mysql_query('select * from clients where unique_client_id = "' . $row['billable_client_uid'] . '"');
-$rowc = mysql_fetch_array($resultc);
-
-empty($rowc['business_name']) ? $billable_client = $rowc['client_name'] : $billable_client = $rowc['business_name'];
-
-$resultu = mysql_query('select * from users where name = "' . $row['assignee_id'] . '"');
-$rowu = mysql_fetch_array($resultu);
 
 echo '
 <div class="vd_container" id="container">
@@ -35535,7 +35505,7 @@ echo '
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
                                   <select id="client_uid" class="text-capitalize">
-                                      <option value="' . $rowa['unique_client_id'] . '" selected>' . $client_name . '</option>
+                                      <option value="' . $row['client_uid'] . '" selected>' . displayClientName($row['client_uid']) . '</option>
                                       ';
 displayClients();
 echo '
@@ -35549,7 +35519,7 @@ echo '
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
                                   <select id="billable_client_uid" class="text-capitalize">
-                                      <option value="' . $rowc['unique_client_id'] . '" selected>' . $billable_client . '</option>
+                                      <option value="' . $row['billable_client_uid'] . '" selected>' . displayClientName($row['billable_client_uid']) . '</option>
                                       ';
 displayClients();
 echo '
@@ -35563,7 +35533,7 @@ echo '
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
                                   <select id="assignee_username" class="text-capitalize">
-                                      <option value="' . $rowu['name'] . '" selected>' . $rowu['fullname'] . '</option>
+                                      <option value="' . $row['assignee_id'] . '" selected>' . displayUserName($row['assignee_id']) . '</option>
                                       ';
 displayUsers();
 echo '
@@ -35653,9 +35623,7 @@ $result =mysql_query("select * from distress where status=1");
 $num_results = mysql_num_rows($result);
 for ($i=0; $i <$num_results; $i++) {
 $row=mysql_fetch_array($result);
-$resulta = mysql_query("select * from clients where unique_client_id = '".$row['client_uid']."' or unique_client_id='".$row['billable_client_uid']."'");
-$rowa = mysql_fetch_array($resulta);
-echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['billable_client_uid']).'</option>';
 }
 echo'</select>
 <div class="cleaner_h10"></div>
@@ -35759,10 +35727,9 @@ echo '<div class="vd_container" id="container">
 $result =mysql_query("select * from distress where status=1");
 $num_results = mysql_num_rows($result);
 for ($i=0; $i <$num_results; $i++) {
-    $row=mysql_fetch_array($result);
-    $code=stripslashes($row['id']);
-    echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['billable_client_uid']).'</option>';
-  }
+$row=mysql_fetch_array($result);
+echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['billable_client_uid']).'</option>';
+}
 echo'</select>
 <div class="cleaner_h10" id="message"></div>
 <div class="col-sm-7">
@@ -36304,9 +36271,7 @@ $result =mysql_query("select * from immovable_property where status=1");
 $num_results = mysql_num_rows($result);
 for ($i=0; $i <$num_results; $i++) {
 $row=mysql_fetch_array($result);
-$resulta = mysql_query("select * from clients where unique_client_id = '".$row['client_uid']."' or unique_client_id='".$row['billable_client_uid']."'");
-$rowa = mysql_fetch_array($resulta);
-echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
 }
 echo'</select>
 <div class="cleaner_h10"></div>
@@ -36347,19 +36312,6 @@ mysql_query("insert into log values('','".$username." accesses Edit Immovable Pr
 $result = mysql_query('select * from immovable_property where id="' . $param . '" limit 0,1');
 
 $row = mysql_fetch_array($result);
-$resulta = mysql_query('select * from clients where unique_client_id = "' . $row['client_uid'] . '"');
-$rowa = mysql_fetch_array($resulta);
-
-empty($rowa['business_name'])? $client_name=$rowa['client_name']:$client_name=$rowa['business_name'];
-
-
-$resultc = mysql_query('select * from clients where unique_client_id = "' . $row['billable_client_uid'] . '"');
-$rowc = mysql_fetch_array($resultc);
-
-empty($rowc['business_name'])? $billable_client=$rowc['client_name']:$billable_client=$rowc['business_name'];
-
-$resultu = mysql_query('select * from users where name = "'.$row['assignee_id'].'"');
-$rowu = mysql_fetch_array($resultu);
 
 echo '
 <div class="vd_container" id="container">
@@ -36391,7 +36343,7 @@ echo '
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
                                   <select id="client_uid" class="text-capitalize">
-                                      <option value="'.$rowa['unique_client_id'].'" selected>'.$client_name.'</option>
+                                      <option value="'.$row['client_uid'].'" selected>'.displayClientName($row['client_uid']).'</option>
                                       ';
 displayClients();
 echo '
@@ -36401,11 +36353,11 @@ echo '
 
 
                           <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Billable Client<span
+                              <label style="float:left" class="col-sm-4">Referring Client<span
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
-                                  <select id="billable_client_uid" class="text-capitalize">
-                                      <option value="'.$rowc['unique_client_id'].'" selected>'.$billable_client.'</option>
+                                  <select id="referring_client_uid" class="text-capitalize">
+                                      <option value="'.$row['referring_client_uid'].'" selected>'.displayClientName($row['referring_client_uid']).'</option>
                                       ';
 displayClients();
 echo '
@@ -36419,7 +36371,7 @@ echo '
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
                                   <select id="assignee_username" class="text-capitalize">
-                                      <option value="'.$rowu['name'].'" selected>'.$rowu['fullname'].'</option>
+                                      <option value="'.$row['assignee_id'].'" selected>'.displayUserName($row['assignee_id']).'</option>
                                       ';
 displayUsers();
 echo '
@@ -36590,9 +36542,7 @@ $result =mysql_query("select * from immovable_property where status=1");
 $num_results = mysql_num_rows($result);
 for ($i=0; $i <$num_results; $i++) {
 $row=mysql_fetch_array($result);
-$resulta = mysql_query("select * from clients where unique_client_id = '".$row['client_uid']."' or unique_client_id='".$row['billable_client_uid']."'");
-$rowa = mysql_fetch_array($resulta);
-echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
 }
 echo'</select>
 <div class="cleaner_h10"></div>
@@ -36627,19 +36577,6 @@ $param = $_GET['param'];
 mysql_query("insert into log values('','" . $username . " accesses Immovable Property file.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
 $result = mysql_query('select * from immovable_property where id="' . $param . '" limit 0,1');
 $row = mysql_fetch_array($result);
-$resulta = mysql_query('select * from clients where unique_client_id = "' . $row['client_uid'] . '"');
-$rowa = mysql_fetch_array($resulta);
-
-empty($rowa['business_name']) ? $client_name = $rowa['client_name'] : $client_name = $rowa['business_name'];
-
-
-$resultc = mysql_query('select * from clients where unique_client_id = "' . $row['billable_client_uid'] . '"');
-$rowc = mysql_fetch_array($resultc);
-
-empty($rowc['business_name']) ? $billable_client = $rowc['client_name'] : $billable_client = $rowc['business_name'];
-
-$resultu = mysql_query('select * from users where name = "' . $row['assignee_id'] . '"');
-$rowu = mysql_fetch_array($resultu);
 
 echo '
 <div class="vd_container" id="container">
@@ -36686,7 +36623,7 @@ echo '
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
                                   <select id="client_uid" class="text-capitalize">
-                                      <option value="' . $rowa['unique_client_id'] . '" selected>' . $client_name . '</option>
+                                      <option value="' . $row['client_uid'] . '" selected>' . displayClientName($row['client_uid']) . '</option>
                                       ';
 displayClients();
 echo '
@@ -36696,11 +36633,11 @@ echo '
 
 
                           <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Billable Client<span
+                              <label style="float:left" class="col-sm-4">Referring Client<span
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
-                                  <select id="billable_client_uid" class="text-capitalize">
-                                      <option value="' . $rowc['unique_client_id'] . '" selected>' . $billable_client . '</option>
+                                  <select id="referring_client_uid" class="text-capitalize">
+                                      <option value="' . $row['referring_client_uid'] . '" selected>' . displayClientName($row['referring_client_uid']) . '</option>
                                       ';
 displayClients();
 echo '
@@ -36714,7 +36651,7 @@ echo '
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
                                   <select id="assignee_username" class="text-capitalize">
-                                      <option value="' . $rowu['name'] . '" selected>' . $rowu['fullname'] . '</option>
+                                      <option value="' . $row['assignee_id'] . '" selected>' . displayUserName($row['assignee_id']) . '</option>
                                       ';
 displayUsers();
 echo '
@@ -36804,9 +36741,7 @@ $result =mysql_query("select * from immovable_property where status=1");
 $num_results = mysql_num_rows($result);
 for ($i=0; $i <$num_results; $i++) {
 $row=mysql_fetch_array($result);
-$resulta = mysql_query("select * from clients where unique_client_id = '".$row['client_uid']."' or unique_client_id='".$row['billable_client_uid']."'");
-$rowa = mysql_fetch_array($resulta);
-echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
 }
 echo'</select>
 <div class="cleaner_h10"></div>
@@ -36910,10 +36845,9 @@ echo '<div class="vd_container" id="container">
 $result =mysql_query("select * from immovable_property where status=1");
 $num_results = mysql_num_rows($result);
 for ($i=0; $i <$num_results; $i++) {
-    $row=mysql_fetch_array($result);
-    $code=stripslashes($row['id']);
-    echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['billable_client_uid']).'</option>';
-  }
+$row=mysql_fetch_array($result);
+echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
+}
 echo'</select>
 <div class="cleaner_h10" id="message"></div>
 <div class="col-sm-7">
