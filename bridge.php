@@ -36332,7 +36332,7 @@ echo '
                               <label style="float:left" class="col-sm-4">Assignee<span
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
-                                  <select id="assignee_username" class="text-capitalize">
+                                  <select id="assignee_id" class="text-capitalize">
                                       <option value="'.$row['assignee_id'].'" selected>'.displayUserName($row['assignee_id']).'</option>
                                       ';
 displayUsers();

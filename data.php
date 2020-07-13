@@ -6550,7 +6550,7 @@ switch ($id) {
         $remarks = $_GET['remarks'];
 
 
-        $resultc = mysql_query("update  `immovable_property` set `client_uid` ='" . $client_uid . "' , `billable_client_uid` ='" . $billable_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `location`='" . $location . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
+        $resultc = mysql_query("update  `immovable_property` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `location`='" . $location . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
 
 
         if ($resultc) {

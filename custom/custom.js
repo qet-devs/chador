@@ -11148,14 +11148,15 @@ function saveImmovableProperty(param) {
     var unique_file_id = $('#unique_file_id').val();
     var client_uid = $('#client_uid').val();
     var referring_client_uid = $('#referring_client_uid').val();
-    var assignee_username = $('#assignee_username').val();
+    var assignee_id = $('#assignee_id').val();
     var description = $('#description').val();
     var notification_date = $('#notification_date').val();
+    var location = $('#location').val();
     var notification_message = $('#notification_message').val();
     var file_status = $('#file_status').val();
     var remarks = $('#remarks').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' ) {
+    if (unique_file_id == '' || client_uid == '' || assignee_id == '' || description == '' ) {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -11165,10 +11166,11 @@ function saveImmovableProperty(param) {
             unique_file_id: unique_file_id,
             client_uid: client_uid,
             referring_client_uid: referring_client_uid,
-            assignee_username: assignee_username,
+            assignee_username: assignee_id,
             description: description,
             notification_date: notification_date,
             notification_message: notification_message,
+            location:location,
             file_status: file_status,
             remarks: remarks,
         };
