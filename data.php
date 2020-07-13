@@ -6312,7 +6312,7 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `warrants`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `warrants`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `file_status`, `notification_message`, `username`, `stamp`, `date`, `time`, `status`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "', 'open','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '1')") or die (mysql_error());
 
 
         if ($resultc) {

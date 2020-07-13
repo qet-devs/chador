@@ -32152,19 +32152,20 @@ case 309:
                                          </div>
                                          <!-- panel heading -->
                                          <div class="panel-body table-responsive ">
-                                             <table class="table table-striped text-capitalize" id="data-tables">
-                                                 <thead>
-                                                 <tr>
-                                                     <th>File ID</th>
-                                                     <th>Description</th>
-                                                     <th>Status</th>
-                                                     <th>Assignee</th>
-                                                     <th>Entry Date</th>
-                                                 </tr>
-                                                 </thead>
-                                             </table>
-                                         </div>
-                                         <!-- panel body -->
+                                         <table class="table table-striped text-capitalize" id="data-tables">
+                                             <thead>
+                                             <tr>
+                                                 <th>ID</th>
+                                                 <th>Unique File ID</th>
+                                                 <th>Description</th>
+                                                 <th>Status</th>
+                                                 <th>Assignee</th>
+                                                 <th>Entry Date</th>
+                                             </tr>
+                                             </thead>
+                                         </table>
+                                     </div>
+                                     <!-- panel body -->
                                      </div>
                                      <!-- Panel Widget -->
                                  </div>
@@ -32274,7 +32275,7 @@ case 309:
      break;
      
  
-//edit waarrant
+//edit warrant
 
 
 // EDIT WARRANT PANEL
@@ -32293,9 +32294,7 @@ case 413:
             $num_results = mysql_num_rows($result);
               for ($i=0; $i <$num_results; $i++) {
                   $row=mysql_fetch_array($result);
-                  $resulta = mysql_query("select * from clients where unique_client_id = '".$row['client_uid']."' or unique_client_id='".$row['referring_client_uid']."'");
-                    $rowa = mysql_fetch_array($resulta);
-                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
                 }
            echo'</select>
              <div class="cleaner_h10"></div>
@@ -32339,19 +32338,6 @@ case 414:
       $result = mysql_query('select * from warrants where id="' . $param . '" limit 0,1');
 
                 $row = mysql_fetch_array($result);
-                $resulta = mysql_query('select * from clients where unique_client_id = "' . $row['client_uid'] . '"');
-                $rowa = mysql_fetch_array($resulta);
-
-                empty($rowa['business_name'])? $client_name=$rowa['client_name']:$client_name=$rowa['business_name'];
-
-
-                $resultc = mysql_query('select * from clients where unique_client_id = "' . $row['referring_client_uid'] . '"');
-                $rowc = mysql_fetch_array($resultc);
-
-                empty($rowc['business_name'])? $referring_client=$rowc['client_name']:$referring_client=$rowc['business_name'];
-
-                $resultu = mysql_query('select * from users where name = "'.$row['assignee_id'].'"');
-                $rowu = mysql_fetch_array($resultu);
 
                 echo '
                 <div class="vd_container" id="container">
@@ -32383,7 +32369,7 @@ case 414:
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
                                                         <select id="client_uid" class="text-capitalize">
-                                                            <option value="'.$rowa['unique_client_id'].'" selected>'.$client_name.'</option>
+                                                            <option value="'.$row['client_uid'].'" selected>'.displayClientName($row['client_uid']).'</option>
                                                             ';
                 displayClients();
                 echo '
@@ -32397,7 +32383,7 @@ case 414:
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
                                                         <select id="referring_client_uid" class="text-capitalize">
-                                                            <option value="'.$rowc['unique_client_id'].'" selected>'.$referring_client.'</option>
+                                                            <option value="'.$row['referring_client_uid'].'" selected>'.displayClientName($row['referring_client_uid']).'</option>
                                                             ';
                 displayClients();
                 echo '
@@ -32411,7 +32397,7 @@ case 414:
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
                                                         <select id="assignee_username" class="text-capitalize">
-                                                            <option value="'.$rowu['name'].'" selected>'.$rowu['fullname'].'</option>
+                                                            <option value="'.$row['assignee_id'].'" selected>'.displayUserName($row['assignee_id']).'</option>
                                                             ';
                 displayUsers();
                 echo '
@@ -32757,11 +32743,9 @@ echo '
 $result =mysql_query("select * from warrants where status=1");
 $num_results = mysql_num_rows($result);
 for ($i=0; $i <$num_results; $i++) {
-    $row=mysql_fetch_array($result);
-    $resulta = mysql_query("select * from clients where unique_client_id = '".$row['client_uid']."' or unique_client_id='".$row['referring_client_uid']."'");
-      $rowa = mysql_fetch_array($resulta);
-    echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
-  }
+  $row=mysql_fetch_array($result);
+  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
+}
 echo'</select>
 <div class="cleaner_h10"></div>
 <div class="col-sm-7">
@@ -32840,80 +32824,100 @@ case 405:
                           </div>
                           <div class="panel-body">
                               <form class="form-horizontal" action="#" role="form">
-                                  <div class="form-group">
-                                      <label style="float:left" class="col-sm-4">Warrant Unique
-                                          File ID<span
-                                                  style="color:#f00">*</span></label>
-                                      <div class="col-sm-8 controls">
-                                          <input type="text" id="unique_file_id"
-                                                 value="' . $row['unique_file_number'] . '" disabled>
-                                      </div>
-                                  </div>
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Warrant Unique
+                                        File ID<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                        <input type="text" id="unique_file_id"
+                                               value="' . $row['unique_file_number'] .'" disabled>
+                                    </div>
+                                </div>
 
-                                  <div class="form-group">
-                                      <label style="float:left" class="col-sm-4">Client Name<span
-                                                  style="color:#f00">*</span></label>
-                                      <div class="col-sm-8 controls">
-                                          <select id="client_uid" class="text-capitalize">
-                                              <option value="' . $rowa['unique_client_id'] . '" selected>' . $client_name . '</option>
-                                              ';
-  displayClients();
-  echo '
-                                          </select>
-                                      </div>
-                                  </div>
-
-
-                                  <div class="form-group">
-                                      <label style="float:left" class="col-sm-4">Referring Client<span
-                                                  style="color:#f00">*</span></label>
-                                      <div class="col-sm-8 controls">
-                                          <select id="referring_client_uid" class="text-capitalize">
-                                              <option value="' . $rowc['unique_client_id'] . '" selected>' . $referring_client . '</option>
-                                              ';
-  displayClients();
-  echo '
-                                          </select>
-                                      </div>
-                                  </div>
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Client Name<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                        <select id="client_uid" class="text-capitalize">
+                                            <option value="'.$row['client_uid'].'" selected>'.displayClientName($row['client_uid']).'</option>
+                                            ';
+displayClients();
+echo '
+                                        </select>
+                                    </div>
+                                </div>
 
 
-                                  <div class="form-group">
-                                      <label style="float:left" class="col-sm-4">Assignee<span
-                                                  style="color:#f00">*</span></label>
-                                      <div class="col-sm-8 controls">
-                                          <select id="assignee_username" class="text-capitalize">
-                                              <option value="' . $rowu['name'] . '" selected>' . $rowu['fullname'] . '</option>
-                                              ';
-  displayUsers();
-  echo '
-                                          </select>
-                                      </div>
-                                  </div>
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Referring Client<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                        <select id="referring_client_uid" class="text-capitalize">
+                                            <option value="'.$row['referring_client_uid'].'" selected>'.displayClientName($row['referring_client_uid']).'</option>
+                                            ';
+displayClients();
+echo '
+                                        </select>
+                                    </div>
+                                </div>
 
-                                  <div class="form-group">
-                                      <label style="float:left" class="col-sm-4">Description<span
-                                                  style="color:#f00">*</span></label>
-                                      <div class="col-sm-8 controls">
-                                          <textarea id="description">' . $row['description'] . '</textarea>
-                                      </div>
-                                  </div>
 
-                                  <div class="form-group">
-                                      <label style="float:left" class="col-sm-4">Notification Date</label>
-                                      <div class="col-sm-8 controls">
-                                          <input type="text" id="notification_date" value="' . $row['notification_date'] . '" class="date">
-                                      </div>
-                                  </div>
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Assignee<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                        <select id="assignee_username" class="text-capitalize">
+                                            <option value="'.$row['assignee_id'].'" selected>'.displayUserName($row['assignee_id']).'</option>
+                                            ';
+displayUsers();
+echo '
+                                        </select>
+                                    </div>
+                                </div>
 
-                                  <div class="form-group">
-                                      <label style="float:left" class="col-sm-4">Notification Message</label>
-                                      <div class="col-sm-8 controls">
-                                          <textarea id="notification_message">' . $row['notification_message'] . ' </textarea>
-                                      </div>
-                                  </div>
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Description<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                        <textarea id="description">'.$row['description'].'</textarea>
+                                    </div>
+                                </div>
 
-                              </form>
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Notification Date</label>
+                                    <div class="col-sm-8 controls">
+                                        <input type="text" id="notification_date" value="'.$row['notification_date'].'" class="date">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Notification Message</label>
+                                    <div class="col-sm-8 controls">
+                                        <textarea id="notification_message">'.$row['notification_message'].' </textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">File Status</label>
+                                    <div class="col-sm-8 controls">
+                                    <select id="file_status" class="text-capitalize">
+                                            <option value="'.$row['file_status'].'" selected>'.$row['file_status'].'</option>
+                                            <option value="open">Open</option>
+                                            <option value="pending">Pending</option>
+                                            <option value="closed">Closed</option>
+                                         </select>
+                                     
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Remarks</label>
+                                    <div class="col-sm-8 controls">
+                                        <textarea id="remarks">'.$row['remarks'].' </textarea>
+                                    </div>
+                                </div>
+
+                            </form>
                           </div>
                       </div>
                       <!-- Panel Widget -->
@@ -32973,12 +32977,10 @@ break;
       <option value="" selected>Select One...</option>';
          $result =mysql_query("select * from warrants where status=1");
           $num_results = mysql_num_rows($result);
-            for ($i=0; $i <$num_results; $i++) {
-                $row=mysql_fetch_array($result);
-                $resulta = mysql_query("select * from clients where unique_client_id = '".$row['client_uid']."' or unique_client_id='".$row['referring_client_uid']."'");
-                  $rowa = mysql_fetch_array($resulta);
-                echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.stripslashes($rowa['business_name']).'-'.stripslashes($rowa['client_name']).'</option>';
-              }
+          for ($i=0; $i <$num_results; $i++) {
+              $row=mysql_fetch_array($result);
+              echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
+            }
          echo'</select>
            <div class="cleaner_h10"></div>
            <div class="col-sm-7">
@@ -33382,10 +33384,9 @@ case 408:
                      $result =mysql_query("select * from warrants where status=1");
                       $num_results = mysql_num_rows($result);
                         for ($i=0; $i <$num_results; $i++) {
-                            $row=mysql_fetch_array($result);
-                            $code=stripslashes($row['id']);
-                            echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['id']).'-'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
-                          }
+                          $row=mysql_fetch_array($result);
+                          echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
+                        }
                      echo'</select>
                        <div class="cleaner_h10" id="message"></div>
                        <div class="col-sm-7">

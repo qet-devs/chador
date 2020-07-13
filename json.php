@@ -478,12 +478,14 @@ case 400:
     // parameter represents the DataTables column identifier. In this case simple
     // indexes
     $columns = array(
-        array( 'db' => 'unique_file_number', 'dt' => 0 ),
-        array( 'db' => 'description', 'dt' => 1 ),
-        array( 'db' => 'file_status', 'dt' => 2 ),
-        array( 'db' => 'assignee_id', 'dt' => 3 ),
-        array( 'db' => 'date',  'dt' => 4 ),
+        array('db'=>'id', 'dt'=>0),
+        array( 'db' => 'unique_file_number', 'dt' => 1 ),
+        array( 'db' => 'description', 'dt' => 2 ),
+        array( 'db' => 'file_status', 'dt' => 3 ),
+        array( 'db' => 'assignee_id', 'dt' => 4 ),
+        array( 'db' => 'date',  'dt' => 5 ),
     );
+
 
     break;
 /**start of warrant */

@@ -559,7 +559,7 @@ function majoropen(a) {
                 debtCollectionActivate(b);
                 break;
             case 400:
-                editWarrant(b);
+                editWarrantFile(b);
                 break;
 
             case 401:
@@ -10314,7 +10314,7 @@ function saveNewWarrant() {
     var notification_date = $('#notification_date').val();
     var notification_message = $('#notification_message').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -10367,6 +10367,19 @@ function editWarrant() {
     });
 }
 
+function editWarrantFile(param) {
+    // todo : remove logger
+    console.log('param.edit', param);
+    $('#mainp').html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 414, param: param},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
+
 function saveWarrant(param) {
     var unique_file_id = $('#unique_file_id').val();
     var client_uid = $('#client_uid').val();
@@ -10378,7 +10391,7 @@ function saveWarrant(param) {
     var file_status = $('#file_status').val();
     var remarks = $('#remarks').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || notification_date == '') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
