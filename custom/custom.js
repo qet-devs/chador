@@ -567,7 +567,7 @@ function majoropen(a) {
                 break;
 
             case 402:
-                archiveWarrant(b);
+                warrantArchive(b);
                 break;
 
 
