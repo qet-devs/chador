@@ -34583,7 +34583,7 @@ case 708:
             var str = $('#item5').val();
             var parts=param.split('-',3);
             param=parts[0];
-           warrantArchive(param);
+           repossessionArchive(param);
   
             });
              </script>";
