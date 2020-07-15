@@ -31936,7 +31936,7 @@ case 309:
                                      <div class="panel-body">
                                          <form class="form-horizontal" action="#" role="form">
                                              <div class="form-group">
-                                                 <label style="float:left" class="col-sm-4">Repossesion Unique
+                                                 <label style="float:left" class="col-sm-4"> Unique
                                                      File ID<span
                                                              style="color:#f00">*</span></label>
                                                  <div class="col-sm-8 controls">
@@ -33694,6 +33694,14 @@ case 409:
                                                           <textarea id="description"> </textarea>
                                                       </div>
                                                   </div>
+                                                    
+                                                  <div class="form-group">
+                                                      <label style="float:left" class="col-sm-4">Principal Amount<span
+                                                                  style="color:#f00">*</span></label>
+                                                      <div class="col-sm-8 controls">
+                                                        <input type="text"  id="principal" >
+                                                      </div>
+                                                  </div>
   
                                                   <div class="form-group">
                                                       <label style="float:left" class="col-sm-4">Notification Date</label>
@@ -34104,6 +34112,14 @@ case 703:
                                                         <textarea id="description">'.$row['description'].'</textarea>
                                                     </div>
                                                 </div>
+                                                
+                                                  <div class="form-group">
+                                                      <label style="float:left" class="col-sm-4">Principal Amount<span
+                                                                  style="color:#f00">*</span></label>
+                                                      <div class="col-sm-8 controls">
+                                                        <input type="text " id="principal" value="'.$row['principal'].'">
+                                                      </div>
+                                                  </div>
 
                                                 <div class="form-group">
                                                     <label style="float:left" class="col-sm-4">Notification Date</label>
@@ -34341,12 +34357,7 @@ case 705:
                                       <label style="float:left" class="col-sm-4">Client Name<span
                                                   style="color:#f00">*</span></label>
                                       <div class="col-sm-8 controls">
-                                          <select id="client_uid" class="text-capitalize">
-                                              <option value="' . $row['client_uid'] . '" selected>' . displayClientName($row['client_uid']) . '</option>
-                                              ';
-  displayClients();
-  echo '
-                                          </select>
+                                          <input type="text" value="' . displayClientName($row['client_uid']) . '" disabled>
                                       </div>
                                   </div>
 
@@ -34355,12 +34366,7 @@ case 705:
                                       <label style="float:left" class="col-sm-4">Referring Client<span
                                                   style="color:#f00">*</span></label>
                                       <div class="col-sm-8 controls">
-                                          <select id="referring_client_uid" class="text-capitalize">
-                                              <option value="' . $row['referring_client_uid'] . '" selected>' . displayClientName($row['referring_client_uid']) . '</option>
-                                              ';
-  displayClients();
-  echo '
-                                          </select>
+                                          <input type="text" value="' . displayClientName($row['referring_client_uid']) . '" disabled>
                                       </div>
                                   </div>
 
@@ -34369,12 +34375,7 @@ case 705:
                                       <label style="float:left" class="col-sm-4">Assignee<span
                                                   style="color:#f00">*</span></label>
                                       <div class="col-sm-8 controls">
-                                          <select id="assignee_username" class="text-capitalize">
-                                              <option value="' . $row['assignee_id'] . '" selected>' . displayUserName($row['assignee_id']) . '</option>
-                                              ';
-  displayUsers();
-  echo '
-                                          </select>
+                                          <input type="text" value="' .displayUserName($row['assignee_id']) . '" disabled>
                                       </div>
                                   </div>
 
@@ -34382,21 +34383,21 @@ case 705:
                                       <label style="float:left" class="col-sm-4">Description<span
                                                   style="color:#f00">*</span></label>
                                       <div class="col-sm-8 controls">
-                                          <textarea id="description">' . $row['description'] . '</textarea>
+                                          <input type="test" id="description" value="' . $row['description'] . '" disabled>
                                       </div>
                                   </div>
 
                                   <div class="form-group">
                                       <label style="float:left" class="col-sm-4">Notification Date</label>
                                       <div class="col-sm-8 controls">
-                                          <input type="text" id="notification_date" value="' . $row['notification_date'] . '" class="date">
+                                          <input type="text" id="notification_date" value="' . $row['notification_date'] . '" disabled>
                                       </div>
                                   </div>
 
                                   <div class="form-group">
                                       <label style="float:left" class="col-sm-4">Notification Message</label>
                                       <div class="col-sm-8 controls">
-                                          <textarea id="notification_message">' . $row['notification_message'] . ' </textarea>
+                                          <input type="text" id="notification_message" value="' . $row['notification_message'] . '" disabled>
                                       </div>
                                   </div>
 

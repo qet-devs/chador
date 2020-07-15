@@ -6620,6 +6620,7 @@ switch ($id) {
         $description = $_GET['description'];
         $notification_date = $_GET['notification_date'];
         $notification_message = $_GET['notification_message'];
+        $principal = $_GET['principal'];
 
 
         $resultx = mysql_query('SELECT * FROM `repossession` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
@@ -6628,7 +6629,7 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `repossession`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`, `file_status`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', 'open')");
+        $resultc = mysql_query("INSERT INTO `repossession`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`, `file_status`, `principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', 'open', '".$principal."')");
 
 
         if ($resultc) {
@@ -6654,9 +6655,10 @@ switch ($id) {
         $notification_message = $_GET['notification_message'];
         $file_status = $_GET['file_status'];
         $remarks = $_GET['remarks'];
+        $principal = $_GET['principal'];
 
 
-        $resultc = mysql_query("update  `repossession` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
+        $resultc = mysql_query("update  `repossession` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "', `principal`='".$principal."' where `id` = '" . $param . "'");
 
 
         if ($resultc) {
