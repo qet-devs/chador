@@ -6523,6 +6523,8 @@ switch ($id) {
         $description = $_GET['description'];
         $notification_date = $_GET['notification_date'];
         $location = $_GET['location'];
+        $notification_message = $_GET['notification_message'];
+        $principal = $_GET['principal'];
 
 
         $resultx = mysql_query('SELECT * FROM `immovable_property` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
@@ -6531,7 +6533,7 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `immovable_property`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `stamp`, `date`, `time`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `immovable_property`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `stamp`, `date`, `time`, `notification_message`, `principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '".$notification_message."', '".$principal."')") or die (mysql_error());
 
 
         if ($resultc) {
@@ -6556,9 +6558,11 @@ switch ($id) {
         $location = $_GET['location'];
         $file_status = $_GET['file_status'];
         $remarks = $_GET['remarks'];
+        $notification_message = $_GET['notification_message'];
+        $principal = $_GET['principal'];
 
 
-        $resultc = mysql_query("update  `immovable_property` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `location`='" . $location . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
+        $resultc = mysql_query("update  `immovable_property` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `location`='" . $location . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "', `notification_message`='".$notification_message."', `principal`='".$principal."' where `id` = '" . $param . "'");
 
 
         if ($resultc) {

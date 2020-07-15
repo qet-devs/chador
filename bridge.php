@@ -35969,12 +35969,27 @@ break;
                                     </div>
 
                                     <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Notification Message</label>
+                                        <div class="col-sm-8 controls">
+                                            <textarea id="notification_message" ></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label style="float:left" class="col-sm-4">Location</label>
                                         <div class="col-sm-8 controls">
                                             <input type="text" id="location" value=""/>
                                         </div>
                                     </div>
-
+                                    
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Principal Amount<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="principal" value=""/>
+                                        </div>
+                                    </div>
+                                    
                                 </form>
                             </div>
                         </div>
@@ -36372,12 +36387,13 @@ echo '
                               </div>
                           </div>
 
-                          <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Location</label>
-                              <div class="col-sm-8 controls">
-                              <input type="text" id="location" value="'.$row['location'].'">
-                              </div>
-                          </div>
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Notification Message</label>
+                                        <div class="col-sm-8 controls">
+                                            <textarea id="notification_message" >'.$row['notification_message'].'</textarea>
+                                        </div>
+                                    </div>
                           
                           <div class="form-group">
                               <label style="float:left" class="col-sm-4">File Status</label>
@@ -36398,6 +36414,21 @@ echo '
                                   <textarea id="remarks">'.$row['remarks'].' </textarea>
                               </div>
                           </div>
+
+                            <div class="form-group">
+                                <label style="float:left" class="col-sm-4">Location</label>
+                                <div class="col-sm-8 controls">
+                                    <input type="text" id="location" value="'.$row['location'].'"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label style="float:left" class="col-sm-4">Principal Amount<span
+                                            style="color:#f00">*</span></label>
+                                <div class="col-sm-8 controls">
+                                    <input type="text" id="principal" value="'.$row['principal'].'"/>
+                                </div>
+                            </div>
 
                       </form>
                   </div>
@@ -36600,12 +36631,7 @@ echo '
                               <label style="float:left" class="col-sm-4">Client Name<span
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
-                                  <select id="client_uid" class="text-capitalize">
-                                      <option value="' . $row['client_uid'] . '" selected>' . displayClientName($row['client_uid']) . '</option>
-                                      ';
-displayClients();
-echo '
-                                  </select>
+                                  <input type="text" value="'.displayClientName($row['client_uid']).'" disabled>
                               </div>
                           </div>
 
@@ -36614,12 +36640,7 @@ echo '
                               <label style="float:left" class="col-sm-4">Referring Client<span
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
-                                  <select id="referring_client_uid" class="text-capitalize">
-                                      <option value="' . $row['referring_client_uid'] . '" selected>' . displayClientName($row['referring_client_uid']) . '</option>
-                                      ';
-displayClients();
-echo '
-                                  </select>
+                                  <input type="text" value="'.displayClientName($row['referring_client_uid']).'" disabled>
                               </div>
                           </div>
 
@@ -36628,12 +36649,7 @@ echo '
                               <label style="float:left" class="col-sm-4">Assignee<span
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
-                                  <select id="assignee_username" class="text-capitalize">
-                                      <option value="' . $row['assignee_id'] . '" selected>' . displayUserName($row['assignee_id']) . '</option>
-                                      ';
-displayUsers();
-echo '
-                                  </select>
+                                  <input type="text" value="'.displayUserName($row['assignee_id']).'" disabled>
                               </div>
                           </div>
 
@@ -36641,23 +36657,54 @@ echo '
                               <label style="float:left" class="col-sm-4">Description<span
                                           style="color:#f00">*</span></label>
                               <div class="col-sm-8 controls">
-                                  <textarea id="description">' . $row['description'] . '</textarea>
+                                  <input type="text" id="description" value="'.$row['description'].'" disabled>
                               </div>
                           </div>
 
                           <div class="form-group">
                               <label style="float:left" class="col-sm-4">Notification Date</label>
                               <div class="col-sm-8 controls">
-                                  <input type="text" id="notification_date" value="' . $row['notification_date'] . '" class="date">
+                                  <input type="text" id="notification_date" value="'.$row['notification_date'].'" disabled>
                               </div>
                           </div>
 
+
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Notification Message</label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="notification_message" value="'.$row['notification_message'].'" disabled>
+                                        </div>
+                                    </div>
+                          
                           <div class="form-group">
-                              <label style="float:left" class="col-sm-4">Location</label>
+                              <label style="float:left" class="col-sm-4">File Status</label>
                               <div class="col-sm-8 controls">
-                              <input type="text" id="location" value="' . $row['notification_message'] . '">
+                              <input type="text" id="file_status" value="'.$row['file_status'].'" disabled>
+                               
                               </div>
                           </div>
+                          
+                          <div class="form-group">
+                              <label style="float:left" class="col-sm-4">Remarks</label>
+                              <div class="col-sm-8 controls">
+                                  <input type="text" id="remarks" value="'.$row['remarks'].'" disabled>
+                              </div>
+                          </div>
+
+                            <div class="form-group">
+                                <label style="float:left" class="col-sm-4">Location</label>
+                                <div class="col-sm-8 controls">
+                                    <input type="text" id="location" value="'.$row['location'].'" disabled/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label style="float:left" class="col-sm-4">Principal Amount<span
+                                            style="color:#f00">*</span></label>
+                                <div class="col-sm-8 controls">
+                                    <input type="text" id="principal" value="'.$row['principal'].'"  disabled>
+                                </div>
+                            </div>
 
                       </form>
                   </div>

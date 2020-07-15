@@ -11107,8 +11107,10 @@ function saveNewImmovableProperty() {
     var description = $('#description').val();
     var notification_date = $('#notification_date').val();
     var location = $('#location').val();
+    var notification_message = $('#notification_message').valid();
+    var principal = $('#principal').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal=='') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -11121,6 +11123,8 @@ function saveNewImmovableProperty() {
             description: description,
             notification_date: notification_date,
             location: location,
+            notification_message:notification_message,
+            principal:principal,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
@@ -11188,8 +11192,9 @@ function saveImmovableProperty(param) {
     var notification_message = $('#notification_message').val();
     var file_status = $('#file_status').val();
     var remarks = $('#remarks').val();
+    var principal = $('#principal').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_id == '' || description == '' ) {
+    if (unique_file_id == '' || client_uid == '' || assignee_id == '' || description == '' || principal=='' ) {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -11206,6 +11211,7 @@ function saveImmovableProperty(param) {
             location:location,
             file_status: file_status,
             remarks: remarks,
+            principal:principal,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
