@@ -574,15 +574,15 @@ function majoropen(a) {
             case 403:
                 warrantActivate(b);
                 break;
-            // case 401:
-            //     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-            //     $.ajax({
-            //         url: 'bridge.php',
-            //         data: {id: 401, param: b},
-            //         success: function (data) {
-            //             $('#mainp').html(data);
-            //         }
-            //     });
+                // case 401:
+                //     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                //     $.ajax({
+                //         url: 'bridge.php',
+                //         data: {id: 401, param: b},
+                //         success: function (data) {
+                //             $('#mainp').html(data);
+                //         }
+                //     });
 
                 break;
             case 405:
@@ -9898,6 +9898,7 @@ function saveClient(param) {
     var certificate_of_incorporation = $('#certificate_of_incorporation').val();
     var contact_person = $('#contact_person').val();
     var contact_phone = $('#contact_phone').val();
+    var unique_client_id = $('#unique_client_id').val();
 
     if (client_name == '' || phone == '' || unique_client_id == '') {
         swal("Error", "Make sure you enter all the required fields!", "error");
@@ -9917,6 +9918,7 @@ function saveClient(param) {
             certificate_of_incorporation: certificate_of_incorporation,
             contact_person: contact_person,
             contact_phone: contact_phone,
+            unique_client_id: unique_client_id,
         };
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
         $.ajax({
@@ -10061,7 +10063,7 @@ function saveNewDebtCollection() {
     var principal = $('#principal').val();
 
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal=='') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
         console.log(unique_file_id, client_uid, assignee_username, description);
         swal('Error', 'Please fill all required fields', 'error');
         return;
@@ -10075,7 +10077,7 @@ function saveNewDebtCollection() {
             description: description,
             notification_date: notification_date,
             notification_message: notification_message,
-            principal:principal,
+            principal: principal,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
@@ -10144,7 +10146,7 @@ function saveDebtCollection(param) {
     var remarks = $('#remarks').val();
     var principal = $('#principal').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal=='') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -10319,7 +10321,7 @@ function saveNewWarrant() {
     var notification_message = $('#notification_message').val();
     var principal = $('#principal').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal=='') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -10332,7 +10334,7 @@ function saveNewWarrant() {
             description: description,
             notification_date: notification_date,
             notification_message: notification_message,
-            principal:principal,
+            principal: principal,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
@@ -10398,7 +10400,7 @@ function saveWarrant(param) {
     var remarks = $('#remarks').val();
     var principal = $('#principal').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal=='') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -10595,7 +10597,7 @@ function saveNewRepossession() {
             description: description,
             notification_date: notification_date,
             notification_message: notification_message,
-            principal:principal,
+            principal: principal,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
@@ -10640,8 +10642,6 @@ function editRepossessionEntry() {
         }
     });
 }
-
-
 
 
 function editRepossession(param) {
@@ -10850,7 +10850,7 @@ function saveNewDistress() {
     var notification_message = $('#notification_message').val();
     var principal = $('#principal').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal=='') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -10863,8 +10863,8 @@ function saveNewDistress() {
             description: description,
             notification_date: notification_date,
             location: location,
-            notification_message:notification_message,
-            principal:principal,
+            notification_message: notification_message,
+            principal: principal,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
@@ -10950,8 +10950,8 @@ function saveDistress(param) {
             location: location,
             file_status: file_status,
             remarks: remarks,
-            notification_message:notification_message,
-            principal:principal,
+            notification_message: notification_message,
+            principal: principal,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
@@ -11113,7 +11113,7 @@ function saveNewImmovableProperty() {
     var notification_message = $('#notification_message').valid();
     var principal = $('#principal').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal=='') {
+    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -11126,8 +11126,8 @@ function saveNewImmovableProperty() {
             description: description,
             notification_date: notification_date,
             location: location,
-            notification_message:notification_message,
-            principal:principal,
+            notification_message: notification_message,
+            principal: principal,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
@@ -11197,7 +11197,7 @@ function saveImmovableProperty(param) {
     var remarks = $('#remarks').val();
     var principal = $('#principal').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_id == '' || description == '' || principal=='' ) {
+    if (unique_file_id == '' || client_uid == '' || assignee_id == '' || description == '' || principal == '') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
@@ -11211,10 +11211,10 @@ function saveImmovableProperty(param) {
             description: description,
             notification_date: notification_date,
             notification_message: notification_message,
-            location:location,
+            location: location,
             file_status: file_status,
             remarks: remarks,
-            principal:principal,
+            principal: principal,
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');

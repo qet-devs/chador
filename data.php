@@ -6131,8 +6131,9 @@ switch ($id) {
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "Client information saved successfully", "success");</script>';
-
+            if (insertFileIntoTenants($unique_client_id, $unique_client_id, '', '5000', 'clients')) {
+                echo '<script>swal("Success!", "Client information saved successfully", "success");</script>';
+            }
             $resulta = mysql_query("insert into log values('0','" . $username . " creates new Clients','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newClient();},500);</script>";
         } else {
@@ -6154,14 +6155,16 @@ switch ($id) {
         $certificate_of_incorporation = $_GET['certificate_of_incorporation'];
         $contact_person = strtoupper($_GET['contact_person']);
         $contact_phone = $_GET['contact_phone'];
+        $unique_client_id = $_GET['unique_client_id'];
 
         $resultg = mysql_query("UPDATE `clients` SET `client_name`='" . $client_name . "',`address`='" . $address . "',`location`='" . $location . "',`phone`='" . $phone . "',`pin_registration`='" . $pin_registration . "',`vat_registration`='" . $vat_registration . "',`certificate_of_incorporation`='" . $certificate_of_incorporation . "',`email`='" . $email . "',`national_id`='" . $national_id . "',`contact_phone`='" . $contact_phone . "',`contact_person`='" . $contact_person . "',`username`='" . $username . "' WHERE `id`='" . $id . "'") or die (mysql_error());
 
         if ($resultg) {
-            $resulta = mysql_query("insert into log values('0','" . $username . " updates  client info where client id:" . $id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            if (updatePrincipalAmountInTenants($unique_client_id, $principal)) {
+                $resulta = mysql_query("insert into log values('0','" . $username . " updates  client info where client id:" . $id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
 
-            echo '<script>swal("Success!", "client Info updated!", "success");</script>';
-
+                echo '<script>swal("Success!", "client Info updated!", "success");</script>';
+            }
             echo "<script>setTimeout(function() {findClient();},500);</script>";
         } else {
             echo '<script>swal("Error", "Client Info not Saved!", "error");</script>';
@@ -6213,6 +6216,7 @@ switch ($id) {
         $notification_date = $_GET['notification_date'];
         $notification_message = $_GET['notification_message'];
         $principal = $_GET['principal'];
+        $source = 'Debt_collection';
 
 
         $resultx = mysql_query('SELECT * FROM `debt_collections` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
@@ -6221,11 +6225,13 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `debt_collections`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`,`principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','".$principal."')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `debt_collections`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`,`principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','" . $principal . "')") or die (mysql_error());
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "Debt collection file created successfully", "success");</script>';
+            if (insertFileIntoTenants($unique_file_id, $client_uid, $referring_client_uid, $principal, $source)) {
+                echo '<script>swal("Success!", "Debt collection file created successfully", "success");</script>';
+            }
 
             $resulta = mysql_query("insert into log values('0','" . $username . " created debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newDebtCollection();},500);</script>";
@@ -6249,12 +6255,13 @@ switch ($id) {
         $principal = $_GET['principal'];
 
 
-        $resultc = mysql_query("update  `debt_collections` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' ,`principal`='".$principal."',   `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
+        $resultc = mysql_query("update  `debt_collections` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' ,`principal`='" . $principal . "',   `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "Debt collection file updated successfully", "success");</script>';
-
+            if (updatePrincipalAmountInTenants($unique_file_id, $principal)) {
+                echo '<script>swal("Success!", "Debt collection file updated successfully", "success");</script>';
+            }
             $resulta = mysql_query("insert into log values('0','" . $username . " updated debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {findDebtCollection();},500);</script>";
         } else {
@@ -6307,6 +6314,7 @@ switch ($id) {
         $notification_date = $_GET['notification_date'];
         $notification_message = $_GET['notification_message'];
         $principal = $_GET['principal'];
+        $source = 'Warrant';
 
 
         $resultx = mysql_query('SELECT * FROM `warrants` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
@@ -6315,12 +6323,13 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `warrants`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `file_status`, `notification_message`, `username`, `stamp`, `date`, `time`, `status`, `principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "', 'open','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '1', '".$principal."')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `warrants`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `file_status`, `notification_message`, `username`, `stamp`, `date`, `time`, `status`, `principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "', 'open','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '1', '" . $principal . "')") or die (mysql_error());
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "warrant file created successfully", "success");</script>';
-
+            if (insertFileIntoTenants($unique_file_id, $client_uid, $referring_client_uid, $principal, $source)) {
+                echo '<script>swal("Success!", "warrant file created successfully", "success");</script>';
+            }
             $resulta = mysql_query("insert into log values('0','" . $username . " created warrant file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newWarrant();},500);</script>";
         } else {
@@ -6344,12 +6353,13 @@ switch ($id) {
         $principal = $_GET['principal'];
 
 
-        $resultc = mysql_query("update  `warrants` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "', `principal`='".$principal."' where `id` = '" . $param . "'");
+        $resultc = mysql_query("update  `warrants` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "', `principal`='" . $principal . "' where `id` = '" . $param . "'");
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "warrant file updated successfully", "success");</script>';
-
+            if (updatePrincipalAmountInTenants($unique_file_id, $principal)) {
+                echo '<script>swal("Success!", "warrant file updated successfully", "success");</script>';
+            }
             $resulta = mysql_query("insert into log values('0','" . $username . " updated Warrant file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {findWarrant();},500);</script>";
         } else {
@@ -6429,6 +6439,7 @@ switch ($id) {
         $location = $_GET['location'];
         $notification_message = $_GET['notification_message'];
         $principal = $_GET['principal'];
+        $source = 'distress';
 
 
         $resultx = mysql_query('SELECT * FROM `distress` WHERE `client_uid`="' . $client_uid . '" and `billable_client_uid`="' . $billable_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
@@ -6437,12 +6448,13 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `distress`( `client_uid`, `billable_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `stamp`, `date`, `time`,`file_status`, `notification_message`, `principal`) VALUES ('" . $client_uid . "', '" . $billable_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', 'open', '".$notification_message."', '".$principal."')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `distress`( `client_uid`, `billable_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `stamp`, `date`, `time`,`file_status`, `notification_message`, `principal`) VALUES ('" . $client_uid . "', '" . $billable_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', 'open', '" . $notification_message . "', '" . $principal . "')") or die (mysql_error());
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "Distress file created successfully", "success");</script>';
-
+            if (insertFileIntoTenants($unique_file_id, $client_uid, $billable_client_uid, $principal, $source)) {
+                echo '<script>swal("Success!", "Distress file created successfully", "success");</script>';
+            }
             $resulta = mysql_query("insert into log values('0','" . $username . " created distress file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newDistress();},500);</script>";
         } else {
@@ -6466,12 +6478,13 @@ switch ($id) {
         $principal = $_GET['principal'];
 
 
-        $resultc = mysql_query("update  `distress` set `client_uid` ='" . $client_uid . "' , `billable_client_uid` ='" . $billable_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `location`='" . $location . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "', `notification_message`='".$notification_message."', `principal`='".$principal."' where `id` = '" . $param . "'");
+        $resultc = mysql_query("update  `distress` set `client_uid` ='" . $client_uid . "' , `billable_client_uid` ='" . $billable_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `location`='" . $location . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "', `notification_message`='" . $notification_message . "', `principal`='" . $principal . "' where `id` = '" . $param . "'");
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "Distress file updated successfully", "success");</script>';
-
+            if (updatePrincipalAmountInTenants($billable_client_uid, $principal)) {
+                echo '<script>swal("Success!", "Distress file updated successfully", "success");</script>';
+            }
             $resulta = mysql_query("insert into log values('0','" . $username . " updated distress file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {findDistress();},500);</script>";
         } else {
@@ -6525,6 +6538,7 @@ switch ($id) {
         $location = $_GET['location'];
         $notification_message = $_GET['notification_message'];
         $principal = $_GET['principal'];
+        $source = 'immovable_property';
 
 
         $resultx = mysql_query('SELECT * FROM `immovable_property` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
@@ -6533,12 +6547,13 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `immovable_property`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `stamp`, `date`, `time`, `notification_message`, `principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '".$notification_message."', '".$principal."')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `immovable_property`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `stamp`, `date`, `time`, `notification_message`, `principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', '" . $notification_message . "', '" . $principal . "')") or die (mysql_error());
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "Immovable Property file created successfully", "success");</script>';
-
+            if (insertFileIntoTenants($unique_file_id, $client_uid, $referring_client_uid, $principal, $source)) {
+                echo '<script>swal("Success!", "Immovable Property file created successfully", "success");</script>';
+            }
             $resulta = mysql_query("insert into log values('0','" . $username . " created distress file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newImmovableProperty();},500);</script>";
         } else {
@@ -6562,12 +6577,13 @@ switch ($id) {
         $principal = $_GET['principal'];
 
 
-        $resultc = mysql_query("update  `immovable_property` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `location`='" . $location . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "', `notification_message`='".$notification_message."', `principal`='".$principal."' where `id` = '" . $param . "'");
+        $resultc = mysql_query("update  `immovable_property` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `location`='" . $location . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "', `notification_message`='" . $notification_message . "', `principal`='" . $principal . "' where `id` = '" . $param . "'");
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "Immovable Property file updated successfully", "success");</script>';
-
+            if (updatePrincipalAmountInTenants($unique_file_id, $principal)) {
+                echo '<script>swal("Success!", "Immovable Property file updated successfully", "success");</script>';
+            }
             $resulta = mysql_query("insert into log values('0','" . $username . " updated immovable_property file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {findImmovableProperty();},500);</script>";
         } else {
@@ -6621,6 +6637,7 @@ switch ($id) {
         $notification_date = $_GET['notification_date'];
         $notification_message = $_GET['notification_message'];
         $principal = $_GET['principal'];
+        $source = 'repossession';
 
 
         $resultx = mysql_query('SELECT * FROM `repossession` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
@@ -6629,12 +6646,13 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `repossession`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`, `file_status`, `principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', 'open', '".$principal."')");
+        $resultc = mysql_query("INSERT INTO `repossession`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`, `file_status`, `principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "', 'open', '" . $principal . "')");
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "Repossession file created successfully", "success");</script>';
-
+            if (insertFileIntoTenants($unique_file_id, $client_uid, $referring_client_uid, $principal, $source)) {
+                echo '<script>swal("Success!", "Repossession file created successfully", "success");</script>';
+            }
             $resulta = mysql_query("insert into log values('0','" . $username . " created debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newRepossession();},500);</script>";
         } else {
@@ -6658,12 +6676,13 @@ switch ($id) {
         $principal = $_GET['principal'];
 
 
-        $resultc = mysql_query("update  `repossession` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "', `principal`='".$principal."' where `id` = '" . $param . "'");
+        $resultc = mysql_query("update  `repossession` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' , `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "', `principal`='" . $principal . "' where `id` = '" . $param . "'");
 
 
         if ($resultc) {
-            echo '<script>swal("Success!", "Repossession file updated successfully", "success");</script>';
-
+            if (updatePrincipalAmountInTenants($unique_file_id, $principal)) {
+                echo '<script>swal("Success!", "Repossession file updated successfully", "success");</script>';
+            }
             $resulta = mysql_query("insert into log values('0','" . $username . " updated debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {findRepossession();},500);</script>";
         } else {

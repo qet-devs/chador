@@ -298,6 +298,24 @@ function checkinvoiceexists($key)
 
 }
 
+function insertFileIntoTenants($unique_file_id, $client_uid, $billable_client_uid, $principal, $source)
+{
+    return mysql_query("INSERT INTO `tenants`(`tid`, `roomno`, `bname`, `dname`,  `total_deposit`, `lof`, `status`, `stamp`, `date`) VALUES ('" . generateUniqueID('tenants') . "', '" . $unique_file_id . "','" . $client_uid . "','" . $billable_client_uid . "', '" . $principal . "', '" . $source . "', 1, '" . date('YmdHi') . "','" . date('d/m/Y') . "')");
+}
+
+function updatePrincipalAmountInTenants($unique_file_id, $principal)
+{
+    return mysql_query("update tenants set `total_deposit`='" . $principal . "' where `tid`='" . $unique_file_id . "'");
+}
+
+function generateUniqueID($table_name)
+{
+    $resulty = mysql_query("select * from " . $table_name . " order by id desc limit 0,1");
+    $rowy = mysql_fetch_array($resulty);
+    return stripslashes($rowy['id']) + 1;
+}
+
+
 function postautocreditnote($invid, $date, $username)
 {
 
@@ -2392,9 +2410,10 @@ function displayClientName($param)
 
 function displayUserName($param)
 {
-    $result = mysql_query('select * from users where name = "'.$param.'"');
+    $result = mysql_query('select * from users where name = "' . $param . '"');
     $row = mysql_fetch_array($result);
 
     return stripslashes($row['fullname']);
 }
+
 ?>
