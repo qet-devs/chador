@@ -300,7 +300,7 @@ function checkinvoiceexists($key)
 
 function insertFileIntoTenants($unique_file_id, $client_uid, $billable_client_uid, $principal, $source)
 {
-    return mysql_query("INSERT INTO `tenants`(`tid`, `roomno`, `bname`, `dname`,  `total_deposit`, `lof`, `status`, `stamp`, `date`) VALUES ('" . generateUniqueID('tenants') . "', '" . $unique_file_id . "','" . $client_uid . "','" . $billable_client_uid . "', '" . $principal . "', '" . $source . "', 1, '" . date('YmdHi') . "','" . date('d/m/Y') . "')");
+    return mysql_query("INSERT INTO `tenants`(`tid`, `roomno`, `bname`, `dname`,  `total_deposit`, `lof`, `status`, `stamp`, `date`) VALUES ('" . $unique_file_id . "', '" . $unique_file_id . "','" . displayClientName($client_uid) . "','" . displayClientName($billable_client_uid) . "', '" . $principal . "', '" . $source . "', 1, '" . date('YmdHi') . "','" . date('d/m/Y') . "')");
 }
 
 function updatePrincipalAmountInTenants($unique_file_id, $principal)
