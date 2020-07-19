@@ -6160,7 +6160,7 @@ switch ($id) {
         $resultg = mysql_query("UPDATE `clients` SET `client_name`='" . $client_name . "',`address`='" . $address . "',`location`='" . $location . "',`phone`='" . $phone . "',`pin_registration`='" . $pin_registration . "',`vat_registration`='" . $vat_registration . "',`certificate_of_incorporation`='" . $certificate_of_incorporation . "',`email`='" . $email . "',`national_id`='" . $national_id . "',`contact_phone`='" . $contact_phone . "',`contact_person`='" . $contact_person . "',`username`='" . $username . "' WHERE `id`='" . $id . "'") or die (mysql_error());
 
         if ($resultg) {
-            if (updatePrincipalAmountInTenants($unique_client_id, $principal)) {
+            if (updateFileInTenants($unique_client_id, $client_uid, '', $principal)) {
                 $resulta = mysql_query("insert into log values('0','" . $username . " updates  client info where client id:" . $id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
 
                 echo '<script>swal("Success!", "client Info updated!", "success");</script>';
@@ -6259,7 +6259,7 @@ switch ($id) {
 
 
         if ($resultc) {
-            if (updatePrincipalAmountInTenants($unique_file_id, $principal)) {
+            if (updateFileInTenants($unique_file_id, $client_uid, $referring_client_uid, $principal)) {
                 echo '<script>swal("Success!", "Debt collection file updated successfully", "success");</script>';
             }
             $resulta = mysql_query("insert into log values('0','" . $username . " updated debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
@@ -6357,7 +6357,7 @@ switch ($id) {
 
 
         if ($resultc) {
-            if (updatePrincipalAmountInTenants($unique_file_id, $principal)) {
+            if (updateFileInTenants($unique_file_id, $client_uid, $referring_client_uid, $principal)) {
                 echo '<script>swal("Success!", "warrant file updated successfully", "success");</script>';
             }
             $resulta = mysql_query("insert into log values('0','" . $username . " updated Warrant file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
@@ -6482,7 +6482,7 @@ switch ($id) {
 
 
         if ($resultc) {
-            if (updatePrincipalAmountInTenants($billable_client_uid, $principal)) {
+            if (updateFileInTenants($unique_file_id, $client_uid, $billable_client_uid, $principal)) {
                 echo '<script>swal("Success!", "Distress file updated successfully", "success");</script>';
             }
             $resulta = mysql_query("insert into log values('0','" . $username . " updated distress file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
@@ -6581,7 +6581,7 @@ switch ($id) {
 
 
         if ($resultc) {
-            if (updatePrincipalAmountInTenants($unique_file_id, $principal)) {
+            if (updateFileInTenants($unique_file_id, $client_uid, $referring_client_uid, $principal)) {
                 echo '<script>swal("Success!", "Immovable Property file updated successfully", "success");</script>';
             }
             $resulta = mysql_query("insert into log values('0','" . $username . " updated immovable_property file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");

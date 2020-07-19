@@ -303,9 +303,9 @@ function insertFileIntoTenants($unique_file_id, $client_uid, $billable_client_ui
     return mysql_query("INSERT INTO `tenants`(`tid`, `roomno`, `bname`, `dname`,  `total_deposit`, `lof`, `status`, `stamp`, `date`) VALUES ('" . $unique_file_id . "', '" . $unique_file_id . "','" . displayClientName($client_uid) . "','" . displayClientName($billable_client_uid) . "', '" . $principal . "', '" . $source . "', 1, '" . date('YmdHi') . "','" . date('d/m/Y') . "')");
 }
 
-function updatePrincipalAmountInTenants($unique_file_id, $principal)
+function updateFileInTenants($unique_file_id,$client_uid, $billable_client_uid, $principal)
 {
-    return mysql_query("update tenants set `total_deposit`='" . $principal . "' where `tid`='" . $unique_file_id . "'");
+    return mysql_query("update tenants set `total_deposit`='" . $principal . "', `bname`='" . displayClientName($client_uid) . "',`dname`='" . displayClientName($billable_client_uid) . "' where `tid`='" . $unique_file_id . "'");
 }
 
 function generateUniqueID($table_name)
