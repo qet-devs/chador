@@ -10026,7 +10026,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
              $param=$tid=$_GET['param'];
              $resulta =mysql_query("select * from tenants where tid='".$param."' limit 0,1");
               $row=mysql_fetch_array($resulta);
-              $item=stripslashes($row['tid']).'-'.displayClientName($row['bname']).'-'.displayClientName($row['dname']).'-'.stripslashes($row['roomno']);
+              $item=stripslashes($row['tid']).'-'.$row['bname'].'-'.$row['dname'].'-'.stripslashes($row['roomno']);
 
 if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
 else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
@@ -10076,7 +10076,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
             $num_resultsa = mysql_num_rows($resulta); 
             for ($i=0; $i <$num_resultsa; $i++) {
             $row=mysql_fetch_array($resulta);
-            $item=stripslashes($row['tid']).'  '.stripslashes($row['bname']);
+            $item=stripslashes($row['tid']).'  '.stripslashes($row['bname']).' '.stripslashes($row['dname']).' '. $row['roomno'];
             $tenants.='"'.$item.'",';
             }
             $len=strlen($tenants);
@@ -10111,9 +10111,9 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                         <input type="hidden" id="totitems"/>
                         </div>
 
-                        <label style="float:left" class="col-sm-1">Month:<span style="color:#f00">*</span></label>
+                        <label style="float:left" class="col-sm-1"></label>
                         <div class="col-sm-2 controls">
-                        <input type="text" placeholder="" id="month" readonly>
+                        <input type="hidden" placeholder="" id="month" value="'.date('m_Y').'"  readonly>
                         </div>
 
                       </div>
