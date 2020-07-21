@@ -6236,10 +6236,10 @@ switch ($id) {
             // if (insertFileIntoTenants($unique_file_id, $client_uid, $referring_client_uid, $principal, $source)) {
             //     echo '<script>swal("Success!", "Debt collection file created successfully", "success");</script>';
             // }
-            echo '<script>swal("Success!", "Case file created successfully '.$case_type.'  "success");</script>';
+            echo '<script>swal("Success!", "Case file created successfully   "success");</script>';
 
 
-            $resulta = mysql_query("insert into log values('0','" . $username . " created case file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            $resulta = mysql_query("insert into log values('0','" . $username . " created case file of no " . $client_uid . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newCaseManagement();},500);</script>";
         } else {
             echo '<script>swal("Error", "failed to create a new case record!", "error");</script>';

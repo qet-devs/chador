@@ -30790,7 +30790,7 @@ case 220:
                                     <div class="panel widget">
                                         <div class="panel-heading vd_bg-grey">
                                             <h3 class="panel-title"><span class="menu-icon"> <i
-                                                            class="fa fa-th-list"></i> </span> New Case Management
+                                                            class="fa fa-th-list"></i> </span> New Case File
                                             </h3>
                                         </div>
                                         <div class="panel-body">
@@ -31024,9 +31024,9 @@ case 220:
           
     break;
 
-//    FIND DEBT COLLECTION PANEL
+//    FIND CASE MANAGEMENT PANEL
 case 301:
-     $result = mysql_query("insert into log values('','".$username." accesses find debt collection Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+     $result = mysql_query("insert into log values('','".$username." accesses find case management Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
     echo ' <div class="vd_container" id="container">
                     <div class="vd_content clearfix">
@@ -31040,8 +31040,7 @@ case 301:
                                     <div class="panel widget">
                                         <div class="panel-heading vd_bg-grey">
                                             <h3 class="panel-title"><span class="menu-icon"> <i
-                                                            class="fa fa-dot-circle-o"></i> </span>Debt
-                                                Collections-Search
+                                                            class="fa fa-dot-circle-o"></i> </span>Case Files-Search
                                                 Panel</h3>
                                         </div>
                                         <!-- panel heading -->
@@ -31050,11 +31049,11 @@ case 301:
                                                 <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Unique File ID</th>
-                                                    <th>Description</th>
-                                                    <th>Status</th>
-                                                    <th>Assignee</th>
-                                                    <th>Entry Date</th>
+                                                    <th>Case Type</th>
+                                                    <th>Client No</th>
+                                                    <th>Referrer No</th>
+                                                    <th>File status</th>
+                                                    <th>Notification Date</th>
                                                 </tr>
                                                 </thead>
                                             </table>
@@ -31101,14 +31100,14 @@ case 301:
                             }
 
                             if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(300)">Edit Debt File</label><br/>';}
+                                                              onclick="majoropen(300)">Edit Case File</label><br/>';}
                             if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(301)">Debt File Info</label><br/>';}
+                                                              onclick="majoropen(301)">Case File Info</label><br/>';}
                             // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                             //                                   onclick="majoropen(401)">Property Description</label><br/>';}
                            ////////////////////
                             if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(302)">Archive Debt File</label><br/>';}
+                                                              onclick="majoropen(302)">Archive Case File</label><br/>';}
 
                             echo '
                             <input class="input-border-btm" type="hidden" id="tenparam" required>
@@ -31166,7 +31165,7 @@ case 301:
     } </style>';
     break;
     
-// EDIT DEBT COLLECTION PANEL
+// EDIT CASE MANAGEMENT PANEL
     case 302:
 
   echo '
@@ -31174,15 +31173,15 @@ case 301:
 <div class="vd_content clearfix" style="">
         <div style="width:100%;padding:20px">
         <div class="panel-heading vd_bg-grey">
-            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit Debt Collection File</h3>
+            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit Case File</h3>
           </div>
         <select id="intcombo" class="text-capitalize">
         <option value="" selected>Select One...</option>';
-           $result =mysql_query("select * from debt_collections where status=1");
+           $result =mysql_query("select * from case_files where status=1");
             $num_results = mysql_num_rows($result);
               for ($i=0; $i <$num_results; $i++) {
                   $row=mysql_fetch_array($result);
-                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['case_type']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referrer_uid']).'</option>';
                 }
            echo'</select>
              <div class="cleaner_h10"></div>
@@ -31216,11 +31215,11 @@ echo "
 
         break;
 
-//        EDIT DEBT COLLECTION FORM
+//        EDIT CASE MANAGEMENT FORM
         case 303:
   $param=$_GET['param'];
-      mysql_query("insert into log values('','".$username." accesses Edit Debt Collection form.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
-      $result = mysql_query('select * from debt_collections where id="' . $param . '" limit 0,1');
+      mysql_query("insert into log values('','".$username." accesses Edit Case Files form.Record ID:".$param."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+      $result = mysql_query('select * from case_files where id="' . $param . '" limit 0,1');
 
                 $row = mysql_fetch_array($result);
 
@@ -31235,18 +31234,18 @@ echo "
                                     <div class="panel widget">
                                         <div class="panel-heading vd_bg-grey">
                                             <h3 class="panel-title"><span class="menu-icon"> <i
-                                                            class="fa fa-th-list"></i> </span> Edit Debt Collection
+                                                            class="fa fa-th-list"></i> </span> Edit Case File
                                             </h3>
                                         </div>
                                         <div class="panel-body">
                                             <form class="form-horizontal" action="#" role="form">
                                                 <div class="form-group">
-                                                    <label style="float:left" class="col-sm-4">Debt Collection Unique
-                                                        File ID<span
+                                                    <label style="float:left" class="col-sm-4">Case Files Type
+                                                        <span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <input type="text" id="unique_file_id"
-                                                               value="' . $row['unique_file_number'] . '" disabled>
+                                                        <input type="text" id="case_type"
+                                                               value="' . $row[' case_type'] . '" disabled>
                                                     </div>
                                                 </div>
 
@@ -31269,7 +31268,7 @@ echo "
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
                                                         <select id="referring_client_uid" class="text-capitalize">
-                                                            <option value="'.$row['referring_client_uid'].'" selected>'.displayClientName($row['referring_client_uid']).'</option>
+                                                            <option value="'.$row['referrer_uid'].'" selected>'.displayClientName($row['referrer_uid']).'</option>
                                                             ';
                 displayClients();
                 echo '
@@ -31277,6 +31276,19 @@ echo "
                                                     </div>
                                                 </div>
 
+                                                
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Debtor Client<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <select id="debtor_uid" class="text-capitalize">
+                                                            <option value="'.$row['debtor_uid'].'" selected>'.displayDebtorsName($row['debtor_uid']).'</option>
+                                                            ';
+                displayDebtors();
+                echo '
+                                                        </select>
+                                                    </div>
+                                                </div>
 
                                                 <div class="form-group">
                                                     <label style="float:left" class="col-sm-4">Assignee<span
@@ -31426,7 +31438,7 @@ echo "
                                                 <div class="col-sm-4"></div>
                                                 <div class="col-sm-7">
                                                     <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                                            onclick="saveDebtCollection('.$param.')"><i class="icon-ok"></i> Update
+                                                            onclick="saveCaseManagement('.$param.')"><i class="icon-ok"></i> Update
                                                     </button>
                                                     <button class="btn vd_btn" type="button" onclick="hidecont()">
                                                         Cancel

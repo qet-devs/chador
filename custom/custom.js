@@ -547,16 +547,16 @@ function majoropen(a) {
                 break;
 
             case 300:
-                editDebtCollection(b);
+                editCaseManagement(b);
                 break;
             case 301:
-                debtCollectionFile(b);
+                caseManagementFile(b);
                 break;
             case 302:
-                debtCollectionArchive(b);
+                caseManagementArchive(b);
                 break;
             case 303:
-                debtCollectionActivate(b);
+                caseManagementActivate(b);
                 break;
             case 400:
                 editWarrantFile(b);

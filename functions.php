@@ -2391,6 +2391,16 @@ function displayClients()
         echo '</option>';
     }
 }
+// display client name
+
+function displayDebtorsName($param)
+{
+    $result = mysql_query('select * from clients where `unique_client_id`="' . $param . '"');
+    $row = mysql_fetch_array($result);
+
+    return stripslashes($row['debtor_uid']);
+}
+
 function displayDebtors()
 {
     $result = mysql_query("select debtor_uid from clients where status=1");
