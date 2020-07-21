@@ -10036,7 +10036,7 @@ function archivedClients() {
 /**end of client module */
 
 
-// DEBT COLLECTION MODEULE
+// CASE MANAGEMENT MODEULE
 // START OF DEBT COLLECTION
 /**beginning of debt collection module */
 

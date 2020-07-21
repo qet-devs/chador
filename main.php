@@ -222,9 +222,9 @@ if (isset($_SESSION['valid_user'])) {
                                                         <li>
                                                             <label>
                                                                 <input type="radio" name="category" value="invoices">
-                                                                <span>Debt Collection</span></label>
+                                                                <span>Case Management</span></label>
                                                         </li>
-                                                        <li>
+                                                        <!-- <li>
                                                             <label>
                                                                 <input type="radio" name="category" value="receipts">
                                                                 <span>Warrants</span></label>
@@ -244,7 +244,7 @@ if (isset($_SESSION['valid_user'])) {
                                                             <label>
                                                                 <input type="radio" name="category" value="repossess">
                                                                 <span>Repossession</span></label>
-                                                        </li>
+                                                        </li> -->
 
 
                                                     </ul>
@@ -478,7 +478,7 @@ if (isset($_SESSION['valid_user'])) {
                             <li>
                                 <a href="javascript:void(0);" data-action="click-trigger">
                                     <span class="menu-icon"><i class="fa fa-file-text-o"> </i></span>
-                                    <span class="menu-text">Debt collection</span>
+                                    <span class="menu-text">Case Management</span>
                                     <span class="menu-badge"><span class="badge vd_bg-black-30"><i
                                                     class="fa fa-angle-down"></i></span></span>
                                 </a>
@@ -488,8 +488,8 @@ if (isset($_SESSION['valid_user'])) {
                                         <li style="">
 
                                             <?php if ($rightsarr[109] == 'YES') {
-                                                echo '<a  href="#" onclick="newDebtCollection()" >
-                        <span class="menu-text">New Debt</span>  
+                                                echo '<a  href="#" onclick="newCaseManagement()" >
+                        <span class="menu-text">New Case Management</span>  
                     </a>';
                                             } ?>
                                         </li>
@@ -498,7 +498,7 @@ if (isset($_SESSION['valid_user'])) {
                                         <li>
                                             <?php if ($rightsarr[110] == 'YES') {
                                                 echo '<a  href="#" onclick="findDebtCollection()" >
-                        <span class="menu-text">Find Debt</span>  
+                        <span class="menu-text">Find Case Management</span>  
                     </a>';
                                             } ?>
                                         </li>
@@ -506,7 +506,7 @@ if (isset($_SESSION['valid_user'])) {
                                         <li>
                                             <?php if ($rightsarr[111] == 'YES') {
                                                 echo '<a  href="#" onclick="editDebtCollectionEntry()" >
-                        <span class="menu-text">Edit Debt Info</span>  
+                        <span class="menu-text">Edit Case Management Info</span>  
                     </a>';
                                             } ?>
                                         </li>
@@ -515,7 +515,7 @@ if (isset($_SESSION['valid_user'])) {
                                         <li>
                                             <?php if ($rightsarr[112] == 'YES') {
                                                 echo '<a  href="#" onclick="debtCollectionFileEntry()" >
-                        <span class="menu-text">Debt File</span>  
+                        <span class="menu-text">Case Management File</span>  
                         </a>';
                                             } ?>
                                         </li>
@@ -524,7 +524,7 @@ if (isset($_SESSION['valid_user'])) {
                                         <li>
                                             <?php if ($rightsarr[113] == 'YES') {
                                                 echo '<a  href="#" onclick="debtCollectionUploadsEntry()" >
-                        <span class="menu-text">Debt Files Upload</span>  
+                        <span class="menu-text">Case Management Files Upload</span>  
                         </a>';
                                             } ?>
                                         </li>
@@ -532,7 +532,7 @@ if (isset($_SESSION['valid_user'])) {
                                         <li>
                                             <?php if ($rightsarr[114] == 'YES') {
                                                 echo '<a  href="#" onclick="archiveDebtCollectionEntry()" >
-                        <span class="menu-text">Archive Debt</span>  
+                        <span class="menu-text">Archive Case Management</span>  
                         </a>';
                                             } ?>
                                         </li>
@@ -541,7 +541,7 @@ if (isset($_SESSION['valid_user'])) {
                                         <li>
                                             <?php if ($rightsarr[115] == 'YES') {
                                                 echo '<a  href="#" onclick="findArchivedDebtCollection()" >
-                        <span class="menu-text">Archived Debts</span>  
+                        <span class="menu-text">Archived Case Management</span>  
                         </a>';
                                             } ?>
                                         </li>
@@ -551,304 +551,8 @@ if (isset($_SESSION['valid_user'])) {
                                 </div>
                             </li>
 
-                            <li>
-                                <a href="javascript:void(0);" data-action="click-trigger">
-                                    <span class="menu-icon"><i class="fa fa-gavel"> </i></span>
-                                    <span class="menu-text">Warrants</span>
-                                    <span class="menu-badge"><span class="badge vd_bg-black-30"><i
-                                                    class="fa fa-angle-down"></i></span></span>
-                                </a>
-                                <div class="child-menu" data-action="click-target">
-                                    <ul>
-
-                                        <li style="">
-                                            <?php if ($rightsarr[116] == 'YES') {
-                                                echo '<a  href="#" onclick="newWarrant()" >
-                        <span class="menu-text">New Warrant</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[117] == 'YES') {
-                                                echo '<a  href="#" onclick="findWarrant()" >
-                        <span class="menu-text">Find Warrant</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[118] == 'YES') {
-                                                echo '<a  href="#" onclick="editWarrant()" >
-                        <span class="menu-text">Edit Warrant</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[119] == 'YES') {
-                                                echo '<a  href="#" onclick="warrantFileEntry()" >
-                        <span class="menu-text"> Warrant File</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[120] == 'YES') {
-                                                echo '<a  href="#" onclick="warrantUploadsEntry()" >
-                        <span class="menu-text">Warrant Files Upload</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[121] == 'YES') {
-                                                echo '<a  href="#" onclick="archiveWarrantEntry()" >
-                        <span class="menu-text">Archive Warrant</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[122] == 'YES') {
-                                                echo '<a  href="#" onclick="findArchivedWarrant()" >
-                        <span class="menu-text">Archived Warrant</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </li>
-
-
-                            <li>
-                                <a href="javascript:void(0);" data-action="click-trigger">
-                                    <span class="menu-icon"><i class="fa fa-briefcase"> </i></span>
-                                    <span class="menu-text">Distress</span>
-                                    <span class="menu-badge"><span class="badge vd_bg-black-30"><i
-                                                    class="fa fa-angle-down"></i></span></span>
-                                </a>
-                                <div class="child-menu" data-action="click-target">
-                                    <ul>
-
-                                        <li style="">
-
-                                            <?php if ($rightsarr[123] == 'YES') {
-                                                echo '<a  href="#" onclick="newDistress()" >
-                        <span class="menu-text">New Distress</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[124] == 'YES') {
-                                                echo '<a  href="#" onclick="findDistress()" >
-                        <span class="menu-text">Find Distress</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[125] == 'YES') {
-                                                echo '<a  href="#" onclick="editDistressEntry()" >
-                        <span class="menu-text">Edit Distress</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[126] == 'YES') {
-                                                echo '<a  href="#" onclick="distressFileEntry()" >
-                        <span class="menu-text">Distress File</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[127] == 'YES') {
-                                                echo '<a  href="#" onclick="distressUploadsEntry()" >
-                        <span class="menu-text">Distress File Uploads</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[128] == 'YES') {
-                                                echo '<a  href="#" onclick="archiveDistressEntry()" >
-                        <span class="menu-text">Archive Distress</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[129] == 'YES') {
-                                                echo '<a  href="#" onclick="findArchivedDistress()" >
-                        <span class="menu-text">Archived Distress</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </li>
-
-                            <li>
-                                <a href="javascript:void(0);" data-action="click-trigger">
-                                    <span class="menu-icon"><i class="fa fa-building"> </i></span>
-                                    <span class="menu-text">Immovable Properties</span>
-                                    <span class="menu-badge"><span class="badge vd_bg-black-30"><i
-                                                    class="fa fa-angle-down"></i></span></span>
-                                </a>
-                                <div class="child-menu" data-action="click-target">
-                                    <ul>
-
-                                        <li style="">
-
-                                            <?php if ($rightsarr[130] == 'YES') {
-                                                echo '<a  href="#" onclick="newImmovableProperty()" >
-                        <span class="menu-text">New Immovable</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[131] == 'YES') {
-                                                echo '<a  href="#" onclick="findImmovableProperty()" >
-                        <span class="menu-text">Find Immovable</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[132] == 'YES') {
-                                                echo '<a  href="#" onclick="editImmovablePropertyEntry()" >
-                        <span class="menu-text">Edit Immovable</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[133] == 'YES') {
-                                                echo '<a  href="#" onclick="immovablePropertyFileEntry()" >
-                        <span class="menu-text">Immovable File</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[134] == 'YES') {
-                                                echo '<a  href="#" onclick="immovablePropertyUploadsEntry()" >
-                        <span class="menu-text">Immovable File Uploads</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[135] == 'YES') {
-                                                echo '<a  href="#" onclick="archiveImmovablePropertyEntry()" >
-                        <span class="menu-text">Archive Immovable</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[136] == 'YES') {
-                                                echo '<a  href="#" onclick="findArchivedImmovableProperty()" >
-                        <span class="menu-text">Archived Immovable</span>  
-                        </a>';
-                                            } ?> 
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </li>
-
-
-                            <!-- repossession -->
-                            <li>
-                                <a href="javascript:void(0);" data-action="click-trigger">
-                                    <span class="menu-icon"><i class="fa fa-list-alt"> </i></span>
-                                    <span class="menu-text">Repossession</span>
-                                    <span class="menu-badge"><span class="badge vd_bg-black-30"><i
-                                                    class="fa fa-angle-down"></i></span></span>
-                                </a>
-                                <div class="child-menu" data-action="click-target">
-                                    <ul>
-
-                                        <li style="">
-                                            <?php if ($rightsarr[137] == 'YES') {
-                                                echo '<a  href="#" onclick="newRepossession()" >
-                        <span class="menu-text">New Repossession</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[138] == 'YES') {
-                                                echo '<a  href="#" onclick="findRepossession()" >
-                        <span class="menu-text">Find Repossession</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[139] == 'YES') {
-                                                echo '<a  href="#" onclick="editRepossessionEntry()" >
-                        <span class="menu-text">Edit Repossession Info</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-                                        <li>
-                                            <?php if ($rightsarr[140] == 'YES') {
-                                                echo '<a  href="#" onclick="repossessionFileEntry()" >
-                        <span class="menu-text"> Repossession File</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[141] == 'YES') {
-                                                echo '<a  href="#" onclick="repossessionUploadsEntry()" >
-                        <span class="menu-text">Repossession Files Upload</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[142] == 'YES') {
-                                                echo '<a  href="#" onclick="archiveRepossessionEntry()" >
-                        <span class="menu-text">Archive Repossession</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-
-                                        <li>
-                                            <?php if ($rightsarr[143] == 'YES') {
-                                                echo '<a  href="#" onclick="findArchivedRepossession()" >
-                        <span class="menu-text">Archived Repossession</span>  
-                        </a>';
-                                            } ?>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </li>
-
-
-                            <!-- repossession -->
+                           
+                            <!-- case management -->
 
 
                             <li>
