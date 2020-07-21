@@ -9769,6 +9769,7 @@ function newClient() {
 function saveNewClient() {
     var unique_client_id = $('#unique_client_id').val();
     var client_name = $('#client_name').val();
+    var debtor_uid = $('#debtor_uid').val();
     var location = $('#location').val();
     var email = $('#email').val();
     var phone = $('#phone').val();
@@ -9788,6 +9789,7 @@ function saveNewClient() {
             id: 200,
             unique_client_id: unique_client_id,
             client_name: client_name,
+            debtor_uid:debtor_uid,
             phone: phone,
             email: email,
             address: address,
@@ -10050,6 +10052,55 @@ function newCaseManagement() {
         }
     });
 }
+
+//save new case management
+function saveCaseManagement() {
+    var  case_type = $('#case_type').val();
+    var client_uid = $('#client_uid').val();
+    var referrer_uid = $('#referrer_uid').val();
+    var debtor_uid = $('#debtor_uid').val();
+    var assignee_username = $('#assignee_username').val();
+    var notification_date = $('#notification_date').val();
+    var notification_message = $('#notification_message').val();
+    var description = $('#description').val();
+    var location = $('#location').val();
+    
+    var principal = $('#principal').val();
+
+
+    if (case_type == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
+        console.log(unique_file_id, client_uid, assignee_username, description);
+        swal('Error', 'Please fill all required fields', 'error');
+        return;
+    } else {
+        var data = {
+            id: 300,
+            case_type: case_type,
+            client_uid: client_uid,
+            referrer_uid: referrer_uid,
+            debtor_uid:debtor_uid,
+            assignee_username: assignee_username,
+            notification_date: notification_date,
+            notification_message: notification_message,
+            description: description,
+            location:location,
+            
+            principal: principal,
+        };
+
+        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
+        $.ajax({
+            url: 'data.php',
+            data: data,
+            success: function (data) {
+                $('#message').html(data);
+            }
+        });
+
+    }
+}
+
+
 
 // save new debt collect
 function saveNewDebtCollection() {

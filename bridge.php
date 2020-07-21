@@ -29629,9 +29629,17 @@ case 212:
                                             <input type="text" id="client_name" value="">
                                         </div>
                                     </div>
+                                    
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Debtor Name<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="debtor_uid" value="">
+                                        </div>
+                                    </div>
 
                                     <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Phone No<span
+                                        <label style="float:left" class="col-sm-4">Client Phone No<span
                                                     style="color:#f00">*</span></label>
                                         <div class="col-sm-8 controls">
                                             <input type="text" id="phone" value="">
@@ -29639,21 +29647,21 @@ case 212:
                                     </div>
 
                                     <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Email</label>
+                                        <label style="float:left" class="col-sm-4">Client Email</label>
                                         <div class="col-sm-8 controls">
                                             <input type="text" id="email" value="">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Address</label>
+                                        <label style="float:left" class="col-sm-4">Client Address</label>
                                         <div class="col-sm-8 controls">
                                             <input type="text" id="address" value="">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Location</span></label>
+                                        <label style="float:left" class="col-sm-4"> Client Location</span></label>
                                         <div class="col-sm-8 controls">
                                             <input type="text" id="location" value="">
                                         </div>
@@ -29905,6 +29913,13 @@ echo '
                                                     style="color:#f00">*</span></label>
                                         <div class="col-sm-8 controls">
                                             <input type="text" id="client_name" value="'.$row['client_name'].'">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="float:left" class="col-sm-4">Debtor Name<span
+                                                    style="color:#f00">*</span></label>
+                                        <div class="col-sm-8 controls">
+                                            <input type="text" id="debtor_uid" value="'.$row['debtor_uid'].'">
                                         </div>
                                     </div>
 
@@ -30787,9 +30802,13 @@ case 220:
                                             <div class="col-sm-8 controls">
                                                 <select id="case_type" class="text-capitalize">
                                                     <option value="" selected>Select One...</option>
-                                                    ';
-                                                    displayFileType();
-                                                    echo '
+                                                    <option value="" selected>DEBT COLLECTION</option>
+                                                    <option value="" selected>WARRANT</option>
+                                                    <option value="" selected>DISTRESS</option>
+                                                    <option value="" selected>REPOSSESSION</option>
+                                                    <option value="" selected>IMMOVABLE PROPERTIES</option>
+
+                                                   
                                                 </select>
                                             </div>
                                         </div>
@@ -30812,7 +30831,7 @@ case 220:
                                                     <label style="float:left" class="col-sm-4">Referring Client<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <select id="referrer_client_uid" class="text-capitalize">
+                                                        <select id="referrer_uid" class="text-capitalize">
                                                             <option value="" selected>Select One...</option>
                                                             ';
                                                             displayClients();
@@ -30828,7 +30847,7 @@ case 220:
                                                     <select id="debtor_uid" class="text-capitalize">
                                                         <option value="" selected>Select One...</option>
                                                         ';
-                                                        displayClients();
+                                                        displayDebtors();
                                                         echo '
                                                     </select>
                                                 </div>
@@ -30848,13 +30867,7 @@ case 220:
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label style="float:left" class="col-sm-4">Description<span
-                                                                style="color:#f00">*</span></label>
-                                                    <div class="col-sm-8 controls">
-                                                        <textarea id="description"> </textarea>
-                                                    </div>
-                                                </div>
+                                                
 
                                                 <div class="form-group">
                                                     <label style="float:left" class="col-sm-4">Notification Date</label>
@@ -30867,6 +30880,20 @@ case 220:
                                                     <label style="float:left" class="col-sm-4">Notification Message</label>
                                                     <div class="col-sm-8 controls">
                                                         <textarea id="notification_message"> </textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Description<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                        <textarea id="description"> </textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Location<span
+                                                                style="color:#f00">*</span></label>
+                                                    <div class="col-sm-8 controls">
+                                                    <input type="text" id="location" >
                                                     </div>
                                                 </div>
                                                                                             
@@ -30962,7 +30989,7 @@ case 220:
                                                 <div class="col-sm-4"></div>
                                                 <div class="col-sm-7">
                                                     <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                                            onclick="saveNewDebtCollection()"><i class="icon-ok"></i> Save
+                                                            onclick="saveCaseManagement()"><i class="icon-ok"></i> Save
                                                     </button>
                                                     <button class="btn vd_btn" type="button" onclick="hidecont()">
                                                         Cancel

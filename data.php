@@ -6110,6 +6110,7 @@ switch ($id) {
     case 200:
         $unique_client_id = $_GET['unique_client_id'];
         $client_name = strtoupper($_GET['client_name']);
+        $debtor_uid = strtoupper($_GET['debtor_uid']);
         $location = strtoupper($_GET['location']);
         $phone = $_GET['phone'];
         $email = $_GET['email'];
@@ -6127,7 +6128,7 @@ switch ($id) {
             echo '<script>swal("Error", "Clients with similar information already exists. !Consult the System Admin", "error");</script>';
         }
 
-        $resultc = mysql_query("INSERT INTO `clients`( `unique_client_id`, `client_name`, `address`, `location`, `phone`, `pin_registration`, `vat_registration`, `certificate_of_incorporation`, `email`, `national_id`, `contact_phone`, `contact_person`, `status`, `username`, `date`, `stamp`, `time`) VALUES ('" . $unique_client_id . "','" . $client_name . "','" . $address . "','" . $location . "','" . $phone . "','" . $pin_registration . "','" . $vat_registration . "','" . $certificate_of_incorporation . "','" . $email . "','" . $national_id . "','" . $contact_phone . "','" . $contact_person . "','1','" . $username . "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')");
+        $resultc = mysql_query("INSERT INTO `clients`( `unique_client_id`, `client_name`, `debtor_uid`, `address`, `location`, `phone`, `pin_registration`, `vat_registration`, `certificate_of_incorporation`, `email`, `national_id`, `contact_phone`, `contact_person`, `status`, `username`, `date`, `stamp`, `time`) VALUES ('" . $unique_client_id . "','" . $client_name . "', '".$debtor_uid."','" . $address . "','" . $location . "','" . $phone . "','" . $pin_registration . "','" . $vat_registration . "','" . $certificate_of_incorporation . "','" . $email . "','" . $national_id . "','" . $contact_phone . "','" . $contact_person . "','1','" . $username . "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')");
 
 
         if ($resultc) {
@@ -6145,6 +6146,7 @@ switch ($id) {
     case 201:
         $id = $_GET['param'];
         $client_name = strtoupper($_GET['client_name']);
+        $debtor_uid = strtoupper($_GET['debtor_uid']);
         $location = strtoupper($_GET['location']);
         $phone = $_GET['phone'];
         $email = $_GET['email'];
@@ -6157,7 +6159,7 @@ switch ($id) {
         $contact_phone = $_GET['contact_phone'];
         $unique_client_id = $_GET['unique_client_id'];
 
-        $resultg = mysql_query("UPDATE `clients` SET `client_name`='" . $client_name . "',`address`='" . $address . "',`location`='" . $location . "',`phone`='" . $phone . "',`pin_registration`='" . $pin_registration . "',`vat_registration`='" . $vat_registration . "',`certificate_of_incorporation`='" . $certificate_of_incorporation . "',`email`='" . $email . "',`national_id`='" . $national_id . "',`contact_phone`='" . $contact_phone . "',`contact_person`='" . $contact_person . "',`username`='" . $username . "' WHERE `id`='" . $id . "'") or die (mysql_error());
+        $resultg = mysql_query("UPDATE `clients` SET `client_name`='" . $client_name . "', `debtor_uid`='".$debtor_uid."',`address`='" . $address . "',`location`='" . $location . "',`phone`='" . $phone . "',`pin_registration`='" . $pin_registration . "',`vat_registration`='" . $vat_registration . "',`certificate_of_incorporation`='" . $certificate_of_incorporation . "',`email`='" . $email . "',`national_id`='" . $national_id . "',`contact_phone`='" . $contact_phone . "',`contact_person`='" . $contact_person . "',`username`='" . $username . "' WHERE `id`='" . $id . "'") or die (mysql_error());
 
         if ($resultg) {
             if (updateFileInTenants($unique_client_id, $client_uid, '', $principal)) {
@@ -6204,39 +6206,43 @@ switch ($id) {
 
     // this is the part of the code responsible for DEBT COLLECTION module data manipulation
 
-    /*****DEBT COLLECTION START*****/
-    // all DEBT COLLECTION data logic goes here
-//save new debt collection
+    /*****CASE MANAGEMENT START*****/
+    // all CASE MANAGEMENT data logic goes here
+//save new case management
     case 300:
-        $unique_file_id = $_GET['unique_file_id'];
+        $case_type = $_GET['case_type'];
         $client_uid = $_GET['client_uid'];
-        $referring_client_uid = $_GET['referring_client_uid'];
+        $referrer_uid = $_GET['referrer_uid'];
+        $debtor_uid = $_GET['debtor_uid'];
         $assignee_username = $_GET['assignee_username'];
-        $description = $_GET['description'];
         $notification_date = $_GET['notification_date'];
         $notification_message = $_GET['notification_message'];
+        $description = $_GET['description'];
+        $location = $_GET['location'];
         $principal = $_GET['principal'];
-        $source = 'Debt_collection';
+        // $source = 'Debt_collection';
 
 
-        $resultx = mysql_query('SELECT * FROM `debt_collections` WHERE `client_uid`="' . $client_uid . '" and `referring_client_uid`="' . $referring_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
+        $resultx = mysql_query('SELECT * FROM `case_files` WHERE `client_uid`="' . $client_uid . '" and `referrer_uid`="' . $referrer_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
         if (mysql_num_rows($resultx) > 0) {
-            echo '<script>swal("Error", "Debt collection file with similar info already exists. !Consult the System Admin", "error");</script>';
+            echo '<script>swal("Error", "Case file with similar info already exists. !Consult the System Admin", "error");</script>';
 
         }
 
-        $resultc = mysql_query("INSERT INTO `debt_collections`( `client_uid`, `referring_client_uid`, `assignee_id`, `unique_file_number`, `notification_date`, `description`, `notification_message`, `username`, `stamp`, `date`, `time`,`principal`) VALUES ('" . $client_uid . "', '" . $referring_client_uid . "','" . $assignee_username . "','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $notification_message . "','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','" . $principal . "')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `case_files`( `case_type`, `client_uid`, `referrer_uid`, `debtor_uid`,`assignee_id`,  `notification_date`, `notification_message`, `description`, `location`, `username`, `stamp`, `date`, `time`,`principal`) VALUES ('".$case_type."','" . $client_uid . "', '" . $referrer_uid . "', '".$debtor_uid."','" . $assignee_username . "','" . $notification_date . "','" . $notification_message . "','" . $description . "', '".$location."','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','" . $principal . "')") or die (mysql_error());
 
 
         if ($resultc) {
-            if (insertFileIntoTenants($unique_file_id, $client_uid, $referring_client_uid, $principal, $source)) {
-                echo '<script>swal("Success!", "Debt collection file created successfully", "success");</script>';
-            }
+            // if (insertFileIntoTenants($unique_file_id, $client_uid, $referring_client_uid, $principal, $source)) {
+            //     echo '<script>swal("Success!", "Debt collection file created successfully", "success");</script>';
+            // }
+            echo '<script>swal("Success!", "Case file created successfully '.$case_type.'  "success");</script>';
 
-            $resulta = mysql_query("insert into log values('0','" . $username . " created debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo "<script>setTimeout(function() {newDebtCollection();},500);</script>";
+
+            $resulta = mysql_query("insert into log values('0','" . $username . " created case file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {newCaseManagement();},500);</script>";
         } else {
-            echo '<script>swal("Error", "failed to create a new debt collection record!", "error");</script>';
+            echo '<script>swal("Error", "failed to create a new case record!", "error");</script>';
         }
         break;
 
