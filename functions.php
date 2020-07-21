@@ -2356,6 +2356,19 @@ function cartbill($max)
 
 
 }
+//case management
+function displayFileType()
+{
+    $result = mysql_query("select * from file_type");
+    $num_results = mysql_num_rows($result);
+    for ($i = 0; $i < $num_results; $i++) {
+        $row = mysql_fetch_array($result);
+        echo '<option value="' . stripslashes($row['id']) . '">';
+        echo stripslashes($row['file_type']);
+        echo '</option>';
+    }
+}
+
 
 //Debt collection helper functions
 function displayClients()

@@ -10040,7 +10040,7 @@ function archivedClients() {
 // START OF DEBT COLLECTION
 /**beginning of debt collection module */
 
-function newDebtCollection() {
+function newCaseManagement() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',

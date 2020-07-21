@@ -30749,24 +30749,21 @@ case 220:
         /*****CLIENT END*****/
 
         /********************************************* */
-        /****** DEBT COLLECTION MODULE INTERFACE *******/
+        /****** CASE MANAGEMENT MODULE INTERFACE *******/
         /******************************************** */
 
         // this is the part of the code responsible for displaying the various interfaces of the DEBT COLLECTION module and pupulating it with date
 
-        /*****DEBT COLLECTION START*****/
-        // all DEBT COLLECTION presentation logic goes here
+        /*****CASE MANAGEMENT START*****/
+        // all CASE MANAGEMENT presentation logic goes here
 
 
-//NEW DEBT COLLECTION FORM
+//NEW CASE MANAGEMENT FORM
         case 300:
-          $result = mysql_query("insert into log values('','".$username." accesses create new debt collection File Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+          $result = mysql_query("insert into log values('','".$username." accesses create new case File Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
 
-        $resulty = mysql_query("select * from debt_collections order by id desc limit 0,1");
-        $rowy = mysql_fetch_array($resulty);
-        $tid = stripslashes($rowy['id']) + 1;
-        $unique_file_id = 'DC' . sprintf("%08d", $tid);
+      
 
           echo '
            <div class="vd_container" id="container">
@@ -30778,20 +30775,24 @@ case 220:
                                     <div class="panel widget">
                                         <div class="panel-heading vd_bg-grey">
                                             <h3 class="panel-title"><span class="menu-icon"> <i
-                                                            class="fa fa-th-list"></i> </span> New Debt Collection
+                                                            class="fa fa-th-list"></i> </span> New Case Management
                                             </h3>
                                         </div>
                                         <div class="panel-body">
                                             <form class="form-horizontal" action="#" role="form">
-                                                <div class="form-group">
-                                                    <label style="float:left" class="col-sm-4">Debt Collection Unique
-                                                        File ID<span
-                                                                style="color:#f00">*</span></label>
-                                                    <div class="col-sm-8 controls">
-                                                        <input type="text" id="unique_file_id"
-                                                               value="'.$unique_file_id.'" readonly>
-                                                    </div>
-                                                </div>
+
+                                            <div class="form-group">
+                                            <label style="float:left" class="col-sm-4">Case File Type:<span
+                                                        style="color:#f00">*</span></label>
+                                            <div class="col-sm-8 controls">
+                                                <select id="case_type" class="text-capitalize">
+                                                    <option value="" selected>Select One...</option>
+                                                    ';
+                                                    displayFileType();
+                                                    echo '
+                                                </select>
+                                            </div>
+                                        </div>
 
                                                 <div class="form-group">
                                                     <label style="float:left" class="col-sm-4">Client Name<span
@@ -30811,7 +30812,7 @@ case 220:
                                                     <label style="float:left" class="col-sm-4">Referring Client<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <select id="referring_client_uid" class="text-capitalize">
+                                                        <select id="referrer_client_uid" class="text-capitalize">
                                                             <option value="" selected>Select One...</option>
                                                             ';
                                                             displayClients();
@@ -30819,6 +30820,19 @@ case 220:
                                                         </select>
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                <label style="float:left" class="col-sm-4">Debtor Name<span
+                                                            style="color:#f00">*</span></label>
+                                                <div class="col-sm-8 controls">
+                                                    <select id="debtor_uid" class="text-capitalize">
+                                                        <option value="" selected>Select One...</option>
+                                                        ';
+                                                        displayClients();
+                                                        echo '
+                                                    </select>
+                                                </div>
+                                            </div>
 
 
                                                 <div class="form-group">
