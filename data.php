@@ -6442,7 +6442,7 @@ switch ($id) {
         $source = 'distress';
 
 
-        $resultx = mysql_query('SELECT * FROM `distress` WHERE `client_uid`="' . $client_uid . '" and `billable_client_uid`="' . $billable_client_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
+        $resultx = mysql_query('SELECT * FROM `case_files` WHERE `case_type`="' . $case_type . '" and `description`="' . $description . '"');
         if (mysql_num_rows($resultx) > 0) {
             echo '<script>swal("Error", "Distress file with similar info already exists. !Consult the System Admin", "error");</script>';
 
