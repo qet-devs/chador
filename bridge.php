@@ -30802,11 +30802,9 @@ case 220:
                                             <div class="col-sm-8 controls">
                                                 <select id="case_type" class="text-capitalize">
                                                     <option value="" selected>Select One...</option>
-                                                    <option value="" selected>DEBT COLLECTION</option>
-                                                    <option value="" selected>WARRANT</option>
-                                                    <option value="" selected>DISTRESS</option>
-                                                    <option value="" selected>REPOSSESSION</option>
-                                                    <option value="" selected>IMMOVABLE PROPERTIES</option>
+                                                    
+                                             
+                                        
 
                                                    
                                                 </select>
