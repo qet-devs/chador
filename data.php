@@ -6221,6 +6221,7 @@ switch ($id) {
         $location = $_GET['location'];
         $principal = $_GET['principal'];
         // $source = 'Debt_collection';
+        $unique_file_id = generateUniqueFileID($case_type);
 
 
         $resultx = mysql_query('SELECT * FROM `case_files` WHERE `client_uid`="' . $client_uid . '" and `referrer_uid`="' . $referrer_uid . '" and `description`="' . $description . '" and `notification_date`="' . $notification_date . '"');
@@ -6229,14 +6230,14 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `case_files`( `case_type`, `client_uid`, `referrer_uid`, `debtor_uid`,`assignee_id`,  `notification_date`, `notification_message`, `description`, `location`, `username`, `stamp`, `date`, `time`,`principal`) VALUES ('".$case_type."','" . $client_uid . "', '" . $referrer_uid . "', '".$debtor_uid."','" . $assignee_username . "','" . $notification_date . "','" . $notification_message . "','" . $description . "', '".$location."','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','" . $principal . "')") or die (mysql_error());
+
+
+        $resultc = mysql_query("INSERT INTO `case_files`( `case_type`, `file_no`, `client_uid`, `referrer_uid`, `debtor_uid`,`assignee_id`,  `notification_date`, `notification_message`, `description`, `location`, `username`, `stamp`, `date`, `time`,`principal`) VALUES ('".$case_type."','".$unique_file_id."','" . $client_uid . "', '" . $referrer_uid . "', '".$debtor_uid."','" . $assignee_username . "','" . $notification_date . "','" . $notification_message . "','" . $description . "', '".$location."','" . $username . "','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','" . $principal . "')") or die (mysql_error());
 
 
         if ($resultc) {
-            // if (insertFileIntoTenants($unique_file_id, $client_uid, $referring_client_uid, $principal, $source)) {
-            //     echo '<script>swal("Success!", "Debt collection file created successfully", "success");</script>';
-            // }
-            echo '<script>swal("Success!", "Case file created successfully   "success");</script>';
+
+            echo '<script>swal("Success!", "'.$case_type.' file No: '.$unique_file_id.' created successfully", "success");</script>';
 
 
             $resulta = mysql_query("insert into log values('0','" . $username . " created case file of no " . $client_uid . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");

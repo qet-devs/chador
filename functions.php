@@ -310,8 +310,7 @@ function updateFileInTenants($unique_file_id,$client_uid, $billable_client_uid, 
 
 function generateUniqueFileID($case_type)
 {
-    $resulty = mysql_query("SELECT COUNT(case_type) AS case_count FROM case_files
-    WHERE case_type=".$case_type."");
+    $resulty = mysql_query("SELECT COUNT(case_type) AS case_count FROM case_files WHERE case_type='".$case_type."'");
     $rowy = mysql_fetch_array($resulty);
    $tid= stripslashes($rowy['case_count']) + 1;
    if($case_type=="WARRANT"){
