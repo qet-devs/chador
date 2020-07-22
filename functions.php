@@ -317,8 +317,15 @@ function generateUniqueFileID($case_type)
    if($case_type=="WARRANT"){
        $initials = 'CW';
    }elseif($case_type=="DISTRESS") {
-       $initials = 'DC';
-   }
+       $initials = 'DS';
+   }elseif($case_type=="IMMOVABLE PROPERTIES") {
+    $initials = 'IP';
+}elseif($case_type=="REPOSSESSION") {
+    $initials = 'RP';
+}elseif($case_type=="DEBT COLLECTION"){
+    $initials = 'DC';
+}
+
    return sprintf("%s%04d",$initials, $tid);
    //return $rowy['case_count'];
 }
@@ -2381,27 +2388,7 @@ function displayClients()
         echo '</option>';
     }
 }
-// display client name
 
-function displayDebtorsName($param)
-{
-    $result = mysql_query('select * from clients where `unique_client_id`="' . $param . '"');
-    $row = mysql_fetch_array($result);
-
-    return stripslashes($row['debtor_uid']);
-}
-
-function displayDebtors()
-{
-    $result = mysql_query("select debtor_uid from clients where status=1");
-    $num_results = mysql_num_rows($result);
-    for ($i = 0; $i < $num_results; $i++) {
-        $row = mysql_fetch_array($result);
-        echo '<option value="' . stripslashes($row['debtor_uid']) . '">';
-        echo stripslashes($row['debtor_uid']);
-        echo '</option>';
-    }
-}
 
 function displayUsers()
 {

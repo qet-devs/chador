@@ -6110,7 +6110,7 @@ switch ($id) {
     case 200:
         $unique_client_id = $_GET['unique_client_id'];
         $client_name = strtoupper($_GET['client_name']);
-        $debtor_uid = strtoupper($_GET['debtor_uid']);
+       
         $location = strtoupper($_GET['location']);
         $phone = $_GET['phone'];
         $email = $_GET['email'];
@@ -6128,7 +6128,7 @@ switch ($id) {
             echo '<script>swal("Error", "Clients with similar information already exists. !Consult the System Admin", "error");</script>';
         }
 
-        $resultc = mysql_query("INSERT INTO `clients`( `unique_client_id`, `client_name`, `debtor_uid`, `address`, `location`, `phone`, `pin_registration`, `vat_registration`, `certificate_of_incorporation`, `email`, `national_id`, `contact_phone`, `contact_person`, `status`, `username`, `date`, `stamp`, `time`) VALUES ('" . $unique_client_id . "','" . $client_name . "', '".$debtor_uid."','" . $address . "','" . $location . "','" . $phone . "','" . $pin_registration . "','" . $vat_registration . "','" . $certificate_of_incorporation . "','" . $email . "','" . $national_id . "','" . $contact_phone . "','" . $contact_person . "','1','" . $username . "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')");
+        $resultc = mysql_query("INSERT INTO `clients`( `unique_client_id`, `client_name`, `address`, `location`, `phone`, `pin_registration`, `vat_registration`, `certificate_of_incorporation`, `email`, `national_id`, `contact_phone`, `contact_person`, `status`, `username`, `date`, `stamp`, `time`) VALUES ('" . $unique_client_id . "','" . $client_name . "','" . $address . "','" . $location . "','" . $phone . "','" . $pin_registration . "','" . $vat_registration . "','" . $certificate_of_incorporation . "','" . $email . "','" . $national_id . "','" . $contact_phone . "','" . $contact_person . "','1','" . $username . "','" . date('d/m/Y') . "','" . date('YmdHi') . "','" . date('H:i') . "')");
 
 
         if ($resultc) {

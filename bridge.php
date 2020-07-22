@@ -29630,13 +29630,7 @@ case 212:
                                         </div>
                                     </div>
                                     
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Debtor Name<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="debtor_uid" value="">
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="form-group">
                                         <label style="float:left" class="col-sm-4">Client Phone No<span
@@ -29915,13 +29909,7 @@ echo '
                                             <input type="text" id="client_name" value="'.$row['client_name'].'">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Debtor Name<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="debtor_uid" value="'.$row['debtor_uid'].'">
-                                        </div>
-                                    </div>
+                                  
 
                                     <div class="form-group">
                                         <label style="float:left" class="col-sm-4">Phone No<span
@@ -30767,7 +30755,7 @@ case 220:
         /****** CASE MANAGEMENT MODULE INTERFACE *******/
         /******************************************** */
 
-        // this is the part of the code responsible for displaying the various interfaces of the DEBT COLLECTION module and pupulating it with date
+        // this is the part of the code responsible for displaying the various interfaces of the case management module and pupulating it with date
 
         /*****CASE MANAGEMENT START*****/
         // all CASE MANAGEMENT presentation logic goes here
@@ -30802,6 +30790,11 @@ case 220:
                                             <div class="col-sm-8 controls">
                                                 <select id="case_type" class="text-capitalize">
                                                     <option value="" selected>Select One...</option>
+                                                    <option value="DEBT COLLECTION">DEBT COLLECTION</option>
+                                                    <option value="DISTRESS" >DISTRESS</option>
+                                                    <option value="WARRANT" >WARRANT</option>
+                                                    <option value="IMMOVABLE PROPERTIES" >IMMOVABLE PROPERTIES</option>
+                                                    <option value="REPOSSESSION" >REPOSSESSION</option>
                                                     
                                              
                                         
@@ -30845,7 +30838,7 @@ case 220:
                                                     <select id="debtor_uid" class="text-capitalize">
                                                         <option value="" selected>Select One...</option>
                                                         ';
-                                                        displayDebtors();
+                                                        displayClients();
                                                         echo '
                                                     </select>
                                                 </div>
@@ -30889,7 +30882,7 @@ case 220:
                                                 </div>
                                                 <div class="form-group">
                                                     <label style="float:left" class="col-sm-4">Location<span
-                                                                style="color:#f00">*</span></label>
+                                                                style="color:#f00"></span></label>
                                                     <div class="col-sm-8 controls">
                                                     <input type="text" id="location" >
                                                     </div>
@@ -31280,7 +31273,7 @@ echo "
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
                                                         <select id="debtor_uid" class="text-capitalize">
-                                                            <option value="'.$row['debtor_uid'].'" selected>'.displayDebtorsName($row['debtor_uid']).'</option>
+                                                            <option value="'.$row['debtor_uid'].'" selected>'.displayClientName($row['debtor_uid']).'</option>
                                                             ';
                 displayDebtors();
                 echo '
@@ -31436,7 +31429,7 @@ echo "
                                                 <div class="col-sm-4"></div>
                                                 <div class="col-sm-7">
                                                     <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                                            onclick="saveCaseManagement('.$param.')"><i class="icon-ok"></i> Update
+                                                            onclick="saveCaseFile('.$param.')"><i class="icon-ok"></i> Update
                                                     </button>
                                                     <button class="btn vd_btn" type="button" onclick="hidecont()">
                                                         Cancel

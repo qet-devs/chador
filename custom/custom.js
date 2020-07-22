@@ -9769,8 +9769,7 @@ function newClient() {
 function saveNewClient() {
     var unique_client_id = $('#unique_client_id').val();
     var client_name = $('#client_name').val();
-    var debtor_uid = $('#debtor_uid').val();
-    var location = $('#location').val();
+     var location = $('#location').val();
     var email = $('#email').val();
     var phone = $('#phone').val();
     var address = $('#address').val();
@@ -9789,7 +9788,6 @@ function saveNewClient() {
             id: 200,
             unique_client_id: unique_client_id,
             client_name: client_name,
-            debtor_uid:debtor_uid,
             phone: phone,
             email: email,
             address: address,
@@ -10072,6 +10070,15 @@ function saveCaseManagement() {
         console.log(case_type, client_uid, assignee_username, description);
         swal('Error', 'Please fill all required fields', 'error');
         return;
+    }else if(case_type == 'DISTRESS' && location == '')
+    {
+        swal('Error', 'Please fill the location field!!','error');
+        return;
+
+    }else if(case_type == 'IMMOVABLE PROPERTIES' && location == '')
+    {
+        swal('Error','Please fill the location field','error');
+        return;
     } else {
         var data = {
             id: 300,
@@ -10142,7 +10149,7 @@ function editCaseManagement(param) {
 
 // UPDATE CASE MANAGEMENT INFO
 
-function saveCaseManagement(param) {
+function saveCaseFile(param) {
     var case_type = $('#case_type').val();
     var client_uid = $('#client_uid').val();
     var referrer_uid = $('#referrer_uid').val();
@@ -10253,7 +10260,7 @@ function caseManagementArchive(param) {
         },
         function () {
             // todo: remove logger
-            console.log('DC archive', param);
+            console.log('CM archive', param);
             $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
             $.ajax({
                 url: 'data.php',
