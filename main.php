@@ -497,7 +497,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[110] == 'YES') {
-                                                echo '<a  href="#" onclick="findDebtCollection()" >
+                                                echo '<a  href="#" onclick="findCaseManagement()" >
                         <span class="menu-text">Find Case Management</span>  
                     </a>';
                                             } ?>
@@ -505,7 +505,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[111] == 'YES') {
-                                                echo '<a  href="#" onclick="editDebtCollectionEntry()" >
+                                                echo '<a  href="#" onclick="editCaseManagementEntry()" >
                         <span class="menu-text">Edit Case Management Info</span>  
                     </a>';
                                             } ?>
@@ -514,7 +514,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[112] == 'YES') {
-                                                echo '<a  href="#" onclick="debtCollectionFileEntry()" >
+                                                echo '<a  href="#" onclick="caseManagementFileEntry()" >
                         <span class="menu-text">Case Management File</span>  
                         </a>';
                                             } ?>
@@ -523,7 +523,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[113] == 'YES') {
-                                                echo '<a  href="#" onclick="debtCollectionUploadsEntry()" >
+                                                echo '<a  href="#" onclick="caseManagementUploadsEntry()" >
                         <span class="menu-text">Case Management Files Upload</span>  
                         </a>';
                                             } ?>
@@ -531,7 +531,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[114] == 'YES') {
-                                                echo '<a  href="#" onclick="archiveDebtCollectionEntry()" >
+                                                echo '<a  href="#" onclick="archiveCaseManagementEntry()" >
                         <span class="menu-text">Archive Case Management</span>  
                         </a>';
                                             } ?>
@@ -540,7 +540,7 @@ if (isset($_SESSION['valid_user'])) {
 
                                         <li>
                                             <?php if ($rightsarr[115] == 'YES') {
-                                                echo '<a  href="#" onclick="findArchivedDebtCollection()" >
+                                                echo '<a  href="#" onclick="findArchivedCaseManagement()" >
                         <span class="menu-text">Archived Case Management</span>  
                         </a>';
                                             } ?>

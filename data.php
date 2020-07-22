@@ -6246,61 +6246,63 @@ switch ($id) {
         }
         break;
 
-//        update debt collection info
+//        update case management info
     case 301:
         $param = $_GET['param'];
-        $unique_file_id = $_GET['unique_file_id'];
+        $case_type = $_GET['case_type'];
         $client_uid = $_GET['client_uid'];
-        $referring_client_uid = $_GET['referring_client_uid'];
+        $referrer_uid = $_GET['referrer_uid'];
+        $debtor_uid = $_GET['debtor_uid'];
         $assignee_username = $_GET['assignee_username'];
-        $description = $_GET['description'];
         $notification_date = $_GET['notification_date'];
         $notification_message = $_GET['notification_message'];
+        $description = $_GET['description'];
+        $location = $_GET['location'];
         $file_status = $_GET['file_status'];
         $remarks = $_GET['remarks'];
         $principal = $_GET['principal'];
 
 
-        $resultc = mysql_query("update  `debt_collections` set `client_uid` ='" . $client_uid . "' , `referring_client_uid` ='" . $referring_client_uid . "' ,`principal`='" . $principal . "',   `assignee_id`='" . $assignee_username . "', `unique_file_number`='" . $unique_file_id . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
+        $resultc = mysql_query("update  `case_files` set `case_type`='" . $case_type . "',`client_uid` ='" . $client_uid . "' , `referrer_uid` ='" . $referrer_uid . "' ,`principal`='" . $principal . "',   `assignee_id`='" . $assignee_username . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
 
 
         if ($resultc) {
-            if (updateFileInTenants($unique_file_id, $client_uid, $referring_client_uid, $principal)) {
-                echo '<script>swal("Success!", "Debt collection file updated successfully", "success");</script>';
-            }
-            $resulta = mysql_query("insert into log values('0','" . $username . " updated debt collection file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo "<script>setTimeout(function() {findDebtCollection();},500);</script>";
+            // if (updateFileInTenants($unique_file_id, $client_uid, $referring_client_uid, $principal)) {
+            //     echo '<script>swal("Success!", "Case file updated successfully", "success");</script>';
+            // }
+            $resulta = mysql_query("insert into log values('0','" . $username . " updated case management file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo "<script>setTimeout(function() {findCaseManagement();},500);</script>";
         } else {
-            echo '<script>swal("Error", "failed to update debt collection record!", "error");</script>';
+            echo '<script>swal("Error", "failed to update case file record!", "error");</script>';
         }
         break;
 
-    /**archive debt collection file */
+    /**archive case management file */
     case 302:
         $param = $_GET['param'];
-        if (mysql_query("UPDATE `debt_collections` SET `status`='0' WHERE `id`='" . $param . "'")) {
-            mysql_query("insert into log values('','" . $username . " archived debt Collection.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo '<script>swal("Success!", "Debt collection file archived", "success");</script>';
+        if (mysql_query("UPDATE `case_files` SET `status`='0' WHERE `id`='" . $param . "'")) {
+            mysql_query("insert into log values('','" . $username . " archived case files.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "Case files archived", "success");</script>';
         } else {
-            echo '<script>swal("Error", "failed to archive debt collection record!", "error");</script>';
+            echo '<script>swal("Error", "failed to archive case files record!", "error");</script>';
         }
 
         break;
 
-    /**activate debt collection file */
+    /**activate case management file */
     case 303:
         $param = $_GET['param'];
-        if (mysql_query("UPDATE `debt_collections` SET `status`='1' WHERE `id`='" . $param . "'")) {
-            mysql_query("insert into log values('','" . $username . " activated debt Collection.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-            echo '<script>swal("Success!", "Debt collection file activated", "success");</script>	';
+        if (mysql_query("UPDATE `case_files` SET `status`='1' WHERE `id`='" . $param . "'")) {
+            mysql_query("insert into log values('','" . $username . " activated case file.id:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success!", "Case file activated", "success");</script>	';
         } else {
-            echo '<script>swal("Error", "failed to activate debt collection record!", "error");</script>';
+            echo '<script>swal("Error", "failed to activate case file record!", "error");</script>';
         }
 
         break;
 
 
-    /*****DEBT COLLECTION END*****/
+    /*****Case management END*****/
 
     /************************************* */
     /****** WARRANTS MODULE INTERFACE ******/

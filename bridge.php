@@ -31245,7 +31245,7 @@ echo "
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
                                                         <input type="text" id="case_type"
-                                                               value="' . $row[' case_type'] . '" disabled>
+                                                               value="' . $row['case_type'] . '" disabled>
                                                     </div>
                                                 </div>
 
@@ -31457,24 +31457,24 @@ echo "
                                 ';
             break;
 
-            //        debt collection file entry
+            //        case management file entry
             case 304:
-                mysql_query("insert into log values('','".$username." accesses debt collection file info Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+                mysql_query("insert into log values('','".$username." accesses case management file info Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
              echo '
 <div class="vd_container" id="container">
 <div class="vd_content clearfix" style="">
         <div style="width:100%;padding:20px">
         <div class="panel-heading vd_bg-grey">
-            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Debt Collection File</h3>
+            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Case File</h3>
           </div>
         <select id="intcombo" class="text-capitalize">
         <option value="" selected>Select One...</option>';
-           $result =mysql_query("select * from debt_collections where status=1");
+           $result =mysql_query("select * from case_files where status=1");
             $num_results = mysql_num_rows($result);
               for ($i=0; $i <$num_results; $i++) {
                   $row=mysql_fetch_array($result);
-                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['case_type']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referrer_uid']).'</option>';
                 }
            echo'</select>
              <div class="cleaner_h10"></div>
@@ -31494,20 +31494,20 @@ echo "
     var str = $('#item5').val();
     var parts=param.split('-',3);
     param=parts[0];
-    debtCollectionFile(param);
+    caseManagementFile(param);
   });
    </script>
    ";
 
  break;
 
-//debt collection file info
+//case management file info
 case 305:
 
 
                 $param = $_GET['param'];
-                mysql_query("insert into log values('','" . $username . " accesses Debt Collection file.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-                $result = mysql_query('select * from debt_collections where id="' . $param . '" limit 0,1');
+                mysql_query("insert into log values('','" . $username . " accesses Case file.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+                $result = mysql_query('select * from case_files where id="' . $param . '" limit 0,1');
                 $row = mysql_fetch_array($result);
 
                 echo '
@@ -31518,7 +31518,7 @@ case 305:
                             <div class="panel widget">
                                 <div class="panel-heading vd_bg-grey">
                                     <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                        Debt Collection File </h3>
+                                        Case Management File </h3>
                                 </div>
                                 <div class="panel-body">
                                     <ul class="nav nav-tabs">
@@ -31535,18 +31535,17 @@ case 305:
                                             <div class="panel widget">
                                         <div class="panel-heading vd_bg-grey">
                                             <h3 class="panel-title"><span class="menu-icon"> <i
-                                                            class="fa fa-th-list"></i> </span> Edit Debt Collection
+                                                            class="fa fa-th-list"></i> </span> Edit Case File
                                             </h3>
                                         </div>
                                         <div class="panel-body">
                                             <form class="form-horizontal" action="#" role="form">
                                                 <div class="form-group">
-                                                    <label style="float:left" class="col-sm-4">Debt Collection Unique
-                                                        File ID<span
+                                                    <label style="float:left" class="col-sm-4">Case File Type:<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <input type="text" id="unique_file_id"
-                                                               value="' . $row['unique_file_number'] . '" disabled>
+                                                        <input type="text" id="case_type"
+                                                               value="' . $row['case_type'] . '" disabled>
                                                     </div>
                                                 </div>
 
@@ -31560,10 +31559,10 @@ case 305:
 
 
                                                 <div class="form-group">
-                                                    <label style="float:left" class="col-sm-4">Referring Client<span
+                                                    <label style="float:left" class="col-sm-4">Client Referrer :<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <input type="text" value="'.$row['referring_client_uid'].'" disabled>
+                                                        <input type="text" value="'.$row['referrer_uid'].'" disabled>
                                                     </div>
                                                 </div>
 
@@ -31657,7 +31656,7 @@ displayUploadedFiles($row['unique_file_number']);
 
     break;
 
-//    debt collection file uploads entry
+//    case management file uploads entry
 case 306:
     mysql_query("insert into log values('','".$username." accesses debt collection file upload Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
@@ -31666,15 +31665,15 @@ case 306:
 <div class="vd_content clearfix" style="">
         <div style="width:100%;padding:20px">
         <div class="panel-heading vd_bg-grey">
-            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Debt Collection Upload File</h3>
+            <h3 class="panel-title text-capitalize"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Case Upload File</h3>
           </div>
         <select id="intcombo" class="text-capitalize">
         <option value="" selected>Select One...</option>';
-           $result =mysql_query("select * from debt_collections where status=1");
+           $result =mysql_query("select * from case_files where status=1");
             $num_results = mysql_num_rows($result);
               for ($i=0; $i <$num_results; $i++) {
                   $row=mysql_fetch_array($result);
-                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['case_type']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referrer_uid']).'</option>';
                 }
            echo'</select>
              <div class="cleaner_h10"></div>
@@ -31709,11 +31708,11 @@ echo "
    ";
     break;
 
-//    debt collection file uploads
+//    case management file uploads
 case 307:
     $param = $_GET['param'];
-    mysql_query("insert into log values('','" . $username . " accesses debt collection File uploads Panel.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-    $result = mysql_query("select * from debt_collections where id='" . $param . "' limit 0,1");
+    mysql_query("insert into log values('','" . $username . " accesses case  File uploads Panel.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+    $result = mysql_query("select * from case_files where id='" . $param . "' limit 0,1");
     $row = mysql_fetch_array($result);
 
     echo '
@@ -31762,9 +31761,9 @@ case 307:
     ';
     break;
 
-//    debt collection archive file
+//    case management archive file
 case 308:
-mysql_query("insert into log values('','".$username." accesses archive debt collection Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+mysql_query("insert into log values('','".$username." accesses archive case management Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
 
    echo '<div class="vd_container" id="container">
@@ -31772,14 +31771,14 @@ mysql_query("insert into log values('','".$username." accesses archive debt coll
       
                 <div style="width:100%;padding:20px">
                 <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Debt Collection Archive</h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Case Files Archive</h3>
                   </div>
                 <select id="intcombo"><option value="" selected>Select One...</option> ';
-                   $result =mysql_query("select * from debt_collections where status=1");
+                   $result =mysql_query("select * from case_files where status=1");
                     $num_results = mysql_num_rows($result);
                       for ($i=0; $i <$num_results; $i++) {
                   $row=mysql_fetch_array($result);
-                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referring_client_uid']).'</option>';
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['case_type']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referrer_uid']).'</option>';
                 }
                    echo'</select>
                      <div class="cleaner_h10" id="message"></div>
@@ -31797,17 +31796,17 @@ mysql_query("insert into log values('','".$username." accesses archive debt coll
           var str = $('#item5').val();
           var parts=param.split('-',3);
           param=parts[0];
-         debtCollectionArchive(param);
+         caseManagementArchive(param);
 
           });
            </script>";
 
     break;
 
-//    debt collection archived files
+//    case Management archived files
 case 309:
 
-     mysql_query("insert into log values('','".$username." accesses archived debt collection files Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+     mysql_query("insert into log values('','".$username." accesses archived case  files Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
     echo ' <div class="vd_container" id="container">
                     <div class="vd_content clearfix">
@@ -31821,8 +31820,7 @@ case 309:
                                     <div class="panel widget">
                                         <div class="panel-heading vd_bg-grey">
                                             <h3 class="panel-title"><span class="menu-icon"> <i
-                                                            class="fa fa-dot-circle-o"></i> </span>Archived Debt
-                                                Collections-Search
+                                                            class="fa fa-dot-circle-o"></i> </span>Archived Case Files-Search
                                                 Panel</h3>
                                         </div>
                                         <!-- panel heading -->
@@ -31831,11 +31829,11 @@ case 309:
                                                 <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Unique File ID</th>
-                                                    <th>Description</th>
+                                                    <th>Case Type</th>
+                                                    <th>Client Name</th>
                                                     <th>Status</th>
                                                     <th>Assignee</th>
-                                                    <th>Entry Date</th>
+                                                    <th>Notification Date</th>
                                                 </tr>
                                                 </thead>
                                             </table>
@@ -31884,13 +31882,13 @@ case 309:
 //                            if($arr[109]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
 //                                                              onclick="majoropen(300)">Edit Client</label><br/>';}
                             if($arr[113]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(301)">Debt File Info</label><br/>';}
+                                                              onclick="majoropen(301)">Case File Info</label><br/>';}
                             // if($arr[142]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
                             //                                   onclick="majoropen(401)">Property Description</label><br/>';}
 //                            if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
 //                              onclick="majoropen(406)">Invoice</label><br/>';}
                             if($arr[114]=='YES'){echo' <label class="col-sm-11" style="cursor:pointer;float:left"
-                                                              onclick="majoropen(303)">Activate Debt File</label><br/>';}
+                                                              onclick="majoropen(303)">Activate Case File</label><br/>';}
 
                             echo '
                             <input class="input-border-btm" type="hidden" id="tenparam" required>

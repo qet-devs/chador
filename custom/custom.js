@@ -10143,9 +10143,9 @@ function saveNewDebtCollection() {
     }
 }
 
-// Find Debt collection
+// Find Case Management
 
-function findDebtCollection() {
+function findCaseManagement() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10156,9 +10156,9 @@ function findDebtCollection() {
     });
 }
 
-// EDIT DEBT COLLECTION PANEL ENTRY
+// EDIT CASE MANAGEMENT PANEL ENTRY
 
-function editDebtCollectionEntry() {
+function editCaseManagementEntry() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10169,8 +10169,8 @@ function editDebtCollectionEntry() {
     });
 }
 
-// EDIT DEBT COLL FILE
-function editDebtCollection(param) {
+// EDIT CASE MANAGEMENT FILE
+function editCaseManagement(param) {
     // todo: remove logger
     console.log('DC edit', param);
     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
@@ -10183,34 +10183,38 @@ function editDebtCollection(param) {
     });
 }
 
-// UPDATE DEBT COLLECTION INFO
+// UPDATE CASE MANAGEMENT INFO
 
-function saveDebtCollection(param) {
-    var unique_file_id = $('#unique_file_id').val();
+function saveCaseManagement(param) {
+    var case_type = $('#case_type').val();
     var client_uid = $('#client_uid').val();
-    var referring_client_uid = $('#referring_client_uid').val();
+    var referrer_uid = $('#referrer_uid').val();
+    var debtor_uid = $('#debtor_uid').val();
     var assignee_username = $('#assignee_username').val();
-    var description = $('#description').val();
     var notification_date = $('#notification_date').val();
     var notification_message = $('#notification_message').val();
+    var description = $('#description').val();
+    var location = $('#location').val();
     var file_status = $('#file_status').val();
     var remarks = $('#remarks').val();
     var principal = $('#principal').val();
 
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
+    if (case_type == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
         swal('Error', 'Please fill all required fields', 'error');
         return;
     } else {
         var data = {
             id: 301,
             param: param,
-            unique_file_id: unique_file_id,
+            case_type: case_type,
             client_uid: client_uid,
-            referring_client_uid: referring_client_uid,
+            referrer_uid: referrer_uid,
+            debtor_uid: debtor_uid,
             assignee_username: assignee_username,
-            description: description,
             notification_date: notification_date,
             notification_message: notification_message,
+            description: description,
+            location: location,
             file_status: file_status,
             remarks: remarks,
             principal: principal,
@@ -10228,8 +10232,8 @@ function saveDebtCollection(param) {
     }
 }
 
-// DEBT COLLECTION FILE ENTRY
-function debtCollectionFileEntry() {
+// CASE MANAGEMENT FILE ENTRY
+function caseManagementFileEntry() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10240,10 +10244,10 @@ function debtCollectionFileEntry() {
     });
 }
 
-// DEBT COLL FILE
-function debtCollectionFile(param) {
+// CASE MANAGEMENT FILE
+function caseManagementFile(param) {
     // todo: remove logger
-    console.log('DC file', param);
+    console.log('CM file', param);
     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10254,8 +10258,8 @@ function debtCollectionFile(param) {
     });
 }
 
-// DEBT COLLECTION FILE UPLOAD ENTRY
-function debtCollectionUploadsEntry() {
+// CASE MANAGEMENT FILE UPLOAD ENTRY
+function caseManagementUploadsEntry() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10267,8 +10271,8 @@ function debtCollectionUploadsEntry() {
 }
 
 
-// DEBT COLLECTION ARCHIVE ENTRY
-function archiveDebtCollectionEntry() {
+// CASE MANAGEMENT ARCHIVE ENTRY
+function archiveCaseManagementEntry() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10279,11 +10283,11 @@ function archiveDebtCollectionEntry() {
     });
 }
 
-// archive debt collection
-function debtCollectionArchive(param) {
+// archive case management
+function caseManagementArchive(param) {
     swal({
             title: "Are you sure?",
-            text: "The Debt Collection File will be Archived!",
+            text: "The case File will be Archived!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -10299,7 +10303,7 @@ function debtCollectionArchive(param) {
                 data: {id: 302, param: param},
                 success: function (data) {
                     $('#message').html(data);
-                    findArchivedDebtCollection();
+                    findArchivedCaseManagement();
                 }
             });
 
@@ -10307,8 +10311,8 @@ function debtCollectionArchive(param) {
 
 }
 
-//DEBT COLLECTION ARCHIVED FILE ENTRY
-function findArchivedDebtCollection() {
+//CASE MANAGEMENT ARCHIVED FILE ENTRY
+function findArchivedCaseManagement() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10320,11 +10324,11 @@ function findArchivedDebtCollection() {
 }
 
 
-// activate debt collection
-function debtCollectionActivate(param) {
+// activate case managemeent
+function caseManagementActivate(param) {
     swal({
             title: "Are you sure?",
-            text: "The Debt Collection File will be Activated!",
+            text: "The Case File will be Activated!",
             type: "info",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -10333,14 +10337,14 @@ function debtCollectionActivate(param) {
         },
         function () {
             // todo: remove logger
-            console.log('DC activate', param);
+            console.log('CM activate', param);
             $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
             $.ajax({
                 url: 'data.php',
                 data: {id: 303, param: param},
                 success: function (data) {
                     $('#message').html(data);
-                    findArchivedDebtCollection();
+                    findArchivedCaseManagement();
                 }
             });
         });

@@ -541,10 +541,10 @@ case 401:
 
         break;
 
-//        DEBT COLLECTION ARCHIVED
+//       CASE FILES ARCHIVED
     case 301:
         // DB table to use
-        $table = 'debt_collections';
+        $table = 'case_files';
 
         // Table's primary key
         $primaryKey = 'id';
@@ -556,11 +556,11 @@ case 401:
         // indexes
         $columns = array(
             array('db' => 'id', 'dt' => 0),
-            array('db' => 'unique_file_number', 'dt' => 1),
-            array('db' => 'description', 'dt' => 2),
+            array('db' => 'case_type', 'dt' => 1),
+            array('db' => 'client_uid', 'dt' => 2),
             array('db' => 'file_status', 'dt' => 3),
             array('db' => 'assignee_id', 'dt' => 4),
-            array('db' => 'date', 'dt' => 5),
+            array('db' => 'notification_date', 'dt' => 5),
         );
 
         break;
