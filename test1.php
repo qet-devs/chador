@@ -1,24 +1,25 @@
 <?php
 require "db_fns.php";
 
-function generateUniqueFileID($case_type)
-{
-    $resulty = mysql_query("SELECT COUNT(case_type) AS case_count FROM case_files
-    WHERE case_type=".$case_type."");
-    $rowy = mysql_fetch_array($resulty);
-   $tid= stripslashes($rowy['case_count']) + 1;
-   if($case_type=="WARRANT"){
-       $initials = 'CW';
-   }elseif($case_type=="DISTRESS") {
-       $initials = 'DC';
-   }
-   return sprintf("%s%04d",$initials, $tid);
-   //return $rowy['case_count'];
+
+if (isset($_GET['loadex'])) {
+
+    $tenants = '';
+    $resulta = mysql_query("select * from tenants where status=1");
+    $num_resultsa = mysql_num_rows($resulta);
+    for ($i = 0; $i < $num_resultsa; $i++) {
+        $row = mysql_fetch_array($resulta);
+        $item = stripslashes($row['tid']) . '  ' . stripslashes($row['bname']) . ' ' . stripslashes($row['dname']) . ' ' . $row['roomno'];
+        $tenants .= '"' . $item . '",';
+    }
+    $len = strlen($tenants);
+    $a = $len - 1;
+    $tenants = substr($tenants, 0, $a);
+
+
+} else {
+
+    $tenants = $_SESSION['tenants'];
 }
-
-
-
- echo generateUniqueFileID("DISTRESS");
-
 
 ?>

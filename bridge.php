@@ -10021,73 +10021,86 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                    break;
 
           case 49:
-          if(isset($_SESSION['rent'])){unset($_SESSION['rent']);}
-            if(isset($_GET['param'])){
-             $param=$tid=$_GET['param'];
-             $resulta =mysql_query("select * from tenants where tid='".$param."' limit 0,1");
-              $row=mysql_fetch_array($resulta);
-              $item=stripslashes($row['tid']).'-'.$row['bname'].'-'.$row['dname'].'-'.stripslashes($row['roomno']);
+          if (isset($_SESSION['rent'])) {
+    unset($_SESSION['rent']);
+}
+if (isset($_GET['param'])) {
+    $param = $tid = $_GET['param'];
+    $resulta = mysql_query("select * from tenants where tid='" . $param . "' limit 0,1");
+    $row = mysql_fetch_array($resulta);
+    $item = stripslashes($row['tid']) . '-' . $row['bname'] . '-' . $row['dname'] . '-' . stripslashes($row['roomno']);
 
-if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-             echo "<script>
-                var item='".$item."';
+    if (!isset($_GET['keyy'])) {
+        $_SESSION['links'][] = $id . '-' . $param;
+        end($_SESSION['links']);
+        $keyy = key($_SESSION['links']);
+    } else {
+        $keyy = $_GET['keyy'];
+    }
+    echo "<script> $('#thekey').val('" . $keyy . "');</script>";
+    echo "<script>
+                var item='" . $item . "';
                 $('#tenant').val(item);
                </script>";
-          }
+}
+echo '
+<script>
+    document.onkeydown = keydown;
 
-           echo'<script>document.onkeydown = keydown;
-        function keydown(evt){
-          if (!evt) evt = event;
-      
-             if (evt.keyCode==115){ //f4
-              evt.preventDefault();
-              $("#itemname").parent().find("input:first").focus();  
-             }
-             if (evt.keyCode==119){ //f8
-             evt.preventDefault();
-              viewrent(); 
-                }
-               if (evt.keyCode==112){ //f1
-             evt.preventDefault();
-               addrent(); 
-                }
-            if (evt.keyCode==121){ //f10
+    function keydown(evt) {
+        if (!evt) {
+            evt = event;
+        }
+
+        if (evt.keyCode == 115) { //f4
             evt.preventDefault();
-            submitrent(); 
-                }
-           if (evt.keyCode==120){ //f9
+            $("#itemname").parent().find("input:first").focus();
+        }
+        if (evt.keyCode == 119) { //f8
             evt.preventDefault();
-                  emptyrent(); 
-                }
-            
-            if (evt.keyCode==114){ //f3
+            viewrent();
+        }
+        if (evt.keyCode == 112) { //f1
+            evt.preventDefault();
+            addrent();
+        }
+        if (evt.keyCode == 121) { //f10
+            evt.preventDefault();
+            submitrent();
+        }
+        if (evt.keyCode == 120) { //f9
+            evt.preventDefault();
+            emptyrent();
+        }
+
+        if (evt.keyCode == 114) { //f3
             evt.preventDefault();
             removelastrent();
-          }
-         
-      }</script>';
+        }
+
+    }
+</script>
+      ';
+if (isset($_GET['loadex'])) {
+
+    $tenants = '';
+    $resulta = mysql_query("select * from tenants where status=1");
+    $num_resultsa = mysql_num_rows($resulta);
+    for ($i = 0; $i < $num_resultsa; $i++) {
+        $row = mysql_fetch_array($resulta);
+        $item = stripslashes($row['tid']) . '  ' . stripslashes($row['bname']) . ' ' . stripslashes($row['dname']) . ' ' . $row['roomno'];
+        $tenants .= '"' . $item . '",';
+    }
+    $len = strlen($tenants);
+    $a = $len - 1;
+    $tenants = substr($tenants, 0, $a);
 
 
-        if(isset($_GET['loadex'])){
+} else {
 
-            $tenants='';
-            $resulta =mysql_query("select * from tenants where status=1");
-            $num_resultsa = mysql_num_rows($resulta); 
-            for ($i=0; $i <$num_resultsa; $i++) {
-            $row=mysql_fetch_array($resulta);
-            $item=stripslashes($row['tid']).'  '.stripslashes($row['bname']).' '.stripslashes($row['dname']).' '. $row['roomno'];
-            $tenants.='"'.$item.'",';
-            }
-            $len=strlen($tenants);
-            $a=$len-1;
-            $tenants=substr($tenants,0,$a);
-            
-            
-          }else{
+    $tenants = $_SESSION['tenants'];
+}
 
-            $tenants=$_SESSION['tenants'];
-          }
 
     $result = mysql_query("insert into log values('','".$username." accesses Tenant Invoicing Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
       echo'<div class="vd_container" id="container">
@@ -10215,34 +10228,38 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
       </div>
       <!-- .vd_container --> ';
 
-      echo "<script>
-          var tenants = [".$tenants."];
-          $( '#tenant' ).autocomplete({
-            source: tenants,
-            select: function( event, ui ) {
-                setTimeout(function() {
+      echo "
+<script>
+    var tenants = [".$tenants."];
+    $('#tenant').autocomplete({
+        source: tenants,
+        select: function (event, ui) {
+            setTimeout(function () {
                 var param = $('#tenant').val();
-                var parts=param.split('-',3);
-                param=parts[0];
+                var parts = param.split('-', 3);
+                param = parts[0];
                 $('#display').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:50%\" alt=\"Loading\"/>');
                 $.ajax({
-                url:'bridge.php',
-                data:{id:49.1,param:param},
-                success:function(data){
-                $('#display').html(data);
-                }
+                    url: 'bridge.php',
+                    data: {id: 49.1, param: param},
+                    success: function (data) {
+                        $('#display').html(data);
+                    }
                 });
-                },500);
-            }
+            }, 500);
+        }
 
-            });
-          </script>";
+    });
+</script>
+          ";
 
 
-        echo '<script>
-           var activities = ['.$_SESSION['activities'].'];
-          $( "#itemname" ).autocomplete({source: activities});
-          </script>';
+        echo '
+<script>
+    var activities = ['.$_SESSION['activities'].'];
+    $("#itemname").autocomplete({source: activities});
+</script>
+          ';
           echo "<script>  $( '#month' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
 
 
@@ -30817,6 +30834,16 @@ case 220:
                                                     <label style="float:left" class="col-sm-4">Client Name<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
+                                                    <input type="text" list="client" />
+                                                    
+                                                    <datalist id="browsers">
+                                                        <option value="Internet Explorer">
+                                                        <option value="Firefox">
+                                                        <option value="Chrome">
+                                                        <option value="Opera">
+                                                        <option value="Safari">
+                                                    </datalist>
+                                                    
                                                         <select id="client_uid" class="text-capitalize">
                                                             <option value="" selected>Select One...</option>
                                                             ';

@@ -2,47 +2,80 @@
 
 <head>
 
-<title>Chat - Customer Module</title>
+    <title>Chat - Customer Module</title>
 
-<link type="text/css" rel="stylesheet" href="style.css" />
+    <link type="text/css" rel="stylesheet" href="style.css"/>
 
 </head>
 
 <div id="wrapper">
 
-<div id="menu">
+    <div id="menu">
 
-<p class="welcome">Welcome, <b></b></p>
+        <p class="welcome">Welcome, <b></b></p>
 
-<p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+        <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
 
-<div style="clear:both"></div>
+        <div style="clear:both"></div>
 
-</div>
+    </div>
 
-<div id="chatbox"></div>
+    <div id="chatbox"></div>
 
-<form name="message" action="">
+    <form name="message" action="">
 
-<input name="usermsg" type="text" id="usermsg" size="63" />
+        <input name="usermsg" type="text" id="usermsg" size="63"/>
 
-<input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+        <input name="submitmsg" type="submit" id="submitmsg" value="Send"/>
 
-</form>
+    </form>
 
 </div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/..."></script>
 
+
 <script type="text/javascript">
 
-// jQuery Document
+    // jQuery Document
+    document.onkeydown = keydown;
 
-$(document).ready(function(){
+    function keydown(evt) {
+        if (!evt) {
+            evt = event;
+        }
 
-});
+        if (evt.keyCode == 115) { //f4
+            evt.preventDefault();
+            $("#itemname").parent().find("input:first").focus();
+        }
+        if (evt.keyCode == 119) { //f8
+            evt.preventDefault();
+            viewrent();
+        }
+        if (evt.keyCode == 112) { //f1
+            evt.preventDefault();
+            addrent();
+        }
+        if (evt.keyCode == 121) { //f10
+            evt.preventDefault();
+            submitrent();
+        }
+        if (evt.keyCode == 120) { //f9
+            evt.preventDefault();
+            emptyrent();
+        }
+
+        if (evt.keyCode == 114) { //f3
+            evt.preventDefault();
+            removelastrent();
+        }
+
+    }
+
 
 </script>
+
 
 </body>
 
