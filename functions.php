@@ -941,8 +941,8 @@ function sendhtmlemail($emailid)
     $result = mysql_query("select * from emails  where id='" . $emailid . "' limit 0,1");
     $row = mysql_fetch_array($result);
 
-    $reply = $from = 'info@kpacentral.or.ke';
-    $cname = 'KPA CENTRAL MIS';
+    $reply = $from = 'info@chador.co.ke';
+    $cname = 'CHADOR MANAGEMENT INFORMATION SYSTEM';
 
     $headers = "From: " . strip_tags($from) . "\r\n";
     $headers .= "Reply-To: " . strip_tags($from) . "\r\n";
@@ -966,7 +966,7 @@ function sendhtmlemail($emailid)
                                 ' . $message . '
                                 <br><br>
                                 Best Regards,<br/>
-                                The KPA Central Team ';
+                                The Chador Auctioneer Team ';
 
     $text = $textmessage;
 
@@ -977,7 +977,7 @@ function sendhtmlemail($emailid)
                                                 <table align="center" border="0" cellpadding="0" cellspacing="0" width="70%" style="border: 1px solid #cccccc; border-collapse: collapse;">
                                                     <tr>
                                                          <td>
-                                                            <img src="http://kpacentral.or.ke/assets/img/kpa-logo.jpeg" style="width: 100%;">
+                                                            <img src="img/logos" style="width: 100%;">
                                                            </td>
                                                     </tr>
                                                     <tr>
@@ -1001,7 +1001,7 @@ function sendhtmlemail($emailid)
                                                             <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                                                 <tr>
                                                                     <td style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;" width="75%">
-                                                                        &reg; KPA CENTRAL MIS ' . date('Y') . ' All rights reserved<br/>
+                                                                        &reg; CHADOR AUCTIONEER MIS ' . date('Y') . ' All rights reserved<br/>
                                                                       </td>
                                                                     <td align="right" width="25%">
                                                                         
