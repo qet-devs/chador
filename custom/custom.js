@@ -9547,6 +9547,7 @@ function saveemail() {
     var message = $('#emailmessage').val();
     var subject = $('#emailsubject').val();
     var contlength = $('#contlength').val();
+    var uploadfile = $('#uploadfile').val();
 
 
     if (contlength == '' || contlength == 0) {
@@ -9562,7 +9563,7 @@ function saveemail() {
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px;width:30px" alt="Loading"/>');
         $.ajax({
             url: 'data.php',
-            data: {id: 108, message: message, subject: subject},
+            data: {id: 108, message: message, subject: subject, uploadfile: uploadfile},
             success: function (data) {
                 $('#message').html(data);
             }
