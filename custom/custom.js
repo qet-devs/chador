@@ -9547,6 +9547,7 @@ function saveemail() {
     var message = $('#emailmessage').val();
     var subject = $('#emailsubject').val();
     var contlength = $('#contlength').val();
+    var uploadfile = $('#uploadfile').val();
 
 
     if (contlength == '' || contlength == 0) {
@@ -9562,7 +9563,7 @@ function saveemail() {
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px;width:30px" alt="Loading"/>');
         $.ajax({
             url: 'data.php',
-            data: {id: 108, message: message, subject: subject},
+            data: {id: 108, message: message, subject: subject, uploadfile: uploadfile},
             success: function (data) {
                 $('#message').html(data);
             }
@@ -9769,8 +9770,7 @@ function newClient() {
 function saveNewClient() {
     var unique_client_id = $('#unique_client_id').val();
     var client_name = $('#client_name').val();
-    var debtor_uid = $('#debtor_uid').val();
-    var location = $('#location').val();
+     var location = $('#location').val();
     var email = $('#email').val();
     var phone = $('#phone').val();
     var address = $('#address').val();
@@ -9789,7 +9789,6 @@ function saveNewClient() {
             id: 200,
             unique_client_id: unique_client_id,
             client_name: client_name,
-            debtor_uid:debtor_uid,
             phone: phone,
             email: email,
             address: address,
@@ -10069,8 +10068,17 @@ function saveCaseManagement() {
 
 
     if (case_type == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
-        console.log(unique_file_id, client_uid, assignee_username, description);
+        console.log(case_type, client_uid, assignee_username, description);
         swal('Error', 'Please fill all required fields', 'error');
+        return;
+    }else if(case_type == 'DISTRESS' && location == '')
+    {
+        swal('Error', 'Please fill the location field!!','error');
+        return;
+
+    }else if(case_type == 'IMMOVABLE PROPERTIES' && location == '')
+    {
+        swal('Error','Please fill the location field','error');
         return;
     } else {
         var data = {
@@ -10085,50 +10093,7 @@ function saveCaseManagement() {
             description: description,
             location:location,
             
-            principal: principal,
-        };
-
-        $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
-        $.ajax({
-            url: 'data.php',
-            data: data,
-            success: function (data) {
-                $('#message').html(data);
-            }
-        });
-
-    }
-}
-
-
-
-// save new debt collect
-function saveNewDebtCollection() {
-    var unique_file_id = $('#unique_file_id').val();
-    var client_uid = $('#client_uid').val();
-    var referring_client_uid = $('#referring_client_uid').val();
-    var assignee_username = $('#assignee_username').val();
-    var description = $('#description').val();
-    var notification_date = $('#notification_date').val();
-    var notification_message = $('#notification_message').val();
-    var principal = $('#principal').val();
-
-
-    if (unique_file_id == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
-        console.log(unique_file_id, client_uid, assignee_username, description);
-        swal('Error', 'Please fill all required fields', 'error');
-        return;
-    } else {
-        var data = {
-            id: 300,
-            unique_file_id: unique_file_id,
-            client_uid: client_uid,
-            referring_client_uid: referring_client_uid,
-            assignee_username: assignee_username,
-            description: description,
-            notification_date: notification_date,
-            notification_message: notification_message,
-            principal: principal,
+            principal: principal
         };
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
@@ -10172,7 +10137,7 @@ function editCaseManagementEntry() {
 // EDIT CASE MANAGEMENT FILE
 function editCaseManagement(param) {
     // todo: remove logger
-    console.log('DC edit', param);
+    console.log('CM edit', param);
     $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
     $.ajax({
         url: 'bridge.php',
@@ -10185,7 +10150,7 @@ function editCaseManagement(param) {
 
 // UPDATE CASE MANAGEMENT INFO
 
-function saveCaseManagement(param) {
+function saveCaseFile(param) {
     var case_type = $('#case_type').val();
     var client_uid = $('#client_uid').val();
     var referrer_uid = $('#referrer_uid').val();
@@ -10296,7 +10261,7 @@ function caseManagementArchive(param) {
         },
         function () {
             // todo: remove logger
-            console.log('DC archive', param);
+            console.log('CM archive', param);
             $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
             $.ajax({
                 url: 'data.php',
