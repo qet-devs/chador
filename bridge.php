@@ -30791,8 +30791,7 @@ case 220:
         case 300:
           $result = mysql_query("insert into log values('','".$username." accesses create new case File Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
 
-
-      
+      $file_no = generateRandomString();
 
           echo '
            <div class="vd_container" id="container">
@@ -30917,6 +30916,7 @@ case 220:
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
                                                     <input type="text" id="principal" >
+                                                    <input type="hidden"  id="upload_file_no" value="'.$file_no.'">
                                                     </div>
                                                 </div>
     
@@ -30964,7 +30964,7 @@ case 220:
                                                                 <input type="hidden" name="sap" value="'.$username.'"/>
                                                                 <input type="hidden" name="tid" value="'.$file_no.'"/>
                                                                 <input type="hidden" name="type" id="doctype"
-                                                                       value="Debt Collection"/>
+                                                                       value=""/>
                                                                 <input type="hidden" id="id" name="id" value="1"/>
                                                                 <div class="cleaner_h5"></div>
                                                                 <button class="btn vd_btn vd_bg-green vd_white"
@@ -31004,7 +31004,7 @@ case 220:
                                                 <div class="col-sm-4"></div>
                                                 <div class="col-sm-7">
                                                     <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                                            onclick="saveCaseManagement()"><i class="icon-ok"></i> Save
+                                                            onclick="saveNewCaseManagement()"><i class="icon-ok"></i> Save
                                                     </button>
                                                     <button class="btn vd_btn" type="button" onclick="hidecont()">
                                                         Cancel

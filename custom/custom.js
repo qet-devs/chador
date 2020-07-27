@@ -10053,7 +10053,7 @@ function newCaseManagement() {
 }
 
 //save new case management
-function saveCaseManagement() {
+function saveNewCaseManagement() {
     var  case_type = $('#case_type').val();
     var client_uid = $('#client_uid').val();
     var referrer_uid = $('#referrer_uid').val();
@@ -10063,7 +10063,7 @@ function saveCaseManagement() {
     var notification_message = $('#notification_message').val();
     var description = $('#description').val();
     var location = $('#location').val();
-    
+    var upload_file_no = $('#upload_file_no').val();
     var principal = $('#principal').val();
 
 
@@ -10092,9 +10092,10 @@ function saveCaseManagement() {
             notification_message: notification_message,
             description: description,
             location:location,
-            
+            upload_file_no:upload_file_no,
             principal: principal
         };
+
 
         $('#message').html('<img id="img-spinner" src="img/spin.gif" style="margin-top:0px" alt="Loading"/>');
         $.ajax({
