@@ -30821,9 +30821,6 @@ case 220:
                                                     <option value="WARRANT" >WARRANT</option>
                                                     <option value="IMMOVABLE PROPERTIES" >IMMOVABLE PROPERTIES</option>
                                                     <option value="REPOSSESSION" >REPOSSESSION</option>                                                  
-                                                                               
-
-                                                   
                                                 </select>
                                             </div>
                                         </div>
@@ -30832,22 +30829,13 @@ case 220:
                                                     <label style="float:left" class="col-sm-4">Client Name<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                    <input type="text" list="client" />
-                                                    
-                                                    <datalist id="browsers">
-                                                        <option value="Internet Explorer">
-                                                        <option value="Firefox">
-                                                        <option value="Chrome">
-                                                        <option value="Opera">
-                                                        <option value="Safari">
-                                                    </datalist>
-                                                    
-                                                        <select id="client_uid" class="text-capitalize">
-                                                            <option value="" selected>Select One...</option>
+                                                    <input type="text" list="clients" id="client_uid" placeholder="Enter Client Name"/>
+                                                                                                        
+                                                        <datalist id="clients"  class="text-capitalize">
                                                             ';
                                                             displayClients();
                                                             echo '
-                                                        </select>
+                                                        </datalist>
                                                     </div>
                                                 </div>
 
@@ -30856,12 +30844,13 @@ case 220:
                                                     <label style="float:left" class="col-sm-4">Referring Client<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <select id="referrer_uid" class="text-capitalize">
-                                                            <option value="" selected>Select One...</option>
+                                                        <input type="text" id="referrer_uid" list="clients" placeholder="Enter Referrer Name">
+                                                                                                 
+                                                        <datalist id="clients"  class="text-capitalize">
                                                             ';
                                                             displayClients();
                                                             echo '
-                                                        </select>
+                                                        </datalist>
                                                     </div>
                                                 </div>
 
@@ -30869,12 +30858,13 @@ case 220:
                                                 <label style="float:left" class="col-sm-4">Debtor Name<span
                                                             style="color:#f00">*</span></label>
                                                 <div class="col-sm-8 controls">
-                                                    <select id="debtor_uid" class="text-capitalize">
-                                                        <option value="" selected>Select One...</option>
-                                                        ';
-                                                        displayClients();
-                                                        echo '
-                                                    </select>
+                                                    <input type="text" list="clients" id="debtor_uid" placeholder="Enter Debtor\'s name">
+                                                                                             
+                                                        <datalist id="clients"  class="text-capitalize">
+                                                            ';
+                                                            displayClients();
+                                                            echo '
+                                                        </datalist>
                                                 </div>
                                             </div>
 
@@ -30883,12 +30873,12 @@ case 220:
                                                     <label style="float:left" class="col-sm-4">Assignee<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <select id="assignee_username" class="text-capitalize">
-                                                            <option value="" selected>Select One...</option>
+                                                        <input type="text" list="employees" id="assignee_username" placeholder="Enter Assignee Name">
+                                                            <datalist id="employees" class="text-capitalize">
                                                             ';
                                                             displayUsers();
                                                             echo '
-                                                        </select>
+                                                        </datalist>
                                                     </div>
                                                 </div>
 
