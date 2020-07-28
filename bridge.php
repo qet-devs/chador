@@ -32087,11 +32087,11 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                     <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Fee Note</h3>
                   </div>
                   <div class="panel-body">
-                    <form class="form-horizontal" action="#" role="form">
+                    <form class="form-horizontal row" action="#" role="form">
 
                      <div class="form-group">
                         <label style="float:left" class="col-sm-2">Case File:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-4 controls">
+                        <div class="col-sm-6  controls">
                         <input type="text" list="case_files" id="case_file_no" placeholder="Enter Case File Number">
                          <datalist id="case_files">';
                         $resulta =mysql_query("select * from case_files where status=1 order by stamp desc");
@@ -32104,10 +32104,11 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                         echo'
                         </datalist>
                         </div>
+                        </div>
                         
                         <div class="form-group">
                         <label style="float:left" class="col-sm-2">Bill to:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-4 controls">
+                        <div class="col-sm-6 controls">
                         <input type="text" list="clients" id="billable_client" placeholder="Enter Client Name">
                          <datalist id="clients">';
                         $resulta =mysql_query("select * from clients where status=1 order by stamp desc");
@@ -32121,10 +32122,11 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                         echo'
                         </datalist>
                         </div>
+                        </div>
 
-
-                        <label style="float:left" class="col-sm-1">Month:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-2 controls">
+                        <div class="form-group">
+                        <label style="float:left" class="col-sm-2">Month:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-6 controls">
                         <input type="text" placeholder="" id="month" value="'.date('m_Y').'">
                         </div>
 
@@ -32137,7 +32139,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                 <div class="panel widget">
                   <div class="panel-heading vd_bg-grey">
-                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Billables List</h3>
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Fee Note Items</h3>
                   </div>
                   <div class="panel-body">
                     <form class="form-horizontal" action="#" role="form">
@@ -32216,7 +32218,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
 
                         echo'
                         <div class="col-sm-8 controls">
-                            <button class="btn vd_btn vd_bg-green" onclick="submitmulinvoice()"><span class="menu-icon"><i class="fa fa-save"></i></span>Submit Entry</button>
+                            <button class="btn vd_btn vd_bg-green" onclick="submitfeenote()"><span class="menu-icon"><i class="fa fa-save"></i></span>Submit Entry</button>
                          </div>
                     
                    </form>

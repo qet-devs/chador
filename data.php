@@ -6290,6 +6290,123 @@ switch ($id) {
 
         break;
 
+    case 304:
+        $fintot = $_GET['fintot'];
+        $mon = $month = $_GET['month'];
+        $case_file_no = $_GET['case_file_no'];
+        $billable_client_uid = $_GET['billable_client'];
+        $date = $_GET['date'];
+        //get receipt no and insert into requests
+        $result = mysql_query("select * from case_files where  unique_file_number='" . $case_file_no . "' and status=1");
+        $num_results = mysql_num_rows($result);
+        for ($i = 0; $i < $num_results; $i++) {
+            $row = mysql_fetch_array($result);
+            $tid = stripslashes($row['unique_file_number']);
+            $hid = stripslashes($row['case_type']);
+            $hname = displayClientName($row['client_uid']);
+            $rid = stripslashes($row['id']);
+            $roomno = $rno = stripslashes($row['file_status']);
+            $tname = $bname = displayClientName($billable_client_uid);
+            $bal = stripslashes($row['bal']);
+            $vatstatus = stripslashes($row['vat']);
+
+            //get receipt number
+            $resultc = mysql_query("select * from receipts where drcr='dr' order by serial desc limit 0,1");
+            $rowc = mysql_fetch_array($resultc);
+            $invno = stripslashes($rowc['invno']) + 1;
+            $invtot = 0;
+            $str = '';
+
+
+            foreach ($_SESSION['multinv'] as $key => $val) {
+                $actid = $key;
+                $total = $val;
+
+                $resultx = mysql_query("select * from invoices where actid='" . $actid . "' and mon='" . $mon . "'  and tid='" . $tid . "' limit 0,1");
+                $num_resultsx = mysql_num_rows($resultx);
+                if ($num_resultsx == 0) {
+
+
+                    $resultb = mysql_query("select * from activities where id='" . $actid . "' limit 0,1");
+                    $rowb = mysql_fetch_array($resultb);
+                    $actname = stripslashes($rowb['name']);
+                    $actlid = stripslashes($rowb['lid']);
+                    $actlname = stripslashes($rowb['lname']);
+                    $vatper = stripslashes($rowb['vat']) / 100;
+                    $str .= $actname . ',';
+
+                    if ($vatstatus == 1) {
+                        $vat = round((($total / (1 + $vatper)) * $vatper), 2);
+                    } else {
+                        $vat = 0;
+                    }
+
+                    //insert invoice
+                    if ($total >= 0) {
+                        $desc = $str . '-INVOICE FOR ' . $month;
+                    } else {
+                        $desc = $str . '-CREDIT NOTE:' . $month;
+                    }
+                    //$vat=0;
+                    $resultf = mysql_query("insert into invoices values('0','" . $invno . "','" . $hid . "','" . $hname . "','" . $rid . "','" . $rno . "','" . $tid . "','" . $bname . "','" . $month . "','" . $actid . "','" . $actname . "','" . $total . "','0','" . $total . "','1','" . $desc . "','" . date('d/m/Y') . "','" . date('Ymd') . "',1,'" . $username . "','" . $vat . "')");
+
+
+                    //post journal entries
+                    //income
+                    $amount = $total - $vat;
+                    $journalno = 0;
+                    $cid = $actlid;
+                    $did = 628;
+                    $refno = $tid;
+                    $date = date('Y/m/d');
+                    $description = $actname . ' Income-' . $tname . '-' . $roomno;
+                    postjournal($journalno, $cid, 'Credit', 'Add', $did, 'Debit', 'Add', $amount, $description, $refno, $date, $username, $hid);
+
+
+                    if ($vat != 0) {
+                        $amount = $vat;
+                        $journalno = 0;
+                        $cid = 614;
+                        $did = 628;
+                        $refno = $tid;
+                        $date = date('Y/m/d');
+                        $description = 'Rent Income Vat-' . $tname . '-' . $roomno;
+                        postjournal($journalno, $cid, 'Credit', 'Add', $did, 'Debit', 'Add', $amount, $description, $refno, $date, $username, $hid);
+                    }
+
+
+                    $invtot += $total;
+
+                }//end if
+
+
+            }//end for each
+
+
+            if ($invtot != 0) {
+                $nbal = $bal + $invtot;
+                $resulte = mysql_query("insert into receipts values('0','','" . $invno . "','','','" . date('d/m/Y') . "','" . $month . "','" . $tid . "','" . $bname . "','" . $hid . "','" . $hname . "','" . $rid . "','" . $rno . "','" . $invtot . "','','" . $desc . "','','" . $nbal . "','" . date('Ymd') . "','dr',1,2,'" . $username . "','" . date('Ymd') . "')");
+                $resultg = mysql_query("update tenants set bal='" . $nbal . "' where tid='" . $tid . "'");
+
+            }
+        }//end tenant cycle
+
+
+        if ($resulte) {
+            unset($_SESSION['multinv']);
+
+            echo '<script>swal("Success!", "Invoices posted!", "success");</script>';
+            //echo"<script>window.open('report.php?id=5&rcptno=".$invno."');</script>";
+            //echo"<script>setTimeout(function() {invoicing();},500);</script>";
+            $resulta = mysql_query("insert into log values('0','" . $username . " invoices Case File No:" . $case_file_no . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+        } else {
+            echo '<script>swal("Error", "Invoice not posted!", "error");</script>';
+
+        }
+        break;
+
+
+
 
     /*****Case management END*****/
 
