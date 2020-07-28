@@ -536,7 +536,7 @@ case 401:
             array('db' => 'client_uid', 'dt' => 2),
             array('db' => 'referrer_uid', 'dt' => 3),
             array('db' => 'file_status', 'dt' => 4),
-            array('db' => 'notification_date', 'dt' => 5)
+            array('db' => 'principal', 'dt' => 5)
         );
 
         break;

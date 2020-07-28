@@ -10054,7 +10054,7 @@ function newCaseManagement() {
 
 //save new case management
 function saveNewCaseManagement() {
-    var  case_type = $('#case_type').val();
+    var  case_type = $('#case_type option:selected').val();
     var client_uid = $('#client_uid').val();
     var referrer_uid = $('#referrer_uid').val();
     var debtor_uid = $('#debtor_uid').val();
@@ -10151,8 +10151,8 @@ function editCaseManagement(param) {
 
 // UPDATE CASE MANAGEMENT INFO
 
-function saveCaseFile(param) {
-    var case_type = $('#case_type').val();
+function saveCaseManagement(param) {
+    var case_type = $('#case_type ').val();
     var client_uid = $('#client_uid').val();
     var referrer_uid = $('#referrer_uid').val();
     var debtor_uid = $('#debtor_uid').val();
@@ -10161,12 +10161,21 @@ function saveCaseFile(param) {
     var notification_message = $('#notification_message').val();
     var description = $('#description').val();
     var location = $('#location').val();
-    var file_status = $('#file_status').val();
+    var file_status = $('#file_status option:selected').val();
     var remarks = $('#remarks').val();
     var principal = $('#principal').val();
 
     if (case_type == '' || client_uid == '' || assignee_username == '' || description == '' || principal == '') {
         swal('Error', 'Please fill all required fields', 'error');
+        return;
+    }else if(case_type == 'DISTRESS' && location == '')
+    {
+        swal('Error', 'Please fill the location field!!','error');
+        return;
+
+    }else if(case_type == 'IMMOVABLE PROPERTIES' && location == '')
+    {
+        swal('Error','Please fill the location field','error');
         return;
     } else {
         var data = {

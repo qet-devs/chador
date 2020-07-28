@@ -329,7 +329,125 @@ function generateUniqueFileID($case_type)
    //return $rowy['case_count'];
 }
 
+function displayBillData($param)
+{
+    $result = mysql_query("select * from receipts where status=1 and tid='" . $param . "'");
+    $num_results = mysql_num_rows($result);
+    for ($i = 0; $i < $num_results; $i++) {
+        $row = mysql_fetch_array($result);
+        $categ = stripslashes($row['categ']);
+        $code = stripslashes($row['serial']);
+        if (stripslashes($row['drcr']) == 'dr') {
+            $type = 'Invoice';
+            $out = 5;
+            $rcptno = stripslashes($row['invno']);
+        }
+        if (stripslashes($row['drcr']) == 'cn') {
+            $type = 'Credit Note';
+            $out = 55;
+            $rcptno = stripslashes($row['credno']);
+        }
+        if (stripslashes($row['drcr']) == 'cr') {
+            $type = 'Receipt';
+            $out = 6;
+            $rcptno = stripslashes($row['rcptno']);
+        }
 
+        if ($categ == 3) {
+            $out = 7;
+        }
+        if ($categ == 4) {
+            $out = 8;
+        }
+        echo "<tr class=\"gradeX\" id=\"normal" . $code . "\" title=\"Click to View\" style=\"cursor:pointer\" onclick=\"window.open('report.php?id=" . $out . "&rcptno=" . $rcptno . "')\" >";
+        echo '<td style="display:none">' . stripslashes($row['stamp']) . '</td>
+                                   <td>' . stripslashes($row['date']) . '</td>
+                                  <td>' . $type . '</td>
+                                  <td>' . $rcptno . '</td>
+                                  <td>' . stripslashes($row['description']) . '</td>
+                                  <td>' . number_format(floatval($row['amount'])) . '</td>
+                                  <td>' . number_format(floatval($row['bal'])) . '</td>
+                                    </tr>';
+
+    }
+
+}
+
+function displayUploads($param)
+{
+    $resulta = mysql_query("select * from tendocs where  tid='" . $param . "' order by stamp desc");
+    $num_resultsa = mysql_num_rows($resulta);
+    for ($i = 0; $i < $num_resultsa; $i++) {
+        $rowa = mysql_fetch_array($resulta);
+        $name = stripslashes($rowa['name']);
+        $type = strtolower(pathinfo($name, PATHINFO_EXTENSION));
+        if (exif_imagetype('uploads/tenants/' . $name . '')) {
+            $src = 'uploads/tenants/' . $name;
+        } else if ($type == 'pdf') {
+            $src = 'img/adobe.png';
+        } else if ($type == 'xls' || $type == 'xlsx') {
+            $src = 'img/excel.png';
+        } else if ($type == 'doc' || $type == 'rtf' || $type == 'docx') {
+            $src = 'img/word.png';
+        } else {
+            $src = 'img/format.png';
+        }
+        echo '<div style="border:1px solid #ccc; margin-bottom:10px;width:200px;min-height:100px;max-height:200px;float:left;margin-right:10px;padding:5px;overflow:hidden" id="doc' . stripslashes($rowa['id']) . '">
+                             <img src="img/delete.png" style="width:30px;height:30px;float:right;margin:5px;border:1px solid #f00;padding:2px;cursor:pointer" title="Delete" onclick="deldoc(' . stripslashes($rowa['id']) . ')"/>';
+        echo "<a href=\"uploads/tenants/" . stripslashes($rowa['name']) . "\"  target=\"_blank\"><img  src=\"" . $src . "\" alt=\"Photo\" style=\"float:left; max-width:200px; max-height:100px;cursor:pointer\">
+                             <div class=\"cleaner\"></div> <b>TYPE: " . stripslashes($rowa['type']) . "</b><br/>DETAILS: " . stripslashes($rowa['details']) . "<br/>NAME: " . stripslashes($rowa['name']) . "</a>
+                              </div>";
+    }
+
+}
+
+function displayNotifications($param)
+{
+    $arr = array();
+    $result = mysql_query("select * from emails where status=1 and tid='" . $param . "'");
+    $num_results = mysql_num_rows($result);
+    for ($i = 0; $i < $num_results; $i++) {
+        $row = mysql_fetch_array($result);
+        $arr['E-' . stripslashes($row['id'])] = stripslashes($row['timestamp']);
+    }
+
+    $result = mysql_query("select * from notices where status=1 and tid='" . $param . "'");
+    $num_results = mysql_num_rows($result);
+    for ($i = 0; $i < $num_results; $i++) {
+        $row = mysql_fetch_array($result);
+        $arr['M-' . stripslashes($row['id'])] = stripslashes($row['timestamp']);
+    }
+
+    asort($arr);
+
+
+    foreach ($arr as $key => $val) {
+
+        $prefix = substr($key, 0, 1);
+        $len = strlen($key);
+        $len = $len - 2;
+        $id = substr($key, 2, $len);
+        if ($prefix == 'E') {
+            $table = 'emails';
+            $type = 'Email';
+        }
+        if ($prefix == 'M') {
+            $table = 'notices';
+            $type = 'Sms';
+        }
+        $result = mysql_query("select * from " . $table . " where id='" . $id . "'");
+        $row = mysql_fetch_array($result);
+
+        echo "<tr class=\"gradeX\">";
+        echo ' <td style="width:20%">' . stripslashes($row['date']) . '-' . stripslashes($row['time']) . '</td>
+                                  <td style="width:10%">' . $type . '</td>
+                                  <td>' . stripslashes($row['message']) . '</td>
+                               </tr>';
+
+    }
+
+
+}
 
 function postautocreditnote($invid, $date, $username)
 {

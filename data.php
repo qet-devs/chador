@@ -6110,7 +6110,7 @@ switch ($id) {
     case 200:
         $unique_client_id = $_GET['unique_client_id'];
         $client_name = strtoupper($_GET['client_name']);
-       
+
         $location = strtoupper($_GET['location']);
         $phone = $_GET['phone'];
         $email = $_GET['email'];
@@ -6159,7 +6159,7 @@ switch ($id) {
         $contact_phone = $_GET['contact_phone'];
         $unique_client_id = $_GET['unique_client_id'];
 
-        $resultg = mysql_query("UPDATE `clients` SET `client_name`='" . $client_name . "', `debtor_uid`='".$debtor_uid."',`address`='" . $address . "',`location`='" . $location . "',`phone`='" . $phone . "',`pin_registration`='" . $pin_registration . "',`vat_registration`='" . $vat_registration . "',`certificate_of_incorporation`='" . $certificate_of_incorporation . "',`email`='" . $email . "',`national_id`='" . $national_id . "',`contact_phone`='" . $contact_phone . "',`contact_person`='" . $contact_person . "',`username`='" . $username . "' WHERE `id`='" . $id . "'") or die (mysql_error());
+        $resultg = mysql_query("UPDATE `clients` SET `client_name`='" . $client_name . "', `debtor_uid`='" . $debtor_uid . "',`address`='" . $address . "',`location`='" . $location . "',`phone`='" . $phone . "',`pin_registration`='" . $pin_registration . "',`vat_registration`='" . $vat_registration . "',`certificate_of_incorporation`='" . $certificate_of_incorporation . "',`email`='" . $email . "',`national_id`='" . $national_id . "',`contact_phone`='" . $contact_phone . "',`contact_person`='" . $contact_person . "',`username`='" . $username . "' WHERE `id`='" . $id . "'") or die (mysql_error());
 
         if ($resultg) {
             if (updateFileInTenants($unique_client_id, $client_uid, '', $principal)) {
@@ -6228,11 +6228,11 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `case_files` VALUES ('0','".$case_type."','" . $client_uid . "','" . $referrer_uid . "','".$debtor_uid."','" . $assignee_username . "','open','','".$unique_file_id."','" . $notification_date . "','" . $description . "','".$location."','" . $username . "','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','" . $notification_message . "','" . $principal . "','" . $upload_file_no. "')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `case_files` VALUES ('0','" . $case_type . "','" . $client_uid . "','" . $referrer_uid . "','" . $debtor_uid . "','" . $assignee_username . "','open','','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','" . $notification_message . "','" . $principal . "','" . $upload_file_no . "')") or die (mysql_error());
 
         if ($resultc) {
 
-            echo '<script>swal("Success!", "'.$case_type.' file No: '.$unique_file_id.' created successfully", "success");</script>';
+            echo '<script>swal("Success!", "' . $case_type . ' file No: ' . $unique_file_id . ' created successfully", "success");</script>';
 
             $resulta = mysql_query("insert into log values('0','" . $username . " created case file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newCaseManagement();},500);</script>";
@@ -6255,10 +6255,11 @@ switch ($id) {
         $file_status = $_GET['file_status'];
         $remarks = $_GET['remarks'];
         $principal = $_GET['principal'];
-        $unique_file_id = generateUniqueFileID($case_type);
-        $resultc = mysql_query("update  `case_files` set `case_type`='" . $case_type . "',`client_uid` ='" . $client_uid . "' , `referrer_uid` ='" . $referrer_uid . "' ,`principal`='" . $principal . "',   `assignee_id`='" . $assignee_username . "', `notification_date`='" . $notification_date . "', `description`='" . $description . "', `notification_message`='" . $notification_message . "', `file_status`='" . $file_status . "', `remarks`='" . $remarks . "' where `id` = '" . $param . "'");
+
+        $resultc = mysql_query('UPDATE `case_files` SET `client_uid`="' . $client_uid . '",`referrer_uid`="' . $referrer_uid . '",`debtor_uid`="' . $debtor_uid . '",`assignee_id`="' . $assignee_username . '",`file_status`="' . $file_status . '",`remarks`="' . $remarks . '",`notification_date`="' . $notification_date . '",`description`="' . $description . '",`location`="' . $location . '",`username`="' . $username . '",`notification_message`="' . $notification_message . '",`principal`="' . $principal . '" WHERE `id`="' . $param . '" ');
         if ($resultc) {
-                        $resulta = mysql_query("insert into log values('0','" . $username . " updated case management file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            $resulta = mysql_query("insert into log values('0','" . $username . " updated case management file of no " . $unique_file_id . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+            echo '<script>swal("Success", "Case File Updated Successfully", "success");</script>';
             echo "<script>setTimeout(function() {findCaseManagement();},500);</script>";
         } else {
             echo '<script>swal("Error", "failed to update case file record!", "error");</script>';

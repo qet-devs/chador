@@ -30813,7 +30813,7 @@ case 220:
                                             <label style="float:left" class="col-sm-4">Case File Type:<span
                                                         style="color:#f00">*</span></label>
                                             <div class="col-sm-8 controls">
-                                                <select id="case_type" value="file_no" class="text-capitalize">
+                                                <select id="case_type" class="text-capitalize">
                                                     <option value="" selected>Select One...</option>
                                                     <option value="DEBT COLLECTION">DEBT COLLECTION</option>
                                                     <option value="DISTRESS" >DISTRESS</option>
@@ -31068,7 +31068,7 @@ case 301:
                                                     <th>Client No</th>
                                                     <th>Referrer No</th>
                                                     <th>File status</th>
-                                                    <th>Notification Date</th>
+                                                    <th>Principal</th>
                                                 </tr>
                                                 </thead>
                                             </table>
@@ -31196,7 +31196,7 @@ case 301:
             $num_results = mysql_num_rows($result);
               for ($i=0; $i <$num_results; $i++) {
                   $row=mysql_fetch_array($result);
-                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['case_type']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['referrer_uid']).'</option>';
+                  echo '<option value="'.stripslashes($row['id']).'">'.stripslashes($row['unique_file_number']).' - '.displayClientName($row['client_uid']).' - '.displayClientName($row['referrer_uid']).'</option>';
                 }
            echo'</select>
              <div class="cleaner_h10"></div>
@@ -31255,25 +31255,34 @@ echo "
                                         <div class="panel-body">
                                             <form class="form-horizontal" action="#" role="form">
                                                 <div class="form-group">
-                                                    <label style="float:left" class="col-sm-4">Case Files Type
+                                                    <label style="float:left" class="col-sm-4">Case File Number
                                                         <span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <input type="text" id="case_type"
-                                                               value="' . $row['case_type'] . '" disabled>
+                                                        <input type="text" id="unique_file_number"
+                                                               value="' . $row['unique_file_number'] . '" disabled>
                                                     </div>
                                                 </div>
-
+                                                
+                                                <div class="form-group">
+                                                <label style="float:left" class="col-sm-4">Case File Type:<span
+                                                            style="color:#f00">*</span></label>
+                                                <div class="col-sm-8 controls">
+                                                    <input type="text" id="case_type"
+                                                               value="' . $row['case_type'] . '" disabled>
+                                                </div>
+                                                </div>
+                                            
                                                 <div class="form-group">
                                                     <label style="float:left" class="col-sm-4">Client Name<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <select id="client_uid" class="text-capitalize">
-                                                            <option value="'.$row['client_uid'].'" selected>'.displayClientName($row['client_uid']).'</option>
+                                                    <input type="text" id="client_uid" list="clients" value="'.$row['client_uid'].'" placeholder="Enter Client Name">
+                                                        <datalist id="clients" class="text-capitalize">
                                                             ';
                 displayClients();
                 echo '
-                                                        </select>
+                                                        </datalist>
                                                     </div>
                                                 </div>
 
@@ -31282,12 +31291,12 @@ echo "
                                                     <label style="float:left" class="col-sm-4">Referring Client<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <select id="referring_client_uid" class="text-capitalize">
-                                                            <option value="'.$row['referrer_uid'].'" selected>'.displayClientName($row['referrer_uid']).'</option>
+                                                    <input type="text" id="referrer_uid" list="clients" value="'.$row['referrer_uid'].'" placeholder="Enter Referrer name">
+                                                        <datalist id="clients" class="text-capitalize">
                                                             ';
                 displayClients();
                 echo '
-                                                        </select>
+                                                        </datalist>
                                                     </div>
                                                 </div>
 
@@ -31296,12 +31305,12 @@ echo "
                                                     <label style="float:left" class="col-sm-4">Debtor Client<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <select id="debtor_uid" class="text-capitalize">
-                                                            <option value="'.$row['debtor_uid'].'" selected>'.displayClientName($row['debtor_uid']).'</option>
+                                                    <input type="text" list="clients" id="debtor_uid" value="'.$row['debtor_uid'].'" placeholder="Enter Debtor Name">
+                                                         <datalist id="clients" class="text-capitalize">
                                                             ';
                 displayClients();
                 echo '
-                                                        </select>
+                                                        </datalist>
                                                     </div>
                                                 </div>
 
@@ -31309,12 +31318,12 @@ echo "
                                                     <label style="float:left" class="col-sm-4">Assignee<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <select id="assignee_username" class="text-capitalize">
-                                                            <option value="'.$row['assignee_id'].'" selected>'.displayUserName( $row['assignee_id']).'</option>
+                                                    <input type="text" id="assignee_username" list="assignees" value="'. $row['assignee_id'].'">
+                                                        <datalist id="assignees" class="text-capitalize">
                                                             ';
                 displayUsers();
                 echo '
-                                                        </select>
+                                                        </datalist>
                                                     </div>
                                                 </div>
 
@@ -31345,6 +31354,13 @@ echo "
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
                                                     <input type="text" id="principal" value="'.$row['principal'].'">
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label style="float:left" class="col-sm-4">Location</label>
+                                                    <div class="col-sm-8 controls">
+                                                    <input type="text" id="location" value="'.$row['location'].'">
                                                     </div>
                                                 </div>
                                                 
@@ -31410,9 +31426,9 @@ echo "
                                                                 <input type="hidden" id="soi" name="soi"
                                                                        value=""/>
                                                                 <input type="hidden" name="sap" value="'.$username.'"/>
-                                                                <input type="hidden" name="tid" value="'.$row['file_no'] .'"/>
+                                                                <input type="hidden" name="tid" value="'.$row['upload_file_id'] .'"/>
                                                                 <input type="hidden" name="type" id="doctype"
-                                                                       value="Debt Collection"/>
+                                                                       value=""/>
                                                                 <input type="hidden" id="id" name="id" value="1"/>
                                                                 <div class="cleaner_h5"></div>
                                                                 <button class="btn vd_btn vd_bg-green vd_white"
@@ -31453,7 +31469,7 @@ echo "
                                                 <div class="col-sm-4"></div>
                                                 <div class="col-sm-7">
                                                     <button class="btn vd_btn vd_bg-green vd_white" type="button"
-                                                            onclick="saveCaseFile('.$param.')"><i class="icon-ok"></i> Update
+                                                            onclick="saveCaseManagement('.$param.')"><i class="icon-ok"></i> Update
                                                     </button>
                                                     <button class="btn vd_btn" type="button" onclick="hidecont()">
                                                         Cancel
@@ -31518,191 +31534,245 @@ echo "
 
 //case management file info
 case 305:
+ $param =$tid = $_GET['param'];
+if (!isset($_GET['keyy'])) {
+    $_SESSION['links'][] = $id . '-' . $param;
+    end($_SESSION['links']);
+    $keyy = key($_SESSION['links']);
+} else {
+    $keyy = $_GET['keyy'];
+}
+echo "<script> $('#thekey').val('" . $keyy . "');</script>";
+$result = mysql_query("insert into log values('','" . $username . " accesses Case File Panel.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
+$resultx = mysql_query("select * from case_files where id='" . $param . "' limit 0,1");
+$row = mysql_fetch_array($resultx);
+
+$stat = $row['file_status'];
 
 
-                $param = $_GET['param'];
-                mysql_query("insert into log values('','" . $username . " accesses Case file.Record ID:" . $param . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
-                $result = mysql_query('select * from case_files where id="' . $param . '" limit 0,1');
-                $row = mysql_fetch_array($result);
+if ($stat == 'open') {
+    $status = 'Open';
+    $col = '#1fae66';
+} else if ($stat == 'pending') {
+    $status = 'Pending';
+    $col = '#f85d2c';
+} else {
+    $status = 'Closed';
+    $col = '#f89c2c';
+}
 
-                echo '
-                 <div class="vd_container" id="container">
-                    <div class="vd_content clearfix" style="">
-                        <div class="vd_content-section clearfix">
 
-                            <div class="panel widget">
-                                <div class="panel-heading vd_bg-grey">
-                                    <h3 class="panel-title text-capitalize"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
-                                        Case Management File </h3>
+
+echo '
+    <div class="vd_container" id="container">
+        <div class="vd_content clearfix" style="">
+   
+           <div class="vd_content-section clearfix">
+            <div class="row" id="form-basic">
+              <div class="col-md-12">
+                <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Case File-' .stripslashes($row['unique_file_number']). '-[' .  displayClientName($row['client_uid'])  . '] </h3>
+                  </div>
+                 <div class="panel-body">
+                  <ul class="nav nav-tabs">
+                      <li class="active"><a href="#tab1" data-toggle="tab">Personal Information</a></li>
+                      <li><a href="#tab2" data-toggle="tab">Billing</a></li>
+                      <li><a href="#tab3" data-toggle="tab">Documents</a></li>
+                      <li><a href="#tab4" data-toggle="tab">Correspondence</a></li>
+                    </ul>     
+                    <br/>               
+                    <div class="tab-content mgbt-xs-20">
+                      <div class="tab-pane active" id="tab1"> 
+                    <div class="col-md-6">
+                      <form class="form-horizontal" action="#" role="form">
+
+                            <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Case File Number
+                                        <span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                        <input type="text" id="unique_file_number"
+                                               value="' . $row['unique_file_number'] . '" disabled>
+                                    </div>
                                 </div>
-                                <div class="panel-body">
-                                    <ul class="nav nav-tabs">
-                                        <li class="active"><a data-toggle="tab" href="#details">File Details</a></li>
-                                        <li><a data-toggle="tab" href="#uploads">Uploaded Files</a></li>
-                                        <li><a data-toggle="tab" href="#invoices">Invoices</a></li>
-                                        <li><a data-toggle="tab" href="#notifications">Notifications</a></li>
-                                    </ul>
-
-                                    <div class="tab-content">
-                                        <div id="details" class="tab-pane fade in active">
-                                            <h3>File Details</h3>
-                                            
-                                            <div class="panel widget">
-                                       
-                                        <div class="panel-body">
-                                        <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Case Files Type
-                                            <span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="case_type"
-                                                   value="' . $row['case_type'] . '" disabled>
-                                        </div>
+                                
+                                <div class="form-group">
+                                <label style="float:left" class="col-sm-4">Case File Type:<span
+                                            style="color:#f00">*</span></label>
+                                <div class="col-sm-8 controls">
+                                    <input type="text" id="case_type"
+                                               value="' . $row['case_type'] . '" disabled>
+                                </div>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Client Name<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                    <input type="text" id="client_uid"  value="' . $row['client_uid'] . '" disabled>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Client Name<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <select id="client_uid" class="text-capitalize">
-                                                <option value="'.$row['client_uid'].'" selected>'.displayClientName($row['client_uid']).'</option>
-                                                ';
-    displayClients();
-    echo '
-                                            </select>
-                                        </div>
+                                </div>
+    
+    
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Referring Client<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                    <input type="text" id="referrer_uid"  value="' . $row['referrer_uid'] . '" disabled>
                                     </div>
-
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Referring Client<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <select id="referring_client_uid" class="text-capitalize">
-                                                <option value="'.$row['referrer_uid'].'" selected>'.displayClientName($row['referrer_uid']).'</option>
-                                                ';
-    displayClients();
-    echo '
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Debtor Client<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <select id="debtor_uid" class="text-capitalize">
-                                                <option value="'.$row['debtor_uid'].'" selected>'.displayClientName($row['debtor_uid']).'</option>
-                                                ';
-    displayClients();
-    echo '
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Assignee<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <select id="assignee_username" class="text-capitalize">
-                                                <option value="'.$row['assignee_id'].'" selected>'.displayUserName( $row['assignee_id']).'</option>
-                                                ';
-    displayUsers();
-    echo '
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Description<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                            <textarea id="description">'.$row['description'].'</textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Notification Date</label>
-                                        <div class="col-sm-8 controls">
-                                            <input type="text" id="notification_date" value="'.$row['notification_date'].'" class="date">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Notification Message</label>
-                                        <div class="col-sm-8 controls">
-                                            <textarea id="notification_message">'.$row['notification_message'].' </textarea>
-                                        </div>
-                                    </div>
-                                                                          
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Principal Amount<span
-                                                    style="color:#f00">*</span></label>
-                                        <div class="col-sm-8 controls">
-                                        <input type="text" id="principal" value="'.$row['principal'].'">
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">File Status</label>
-                                        <div class="col-sm-8 controls">
-                                        <select id="file_status" class="text-capitalize">
-                                                <option value="'.$row['file_status'].'" selected>'.$row['file_status'].'</option>
-                                                <option value="open">Open</option>
-                                                <option value="pending">Pending</option>
-                                                <option value="closed">Closed</option>
-                                             </select>
+                                </div>
+    
+                                
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Debtor Client<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                    <input type="text" list="clients" id="debtor_uid" value="' . $row['debtor_uid'] . '" disabled>
                                          
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label style="float:left" class="col-sm-4">Remarks</label>
-                                        <div class="col-sm-8 controls">
-                                            <textarea id="remarks">'.$row['remarks'].' </textarea>
-                                        </div>
-                                    </div>
-
-                                </form>
-                                        </div>
-                                    </div>
-                                    <!-- Panel Widget -->
-                                            
-                                        </div>
-                                        <div id="uploads" class="tab-pane fade">
-                                            <h3>Uploaded Documents</h3>
-                                            <table class="table table-striped">
-                                                <thead>
-                                                  <tr>
-                                                    <th>Name</th>
-                                                    <th>Details</th>
-                                                    <th>Download</th>
-                                                  </tr>
-                                                </thead>
-                                                <tbody>';
-displayUploadedFiles($row['unique_file_number']);
-
-                                              echo '</tbody>
-                                              </table>
-                                        </div>
-                                        <div id="invoices" class="tab-pane fade">
-                                            <h3>Invoices</h3>
-                                            <p>Some content in menu 2.</p>
-                                        </div>
-                                        <div id="notifications" class="tab-pane fade">
-                                            <h3>Notifications</h3>
-                                            <p>Some content in menu 2.</p>
-                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
+    
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Assignee<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                    <input type="text" id="assignee_username" list="assignees" value="' . $row['assignee_id'] . '" disabled>
+                                    </div>
+                                </div>
+    
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Description<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                        <textarea id="description" disabled>' . $row['description'] . '</textarea>
+                                    </div>
+                                </div>
+    
+                            </form>
                         </div>
+
+                        <div class="col-md-6">
+                            <form class="form-horizontal" action="#" role="form">
+
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Notification Date</label>
+                                    <div class="col-sm-8 controls">
+                                        <input type="text" id="notification_date" value="' . $row['notification_date'] . '" disabled>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Notification Message</label>
+                                    <div class="col-sm-8 controls">
+                                        <textarea id="notification_message" disabled>' . $row['notification_message'] . ' </textarea>
+                                    </div>
+                                </div>
+                                                                      
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Principal Amount<span
+                                                style="color:#f00">*</span></label>
+                                    <div class="col-sm-8 controls">
+                                    <input type="text" id="principal" value="' . $row['principal'] . '" disabled>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Location</label>
+                                    <div class="col-sm-8 controls">
+                                    <input type="text" id="location" value="' . $row['location'] . '" disabled>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">File Status</label>
+                                    <div class="col-sm-8 controls">
+                                    <input type="text" value="' . $row['file_status'] . '" disabled>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label style="float:left" class="col-sm-4">Remarks</label>
+                                    <div class="col-sm-8 controls">
+                                        <textarea id="remarks" disabled>' . $row['remarks'] . ' </textarea>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                      </div><!--end tab-->
+
+                      <div class="tab-pane" id="tab2">
+
+                          <div class="panel-body table-responsive">
+                            <table class="table table-striped data-tables" id="data-tables">
+                              <thead>
+                                <tr>
+                                  <th style="display:none">Date</th> 
+                                  <th>Date</th>
+                                  <th>Type</th>
+                                  <th>Rcpt/Inv No</th>
+                                  <th>Description</th>
+                                  <th>Amount</th>
+                                  <th>Bal</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              ';
+displayBillData($row['unique_file_number']);
+echo '
+                               </tbody>
+                            </table>
+                          </div>
+                       </div>
+                      <div class="tab-pane" id="tab3"> 
+
+                      <div style="width:100%;height:350px; overflow-y:auto; float:left; padding:2%">
+                      ';
+
+
+displayUploads($row['upload_file_id']);
+echo '
+                        </div>
+                      </div>
+                      
+                      <div class="tab-pane" id="tab4">
+                          <div class="panel-body table-responsive">
+                            <table class="table table-striped data-tables" id="data-tables2">
+                              <thead>
+                                <tr>
+                                  <th>Date</th>
+                                  <th>Type</th>
+                                  <th>Description</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                              ';
+
+displayNotifications($row['unique_file_number']);
+echo '
+                            </tbody>
+                            </table>
+                          </div>
+                       </div>
+
                     </div>
                 </div>
+                <!-- Panel Widget --> 
+              </div>
+            <!-- row --> 
+          </div>
+           
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container -->
+        <script type="text/javascript">
+      $(document).ready(function() {
+          "use strict";
+          $(".data-tables").dataTable();
+      } );
+      </script> 
+      ';
 
-                ';
 
 
     break;
@@ -31793,7 +31863,7 @@ case 307:
                                                 </tr>
                                                 </thead>
                                                 <tbody>';
-                                                displayUploadedFiles($row['file_no']);
+                                                displayUploadedFiles($row['upload_file_id']);
 
                                                 echo '</tbody>
                                             </table>
@@ -32029,7 +32099,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                                   for ($i=0; $i <$num_resultsa; $i++) {
                                     $row=mysql_fetch_array($resulta);
                                     $unique_file_id=stripslashes($row['unique_file_number']);
-                                    echo"<option value=\"".$unique_file_id."\">".$unique_file_id."</option>";
+                                    echo"<option value='".$unique_file_id."'>".$unique_file_id."</option>";
                                 }
                         echo'
                         </datalist>
