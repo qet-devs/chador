@@ -31998,6 +31998,181 @@ case 309:
     } </style>';
     break;
 
+    case 310:
+ $param=0;
+if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+
+   $_SESSION['multinv']=array();
+    $result = mysql_query("insert into log values('','".$username." accesses Fee Note Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+      echo'<div class="vd_container" id="container">
+        <div class="vd_content clearfix">
+ 
+          
+          <div class="vd_content-section clearfix">
+            <div class="row" id="form-basic">
+                <div class="col-md-9">
+                <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Fee Note</h3>
+                  </div>
+                  <div class="panel-body">
+                    <form class="form-horizontal" action="#" role="form">
+
+                     <div class="form-group">
+                        <label style="float:left" class="col-sm-2">Case File:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-4 controls">
+                        <input type="text" list="case_files" id="case_file_no" placeholder="Enter Case File Number">
+                         <datalist id="case_files">';
+                        $resulta =mysql_query("select * from case_files where status=1 order by stamp desc");
+                                  $num_resultsa = mysql_num_rows($resulta);
+                                  for ($i=0; $i <$num_resultsa; $i++) {
+                                    $row=mysql_fetch_array($resulta);
+                                    $unique_file_id=stripslashes($row['unique_file_number']);
+                                    echo"<option value=\"".$unique_file_id."\">".$unique_file_id."</option>";
+                                }
+                        echo'
+                        </datalist>
+                        </div>
+                        
+                        <div class="form-group">
+                        <label style="float:left" class="col-sm-2">Bill to:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-4 controls">
+                        <input type="text" list="clients" id="billable_client" placeholder="Enter Client Name">
+                         <datalist id="clients">';
+                        $resulta =mysql_query("select * from clients where status=1 order by stamp desc");
+                                  $num_resultsa = mysql_num_rows($resulta);
+                                  for ($i=0; $i <$num_resultsa; $i++) {
+                                    $row=mysql_fetch_array($resulta);
+                                    $unique_client_id=stripslashes($row['unique_client_id']);
+                                    $client_name = displayClientName($row['client_name']);
+                                    echo"<option value=\"".$unique_client_id."\">".$client_name."</option>";
+                                }
+                        echo'
+                        </datalist>
+                        </div>
+
+
+                        <label style="float:left" class="col-sm-1">Month:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-2 controls">
+                        <input type="text" placeholder="" id="month" value="'.date('m_Y').'">
+                        </div>
+
+                       </div>
+
+                     </form>
+                  </div>
+                </div>
+                <!-- Panel Widget --> 
+
+                <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Billables List</h3>
+                  </div>
+                  <div class="panel-body">
+                    <form class="form-horizontal" action="#" role="form">
+                    <div id="display" style="height:350px;overflow-y:auto">
+                      <table class="table table-striped" id="data-tables">
+                              <thead>
+                                <tr>
+                                      <th  style="width:10%;">Code</th>
+                                      <th  style="width:40%;">Item Name</th>
+                                      <th  style="width:20%;">Amount</th>
+                                      <th  style="width:10%;">Save</th>
+                                      <th  style="width:10%;">Remove</th>
+                                        
+                                    </tr>
+                                    </thead>
+                                   <tbody>';
+                                  $resulta =mysql_query("select * from activities");
+                                  $num_resultsa = mysql_num_rows($resulta);
+                                  for ($i=0; $i <$num_resultsa; $i++) {
+                                    $rowa=mysql_fetch_array($resulta);
+                                    $code=stripslashes($rowa['id']);
+
+                                    echo'<tr class="gradeX" id="normal'.$code.'" >
+                                     <td style="width:10%;">'.stripslashes($rowa['id']).'</td>
+                                     <td style="width:40%;"><input  type="text" style="width:90%;  text-align:center" id="name'.$code.'" value="'.stripslashes($rowa['name']).'"/></td>
+                                   <td style="width:20%;"><input  type="text" style="width:90%;  text-align:center" id="amount'.$code.'" value="'.stripslashes($rowa['amount']).'"/></td>
+                                    <td style="width:10%;cursor:pointer" id="save'.$code.'"  onclick="savemulinvoice('.$code.')"><img src="img/save.png" width="30"/></td>
+                                    <td style="width:10%;cursor:pointer" id="del'.$code.'"  onclick="delmulinvoice('.$code.')" ><img src="img/delete.png" width="30"/></td>
+                                   
+                                    </tr>';
+                                      }
+
+                                    echo'</tbody>
+                                  </table>
+
+                    </div>
+                   </form>
+                  </div>
+                </div>
+                <!-- Panel Widget --> 
+
+
+              </div>
+              <!-- col-md-9 --> 
+
+
+              <div class="col-md-3">
+                <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Submit Transaction</h3>
+                  </div>
+                  <div class="panel-body">
+                    <form class="form-horizontal" action="#" role="form">';
+                     echo'
+                        <div class="form-group" style="display:none">
+                         <label style="float:left" class="col-sm-4">Date:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+                        <input type="text" placeholder="" id="date" value="'.date('d/m/Y').'" disabled>
+                        </div>
+                         </div>
+
+                         <div class="form-group">
+                         <label style="float:left" class="col-sm-4">Total Entries:</label>
+                        <div class="col-sm-8 controls">
+                        <input type="text" placeholder="" id="totitems" value="0" disabled>
+                        </div>
+                         </div>
+
+                          <div class="form-group">
+                         <label style="float:left" class="col-sm-4">Total Amount:</label>
+                        <div class="col-sm-8 controls">
+                        <input type="text" placeholder="" id="totprice" value="" disabled>
+                        </div>
+                         </div>';
+
+
+                        echo'
+                        <div class="col-sm-8 controls">
+                            <button class="btn vd_btn vd_bg-green" onclick="submitmulinvoice()"><span class="menu-icon"><i class="fa fa-save"></i></span>Submit Entry</button>
+                         </div>
+                    
+                   </form>
+                  </div>
+                </div>
+                <!-- Panel Widget --> 
+              </div>
+              <!-- col-md-3 --> 
+
+              
+              </div>
+            <!-- row --> 
+              </div>
+            
+           </div>
+          <!-- .vd_content-section --> 
+          
+        </div>
+        <!-- .vd_content --> 
+      </div>
+        <!-- .vd_container --> ';
+
+          echo "<script>  $( '#date' ).datepicker({ dateFormat: 'dd/mm/yy'}); </script>";
+            echo "<script>  $( '#month' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
+
+        break;
 
 
         /*****CASE MANAGEMEN END*****/

@@ -10316,6 +10316,16 @@ function caseManagementActivate(param) {
         });
 }
 
+function feenote() {
+    $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+    $.ajax({
+        url: 'bridge.php',
+        data: {id: 310},
+        success: function (data) {
+            $('#mainp').html(data);
+        }
+    });
+}
 // END OF DEBT COLLECTION
 
 /** start of warrant */

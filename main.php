@@ -613,19 +613,19 @@ if (isset($_SESSION['valid_user'])) {
                                     <ul>
                                         <li>
                                             <?php if ($rightsarr[148] == 'YES') {
-                                                echo '<a  href="#" onclick="invoicing()" >
-                        <span class="menu-text">Post Invoices</span>  
+                                                echo '<a  href="#" onclick="feenote()" >
+                        <span class="menu-text">Fee Note</span>  
                     </a>';
                                             } ?>
                                         </li>
-
-                                        <li>
-                                            <?php if ($rightsarr[143] == 'YES') {
-                                                echo '<a  href="#" onclick="multipleinvoicing()" >
-                        <span class="menu-text">Multiple Client Invoicing</span>  
-                    </a>';
-                                            } ?>
-                                        </li>
+<!---->
+<!--                                        <li>-->
+<!--                                            --><?php //if ($rightsarr[143] == 'YES') {
+//                                                echo '<a  href="#" onclick="multipleinvoicing()" >
+//                        <span class="menu-text">Multiple Client Invoicing</span>
+//                    </a>';
+//                                            } ?>
+<!--                                        </li>-->
 
                                         <li>
                                             <?php if ($rightsarr[145] == 'YES') {
