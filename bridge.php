@@ -65,7 +65,7 @@ for ($i=0; $i <$num_results; $i++) {
   $activetenants =$num_results = mysql_num_rows($result);
  
 
-  $result =mysql_query("select * from invoices where mon='".date('m_Y')."' and actid=1 and status!=0");
+  $result =mysql_query("select * from invoices where month='".date('m_Y')."' and actid=1 and status!=0");
   $projection=0;
   for ($i=0; $i <$num_results; $i++) {
   $row=mysql_fetch_array($result);
@@ -29621,7 +29621,7 @@ case 212:
     $resulty = mysql_query("select * from clients order by id desc limit 0,1");
     $rowy = mysql_fetch_array($resulty);
     $tid = stripslashes($rowy['id']) + 1;
-    $unique_client_id = 'UCID' . sprintf("%08d", $tid);
+    $unique_client_id = 'UCID' . sprintf("%04d", $tid);
 
     echo '
     <div class="vd_container" id="container">
@@ -30828,13 +30828,13 @@ case 220:
                                                     <label style="float:left" class="col-sm-4">Client Name<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                    <input type="text" list="clients" id="client_uid" placeholder="Enter Client Name"/>
+                                                    <select id="client_uid" class="comboselect">
                                                                                                         
-                                                        <datalist id="clients"  class="text-capitalize">
+                                                     <option value="">Select Client</option>
                                                             ';
                                                             displayClients();
                                                             echo '
-                                                        </datalist>
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -30843,13 +30843,12 @@ case 220:
                                                     <label style="float:left" class="col-sm-4">Referring Client<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <input type="text" id="referrer_uid" list="clients" placeholder="Enter Referrer Name">
-                                                                                                 
-                                                        <datalist id="clients"  class="text-capitalize">
+                                                        <select id="referrer_uid" class="text-capitalize comboselect">
+                                                        <option value="">Select Referrer</option>
                                                             ';
                                                             displayClients();
                                                             echo '
-                                                        </datalist>
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -30857,13 +30856,12 @@ case 220:
                                                 <label style="float:left" class="col-sm-4">Debtor Name<span
                                                             style="color:#f00">*</span></label>
                                                 <div class="col-sm-8 controls">
-                                                    <input type="text" list="clients" id="debtor_uid" placeholder="Enter Debtor\'s name">
-                                                                                             
-                                                        <datalist id="clients"  class="text-capitalize">
+                                                    <select id="debtor_uid" class="text-capitalize comboselect">
+                                                    <option value="">Select Debtor</option>
                                                             ';
                                                             displayClients();
                                                             echo '
-                                                        </datalist>
+                                                        </select>
                                                 </div>
                                             </div>
 
@@ -30872,12 +30870,12 @@ case 220:
                                                     <label style="float:left" class="col-sm-4">Assignee<span
                                                                 style="color:#f00">*</span></label>
                                                     <div class="col-sm-8 controls">
-                                                        <input type="text" list="employees" id="assignee_username" placeholder="Enter Assignee Name">
-                                                            <datalist id="employees" class="text-capitalize">
+                                                        <select id="assignee_username"  class="text-capitalize comboselect">
+                                                        <option value="">Select Assignee</option>
                                                             ';
                                                             displayUsers();
                                                             echo '
-                                                        </datalist>
+                                                        </select>
                                                     </div>
                                                 </div>
 

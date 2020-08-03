@@ -6132,9 +6132,7 @@ switch ($id) {
 
 
         if ($resultc) {
-            if (insertFileIntoTenants($unique_client_id, $unique_client_id, '', '5000', 'clients')) {
-                echo '<script>swal("Success!", "Client information saved successfully", "success");</script>';
-            }
+            echo '<script>swal("Success!", "Client information saved successfully", "success");</script>';
             $resulta = mysql_query("insert into log values('0','" . $username . " creates new Clients','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
             echo "<script>setTimeout(function() {newClient();},500);</script>";
         } else {
@@ -6228,7 +6226,7 @@ switch ($id) {
 
         }
 
-        $resultc = mysql_query("INSERT INTO `case_files` VALUES ('0','" . $case_type . "','" . $client_uid . "','" . $referrer_uid . "','" . $debtor_uid . "','" . $assignee_username . "','open','','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','" . $notification_message . "','" . $principal . "','" . $upload_file_no . "')") or die (mysql_error());
+        $resultc = mysql_query("INSERT INTO `case_files` ( `case_type`, `client_uid`, `referrer_uid`, `debtor_uid`, `assignee_id`, `file_status`, `remarks`, `unique_file_number`, `notification_date`, `description`, `location`, `username`, `status`, `stamp`, `date`, `time`, `notification_message`, `principal`, `upload_file_id`) VALUES ('" . $case_type . "','" . $client_uid . "','" . $referrer_uid . "','" . $debtor_uid . "','" . $assignee_username . "','open','','" . $unique_file_id . "','" . $notification_date . "','" . $description . "','" . $location . "','" . $username . "','1','" . date('YmdHi') . "','" . date('d/m/Y') . "','" . date('H:i') . "','" . $notification_message . "','" . $principal . "','" . $upload_file_no . "')") or die (mysql_error());
 
         if ($resultc) {
 
