@@ -32092,45 +32092,41 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                      <div class="form-group">
                         <label style="float:left" class="col-sm-2">Case File:<span style="color:#f00">*</span></label>
                         <div class="col-sm-6  controls">
-                        <input type="text" list="case_files" id="case_file_no" placeholder="Enter Case File Number">
-                         <datalist id="case_files">';
+                       <select id="case_file_no" class="comboselect">
+                       <option value="">Select Case File</option>';
                         $resulta =mysql_query("select * from case_files where status=1 order by stamp desc");
                                   $num_resultsa = mysql_num_rows($resulta);
                                   for ($i=0; $i <$num_resultsa; $i++) {
                                     $row=mysql_fetch_array($resulta);
-                                    $unique_file_id=stripslashes($row['unique_file_number']);
-                                    echo"<option value='".$unique_file_id."'>".$unique_file_id."</option>";
+                                    $unique_file_id=stripslashes($row['id']);
+                                    $unique_file_number = stripslashes($row['unique_file_number']);
+                                    echo"<option value='".$unique_file_id."'>".$unique_file_number."</option>";
                                 }
                         echo'
-                        </datalist>
+                        </select>
                         </div>
                         </div>
                         
                         <div class="form-group">
                         <label style="float:left" class="col-sm-2">Bill to:<span style="color:#f00">*</span></label>
                         <div class="col-sm-6 controls">
-                        <input type="text" list="clients" id="billable_client" placeholder="Enter Client Name">
-                         <datalist id="clients">';
+                         <select id="billable_client" class="comboselect">
+                        <option value="">Select Client</option>';
                         $resulta =mysql_query("select * from clients where status=1 order by stamp desc");
                                   $num_resultsa = mysql_num_rows($resulta);
                                   for ($i=0; $i <$num_resultsa; $i++) {
                                     $row=mysql_fetch_array($resulta);
+                                    $clientid=stripslashes($row['id']);
                                     $unique_client_id=stripslashes($row['unique_client_id']);
-                                    $client_name = displayClientName($row['client_name']);
-                                    echo"<option value=\"".$unique_client_id."\">".$client_name."</option>";
+                                    $client_name = stripslashes($row['client_name']);
+                                    echo"<option value=\"".$clientid."\">".$unique_client_id."-".$client_name."</option>";
                                 }
                         echo'
-                        </datalist>
+                        </select>
                         </div>
                         </div>
 
-                        <div class="form-group">
-                        <label style="float:left" class="col-sm-2">Month:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-6 controls">
-                        <input type="text" placeholder="" id="month" value="'.date('m_Y').'">
-                        </div>
-
-                       </div>
+                     
 
                      </form>
                   </div>
@@ -32194,10 +32190,10 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                   <div class="panel-body">
                     <form class="form-horizontal" action="#" role="form">';
                      echo'
-                        <div class="form-group" style="display:none">
+                        <div class="form-group" style="">
                          <label style="float:left" class="col-sm-4">Date:<span style="color:#f00">*</span></label>
                         <div class="col-sm-8 controls">
-                        <input type="text" placeholder="" id="date" value="'.date('d/m/Y').'" disabled>
+                        <input type="text" placeholder="" id="date" value="'.date('d/m/Y').'">
                         </div>
                          </div>
 
@@ -32227,7 +32223,24 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
                 <!-- Panel Widget --> 
               </div>
               <!-- col-md-3 --> 
+              <div class="col-md-12">
+              <div class="panel widget">
+                <div class="panel-heading vd_bg-grey">
+                  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Items List</h3>
+                </div>
+                <div class="panel-body">
+                  <form class="form-horizontal" action="#" role="form">
+                  <div id="display">
 
+
+                  </div>
+                 </form>
+                </div>
+              </div>
+              <!-- Panel Widget --> 
+            </div>
+            
+            <!-- col-md-12 --> 
               
               </div>
             <!-- row --> 
@@ -32242,9 +32255,221 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
         <!-- .vd_container --> ';
 
           echo "<script>  $( '#date' ).datepicker({ dateFormat: 'dd/mm/yy'}); </script>";
-            echo "<script>  $( '#month' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
-
+         
         break;
+
+
+        
+           case 311:
+          if(isset($_SESSION['receive'])){unset($_SESSION['receive']);}
+          if(isset($_GET['param'])){
+             $param=$tid=$_GET['param'];
+             $resulta =mysql_query("select * from tenants where tid='".$param."' limit 0,1");
+              $row=mysql_fetch_array($resulta);
+              $item=stripslashes($row['tid']).'-'.stripslashes($row['bname']).'-'.stripslashes($row['hname']).'-'.stripslashes($row['roomno']);
+              if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+              else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+             echo "<script>
+                var param='".$param."';
+                var item='".$item."';
+                $('#tenant').val(item);
+                $('#display').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                $.ajax({
+                url:'bridge.php',
+                data:{id:50.1,param:param},
+                success:function(data){
+                $('#display').html(data);
+                }
+                });
+              
+          </script>";
+          }
+
+          if(isset($_GET['loadex'])){
+
+            $tenants='';
+            $resulta =mysql_query("select * from tenants where status=0");
+            $num_resultsa = mysql_num_rows($resulta); 
+            for ($i=0; $i <$num_resultsa; $i++) {
+            $row=mysql_fetch_array($resulta);
+            $item=stripslashes($row['tid']).'-'.stripslashes($row['bname']).'-'.stripslashes($row['hname']).'-'.stripslashes($row['roomno']).'-Rent:'.number_format(floatval($row['monrent']),2);
+            $tenants.='"'.$item.'",';
+            }
+            $len=strlen($tenants);
+            $a=$len-1;
+            $tenants=substr($tenants,0,$a);
+            
+            
+          }else{
+
+            $tenants=$_SESSION['tenants'];
+          }
+         
+
+    $result = mysql_query("insert into log values('','".$username." accesses Receive Payments Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+      echo'<div class="vd_container" id="container">
+        <div class="vd_content clearfix">
+        
+          
+          <div class="vd_content-section clearfix">
+            <div class="row" id="form-basic">
+                <div class="col-md-12">
+                <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Receive Payments<span onclick="loadextenants()" style="float:right;cursor:pointer"><u>Load Ex-Clients</u></span></h3>
+                  </div>
+                  <div class="panel-body">
+                    <form class="form-horizontal" action="#" role="form">
+
+                     <div class="form-group">
+                        <label style="float:left" class="col-sm-2">Client:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-7 controls">
+                        <input type="text" placeholder="" id="tenant">
+                        </div>
+
+                        <label style="float:left" class="col-sm-1">Bal:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-2 controls">
+                        <input type="text" placeholder="" id="prevbal" disabled>
+                        </div>
+
+                        </div>
+
+                     </form>
+                  </div>
+                </div>
+                <!-- Panel Widget --> 
+              </div>
+              <!-- col-md-12 --> 
+
+
+              <div class="col-md-12">
+                <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Invoices List</h3>
+                  </div>
+                  <div class="panel-body">
+                    <form class="form-horizontal" action="#" role="form">
+                    <div id="display">
+
+
+                    </div>
+                   </form>
+                  </div>
+                </div>
+                <!-- Panel Widget --> 
+              </div>
+              <!-- col-md-12 --> 
+
+                <div class="col-md-12">
+                <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Submit  Payments</h3>
+                  </div>
+                  <div class="panel-body">
+                    <form class="form-horizontal" action="#" role="form">
+
+                      <div class="form-group">
+                        <label style="float:left" class="col-sm-2">Total Entries:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-3 controls">
+                         <input type="text" id="totitems" disabled>
+                         <input type="hidden" id="invtot">
+                         <input type="hidden" id="paytot">
+                        </div>
+                      <label style="float:left" class="col-sm-2">Final Total:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-3 controls">
+                          <input type="text" id="fintot" disabled>
+                        </div>
+                       </div>
+
+                   <div class="form-group">
+                        <label style="float:left" class="col-sm-2">Pay Mode<span style="color:#f00">*</span></label>
+                        <div class="col-sm-3 controls">
+                          <select id="paymode">
+                          <option value="">Select One...</option>';
+                           $resulta =mysql_query("select * from ledgers where subcat='Bank'  and parent!=1");
+                            $num_resultsa = mysql_num_rows($resulta);
+                              for ($i=0; $i <$num_resultsa; $i++) {
+                                  $rowa=mysql_fetch_array($resulta);
+                                  $code=stripslashes($rowa['id']);
+                                  echo '<option value="'.stripslashes($rowa['ledgerid']).'">'.stripslashes($rowa['name']).'</option>';
+                                }
+                           echo'</select>
+                        </div>';
+                          $xx='';
+                          $result =mysql_query("select * from accesstbl where AccessCode=163");
+                          $row=mysql_fetch_array($result);
+                          $code=stripslashes($row['AccessCode']);
+                           if(stripslashes($row[$usertype])!='YES'){
+                            $xx=' disabled';
+                           }
+                         echo'<label style="float:left" class="col-sm-2">Bank Date:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-2 controls">
+                          <input type="text" id="bankdate" value="">
+                        </div>
+
+                        <label style="float:left" class="col-sm-1">Ref No:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-2 controls">
+                          <input type="text" id="refno">
+                        </div>
+                         <div class="cleaner_h5"></div>
+
+                        
+                        
+                          <div class="col-sm-2 controls" style="float:right">
+                            <button class="btn vd_btn vd_bg-green" style="" id="receivefee" onclick="submitreceivefee()"><span class="menu-icon"><i class="fa fa-save"></i></span>Submit</button>
+                         </div>
+
+                         
+
+
+                        </div>
+
+                    </form>
+                  </div>
+                </div>
+                <!-- Panel Widget --> 
+              </div>
+              <!-- col-md-12 --> 
+
+              
+              </div>
+            <!-- row --> 
+              </div>
+            
+            </div>
+          <!-- .vd_content-section --> 
+          
+        </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container --> ';
+          echo "<script>
+          var tenants = [".$tenants."];
+          $( '#tenant' ).autocomplete({
+            source: tenants,
+            select: function( event, ui ) {
+                setTimeout(function() {
+                var param = $('#tenant').val();
+                var parts=param.split('-',3);
+                param=parts[0];
+                $('#display').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+                $.ajax({
+                url:'bridge.php',
+                data:{id:50.1,param:param},
+                success:function(data){
+                $('#display').html(data);
+                }
+                });
+                },500);
+            }
+
+            });
+          </script>";
+          echo "<script>  $( '#month' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
+           echo "<script>  $( '#bankdate' ).datepicker({ dateFormat: 'dd/mm/yy'}); </script>";
+
+
+              break;
 
 
         /*****CASE MANAGEMEN END*****/

@@ -10339,7 +10339,6 @@ function feenote() {
 function submitfeenote() {
     var case_file_no = $('#case_file_no').val();
     var billable_client = $('#billable_client').val();
-    var month = $('#month').val();
     var totitems = $('#totitems').val();
     var fintot = $('#totprice').val();
     var date = $('#date').val();
@@ -10351,15 +10350,13 @@ function submitfeenote() {
         swal("Error", "Provide Case file Number!", "error");
     } else if (billable_client == '') {
         swal("Error", "Provide billable client!", "error");
-    } else if (month == '') {
-        swal("Error", "Select the Month!", "error");
-    } else if (date == '') {
+    }  else if (date == '') {
         swal("Error", "Enter the Date!", "error");
     } else {
         $('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
         $.ajax({
             url: 'data.php',
-            data: {id: 304, fintot: fintot, month: month, case_file_no: case_file_no, billable_client:billable_client, date: date},
+            data: {id: 304, fintot: fintot, case_file_no: case_file_no, billable_client:billable_client, date: date},
             success: function (data) {
                 $('#display').html(data);
             }
@@ -10368,6 +10365,8 @@ function submitfeenote() {
 }
 
 // END OF DEBT COLLECTION
+
+ $( '.comboselect' ).select2(); 
 
 /** start of warrant */
 
