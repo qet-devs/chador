@@ -2493,18 +2493,19 @@ $invno=$_GET['rcptno'];
 $result =mysql_query("select * from receipts where invno='".$invno."'  order by serial desc limit 0,1");
 $num_results = mysql_num_rows($result);
 $row=mysql_fetch_array($result);
-$tid=stripslashes($row['tid']);
-$month=stripslashes($row['month']);
-$curbal=stripslashes($row['bal']);
+$clientid=stripslashes($row['clientid']);
 $date=stripslashes($row['date']);
+$curbal=stripslashes($row['bal']);
 $amount=stripslashes($row['amount']);
+$caseid = stripslashes($row['caseid']);
+$clientname = stripslashes($row['clientname']);
+$casefileno = stripslashes($row['casefileno']);
+$clientfileno = stripslashes($row['clientfileno']);
 
 if($amount>=0){$doctitle='INVOICE';}else{$doctitle='CREDIT NOTE';}
 
-$result =mysql_query("select * from tenants where tid='".$tid."'");
+$result =mysql_query("select * from case_files where id='".$caseid."'");
 $row=mysql_fetch_array($result);
-$bname=stripslashes($row['bname']);
-$rno=stripslashes($row['kpano']);
 //override bal
 $curbal=stripslashes($row['bal']);
 
@@ -2542,7 +2543,7 @@ body,p{
 get_object("barcode").innerHTML=DrawHTMLBarcode_Code39(get_object("barcode").innerHTML,1,"yes","in",0,3,0.4,3,"bottom","center","","black","white");
 /* ]]> */
 </script>
-<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:14px">Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientName: <?php  echo $bname ?><BR/>Client No: <?php  echo $rno ?>&nbsp; &nbsp;&nbsp;&nbsp;<?php  echo $doctitle ?> No: <?php  echo $invno ?></p>
+<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:14px">Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientName: <?php  echo $clientname ?><BR/>File ID: <?php  echo $casefileno ?>&nbsp; &nbsp;&nbsp;&nbsp;<?php  echo $doctitle ?> No: <?php  echo $invno ?></p>
 <div style="clear:both; margin-bottom:10px"></div>
 
 <div style="clear:both"/>
@@ -2551,7 +2552,7 @@ get_object("barcode").innerHTML=DrawHTMLBarcode_Code39(get_object("barcode").inn
 <tbody>
 <tr style="width:100%; height:20px;color:#fff; background:#333; padding:0">
       <td  style="width:50%;">Entry Name</td>
-       <td  style="width:25%;">Month</td>
+       <td  style="width:25%;">Date</td>
       <td  style="width:25%;">Amount</td>
     </tr>
 <?php
@@ -2569,7 +2570,7 @@ $eamount=stripslashes($row['invamount'])-$evat;
 
 <tr style="width:100%; height:20px;padding:0;  font-weight:normal; font-size:11px">
     <td style="width:50%;border-width:0.5px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['actname']) ?></td>
-    <td style="width:25%;border-width:0.5px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['mon']) ?></td>
+    <td style="width:25%;border-width:0.5px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['date']) ?></td>
     <td style="width:25%;border-width:0.5px; border-color:#666; border-style:solid;"><script>document.writeln(( <?php  echo abs($eamount) ?>).formatMoney(2, '.', ','));</script></td>
       </tr>
     

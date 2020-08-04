@@ -569,7 +569,7 @@ function postautocreditnote($invid, $date, $username)
 
 function postjournal($journalno, $ledger1, $action1, $result1, $ledger2, $action2, $result2, $amount, $desc, $refno, $date, $username, $unibcode)
 {
-
+//check if journal no is empty then set it
     if ($journalno == 0) {
         $question = mysql_query("SELECT * FROM journals order by id desc limit 0,1");
         $ans = mysql_fetch_array($question);

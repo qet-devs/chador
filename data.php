@@ -6294,8 +6294,8 @@ switch ($id) {
         $caseid = $_GET['case_file_no'];
         $clientid = $_GET['billable_client'];
         $date = $_GET['date'];
-        $stamp=stampreverse($date);
-        //get receipt no and insert into requests
+        $stamp = stampreverse($date);
+
         $result = mysql_query("select * from case_files where  id='" . $caseid . "' limit 0,1");
         $row = mysql_fetch_array($result);
         $casefileno = stripslashes($row['unique_file_number']);
@@ -6306,72 +6306,71 @@ switch ($id) {
         $client_name = stripslashes($row['client_name']);
         $bal = stripslashes($row['bal']);
 
-
+//generate journal number
         $question = mysql_query("SELECT * FROM journals order by id desc limit 0,1");
         $ans = mysql_fetch_array($question);
         $journalno = stripslashes($ans['id']) + 1;
-      
-
-            //get receipt number
-            $resultc = mysql_query("select * from receipts where drcr='dr' order by serial desc limit 0,1");
-            $rowc = mysql_fetch_array($resultc);
-            $invno = stripslashes($rowc['invno']) + 1;
-            $invtot = 0;
-            $str = '';
-
-            foreach ($_SESSION['multinv'] as $key => $val) {
-                $actid = $key;
-                $total = $val;
-
-               
-
-                    $resultb = mysql_query("select * from activities where id='" . $actid . "' limit 0,1");
-                    $rowb = mysql_fetch_array($resultb);
-                    $actname = stripslashes($rowb['name']);
-                    $actlid = stripslashes($rowb['lid']);
-                    $actlname = stripslashes($rowb['lname']);
-                    $vatper = stripslashes($rowb['vat']) / 100;
-                    $str = $actname . ',';
-
-                    $vat=0;
-
-                    $desc = $str . '-INVOICE FOR ' . $casefileno;
-                   
-                    //$vat=0;
-                    $resultf = mysql_query("insert into invoices values('0','" . $invno . "','" . $caseid . "','" . $casefileno . "','" . $clientid . "','" . $clientfileno . "','" . $client_name . "','" . $actid . "','" . $actname . "','" . $total . "','0','" . $total . "','1','" . $desc . "','" . $date . "','" . $stamp . "',1,'" . $username . "','" . $vat . "')");
 
 
-                    //post journal entries
-                    //income
-                    $amount = $total;
-                    $cid = $actlid;
-                    $did = 628;
-                    $refno = $caseid;
-                    $date = datereverse($date);
-                    $description = $actname . ' Income-' . $client_name . '-' . $casefileno;
-                    postjournal($journalno, $cid, 'Credit', 'Add', $did, 'Debit', 'Add', $amount, $description, $refno, $date, $username, 0);
+        //get receipt number
+        $resultc = mysql_query("select * from receipts where drcr='dr' order by serial desc limit 0,1");
+        $rowc = mysql_fetch_array($resultc);
+        $invno = stripslashes($rowc['invno']) + 1;
+        $invtot = 0;
+        $str = '';
+//loop through session variable
+        foreach ($_SESSION['multinv'] as $key => $val) {
+            $actid = $key;
+            $total = $val;
+
+//get items from activities
+            $resultb = mysql_query("select * from activities where id='" . $actid . "' limit 0,1");
+            $rowb = mysql_fetch_array($resultb);
+            $actname = stripslashes($rowb['name']);
+            $actlid = stripslashes($rowb['lid']);
+            $actlname = stripslashes($rowb['lname']);
+            $vatper = stripslashes($rowb['vat']) / 100;
+            $str = $actname . ',';
+
+            $vat = 0;
+
+            $desc = $str . '-INVOICE FOR ' . $casefileno;
+
+            //insert each entry into invoices table
+            $resultf = mysql_query("insert into invoices values('0','" . $invno . "','" . $caseid . "','" . $casefileno . "','" . $clientid . "','" . $clientfileno . "','" . $client_name . "','" . $actid . "','" . $actname . "','" . $total . "','0','" . $total . "','1','" . $desc . "','" . $date . "','" . $stamp . "',1,'" . $username . "','" . $vat . "')");
 
 
-                    $invtot += $total;
+            //post journal entries
+            //income
+            $amount = $total;
+            $cid = $actlid;
+            $did = 628;
+            $refno = $caseid;
+            $date = datereverse($date);
+            $description = $actname . ' Income-' . $client_name . '-' . $casefileno;
+            postjournal($journalno, $cid, 'Credit', 'Add', $did, 'Debit', 'Add', $amount, $description, $refno, $date, $username, 0);
 
-           
 
-            }//end for each
+            $invtot += $total;
 
 
-            if ($invtot != 0) {
-                $nbal = $bal + $invtot;
-                $resulte = mysql_query("insert into receipts values('0','','" . $invno . "','','','" . $date . "','" . $caseid . "','" . $casefileno . "','" . $clientid . "','" . $clientfileno . "','" . $client_name . "','" . $invtot . "','','" . $desc . "','" . $nbal . "','" . $stamp . "','dr',1,2,'" . $username . "','" . $stamp . "')");
-                $resultg = mysql_query("update clients set bal='" . $nbal . "' where id='" . $clientid . "'");
+        }//end for each
 
-            }
-       
+// check invoice to ensure its not 0
+        if ($invtot != 0) {
+            $nbal = $bal + $invtot;
+            $resulte = mysql_query("insert into receipts values('0','','" . $invno . "','','','" . $date . "','" . $caseid . "','" . $casefileno . "','" . $clientid . "','" . $clientfileno . "','" . $client_name . "','" . $invtot . "','','" . $desc . "','" . $nbal . "','" . $stamp . "','dr',1,2,'" . $username . "','" . $stamp . "')");
+            $resultg = mysql_query("update clients set bal='" . $nbal . "' where id='" . $clientid . "'");
+
+        }
+
         if ($resulte) {
             unset($_SESSION['multinv']);
 
             echo '<script>swal("Success!", "Invoices posted!", "success");</script>';
-            echo"<script>window.open('report.php?id=5&rcptno=".$invno."');</script>";
-            //echo"<script>setTimeout(function() {feenote();},500);</script>";
+            echo "<script>window.open('report.php?id=5&rcptno=" . $invno . "');</script>";
+
+            echo "<script>setTimeout(function() {feenote();},500);</script>";
             $resulta = mysql_query("insert into log values('0','" . $username . " invoices Case File No:" . $casefileno . "','" . $username . "','" . date('YmdHi') . "','" . date('H:i') . "','" . date('d/m/Y') . "','1')");
         } else {
             echo '<script>swal("Error", "Invoice not posted!", "error");</script>';

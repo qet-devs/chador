@@ -64,8 +64,8 @@ for ($i=0; $i <$num_results; $i++) {
   $result =mysql_query("select * from tenants where status=1");
   $activetenants =$num_results = mysql_num_rows($result);
  
-
-  $result =mysql_query("select * from invoices where month='".date('m_Y')."' and actid=1 and status!=0");
+$month = date('Ym')."00";
+  $result =mysql_query("select * from invoices where stamp='".$month."' and actid=1 and status!=0");
   $projection=0;
   for ($i=0; $i <$num_results; $i++) {
   $row=mysql_fetch_array($result);
@@ -119,7 +119,7 @@ for ($i=0; $i <$num_results; $i++) {
         for ($x=1; $x <13; $x++) {
         
         $mon=substr($start,4,2).'_'.substr($start,0,4);$max=0;
-        $result =mysql_query("select * from receipts where month='".$mon."'");
+        $result =mysql_query("select * from receipts where stamp > '".$month."'");
         $num_results = mysql_num_rows($result);
          $dr=0;$cr=0;
           for ($i=0; $i <$num_results; $i++) {
@@ -32068,15 +32068,20 @@ case 309:
 
     case 310:
  $param=0;
-if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+if(!isset($_GET['keyy'])){
+    $_SESSION['links'][]=$id.'-'.$param;
+    end($_SESSION['links']);
+    $keyy= key($_SESSION['links']);
+}else{
+    $keyy=$_GET['keyy'];
+}
+echo "<script> $('#thekey').val('".$keyy."');</script>";
 
    $_SESSION['multinv']=array();
     $result = mysql_query("insert into log values('','".$username." accesses Fee Note Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
       echo'<div class="vd_container" id="container">
         <div class="vd_content clearfix">
  
-          
           <div class="vd_content-section clearfix">
             <div class="row" id="form-basic">
                 <div class="col-md-9">
@@ -32225,7 +32230,7 @@ else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>
               <div class="panel widget">
                 <div class="panel-heading vd_bg-grey">
                   <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Items List</h3>
-                </div>
+]                </div>
                 <div class="panel-body">
                   <form class="form-horizontal" action="#" role="form">
                   <div id="display">
