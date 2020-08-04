@@ -2493,15 +2493,15 @@ $invno=$_GET['rcptno'];
 $result =mysql_query("select * from receipts where invno='".$invno."'  order by serial desc limit 0,1");
 $num_results = mysql_num_rows($result);
 $row=mysql_fetch_array($result);
-$tid=stripslashes($row['tid']);
-$month=stripslashes($row['month']);
+$clientid=stripslashes($row['clientid']);
+$date=stripslashes($row['date']);
 $curbal=stripslashes($row['bal']);
 $date=stripslashes($row['date']);
 $amount=stripslashes($row['amount']);
 
 if($amount>=0){$doctitle='INVOICE';}else{$doctitle='CREDIT NOTE';}
 
-$result =mysql_query("select * from tenants where tid='".$tid."'");
+$result =mysql_query("select * from tenants where caseid='".$tid."'");
 $row=mysql_fetch_array($result);
 $bname=stripslashes($row['bname']);
 $rno=stripslashes($row['kpano']);

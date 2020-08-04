@@ -65,7 +65,7 @@ for ($i=0; $i <$num_results; $i++) {
   $activetenants =$num_results = mysql_num_rows($result);
  
 
-  $result =mysql_query("select * from invoices where mon='".date('m_Y')."' and actid=1 and status!=0");
+  $result =mysql_query("select * from invoices where date='".date('m_Y')."' and actid=1 and status!=0");
   $projection=0;
   for ($i=0; $i <$num_results; $i++) {
   $row=mysql_fetch_array($result);
@@ -119,7 +119,7 @@ for ($i=0; $i <$num_results; $i++) {
         for ($x=1; $x <13; $x++) {
         
         $mon=substr($start,4,2).'_'.substr($start,0,4);$max=0;
-        $result =mysql_query("select * from receipts where month='".$mon."'");
+        $result =mysql_query("select * from receipts where date='".$mon."'");
         $num_results = mysql_num_rows($result);
          $dr=0;$cr=0;
           for ($i=0; $i <$num_results; $i++) {
@@ -10596,7 +10596,7 @@ if (isset($_GET['loadex'])) {
                 for ($i=0; $i <$num_resultsy; $i++) {
                 $rowy=mysql_fetch_array($resulty);
                 $xy+=stripslashes($rowy['invamount']);
-                $_SESSION['receive'][$i]=array(stripslashes($rowy['id']),stripslashes($rowy['actname']),stripslashes($rowy['invamount']),stripslashes($rowy['paid']),stripslashes($rowy['invbal']),'',stripslashes($rowy['mon']));
+                $_SESSION['receive'][$i]=array(stripslashes($rowy['id']),stripslashes($rowy['actname']),stripslashes($rowy['invamount']),stripslashes($rowy['paid']),stripslashes($rowy['invbal']),'',stripslashes($rowy['date']));
               }
 
               $max=count($_SESSION['receive']);
