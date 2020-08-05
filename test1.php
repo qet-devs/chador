@@ -9,4 +9,4 @@ $rev =  datereverse($date);
 
 $stamp = preg_replace('~/~', '', $rev);
 
-echo date('Ym')."00";
+echo var_dump($_SESSION['tenants']);

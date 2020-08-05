@@ -2503,11 +2503,11 @@ $casefileno = stripslashes($row['casefileno']);
 $clientfileno = stripslashes($row['clientfileno']);
 
 if($amount>=0){$doctitle='INVOICE';}else{$doctitle='CREDIT NOTE';}
-
-$result =mysql_query("select * from case_files where id='".$caseid."'");
-$row=mysql_fetch_array($result);
-//override bal
-$curbal=stripslashes($row['bal']);
+//
+//$result =mysql_query("select * from case_files where id='".$caseid."'");
+//$row=mysql_fetch_array($result);
+////override bal
+//$curbal=stripslashes($row['bal']);
 
 ?>
 <style>

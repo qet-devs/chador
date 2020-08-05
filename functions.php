@@ -280,6 +280,29 @@ function gettenantbalance($tid)
 }
 
 
+function getcasefilebalance($caseid)
+{
+
+
+    $result = mysql_query("select * from receipts where caseid='" . $caseid . "' order by stamp asc");
+    $num_results = mysql_num_rows($result);
+    $bal = 0;
+    for ($i = 0; $i < $num_results; $i++) {
+        $row = mysql_fetch_array($result);
+        if (stripslashes($row['drcr']) == 'dr' || stripslashes($row['drcr']) == 'rf') {
+            $bal += preg_replace('~,~', '', stripslashes($row['amount']));
+        } else {
+            $bal -= preg_replace('~,~', '', stripslashes($row['amount']));
+        }
+    }
+
+    $resultg = mysql_query("update case_files set bal='" . $bal . "' where id='" . $caseid . "'");
+    return $bal;
+
+
+}
+
+
 function checkinvoiceexists($key)
 {
 

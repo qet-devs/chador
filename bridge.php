@@ -10084,11 +10084,11 @@ echo '
 if (isset($_GET['loadex'])) {
 
     $tenants = '';
-    $resulta = mysql_query("select * from tenants where status=1");
+    $resulta = mysql_query("select * from case_files where status=1");
     $num_resultsa = mysql_num_rows($resulta);
     for ($i = 0; $i < $num_resultsa; $i++) {
         $row = mysql_fetch_array($resulta);
-        $item = stripslashes($row['tid']) . '  ' . stripslashes($row['bname']) . ' ' . stripslashes($row['dname']) . ' ' . $row['roomno'];
+        $item = stripslashes($row['id']) . '  ' . stripslashes($row['unique_file_number']) . ' ' . displayClientName($row['client_uid']) . ' ' . $row['debtor_uid'];
         $tenants .= '"' . $item . '",';
     }
     $len = strlen($tenants);
@@ -10371,9 +10371,9 @@ if (isset($_GET['loadex'])) {
           if(isset($_SESSION['receive'])){unset($_SESSION['receive']);}
           if(isset($_GET['param'])){
              $param=$tid=$_GET['param'];
-             $resulta =mysql_query("select * from tenants where tid='".$param."' limit 0,1");
+             $resulta =mysql_query("select * from case_files where id='".$param."' limit 0,1");
               $row=mysql_fetch_array($resulta);
-              $item=stripslashes($row['tid']).'-'.stripslashes($row['bname']).'-'.stripslashes($row['hname']).'-'.stripslashes($row['roomno']);
+              $item=stripslashes($row['id']).'-'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['debtor_uid']);
               if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
               else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
              echo "<script>
@@ -10395,11 +10395,11 @@ if (isset($_GET['loadex'])) {
           if(isset($_GET['loadex'])){
 
             $tenants='';
-            $resulta =mysql_query("select * from tenants where status=0");
+            $resulta =mysql_query("select * from case_files where status=1");
             $num_resultsa = mysql_num_rows($resulta); 
             for ($i=0; $i <$num_resultsa; $i++) {
             $row=mysql_fetch_array($resulta);
-            $item=stripslashes($row['tid']).'-'.stripslashes($row['bname']).'-'.stripslashes($row['hname']).'-'.stripslashes($row['roomno']).'-Rent:'.number_format(floatval($row['monrent']),2);
+            $item=stripslashes($row['id']).'-'.stripslashes($row['unique_file_number']).'-'.displayClientName($row['client_uid']).'-'.displayClientName($row['debtor_uid']);
             $tenants.='"'.$item.'",';
             }
             $len=strlen($tenants);
@@ -10589,14 +10589,14 @@ if (isset($_GET['loadex'])) {
               $stamp= $s->format('Ymd');
               
               //$resulty =mysql_query("select * from invoices where tid='".$tid."' and (stamp>='".$stamp."' or (invbal!=0 and invstatus!=0)) order by id desc");
-              $resulty =mysql_query("select * from invoices where tid='".$tid."' and (stamp>='".$stamp."' or (invbal!=0 and invstatus!=0)) order by id desc");
+              $resulty =mysql_query("select * from invoices where caseid='".$tid."' and (stamp>='".$stamp."' or (invbal!=0 and invstatus!=0)) order by id desc");
               $num_resultsy = mysql_num_rows($resulty);
                $xy=0;
               $_SESSION['receive']=array();
                 for ($i=0; $i <$num_resultsy; $i++) {
                 $rowy=mysql_fetch_array($resulty);
                 $xy+=stripslashes($rowy['invamount']);
-                $_SESSION['receive'][$i]=array(stripslashes($rowy['id']),stripslashes($rowy['actname']),stripslashes($rowy['invamount']),stripslashes($rowy['paid']),stripslashes($rowy['invbal']),'',stripslashes($rowy['mon']));
+                $_SESSION['receive'][$i]=array(stripslashes($rowy['id']),stripslashes($rowy['actname']),stripslashes($rowy['invamount']),stripslashes($rowy['paid']),stripslashes($rowy['invbal']),'',stripslashes($rowy['date']));
               }
 
               $max=count($_SESSION['receive']);
@@ -10608,19 +10608,14 @@ if (isset($_GET['loadex'])) {
               }
 
               $bal=0;
-              $resulta =mysql_query("select * from tenants where tid='".$tid."' limit 0,1");
+              $resulta =mysql_query("select * from case_files where id='".$tid."' limit 0,1");
               $row=mysql_fetch_array($resulta);
-              $bal=gettenantbalance($row['tid']);
-              $hid=stripslashes($row['hid']);
+              $bal=getcasefilebalance($row['caseid']);
 
              
 
-              $resulta =mysql_query("select * from mainhouses where houseid='".$hid."' limit 0,1");
-              $row=mysql_fetch_array($resulta);
-              $details=stripslashes($row['details']);
 
 
-              $bal=gettenantbalance($tid);
 
 
               
