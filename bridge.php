@@ -10592,6 +10592,7 @@ if (isset($_GET['loadex'])) {
               $resulty =mysql_query("select * from invoices where caseid='".$tid."' and (stamp>='".$stamp."' or (invbal!=0 and invstatus!=0)) order by id desc");
               $num_resultsy = mysql_num_rows($resulty);
                $xy=0;
+               // declare an array to store all the invoiced items
               $_SESSION['receive']=array();
                 for ($i=0; $i <$num_resultsy; $i++) {
                 $rowy=mysql_fetch_array($resulty);
@@ -10608,9 +10609,7 @@ if (isset($_GET['loadex'])) {
               }
 
               $bal=0;
-              $resulta =mysql_query("select * from case_files where id='".$tid."' limit 0,1");
-              $row=mysql_fetch_array($resulta);
-              $bal=getcasefilebalance($row['caseid']);
+              $bal=getcasefilebalance($tid);
 
              
 
@@ -10619,14 +10618,14 @@ if (isset($_GET['loadex'])) {
 
 
               
-
-              if(strlen($details)>0){
-
-                $details=preg_replace('~\n~', '',$details);
-
-                echo"<script>swal('Property Notification!', '".$details."');</script>";
-
-              }
+//
+//              if(strlen($details)>0){
+//
+//                $details=preg_replace('~\n~', '',$details);
+//
+//                echo"<script>swal('Property Notification!', '".$details."');</script>";
+//
+//              }
               //$bal=number_format($bal);
               
               echo"<script>$('#totitems').val(".$max.")</script>
@@ -10652,15 +10651,15 @@ if (isset($_GET['loadex'])) {
 
                $resulty =mysql_query("select * from invoices where id='".$itcode."'");
                $rowy=mysql_fetch_array($resulty);
-               $tid=stripslashes($rowy['tid']);
-               $mainmonstamp=substr($rowy['mon'],3,4).substr($rowy['mon'],0,2);
+               $caseid=stripslashes($rowy['caseid']);
+               $mainmonstamp=substr($rowy['stamp'],0,6);
 
                 $arr=array();
-                $resulty =mysql_query("select * from invoices where tid='".$tid."' and invbal>1 and invamount>1 and invstatus=1 order by id desc");
+                $resulty =mysql_query("select * from invoices where caseid='".$caseid."' and invbal>1 and invamount>1 and invstatus=1 order by id desc");
                 $num_resultsy = mysql_num_rows($resulty);
                 for ($i=0; $i <$num_resultsy; $i++) {
                   $rowy=mysql_fetch_array($resulty);
-                  $monstamp=substr($rowy['mon'],3,4).substr($rowy['mon'],0,2);
+                  $monstamp=substr($rowy['stamp'],0,6);
                   $arr[stripslashes($rowy['id'])]=$monstamp;
                  }
 
@@ -32259,50 +32258,7 @@ echo "<script> $('#thekey').val('".$keyy."');</script>";
 
         
            case 311:
-          if(isset($_SESSION['receive'])){unset($_SESSION['receive']);}
-          if(isset($_GET['param'])){
-             $param=$tid=$_GET['param'];
-             $resulta =mysql_query("select * from tenants where tid='".$param."' limit 0,1");
-              $row=mysql_fetch_array($resulta);
-              $item=stripslashes($row['tid']).'-'.stripslashes($row['bname']).'-'.stripslashes($row['hname']).'-'.stripslashes($row['roomno']);
-              if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-              else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-             echo "<script>
-                var param='".$param."';
-                var item='".$item."';
-                $('#tenant').val(item);
-                $('#display').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
-                $.ajax({
-                url:'bridge.php',
-                data:{id:50.1,param:param},
-                success:function(data){
-                $('#display').html(data);
-                }
-                });
-              
-          </script>";
-          }
 
-          if(isset($_GET['loadex'])){
-
-            $tenants='';
-            $resulta =mysql_query("select * from tenants where status=0");
-            $num_resultsa = mysql_num_rows($resulta); 
-            for ($i=0; $i <$num_resultsa; $i++) {
-            $row=mysql_fetch_array($resulta);
-            $item=stripslashes($row['tid']).'-'.stripslashes($row['bname']).'-'.stripslashes($row['hname']).'-'.stripslashes($row['roomno']).'-Rent:'.number_format(floatval($row['monrent']),2);
-            $tenants.='"'.$item.'",';
-            }
-            $len=strlen($tenants);
-            $a=$len-1;
-            $tenants=substr($tenants,0,$a);
-            
-            
-          }else{
-
-            $tenants=$_SESSION['tenants'];
-          }
-         
 
     $result = mysql_query("insert into log values('','".$username." accesses Receive Payments Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
       echo'<div class="vd_container" id="container">
@@ -32322,7 +32278,15 @@ echo "<script> $('#thekey').val('".$keyy."');</script>";
                      <div class="form-group">
                         <label style="float:left" class="col-sm-2">Client:<span style="color:#f00">*</span></label>
                         <div class="col-sm-7 controls">
-                        <input type="text" placeholder="" id="tenant">
+                        <select id="clients" class="comboselect">
+                          <option value="">Select One...</option>';
+                           $resulta =mysql_query("select * from receipts where drcr='dr' and bal!=0 order by stamp desc");
+                            $num_resultsa = mysql_num_rows($resulta);
+                              for ($i=0; $i <$num_resultsa; $i++) {
+                                  $rowa=mysql_fetch_array($resulta);
+                                  echo '<option value="'.stripslashes($rowa['caseid']).'">'.stripslashes($rowa['casefileno']).' - '.stripslashes($rowa['clientname']).' </option>';
+                                }
+                           echo'</select>
                         </div>
 
                         <label style="float:left" class="col-sm-1">Bal:<span style="color:#f00">*</span></label>
@@ -32442,12 +32406,8 @@ echo "<script> $('#thekey').val('".$keyy."');</script>";
       </div>
       <!-- .vd_container --> ';
           echo "<script>
-          var tenants = [".$tenants."];
-          $( '#tenant' ).autocomplete({
-            source: tenants,
-            select: function( event, ui ) {
-                setTimeout(function() {
-                var param = $('#tenant').val();
+          $( '#clients' ).on('select2:select', function (e) {
+                var param = $('#clients').val();
                 var parts=param.split('-',3);
                 param=parts[0];
                 $('#display').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
@@ -32458,9 +32418,7 @@ echo "<script> $('#thekey').val('".$keyy."');</script>";
                 $('#display').html(data);
                 }
                 });
-                },500);
-            }
-
+                
             });
           </script>";
           echo "<script>  $( '#month' ).datepicker({ dateFormat: 'mm_yy'}); </script>";

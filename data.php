@@ -1527,8 +1527,6 @@ switch ($id) {
         $query = mysql_query("select * from ledgerlock where status=1");
         $count = mysql_num_rows($query);
         while ($count > 0) {
-
-
             sleep(5);
             $query = mysql_query("select * from ledgerlock where status=1");
             $count = mysql_num_rows($query);
@@ -1537,7 +1535,8 @@ switch ($id) {
 
             $resulte = mysql_query("update ledgerlock set status=1");
 
-            $tid = $_GET['tid'];
+            $caseid = $_GET['caseid'];
+            $clientid = $_GET['clientid'];
             $fintot = $_GET['fintot'];
             $lid = $_GET['pid'];
             $lname = $_GET['pname'];
@@ -1568,17 +1567,14 @@ switch ($id) {
 
             }
 
-            $resultc = mysql_query("select * from tenants where tid='" . $tid . "' order by id desc limit 0,1");
+            $resultc = mysql_query("select * from receipts where caseid='" . $caseid . "' and clientfileno='".$clientid."' and drcr='dr' order by id desc limit 0,1");
             $row = mysql_fetch_array($resultc);
             $prevbal = stripslashes($row['bal']);
-            $bname = $names = $tname = stripslashes($row['bname']);
-            $hid = stripslashes($row['hid']);
-            $hname = stripslashes($row['hname']);
-            $rid = stripslashes($row['rid']);
-            $rno = stripslashes($row['roomno']);
-            $phone = stripslashes($row['phone']);
-            $pendate = stripslashes($row['pendate']);
-
+            $clientname = stripslashes($row['clientname']);
+            $casefileno = stripslashes($row['casefileno']);
+            $clientid = stripslashes($row['clientid']);
+            $clientfileno = stripslashes($row['clientfileno']);
+            
 
             //get receipt number
 
@@ -1588,7 +1584,7 @@ switch ($id) {
 
             //get receipt no and insert into journal
             $max = count($_SESSION['receive']);
-            $description = 'Bills Payment:' . $tname . '-' . $tid . '-Ref No:' . $refno;
+            $description = 'Bills Payment:' . $clientname . '-' . $casefileno . '-Ref No:' . $refno;
             $refno = $refno;
             $paying = 0;
             $string = '';
@@ -1641,20 +1637,20 @@ switch ($id) {
 
                     $paying = $_SESSION['receive'][$i][5];
 
-                    $resulta = mysql_query("insert into receipt values('0','" . $rcptno . "','" . $hid . "','" . $hname . "','" . $rid . "','" . $rno . "','" . $tid . "','" . $bname . "','" . $month . "','" . $actid . "','" . $actname . "','" . $actamount . "','" . $description . "','" . $date . "','" . $stamp . "',1,'" . $username . "','" . $refno . "','" . $lid . "','" . $lname . "','" . $itcode . "','" . date('Ymd') . "')");
+                    $resulta = mysql_query("insert into receipt values('0','" . $rcptno . "','" . $caseid . "','" . $casefileno . "','" . $clientid . "','" . $clientfileno . "','" . $clientname . "','" . $actid . "','" . $actname . "','" . $actamount . "','" . $description . "','" . $date . "','" . $stamp . "',1,'" . $username . "','" . $refno . "','" . $lid . "','" . $lname . "','" . $itcode . "','" . date('Ymd') . "')");
                     $resultb = mysql_query("update invoices set paid='" . $tpaid . "',invbal='" . $invbal . "',invstatus='" . $status . "' where id='" . $itcode . "'");
 
                     //if actid==deposit
-                    if ($actid == 12 || $actid == 17 || $actid == 18) {
+                    // if ($actid == 12 || $actid == 17 || $actid == 18) {
 
-                        $resultc = mysql_query("select * from tenants where tid='" . $tid . "' order by id desc limit 0,1");
-                        $rowc = mysql_fetch_array($resultc);
-                        $deposit = stripslashes($rowc['paid_deposit']);
-                        $depaid = $deposit + $paying;
-                        $resultg = mysql_query("update tenants set paid_deposit='" . $depaid . "' where tid='" . $tid . "'");
+                    //     $resultc = mysql_query("select * from tenants where tid='" . $tid . "' order by id desc limit 0,1");
+                    //     $rowc = mysql_fetch_array($resultc);
+                    //     $deposit = stripslashes($rowc['paid_deposit']);
+                    //     $depaid = $deposit + $paying;
+                    //     $resultg = mysql_query("update tenants set paid_deposit='" . $depaid . "' where tid='" . $tid . "'");
 
 
-                    }
+                    // }
 
 
                 }//end if
@@ -1663,14 +1659,14 @@ switch ($id) {
             }//end for
 
 
-            $resultc = mysql_query("select * from tenants where tid='" . $tid . "' order by id desc limit 0,1");
+            $resultc = mysql_query("select * from case_files where id='" . $caseid . "' order by id desc limit 0,1");
             $row = mysql_fetch_array($resultc);
             $prevbal = stripslashes($row['bal']);
 
             //insert into receipts
             $newbal = $prevbal - $totalpay;
-            $resulte = mysql_query("insert into receipts values('0','" . $rcptno . "','','','','" . $date . "','" . $paymonth . "','" . $tid . "','" . $bname . "','" . $hid . "','" . $hname . "','" . $rid . "','" . $rno . "','" . $totalpay . "','" . $lid . "','" . $description . "','','" . $newbal . "','" . $stamp . "','cr',1,2,'" . $username . "','" . date('Ymd') . "')");
-            $resultg = mysql_query("update tenants set bal='" . $newbal . "' where tid='" . $tid . "'");
+            $resulte = mysql_query("insert into receipts values('0','" . $rcptno . "','','','','" . $date . "','" . $caseid . "','" . $casefileno . "','" . $clientid . "','" . $clientfileno . "','" . $clientname . "','" . $amount . "','" . $lid . "','" . $description . "','" . $newbal . "','" . $stamp . "','cr',1,2,'" . $username . "','" . date('Ymd') . "')");
+            $resultg = mysql_query("update case_files set bal='" . $newbal . "' where id='" . $caseid . "'");
 
 
             //post journal entries
@@ -1679,8 +1675,8 @@ switch ($id) {
             $did = $lid;
             $refno = $refno;
             $date = datereverse($date);
-            $description = 'Bills Payment-' . $bname . '-' . $rno;
-            postjournal($journalno, $cid, 'Credit', 'Minus', $did, 'Debit', 'Add', $fintot, $description, $refno, $date, $username, $hid);
+            $description = 'Bills Payment-' . $clientname . '-' . $casefileno;
+            postjournal($journalno, $cid, 'Credit', 'Minus', $did, 'Debit', 'Add', $fintot, $description, $refno, $date, $username, $caseid);
 
 
             if ($resulte && $resultg) {

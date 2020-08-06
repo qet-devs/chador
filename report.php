@@ -2632,18 +2632,18 @@ $rcptno=$_GET['rcptno'];
 $result =mysql_query("select * from receipts where rcptno='".$rcptno."'  order by serial desc limit 0,1");
 $num_results = mysql_num_rows($result);
 $row=mysql_fetch_array($result);
-$tid=stripslashes($row['tid']);
-$month=stripslashes($row['month']);
+$caseid=stripslashes($row['caseid']);
 $curbal=stripslashes($row['bal']);
 $paid=stripslashes($row['amount']);
 $date=stripslashes($row['date']);
 $entrydate=stripslashes($row['datestamp']);
 
-$result =mysql_query("select * from tenants where tid='".$tid."'");
+$result =mysql_query("select * from receipts where drcr='dr' and caseid='".$caseid."' limit 0,1");
 $row=mysql_fetch_array($result);
-$bname=stripslashes($row['bname']);
-$rno=stripslashes($row['kpano']);
-$hname=stripslashes($row['hname']);
+$casefileno = stripslashes($row['casefileno']);
+$clientname = stripslashes($row['clientname']);
+$clientfileno = stripslashes($row['clientfileno']);
+
 //override bal
 $curbal=stripslashes($row['bal']);
 ?>
@@ -2681,7 +2681,7 @@ body,p{
 get_object("barcode").innerHTML=DrawHTMLBarcode_Code39(get_object("barcode").innerHTML,1,"yes","in",0,3,0.4,3,"bottom","center","","black","white");
 
 </script-->
-<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:11px">Bank Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Entry Date:<?php  echo stamptodate($entrydate) ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientName: <?php  echo $bname ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientNo: <?php  echo $tid ?><BR/> No: <?php  echo $rno ?>&nbsp; &nbsp;&nbsp;&nbsp;Receipt No: <?php  echo $rcptno ?></p>
+<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:11px">Bank Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Entry Date:<?php  echo stamptodate($entrydate) ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientName: <?php  echo $clientname ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientNo: <?php  echo $clientfileno ?><BR/> File No: <?php  echo $casefileno ?>&nbsp; &nbsp;&nbsp;&nbsp;Receipt No: <?php  echo $rcptno ?></p>
 <div style="clear:both; margin-bottom:10px"></div>
 
 <div style="clear:both"/>
@@ -2690,7 +2690,7 @@ get_object("barcode").innerHTML=DrawHTMLBarcode_Code39(get_object("barcode").inn
 <tbody>
 <tr style="width:100%; height:20px;padding:0;font-weight:bold;">
       <td  style="width:50%;border-width:0px; border-color:#666; border-style:solid;">Entry Name</td>
-      <td  style="width:25%;border-width:0px; border-color:#666; border-style:solid;">Month</td>
+      <td  style="width:25%;border-width:0px; border-color:#666; border-style:solid;">Date</td>
       <td  style="width:25%;border-width:0px; border-color:#666; border-style:solid;">Amount</td>
     </tr>
 
@@ -2708,23 +2708,21 @@ $xx=0;
 for ($i=0; $i <$num_results; $i++) {
 $row=mysql_fetch_array($result);
 $user=stripslashes($row['username']);
-$tid=stripslashes($row['tid']);
+$caseid=stripslashes($row['caseid']);
 $xx+=stripslashes($row['amount']);  
 ?>
 
 <tr style="width:100%; height:20px;padding:0;  font-weight:normal; font-size:10px">
     <td style="width:50%;border-width:0px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['actname']) ?></td>
-    <td style="width:25%;border-width:0px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['mon']) ?></td>
+    <td style="width:25%;border-width:0px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['date']) ?></td>
     <td style="width:25%;border-width:0px; border-color:#666; border-style:solid;"><script>document.writeln(( <?php  echo stripslashes($row['amount']) ?>).formatMoney(2, '.', ','));</script></td>
       </tr>
     
 <?php } 
 
 
-$result =mysql_query("select * from invoices where tid='".$tid."' and invbal!=0 order by id desc limit 0,1");
+$result =mysql_query("select * from invoices where caseid='".$caseid."' and invbal!=0 order by id desc limit 0,1");
 $row=mysql_fetch_array($result);
-$mon=stripslashes($row['mon']);
-if($mon==''){$mon=$month;}
 
 
 ?>
@@ -2748,7 +2746,7 @@ if($mon==''){$mon=$month;}
 </tr>
 
 <tr style="width:100%; height:20px;padding:0;  font-weight:bold; font-size:10px">
-<td style="width:40%;border-width:0px; border-color:#666; border-style:solid;">OUTSTANDING BALANCE AS OF <?php  echo $mon ?></td>
+<td style="width:40%;border-width:0px; border-color:#666; border-style:solid;">OUTSTANDING BALANCE AS OF <?php  echo $date ?></td>
 <td style="width:60%;border-width:0px; border-color:#666; border-style:solid;"><script>document.writeln(( <?php  echo $curbal ?>).formatMoney(2, '.', ','));</script></td>
 </tr>
 

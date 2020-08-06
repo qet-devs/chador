@@ -3020,7 +3020,7 @@ function receipting() {
     $("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
     $.ajax({
         url: 'bridge.php',
-        data: {id: 50},
+        data: {id: 311},
         success: function (data) {
             $('#mainp').html(data);
         }
@@ -3073,15 +3073,16 @@ function submitreceivefee() {
     var pname = $('#paymode option:selected').text();
     var refno = $('#refno').val();
     var date = $('#bankdate').val();
-    var param = $('#tenant').val();
-    var parts = param.split('-', 3);
-    tid = parts[0];
-
+    var caseid = $('#clients :selected').val();
+var client = $('#clients :selected').text();
+var parts=client.split('-',2);
+var clientid=parts[0];
+// console.log(clientid);
 
     if (fintot == '') {
         swal("Error", "No Entries Made!", "error");
-    } else if (tid == '') {
-        swal("Error", "No Tenant Selected!", "error");
+    } else if (caseid == '') {
+        swal("Error", "No File Selected!", "error");
     } else if (pid == '') {
         swal("Error", "Select Mode of Payment!", "error");
     } else if (date == '') {
@@ -3093,7 +3094,7 @@ function submitreceivefee() {
         $('#display').html('<img id="img-spinner" src="img/spin.gif" style="width:30px;position:absolute; top:65%; left:50%" alt="Loading"/>');
         $.ajax({
             url: 'data.php',
-            data: {id: 24, fintot: fintot, tid: tid, pid: pid, pname: pname, refno: refno, date: date},
+            data: {id: 24, fintot: fintot, caseid: caseid, pid: pid, pname: pname, refno: refno, date: date, clientid:clientid},
             success: function (data) {
                 $('#display').html(data);
             }
