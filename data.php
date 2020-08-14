@@ -1535,7 +1535,7 @@ switch ($id) {
 
             $resulte = mysql_query("update ledgerlock set status=1");
 
-            $caseid = $_GET['caseid'];
+
             $clientid = $_GET['clientid'];
             $fintot = $_GET['fintot'];
             $lid = $_GET['pid'];
@@ -1567,13 +1567,12 @@ switch ($id) {
 
             }
 
-            $resultc = mysql_query("select * from receipts where caseid='" . $caseid . "' and clientfileno='".$clientid."' and drcr='dr' order by id desc limit 0,1");
+            $resultc = mysql_query("select * from clients where id='" . $clientid . "' limit 0,1");
             $row = mysql_fetch_array($resultc);
             $prevbal = stripslashes($row['bal']);
-            $clientname = stripslashes($row['clientname']);
-            $casefileno = stripslashes($row['casefileno']);
-            $clientid = stripslashes($row['clientid']);
-            $clientfileno = stripslashes($row['clientfileno']);
+            $clientname = stripslashes($row['client_name']);
+            $clientfileno  = stripslashes($row['unique_client_id']);
+            $clientid = stripslashes($row['id']);
             
 
             //get receipt number
@@ -1584,7 +1583,7 @@ switch ($id) {
 
             //get receipt no and insert into journal
             $max = count($_SESSION['receive']);
-            $description = 'Bills Payment:' . $clientname . '-' . $casefileno . '-Ref No:' . $refno;
+            $description = 'Received from : '. $clientname.'-Ref No:' . $refno;
             $refno = $refno;
             $paying = 0;
             $string = '';
@@ -1598,7 +1597,8 @@ switch ($id) {
                 $paid = $_SESSION['receive'][$i][3];
                 $invbal = $_SESSION['receive'][$i][4];
                 $actamount = $paying = $_SESSION['receive'][$i][5];
-                $month = $_SESSION['receive'][$i][6];
+                $date = $_SESSION['receive'][$i][6];
+                $casefileno = $_SESSION['receive'][$i][7];
                 $tpaid = $paid + $paying;
                 $invbal = $invbal - $paying;
                 if ($invbal <= 0) {
@@ -1614,43 +1614,17 @@ switch ($id) {
                     $actid = stripslashes($rowx['actid']);
                     $actname = stripslashes($rowx['actname']);
                     $totalpay += $paying;
+                    $qry = mysql_query("select * from case_files where unique_file_number='".$casefileno."' limit 0,1");
+                    $res = mysql_fetch_array($qry);
+                    $caseid = $res['id'];
+                                        
 
-                    //if rent payment
-                    if ($actid == 1) {
-
-                        //post credit notes
-                        $penaltydate = substr($month, 3, 4) . substr($month, 0, 2) . $pendate;
-                        $resultc = mysql_query("select * from invoices where tid='" . $tid . "' and actid=4 and mon='" . $month . "' and invamount!=0");
-                        if (mysql_num_rows($resultc) > 0 && $bankstamp <= $penaltydate) {
-
-
-                            $rowc = mysql_fetch_array($resultc);
-                            $invid = stripslashes($rowc['id']);
-
-                            //echo $invid.'-'.$bankstamp.'-'.$penaltydate.'<BR/>';
-
-                            postautocreditnote($invid, $date, $username);
-
-                        }
-
-                    }
 
                     $paying = $_SESSION['receive'][$i][5];
 
                     $resulta = mysql_query("insert into receipt values('0','" . $rcptno . "','" . $caseid . "','" . $casefileno . "','" . $clientid . "','" . $clientfileno . "','" . $clientname . "','" . $actid . "','" . $actname . "','" . $actamount . "','" . $description . "','" . $date . "','" . $stamp . "',1,'" . $username . "','" . $refno . "','" . $lid . "','" . $lname . "','" . $itcode . "','" . date('Ymd') . "')");
                     $resultb = mysql_query("update invoices set paid='" . $tpaid . "',invbal='" . $invbal . "',invstatus='" . $status . "' where id='" . $itcode . "'");
 
-                    //if actid==deposit
-                    // if ($actid == 12 || $actid == 17 || $actid == 18) {
-
-                    //     $resultc = mysql_query("select * from tenants where tid='" . $tid . "' order by id desc limit 0,1");
-                    //     $rowc = mysql_fetch_array($resultc);
-                    //     $deposit = stripslashes($rowc['paid_deposit']);
-                    //     $depaid = $deposit + $paying;
-                    //     $resultg = mysql_query("update tenants set paid_deposit='" . $depaid . "' where tid='" . $tid . "'");
-
-
-                    // }
 
 
                 }//end if

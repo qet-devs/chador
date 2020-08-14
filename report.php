@@ -2681,7 +2681,7 @@ body,p{
 get_object("barcode").innerHTML=DrawHTMLBarcode_Code39(get_object("barcode").innerHTML,1,"yes","in",0,3,0.4,3,"bottom","center","","black","white");
 
 </script-->
-<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:11px">Bank Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Entry Date:<?php  echo stamptodate($entrydate) ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientName: <?php  echo $clientname ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientNo: <?php  echo $clientfileno ?><BR/> File No: <?php  echo $casefileno ?>&nbsp; &nbsp;&nbsp;&nbsp;Receipt No: <?php  echo $rcptno ?></p>
+<p style="text-align:center;   font-weight:normal; margin:0px 10PX 0 10px;font-size:11px">Bank Date:<?php  echo $date ?>&nbsp; &nbsp;&nbsp;&nbsp;Entry Date:<?php  echo stamptodate($entrydate) ?>&nbsp; &nbsp;&nbsp;&nbsp;Time:<?php  echo date('H:i a') ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientName: <?php  echo $clientname ?>&nbsp; &nbsp;&nbsp;&nbsp;ClientNo: <?php  echo $clientfileno ?><BR/>Receipt No: <?php  echo $rcptno ?></p>
 <div style="clear:both; margin-bottom:10px"></div>
 
 <div style="clear:both"/>
@@ -2689,8 +2689,9 @@ get_object("barcode").innerHTML=DrawHTMLBarcode_Code39(get_object("barcode").inn
 <table id="datatable"  style="width:100%;text-align:center;font-size:10px; font-weight:bold; padding:0; " >
 <tbody>
 <tr style="width:100%; height:20px;padding:0;font-weight:bold;">
-      <td  style="width:50%;border-width:0px; border-color:#666; border-style:solid;">Entry Name</td>
-      <td  style="width:25%;border-width:0px; border-color:#666; border-style:solid;">Date</td>
+      <td  style="width:20%;border-width:0px; border-color:#666; border-style:solid;">Case File</td>
+      <td  style="width:40%;border-width:0px; border-color:#666; border-style:solid;">Entry Name</td>
+      <td  style="width:15%;border-width:0px; border-color:#666; border-style:solid;">Date</td>
       <td  style="width:25%;border-width:0px; border-color:#666; border-style:solid;">Amount</td>
     </tr>
 
@@ -2713,8 +2714,9 @@ $xx+=stripslashes($row['amount']);
 ?>
 
 <tr style="width:100%; height:20px;padding:0;  font-weight:normal; font-size:10px">
-    <td style="width:50%;border-width:0px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['actname']) ?></td>
-    <td style="width:25%;border-width:0px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['date']) ?></td>
+<td style="width:20%;border-width:0px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['casefileno']) ?></td>
+    <td style="width:40%;border-width:0px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['actname']) ?></td>
+    <td style="width:15%;border-width:0px; border-color:#666; border-style:solid;"><?php  echo stripslashes($row['date']) ?></td>
     <td style="width:25%;border-width:0px; border-color:#666; border-style:solid;"><script>document.writeln(( <?php  echo stripslashes($row['amount']) ?>).formatMoney(2, '.', ','));</script></td>
       </tr>
     
@@ -2742,7 +2744,7 @@ $row=mysql_fetch_array($result);
 
 <tr style="width:100%; height:20px;padding:0;  font-weight:bold; font-size:10px">
  <td style="width:40%;border-width:0px; border-color:#666; border-style:solid;">IN WORDS</td>
-<td style="width:60%;border-width:0px; border-color:#666; border-style:solid;">KShs. <script>document.writeln(toWords(<?php echo $paid?>));</script> ONLY</td>
+<td style="width:60%;border-width:0px; border-color:#666; border-style:solid;">KShs. <script>document.writeln(toWords(<?php echo $paid ?>));</script> ONLY</td>
 </tr>
 
 <tr style="width:100%; height:20px;padding:0;  font-weight:bold; font-size:10px">

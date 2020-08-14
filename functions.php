@@ -280,11 +280,11 @@ function gettenantbalance($tid)
 }
 
 
-function getcasefilebalance($caseid)
+function getclientbalance($clientid)
 {
 
 
-    $result = mysql_query("select * from receipts where caseid='" . $caseid . "' order by stamp asc");
+    $result = mysql_query("select * from receipts where clientid='" . $clientid . "' order by stamp asc");
     $num_results = mysql_num_rows($result);
     $bal = 0;
     for ($i = 0; $i < $num_results; $i++) {
@@ -296,7 +296,7 @@ function getcasefilebalance($caseid)
         }
     }
 
-    $resultg = mysql_query("update case_files set bal='" . $bal . "' where id='" . $caseid . "'");
+    $resultg = mysql_query("update clients set bal='" . $bal . "' where id='" . $clientid . "'");
     return $bal;
 
 
@@ -2188,8 +2188,9 @@ function cartreceive($max)
     echo "<table id=\"datatable\"  style=\"text-align:center;font-size:11px; font-weight:bold; padding:0;width:100% \" >";
     echo '<tbody>
                                     <tr  class="panel-heading vd_bg-grey" style="color:#fff;padding-left:0;width:100%">
-                                      <td  style="width:30%;">Item Name</td>
-                                      <td  style="width:15%;">Month</td>
+                                       <td  style="width:10%;">Case File</td> 
+                                      <td  style="width:25%;">Item Name</td>
+                                      <td  style="width:10%;">Date</td>
                                       <td  style="width:15%;">Invoiced Amount</td>
                                       <td  style="width:10%;">Amount Paid</td>
                                       <td  style="width:10%;">Balance</td>
@@ -2211,8 +2212,9 @@ function cartreceive($max)
             echo "<tr style=\"width:100%; height:20px;padding:0; background:#f0f0f0; font-weight:normal;cursor:pointer\">";
         }
 
-        echo '<td style="width:30%;border-width:0.5px; border-color:#666; border-style:solid;">' . $_SESSION['receive'][$row][1] . '</td>
-                                       <td style="width:15%;border-width:0.5px; border-color:#666; border-style:solid;">' . $_SESSION['receive'][$row][6] . '</td>
+        echo '<td style="width:10%;border-width:0.5px; border-color:#666; border-style:solid;">' . $_SESSION['receive'][$row][7] . '</td>
+<td style="width:25%;border-width:0.5px; border-color:#666; border-style:solid;">' . $_SESSION['receive'][$row][1] . '</td>
+                                       <td style="width:10%;border-width:0.5px; border-color:#666; border-style:solid;">' . $_SESSION['receive'][$row][6] . '</td>
                                        <td style="width:15%;border-width:0.5px; border-color:#666; border-style:solid;">' . number_format(floatval($_SESSION['receive'][$row][2])) . '</td>
                                         <td style="width:10%;border-width:0.5px; border-color:#666; border-style:solid;">' . number_format(floatval($_SESSION['receive'][$row][3])) . '</td>
                                          <td  id="bal' . $row . '"  style="width:10%;border-width:0.5px; border-color:#666; border-style:solid;">' . number_format(floatval($bal)) . '</td>
